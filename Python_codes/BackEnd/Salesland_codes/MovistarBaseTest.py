@@ -147,7 +147,7 @@ print("KEYS:",list3)
 for item in list:
     ejecutarSQL("DELETE FROM "+str(item)+";")
 
-"""
+
 #CREACION DE INSERTS
 i=0; 
 for item in list:
@@ -157,35 +157,40 @@ for item in list:
     array = array[np.logical_not(isNaN(array))]
     #print(array)
     j=0;
-    for item in range(len(array)):  
+    for item2 in range(len(array)):  
         #print(j,"--",len(array))
         #print(j,"--",len(array), "ARRAY:",array[j])     
         cont = len(array)
         if (not(isNaN(array[j]))):
-            sql2 += str(array[j])
+            sql2 += str(array[j]).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').upper().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
             if(j < len(array)-1):                
                 sql2 += ", "
             else:               
                 sql2 += " "
-        j = j+1
-    print("\n\tCONTADOR INSERTS:",cont)
+        print(j,":\t",str(sql2))
+        j = j+1        
+    print("\n\t",item,"\tCONTADOR INSERTS:",cont)
+
+    #print(valores)
     for k in range(valores[i].shape[0]):
         insertA=""
         for l in range(cont):
-            if (not(isNaN(valores[i].iloc[k,l]))):
-                insertA += "'"+(str(valores[i].iloc[k,l])).replace("\n","")+"'"
-            else:
-                insertA +="''"
-            if (l < cont-1):
-                insertA += ","
-            else:
-                insertA += ""
+            insertA += "'"+(str(valores[i].iloc[k,l])).replace("\n","")+"'"
         #print("\n",insertA)
-        sql = "INSERT INTO " + list[i]+" ("+ str(sql2) +") VALUES (" +str(insertA) +")"
+            
+            #if (not(isNaN(valores[i].iloc[k,l]))):                
+            #else:
+            #    insertA +="''"
+            #if (l < cont-1):
+            #    insertA += ","
+            #else:
+            #    insertA += ""
+                    
+        #sql = "INSERT INTO " + list[i]+" ("+ str(sql2) +") VALUES (" +str(insertA) +")"
         #print("\nSQL:\n",sql)         
         #ejecutarSQL(sql)
     i+=1
-"""  
+ 
 
 
 
