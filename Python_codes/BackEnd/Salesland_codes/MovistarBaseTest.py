@@ -63,12 +63,12 @@ def delete_Tables(df2):
 
 
 #READING ENTIDADES.CSV
-df2 = pd.read_csv("C:/Users/user/Documents/Python_codes/BackEnd/Salesland_codes/EntidadesOriginales.csv",sep=";", dtype=object)
+df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/EntidadesOriginales.csv",sep=";", dtype=object)
 print(df2) 
 #print(df2.shape); print(df2.size); print(df2.columns); print(df2.dtypes) print(df2.iloc[0,:]); print("len",df2.iloc[0,:].size);
 
 #TABLE DELETES
-#delete_Tables(df2)
+delete_Tables(df2)
 
 #TABLE CREATIONS
 sql=""
@@ -100,7 +100,8 @@ for column in df2:
 
 
 #READING 11 Tablero TM Noviembre.xlsx
-df3 = pd.read_excel("C:/Users/user/Documents/Python_codes/BackEnd/Salesland_codes/11 Tablero TM Noviembre.xlsx", sheet_name=None)
+
+df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/11 Tablero TM Noviembre.xlsx", sheet_name=None)
 
 #Pospago=df3.get('Pospago')
 #Cambio_de_Plan=df3.get('Cambio de Plan')
