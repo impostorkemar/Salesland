@@ -1,0 +1,20 @@
+<form [formGroup]="formularioConsulta" (ngSubmit)="onClickOrdenar()" >
+        <div class="mb-3">
+            <label for="" class="form-label">ORDENAR POR</label>
+            <select multiple class="form-select form-select-lg" formControlName="parametroOrdenar" name="parametroOrdenar" id="">
+                  <option selected>SELECCIONE UN PARAMETRO PAR ORDENAR</option>
+                  <option value="">ID PERSONAL</option>
+                  <option value="">ID CENTRO COSTO</option>
+                  <option value="">NOMBRE CENTRO</option>
+                  <option value="">CUENTA</option>
+                  <option value="">CEDULA</option>
+                  <option value="">NOMBRE</option>
+                  <option value="">APELLIDO</option>
+                  <option value="">STATUS</option>
+                  <option value="">CIUDAD</option>
+              </select>
+          </div>
+        <div class="btn-group" role="group" aria-label="Button group name">
+            <button type="submit" class="btn btn-success">FILTRAR</button>            
+        </div>
+    </form>

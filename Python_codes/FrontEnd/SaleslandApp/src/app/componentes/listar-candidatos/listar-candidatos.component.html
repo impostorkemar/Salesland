@@ -1,0 +1,57 @@
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" routerLink="/agregar-candidato/" >AGREGAR NUEVO CANDIDATO</a>
+        <a class="btn btn-warning"(click)="exportToCSV()" role="button">EXPORT  TO CSV</a>
+    </div>
+    <div class="card-body">
+        <h1> Lista de Candidatos </h1>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ACCIONES</th>
+                        <th scope="col">CEDULA</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">APELLIDO</th>
+                        <th scope="col">GENERO</th>
+                        <th scope="col">DIRECCION DOMICILIO</th>
+                        <th scope="col">CIUDAD</th>
+                        <th scope="col">PROVINCIA</th>
+                        <th scope="col">ESTADO CIVIL</th>
+                        <th scope="col">TELEFONO CELULAR</th>
+                        <th scope="col">TELEFONO CASA</th>
+                        <th scope="col">DIRECCION DE CORREO</th>
+                        <th scope="col">FECHA DE NACIMIENTO</th>
+                        <th scope="col">EDAD</th>
+                        <th scope="col">NACIONALIDAD</th>
+                        <th scope="col">STATUS</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let candidato of Candidatos; let iControl=index" class="">
+                        <td>
+                            <a class="btn btn-info" style="width: 100%;" routerLink="/editar-candidato/{{candidato.cedula}}" >EDITAR</a>
+                            <a class="btn btn-danger" style="width: 100%;" (click)="borrarRegistro(candidato.cedula,iControl)" role="button">BORRAR</a>
+                        <td scope="row">{{candidato.cedula}}</td>
+                        <td>{{candidato.nombre}}</td>
+                        <td>{{candidato.apellido}}</td>
+                        <td>{{candidato.genero}}</td>
+                        <td>{{candidato.direccion_domicilio}}</td>
+                        <td>{{candidato.ciudad}}</td>
+                        <td>{{candidato.provincia}}</td>
+                        <td>{{candidato.estado_civil}}</td>
+                        <td>{{candidato.telefono_celular}}</td>
+                        <td>{{candidato.telefono_casa}}</td>
+                        <td>{{candidato.direccion_correo}}</td>
+                        <td>{{candidato.fecha_nacimiento}}</td>
+                        <td>{{candidato.edad}}</td>
+                        <td>{{candidato.nacionalidad}}</td>
+                        <td>{{candidato.status}}</td>
+                                                
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>        
+    </div>    
+</div>

@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="card-header">
+        EDITAR EXPERIENCIA LABORAL
+    </div>
+    <div class="card-body">
+        <form ngNativeValidate [formGroup]="formularioDeExperienciaLaboral" (ngSubmit)="enviarDatos()" >
+             
+            <div class="mb-3">
+                <label for="" class="form-label">ID EXPERIENCIA LABORAL</label>
+                <input required type="text"
+                  class="form-control" name="id_experiencia_laboral" formControlName="id_experiencia_laboral"  id="" aria-describedby="helpId" placeholder="Escribe la cedula" readonly>
+              </div>
+        
+            <div class="mb-3">
+                <label for="" class="form-label">CEDULA</label>
+                <input required type="text"
+                  class="form-control" name="cedula" formControlName="cedula"  id="" aria-describedby="helpId" placeholder="Escribe la cedula">
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">NOMBRE EXPERIENCIA</label>
+                <input required type="text"
+                  class="form-control" name="nombre_experiencia" formControlName="nombre_experiencia" id="" aria-describedby="helpId" placeholder="Escribe tu nombre experiencia">
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">TIEMPO EXPERIENCIA(%)</label>
+                <input required type="text"
+                  class="form-control" name="tiempo_experiencia" formControlName="tiempo_experiencia" id="" aria-describedby="helpId" placeholder="Escribe el % de tiempo de experiencia">
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">ESTUDIOS UNIVERSITARIOS(%)</label>
+                <input required type="text"
+                  class="form-control" name="estudios_universitarios" formControlName="estudios_universitarios" id="" aria-describedby="helpId" placeholder="Escribe el % de estudios universitarios">
+              </div>
+
+            <div class="btn-group" role="group" aria-label="Button group name">
+                <button type="submit" class="btn btn-warning">MODIFICAR REGISTRO</button>
+                <button type="button" routerLink="/listar-experiencias-laborales" class="btn btn-primary">CANCELAR</button>                
+            </div>
+
+        </form>
+    </div>
+    
+</div>
+

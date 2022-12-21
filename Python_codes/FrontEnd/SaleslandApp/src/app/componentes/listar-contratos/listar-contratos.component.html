@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" routerLink="/agregar-contrato/" >AGREGAR NUEVO CONTRATO</a>
+        <a class="btn btn-warning"(click)="exportToCSV()" role="button">EXPORT  TO CSV</a>
+    </div>
+    <div class="card-body">
+        <h1> Lista de Contratos </h1>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID CONTRATO</th>
+                        <th scope="col">TIPO CONTRATO</th>
+                        <th scope="col">FECHA INICIO CONTRATO</th>
+                        <th scope="col">SALARIO</th>
+                        <th scope="col">OBSERVACIONES</th>                        
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let contrato of Contratos; let iControl=index" class="">
+                        <td scope="row">{{contrato.id_contrato}}</td>
+                        <td>{{contrato.tipo_contrato}}</td>
+                        <td>{{contrato.fecha_inicio_contrato}}</td>
+                        <td>{{contrato.salario}}</td>
+                        <td>{{contrato.observaciones}}</td>                        
+                        <td>
+                            <a class="btn btn-info" routerLink="/editar-contrato/{{contrato.id_contrato}}" >EDITAR</a>
+                            |
+                            <a class="btn btn-danger"(click)="borrarRegistro(contrato.id_contrato,iControl)" role="button">BORRAR</a>                       
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>        
+    </div>    
+</div>
+
