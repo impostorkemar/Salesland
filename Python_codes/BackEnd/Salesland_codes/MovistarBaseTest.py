@@ -13,6 +13,9 @@ import math
 import os.path
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import time
+old = time.time()
+time_suspend = 5
 
 def ejecutarSQL(SQL):
     conexion1=mysql.connector.connect(host="localhost", 
@@ -60,6 +63,27 @@ def delete_Tables(df2):
         sql = "DROP TABLE "+ str(column) +";"
         print(sql)
         ejecutarSQL(sql)
+
+def obtainColumn(df2,consult,consult2):
+    j=0; array = []; result=-1;
+    for row in df2:        
+        array = np.array(df2.iloc[:,j])
+        array = array[np.logical_not(isNaN(array))]        
+        i=0;
+        for col in array:         
+            #consult = col  
+            strAux=str(row).lower().replace(" ","_")
+            #print("res: ",result,"\t[row:",strAux,"col:",col,"]\t\t\t[consult:",consult,"consult2:",consult2,"]", i ,j)
+            #if (strAux==consult2): print("\tTRUE1-> [row==consult2]:[",strAux,"=",consult2,"]")
+            #if (col==consult): print("\tTRUE2-> [col==consult]:[",col,"=",consult,"]")
+            if (strAux==consult2 and col==consult):                               
+                for cont in range(len(array)):
+                    if array[cont] == consult:
+                        result = cont
+                #print("\tres: ",result, "ARRAY: ", array)
+            i+=1
+        j+=1
+    return result,i,j
 
 
 #READING ENTIDADES.CSV
@@ -147,12 +171,15 @@ print("KEYS:",list3)
 for item in list:
     ejecutarSQL("DELETE FROM "+str(item)+";")
 
+#aux, fil, col = (obtainColumn(df2,"NAE","personal_ppto_vs_real"))
+#print(aux,fil,col)
+
+print("\n",str(valores[1].iloc[2,0]))
 
 #CREACION DE INSERTS
-i=0; 
+i=0; aux = -2; fil=-1; col=-1;
 for item in list:
-    sql2 = ""
-    cont = 0
+    sql2 = ""; cont = 0;
     array =  np.array(df2.iloc[:,i])  
     array = array[np.logical_not(isNaN(array))]
     #print(array)
@@ -167,30 +194,40 @@ for item in list:
                 sql2 += ", "
             else:               
                 sql2 += " "
-        print(j,":\t",str(sql2))
-        j = j+1        
-    print("\n\t",item,"\tCONTADOR INSERTS:",cont)
-
+        j = j+1      
+      
+    #print("\nItem: ",i,":",j,":\t",str(sql2))
+    #print("\n\t",item,"\tCONTADOR INSERTS:",cont)
+    #print("VAL: \n",valores[i].iloc[1,:][1])    
     #print(valores)
-    for k in range(valores[i].shape[0]):
-        insertA=""
-        for l in range(cont):
-            insertA += "'"+(str(valores[i].iloc[k,l])).replace("\n","")+"'"
-        #print("\n",insertA)
-            
-            #if (not(isNaN(valores[i].iloc[k,l]))):                
-            #else:
-            #    insertA +="''"
-            #if (l < cont-1):
-            #    insertA += ","
-            #else:
-            #    insertA += ""
-                    
-        #sql = "INSERT INTO " + list[i]+" ("+ str(sql2) +") VALUES (" +str(insertA) +")"
-        #print("\nSQL:\n",sql)         
-        #ejecutarSQL(sql)
+    kAux=1;
+    for k in range(valores[i].shape[0]):        
+        insertA=""; fil=-1; aux=-1; col=-1
+        for l in range(cont):                            
+            if (not(isNaN(valores[i].iloc[k,l]))):                                                
+                aux, fil, col = (obtainColumn(df2,df2.iloc[:,i][l],str(list[i]).replace(" ","_")))
+                #print(str(list3[i]).replace(" ","_"),":\t",aux,fil,col,"\tInsert:", valores[i].iloc[fil,aux],"\tConsult:",df2.iloc[:,i][l])
+                if (i == 0):
+                    insertA += "'"+(str(valores[i].iloc[kAux,aux])).replace("\n","")+"'"
+                else:                      
+                    insertA += "'"+(str(valores[i].iloc[k,aux])).replace("\n","")+"'"     
+                #print(obtainColumn(df2,valores[i].iloc[k,l],item))                
+                #print(insertA)
+                #print(i," [",k,aux,"]\n")
+            else:
+                insertA +="''"
+            if (l < cont-1):
+                insertA += ","
+            else:
+                insertA += ""        
+        #print(str(list3[i]).replace(" ","_"),'\n',str(sql2),'\n\t',insertA,"\n") 
+        sql = "INSERT INTO " + list[i]+" ("+ str(sql2) +") VALUES (" +str(insertA) +")"
+        print(i," [",k,aux,"]","\nSQL:\n",sql)  
+        ejecutarSQL(sql)
+    k+=1
     i+=1
- 
+    
+
 
 
 
