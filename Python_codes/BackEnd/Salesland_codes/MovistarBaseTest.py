@@ -151,26 +151,27 @@ for item in list:
     ejecutarSQL("DELETE FROM "+str(item)+";")
 
 def obtainColumnDf3(df3,consult,consult2):
-    j=0; array = []; result=-1; 
+    j=0; array = []; resultCol=-1; resultSheet=-1; 
     for row in df3:        
-        i=0
+        i=0;
         for col in df3[row]:
             auxT=str(row).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').lower().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
             auxC=str(col).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').upper().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
             #print(auxC,consult)
             if (auxT == consult2 and auxC == consult):
-                print(auxT, ":\t",consult2, "---\t",auxC, ":\t",consult)
-                result=i
+                print(auxT, ":\t",consult2, "\t",auxC, ":\t",consult, "\t", i,j)
+                resultCol=i; resultSheet=j;
+                break;
             i+=1
         j+=1        
-    return result,i,j
+    return resultSheet,resultCol
 
-aux, fil, col = (obtainColumnDf3(df3,"NAE","personal_ppto_vs_real"))
-print(aux,fil,col)
+#fil, col = (obtainColumnDf3(df3,"NAE","personal_ppto_vs_real"))
+#print(fil,col)
+#print("\n",str(valores[0].iloc[0,0]))
 
-#print("\n",str(valores[1].iloc[2,0]))
 
-"""
+
 #CREACION DE INSERTS
 i=0; aux = -2; fil=-1; col=-1;
 for item in list:
@@ -199,12 +200,12 @@ for item in list:
     for k in range(valores[i].shape[0]):        
         insertA=""; fil=-1; aux=-1; col=-1
         for l in range(cont):                               
-            aux, fil, col = (obtainColumnDf3(df2,df2.iloc[:,i][l],str(list[i]).replace(" ","_")))
+            fil, col = (obtainColumnDf3(df3,df2.iloc[:,i][l],str(list[i]).replace(" ","_")))
             #print(str(list3[i]).replace(" ","_"),":\t",aux,fil,col,"\tInsert:", valores[i].iloc[fil,aux],"\tConsult:",df2.iloc[:,i][l])
             if (i == 0):
-                insertA += "'"+(str(valores[i].iloc[kAux,aux])).replace("\n","")+"'"
+                insertA += "'"+(str(valores[i].iloc[kAux,fil])).replace("\n","")+"'"
             else:                      
-                insertA += "'"+(str(valores[i].iloc[k,aux])).replace("\n","")+"'"     
+                insertA += "'"+(str(valores[i].iloc[k,fil])).replace("\n","")+"'"     
             #print(obtainColumn(df2,valores[i].iloc[k,l],item))                
             #print(insertA)
             #print(i," [",k,aux,"]\n")
@@ -219,7 +220,7 @@ for item in list:
         ejecutarSQL(sql)
     k+=1
     i+=1
-"""
+
 
 
 
