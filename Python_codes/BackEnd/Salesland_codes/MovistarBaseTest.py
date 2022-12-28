@@ -159,12 +159,12 @@ def obtainColumnDf3(df3,consult,consult2):
             auxC=str(col).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').upper().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
             #print(auxC,consult)
             if (auxT == consult2 and auxC == consult):
-                print(auxT, ":\t",consult2, "\t",auxC, ":\t",consult, "\t", i,j)
+                #print(auxT, ":\t",consult2, "\t",auxC, ":\t",consult, "\t", i,j)
                 resultCol=i; resultSheet=j;
                 break;
             i+=1
         j+=1        
-    return resultSheet,resultCol
+    return resultCol,resultSheet
 
 #fil, col = (obtainColumnDf3(df3,"NAE","personal_ppto_vs_real"))
 #print(fil,col)
@@ -180,9 +180,7 @@ for item in list:
     array = array[np.logical_not(isNaN(array))]
     #print(array)
     j=0;
-    for item2 in range(len(array)):  
-        #print(j,"--",len(array))
-        #print(j,"--",len(array), "ARRAY:",array[j])     
+    for item2 in range(len(array)):
         cont = len(array)
         if (not(isNaN(array[j]))):
             sql2 += str(array[j]).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').upper().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
@@ -190,32 +188,20 @@ for item in list:
                 sql2 += ", "
             else:               
                 sql2 += " "
-        j = j+1      
-      
-    #print("\nItem: ",i,":",j,":\t",str(sql2))
-    #print("\n\t",item,"\tCONTADOR INSERTS:",cont)
-    #print("VAL: \n",valores[i].iloc[1,:][1])    
-    #print(valores)
+        j = j+1    
+          
     kAux=1;
     for k in range(valores[i].shape[0]):        
         insertA=""; fil=-1; aux=-1; col=-1
         for l in range(cont):                               
             fil, col = (obtainColumnDf3(df3,df2.iloc[:,i][l],str(list[i]).replace(" ","_")))
-            #print(str(list3[i]).replace(" ","_"),":\t",aux,fil,col,"\tInsert:", valores[i].iloc[fil,aux],"\tConsult:",df2.iloc[:,i][l])
-            if (i == 0):
-                insertA += "'"+(str(valores[i].iloc[kAux,fil])).replace("\n","")+"'"
-            else:                      
-                insertA += "'"+(str(valores[i].iloc[k,fil])).replace("\n","")+"'"     
-            #print(obtainColumn(df2,valores[i].iloc[k,l],item))                
-            #print(insertA)
-            #print(i," [",k,aux,"]\n")
+            #print("i:",i,"k:",k,"fil:",fil)
+            insertA += "'"+(str(valores[i].iloc[k,fil])).replace("\n","")+"'"
             if (l < cont-1):
                 insertA += ","
             else:
-                insertA += ""        
-        #print(str(list3[i]).replace(" ","_"),'\n',str(sql2),'\n\t',insertA,"\n") 
+                insertA += "" 
         sql = "INSERT INTO " + list[i]+" ("+ str(sql2) +") VALUES (" +str(insertA) +")"
-        #print(i," [",k,aux,"]","\nSQL:\n",sql)  
         print("\nSQL:\n",sql)
         ejecutarSQL(sql)
     k+=1
