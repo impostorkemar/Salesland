@@ -85,11 +85,12 @@ def obtainColumn(df2,consult,consult2):
         j+=1
     return result,i,j
 
-
-#READING ENTIDADES.CSV
+    #READING ENTIDADES.CSV
 df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/EntidadesOriginales.csv",sep=";", dtype=object)
-print(df2) 
+#print(df2) 
 #print(df2.shape); print(df2.size); print(df2.columns); print(df2.dtypes) print(df2.iloc[0,:]); print("len",df2.iloc[0,:].size);
+    #READING 11 Tablero TM Noviembre.xlsx
+df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/11 Tablero TM Noviembre.xlsx", sheet_name=None)
 
 #TABLE DELETES
 delete_Tables(df2)
@@ -122,28 +123,6 @@ for column in df2:
     print(sql)   
     ejecutarSQL(sql)
 
-
-#READING 11 Tablero TM Noviembre.xlsx
-
-df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/11 Tablero TM Noviembre.xlsx", sheet_name=None)
-
-#Pospago=df3.get('Pospago')
-#Cambio_de_Plan=df3.get('Cambio de Plan')
-#Paq_Llamad_Ilim=df3.get('Paq. Llamad. Ilim.')
-#Seguros=df3.get('Seguros')
-#Mplay=df3.get('MPlay')
-#CDF_FOX_HBO=df3.get('CDF-FOX-HBO')
-#Prepago=df3.get('Prepago')
-#NPS=df3.get('NPS')
-#print("Pospago:\n",Pospago)
-#print("Cambio_de_Plan:\n",Cambio_de_Plan)
-#print("Paq_Llamad_Ilim:\n",Paq_Llamad_Ilim)
-#print("Seguros:\n",Seguros)
-#print("Mplay:\n",Mplay)
-#print("CDF_FOX_HBO:\n",CDF_FOX_HBO)
-#print("Prepago:\n",Prepago)
-#print("NPS:\n",NPS)
-
 #COMPARATION NAMES AND SHEET_NAMES/DATA CURATION
 list = [name.lower() for name in list]
 print("LIST:",list)
@@ -171,11 +150,27 @@ print("KEYS:",list3)
 for item in list:
     ejecutarSQL("DELETE FROM "+str(item)+";")
 
-#aux, fil, col = (obtainColumn(df2,"NAE","personal_ppto_vs_real"))
-#print(aux,fil,col)
+def obtainColumnDf3(df3,consult,consult2):
+    j=0; array = []; result=-1; 
+    for row in df3:        
+        i=0
+        for col in df3[row]:
+            auxT=str(row).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').lower().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
+            auxC=str(col).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').upper().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
+            #print(auxC,consult)
+            if (auxT == consult2 and auxC == consult):
+                print(auxT, ":\t",consult2, "---\t",auxC, ":\t",consult)
+                result=i
+            i+=1
+        j+=1        
+    return result,i,j
 
-print("\n",str(valores[1].iloc[2,0]))
+aux, fil, col = (obtainColumnDf3(df3,"NAE","personal_ppto_vs_real"))
+print(aux,fil,col)
 
+#print("\n",str(valores[1].iloc[2,0]))
+
+"""
 #CREACION DE INSERTS
 i=0; aux = -2; fil=-1; col=-1;
 for item in list:
@@ -203,30 +198,28 @@ for item in list:
     kAux=1;
     for k in range(valores[i].shape[0]):        
         insertA=""; fil=-1; aux=-1; col=-1
-        for l in range(cont):                            
-            if (not(isNaN(valores[i].iloc[k,l]))):                                                
-                aux, fil, col = (obtainColumn(df2,df2.iloc[:,i][l],str(list[i]).replace(" ","_")))
-                #print(str(list3[i]).replace(" ","_"),":\t",aux,fil,col,"\tInsert:", valores[i].iloc[fil,aux],"\tConsult:",df2.iloc[:,i][l])
-                if (i == 0):
-                    insertA += "'"+(str(valores[i].iloc[kAux,aux])).replace("\n","")+"'"
-                else:                      
-                    insertA += "'"+(str(valores[i].iloc[k,aux])).replace("\n","")+"'"     
-                #print(obtainColumn(df2,valores[i].iloc[k,l],item))                
-                #print(insertA)
-                #print(i," [",k,aux,"]\n")
-            else:
-                insertA +="''"
+        for l in range(cont):                               
+            aux, fil, col = (obtainColumnDf3(df2,df2.iloc[:,i][l],str(list[i]).replace(" ","_")))
+            #print(str(list3[i]).replace(" ","_"),":\t",aux,fil,col,"\tInsert:", valores[i].iloc[fil,aux],"\tConsult:",df2.iloc[:,i][l])
+            if (i == 0):
+                insertA += "'"+(str(valores[i].iloc[kAux,aux])).replace("\n","")+"'"
+            else:                      
+                insertA += "'"+(str(valores[i].iloc[k,aux])).replace("\n","")+"'"     
+            #print(obtainColumn(df2,valores[i].iloc[k,l],item))                
+            #print(insertA)
+            #print(i," [",k,aux,"]\n")
             if (l < cont-1):
                 insertA += ","
             else:
                 insertA += ""        
         #print(str(list3[i]).replace(" ","_"),'\n',str(sql2),'\n\t',insertA,"\n") 
         sql = "INSERT INTO " + list[i]+" ("+ str(sql2) +") VALUES (" +str(insertA) +")"
-        print(i," [",k,aux,"]","\nSQL:\n",sql)  
+        #print(i," [",k,aux,"]","\nSQL:\n",sql)  
+        print("\nSQL:\n",sql)
         ejecutarSQL(sql)
     k+=1
     i+=1
-    
+"""
 
 
 
