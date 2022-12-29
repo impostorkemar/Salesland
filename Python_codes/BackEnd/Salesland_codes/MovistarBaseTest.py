@@ -112,7 +112,7 @@ for column in df2:
         #print(j,"--",len(array), "ARRAY:",array[j])
         if (not(isNaN(array[j]))):
             aux=str(array[j]).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').upper().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
-            sql += "\t"+aux+" varchar(20) NOT NULL" 
+            sql += "\t"+aux+" varchar(50) NOT NULL" 
             if(j < len(array)-1):
                 sql += ",\n"
             else:
@@ -150,27 +150,35 @@ print("KEYS:",list3)
 for item in list:
     ejecutarSQL("DELETE FROM "+str(item)+";")
 
-def obtainColumnDf3(df3,consult,consult2):
-    j=0; array = []; resultCol=-1; resultSheet=-1; 
-    for row in df3:        
-        i=0;
-        for col in df3[row]:
-            auxT=str(row).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').lower().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
-            auxC=str(col).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').upper().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
-            #print(auxC,consult)
-            if (auxT == consult2 and auxC == consult):
-                #print(auxT, ":\t",consult2, "\t",auxC, ":\t",consult, "\t", i,j)
-                resultCol=i; resultSheet=j;
-                break;
-            i+=1
-        j+=1        
+def obtainColumnDf3(valores,consult,consult2):
+    i=0; array = []; resultCol=-1; resultSheet=-1; 
+    for sheet in valores:        
+        j=0;                
+        auxT=str(list3[i]).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').lower().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
+        #print(auxT)
+        for row in sheet:     
+            auxC=str(row).replace(':','').replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').lower().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
+            #print("\t",auxC)
+            #print(auxC,consult)           
+            if (auxT == consult2 and auxC == consult): 
+                #print( i , j, auxT, ":\t",consult2, "\t",auxC, ":\t",consult, "\t")               
+                resultSheet=i;  resultCol=j;       
+                break; 
+            j+=1
+        #print("\n================================")
+        i+=1        
     return resultCol,resultSheet
 
-#fil, col = (obtainColumnDf3(df3,"NAE","personal_ppto_vs_real"))
+fil, col = (obtainColumnDf3(valores,"tipo","bdd_cnet"))
+print(fil,col,"\n")
+#i=1; l=1;
+#print("\n",df2.iloc[:,i][l],str(list[i]).replace(" ","_"))
+#fil, col = (obtainColumnDf3(valores,str(df2.iloc[:,i][l]).lower(),str(list[i]).replace(" ","_")))
 #print(fil,col)
-#print("\n",str(valores[0].iloc[0,0]))
+#print("\n",str(valores))
+#print("\n",str(valores[1].iloc[0,0]))
 
-
+#print(str(valores[1].iloc[658,0]))
 
 #CREACION DE INSERTS
 i=0; aux = -2; fil=-1; col=-1;
@@ -188,15 +196,19 @@ for item in list:
                 sql2 += ", "
             else:               
                 sql2 += " "
-        j = j+1    
-          
+        j = j+1              
     kAux=1;
     for k in range(valores[i].shape[0]):        
         insertA=""; fil=-1; aux=-1; col=-1
         for l in range(cont):                               
-            fil, col = (obtainColumnDf3(df3,df2.iloc[:,i][l],str(list[i]).replace(" ","_")))
-            #print("i:",i,"k:",k,"fil:",fil)
-            insertA += "'"+(str(valores[i].iloc[k,fil])).replace("\n","")+"'"
+            aux=str(df2.iloc[:,i][l]).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').lower().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')
+            aux2=str(list[i]).replace(" ","_")
+            col,fil = (obtainColumnDf3(valores,aux,aux2))
+            #print("\n\ti:",i,"k:",k,"fil:",fil,aux,aux2,"\n\t")
+            if (isNaN((valores[i].iloc[k,col]))):
+                insertA += "''"
+            else:
+                insertA += "'"+(str(valores[i].iloc[k,col])).replace("\n","")+"'"
             if (l < cont-1):
                 insertA += ","
             else:

@@ -1,0 +1,14 @@
+SELECT *,
+CONCAT(TELEFONO,'UPSELLSI') AS CRUCE_CONTROLNET, 
+DAY(FECHA_CAMBIO_PLAN) AS DIA, 
+(SELECT LOCAL FROM personal_ppto_vs_real where NAE = DOMAIN_LOGIN_OW) AS TIENDA, 
+(SELECT EJECUTIVO FROM personal_ppto_vs_real where NAE = DOMAIN_LOGIN_OW) AS EJECUTIVO, 
+CASE PLAN_CODIGO 
+	WHEN 'P0177' THEN 'NO SE PAGA' 
+	ELSE 'SI SE PAGA' 
+END AS 'PLANES ADULTO MAYOR' 
+FROM cambio_de_plan, personal_ppto_vs_real
+WHERE cambio_de_plan.DOMAIN_LOGIN_OW = personal_ppto_vs_real.NAE;
+
+=BUSCARV(A2;'11 Tablero TM Noviembre.xlsx'!CambioPlan[TELEFONO];1;0)
+=BUSCARV(D2;'11 Tablero TM Noviembre.xlsx'!CambioPlan[DOCUMENTO_CLIENTE];1;0)
