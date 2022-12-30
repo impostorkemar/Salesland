@@ -12,3 +12,19 @@ WHERE cambio_de_plan.DOMAIN_LOGIN_OW = personal_ppto_vs_real.NAE;
 
 =BUSCARV(A2;'11 Tablero TM Noviembre.xlsx'!CambioPlan[TELEFONO];1;0)
 =BUSCARV(D2;'11 Tablero TM Noviembre.xlsx'!CambioPlan[DOCUMENTO_CLIENTE];1;0)
+
+
+=SI((BUSCARV(A2;'11 Tablero TM Noviembre.xlsx'!CambioPlan[TELEFONO];1;0))=0;"No";"Sí") 
+=SI((BUSCARV(D2;'11 Tablero TM Noviembre.xlsx'!CambioPlan[DOCUMENTO_CLIENTE];1;0))=0;"No";"Sí")
+=SI((BUSCARV([@[PLAN_CODIGO]];'11 Tablero TM Noviembre.xlsx'!CambioPlan[PLAN_CODIGO];1;0))=0;"No";"Sí")
+=SI((BUSCARV([@[CRUCE_CONTROLNET]];'11 Tablero TM Noviembre.xlsx'!CambioPlan[CRUCE_CONTROLNET];1;0))=0;"No";"Sí")
+=SI((BUSCARV([@TIENDA];'11 Tablero TM Noviembre.xlsx'!CambioPlan[TIENDA];1;0))=0;"No";"Sí")
+=SI((BUSCARV([@NAE];'11 Tablero TM Noviembre.xlsx'!CambioPlan[DOMAIN_LOGIN_OW];1;0))=0;"No";"Sí")
+
+=Y(SI((BUSCARV(A3;'11 Tablero TM Noviembre.xlsx'!CambioPlan[TELEFONO];1;0))=0;"No";"Sí")="Sí";
+SI((BUSCARV(D3;'11 Tablero TM Noviembre.xlsx'!CambioPlan[DOCUMENTO_CLIENTE];1;0))=0;"No";"Sí")="Sí";
+SI((BUSCARV([@[PLAN_CODIGO]];'11 Tablero TM Noviembre.xlsx'!CambioPlan[PLAN_CODIGO];1;0))=0;"No";"Sí")="Sí";
+SI((BUSCARV([@[CRUCE_CONTROLNET]];'11 Tablero TM Noviembre.xlsx'!CambioPlan[CRUCE_CONTROLNET];1;0))=0;"No";"Sí")="Sí";
+SI((BUSCARV([@TIENDA];'11 Tablero TM Noviembre.xlsx'!CambioPlan[TIENDA];1;0))=0;"No";"Sí")="Sí";
+SI((BUSCARV([@NAE];'11 Tablero TM Noviembre.xlsx'!CambioPlan[DOMAIN_LOGIN_OW];1;0))=0;"No";"Sí")="Sí"
+)

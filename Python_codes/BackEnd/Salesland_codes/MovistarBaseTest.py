@@ -208,7 +208,7 @@ for item in list:
             if (isNaN((valores[i].iloc[k,col]))):
                 insertA += "''"
             else:
-                insertA += "'"+(str(valores[i].iloc[k,col])).replace("\n","")+"'"
+                insertA += "'"+(str(valores[i].iloc[k,col])).replace("\n","").upper()+"'"
             if (l < cont-1):
                 insertA += ","
             else:
@@ -218,6 +218,8 @@ for item in list:
         ejecutarSQL(sql)
     k+=1
     i+=1
+
+
 
 
 
