@@ -66,6 +66,7 @@ def consultarNumRegisTabla(nombreTabla):
     aux = consultarSQL("SELECT count(*) FROM "+nombreTabla)
     print("Consulta:",aux)
     return aux
+    
 def consultarCedulasCandidatos():
     aux = consultarSQL_Lista("SELECT cedula FROM candidato;")
     return aux
@@ -73,6 +74,7 @@ def consultarCedulasCandidatos():
 def consultarIdCentroXTienda(tienda):    
     aux = consultarSQL_Lista("SELECT `id_centro_costo` FROM `centro_costo` WHERE `tienda` = '"+str(tienda)+"'")
     return aux
+
 def consultarIdContrato(tipo_contrato,fecha_inicio_contrato,salario,observaciones):
     auxString = -1
     aux = consultarSQL_Lista("SELECT `id_contrato` FROM `contrato` WHERE `tipo_contrato` = '"+tipo_contrato+"' and `fecha_inicio_contrato` = '"+

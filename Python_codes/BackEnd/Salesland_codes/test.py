@@ -59,12 +59,12 @@ def delete_Tables(df2):
         sql = "DROP TABLE "+ str(column) +";"
         print(sql)
         ejecutarSQL(sql)
-"""
+
 KEYS = ['Personal Ppto vs Real','BDD Cnet','Pospago', 'Cambio de Plan', 'Terminales', 'Paq. Llamad. Ilim.', 'Seguros', 'MPlay', 'CDF-FOX-HBO', 'Retenciones', 'Prepago', 'NPS']
 
 #READING 11 Tablero TM Noviembre.xlsx
 df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/11 Tablero TM Noviembre.xlsx", sheet_name=None)
-
+"""
 hojas = []; i=0; varCab= []; atri=[];
 for item in KEYS:
     #print("\n",item)
@@ -88,5 +88,8 @@ print(varCab)
 df2 = np.array(varCab, dtype=object)
 print("\n",df2[1])
 """
-sql= "SELECT *, CONCAT(TELEFONO,'UPSELLSI') AS CRUCE_CONTROLNET, DAY(FECHA_CAMBIO_PLAN) AS DIA, (SELECT LOCAL FROM personal_ppto_vs_real where NAE = DOMAIN_LOGIN_OW) AS TIENDA, (SELECT EJECUTIVO FROM personal_ppto_vs_real where NAE = DOMAIN_LOGIN_OW) AS EJECUTIVO, CASE PLAN_CODIGO WHEN 'P0177' THEN 'NO SE PAGA' ELSE 'SI SE PAGA' END AS 'PLANES ADULTO MAYOR' FROM cambio_de_plan;"
-print(consultarSQL(sql))
+print(df3['Comisiones'])
+df3['Comisiones'].columns = df3['Comisiones'].iloc[0]
+df3['Comisiones'] = df3['Comisiones'].iloc[1:].reset_index(drop=True)
+df3['Comisiones'].drop(df3['Comisiones'].columns[[0]], axis=1, inplace=True)
+print(df3['Comisiones'])

@@ -64,6 +64,13 @@ def delete_Tables(df2):
         print(sql)
         ejecutarSQL(sql)
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
 def obtainColumn(df2,consult,consult2):
     j=0; array = []; result=-1;
     for row in df2:        
@@ -85,6 +92,29 @@ def obtainColumn(df2,consult,consult2):
         j+=1
     return result,i,j
 
+def calculateLadder(tarifa):    
+    if (is_number(tarifa)):
+        if (tarifa>=0 and tarifa<9.99):
+            return 1
+        elif (tarifa>=9.99 and tarifa<12.99):
+            return 2
+        elif (tarifa>=12.99 and tarifa<15):
+            return 3
+        elif (tarifa>=15 and tarifa<19.99):
+            return 4
+        elif (tarifa>=19.99 and tarifa<24.99):
+            return 5
+        elif (tarifa>=24.99 and tarifa<29.99):
+            return 6
+        elif (tarifa>=29.99 and tarifa<35):
+            return 7
+        elif (tarifa>=35):
+            return 8
+        else:
+            return 0
+    else:
+        return -1
+
     #READING ENTIDADES.CSV
 df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/EntidadesOriginales.csv",sep=";", dtype=object)
 #print(df2) 
@@ -92,6 +122,7 @@ df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd
     #READING 11 Tablero TM Noviembre.xlsx
 df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/11 Tablero TM Noviembre.xlsx", sheet_name=None)
 
+"""
 #TABLE DELETES
 delete_Tables(df2)
 
@@ -218,8 +249,56 @@ for item in list:
         ejecutarSQL(sql)
     k+=1
     i+=1
+"""
+
+KEYS2 = ['Producto','ALTAS DOMICILIADO','TRANSFERENCIAS DOMICILIADO','ALTAS PAGO EN CAJA','TRANSFERENCIAS PAGO EN CAJA',
+'Diferido Altas Dom','Diferido Transfer. Dom.','Diferido Altas Pago en Caja','Diferido Transfer. Pago en Caja',
+'Bono Actividad Comercial','escalera']
+df3['Comisiones'].columns = df3['Comisiones'].iloc[0]
+df3['Comisiones'] = df3['Comisiones'].iloc[1:].reset_index(drop=True)
+df3['Comisiones'].drop(df3['Comisiones'].columns[[0]], axis=1, inplace=True)
+#print(df3['Comisiones'])
+
+ejecutarSQL("DELETE FROM comisiones;")
+ejecutarSQL("DROP TABLE IF EXISTS comisiones;")
 
 
+sql = "CREATE TABLE comisiones (\n"; k=0; auxArr=""
+for item in KEYS2:
+    sql += item.lower().replace(" ","_").replace(".","") +" varchar(50) NOT NULL"
+    auxArr += item.lower().replace(" ","_").replace(".","")
+    if(k < len(KEYS2)-1):
+        sql += ",\n"
+        auxArr += ","
+    else:
+        sql += "\n"        
+    k +=1
+sql += ")"
+ejecutarSQL(sql)
+
+i=0; 
+for item in range(df3['Comisiones'].shape[0]-14):   
+    sql=""; auxROw="";
+    #print(item,"\n")     
+    j=0
+    for rowF in range(len(KEYS2)):        
+        #print(i,"\t",j,"\t",auxROw) 
+        if (j < len(KEYS2)-1):
+            if (isNaN(df3['Comisiones'].iloc[i,j])):
+                auxROw += "''"            
+            elif(is_number(df3['Comisiones'].iloc[i,j])):
+                auxROw += str(round(float(df3['Comisiones'].iloc[i,j]),2))         
+            else:
+                auxROw += str(df3['Comisiones'].iloc[i,j])
+        else:
+            auxROw += str(calculateLadder((df3['Comisiones'].iloc[i,0])))
+        if (j < len(KEYS2)-1):
+            auxROw += ","            
+        j+=1
+    sql += "INSERT INTO " + 'comisiones'+" ("+ str(auxArr) +") VALUES (" +str(auxROw) +")"    
+    print("\nSQL:\n",sql)
+    ejecutarSQL(sql)
+    i+=1
 
 
 
