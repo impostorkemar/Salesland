@@ -11,7 +11,7 @@ import os
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-df2 = pd.read_csv("C:/Users/user/Documents/Python_codes/BackEnd/Salesland_codes/centro_costos3.csv")
+df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/centro_costos3.csv")
 print(df2) 
 #print(df2.shape); print(df2.size); print(df2.columns); print(df2.dtypes) print(df2.iloc[0,:]); print("len",df2.iloc[0,:].size);
 
@@ -117,7 +117,7 @@ for i in range(df2.shape[0]):
     #print("sql:",sql)
     ejecutarSQL(sql)
 
-df3 = pd.read_csv("C:/Users/user/Documents/Python_codes/BackEnd/Salesland_codes/archivo_madre.csv", dtype='object')
+df3 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/archivo_madre.csv", dtype='object')
 print(df3);
 
 #INSERCION A CANDIDATOS
@@ -211,7 +211,7 @@ for i in range(len(list)):
     print(sql)
 
 #Insertar cargos
-df4 = pd.read_csv("C:/Users/user/Documents/Python_codes/BackEnd/Salesland_codes/cargos.csv", dtype='object')
+df4 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/cargos.csv", dtype='object')
 #print(df4);
 
 for i in range (df4.shape[0]):
@@ -224,7 +224,7 @@ for i in range (df4.shape[0]):
     print(sql)
     ejecutarSQL(sql)
 
-df5 = pd.read_csv("C:/Users/user/Documents/Python_codes/BackEnd/Salesland_codes/archivo_madre.csv", dtype='object')
+df5 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/archivo_madre.csv", dtype='object')
 print(df5);
 
 #Setear incremental en 0

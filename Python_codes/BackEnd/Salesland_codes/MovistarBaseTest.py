@@ -177,10 +177,6 @@ for try1 in list:
 print("KEYS:",list3)
 #valores= numpy.array([numpy.empty([])]*n,dtype=str)
 
-#LIMPIEZA DE TABLAS
-for item in list:
-    ejecutarSQL("DELETE FROM "+str(item)+";")
-
 def obtainColumnDf3(valores,consult,consult2):
     i=0; array = []; resultCol=-1; resultSheet=-1; 
     for sheet in valores:        
@@ -199,6 +195,10 @@ def obtainColumnDf3(valores,consult,consult2):
         #print("\n================================")
         i+=1        
     return resultCol,resultSheet
+
+#LIMPIEZA DE TABLAS
+for item in list:
+    ejecutarSQL("DELETE FROM "+str(item)+";")
 
 fil, col = (obtainColumnDf3(valores,"tipo","bdd_cnet"))
 print(fil,col,"\n")
@@ -249,7 +249,7 @@ for item in list:
         ejecutarSQL(sql)
     k+=1
     i+=1
-"""
+
 
 KEYS2 = ['Producto','ALTAS DOMICILIADO','TRANSFERENCIAS DOMICILIADO','ALTAS PAGO EN CAJA','TRANSFERENCIAS PAGO EN CAJA',
 'Diferido Altas Dom','Diferido Transfer. Dom.','Diferido Altas Pago en Caja','Diferido Transfer. Pago en Caja',
@@ -299,9 +299,62 @@ for item in range(df3['Comisiones'].shape[0]-14):
     print("\nSQL:\n",sql)
     ejecutarSQL(sql)
     i+=1
+"""
+KEYS3 = ['PRONOPRO','CATEGORY_3','ESTADO','CATEGORY_2']
+#print(df3['Cruces'].columns)
 
+ejecutarSQL('DELETE FROM cruceRetenciones;')
+ejecutarSQL('DROP TABLE IF EXISTS cruceRetenciones;')
 
+sql = "CREATE TABLE cruceRetenciones (\n"; k=0; auxArr=""
+for item in KEYS3:
+    sql += item.lower().replace(" ","_").replace(".","") +" varchar(50) NOT NULL"
+    auxArr += item.lower().replace(" ","_").replace(".","")
+    if(k < len(KEYS3)-1):
+        sql += ",\n"
+        auxArr += ","
+    else:
+        sql += "\n"        
+    k +=1
+sql += ")"
+ejecutarSQL(sql)
 
+def obtainColIndex(list,consult):
+    i=0
+    for item in list:
+        if (item == consult):
+            return i
+        i+=1
+
+index=0; array = df3['Cruces'].columns.tolist(); 
+#print(array,"\n") 
+
+for row in range(df3['Cruces'].shape[0]-1):
+    insert = "";l=0;flag=0; sql=""
+    for consul in KEYS3:        
+        if (consul in df3['Cruces'].columns):        
+            #print("\tConsult:",consul,"\nPos:",obtainColIndex(array,consul))
+            if (not isNaN(df3['Cruces'].iloc[index,obtainColIndex(array,consul)])):
+                insert +="'"+str(df3['Cruces'].iloc[index,obtainColIndex(array,consul)]).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').upper().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')+"'"
+                flag += 0
+            else:
+                insert +=("''")
+                flag += 1
+            if (l < len(KEYS3)-1):
+                insert += ","
+            else:
+                insert += "" 
+        else:            
+            flag += 1 
+        l+=1
+    if (flag == 4):
+        row = df3['Cruces'].shape[0] 
+        break;
+    #print(flag, row) 
+    sql += "INSERT INTO " + 'cruceRetenciones'+" ("+ str(auxArr).lower() +") VALUES (" +str(insert) +")"
+    print("\n",sql)  
+    ejecutarSQL(sql)          
+    index+=1
 
 
 
