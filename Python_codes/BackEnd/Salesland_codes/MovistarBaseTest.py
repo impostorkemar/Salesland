@@ -335,7 +335,7 @@ for row in range(df3['Cruces'].shape[0]-1):
         if (consul in df3['Cruces'].columns):        
             #print("\tConsult:",consul,"\nPos:",obtainColIndex(array,consul))
             if (not isNaN(df3['Cruces'].iloc[index,obtainColIndex(array,consul)])):
-                insert +="'"+str(df3['Cruces'].iloc[index,obtainColIndex(array,consul)]).replace(',','_').replace('. ','_').replace("'","_").replace('º','').replace('-','_').replace(' ','_').replace('.','').replace('+','').replace('/','_').replace('___','_').replace('__','_').replace('%','').upper().replace('Ó','O').replace('É','E').replace('Ú','U').replace('Í','Í').replace('Á','A')+"'"
+                insert +="'"+str(df3['Cruces'].iloc[index,obtainColIndex(array,consul)]).upper()+"'"
                 flag += 0
             else:
                 insert +=("''")
