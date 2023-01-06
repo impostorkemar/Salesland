@@ -28,3 +28,9 @@ SI((BUSCARV([@[CRUCE_CONTROLNET]];'11 Tablero TM Noviembre.xlsx'!CambioPlan[CRUC
 SI((BUSCARV([@TIENDA];'11 Tablero TM Noviembre.xlsx'!CambioPlan[TIENDA];1;0))=0;"No";"Sí")="Sí";
 SI((BUSCARV([@NAE];'11 Tablero TM Noviembre.xlsx'!CambioPlan[DOMAIN_LOGIN_OW];1;0))=0;"No";"Sí")="Sí"
 )
+
+
+SELECT cambio_de_plan.TELEFONO,
+CAST(retenciones.NUMERO_TELEFONO AS float) AS NUMERO_TELEFONO
+FROM cambio_de_plan, retenciones
+WHERE cambio_de_plan.TELEFONO = NUMERO_TELEFONO;
