@@ -29,8 +29,41 @@ SI((BUSCARV([@TIENDA];'11 Tablero TM Noviembre.xlsx'!CambioPlan[TIENDA];1;0))=0;
 SI((BUSCARV([@NAE];'11 Tablero TM Noviembre.xlsx'!CambioPlan[DOMAIN_LOGIN_OW];1;0))=0;"No";"Sí")="Sí"
 )
 
-
-SELECT cambio_de_plan.TELEFONO,
-CAST(retenciones.NUMERO_TELEFONO AS float) AS NUMERO_TELEFONO
+##SOLO DOWNSELLS y EN RETENCIONES##
+SELECT cambio_de_plan.TELEFONO AS TEL_CAMBIOPLAN,
+(CAST(retenciones.NUMERO_TELEFONO AS DOUBLE)) AS TEL_RETENCIONES,
+cambio_de_plan.TIPO_MOVIMIENTO,
+cambio_de_plan.TARIFA_BASICA_ACTUAL,
+(SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ACTUAL) AS ESCAL_ACTUAL,
+cambio_de_plan.TARIFA_BASICA_ANTERIOR,
+(SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ANTERIOR) AS ESCAL_ANTERIOR,
+(SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ACTUAL)-(SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ANTERIOR) AS TEST,
+(CASE 
+ 	WHEN ((SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ANTERIOR)-(SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ACTUAL)) IS NULL
+ 	THEN 'NO DEFINIDO'
+ 	ELSE (
+    (CASE 
+        (CASE 
+            WHEN ((SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ANTERIOR)-(SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ACTUAL)) = '-1'
+         THEN TRUE
+            ELSE FALSE
+        END) OR 
+        (CASE 
+            WHEN ((SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ANTERIOR)-(SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ACTUAL)) = '1' 
+         THEN TRUE
+            ELSE FALSE
+        END) OR
+        (CASE 
+            WHEN ((SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ANTERIOR)-(SELECT comisiones.escalera from comisiones WHERE comisiones.producto = cambio_de_plan.TARIFA_BASICA_ACTUAL)) = '0' 
+         THEN TRUE
+            ELSE FALSE   
+        END)
+        WHEN TRUE THEN 'SI SE PAGA' 	
+        ELSE 'NO SE PAGA'
+    END) )
+END) AS RETEN1ERALINEA
 FROM cambio_de_plan, retenciones
-WHERE cambio_de_plan.TELEFONO = NUMERO_TELEFONO;
+WHERE (CAST(retenciones.NUMERO_TELEFONO AS DOUBLE)) = cambio_de_plan.TELEFONO
+AND	cambio_de_plan.TIPO_MOVIMIENTO = 'DOWNSELL';
+
+
