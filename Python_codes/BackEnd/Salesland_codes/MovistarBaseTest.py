@@ -121,7 +121,6 @@ df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd
 #print(df2.shape); print(df2.size); print(df2.columns); print(df2.dtypes) print(df2.iloc[0,:]); print("len",df2.iloc[0,:].size);
     #READING 11 Tablero TM Noviembre.xlsx
 df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/11 Tablero TM Noviembre.xlsx", sheet_name=None)
-
 """
 #TABLE DELETES
 delete_Tables(df2)
@@ -249,7 +248,7 @@ for item in list:
         ejecutarSQL(sql)
     k+=1
     i+=1
-
+"""
 
 KEYS2 = ['Producto','ALTAS DOMICILIADO','TRANSFERENCIAS DOMICILIADO','ALTAS PAGO EN CAJA','TRANSFERENCIAS PAGO EN CAJA',
 'Diferido Altas Dom','Diferido Transfer. Dom.','Diferido Altas Pago en Caja','Diferido Transfer. Pago en Caja',
@@ -299,7 +298,7 @@ for item in range(df3['Comisiones'].shape[0]-14):
     print("\nSQL:\n",sql)
     ejecutarSQL(sql)
     i+=1
-"""
+
 KEYS3 = ['PRONOPRO','CATEGORY_3','ESTADO','CATEGORY_2']
 #print(df3['Cruces'].columns)
 
