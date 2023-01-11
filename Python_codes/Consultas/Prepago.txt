@@ -1,5 +1,5 @@
 SELECT *,
-(SELECT LOCAL FROM personal_ppto_vs_real where NAE = DOMAIN_LOGIN_OW) AS TIENDA, 
-(SELECT EJECUTIVO FROM personal_ppto_vs_real where NAE = DOMAIN_LOGIN_OW) AS EJECUTIVO,
+(SELECT LOCAL FROM personal_ppto_vs_real where NAE = CODIGO_USUARIO) AS TIENDA, 
+(SELECT EJECUTIVO FROM personal_ppto_vs_real where NAE = CODIGO_USUARIO) AS EJECUTIVO,
 DAY(FECHA_ALTA) AS DIA
 FROM prepago
