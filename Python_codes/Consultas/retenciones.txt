@@ -39,7 +39,8 @@ CASE
 END AS TEST4
 FROM retenciones;
 
-SELECT retenciones.NRO_TICKET,
+SELECT *,
+retenciones.NRO_TICKET,
 (SELECT LOCAL FROM personal_ppto_vs_real where NAE = COD_USUARIO_CREADOR) AS TIENDA,
 (SELECT EJECUTIVO FROM personal_ppto_vs_real where NAE = COD_USUARIO_CREADOR) AS EJECUTIVO,
 retenciones.CATEGORY_4,
