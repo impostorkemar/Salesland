@@ -250,3 +250,5 @@ for i in range(df5.shape[0]):
         sql += str(datos)
         print(sql)
         ejecutarSQL(sql)
+
+

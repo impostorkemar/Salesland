@@ -88,8 +88,3 @@ print(varCab)
 df2 = np.array(varCab, dtype=object)
 print("\n",df2[1])
 """
-print(df3['Comisiones'])
-df3['Comisiones'].columns = df3['Comisiones'].iloc[0]
-df3['Comisiones'] = df3['Comisiones'].iloc[1:].reset_index(drop=True)
-df3['Comisiones'].drop(df3['Comisiones'].columns[[0]], axis=1, inplace=True)
-print(df3['Comisiones'])
