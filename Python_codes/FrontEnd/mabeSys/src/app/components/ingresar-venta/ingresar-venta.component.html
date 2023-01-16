@@ -1,0 +1,85 @@
+<div class="wrapper">    
+    <div class="body">
+        <h1 style="text-align: center; justify-content: center; align-items: center;"> INGRESAR VENTA</h1>
+        <form (ngSubmit)="registrarVenta()" [formGroup]="ventasUsuario">
+                       
+            <div class="form-floating mb-3">                
+                <input type="text" class="form-control" name="id_venta" formControlName="id_venta" id="" aria-describedby="helpId" placeholder="Escribe tu id_venta">
+                <label>ID VENTA</label>
+            </div>
+            
+            <div class="form-floating mb-3">                
+                <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
+                <label >ID LINEA</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
+                <label>CODIGO PUNTO DE VENTA</label>
+            </div>
+            
+            <div class="form-floating mb-3">                
+                <input id="ventas_mabe" name="ventas_mabe" formControlName="ventas_mabe" type="number" class="form-control" placeholder="Escribe tu ventas_mabe"/>
+                <label >VENTAS MABE</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input type="number" class="form-control" name="ventas_indurama" formControlName="ventas_indurama" id="ventas_indurama" aria-describedby="helpId" placeholder="Escribe tu ventas_indurama">
+                <label>VENTAS INDURAMA</label>
+            </div>
+            
+            <div class="form-floating mb-3">                
+                <input id="ventas_whirlpool" name="ventas_whirlpool" formControlName="ventas_whirlpool" type="number" class="form-control" placeholder="Escribe tu ventas_whirlpool"/>
+                <label >VENTAS WHIRLPOOL</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input id="ventas_lg" name="ventas_lg" formControlName="ventas_lg" type="number" class="form-control" placeholder="Escribe tu ventas_lg"/>
+                <label >VENTAS LG</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input id="ventas_samsung" name="ventas_samsung" formControlName="ventas_samsung" type="number" class="form-control" placeholder="Escribe tu ventas_samsung"/>
+                <label >VENTAS SAMSUNG</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input id="ventas_electrolux" name="ventas_electrolux" formControlName="ventas_electrolux" type="number" class="form-control" placeholder="Escribe tu ventas_electrolux"/>
+                <label >VENTAS ELECTROLUX</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input id="mastertech" name="mastertech" formControlName="mastertech" type="number" class="form-control" placeholder="Escribe tu mastertech"/>
+                <label >MASTERTECH</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input id="hove" name="hove" formControlName="hove" type="number" class="form-control" placeholder="Escribe tu hove"/>
+                <label >HOVE</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input id="teka" name="teka" formControlName="teka" type="number" class="form-control" placeholder="Escribe tu teka"/>
+                <label >TEKA</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input id="smc" name="smc" formControlName="smc" type="number" class="form-control" placeholder="Escribe tu smc"/>
+                <label >SMC</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
+                <label >OTROS</label>
+            </div>
+
+            <div class="d-grid gap-2 mb-3" >
+                <button class="btn btn-primary btn-lg" type="submit" >LOGIN</button>                                
+            </div>
+
+            
+            <a class="mt-3" routerLink="/login"> Salir</a>
+        </form>
+    </div>
+    
+</div>
