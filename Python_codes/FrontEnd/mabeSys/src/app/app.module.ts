@@ -15,7 +15,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IngresarVentaComponent } from './components/ingresar-venta/ingresar-venta.component';
-import { AccesRoutesDirective } from './directives/acces-routes.directive';
+import { PermissionManagerService } from './manager/permission-manager.service';
+import { IsGrantedDirective } from './manager/is-granted.directive';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { AccesRoutesDirective } from './directives/acces-routes.directive';
     SpinnerComponent,
     LoginComponent,
     IngresarVentaComponent,
-    AccesRoutesDirective    
+    IsGrantedDirective,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { AccesRoutesDirective } from './directives/acces-routes.directive';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [PermissionManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

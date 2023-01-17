@@ -2,22 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TestuserService } from 'src/app/services/testuser.service';
 import { Router } from '@angular/router';
+import { PermissionManagerService } from 'src/app/manager/permission-manager.service';
+import { Role } from 'src/app/manager/role';
 
 @Component({
   selector: 'app-ingresar-venta',
   templateUrl: './ingresar-venta.component.html',
   styleUrls: ['./ingresar-venta.component.css']
 })
-export class IngresarVentaComponent implements OnInit {
-  ventasUsuario: FormGroup;
+export class IngresarVentaComponent implements OnInit { 
+  public ventasUsuario: FormGroup;
   ondisabled = true;
   disabled = false;
+  rolUser = "'su'";
   
   constructor(
     private fb: FormBuilder,
     private testuserService:TestuserService,
-    private ruteador:Router
-  ) { 
+    private ruteador:Router,
+    private userS: PermissionManagerService
+  ) {     
     this.ventasUsuario = this.fb.group({
       id_venta: ['',Validators.required],
       id_linea: ['',Validators.required],  
@@ -38,6 +42,7 @@ export class IngresarVentaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //this.userS.authAs(this.rolUser as Role);
     this.ventasUsuario.setValue({
       id_venta: ['1'],
       id_linea: ['1'],  
@@ -57,6 +62,9 @@ export class IngresarVentaComponent implements OnInit {
     this.ventasUsuario.controls['id_venta'].disable();
     this.ventasUsuario.controls['id_linea'].disable();
     this.ventasUsuario.controls['codigo_pdv'].disable();
+    localStorage.setItem('role',this.rolUser);
+    this.getRole();
+    this.loginAs();
   }
 
   registrarVenta(): void {
@@ -77,6 +85,18 @@ export class IngresarVentaComponent implements OnInit {
    
     console.log(id_venta,id_linea,codigo_pdv,ventas_mabe,ventas_indurama,ventas_whirlpool,ventas_lg,ventas_samsung,
       ventas_electrolux,mastertech,hove,teka,smc,otros);
+
+  }  
+
+  loginAs() {
+    this.userS.authAs(localStorage.getItem('role') as Role);
+    console.log("authAs:",this.userS.authAs(localStorage.getItem('role')));
+    //location.reload();
+  }
+
+  getRole() {
+    console.log("LOCAL_STORAGE:",localStorage.getItem('role'));
+    return localStorage.getItem('role');
   }
 
 }
