@@ -29,7 +29,8 @@ export class PermissionManagerService {
         ? Role.UNKNOWN
         : role
     );
-    this.permissions = PermissionsFactory.getInstance();
+    //this.permissions = PermissionsFactory.getInstance();
+    //console.log(this.permissions);
   }
 
 }

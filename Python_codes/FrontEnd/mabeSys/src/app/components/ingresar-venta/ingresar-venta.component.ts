@@ -4,6 +4,8 @@ import { TestuserService } from 'src/app/services/testuser.service';
 import { Router } from '@angular/router';
 import { PermissionManagerService } from 'src/app/manager/permission-manager.service';
 import { Role } from 'src/app/manager/role';
+import { PermissionBase} from 'src/app/manager/permissions/base.permissions'
+import { PermissionsFactory} from 'src/app/manager/permissions/factory.permissions'
 
 @Component({
   selector: 'app-ingresar-venta',
@@ -14,7 +16,8 @@ export class IngresarVentaComponent implements OnInit {
   public ventasUsuario: FormGroup;
   ondisabled = true;
   disabled = false;
-  rolUser = "'su'";
+  rolUser = "'SUPERUSER'";
+
   
   constructor(
     private fb: FormBuilder,
@@ -38,11 +41,13 @@ export class IngresarVentaComponent implements OnInit {
       smc: ['',Validators.required],  
       otros: ['',Validators.required],  
     })
-
+    localStorage.setItem('role',this.rolUser)
   }
 
-  ngOnInit(): void {
-    //this.userS.authAs(this.rolUser as Role);
+  ngOnInit(): void {    
+    this.loginAs()
+
+
     this.ventasUsuario.setValue({
       id_venta: ['1'],
       id_linea: ['1'],  
@@ -62,9 +67,7 @@ export class IngresarVentaComponent implements OnInit {
     this.ventasUsuario.controls['id_venta'].disable();
     this.ventasUsuario.controls['id_linea'].disable();
     this.ventasUsuario.controls['codigo_pdv'].disable();
-    localStorage.setItem('role',this.rolUser);
-    this.getRole();
-    this.loginAs();
+   
   }
 
   registrarVenta(): void {
@@ -90,12 +93,12 @@ export class IngresarVentaComponent implements OnInit {
 
   loginAs() {
     this.userS.authAs(localStorage.getItem('role') as Role);
-    console.log("authAs:",this.userS.authAs(localStorage.getItem('role')));
-    //location.reload();
+    console.log("localStorage:",localStorage.getItem('role'),"as Role.",localStorage.getItem('role') as Role);
+    const  permissions = PermissionsFactory.getInstance();    
+    console.log("permissions:",permissions);
   }
 
-  getRole() {
-    console.log("LOCAL_STORAGE:",localStorage.getItem('role'));
+  getRole() {    
     return localStorage.getItem('role');
   }
 
