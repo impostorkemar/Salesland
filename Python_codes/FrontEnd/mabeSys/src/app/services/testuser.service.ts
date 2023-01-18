@@ -49,6 +49,17 @@ export class TestuserService {
     var urlAPI="usuarios/"+user+"-{pass}?passw="+pass;      
     return this.clienteHttp.get(this.API+urlAPI);                
   }
+  ObtenerConsultaDinamica(){
+    var urlAPI="consultaDinamica/";
+    console.log("URI",this.API+urlAPI)
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+  ObtenerTablasBaseDatos(){
+    var urlAPI="nombresTablas/";
+    console.log("URI",this.API+urlAPI)
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+  
 }
 
 

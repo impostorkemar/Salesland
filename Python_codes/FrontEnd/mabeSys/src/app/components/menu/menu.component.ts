@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-menu',
@@ -6,21 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
+  control_vistas: FormGroup;
   probarRol_IV!: Boolean
   probarRol_RU!: Boolean
-  probarRol_D!: Boolean 
-  mostrar_IV!: Boolean
-  mostrar_RU!: Boolean
-  mostrar_D!: Boolean
-  constructor() { }
+  probarRol_D!: Boolean  
+  opcion:number =1;
+  constructor(
+    private fb: FormBuilder,
+  ) { 
+    this.control_vistas = this.fb.group({})
+  }
 
   ngOnInit(): void {
-    this.mostrarDatos();
-    this.mostrar_IV = false;
-    this.mostrar_RU = false;
-    this.mostrar_D = false;
-
+    this.mostrarDatos();    
+    this.opcion = 0;
   }
 
   mostrarDatos(){
@@ -44,7 +44,16 @@ export class MenuComponent implements OnInit {
   }
 
   activate_mostrar_IV(){
-    this.mostrar_IV=true;
+    console.log("Active IV");    
+    this.opcion=1;
+  }
+  activate_mostrar_RU(){
+    console.log("Active RU"); 
+    this.opcion=2;
+  }
+  activate_mostrar_D(){
+    console.log("Active D"); 
+    this.opcion=3;
   }
   
 
