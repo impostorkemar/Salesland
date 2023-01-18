@@ -1,0 +1,35 @@
+<div class="wrapper">    
+    <div  class="body" >
+        <div>            
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <div class="nav navbar-nav">
+                    <div>
+                        <a class="nav-item nav-link active" href="#" aria-current="page">Mabe System <span class="visually-hidden">(current)</span></a><br>
+                    </div>
+                    <div *ngIf="probarRol_IV" >
+                        <a class="nav-item nav-link" ng-click="activate_mostrar_IV()" >INGRESAR VENTA</a> 
+                    </div>
+                    <div *ngIf="probarRol_RU">
+                        <a class="nav-item nav-link" routerLink="/registrar-usuario" >REGISTRAR USUARIO</a>      
+                    </div>
+                    <div *ngIf="probarRol_D">
+                        <a class="nav-item nav-link" routerLink="/dashboard" >REPORTE</a>
+                    </div>      
+                    
+                </div>
+            </nav>
+        </div>
+    </div>    
+</div>
+<div  id="router-outlet">
+    <router-outlet></router-outlet>
+</div>
+<div *ngIf="mostrar_IV" id="dashboard">
+    <app-dashboard></app-dashboard>
+</div>
+<div *ngIf="mostrar_RU" id="ingresar-venta">
+    <app-ingresar-venta></app-ingresar-venta>
+</div>
+<div *ngIf="mostrar_D" id="registrar-usuario">
+    <app-registrar-usuario></app-registrar-usuario>
+</div>

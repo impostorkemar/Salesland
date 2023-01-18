@@ -18,6 +18,6 @@ def get_users():
 @user.get("/usuarios/{user}-{pass}", tags=["usuarios"])
 def comprobar_usuario(user: str, passw: str):   
     #print("SELECT * FROM `personal` WHERE  `id_personal` ='"+str(id)+"' AND `id_centro_costo` ='"+str(id_centro_costo)+"' AND `cedula` ='"+str(cedula)+"'")
-    return conn.execute("SELECT clave FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';").first()
+    return conn.execute("SELECT tipo FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';").first()
 
 

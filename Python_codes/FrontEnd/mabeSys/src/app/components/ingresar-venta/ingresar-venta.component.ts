@@ -2,29 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TestuserService } from 'src/app/services/testuser.service';
 import { Router } from '@angular/router';
-import { PermissionManagerService } from 'src/app/manager/permission-manager.service';
-import { Role } from 'src/app/manager/role';
-import { PermissionBase} from 'src/app/manager/permissions/base.permissions'
-import { PermissionsFactory} from 'src/app/manager/permissions/factory.permissions'
+import { AuthService } from 'src/app/services/auth.service';
+
+
 
 @Component({
   selector: 'app-ingresar-venta',
   templateUrl: './ingresar-venta.component.html',
   styleUrls: ['./ingresar-venta.component.css']
 })
-export class IngresarVentaComponent implements OnInit { 
-  public ventasUsuario: FormGroup;
+export class IngresarVentaComponent implements OnInit {
+  ventasUsuario: FormGroup;
   ondisabled = true;
   disabled = false;
-  rolUser = "'SUPERUSER'";
-
+  rolUser = "'su";
   
   constructor(
     private fb: FormBuilder,
     private testuserService:TestuserService,
-    private ruteador:Router,
-    private userS: PermissionManagerService
-  ) {     
+    private router:Router,
+    private authService: AuthService
+  ) { 
     this.ventasUsuario = this.fb.group({
       id_venta: ['',Validators.required],
       id_linea: ['',Validators.required],  
@@ -41,13 +39,11 @@ export class IngresarVentaComponent implements OnInit {
       smc: ['',Validators.required],  
       otros: ['',Validators.required],  
     })
-    localStorage.setItem('role',this.rolUser)
+
   }
 
-  ngOnInit(): void {    
-    this.loginAs()
-
-
+  ngOnInit(): void {
+    
     this.ventasUsuario.setValue({
       id_venta: ['1'],
       id_linea: ['1'],  
@@ -67,10 +63,10 @@ export class IngresarVentaComponent implements OnInit {
     this.ventasUsuario.controls['id_venta'].disable();
     this.ventasUsuario.controls['id_linea'].disable();
     this.ventasUsuario.controls['codigo_pdv'].disable();
-   
   }
 
   registrarVenta(): void {
+    
     const id_venta = this.ventasUsuario.value.nombre_usuario;
     const id_linea = this.ventasUsuario.value.password;    
     const codigo_pdv = this.ventasUsuario.value.nombre_usuario;
@@ -88,18 +84,19 @@ export class IngresarVentaComponent implements OnInit {
    
     console.log(id_venta,id_linea,codigo_pdv,ventas_mabe,ventas_indurama,ventas_whirlpool,ventas_lg,ventas_samsung,
       ventas_electrolux,mastertech,hove,teka,smc,otros);
-
-  }  
-
-  loginAs() {
-    this.userS.authAs(localStorage.getItem('role') as Role);
-    console.log("localStorage:",localStorage.getItem('role'),"as Role.",localStorage.getItem('role') as Role);
-    const  permissions = PermissionsFactory.getInstance();    
-    console.log("permissions:",permissions);
+    
   }
 
-  getRole() {    
-    return localStorage.getItem('role');
+  logout() {
+    console.log("Deslogueo")
+    this.authService.logout()
+      .subscribe(res => {
+        if (!res.success) {
+          this.router.navigate(['/login']);
+
+        }
+      });
   }
+  
 
 }
