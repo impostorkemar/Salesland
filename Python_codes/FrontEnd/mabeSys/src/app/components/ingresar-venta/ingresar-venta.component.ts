@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TestuserService } from 'src/app/services/testuser.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,7 +12,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./ingresar-venta.component.css']
 })
 export class IngresarVentaComponent implements OnInit {
+  myGroup!: FormGroup;
   ventasUsuario: FormGroup;
+  MenuIngresar:FormGroup;
   ondisabled = true;
   disabled = false;
   rolUser = "'su";
@@ -21,48 +23,30 @@ export class IngresarVentaComponent implements OnInit {
     private fb: FormBuilder,
     private testuserService:TestuserService,
     private router:Router,
-    private authService: AuthService
+    private authService: AuthService,
   ) { 
-    this.ventasUsuario = this.fb.group({
+    this.myGroup = new FormGroup({});
+    this.MenuIngresar = this.fb.group({
       id_venta: ['',Validators.required],
       id_linea: ['',Validators.required],  
-      codigo_pdv: ['',Validators.required],
-      ventas_mabe: ['',Validators.required],
-      ventas_indurama: ['',Validators.required],
-      ventas_whirlpool: ['',Validators.required],
-      ventas_lg: ['',Validators.required],
-      ventas_samsung: ['',Validators.required],
-      ventas_electrolux: ['',Validators.required],
-      mastertech: ['',Validators.required],
-      hove: ['',Validators.required],
-      teka: ['',Validators.required],    
-      smc: ['',Validators.required],  
-      otros: ['',Validators.required],  
+      codigo_pdv: ['',Validators.required]
+    });
+    this.ventasUsuario = this.fb.group({
+      otros: ['',Validators.required] 
     })
 
   }
 
   ngOnInit(): void {
     
-    this.ventasUsuario.setValue({
+    this.MenuIngresar.setValue({
       id_venta: ['1'],
       id_linea: ['1'],  
-      codigo_pdv: ['1'],
-      ventas_mabe: [''],
-      ventas_indurama: [''],
-      ventas_whirlpool: [''],
-      ventas_lg: [''],
-      ventas_samsung: [''],
-      ventas_electrolux: [''],
-      mastertech: [''],
-      hove: [''],
-      teka: [''],    
-      smc: [''],  
-      otros: [''],
+      codigo_pdv: ['1'],      
     });
-    this.ventasUsuario.controls['id_venta'].disable();
-    this.ventasUsuario.controls['id_linea'].disable();
-    this.ventasUsuario.controls['codigo_pdv'].disable();
+    this.MenuIngresar.controls['id_venta'].disable();
+    this.MenuIngresar.controls['id_linea'].disable();
+    this.MenuIngresar.controls['codigo_pdv'].disable();
   }
 
   registrarVenta(): void {

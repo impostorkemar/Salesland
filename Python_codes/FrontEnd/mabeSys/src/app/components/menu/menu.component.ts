@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit {
   probarRol_IV!: Boolean
   probarRol_RU!: Boolean
   probarRol_D!: Boolean  
+  probarRol_IPV!: Boolean
   opcion:number =1;
   constructor(
     private fb: FormBuilder,
@@ -30,16 +31,19 @@ export class MenuComponent implements OnInit {
       this.probarRol_IV = true;
       this.probarRol_RU = true;
       this.probarRol_D = true;
+      this.probarRol_IPV = true;
     }if (localStorage.getItem('ROLE') as string ==='ROLE_SUPERVISOR') {
       console.log("PROBAR: supervisor"); 
       this.probarRol_IV = false;
       this.probarRol_RU = false;
-      this.probarRol_D = true;   
+      this.probarRol_D = true; 
+      this.probarRol_IPV = false;  
     }if (localStorage.getItem('ROLE') as string ==='ROLE_USER') {
       console.log("PROBAR: promotor");
       this.probarRol_IV = true;
       this.probarRol_RU = false;
-      this.probarRol_D = false;     
+      this.probarRol_D = false; 
+      this.probarRol_IPV = false;    
     }
   }
 
@@ -54,6 +58,10 @@ export class MenuComponent implements OnInit {
   activate_mostrar_D(){
     console.log("Active D"); 
     this.opcion=3;
+  }
+  activate_mostrar_IPV(){
+    console.log("Active PDV"); 
+    this.opcion=4;
   }
   
 

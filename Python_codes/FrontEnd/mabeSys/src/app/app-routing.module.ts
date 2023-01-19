@@ -8,6 +8,7 @@ import { RegistrarUsuarioComponent } from './components/registrar-usuario/regist
 import { VerificarCorreoComponent } from './components/verificar-correo/verificar-correo.component';
 import { AuthGuard } from './services/auth.guard';
 import { MenuComponent } from './components/menu/menu.component';
+import { RegistrarPuntoVentaComponent } from './components/registrar-punto-venta/registrar-punto-venta.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,12 @@ const routes: Routes = [
     }
   },
   {path: 'registrar-usuario', component: RegistrarUsuarioComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN']
+    }
+  },
+  {path: 'registrar-puntoVenta', component: RegistrarPuntoVentaComponent,
     canActivate: [AuthGuard],
     data: {
       role: ['ROLE_ADMIN']

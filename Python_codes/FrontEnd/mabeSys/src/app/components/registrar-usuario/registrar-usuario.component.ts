@@ -8,6 +8,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class RegistrarUsuarioComponent implements OnInit {
   registrarUsuario: FormGroup;
+  registrarCamposPersonales: FormGroup;
+  myGroup!: FormGroup;
 
   constructor(private fb: FormBuilder) { 
     this.registrarUsuario = this.fb.group({
@@ -15,6 +17,15 @@ export class RegistrarUsuarioComponent implements OnInit {
       password: ['',Validators.required],
       password2: ['',Validators.required],
     })
+    this.registrarCamposPersonales = this.fb.group({
+      cedula: ['',Validators.required],
+      tipo: ['',Validators.required],
+      nombre: ['',Validators.required],
+    })
+    this.myGroup = new FormGroup({
+      registrarUsuario: this.registrarUsuario,
+      registrarCamposPersonales: this.registrarCamposPersonales   
+    });
   }
 
   ngOnInit(): void {

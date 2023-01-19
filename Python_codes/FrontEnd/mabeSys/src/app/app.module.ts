@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IngresarVentaComponent } from './components/ingresar-venta/ingresar-venta.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { RegistrarPuntoVentaComponent } from './components/registrar-punto-venta/registrar-punto-venta.component';
 
 
 
@@ -30,6 +31,7 @@ import { MenuComponent } from './components/menu/menu.component';
     LoginComponent,
     IngresarVentaComponent,
     MenuComponent,
+    RegistrarPuntoVentaComponent,
   ],
   imports: [
     BrowserModule,

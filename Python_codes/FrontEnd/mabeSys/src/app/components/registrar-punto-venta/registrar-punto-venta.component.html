@@ -1,23 +1,34 @@
 <div [formGroup]="myGroup">    
-    <h1 style="text-align: center; justify-content: center; align-items: center;"> INGRESAR VENTA</h1>
+    <h1 style="text-align: center; justify-content: center; align-items: center;"> INGRESAR PUNTO VENTA</h1>
     <div class="wrapper1">    
         <div  class="body1">            
             <form (ngSubmit)="registrarVenta()" [formGroup]="MenuIngresar">
                            
-                <div *ngIf="false" class="form-floating mb-3">                
-                    <input type="text" class="form-control" name="id_venta" formControlName="id_venta" id="" aria-describedby="helpId" placeholder="Escribe tu id_venta">
-                    <label>ID VENTA</label>
+                <div class="form-floating mb-3">                
+                    <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
+                    <label>CODIGO PDV</label>
                 </div>
                 
                 <div class="form-floating mb-3">                
-                    <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
-                    <label >ID LINEA</label>
+                    <input id="nombre_pdv" name="nombre_pdv" formControlName="nombre_pdv" type="text" class="form-control" placeholder="Escribe tu nombre_pdv"/>
+                    <label >NOMBRE PDV</label>
                 </div>
     
                 <div class="form-floating mb-3">                
-                    <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
-                    <label>CODIGO PUNTO DE VENTA</label>
-                </div>    
+                    <input type="text" class="form-control" name="retail_mapping" formControlName="retail_mapping" id="" aria-describedby="helpId" placeholder="Escribe tu retail_mapping">
+                    <label>RETAIL MAPPING</label>
+                </div> 
+                
+                <div class="form-floating mb-3">                
+                    <input type="text" class="form-control" name="cobertura" formControlName="cobertura" id="" aria-describedby="helpId" placeholder="Escribe tu cobertura">
+                    <label>COBERTURA</label>
+                </div>
+                
+                <div class="form-floating mb-3">                
+                    <input type="text" class="form-control" name="nombre_cliente" formControlName="nombre_cliente" id="" aria-describedby="helpId" placeholder="Escribe tu nombre_cliente">
+                    <label>NOMBRE CLIENTE</label>
+                </div>
+
                 <a class="mt-3" routerLink=logout()> Salir</a>
             </form>            
         </div>
@@ -59,45 +70,23 @@
             
             <div  class="d-grid gap-2 mb-3" >
                 <button class="btn btn-primary btn-lg" type="submit" >INGRESAR</button>                                
-            </div>
-
-            
+            </div>            
         </form>
     </div>
     <div class="wrapper3">    
         <div  class="body2">  
-            <form [formGroup]="ventasUsuario">
-                <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
-                    <label >AIRES</label>
-                </div>
-                <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
-                    <label >COCINAS</label>
-                </div>
-                <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
-                    <label >EMPOTRE</label>
-                </div>
-                <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
-                    <label >GLOBALES</label>
-                </div>
-                <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
-                    <label >LAVADO</label>
-                </div>
-                <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
-                    <label >REFRIGERACIÓN</label>
-                </div>
+            <form [formGroup]="lineas">
+                 <div class="form-check">
+                   <input class="form-check-input" type="checkbox" value="" id="">
+                   <label class="form-check-label" for="">
+                     COCINA
+                   </label>
+                 </div>
+                 <div class="form-floating mb-3 style= background-color">                
+                    <input id="cuota" name="cuota" formControlName="cuota" type="number" class="form-control" placeholder="Escribe tu cuota"/>
+                    <label >CUOTA LINEA</label>
+                </div>                               
             </form> 
         </div>
-    </div>    
+    </div>       
 </div>
-
-
-
-    
-
-
