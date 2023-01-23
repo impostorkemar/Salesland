@@ -14,14 +14,15 @@ import os.path
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import time
+import re
 old = time.time()
 time_suspend = 5
 
 def ejecutarSQL(SQL):
     conexion1=mysql.connector.connect(host="localhost", 
-                                    user="movistarBase", 
-                                    passwd="rootMovistar", 
-                                    database="movistarBase")
+                                    user="mabeSys", 
+                                    passwd="rootmabe", 
+                                    database="mabesys")
     cursor1=conexion1.cursor()
     cursor1.execute(SQL)
     conexion1.commit()   
@@ -31,9 +32,23 @@ def ejecutarSQL(SQL):
 def consultarSQL(SQL):
     auxString = ""
     conexion1=mysql.connector.connect(host="localhost", 
-                                    user="movistarBase", 
-                                    passwd="rootMovistar", 
-                                    database="movistarBase")
+                                    user="mabeSys", 
+                                    passwd="rootmabe", 
+                                    database="mabesys")
+    cursor1=conexion1.cursor()
+    cursor1.execute(SQL)
+    for fila in cursor1:
+        auxString += str(fila) +"\n"
+        #print(fila)
+    conexion1.close()
+    return auxString;
+
+def consultarSQL2(SQL):
+    auxString = ""
+    conexion1=mysql.connector.connect(host="localhost", 
+                                    user="mabeSys", 
+                                    passwd="rootmabe", 
+                                    database="mabesys")
     cursor1=conexion1.cursor()
     cursor1.execute(SQL)
     for fila in cursor1:
@@ -45,9 +60,9 @@ def consultarSQL(SQL):
 def consultarSQL_Lista(SQL):
     auxString = []
     conexion1=mysql.connector.connect(host="localhost", 
-                                    user="movistarBase", 
-                                    passwd="rootMovistar", 
-                                    database="movistarBase")
+                                    user="mabeSys", 
+                                    passwd="rootmabe", 
+                                    database="mabesys")
     cursor1=conexion1.cursor()
     cursor1.execute(SQL)
     for fila in cursor1:
@@ -133,10 +148,72 @@ def obtainColumnDf3(df3,consult,consult2,list3):
         i+=1        
     return resultCol,resultSheet
 
-    #READING ENTIDADES.CSV
+    #READING 10. Cuota SO Noviembre 2022 (final).xlsx
 df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/10. Cuota SO Noviembre 2022 (final).xlsx", sheet_name=None)
 #print(df3)
 
+    #READING ENTIDADES.CSV
+df4 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/Rutero Ene-23.xlsx", sheet_name=None)
+#print(df4)
+
+list2 = []; keysA=[];
+for i in df4.keys(): 
+    keysA.append(i)  
+    aux=(((str(i).replace('. ','_')).replace('-','_')).replace(' ','_')).replace('.','')
+    list2.append(aux)    
+list2 = [name.lower() for name in list2]
+print("LIST2:",list2)
+print("keysA:",keysA)
+
+list3= []; valores = []; 
+i=0
+for try1 in list2:    
+    #print(list2.index(try1),"=>",keysA[list2.index(try1)])
+    list3.append(keysA[list2.index(try1)])
+    valores.append(df4.get(keysA[list2.index(try1)]))
+    i += 1
+print("KEYS:",list3)
+#print("VALORES:",valores)
+#print("VALORES:",valores[4].iloc[0,0])
+
+
+#INSERCION USUARIOS
+i=0; aux = -2; fil=-1; col=-1;
+for item in list2:
+    sql2 = ""; cont = 0; 
+    if (item == 'ruta_promotor'):
+        print(i,"->",item,":",valores[i].shape[0],"-",valores[i].shape[1])
+        for k in range(15):  
+            insertA=""; flag = 0;
+            aux = str(valores[i].iloc[k,13])     
+            #print("\nAUX:",aux)     
+            if (isNaN(aux) or aux == NAN or aux == nan or aux == 'nan' ):
+                #print("NOT INSERT")
+                aux = ""
+            else:        
+                if (is_number(aux)):        
+                    #insertA += ("'"+(str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,11])+"','"
+                    #+str(valores[i].iloc[k,14])+"','"+ str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])
+                    #+"','"+str(valores[i].iloc[k,13])).replace("\n","")+"'") 
+                    sql = "SELECT (CASE WHEN (SELECT usuario.cedula FROM usuario WHERE cedula = '"+str(aux)+"') = usuario.cedula THEN '1' ELSE '0' END) as EXISTE from usuario ORDER BY 'EXISTE' DESC LIMIT 1;"
+                    aux2 = consultarSQL(sql)
+                    x = re.search("(?<=').+(?=')", aux2)  
+                    #print("\tSQL:",sql," aux2:", aux2) 
+                    print("CONSULT:",aux2,str(x.group())) 
+                    if (str(x.group()) == '1'):
+                        aux3 = consultarSQL2("SELECT MAX(clave) FROM usuario LIMIT 1;")   
+                        x2 = re.search("(?<=').+(?=')", aux3)
+                        #print("CONSULT2:",aux3,str(x2.group()))    
+                        insertA += ("'"+str(int(x2.group())+1)+"',"+"'"+(str(valores[i].iloc[k,13])+"','promotor','"
+                        +str(valores[i].iloc[k,14])+"','"+ str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])
+                        +"','"+str(valores[i].iloc[k,13])).replace("\n","")+"'")         
+                        #print("INSERT:",insertA)
+                        sql = "INSERT INTO usuario (clave,cedula,tipo,nombre_usuario,usuario,password) VALUES (" +str(insertA) +")"
+                        print("\nSQL:",k,"\n",sql) 
+                        #ejecutarSQL(sql)  
+    i+=1
+
+"""
 list2 = []; keysA=[];
 for i in df3.keys(): 
     keysA.append(i)  
@@ -159,29 +236,31 @@ print("VALORES:",valores[4].iloc[0,0])
 
 i=0; aux = -2; fil=-1; col=-1;
 for item in list2:
-    sql2 = ""; cont = 0;
+    sql2 = ""; cont = 0; 
     if (item == 'cuota_x_pdv'):
         print(i,"->",item,":",valores[i].shape[0],"-",valores[i].shape[1])
-        for k in range(valores[i].shape[0]):  
-            insertA="";
-            for l in range(valores[i].shape[1]):
-                insertA += str(valores[i].iloc[k,l])  
-                if (isNaN((valores[i].iloc[k,l]))):
+        for k in range(5):  
+            insertA=""; flag = 0;
+            for l in range(valores[i].shape[1]):                 
+                if (isNaN(str(valores[i].iloc[k,l])) or str(valores[i].iloc[k,l]) == NAN or  
+                str(valores[i].iloc[k,l])==nan or str(valores[i].iloc[k,l])=='nan'):
                     insertA += "''"
+                    flag +=1
                 else:
-                    insertA += "'"+(str(valores[i].iloc[k,l])).replace("\n","").upper()+"'"
-                if (l < (valores[i].shape[1])):
+                    insertA += "'"+(str(valores[i].iloc[k,l])).replace("\n","")+"'"
+                if (l < (valores[i].shape[1])-1):
                     insertA += ","
                 else:
-                    insertA += ""   
-            #print("\n",insertA)  
+                    insertA += ""  
+            if (flag<(valores[i].shape[1])):
+                print("\nFLAG:",flag,"INSERT:",insertA)  
             #for l in range(cont):                               
             #    
             #sql = "INSERT INTO " + list[i]+" ("+ str(sql2) +") VALUES (" +str(insertA) +")"
             #print("\nSQL:\n",sql)
             #ejecutarSQL(sql)  
     i+=1
-
+"""
 
 
 
