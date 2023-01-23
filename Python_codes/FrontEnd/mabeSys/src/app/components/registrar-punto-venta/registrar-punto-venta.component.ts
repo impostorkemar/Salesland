@@ -50,9 +50,14 @@ export class RegistrarPuntoVentaComponent {
       cobertura: ['1'],
       nombre_cliente: ['1']   
     });    
+    
     this.MenuIngresar.controls['codigo_pdv'].disable();
     this.MenuIngresar.controls['nombre_pdv'].disable();
     
+    this.lineas.setValue({  
+      check: ['check'],  
+      cuota: ['0'] 
+    })
   }
 
   registrarVenta(): void {           

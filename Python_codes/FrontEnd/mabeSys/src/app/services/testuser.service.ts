@@ -8,7 +8,7 @@ import { Usuario } from '../models/Usuario';
   providedIn: 'root'
 })
 export class TestuserService {
-  API:string = 'http://192.168.56.1:8000/';
+  API:string = 'http://192.168.1.35:8000/';
 
   constructor(private clienteHttp:HttpClient) { }
 

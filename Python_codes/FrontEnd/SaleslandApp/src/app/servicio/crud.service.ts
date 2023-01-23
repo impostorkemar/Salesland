@@ -16,7 +16,7 @@ import { HttpPostService } from './HttpPostService';
   providedIn: 'root'
 })
 export class CrudService {
-API:string = 'http://192.168.56.1:8000/';
+API:string = 'http://192.168.1.35:8000/';
   constructor(private clienteHttp:HttpClient) { }
 
   private createRequestOptions() {

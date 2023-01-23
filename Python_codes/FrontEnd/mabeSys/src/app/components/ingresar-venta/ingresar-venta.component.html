@@ -1,5 +1,9 @@
 <div [formGroup]="myGroup">    
     <h1 style="text-align: center; justify-content: center; align-items: center;"> INGRESAR VENTA</h1>
+    <div *ngIf="false" class="form-floating mb-3">                
+        <input type="text" class="form-control" name="firstName" formControlName="firstName" id="" aria-describedby="helpId" placeholder="Escribe tu firstName">
+        <label>ID VENTA</label>
+    </div>
     <div class="wrapper1">    
         <div  class="body1">            
             <form (ngSubmit)="registrarVenta()" [formGroup]="MenuIngresar">
@@ -66,29 +70,29 @@
     </div>
     <div class="wrapper3">    
         <div  class="body2">  
-            <form [formGroup]="ventasUsuario">
+            <form  [formGroup]="ventasUsuario">
                 <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
+                    <input id="aires" name="aires" formControlName="aires" type="number" class="form-control" placeholder="Escribe tu aires"/>
                     <label >AIRES</label>
                 </div>
                 <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
+                    <input id="cocinas" name="cocinas" formControlName="cocinas" type="number" class="form-control" placeholder="Escribe tu cocinas"/>
                     <label >COCINAS</label>
                 </div>
                 <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
+                    <input id="empotre" name="empotre" formControlName="empotre" type="number" class="form-control" placeholder="Escribe tu empotre"/>
                     <label >EMPOTRE</label>
                 </div>
                 <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
+                    <input id="globales" name="globales" formControlName="globales" type="number" class="form-control" placeholder="Escribe tu globales"/>
                     <label >GLOBALES</label>
                 </div>
                 <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
+                    <input id="lavado" name="lavado" formControlName="lavado" type="number" class="form-control" placeholder="Escribe tu lavado"/>
                     <label >LAVADO</label>
                 </div>
                 <div class="form-floating mb-3">                
-                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu otros"/>
+                    <input id="refrigeracion" name="refrigeracion" formControlName="refrigeracion" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
                     <label >REFRIGERACIÓN</label>
                 </div>
             </form> 

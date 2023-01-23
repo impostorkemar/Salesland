@@ -20,14 +20,19 @@ origins =[
     "http://192.168.56.1:4200",
     "https://192.168.56.1:4200",
     "http://192.168.56.1:8000",
-    "https://192.168.56.1:8000"
+    "https://192.168.56.1:8000",
+    "http://192.168.1.8:8000",
+    "https://192.168.1.8:8000",
+    "http://192.168.1.8:4200",
+    "https://192.168.1.8:4200"
+
     
 ]
 #adding middleware uris
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"]
 )

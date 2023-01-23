@@ -6,7 +6,7 @@
         <form (ngSubmit)="registrar()" [formGroup]="registrarUsuario">           
             
             <div class="form-floating mb-3">                
-                <input type="text" class="form-control" name="nombre_usuario" formControlName="nombre_usuario" id="" aria-describedby="helpId" placeholder="Escribe tu usuario">
+                <input type="text" class="form-control" name="nombre_usuario" formControlName="nombre_usuario" id="nombre_usuario" aria-describedby="helpId" placeholder="Escribe tu usuario">
                 <label>INGRESAR USUARIO</label>
             </div>
             
@@ -33,7 +33,7 @@
             <div  class="body2">
                 <form [formGroup]="registrarCamposPersonales">
                     <div class="form-floating mb-3">                
-                        <input type="text" class="form-control" name="cedula" formControlName="cedula" id="" aria-describedby="helpId" placeholder="Escribe tu cedula">
+                        <input type="text" class="form-control" name="cedula" formControlName="cedula" id="cedula" aria-describedby="helpId" placeholder="Escribe tu cedula">
                         <label>CEDULA</label>
                     </div>
                     

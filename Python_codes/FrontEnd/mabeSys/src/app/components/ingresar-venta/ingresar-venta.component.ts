@@ -21,32 +21,52 @@ export class IngresarVentaComponent implements OnInit {
   
   constructor(
     private fb: FormBuilder,
+    private fb2: FormBuilder,
     private testuserService:TestuserService,
     private router:Router,
     private authService: AuthService,
-  ) { 
-    this.myGroup = new FormGroup({});
+  ) {    
     this.MenuIngresar = this.fb.group({
       id_venta: ['',Validators.required],
       id_linea: ['',Validators.required],  
       codigo_pdv: ['',Validators.required]
     });
     this.ventasUsuario = this.fb.group({
-      otros: ['',Validators.required] 
-    })
+      aires: ['',Validators.required],
+      cocinas: ['',Validators.required],
+      empotre: ['',Validators.required],
+      globales: ['',Validators.required],
+      lavado: ['',Validators.required],
+      refrigeracion: ['',Validators.required]
+    })    
+    this.myGroup = new FormGroup({
+        firstName: new FormControl()
+    });
+    
 
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     
     this.MenuIngresar.setValue({
       id_venta: ['1'],
       id_linea: ['1'],  
       codigo_pdv: ['1'],      
     });
+    
     this.MenuIngresar.controls['id_venta'].disable();
     this.MenuIngresar.controls['id_linea'].disable();
     this.MenuIngresar.controls['codigo_pdv'].disable();
+
+    this.ventasUsuario.setValue({
+      aires: ['0'],
+      cocinas: ['0'],  
+      empotre: ['0'], 
+      globales: ['0'],
+      lavado: ['0'],  
+      refrigeracion: ['0']     
+    });
+    
   }
 
   registrarVenta(): void {
