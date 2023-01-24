@@ -148,11 +148,9 @@ def obtainColumnDf3(df3,consult,consult2,list3):
         i+=1        
     return resultCol,resultSheet
 
-    #READING 10. Cuota SO Noviembre 2022 (final).xlsx
-df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/10. Cuota SO Noviembre 2022 (final).xlsx", sheet_name=None)
-#print(df3)
 
-    #READING ENTIDADES.CSV
+
+    #READING Rutero.CSV
 df4 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/Rutero Ene-23.xlsx", sheet_name=None)
 #print(df4)
 
@@ -176,6 +174,8 @@ print("KEYS:",list3)
 #print("VALORES:",valores)
 #print("VALORES:",valores[4].iloc[0,0])
 
+"""
+ejecutarSQL("DELETE FROM usuario")
 
 #INSERCION USUARIOS
 i=0; aux = -2; fil=-1; col=-1;
@@ -183,16 +183,16 @@ for item in list2:
     sql2 = ""; cont = 0; 
     if (item == 'ruta_promotor'):
         print(i,"->",item,":",valores[i].shape[0],"-",valores[i].shape[1])
-        for k in range(valores[i].shape[1]):  
+        for k in range(valores[i].shape[0]):  
             insertA=""; flag = 0;
             aux = str(valores[i].iloc[k,13])     
             #print("\nAUX:",aux)     
             #print("CONSULT2:",aux3,str(x2.group()))
+            print("\nAUX:",aux)
             if (isNaN(aux) or aux == NAN or aux == nan or aux == 'nan' ):
-                print("\nEntre is nan")
-                aux = ""
+                print("Entre is nan")                
             else: 
-                print("\nEntre is not nan")
+                print("Entre is not nan")
                 #print("\nAUX:",aux)
                 if (is_number(aux)):  
                     print("Entre is number")
@@ -200,13 +200,12 @@ for item in list2:
                     #print("SQL1:",sql)
                     aux2 = consultarSQL(sql)
                     x = re.search("(?<=').+(?=')", aux2)
-                    print("AUX2:",aux2, "x:",x)                    
+                    print("AUX2:",aux2)                    
                     insertA += ("'"+(str(valores[i].iloc[k,13])+"','promotor','"+str(valores[i].iloc[k,14])+"','"
                     +str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])).replace("\n","")+"'")
                     print("INSERT:",insertA)
                     if (isNaN(str(aux2)) or str(aux2) == NAN or str(aux2) == nan or str(aux2)=='nan' or str(aux2)==""):                        
                         print("Registrar")                        
-                        print("CONSULT2:","SELECT MAX(clave) FROM usuario LIMIT 1;")                                               
                         sql = "INSERT INTO usuario (cedula,tipo,nombre_usuario,usuario,password) VALUES (" +str(insertA) +")"
                         print("SQL:",k,"\t --->",sql,"\n") 
                         ejecutarSQL(sql)  
@@ -215,10 +214,14 @@ for item in list2:
                          print("No registrar")                   
                 else: 
                     print("Entre is not number")
-
     i+=1
-
 """
+
+    #READING 10. Cuota SO Noviembre 2022 (final).xlsx
+df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
+#print(df3)
+
+
 list2 = []; keysA=[];
 for i in df3.keys(): 
     keysA.append(i)  
@@ -237,7 +240,7 @@ for try1 in list2:
     i += 1
 print("KEYS:",list3)
 #print("VALORES:",valores)
-print("VALORES:",valores[4].iloc[0,0])
+#print("VALORES:",valores[4].iloc[0,0])
 
 i=0; aux = -2; fil=-1; col=-1;
 for item in list2:
@@ -265,7 +268,7 @@ for item in list2:
             #print("\nSQL:\n",sql)
             #ejecutarSQL(sql)  
     i+=1
-"""
+
 
 
 
