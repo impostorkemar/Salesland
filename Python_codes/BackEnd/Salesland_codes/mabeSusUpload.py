@@ -183,34 +183,39 @@ for item in list2:
     sql2 = ""; cont = 0; 
     if (item == 'ruta_promotor'):
         print(i,"->",item,":",valores[i].shape[0],"-",valores[i].shape[1])
-        for k in range(15):  
+        for k in range(valores[i].shape[1]):  
             insertA=""; flag = 0;
             aux = str(valores[i].iloc[k,13])     
             #print("\nAUX:",aux)     
+            #print("CONSULT2:",aux3,str(x2.group()))
             if (isNaN(aux) or aux == NAN or aux == nan or aux == 'nan' ):
-                #print("NOT INSERT")
+                print("\nEntre is nan")
                 aux = ""
-            else:        
-                if (is_number(aux)):        
-                    #insertA += ("'"+(str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,11])+"','"
-                    #+str(valores[i].iloc[k,14])+"','"+ str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])
-                    #+"','"+str(valores[i].iloc[k,13])).replace("\n","")+"'") 
-                    sql = "SELECT (CASE WHEN (SELECT usuario.cedula FROM usuario WHERE cedula = '"+str(aux)+"') = usuario.cedula THEN '1' ELSE '0' END) as EXISTE from usuario ORDER BY 'EXISTE' DESC LIMIT 1;"
+            else: 
+                print("\nEntre is not nan")
+                #print("\nAUX:",aux)
+                if (is_number(aux)):  
+                    print("Entre is number")
+                    sql = "SELECT usuario.cedula FROM usuario WHERE cedula = '"+aux+"' LIMIT 1;"
+                    #print("SQL1:",sql)
                     aux2 = consultarSQL(sql)
-                    x = re.search("(?<=').+(?=')", aux2)  
-                    #print("\tSQL:",sql," aux2:", aux2) 
-                    print("CONSULT:",aux2,str(x.group())) 
-                    if (str(x.group()) == '1'):
-                        aux3 = consultarSQL2("SELECT MAX(clave) FROM usuario LIMIT 1;")   
-                        x2 = re.search("(?<=').+(?=')", aux3)
-                        #print("CONSULT2:",aux3,str(x2.group()))    
-                        insertA += ("'"+str(int(x2.group())+1)+"',"+"'"+(str(valores[i].iloc[k,13])+"','promotor','"
-                        +str(valores[i].iloc[k,14])+"','"+ str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])
-                        +"','"+str(valores[i].iloc[k,13])).replace("\n","")+"'")         
-                        #print("INSERT:",insertA)
-                        sql = "INSERT INTO usuario (clave,cedula,tipo,nombre_usuario,usuario,password) VALUES (" +str(insertA) +")"
-                        print("\nSQL:",k,"\n",sql) 
-                        #ejecutarSQL(sql)  
+                    x = re.search("(?<=').+(?=')", aux2)
+                    print("AUX2:",aux2, "x:",x)                    
+                    insertA += ("'"+(str(valores[i].iloc[k,13])+"','promotor','"+str(valores[i].iloc[k,14])+"','"
+                    +str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])).replace("\n","")+"'")
+                    print("INSERT:",insertA)
+                    if (isNaN(str(aux2)) or str(aux2) == NAN or str(aux2) == nan or str(aux2)=='nan' or str(aux2)==""):                        
+                        print("Registrar")                        
+                        print("CONSULT2:","SELECT MAX(clave) FROM usuario LIMIT 1;")                                               
+                        sql = "INSERT INTO usuario (cedula,tipo,nombre_usuario,usuario,password) VALUES (" +str(insertA) +")"
+                        print("SQL:",k,"\t --->",sql,"\n") 
+                        ejecutarSQL(sql)  
+                        ejecutarSQL("COMMIT;")                        
+                    else:
+                         print("No registrar")                   
+                else: 
+                    print("Entre is not number")
+
     i+=1
 
 """
