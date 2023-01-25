@@ -150,6 +150,64 @@ def obtainColumnDf3(df3,consult,consult2,list3):
 
 
 
+
+
+    #READING 10. Cuota SO Noviembre 2022 (final).xlsx
+df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
+#print(df3)
+
+list2 = []; keysA=[];
+for i in df3.keys(): 
+    keysA.append(i)  
+    aux=(((str(i).replace('. ','_')).replace('-','_')).replace(' ','_')).replace('.','')
+    list2.append(aux)    
+list2 = [name.lower() for name in list2]
+print("LIST2:",list2)
+print("keysA:",keysA)
+
+list3= []; valores = []; 
+i=0
+for try1 in list2:    
+    #print(list2.index(try1),"=>",keysA[list2.index(try1)])
+    list3.append(keysA[list2.index(try1)])
+    valores.append(df3.get(keysA[list2.index(try1)]))
+    i += 1
+print("KEYS:",list3)
+#print("VALORES:",valores)
+#print("VALORES:",valores[4].iloc[0,0])
+
+#DELETES
+ejecutarSQL("DELETE FROM punto_venta;")
+ejecutarSQL("DELETE FROM usuario;")
+ejecutarSQL("DELETE FROM linea;")
+
+
+ejecutarSQL("ALTER TABLE punto_venta AUTO_INCREMENT=1")
+i=0; aux = -2; fil=-1; col=-1;
+for item in list2:
+    sql2 = ""; cont = 0; 
+    if (item == 'cuota_x_pdv'):
+        print(i,"->",item,":",valores[i].shape[0],"-",valores[i].shape[1])
+        for k in range(valores[i].shape[0]):  
+            insertA=""; flag = 0;
+            #clave = ejecutarSQL("SELECT clave FROM usuario WHERE nombre_usuario = 'Mayra Liliana Mendia';")
+            sql3 = "SELECT nombre_pdv FROM punto_venta WHERE nombre_pdv = '"+str(valores[i].iloc[k,7])+"' LIMIT 1;"
+            clave3 = consultarSQL(sql3) 
+            aux = str(valores[i].iloc[k,7])
+            print(aux)
+            if (isNaN(aux) or aux == NAN or aux == nan or aux == 'nan' ):
+                print("Entre is nan")                
+            else:      
+                if (aux != 'TIENDA HMPV'): 
+                    print(str(valores[i].iloc[k,7]))    
+                    if (clave3 == "" ):                        
+                        insertA = "'"+str(valores[i].iloc[k,7])+"','"+str(valores[i].iloc[k,8])+"','"+str(valores[i].iloc[k,15])+"','"+str(valores[i].iloc[k,5])+"'"             
+                        sql4 = "INSERT INTO punto_venta (nombre_pdv,retail_mapping,cobertura,nombre_cliente_hijo) VALUES (" +str(insertA) +");"
+                        print("SQL:\t",sql4)
+                        ejecutarSQL(sql4)                              
+    i+=1
+
+
     #READING Rutero.CSV
 df4 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/Rutero Ene-23.xlsx", sheet_name=None)
 #print(df4)
@@ -174,10 +232,10 @@ print("KEYS:",list3)
 #print("VALORES:",valores)
 #print("VALORES:",valores[4].iloc[0,0])
 
-"""
-ejecutarSQL("DELETE FROM usuario")
 
 #INSERCION USUARIOS
+ejecutarSQL("DELETE FROM usuario;")
+ejecutarSQL("ALTER TABLE usuario AUTO_INCREMENT=1")
 i=0; aux = -2; fil=-1; col=-1;
 for item in list2:
     sql2 = ""; cont = 0; 
@@ -200,75 +258,46 @@ for item in list2:
                     #print("SQL1:",sql)
                     aux2 = consultarSQL(sql)
                     x = re.search("(?<=').+(?=')", aux2)
-                    print("AUX2:",aux2)                    
-                    insertA += ("'"+(str(valores[i].iloc[k,13])+"','promotor','"+str(valores[i].iloc[k,14])+"','"
-                    +str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])).replace("\n","")+"'")
-                    print("INSERT:",insertA)
-                    if (isNaN(str(aux2)) or str(aux2) == NAN or str(aux2) == nan or str(aux2)=='nan' or str(aux2)==""):                        
-                        print("Registrar")                        
-                        sql = "INSERT INTO usuario (cedula,tipo,nombre_usuario,usuario,password) VALUES (" +str(insertA) +")"
-                        print("SQL:",k,"\t --->",sql,"\n") 
-                        ejecutarSQL(sql)  
-                        ejecutarSQL("COMMIT;")                        
+                    print("AUX2:",aux2)
+                    if (aux2 == ""):  
+                        print("Entre")                      
+                        clave4 = consultarSQL("SELECT codigo_pdv FROM punto_venta WHERE nombre_pdv = '"+str(valores[i].iloc[k,4])+"' LIMIT 1")
+                        print("SELECT codigo_pdv FROM punto_venta WHERE nombre_pdv = '"+str(valores[i].iloc[k,4])+"' LIMIT 1")                       
+                        x = re.search('\d+', clave4)
+                        print("CLave4:",clave4, "x:",x)                        
+                        if (not(clave4 == "")):
+                            insertA += ("'"+str(x.group())+"','"+(str(valores[i].iloc[k,13])+"','promotor','"+str(valores[i].iloc[k,14])+"','"
+                            +str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])).replace("\n","")+"'")
+                            print("INSERT:",insertA)
+                            sql = "INSERT INTO usuario (codigo_pdv,cedula,tipo,nombre_usuario,usuario,password) VALUES (" +str(insertA) +")"
+                            print("SQL:",k,"\t --->",sql,"\n") 
+                            ejecutarSQL(sql)       
                     else:
                          print("No registrar")                   
                 else: 
                     print("Entre is not number")
     i+=1
-"""
 
-    #READING 10. Cuota SO Noviembre 2022 (final).xlsx
-df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
-#print(df3)
+ejecutarSQL("ALTER TABLE linea AUTO_INCREMENT=1")
+ref = consultarSQL_Lista("SELECT codigo_pdv FROM punto_venta;")
+for item in range(len(ref)):
+    print("Item:",ref[item],"-->")
+    x = re.search('\d+', str(ref[item]))    
+    insert1 = "'"+str(x.group())+"','0','AIRES'"
+    insert2 = "'"+str(x.group())+"','0','COCINAS'"
+    insert3 = "'"+str(x.group())+"','0','EMPOTRE'"
+    insert4 = "'"+str(x.group())+"','0','GLOBALES'"
+    insert5 = "'"+str(x.group())+"','0','LAVADO'"
+    insert6 = "'"+str(x.group())+"','0','REFRIGERACIÓN'"
 
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert1)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert2)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert3)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert4)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert5)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert6)+");")
 
-list2 = []; keysA=[];
-for i in df3.keys(): 
-    keysA.append(i)  
-    aux=(((str(i).replace('. ','_')).replace('-','_')).replace(' ','_')).replace('.','')
-    list2.append(aux)    
-list2 = [name.lower() for name in list2]
-print("LIST2:",list2)
-print("keysA:",keysA)
-
-list3= []; valores = []; 
-i=0
-for try1 in list2:    
-    #print(list2.index(try1),"=>",keysA[list2.index(try1)])
-    list3.append(keysA[list2.index(try1)])
-    valores.append(df3.get(keysA[list2.index(try1)]))
-    i += 1
-print("KEYS:",list3)
-#print("VALORES:",valores)
-#print("VALORES:",valores[4].iloc[0,0])
-
-i=0; aux = -2; fil=-1; col=-1;
-for item in list2:
-    sql2 = ""; cont = 0; 
-    if (item == 'cuota_x_pdv'):
-        print(i,"->",item,":",valores[i].shape[0],"-",valores[i].shape[1])
-        for k in range(5):  
-            insertA=""; flag = 0;
-            for l in range(valores[i].shape[1]):                 
-                if (isNaN(str(valores[i].iloc[k,l])) or str(valores[i].iloc[k,l]) == NAN or  
-                str(valores[i].iloc[k,l])==nan or str(valores[i].iloc[k,l])=='nan'):
-                    insertA += "''"
-                    flag +=1
-                else:
-                    insertA += "'"+(str(valores[i].iloc[k,l])).replace("\n","")+"'"
-                if (l < (valores[i].shape[1])-1):
-                    insertA += ","
-                else:
-                    insertA += ""  
-            if (flag<(valores[i].shape[1])):
-                print("\nFLAG:",flag,"INSERT:",insertA)  
-            #for l in range(cont):                               
-            #    
-            #sql = "INSERT INTO " + list[i]+" ("+ str(sql2) +") VALUES (" +str(insertA) +")"
-            #print("\nSQL:\n",sql)
-            #ejecutarSQL(sql)  
-    i+=1
-
+    print("INSERT: "+str(x.group()))
 
 
 
