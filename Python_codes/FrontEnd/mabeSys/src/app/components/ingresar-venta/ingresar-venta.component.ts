@@ -75,20 +75,20 @@ export class IngresarVentaComponent implements OnInit {
     this.MenuIngresar.controls['id_venta'].disable();
     
     this.ventasUsuario.setValue({     
-      id_linea: [1],  
-      codigo_pdv: [1],
-      ventas_mabe: [0],
-      ventas_indurama: [0],
-      ventas_whirlpool: [0],
-      ventas_lg: [0],
-      ventas_samsung: [0],
-      ventas_electrolux: [0],
-      mastertech: [0],
-      hove: [0],
-      teka: [0],
-      smc: [0],
-      otros: [0],
-      validacion: [1],
+      id_linea: 1,  
+      codigo_pdv: 1,
+      ventas_mabe: 0,
+      ventas_indurama: 0,
+      ventas_whirlpool: 0,
+      ventas_lg: 0,
+      ventas_samsung: 0,
+      ventas_electrolux: 0,
+      mastertech: 0,
+      hove: 0,
+      teka: 0,
+      smc: 0,
+      otros: 0,
+      validacion: 1,
     })
 
     ;
