@@ -20,7 +20,16 @@ origins =[
     "http://192.168.56.1:4200",
     "https://192.168.56.1:4200",
     "http://192.168.56.1:8000",
-    "https://192.168.56.1:8000"
+    "https://192.168.56.1:8000",
+    "http://localhost:4200",
+    "https://localhost:4200",
+    "http://localhost:8000",
+    "https://localhost:8000",
+    "http://192.168.1.37:8000",
+    "https://192.168.1.37:8000",
+    "http://192.168.1.37:4200",
+    "https://192.168.1.37:4200",
+
     
 ]
 #adding middleware uris

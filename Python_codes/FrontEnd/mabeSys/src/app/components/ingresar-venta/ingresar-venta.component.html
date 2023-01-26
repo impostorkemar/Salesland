@@ -13,53 +13,47 @@
                     <label>ID VENTA</label>
                 </div>
                 
-                <div class="form-floating mb-3">                
+                <div *ngIf="false" class="form-floating mb-3">                
                     <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
                     <label >ID LINEA</label>
                 </div>
     
-                <div class="form-floating mb-3">                
+                <div *ngIf="false" class="form-floating mb-3">                
                     <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
-                    <label>CODIGO PUNTO DE VENTA</label>
+                    <label>PUNTO DE VENTA </label>
                 </div>    
-                <a class="mt-3" routerLink=logout()> Salir</a>
+                
             </form>            
         </div>
     </div>
     <div class="wrapper2">
-        <form>
-            <div class="btn-group d-grid gap-2 mb-3">
-                <button class="btn btn-secondary d-grid gap-2 mb-3" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                            TIENDA
-                </button>
-                <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
-                    <a class="dropdown-item " href="#">CENTRO</a>
-                    <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">CUENCA</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item disabled" href="#">Disabled action</a>
-                    <h6 class="dropdown-header">Section header</h6>
-                    <a class="dropdown-item" href="#">Action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">After divider action</a>
-                </div>
-            </div>
-
-            <div class="btn-group-vertical mb-3" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary">VENTAS MABE</button>
-                <button type="button" class="btn btn-secondary">VENTAS INDURAMA</button>
-                <button type="button" class="btn btn-secondary">VENTAS WHIRLPOOL</button>
-                <button type="button" class="btn btn-secondary">VENTAS LG</button>
-                <button type="button" class="btn btn-secondary">VENTAS SAMSUNG</button>
-                <button type="button" class="btn btn-secondary">VENTAS ELECTROLUX</button>
-                <button type="button" class="btn btn-secondary">MASTERTECH</button>
-                <button type="button" class="btn btn-secondary">HOVE</button>
-                <button type="button" class="btn btn-secondary">TEKA</button>
-                <button type="button" class="btn btn-secondary">SMC</button>
-                <button type="button" class="btn btn-secondary">OTROS</button>
-            </div>
+        <form [formGroup]="registrationForm">
+            <div class="d-grid"  aria-labelledby="triggerId">
+                <p>ESCOGE LA TIENDA {{ selectedTeam }}</p>
+                <select [(ngModel)]="selectedTeam"
+                  class="custom-select mb-3" 
+                  (change)="changeTienda($event)"
+                  formControlName="nombreTienda"
+                  (ngModelOptions)="{standalone: true}" 
+                >
+                <option value="">ESCOGE LA TIENDA</option>
+                <option *ngFor="let dato of datos" [ngValue]="nombreTienda">
+                  {{ dato }}
+                </option>
+              </select>
+              <div class="d-grid gap-2 mb-3" *ngIf="isSubmitted && nombreTienda?.invalid">
+                <sup>*</sup>ESCOJA TIENDA
+              </div>
+              <div class="d-grid gap-2 mb-3">                  
+                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="AIRES" (click)="onSubmit('AIRES')">VENTAS AIRES</button>
+                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="COCINAS" (click)="onSubmit('COCINAS')">VENTAS COCINAS</button>
+                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="EMPOTRE" (click)="onSubmit('EMPOTRE')">VENTAS EMPOTRE</button>
+                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="GLOBALES" (click)="onSubmit('GLOBALES')">VENTAS GLOBALES</button>
+                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="LAVADO" (click)="onSubmit('LAVADO')">VENTAS LAVADO</button>
+                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="REFRIGERACIÓN" (click)="onSubmit('REFRIGERACIÓN')">REFRIGERACIÓN</button>
+                
+              </div>                
+              </div>            
             
             <div  class="d-grid gap-2 mb-3" >
                 <button class="btn btn-primary btn-lg" type="submit" >INGRESAR</button>                                
@@ -71,29 +65,72 @@
     <div class="wrapper3">    
         <div  class="body2">  
             <form  [formGroup]="ventasUsuario">
-                <div class="form-floating mb-3">                
-                    <input id="aires" name="aires" formControlName="aires" type="number" class="form-control" placeholder="Escribe tu aires"/>
-                    <label >AIRES</label>
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input type="text" class="form-control" name="id_venta" formControlName="id_venta" id="" aria-describedby="helpId" placeholder="Escribe tu id_venta">
+                    <label>ID VENTA</label>
+                </div>
+                
+                <div *ngIf="true" class="form-floating mb-2">                
+                    <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
+                    <label >ID LINEA</label>
+                </div>
+    
+                <div *ngIf="true" class="form-floating mb-2">                
+                    <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
+                    <label>PUNTO DE VENTA </label>
                 </div>
                 <div class="form-floating mb-3">                
-                    <input id="cocinas" name="cocinas" formControlName="cocinas" type="number" class="form-control" placeholder="Escribe tu cocinas"/>
-                    <label >COCINAS</label>
+                    <input id="ventas_mabe" name="ventas_mabe" formControlName="ventas_mabe" type="number" class="form-control" placeholder="Escribe tu aires"/>
+                    <label >MABE</label>
                 </div>
                 <div class="form-floating mb-3">                
-                    <input id="empotre" name="empotre" formControlName="empotre" type="number" class="form-control" placeholder="Escribe tu empotre"/>
-                    <label >EMPOTRE</label>
+                    <input id="ventas_indurama" name="ventas_indurama" formControlName="ventas_indurama" type="number" class="form-control" placeholder="Escribe tu cocinas"/>
+                    <label >INDURAMA</label>
                 </div>
                 <div class="form-floating mb-3">                
-                    <input id="globales" name="globales" formControlName="globales" type="number" class="form-control" placeholder="Escribe tu globales"/>
-                    <label >GLOBALES</label>
+                    <input id="ventas_whirlpool" name="ventas_whirlpool" formControlName="ventas_whirlpool" type="number" class="form-control" placeholder="Escribe tu empotre"/>
+                    <label >WHIRLPOOL</label>
                 </div>
                 <div class="form-floating mb-3">                
-                    <input id="lavado" name="lavado" formControlName="lavado" type="number" class="form-control" placeholder="Escribe tu lavado"/>
-                    <label >LAVADO</label>
+                    <input id="ventas_lg" name="ventas_lg" formControlName="ventas_lg" type="number" class="form-control" placeholder="Escribe tu globales"/>
+                    <label >LG</label>
                 </div>
                 <div class="form-floating mb-3">                
-                    <input id="refrigeracion" name="refrigeracion" formControlName="refrigeracion" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
-                    <label >REFRIGERACIÓN</label>
+                    <input id="ventas_samsung" name="ventas_samsung" formControlName="ventas_samsung" type="number" class="form-control" placeholder="Escribe tu lavado"/>
+                    <label >SAMSUNG</label>
+                </div>
+                <div class="form-floating mb-3">                
+                    <input id="ventas_electrolux" name="ventas_electrolux" formControlName="ventas_electrolux" type="number" class="form-control" placeholder="Escribe tu lavado"/>
+                    <label >ELECTROLUX</label>
+                </div>
+                <div class="form-floating mb-3">                
+                    <input id="mastertech" name="mastertech" formControlName="mastertech" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >MASTERTECH</label>
+                </div>
+
+                <div class="form-floating mb-3">                
+                    <input id="hove" name="hove" formControlName="hove" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >HOVE</label>
+                </div>
+
+                <div class="form-floating mb-3">                
+                    <input id="teka" name="teka" formControlName="teka" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >TEKA</label>
+                </div>
+
+                <div class="form-floating mb-3">                
+                    <input id="smc" name="smc" formControlName="smc" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >SMC</label>
+                </div>
+
+                <div class="form-floating mb-3">                
+                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >OTROS</label>
+                </div>
+
+                <div class="form-floating mb-3">                
+                    <input id="validacion" name="validacion" formControlName="validacion" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >VALIDACION</label>
                 </div>
             </form> 
         </div>

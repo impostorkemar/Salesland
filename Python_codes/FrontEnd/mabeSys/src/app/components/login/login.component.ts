@@ -52,8 +52,11 @@ export class LoginComponent implements OnInit {
           console.log("COMPARA: promotor")
           this.login('ROLE_USER');
         } 
-        
+        localStorage.setItem('USER', email);
+        localStorage.setItem('PASS', password);
         console.log("ROLE:",localStorage.getItem('ROLE') as string)
+        console.log("USER:",localStorage.getItem('USER') as string)
+        console.log("PASS:",localStorage.getItem('PASS') as string)
         this.router.navigate(['/menu']);
       }      
       

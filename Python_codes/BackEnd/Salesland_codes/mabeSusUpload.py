@@ -200,19 +200,20 @@ for item in list2:
                 print("\tPUNTO_VENTA:",str(valores[i].iloc[k,7]))
                 if (aux != 'TIENDA HMPV'):  
                     print("\tLINEA:",str(valores[i].iloc[k,9]))  
-                    print("\tCUOTA:",str(valores[i].iloc[k,27]))
-                    if str(valores[i].iloc[k,9]) == "AIRES":
-                        aires += float(valores[i].iloc[k,27])
+                    print("\tCUOTA:",str(valores[i].iloc[k,26])) 
+                    auxCuota = float(valores[i].iloc[k,26])                   
+                    if str() == "AIRES":
+                        aires += float(auxCuota)
                     elif str(valores[i].iloc[k,9]) == "COCINAS":
-                        cocinas += float(valores[i].iloc[k,27])
+                        cocinas += float(auxCuota)
                     elif str(valores[i].iloc[k,9]) == "EMPOTRE":
-                        empotre += float(valores[i].iloc[k,27])
+                        empotre += float(auxCuota)
                     elif str(valores[i].iloc[k,9]) == "GLOBALES":
-                        globales += float(valores[i].iloc[k,27])
+                        globales += float(auxCuota)
                     elif str(valores[i].iloc[k,9]) == "LAVADO":
-                        lavado += float(valores[i].iloc[k,27])
+                        lavado += float(auxCuota)
                     elif str(valores[i].iloc[k,9]) == "REFRIGERACIÓN":
-                        refrigeracion += float(valores[i].iloc[k,27])
+                        refrigeracion += float(auxCuota)
                     print("CUOTA:",aires , cocinas, empotre, globales, lavado, refrigeracion,"\n")
                     if (clave3 == "" ):                        
                         insertA = "'"+str(valores[i].iloc[k,7])+"','"+str(valores[i].iloc[k,8])+"','"+str(valores[i].iloc[k,15])+"','"+str(valores[i].iloc[k,5])+"'"             
@@ -247,7 +248,7 @@ print("KEYS:",list3)
 #print("VALORES:",valores)
 #print("VALORES:",valores[4].iloc[0,0])
 
-"""
+
 #INSERCION USUARIOS
 ejecutarSQL("DELETE FROM usuario;")
 ejecutarSQL("ALTER TABLE usuario AUTO_INCREMENT=1")
@@ -292,9 +293,7 @@ for item in list2:
                 else: 
                     print("Entre is not number")
     i+=1
-"""
 
-"""
 ejecutarSQL("ALTER TABLE linea AUTO_INCREMENT=1")
 ref = consultarSQL_Lista("SELECT codigo_pdv FROM punto_venta;")
 for item in range(len(ref)):
@@ -307,14 +306,13 @@ for item in range(len(ref)):
     insert5 = "'"+str(x.group())+"','0','LAVADO'"
     insert6 = "'"+str(x.group())+"','0','REFRIGERACIÓN'"
 
-    #ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert1)+");")
-    #ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert2)+");")
-    #ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert3)+");")
-    #ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert4)+");")
-    #ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert5)+");")
-    #ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert6)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert1)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert2)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert3)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert4)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert5)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert6)+");")
 
-    #print("INSERT: "+str(x.group()))
-"""
+    print("INSERT: "+str(x.group()))
 
 

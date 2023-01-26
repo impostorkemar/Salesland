@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response
 from config.db import conn
-from models.user import usuarios
-from schemas.user import Usuario
+from models.user import usuarios,ventas
+from schemas.user import Usuario, Venta
 from cryptography.fernet import Fernet
 from starlette import status
 from sqlalchemy.sql import select
@@ -21,10 +21,10 @@ def comprobar_usuario(user: str, passw: str):
     return conn.execute("SELECT tipo FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';").first()
 
 @user.get("/consultaDinamica/", tags=["consulta"])
-async def get_Tablas():
+async def get_TablasDinamicas():
     #sql="SELECT * FROM "+varConsul
     #sql2=" WHERE "
-    sql ="SELECT punto_venta.codigo_pdv,punto_venta.nombre_pdv,linea.nombre_linea,usuario.nombre_usuario,venta.id_venta,venta.ventas_mabe, venta.ventas_indurama, venta.ventas_whirlpool, venta.ventas_lg, venta.ventas_lg, venta.ventas_samsung, venta.ventas_electrolux, venta.mastertech, venta.hove, venta.teka, venta.smc, venta.otros, venta.validacion FROM usuario, punto_venta, linea, venta WHERE usuario.clave = punto_venta.clave AND punto_venta.codigo_pdv = linea.codigo_pdv AND venta.id_linea = linea.id_linea AND venta.codigo_pdv = linea.codigo_pdv"
+    sql ="SELECT usuario.nombre_usuario as PROMOTOR,punto_venta.nombre_cliente_hijo AS 'CLIENTE HIJO',punto_venta.nombre_pdv AS 'TIENDA HMPV', linea.nombre_linea AS LINEA, linea.cuota AS 'Cuota Q',venta.ventas_mabe AS 'VENTAS MABE', venta.ventas_indurama AS 'VENTAS INDURAMA', venta.ventas_whirlpool AS 'VENTAS WHIRLPOOL', venta.ventas_lg AS 'VENTAS LG', venta.ventas_samsung AS 'VENTAS SAMSUNG', venta.ventas_electrolux AS 'VENTAS ELECTROLUX', venta.mastertech AS MASTERTECH, venta.hove AS HOVE, venta.teka AS TEKA, venta.smc AS SMC, venta.otros AS OTROS FROM usuario, punto_venta, linea, venta WHERE usuario.codigo_pdv = punto_venta.codigo_pdv AND punto_venta.codigo_pdv = linea.codigo_pdv AND venta.id_linea = linea.id_linea AND venta.codigo_pdv = linea.codigo_pdv;"
     print(sql)    
     return conn.execute(sql+";").fetchall()  
     #return None 
@@ -32,3 +32,24 @@ async def get_Tablas():
 @user.get("/nombresTablas/", tags=["consulta"])
 async def get_Tablas():
     return conn.execute("SHOW TABLES FROM mabesys;").fetchall()
+
+@user.get("/nombresPuntosVentas/{user}-{pass}", tags=["puntosVentas"])
+async def get_NombresPuntosVentas(user: str, passw: str):
+    return conn.execute("SELECT nombre_pdv FROM punto_venta WHERE codigo_pdv IN (SELECT codigo_pdv FROM usuario WHERE usuario = '"+str(user)+"' AND password =  '"+str(passw)+"');").fetchall()
+
+@user.get("/codigoPuntoVentaByName/{name}", tags=["puntosVentas"])
+async def get_CodigoPuntoVentaByName(name: str):
+    return conn.execute("SELECT codigo_pdv FROM punto_venta WHERE nombre_pdv = '"+str(name)+"';").fetchall()
+
+@user.post("/ventas/",response_model=Venta, tags=["ventas"])#EJEMPLO
+async def create_venta(venta: Venta):
+    nueva_venta = {"id_linea":venta.id_linea, "codigo_pdv":venta.codigo_pdv, "ventas_mabe":venta.ventas_mabe,
+    "ventas_indurama":venta.ventas_indurama,"ventas_whirlpool":venta.ventas_whirlpool,
+    "ventas_lg":venta.ventas_lg, "ventas_samsung":venta.ventas_samsung, 
+    "ventas_electrolux":venta.ventas_electrolux, "mastertech": venta.mastertech
+    ,"hove":venta.hove, "teka":venta.teka, "smc":venta.smc, "otros":venta.otros
+    , "validacion":venta.validacion}
+    result = conn.execute(ventas.insert().values(nueva_venta))    
+    return conn.execute( ventas.select().where(ventas.c.id_venta == result.lastrowid)).first()
+    
+    

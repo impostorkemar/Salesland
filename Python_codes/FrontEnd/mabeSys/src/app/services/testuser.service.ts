@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { Usuario } from '../models/Usuario';
+import { Venta } from './Venta';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestuserService {
-  API:string = 'http://192.168.1.35:8000/';
+  API:string = 'http://192.168.1.37:8000/';
 
   constructor(private clienteHttp:HttpClient) { }
 
@@ -31,9 +32,9 @@ export class TestuserService {
   }
   //SERVICIOS USUARIO
   AgregarUsuario(datosUsuario:Usuario): Observable<any>{   
-    //console.log("USER",datosUsuario);
+    console.log("USER",datosUsuario);
     var urlAPI="usuarios/";
-    //console.log("URL=",this.API +urlAPI);
+    console.log("URL=",this.API +urlAPI);
     return this.postData(datosUsuario,urlAPI)
   }
 
@@ -59,7 +60,25 @@ export class TestuserService {
     console.log("URI",this.API+urlAPI)
     return this.clienteHttp.get(this.API+urlAPI);
   }
+
+  ObtenerNombresPuntosVenta(user:any,pass:any):Observable<any>{
+    var urlAPI="nombresPuntosVentas/"+user+"-{pass}?passw="+pass;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerCodigoPuntoVenta(name:any):Observable<any>{
+    var urlAPI="codigoPuntoVentaByName/"+name;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
   
+  AgregarVenta(datosVenta:Venta): Observable<any>{   
+    console.log("Venta:",datosVenta);
+    var urlAPI="ventas/";
+    console.log("URL=",this.API +urlAPI);
+    return this.postData(datosVenta,urlAPI)
+  }
+
+
 }
 
 

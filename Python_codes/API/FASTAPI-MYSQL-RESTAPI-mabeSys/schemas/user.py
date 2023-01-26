@@ -2,39 +2,39 @@ from typing import Optional
 from pydantic   import BaseModel
 
 class Usuario(BaseModel):
-    clave: str
+    clave: Optional[int]
     cedula: str
+    codigo_pdv: int
     tipo: str
     nombre_usuario: str
     usuario: str       
     password: str
 
 class Venta(BaseModel):
-    id_centro_costo: int
+    id_venta: Optional[int]
     id_linea: int
-    codigo_pdv: str
-    ventas_mabe: str    
-    ventas_indurama: str
-    ventas_whirlpool: str
-    ventas_lg: str
-    ventas_samsung: str
-    ventas_electrolux: str
-    mastertech: str
-    hove: str
-    teka: str
-    smc: str
-    otros: str
-    validacion: str
+    codigo_pdv: int
+    ventas_mabe: float    
+    ventas_indurama: float
+    ventas_whirlpool: float
+    ventas_lg: float
+    ventas_samsung: float
+    ventas_electrolux: float
+    mastertech: float
+    hove: float
+    teka: float
+    smc: float
+    otros: float
+    validacion: int
 
 class Linea(BaseModel):
-    id_linea: str
+    id_linea: Optional[int]
     codigo_pdv: str
     cuota: str
     nombre_linea: str
 
 class Punto_venta(BaseModel):
-    codigo_pdv: str
-    clave: str
+    codigo_pdv: Optional[int]    
     nombre_pdv: str
     retail_mapping: str
     cobertura: str
