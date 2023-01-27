@@ -22,6 +22,11 @@
                     <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
                     <label >LINEA</label>
                 </div>
+
+                <div *ngIf="flagInsert" class="form-floating mb-3">                
+                    <input id="message" name="message" formControlName="message" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
+                    <label ></label>
+                </div>
     
                     
                 
@@ -136,6 +141,8 @@
                     <input id="validacion" name="validacion" formControlName="validacion" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
                     <label >VALIDACION</label>
                 </div>
+
+                
             </form> 
         </div>
     </div>    

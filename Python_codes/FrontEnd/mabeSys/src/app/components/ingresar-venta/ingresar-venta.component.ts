@@ -31,6 +31,7 @@ export class IngresarVentaComponent implements OnInit {
   id_lineaConsult: number;
   cod_pdv: number;
   thenum: any;
+  flagInsert: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -41,10 +42,12 @@ export class IngresarVentaComponent implements OnInit {
     private router:Router,
     private authService: AuthService,    
   ) {    
+    this.flagInsert = false;
     this.MenuIngresar = this.fb.group({
       id_venta: ['',Validators.required],   
       id_linea: ['',Validators.required],  
-      codigo_pdv: ['',Validators.required],     
+      codigo_pdv: ['',Validators.required], 
+      message: ['',Validators.required],
     });
     this.ventasUsuario = this.fb2.group({     
       id_linea: ['',Validators.required],  
@@ -72,7 +75,8 @@ export class IngresarVentaComponent implements OnInit {
     this.selectedTeam = "";   
     this.NameTienda = "";
     this.id_lineaConsult = 0;
-    this.cod_pdv = 0;    
+    this.cod_pdv = 0;  
+      
   }
  
   ngOnInit(): void {    
@@ -80,12 +84,14 @@ export class IngresarVentaComponent implements OnInit {
     this.MenuIngresar.setValue({
       id_venta: 'ESCOGE TIENDA',   
       id_linea: 'ESCOGE TIENDA',  
-      codigo_pdv: 'ESCOGE TIENDA',     
+      codigo_pdv: 'ESCOGE TIENDA',    
+      message: '',
     });
     
     this.MenuIngresar.controls['id_venta'].disable();
     this.MenuIngresar.controls['id_linea'].disable();
     this.MenuIngresar.controls['codigo_pdv'].disable();
+    this.MenuIngresar.controls['message'].disable();
     
     this.ventasUsuario.setValue({     
       id_linea: 1,  
@@ -178,10 +184,12 @@ export class IngresarVentaComponent implements OnInit {
 
   changeTienda(e: any) {
     if (this.nombreTienda?.invalid){
+      this.flagInsert=false;
       this.MenuIngresar.setValue({
         id_venta: 'ESCOGE TIENDA',   
         id_linea: 'ESCOGE TIENDA',  
-        codigo_pdv: 'ESCOGE TIENDA',     
+        codigo_pdv: 'ESCOGE TIENDA', 
+        message: '',             
       });
       this.ventasUsuario.setValue({     
         id_linea: 0,  
@@ -212,7 +220,8 @@ export class IngresarVentaComponent implements OnInit {
       this.MenuIngresar.setValue({
         id_venta: '',   
         id_linea: '',  
-        codigo_pdv: this.datos[this.thenum],     
+        codigo_pdv: this.datos[this.thenum], 
+        message: ''    
       });
     }
     
@@ -266,15 +275,19 @@ export class IngresarVentaComponent implements OnInit {
               otros: 0,
               validacion: 1,
             });
+            this.flagInsert=true;
             this.MenuIngresar.setValue({
               id_venta: '',   
               codigo_pdv: this.datos[this.thenum],
               id_linea: [buttonType],
+              message: 'DATO INGRESADO CON ÉXITO',
             });
             console.log(this.ventasUsuario.value)
             this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
               console.log(respuesta);
             });
+
+            this.flagInsert = true;
           });               
         });
                 

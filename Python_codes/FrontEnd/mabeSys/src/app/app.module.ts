@@ -17,6 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IngresarVentaComponent } from './components/ingresar-venta/ingresar-venta.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RegistrarPuntoVentaComponent } from './components/registrar-punto-venta/registrar-punto-venta.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PopupComponent } from './popup/popup.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -32,12 +35,16 @@ import { RegistrarPuntoVentaComponent } from './components/registrar-punto-venta
     IngresarVentaComponent,
     MenuComponent,
     RegistrarPuntoVentaComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
