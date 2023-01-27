@@ -36,7 +36,7 @@
     <div class="wrapper2">
         <form [formGroup]="registrationForm">
             <div class="d-grid"  aria-labelledby="triggerId">
-                <p>ESCOGE LA TIENDA {{ selectedTeam }}</p>
+                
                 <select 
                   class="custom-select mb-3" 
                   (change)="changeTienda($event)"
@@ -127,12 +127,12 @@
                     <label >TEKA</label>
                 </div>
 
-                <div class="form-floating mb-3">                
+                <div class="form-floating ">                
                     <input id="smc" name="smc" formControlName="smc" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
                     <label >SMC</label>
                 </div>
 
-                <div class="form-floating mb-3">                
+                <div class="form-floating ">                
                     <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
                     <label >OTROS</label>
                 </div>
