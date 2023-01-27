@@ -24,7 +24,7 @@ def comprobar_usuario(user: str, passw: str):
 async def get_TablasDinamicas():
     #sql="SELECT * FROM "+varConsul
     #sql2=" WHERE "
-    sql ="SELECT usuario.nombre_usuario as PROMOTOR,punto_venta.nombre_cliente_hijo AS 'CLIENTE HIJO',punto_venta.nombre_pdv AS 'TIENDA HMPV', linea.nombre_linea AS LINEA, linea.cuota AS 'Cuota Q',venta.ventas_mabe AS 'VENTAS MABE', venta.ventas_indurama AS 'VENTAS INDURAMA', venta.ventas_whirlpool AS 'VENTAS WHIRLPOOL', venta.ventas_lg AS 'VENTAS LG', venta.ventas_samsung AS 'VENTAS SAMSUNG', venta.ventas_electrolux AS 'VENTAS ELECTROLUX', venta.mastertech AS MASTERTECH, venta.hove AS HOVE, venta.teka AS TEKA, venta.smc AS SMC, venta.otros AS OTROS FROM usuario, punto_venta, linea, venta WHERE usuario.codigo_pdv = punto_venta.codigo_pdv AND punto_venta.codigo_pdv = linea.codigo_pdv AND venta.id_linea = linea.id_linea AND venta.codigo_pdv = linea.codigo_pdv;"
+    sql ="SELECT CONCAT(punto_venta.nombre_pdv,linea.nombre_linea) AS CLAVE, venta.validacion as 'Source.Name' ,usuario.nombre_usuario as PROMOTOR,punto_venta.nombre_cliente_hijo AS 'CLIENTE HIJO',punto_venta.nombre_pdv AS 'TIENDA HMPV',punto_venta.cobertura as 'Cobertura Mes' ,linea.nombre_linea AS LINEA, venta.ventas_mabe AS 'VENTAS MABE', venta.ventas_indurama AS 'VENTAS INDURAMA', venta.ventas_whirlpool AS 'VENTAS WHIRLPOOL', venta.ventas_lg AS 'VENTAS LG', venta.ventas_samsung AS 'VENTAS SAMSUNG', venta.ventas_electrolux AS 'VENTAS ELECTROLUX', venta.mastertech AS MASTERTECH, venta.hove AS HOVE, venta.teka AS TEKA, venta.smc AS SMC, venta.otros AS OTROS FROM usuario, punto_venta, linea, venta WHERE usuario.codigo_pdv = punto_venta.codigo_pdv AND punto_venta.codigo_pdv = linea.codigo_pdv AND venta.id_linea = linea.id_linea AND venta.codigo_pdv = linea.codigo_pdv;"
     print(sql)    
     return conn.execute(sql+";").fetchall()  
     #return None 
@@ -39,7 +39,7 @@ async def get_NombresPuntosVentas(user: str, passw: str):
 
 @user.get("/codigoPuntoVentaByName/{name}", tags=["puntosVentas"])
 async def get_CodigoPuntoVentaByName(name: str):
-    return conn.execute("SELECT codigo_pdv FROM punto_venta WHERE nombre_pdv = '"+str(name)+"';").fetchall()
+    return conn.execute("SELECT codigo_pdv FROM punto_venta WHERE nombre_pdv = '"+str(name)+"' LIMIT 1;").first()
 
 @user.post("/ventas/",response_model=Venta, tags=["ventas"])#EJEMPLO
 async def create_venta(venta: Venta):
@@ -52,4 +52,10 @@ async def create_venta(venta: Venta):
     result = conn.execute(ventas.insert().values(nueva_venta))    
     return conn.execute( ventas.select().where(ventas.c.id_venta == result.lastrowid)).first()
     
+@user.get("/idLineaByNames/{nombreLinea}_{nombrePDV}", tags=["lineas"])
+async def get_idLineaByName(nombreLinea: str,nombrePDV: str ):
+    print(nombreLinea,"->",nombrePDV)    
+    sql2 = "SELECT id_linea FROM linea where nombre_linea = '"+str(nombreLinea)+"' AND codigo_pdv = (SELECT codigo_pdv FROM punto_venta where nombre_pdv = '"+str(nombrePDV)+"');"
+    print(sql2)
+    return conn.execute(sql2).first()
     

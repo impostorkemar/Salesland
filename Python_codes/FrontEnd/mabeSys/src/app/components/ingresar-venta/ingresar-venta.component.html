@@ -10,18 +10,20 @@
                            
                 <div *ngIf="false" class="form-floating mb-3">                
                     <input type="text" class="form-control" name="id_venta" formControlName="id_venta" id="" aria-describedby="helpId" placeholder="Escribe tu id_venta">
-                    <label>ID VENTA</label>
+                    <label>VENTA</label>
                 </div>
-                
-                <div *ngIf="false" class="form-floating mb-3">                
-                    <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
-                    <label >ID LINEA</label>
-                </div>
-    
-                <div *ngIf="false" class="form-floating mb-3">                
+
+                <div *ngIf="true" class="form-floating mb-3">                
                     <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
                     <label>PUNTO DE VENTA </label>
-                </div>    
+                </div>
+                
+                <div *ngIf="true" class="form-floating mb-3">                
+                    <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
+                    <label >LINEA</label>
+                </div>
+    
+                    
                 
             </form>            
         </div>
@@ -30,14 +32,14 @@
         <form [formGroup]="registrationForm">
             <div class="d-grid"  aria-labelledby="triggerId">
                 <p>ESCOGE LA TIENDA {{ selectedTeam }}</p>
-                <select [(ngModel)]="selectedTeam"
+                <select 
                   class="custom-select mb-3" 
                   (change)="changeTienda($event)"
                   formControlName="nombreTienda"
                   (ngModelOptions)="{standalone: true}" 
                 >
                 <option value="">ESCOGE LA TIENDA</option>
-                <option *ngFor="let dato of datos" [ngValue]="nombreTienda">
+                <option *ngFor="let dato of datos" [ngValue]="nombreTienda" >
                   {{ dato }}
                 </option>
               </select>
@@ -55,7 +57,7 @@
               </div>                
               </div>            
             
-            <div  class="d-grid gap-2 mb-3" >
+            <div *ngIf="false"  class="d-grid gap-2 mb-3" >
                 <button class="btn btn-primary btn-lg" type="submit" >INGRESAR</button>                                
             </div>
 
@@ -70,15 +72,17 @@
                     <label>ID VENTA</label>
                 </div>
                 
-                <div *ngIf="true" class="form-floating mb-2">                
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
+                    <label>PUNTO DE VENTA </label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-2">                
                     <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
                     <label >ID LINEA</label>
                 </div>
     
-                <div *ngIf="true" class="form-floating mb-2">                
-                    <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
-                    <label>PUNTO DE VENTA </label>
-                </div>
+                
                 <div class="form-floating mb-3">                
                     <input id="ventas_mabe" name="ventas_mabe" formControlName="ventas_mabe" type="number" class="form-control" placeholder="Escribe tu aires"/>
                     <label >MABE</label>
@@ -128,7 +132,7 @@
                     <label >OTROS</label>
                 </div>
 
-                <div class="form-floating mb-3">                
+                <div *ngIf="false" class="form-floating mb-3">                
                     <input id="validacion" name="validacion" formControlName="validacion" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
                     <label >VALIDACION</label>
                 </div>

@@ -27,6 +27,10 @@ export class IngresarVentaComponent implements OnInit {
   codigoPdv: any;
   isSubmitted: boolean;
   selectedTeam: string;
+  NameTienda: String;
+  id_lineaConsult: number;
+  cod_pdv: number;
+  thenum: any;
 
   constructor(
     private fb: FormBuilder,
@@ -38,7 +42,9 @@ export class IngresarVentaComponent implements OnInit {
     private authService: AuthService,    
   ) {    
     this.MenuIngresar = this.fb.group({
-      id_venta: ['',Validators.required],      
+      id_venta: ['',Validators.required],   
+      id_linea: ['',Validators.required],  
+      codigo_pdv: ['',Validators.required],     
     });
     this.ventasUsuario = this.fb2.group({     
       id_linea: ['',Validators.required],  
@@ -60,19 +66,26 @@ export class IngresarVentaComponent implements OnInit {
         firstName: new FormControl()
     });
     this.registrationForm = this.fb4.group({
-      nombreTienda: ['', [Validators.required]],
+      nombreTienda: ['', [Validators.required]],     
     });
     this.isSubmitted = false;
-    this.selectedTeam = "";
+    this.selectedTeam = "";   
+    this.NameTienda = "";
+    this.id_lineaConsult = 0;
+    this.cod_pdv = 0;    
   }
  
   ngOnInit(): void {    
     
     this.MenuIngresar.setValue({
-      id_venta: [1],            
+      id_venta: 'ESCOGE TIENDA',   
+      id_linea: 'ESCOGE TIENDA',  
+      codigo_pdv: 'ESCOGE TIENDA',     
     });
     
     this.MenuIngresar.controls['id_venta'].disable();
+    this.MenuIngresar.controls['id_linea'].disable();
+    this.MenuIngresar.controls['codigo_pdv'].disable();
     
     this.ventasUsuario.setValue({     
       id_linea: 1,  
@@ -89,15 +102,9 @@ export class IngresarVentaComponent implements OnInit {
       smc: 0,
       otros: 0,
       validacion: 1,
-    })
-
-    ;
-  
+    });
     
-
-    
-    this.cargarPuntosVenta()
-    
+    this.cargarPuntosVenta() 
   }
 
   registrarVenta(): void {
@@ -117,8 +124,8 @@ export class IngresarVentaComponent implements OnInit {
     const smc = this.ventasUsuario.value.password;
     const otros = this.ventasUsuario.value.password;    
    
-    console.log(id_venta,id_linea,codigo_pdv,ventas_mabe,ventas_indurama,ventas_whirlpool,ventas_lg,ventas_samsung,
-      ventas_electrolux,mastertech,hove,teka,smc,otros);
+    //console.log(id_venta,id_linea,codigo_pdv,ventas_mabe,ventas_indurama,ventas_whirlpool,ventas_lg,ventas_samsung,
+    //  ventas_electrolux,mastertech,hove,teka,smc,otros);
     
   }
 
@@ -170,10 +177,45 @@ export class IngresarVentaComponent implements OnInit {
   }
 
   changeTienda(e: any) {
+    if (this.nombreTienda?.invalid){
+      this.MenuIngresar.setValue({
+        id_venta: 'ESCOGE TIENDA',   
+        id_linea: 'ESCOGE TIENDA',  
+        codigo_pdv: 'ESCOGE TIENDA',     
+      });
+      this.ventasUsuario.setValue({     
+        id_linea: 0,  
+        codigo_pdv: 0,
+        ventas_mabe: 0,
+        ventas_indurama: 0,
+        ventas_whirlpool: 0,
+        ventas_lg: 0,
+        ventas_samsung: 0,
+        ventas_electrolux: 0,
+        mastertech: 0,
+        hove: 0,
+        teka: 0,
+        smc: 0,
+        otros: 0,
+        validacion: 1,
+      });
+    }
     this.nombreTienda?.setValue(e.target.value, {
-      onlySelf: true,
-    });
-    console.log("VALUE:",this.selectedTeam);
+      onlySelf: true,      
+    }); 
+    this.thenum= (this.nombreTienda?.value as string).match(/\d/g);
+    if (this.thenum != null){
+      this.thenum = this.thenum.join("");
+      this.thenum = (this.thenum as number)-1;
+      console.log("DATO->",this.nombreTienda?.value,"DATO[",this.thenum,"]:", this.datos[this.thenum] );
+      this.NameTienda = this.datos[this.thenum];
+      this.MenuIngresar.setValue({
+        id_venta: '',   
+        id_linea: '',  
+        codigo_pdv: this.datos[this.thenum],     
+      });
+    }
+    
   }
 
   async onSubmit(buttonType: any): Promise<void> {
@@ -181,9 +223,8 @@ export class IngresarVentaComponent implements OnInit {
     //console.log(this.registrationForm);
     this.isSubmitted = true;
     if (!this.registrationForm.valid) {
-      false;
-    } else {
-      const nombreTienda = this.registrationForm.value.nombreTienda;
+      false;      
+    } else {      
       const ventas_mabe = this.ventasUsuario.value.mabe;
       const ventas_indurama = this.ventasUsuario.value.indurama;
       const ventas_whirlpool = this.ventasUsuario.value.whirlpool;
@@ -195,15 +236,51 @@ export class IngresarVentaComponent implements OnInit {
       const teka = this.ventasUsuario.value.teka;
       const smc = this.ventasUsuario.value.smc;
       const otros = this.ventasUsuario.value.otros;
-      console.log(buttonType,ventas_mabe,ventas_indurama,ventas_whirlpool,ventas_lg,ventas_samsung,ventas_electrolux,
-        mastertech,hove,teka,smc,otros);
+      //console.log(buttonType,ventas_mabe,ventas_indurama,ventas_whirlpool,ventas_lg,ventas_samsung,ventas_electrolux,
+      //  mastertech,hove,teka,smc,otros);
     }    
-    //this.testuserService.insertarVenta()
+    
     if (this.ventasUsuario){
       console.log(this.ventasUsuario.value)
-      this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
-        console.log(respuesta);
+      if (this.NameTienda != ""){
+        this.testuserService.ObtenerIdLineaByCodigoPdv_nombreLinea(buttonType,this.NameTienda).subscribe(data=>{
+          this.id_lineaConsult = data['id_linea'];   
+          //console.log(data);   
+          this.testuserService.ObtenerCodigoPuntoVenta(this.NameTienda).subscribe(data2=>{
+            this.cod_pdv = data2['codigo_pdv'];
+            //console.log(data2);
+            console.log("IDS:",this.id_lineaConsult,this.cod_pdv)
+            this.ventasUsuario.setValue({     
+              id_linea: this.id_lineaConsult,  
+              codigo_pdv: this.cod_pdv,
+              ventas_mabe: 0,
+              ventas_indurama: 0,
+              ventas_whirlpool: 0,
+              ventas_lg: 0,
+              ventas_samsung: 0,
+              ventas_electrolux: 0,
+              mastertech: 0,
+              hove: 0,
+              teka: 0,
+              smc: 0,
+              otros: 0,
+              validacion: 1,
+            });
+            this.MenuIngresar.setValue({
+              id_venta: '',   
+              codigo_pdv: this.datos[this.thenum],
+              id_linea: [buttonType],
+            });
+            console.log(this.ventasUsuario.value)
+            this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
+              console.log(respuesta);
+            });
+          });               
         });
+                
+        
+      }      
+      
     }       
     
   }

@@ -9,7 +9,7 @@ import { Venta } from './Venta';
   providedIn: 'root'
 })
 export class TestuserService {
-  API:string = 'http://192.168.1.37:8000/';
+  API:string = 'http://192.168.0.105:8000/';
 
   constructor(private clienteHttp:HttpClient) { }
 
@@ -61,10 +61,6 @@ export class TestuserService {
     return this.clienteHttp.get(this.API+urlAPI);
   }
 
-  ObtenerNombresPuntosVenta(user:any,pass:any):Observable<any>{
-    var urlAPI="nombresPuntosVentas/"+user+"-{pass}?passw="+pass;      
-    return this.clienteHttp.get(this.API+urlAPI);                
-  } 
 
   ObtenerCodigoPuntoVenta(name:any):Observable<any>{
     var urlAPI="codigoPuntoVentaByName/"+name;      
@@ -76,6 +72,17 @@ export class TestuserService {
     var urlAPI="ventas/";
     console.log("URL=",this.API +urlAPI);
     return this.postData(datosVenta,urlAPI)
+  }
+
+  ObtenerNombresPuntosVenta(user:any,pass:any):Observable<any>{
+    var urlAPI="nombresPuntosVentas/"+user+"-{pass}?passw="+pass;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerIdLineaByCodigoPdv_nombreLinea(nombreLinea: any,nombrePdv: any):Observable<any>{
+    console.log("nombreLinea:",nombreLinea,"nombrePdv:", nombrePdv)
+    var urlAPI="idLineaByNames/"+nombreLinea+"_"+nombrePdv;      
+    return this.clienteHttp.get(this.API+urlAPI);                
   }
 
 
