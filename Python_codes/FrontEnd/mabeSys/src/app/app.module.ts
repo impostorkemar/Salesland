@@ -21,8 +21,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PopupComponent } from './popup/popup.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,4 +47,6 @@ import { MatDialogModule } from '@angular/material/dialog';
   providers: [],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

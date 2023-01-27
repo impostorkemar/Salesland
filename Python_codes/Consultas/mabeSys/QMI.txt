@@ -1,0 +1,10 @@
+SELECT CONCAT(punto_venta.nombre_pdv,linea.nombre_linea) AS CLAVE, venta.validacion as 'Source.Name' ,usuario.nombre_usuario as PROMOTOR,punto_venta.nombre_cliente_hijo AS 'CLIENTE HIJO',punto_venta.nombre_pdv AS 'TIENDA HMPV',punto_venta.cobertura as 'Cobertura Mes' ,linea.nombre_linea AS LINEA, venta.ventas_mabe AS 'VENTAS MABE', venta.ventas_indurama AS 'VENTAS INDURAMA', venta.ventas_whirlpool AS 'VENTAS WHIRLPOOL', venta.ventas_lg AS 'VENTAS LG', venta.ventas_samsung AS 'VENTAS SAMSUNG', venta.ventas_electrolux AS 'VENTAS ELECTROLUX', venta.mastertech AS MASTERTECH, venta.hove AS HOVE, venta.teka AS TEKA, venta.smc AS SMC, venta.otros AS OTROS 
+FROM usuario, punto_venta, linea, venta WHERE usuario.codigo_pdv = punto_venta.codigo_pdv AND punto_venta.codigo_pdv = linea.codigo_pdv AND venta.id_linea = linea.id_linea AND venta.codigo_pdv = linea.codigo_pdv ;
+
+
+SELECT usuario.nombre_usuario,linea.nombre_linea,venta.*
+FROM usuario
+LEFT JOIN venta ON venta.codigo_pdv = usuario.codigo_pdv
+LEFT JOIN linea ON linea.codigo_pdv = usuario.codigo_pdv
+LEFT JOIN punto_venta ON punto_venta.codigo_pdv = usuario.codigo_pdv
+

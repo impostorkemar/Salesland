@@ -149,7 +149,7 @@ def obtainColumnDf3(df3,consult,consult2,list3):
     return resultCol,resultSheet
 
     #READING 10. Cuota SO Noviembre 2022 (final).xlsx
-df3 = pd.read_excel("C:/Users/WORK/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
+df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
 #print(df3)
 
 list2 = []; keysA=[];
@@ -225,7 +225,7 @@ for item in list2:
 
 
     #READING Rutero.CSV
-df4 = pd.read_excel("C:/Users/WORK/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/Rutero Ene-23.xlsx", sheet_name=None)
+df4 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/Rutero Ene-23.xlsx", sheet_name=None)
 #print(df4)
 
 list2 = []; keysA=[];
@@ -248,6 +248,27 @@ print("KEYS:",list3)
 #print("VALORES:",valores)
 #print("VALORES:",valores[4].iloc[0,0])
 
+#INSERT LINEA
+ejecutarSQL("ALTER TABLE linea AUTO_INCREMENT=1")
+ref = consultarSQL_Lista("SELECT codigo_pdv FROM punto_venta;")
+for item in range(len(ref)):
+    #print("Item:",ref[item],"-->")
+    x = re.search('\d+', str(ref[item]))    
+    insert1 = "'"+str(x.group())+"','0','AIRES'"
+    insert2 = "'"+str(x.group())+"','0','COCINAS'"
+    insert3 = "'"+str(x.group())+"','0','EMPOTRE'"
+    insert4 = "'"+str(x.group())+"','0','GLOBALES'"
+    insert5 = "'"+str(x.group())+"','0','LAVADO'"
+    insert6 = "'"+str(x.group())+"','0','REFRIGERACIÓN'"
+
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert1)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert2)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert3)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert4)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert5)+");")
+    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert6)+");")
+
+    print("INSERT: "+str(x.group()))
 
 #INSERCION USUARIOS
 ejecutarSQL("DELETE FROM usuario;")
@@ -283,9 +304,9 @@ for item in list2:
                         print("CLave4:",clave4, "x:",x)                        
                         if (not(clave4 == "")):
                             insertA += ("'"+str(x.group())+"','"+(str(valores[i].iloc[k,13])+"','promotor','"+str(valores[i].iloc[k,14])+"','"
-                            +str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])).replace("\n","")+"'")
+                            +str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])).replace("\n","")+"','promotor_base'")
                             print("INSERT:",insertA)
-                            sql = "INSERT INTO usuario (codigo_pdv,cedula,tipo,nombre_usuario,usuario,password) VALUES (" +str(insertA) +")"
+                            sql = "INSERT INTO usuario (codigo_pdv,cedula,tipo,nombre_usuario,usuario,password,cargo) VALUES (" +str(insertA) +")"
                             print("SQL:",k,"\t --->",sql) 
                             ejecutarSQL(sql)
                     else:
@@ -294,25 +315,6 @@ for item in list2:
                     print("Entre is not number")
     i+=1
 
-ejecutarSQL("ALTER TABLE linea AUTO_INCREMENT=1")
-ref = consultarSQL_Lista("SELECT codigo_pdv FROM punto_venta;")
-for item in range(len(ref)):
-    #print("Item:",ref[item],"-->")
-    x = re.search('\d+', str(ref[item]))    
-    insert1 = "'"+str(x.group())+"','0','AIRES'"
-    insert2 = "'"+str(x.group())+"','0','COCINAS'"
-    insert3 = "'"+str(x.group())+"','0','EMPOTRE'"
-    insert4 = "'"+str(x.group())+"','0','GLOBALES'"
-    insert5 = "'"+str(x.group())+"','0','LAVADO'"
-    insert6 = "'"+str(x.group())+"','0','REFRIGERACIÓN'"
 
-    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert1)+");")
-    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert2)+");")
-    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert3)+");")
-    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert4)+");")
-    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert5)+");")
-    ejecutarSQL("INSERT INTO linea(codigo_pdv,cuota,nombre_linea) values("+str(insert6)+");")
-
-    print("INSERT: "+str(x.group()))
 
 
