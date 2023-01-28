@@ -4,8 +4,8 @@
  <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="(Target Database)" />
    <property key="Connection Type" value="MySQL" />
+   <property key="Logical" value="PlayPen Database" />
    <property key="JDBC URL" value="jdbc:mysql://localhost:3306/mabesys" />
    <property key="UID" value="mabeSys" />
    <property key="PWD" value="rootmabe" />
@@ -15,7 +15,7 @@
    <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
    <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
   </data-source>
-  <data-source id="DS2">
+  <data-source id="DS0">
    <property key="Connection Type" value="MySQL" />
    <property key="Logical" value="PlayPen Database" />
    <property key="JDBC URL" value="jdbc:mysql://localhost:3306/mabesys" />
@@ -29,7 +29,7 @@
   </data-source>
  </project-data-sources>
  <source-databases>
-  <database id="DB0" populated="true" UUID="2492ee6c-a7c1-4755-b407-7bebd8b022a0" dbcs-ref="DS2" name="PlayPen Database" physicalName="mabeSys" >
+  <database id="DB0" populated="true" UUID="2492ee6c-a7c1-4755-b407-7bebd8b022a0" dbcs-ref="DS0" name="PlayPen Database" physicalName="mabeSys" >
    <catalog id="CAT1" populated="false" UUID="d7e575c3-4858-4642-be73-d989dea86217" name="information_schema" nativeTerm="database" physicalName="information_schema" >
    </catalog>
    <catalog id="CAT2" populated="false" UUID="84a8049b-aa52-417d-9515-7d9d23334d41" name="mabesys" nativeTerm="database" physicalName="mabesys" >
@@ -156,40 +156,40 @@
     <column id="COL41" populated="true" UUID="95ddaa38-849f-4bf4-91f7-0a28327490cc" autoIncrement="false" autoIncrementSequenceName="PUNTO_VENTA_codigo_pdv_seq_2" defaultValue="" name="codigo_pdv" nullable="0" physicalName="codigo_pdv" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL42" populated="true" UUID="fcb42125-fcb4-445c-83d4-63fb91051911" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_mabe_seq" defaultValue="" name="ventas_mabe" nullable="0" physicalName="ventas_mabe" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL42" populated="true" UUID="fcb42125-fcb4-445c-83d4-63fb91051911" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_mabe_seq" defaultValue="" name="ventas_mabe" nullable="0" physicalName="ventas_mabe" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL43" populated="true" UUID="148b3698-e19e-46f6-855f-fe72caae7912" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_indurama_seq" defaultValue="" name="ventas_indurama" nullable="0" physicalName="ventas_indurama" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL43" populated="true" UUID="148b3698-e19e-46f6-855f-fe72caae7912" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_indurama_seq" defaultValue="" name="ventas_indurama" nullable="0" physicalName="ventas_indurama" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL44" populated="true" UUID="2b92717d-8902-47a4-8d75-51c098050e53" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_whirlpool_seq" defaultValue="" name="ventas_whirlpool" nullable="0" physicalName="ventas_whirlpool" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL44" populated="true" UUID="2b92717d-8902-47a4-8d75-51c098050e53" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_whirlpool_seq" defaultValue="" name="ventas_whirlpool" nullable="0" physicalName="ventas_whirlpool" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL45" populated="true" UUID="df91be47-6b1f-4a40-89ab-06a0f7d8cca2" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_lg_seq" defaultValue="" name="ventas_lg" nullable="0" physicalName="ventas_lg" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL45" populated="true" UUID="df91be47-6b1f-4a40-89ab-06a0f7d8cca2" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_lg_seq" defaultValue="" name="ventas_lg" nullable="0" physicalName="ventas_lg" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL46" populated="true" UUID="16fa5194-201e-4ae0-aea8-8cf5ae6955b1" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_samsung_seq" defaultValue="" name="ventas_samsung" nullable="0" physicalName="ventas_samsung" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL46" populated="true" UUID="16fa5194-201e-4ae0-aea8-8cf5ae6955b1" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_samsung_seq" defaultValue="" name="ventas_samsung" nullable="0" physicalName="ventas_samsung" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL47" populated="true" UUID="26adc30e-8d89-414d-a574-f0cf9f1140a9" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_electrolux_seq" defaultValue="" name="ventas_electrolux" nullable="0" physicalName="ventas_electrolux" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL47" populated="true" UUID="26adc30e-8d89-414d-a574-f0cf9f1140a9" autoIncrement="false" autoIncrementSequenceName="VENTA_ventas_electrolux_seq" defaultValue="" name="ventas_electrolux" nullable="0" physicalName="ventas_electrolux" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL48" populated="true" UUID="324fa97c-5314-4f2a-bbf1-a9f7495ad827" autoIncrement="false" autoIncrementSequenceName="VENTA_mastertech_seq" defaultValue="" name="mastertech" nullable="0" physicalName="mastertech" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL48" populated="true" UUID="324fa97c-5314-4f2a-bbf1-a9f7495ad827" autoIncrement="false" autoIncrementSequenceName="VENTA_mastertech_seq" defaultValue="" name="mastertech" nullable="0" physicalName="mastertech" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL49" populated="true" UUID="d98ec7cb-8104-49a2-9b72-e18b482c26d4" autoIncrement="false" autoIncrementSequenceName="VENTA_hove_seq" defaultValue="" name="hove" nullable="0" physicalName="hove" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL49" populated="true" UUID="d98ec7cb-8104-49a2-9b72-e18b482c26d4" autoIncrement="false" autoIncrementSequenceName="VENTA_hove_seq" defaultValue="" name="hove" nullable="0" physicalName="hove" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL50" populated="true" UUID="d367b76c-2749-4cd4-81c3-a5a319d00a94" autoIncrement="false" autoIncrementSequenceName="VENTA_teka_seq" defaultValue="" name="teka" nullable="0" physicalName="teka" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL50" populated="true" UUID="d367b76c-2749-4cd4-81c3-a5a319d00a94" autoIncrement="false" autoIncrementSequenceName="VENTA_teka_seq" defaultValue="" name="teka" nullable="0" physicalName="teka" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL51" populated="true" UUID="97480511-0ea0-4dbe-9afa-3f84cafa157a" autoIncrement="false" autoIncrementSequenceName="VENTA_smc_seq" defaultValue="" name="smc" nullable="0" physicalName="smc" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL51" populated="true" UUID="97480511-0ea0-4dbe-9afa-3f84cafa157a" autoIncrement="false" autoIncrementSequenceName="VENTA_smc_seq" defaultValue="" name="smc" nullable="0" physicalName="smc" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL52" populated="true" UUID="bb375872-284a-4953-b1e8-dff378cf709d" autoIncrement="false" autoIncrementSequenceName="VENTA_otros_seq" defaultValue="" name="otros" nullable="0" physicalName="otros" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL52" populated="true" UUID="bb375872-284a-4953-b1e8-dff378cf709d" autoIncrement="false" autoIncrementSequenceName="VENTA_otros_seq" defaultValue="" name="otros" nullable="0" physicalName="otros" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL53" populated="true" UUID="97664b02-6cea-4de7-97da-3c5a4462c22d" autoIncrement="false" autoIncrementSequenceName="VENTA_validacion_seq" defaultValue="" name="validacion" nullable="0" physicalName="validacion" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL53" populated="true" UUID="97664b02-6cea-4de7-97da-3c5a4462c22d" autoIncrement="false" autoIncrementSequenceName="VENTA_validacion_seq" defaultValue="" name="validacion" nullable="0" physicalName="validacion" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
     </folder>
