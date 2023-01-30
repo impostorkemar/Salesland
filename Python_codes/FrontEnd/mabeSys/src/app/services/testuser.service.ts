@@ -85,6 +85,18 @@ export class TestuserService {
     return this.clienteHttp.get(this.API+urlAPI);                
   }
 
+  ConsultarNombrePromotor(user:any,pass:any):Observable<any>{
+    console.log("usuario:",user,"pass:", pass)
+    var urlAPI="nombrePromotorByUser_Pass/"+user+"-{pass}?passw="+pass;    
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  ComprobarVentaSemanalByPromotor_Linea_Semana(promotor: any, linea:any, semana:any):Observable<any>{
+    console.log("promotor:",promotor,"linea:", linea,"semana:",semana)
+    var urlAPI="ventaSemanalByPromotor_Linea_Semana/"+promotor+"_"+linea+"_"+semana;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }
+
 
 }
 

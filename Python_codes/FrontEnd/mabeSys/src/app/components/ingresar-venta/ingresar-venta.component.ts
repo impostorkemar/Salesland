@@ -297,16 +297,18 @@ export class IngresarVentaComponent implements OnInit {
               semana:this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
             });
             this.flagInsert=true;
-            this.MenuIngresar.setValue({
+            this.MenuIngresar.setValue({            
+              semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
               id_venta: '',   
               codigo_pdv: this.datos[this.thenum],
               id_linea: [buttonType],
-              message: 'DATO INGRESADO CON ÉXITO',
+              message: 'DATO INGRESADO CON ÉXITO',            
             });
-            console.log(this.ventasUsuario.value)
-            this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
+            console.log(this.ventasUsuario.value)           
+                       
+            /*this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
               console.log(respuesta);
-            });
+            });*/
 
             this.flagInsert = true;
           });               

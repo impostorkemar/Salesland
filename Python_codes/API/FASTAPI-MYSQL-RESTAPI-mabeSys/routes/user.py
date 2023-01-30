@@ -60,3 +60,13 @@ async def get_idLineaByName(nombreLinea: str,nombrePDV: str ):
     print(sql2)
     return conn.execute(sql2).first()
     
+@user.get("/ventaSemanalByPromotor_Linea_Semana/{promotor}_{linea}_{semana}", tags=["ventas"])
+async def get_VentaSemanalByPromotor_Linea_Semana(promotor: str,linea: str, semana: str ):
+    print(promotor,"->",linea,"->",semana)     
+    sql2 = "SELECT id_venta FROM venta WHERE semana = '"+str(semana)+"' AND codigo_pdv IN (SELECT codigo_pdv FROM usuario WHERE nombre_usuario = '"+str(promotor)+"') AND id_linea IN (SELECT id_linea FROM linea WHERE codigo_pdv = (SELECT codigo_pdv FROM usuario WHERE nombre_usuario = '"+str(promotor)+"') AND nombre_linea = '"+str(linea)+"');"
+    print(sql2)
+    return conn.execute(sql2).first()
+
+@user.get("/nombrePromotorByUser_Pass/{user}-{pass}", tags=["promotor"])
+async def get_NombresPuntosVentas(user: str, passw: str):
+    return conn.execute("SELECT nombre_usuario FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';").first()
