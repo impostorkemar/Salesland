@@ -64,6 +64,7 @@ export class IngresarVentaComponent implements OnInit {
       smc: ['',Validators.required],
       otros: ['',Validators.required],
       validacion: ['',Validators.required],
+      semana: ['',Validators.required],
     }) 
     this.myGroup = new FormGroup({
         firstName: new FormControl()
@@ -108,6 +109,7 @@ export class IngresarVentaComponent implements OnInit {
       smc: 0,
       otros: 0,
       validacion: 1,
+      semana: "",
     });
     
     this.cargarPuntosVenta() 
@@ -206,6 +208,7 @@ export class IngresarVentaComponent implements OnInit {
         smc: 0,
         otros: 0,
         validacion: 1,
+        semana: "",
       });
     }
     this.nombreTienda?.setValue(e.target.value, {
@@ -245,6 +248,7 @@ export class IngresarVentaComponent implements OnInit {
       const teka = this.ventasUsuario.value.teka;
       const smc = this.ventasUsuario.value.smc;
       const otros = this.ventasUsuario.value.otros;
+      const semana  = this.ventasUsuario.value.semana;
       //console.log(buttonType,ventas_mabe,ventas_indurama,ventas_whirlpool,ventas_lg,ventas_samsung,ventas_electrolux,
       //  mastertech,hove,teka,smc,otros);
     }    
@@ -274,6 +278,7 @@ export class IngresarVentaComponent implements OnInit {
               smc: this.ventasUsuario.value.smc,
               otros: this.ventasUsuario.value.otros,
               validacion: 1,
+              semana:this.ventasUsuario.value.semana,
             });
             this.flagInsert=true;
             this.MenuIngresar.setValue({

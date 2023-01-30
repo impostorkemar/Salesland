@@ -13,5 +13,6 @@ export class Venta{
     teka!: Number;
     smc!: Number;
     otros!: Number;
-    validacion!: Number;    
+    validacion!: Number; 
+    semana!: String;   
 }

@@ -248,8 +248,6 @@ print("KEYS:",list3)
 #print("VALORES:",valores)
 #print("VALORES:",valores[4].iloc[0,0])
 
-
-
 #INSERCION USUARIOS
 ejecutarSQL("DELETE FROM usuario;")
 ejecutarSQL("ALTER TABLE usuario AUTO_INCREMENT=1")
@@ -283,10 +281,10 @@ for item in list2:
                         x = re.search('\d+', clave4)
                         print("CLave4:",clave4, "x:",x)                        
                         if (not(clave4 == "")):
-                            insertA += ("'"+(str(valores[i].iloc[k,13])+"','promotor','"+str(valores[i].iloc[k,14])+"','"
+                            insertA += ("'"+(str(valores[i].iloc[k,13])+"','"+str(x.group())+"','promotor','"+str(valores[i].iloc[k,14])+"','"
                             +str(valores[i].iloc[k,13])+"','"+str(valores[i].iloc[k,13])).replace("\n","")+"','promotor_base'")
                             print("INSERT:",insertA)
-                            sql = "INSERT INTO usuario (cedula,tipo,nombre_usuario,usuario,password,cargo) VALUES (" +str(insertA) +")"
+                            sql = "INSERT INTO usuario (cedula,codigo_pdv,tipo,nombre_usuario,usuario,password,cargo) VALUES (" +str(insertA) +")"
                             print("SQL:",k,"\t --->",sql) 
                             ejecutarSQL(sql)
                     else:

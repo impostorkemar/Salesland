@@ -26,6 +26,7 @@ class Venta(BaseModel):
     smc: float
     otros: float
     validacion: int
+    semana: str
 
 class Linea(BaseModel):
     id_linea: Optional[int]

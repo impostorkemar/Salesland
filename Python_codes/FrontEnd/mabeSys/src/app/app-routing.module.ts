@@ -17,13 +17,13 @@ const routes: Routes = [
   {path: 'menu', component: MenuComponent,
     canActivate: [AuthGuard],
     data: {
-      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR' ]
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
     }
   },
   {path: 'ingresar-venta', component: IngresarVentaComponent,
     canActivate: [AuthGuard],
     data: {
-      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR' ]
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
     }
   },
   {path: 'registrar-usuario', component: RegistrarUsuarioComponent,
@@ -41,19 +41,19 @@ const routes: Routes = [
   {path: 'recuperar-password', component: RecuperarPasswordComponent,
   canActivate: [AuthGuard],
   data: {
-    role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_SUPERVISOR' ]
+    role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
   }
   },
   {path: 'verificar-correo', component: VerificarCorreoComponent,
     canActivate: [AuthGuard],
     data: {
-      role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_SUPERVISOR' ]
+      role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
     }
   },
   {path: 'dashboard', component: DashboardComponent,
     canActivate: [AuthGuard],
     data: {
-      role: ['ROLE_ADMIN', 'ROLE_SUPERVISOR' ]
+      role: ['ROLE_ADMIN', 'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
     }
   },
   {path: '**', redirectTo: 'login', pathMatch: 'full'}

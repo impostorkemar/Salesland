@@ -48,7 +48,7 @@ async def create_venta(venta: Venta):
     "ventas_lg":venta.ventas_lg, "ventas_samsung":venta.ventas_samsung, 
     "ventas_electrolux":venta.ventas_electrolux, "mastertech": venta.mastertech
     ,"hove":venta.hove, "teka":venta.teka, "smc":venta.smc, "otros":venta.otros
-    , "validacion":venta.validacion}
+    , "validacion":venta.validacion, "semana":venta.semana}
     print(ventas.insert().values(nueva_venta))
     result = conn.execute(ventas.insert().values(nueva_venta))    
     return conn.execute( ventas.select().where(ventas.c.id_venta == result.lastrowid)).first()
