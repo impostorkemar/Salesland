@@ -7,7 +7,12 @@
     <div class="wrapper1">    
         <div  class="body1">            
             <form (ngSubmit)="registrarVenta()" [formGroup]="MenuIngresar">
-                           
+                    
+                <div *ngIf="true" class="form-floating mb-3">                
+                    <input id="semana" name="semana" formControlName="semana" type="text" class="form-control" placeholder="Escribe tu semana"/>
+                    <label >SEMANA</label>
+                </div>
+
                 <div *ngIf="false" class="form-floating mb-3">                
                     <input type="text" class="form-control" name="id_venta" formControlName="id_venta" id="" aria-describedby="helpId" placeholder="Escribe tu id_venta">
                     <label>VENTA</label>
@@ -87,7 +92,7 @@
                     <label >ID LINEA</label>
                 </div>
     
-                <div class="form-floating mb-3">                
+                <div *ngIf="false" class="form-floating mb-3">                
                     <input id="semana" name="semana" formControlName="semana" type="text" class="form-control" placeholder="Escribe tu semana"/>
                     <label >SEMANA</label>
                 </div>

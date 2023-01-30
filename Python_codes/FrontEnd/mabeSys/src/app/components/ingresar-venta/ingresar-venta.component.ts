@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import {parse, stringify, toJSON, fromJSON} from 'flatted';
 import { Venta } from 'src/app/services/Venta';
+import { STRING_TYPE } from '@angular/compiler';
 
 
 @Component({
@@ -32,6 +33,11 @@ export class IngresarVentaComponent implements OnInit {
   cod_pdv: number;
   thenum: any;
   flagInsert: boolean;
+  currentDate!: any;
+  startDate!: any;
+  weekNumber!: any;
+  month!: any;
+  monthArray = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
 
   constructor(
     private fb: FormBuilder,
@@ -44,6 +50,7 @@ export class IngresarVentaComponent implements OnInit {
   ) {    
     this.flagInsert = false;
     this.MenuIngresar = this.fb.group({
+      semana: ['',Validators.required],
       id_venta: ['',Validators.required],   
       id_linea: ['',Validators.required],  
       codigo_pdv: ['',Validators.required], 
@@ -80,15 +87,22 @@ export class IngresarVentaComponent implements OnInit {
       
   }
  
-  ngOnInit(): void {    
+  ngOnInit(): void {   
+    this.currentDate = new Date();    
+    this.startDate = new Date(this.currentDate.getFullYear(), 0, 1);
+    var days = Math.floor((this.currentDate - this.startDate)/(24 * 60 * 60 * 1000));
+    this.weekNumber = Math.ceil(days / 7);
+    console.log("Week:"+ this.weekNumber, "Month:", this.monthArray[this.currentDate.getMonth()]);
     
+
     this.MenuIngresar.setValue({
+      semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
       id_venta: 'ESCOGE TIENDA',   
       id_linea: 'ESCOGE TIENDA',  
       codigo_pdv: 'ESCOGE TIENDA',    
       message: '',
     });
-    
+    this.MenuIngresar.controls['semana'].disable();
     this.MenuIngresar.controls['id_venta'].disable();
     this.MenuIngresar.controls['id_linea'].disable();
     this.MenuIngresar.controls['codigo_pdv'].disable();
@@ -188,6 +202,7 @@ export class IngresarVentaComponent implements OnInit {
     if (this.nombreTienda?.invalid){
       this.flagInsert=false;
       this.MenuIngresar.setValue({
+        semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
         id_venta: 'ESCOGE TIENDA',   
         id_linea: 'ESCOGE TIENDA',  
         codigo_pdv: 'ESCOGE TIENDA', 
@@ -221,6 +236,7 @@ export class IngresarVentaComponent implements OnInit {
       console.log("DATO->",this.nombreTienda?.value,"DATO[",this.thenum,"]:", this.datos[this.thenum] );
       this.NameTienda = this.datos[this.thenum];
       this.MenuIngresar.setValue({
+        semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
         id_venta: '',   
         id_linea: '',  
         codigo_pdv: this.datos[this.thenum], 
@@ -278,7 +294,7 @@ export class IngresarVentaComponent implements OnInit {
               smc: this.ventasUsuario.value.smc,
               otros: this.ventasUsuario.value.otros,
               validacion: 1,
-              semana:this.ventasUsuario.value.semana,
+              semana:this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
             });
             this.flagInsert=true;
             this.MenuIngresar.setValue({
@@ -295,7 +311,7 @@ export class IngresarVentaComponent implements OnInit {
             this.flagInsert = true;
           });               
         });
-                
+          
         
       }      
       
