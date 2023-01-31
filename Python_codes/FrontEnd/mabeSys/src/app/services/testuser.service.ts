@@ -61,7 +61,6 @@ export class TestuserService {
     return this.clienteHttp.get(this.API+urlAPI);
   }
 
-
   ObtenerCodigoPuntoVenta(name:any):Observable<any>{
     var urlAPI="codigoPuntoVentaByName/"+name;      
     return this.clienteHttp.get(this.API+urlAPI);                
@@ -94,6 +93,18 @@ export class TestuserService {
   ComprobarVentaSemanalByPromotor_Linea_Semana(promotor: any, linea:any, semana:any):Observable<any>{
     console.log("promotor:",promotor,"linea:", linea,"semana:",semana)
     var urlAPI="ventaSemanalByPromotor_Linea_Semana/"+promotor+"_"+linea+"_"+semana;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }
+
+  ObtenerClaveUsuarioByUser_Pass(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="clavePromotorByUser_Pass/"+user+"-{pass}?passw="+pass;       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }
+
+  ObtenerCedulaUsuarioByClave(clave: any):Observable<any>{
+    //console.log("clave:",clave)
+    var urlAPI="cedulaPromotorByUser_Pass/"+clave;      
     return this.clienteHttp.get(this.API+urlAPI);                
   }
 

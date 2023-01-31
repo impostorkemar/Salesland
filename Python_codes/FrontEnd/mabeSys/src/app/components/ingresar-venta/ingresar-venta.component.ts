@@ -56,7 +56,10 @@ export class IngresarVentaComponent implements OnInit {
       codigo_pdv: ['',Validators.required], 
       message: ['',Validators.required],
     });
-    this.ventasUsuario = this.fb2.group({     
+    this.ventasUsuario = this.fb2.group({   
+      clave: ['',Validators.required],
+      cedula: ['',Validators.required],
+      id_supervisor: ['',Validators.required],  
       id_linea: ['',Validators.required],  
       codigo_pdv: ['',Validators.required],
       ventas_mabe: ['',Validators.required],
@@ -71,7 +74,8 @@ export class IngresarVentaComponent implements OnInit {
       smc: ['',Validators.required],
       otros: ['',Validators.required],
       validacion: ['',Validators.required],
-      semana: ['',Validators.required],
+      total_semanal: ['',Validators.required],
+      semana: ['',Validators.required],      
     }) 
     this.myGroup = new FormGroup({
         firstName: new FormControl()
@@ -108,7 +112,10 @@ export class IngresarVentaComponent implements OnInit {
     this.MenuIngresar.controls['codigo_pdv'].disable();
     this.MenuIngresar.controls['message'].disable();
     
-    this.ventasUsuario.setValue({     
+    this.ventasUsuario.setValue({  
+      clave: 1,
+      cedula: 1,
+      id_supervisor: 1,   
       id_linea: 1,  
       codigo_pdv: 1,
       ventas_mabe: 0,
@@ -123,6 +130,7 @@ export class IngresarVentaComponent implements OnInit {
       smc: 0,
       otros: 0,
       validacion: 1,
+      total_semanal: 0,
       semana: "",
     });
     
@@ -208,7 +216,10 @@ export class IngresarVentaComponent implements OnInit {
         codigo_pdv: 'ESCOGE TIENDA', 
         message: '',             
       });
-      this.ventasUsuario.setValue({     
+      this.ventasUsuario.setValue({  
+        clave: 0,
+        cedula: 0,
+        id_supervisor: 0,   
         id_linea: 0,  
         codigo_pdv: 0,
         ventas_mabe: 0,
@@ -223,6 +234,7 @@ export class IngresarVentaComponent implements OnInit {
         smc: 0,
         otros: 0,
         validacion: 1,
+        total_semanal: 0,
         semana: "",
       });
     }
@@ -247,7 +259,10 @@ export class IngresarVentaComponent implements OnInit {
   }
 
   async onSubmit(buttonType: any): Promise<void> {
-   
+    let Array: string[]=[];
+    let Array2: string[]=[];
+    let Array3: string[]=[]; 
+    let Array4: string[]=[];
     //console.log(this.registrationForm);
     this.isSubmitted = true;
     if (!this.registrationForm.valid) {
@@ -264,13 +279,13 @@ export class IngresarVentaComponent implements OnInit {
       const teka = this.ventasUsuario.value.teka;
       const smc = this.ventasUsuario.value.smc;
       const otros = this.ventasUsuario.value.otros;
+      const total_semanal = this.ventasUsuario.value.total_semanal;
       const semana  = this.ventasUsuario.value.semana;
       //console.log(buttonType,ventas_mabe,ventas_indurama,ventas_whirlpool,ventas_lg,ventas_samsung,ventas_electrolux,
       //  mastertech,hove,teka,smc,otros);
     }    
     
-    if (this.ventasUsuario){
-      console.log(this.ventasUsuario.value)
+    if (this.ventasUsuario){      
       if (this.NameTienda != ""){
         this.testuserService.ObtenerIdLineaByCodigoPdv_nombreLinea(buttonType,this.NameTienda).subscribe(data=>{
           this.id_lineaConsult = data['id_linea'];   
@@ -279,36 +294,67 @@ export class IngresarVentaComponent implements OnInit {
             this.cod_pdv = data2['codigo_pdv'];
             //console.log(data2);
             console.log("IDS:",this.id_lineaConsult,this.cod_pdv)
-            this.ventasUsuario.setValue({     
-              id_linea: this.id_lineaConsult,  
-              codigo_pdv: this.cod_pdv,
-              ventas_mabe: this.ventasUsuario.value.ventas_mabe,
-              ventas_indurama: this.ventasUsuario.value.ventas_indurama,
-              ventas_whirlpool: this.ventasUsuario.value.ventas_whirlpool,
-              ventas_lg: this.ventasUsuario.value.ventas_lg,
-              ventas_samsung: this.ventasUsuario.value.ventas_samsung,
-              ventas_electrolux: this.ventasUsuario.value.ventas_electrolux,
-              mastertech: this.ventasUsuario.value.mastertech,
-              hove: this.ventasUsuario.value.hove,
-              teka: this.ventasUsuario.value.teka,
-              smc: this.ventasUsuario.value.smc,
-              otros: this.ventasUsuario.value.otros,
-              validacion: 1,
-              semana:this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
-            });
-            this.flagInsert=true;
-            this.MenuIngresar.setValue({            
-              semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
-              id_venta: '',   
-              codigo_pdv: this.datos[this.thenum],
-              id_linea: [buttonType],
-              message: 'DATO INGRESADO CON ÉXITO',            
-            });
-            console.log(this.ventasUsuario.value)           
+            this.testuserService.ObtenerClaveUsuarioByUser_Pass(localStorage.getItem('USER') as string,localStorage.getItem('PASS') as string).subscribe(data3=>{
+              const json = JSON.stringify(data3);
+              JSON.parse(json, (key, value) => { 
+                if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+                  //console.log('key:'+key+'Array:'+Array.indexOf(key));
+                  Array2.push(value);
+                }    
+              });             
+              this.testuserService.ObtenerCedulaUsuarioByClave(Array2[0]).subscribe(data4=>{
+                const json2 = JSON.stringify(data4);
+                JSON.parse(json2, (key, value) => { 
+                  if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+                    //console.log('key:'+key+'Array:'+Array.indexOf(key));
+                    Array.push(value);
+                  }    
+                });  
+                console.log("CLAVE:",Array2[0],"CEDULA:",Array[0]);   
+                this.ventasUsuario.setValue({   
+                  clave: Array2[0],
+                  cedula: Array[0],
+                  id_supervisor: 1,  
+                  id_linea: this.id_lineaConsult,  
+                  codigo_pdv: this.cod_pdv,
+                  ventas_mabe: this.ventasUsuario.value.ventas_mabe,
+                  ventas_indurama: this.ventasUsuario.value.ventas_indurama,
+                  ventas_whirlpool: this.ventasUsuario.value.ventas_whirlpool,
+                  ventas_lg: this.ventasUsuario.value.ventas_lg,
+                  ventas_samsung: this.ventasUsuario.value.ventas_samsung,
+                  ventas_electrolux: this.ventasUsuario.value.ventas_electrolux,
+                  mastertech: this.ventasUsuario.value.mastertech,
+                  hove: this.ventasUsuario.value.hove,
+                  teka: this.ventasUsuario.value.teka,
+                  smc: this.ventasUsuario.value.smc,
+                  otros: this.ventasUsuario.value.otros,
+                  validacion: 1,
+                  total_semanal: this.ventasUsuario.value.ventas_mabe+this.ventasUsuario.value.ventas_indurama
+                  +this.ventasUsuario.value.ventas_whirlpool+this.ventasUsuario.value.ventas_lg
+                  +this.ventasUsuario.value.ventas_samsung+this.ventasUsuario.value.ventas_electrolux
+                  +this.ventasUsuario.value.mastertech+this.ventasUsuario.value.hove+this.ventasUsuario.value.teka
+                  +this.ventasUsuario.value.smc+this.ventasUsuario.value.otros,
+                  semana:this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
+                });   
+                console.log(this.ventasUsuario.value)  
+                this.flagInsert=true;
+                this.MenuIngresar.setValue({            
+                  semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
+                  id_venta: '',   
+                  codigo_pdv: this.datos[this.thenum],
+                  id_linea: [buttonType],
+                  message: 'DATO INGRESADO CON ÉXITO',            
+                }); 
+                this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
+                  console.log(respuesta);
+                });
+              });              
+            }); 
+            
+            
                        
-            /*this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
-              console.log(respuesta);
-            });*/
+                       
+                
 
             this.flagInsert = true;
           });               

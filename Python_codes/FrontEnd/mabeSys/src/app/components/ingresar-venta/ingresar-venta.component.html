@@ -81,15 +81,30 @@
                     <input type="text" class="form-control" name="id_venta" formControlName="id_venta" id="" aria-describedby="helpId" placeholder="Escribe tu id_venta">
                     <label>ID VENTA</label>
                 </div>
-                
+
                 <div *ngIf="false" class="form-floating mb-2">                
-                    <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
-                    <label>PUNTO DE VENTA </label>
+                    <input id="clave" name="clave" formControlName="clave" type="number" class="form-control" placeholder="Escribe tu clave"/>
+                    <label >CLAVE</label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input id="cedula" name="cedula" formControlName="cedula" type="number" class="form-control" placeholder="Escribe tu cedula"/>
+                    <label >CEDULA</label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input id="id_supervisor" name="id_supervisor" formControlName="id_supervisor" type="number" class="form-control" placeholder="Escribe tu id_supervisor"/>
+                    <label >ID SUPERVISOR</label>
                 </div>
 
                 <div *ngIf="false" class="form-floating mb-2">                
                     <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
                     <label >ID LINEA</label>
+                </div>
+                               
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
+                    <label>PUNTO DE VENTA </label>
                 </div>
     
                 <div *ngIf="false" class="form-floating mb-3">                
@@ -148,6 +163,11 @@
                 <div *ngIf="false" class="form-floating mb-3">                
                     <input id="validacion" name="validacion" formControlName="validacion" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
                     <label >VALIDACION</label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-3">                
+                    <input id="total_semanal" name="total_semanal" formControlName="total_semanal" type="number" class="form-control" placeholder="Escribe tu total_semanal"/>
+                    <label >total_semanal</label>
                 </div>
 
                 

@@ -24,7 +24,7 @@ def comprobar_usuario(user: str, passw: str):
 async def get_TablasDinamicas():
     #sql="SELECT * FROM "+varConsul
     #sql2=" WHERE "
-    sql ="SELECT CONCAT(punto_venta.nombre_pdv,linea.nombre_linea) AS CLAVE, venta.validacion as 'Source.Name' ,usuario.nombre_usuario as PROMOTOR,punto_venta.nombre_cliente_hijo AS 'CLIENTE HIJO',punto_venta.nombre_pdv AS 'TIENDA HMPV',punto_venta.cobertura as 'Cobertura Mes' ,linea.nombre_linea AS LINEA, venta.ventas_mabe AS 'VENTAS MABE', venta.ventas_indurama AS 'VENTAS INDURAMA', venta.ventas_whirlpool AS 'VENTAS WHIRLPOOL', venta.ventas_lg AS 'VENTAS LG', venta.ventas_samsung AS 'VENTAS SAMSUNG', venta.ventas_electrolux AS 'VENTAS ELECTROLUX', venta.mastertech AS MASTERTECH, venta.hove AS HOVE, venta.teka AS TEKA, venta.smc AS SMC, venta.otros AS OTROS, venta.semana FROM usuario, punto_venta, linea, venta WHERE usuario.codigo_pdv = punto_venta.codigo_pdv AND punto_venta.codigo_pdv = linea.codigo_pdv AND venta.id_linea = linea.id_linea AND venta.codigo_pdv = linea.codigo_pdv;"
+    sql ="SELECT CONCAT(punto_venta.nombre_pdv,linea.nombre_linea) AS CLAVE, venta.validacion as 'Source.Name' ,usuario.nombre_usuario as PROMOTOR,punto_venta.nombre_cliente_hijo AS 'CLIENTE HIJO',punto_venta.nombre_pdv AS 'TIENDA HMPV',punto_venta.cobertura as 'Cobertura Mes' ,linea.nombre_linea AS LINEA, venta.ventas_mabe AS 'VENTAS MABE', venta.ventas_indurama AS 'VENTAS INDURAMA', venta.ventas_whirlpool AS 'VENTAS WHIRLPOOL', venta.ventas_lg AS 'VENTAS LG', venta.ventas_samsung AS 'VENTAS SAMSUNG', venta.ventas_electrolux AS 'VENTAS ELECTROLUX', venta.mastertech AS MASTERTECH, venta.hove AS HOVE, venta.teka AS TEKA, venta.smc AS SMC, venta.otros AS OTROS, venta.semana FROM usuario, punto_venta, linea,supervisor,venta WHERE venta.codigo_pdv = punto_venta.codigo_pdv AND punto_venta.codigo_pdv = linea.codigo_pdv AND venta.id_linea = linea.id_linea AND venta.codigo_pdv = linea.codigo_pdv AND punto_venta.codigo_pdv = usuario.codigo_pdv AND usuario.id_supervisor = venta.id_supervisor AND supervisor.id_supervisor = usuario.id_supervisor ;"
     print(sql)    
     return conn.execute(sql+";").fetchall()  
     #return None 
@@ -43,12 +43,13 @@ async def get_CodigoPuntoVentaByName(name: str):
 
 @user.post("/ventas/",response_model=Venta, tags=["ventas"])#EJEMPLO
 async def create_venta(venta: Venta):
-    nueva_venta = {"id_linea":venta.id_linea, "codigo_pdv":venta.codigo_pdv, "ventas_mabe":venta.ventas_mabe,
+    nueva_venta = {"clave":venta.clave,"cedula":venta.cedula,"id_supervisor":venta.id_supervisor
+    ,"id_linea":venta.id_linea, "codigo_pdv":venta.codigo_pdv, "ventas_mabe":venta.ventas_mabe,
     "ventas_indurama":venta.ventas_indurama,"ventas_whirlpool":venta.ventas_whirlpool,
     "ventas_lg":venta.ventas_lg, "ventas_samsung":venta.ventas_samsung, 
     "ventas_electrolux":venta.ventas_electrolux, "mastertech": venta.mastertech
     ,"hove":venta.hove, "teka":venta.teka, "smc":venta.smc, "otros":venta.otros
-    , "validacion":venta.validacion, "semana":venta.semana}
+    , "validacion":venta.validacion,"total_semanal":venta.total_semanal, "semana":venta.semana}
     print(ventas.insert().values(nueva_venta))
     result = conn.execute(ventas.insert().values(nueva_venta))    
     return conn.execute( ventas.select().where(ventas.c.id_venta == result.lastrowid)).first()
@@ -70,3 +71,13 @@ async def get_VentaSemanalByPromotor_Linea_Semana(promotor: str,linea: str, sema
 @user.get("/nombrePromotorByUser_Pass/{user}-{pass}", tags=["promotor"])
 async def get_NombresPuntosVentas(user: str, passw: str):
     return conn.execute("SELECT nombre_usuario FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';").first()
+
+@user.get("/clavePromotorByUser_Pass/{user}-{pass}", tags=["promotor"])
+async def get_clavePromotorByUser_Pass(user: str, passw: str):
+    print("SELECT clave FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';")
+    return conn.execute("SELECT clave FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';").first()
+
+@user.get("/cedulaPromotorByUser_Pass/{clave}", tags=["promotor"])
+async def get_cedulaPromotorByUser_Pass(clave: str):
+    print("SELECT cedula FROM usuario WHERE clave = '"+str(clave)+"';")
+    return conn.execute("SELECT cedula FROM usuario WHERE clave = '"+str(clave)+"';").first()
