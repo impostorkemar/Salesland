@@ -38,6 +38,7 @@ export class IngresarVentaComponent implements OnInit {
   weekNumber!: any;
   month!: any;
   monthArray = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
+  encendi!: Boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -48,6 +49,7 @@ export class IngresarVentaComponent implements OnInit {
     private router:Router,
     private authService: AuthService,    
   ) {    
+    this.encendi = true;
     this.flagInsert = false;
     this.MenuIngresar = this.fb.group({
       semana: ['',Validators.required],
@@ -345,17 +347,55 @@ export class IngresarVentaComponent implements OnInit {
                   id_linea: [buttonType],
                   message: 'DATO INGRESADO CON ÉXITO',            
                 }); 
-                this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
-                  console.log(respuesta);
+                this.testuserService.ComprobarVentatByIdLinea_Semana_Cedula(this.id_lineaConsult,this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
+                Array[0],this.cod_pdv).subscribe(data5=>{
+                  const json2 = JSON.stringify(data5);
+                  JSON.parse(json2, (key, value) => { 
+                    if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+                      //console.log('key:'+key+'Array:'+Array.indexOf(key));
+                      Array3.push(value);
+                    }    
+                  });
+                  console.log("DATA5:",Array3[0]);
+                  if (Array3[0] == null){
+                    this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
+                      console.log(respuesta);
+                      this.ventasUsuario.setValue({  
+                        clave: 0,
+                        cedula: 0,
+                        id_supervisor: 0,   
+                        id_linea: 0,  
+                        codigo_pdv: 0,
+                        ventas_mabe: 0,
+                        ventas_indurama: 0,
+                        ventas_whirlpool: 0,
+                        ventas_lg: 0,
+                        ventas_samsung: 0,
+                        ventas_electrolux: 0,
+                        mastertech: 0,
+                        hove: 0,
+                        teka: 0,
+                        smc: 0,
+                        otros: 0,
+                        validacion: 1,
+                        total_semanal: 0,
+                        semana: "",
+                      });
+                    });
+                  }else{
+                    this.MenuIngresar.setValue({            
+                      semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
+                      id_venta: '',   
+                      codigo_pdv: this.datos[this.thenum],
+                      id_linea: [buttonType],
+                      message: 'REGISTRO REPETIDO',            
+                    });
+                  }
+                  
                 });
-              });              
-            }); 
-            
-            
-                       
-                       
                 
-
+              });              
+            });
             this.flagInsert = true;
           });               
         });

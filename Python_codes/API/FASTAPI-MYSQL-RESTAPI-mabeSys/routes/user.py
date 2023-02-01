@@ -81,3 +81,8 @@ async def get_clavePromotorByUser_Pass(user: str, passw: str):
 async def get_cedulaPromotorByUser_Pass(clave: str):
     print("SELECT cedula FROM usuario WHERE clave = '"+str(clave)+"';")
     return conn.execute("SELECT cedula FROM usuario WHERE clave = '"+str(clave)+"';").first()
+
+@user.get("/comprobarVentatByIdLinea_Semana_Cedula/{idLinea}_{semana}_{cedula}_{codigo_pdv}", tags=["ventas"])
+async def get_ComprobarVentatByIdLinea_Semana_Cedula(idLinea: str, semana: str,cedula: str,codigo_pdv: str ):
+    print("SELECT id_venta FROM venta WHERE semana = '"+str(semana)+"' AND cedula = '"+str(cedula)+"' AND id_linea='"+str(idLinea)+"' AND codigo_pdv = '"+str(codigo_pdv)+"';")
+    return conn.execute("SELECT id_venta FROM venta WHERE semana = '"+str(semana)+"' AND cedula = '"+str(cedula)+"' AND id_linea='"+str(idLinea)+"' AND codigo_pdv = '"+str(codigo_pdv)+"';").first()

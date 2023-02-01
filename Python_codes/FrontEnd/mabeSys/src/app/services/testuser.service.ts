@@ -108,6 +108,12 @@ export class TestuserService {
     return this.clienteHttp.get(this.API+urlAPI);                
   }
 
+  ComprobarVentatByIdLinea_Semana_Cedula(idLinea:any,semana:any,cedula:any, codigo_pdv:any):Observable<any>{
+    console.log("idLinea:",idLinea,"semana:",semana,"cedula:",cedula,"codigo_pdv:",codigo_pdv)
+    var urlAPI="comprobarVentatByIdLinea_Semana_Cedula/"+idLinea+"_"+semana+"_"+cedula+"_"+codigo_pdv;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }
+
 
 }
 
