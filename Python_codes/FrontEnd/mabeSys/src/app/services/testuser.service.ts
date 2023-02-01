@@ -114,6 +114,12 @@ export class TestuserService {
     return this.clienteHttp.get(this.API+urlAPI);                
   }
 
+  comprobarLineaRegistradaBase(semana:any,cedula:any, codigo_pdv:any):Observable<any>{
+    console.log("semana:",semana,"cedula:",cedula,"codigo_pdv:",codigo_pdv)
+    var urlAPI="comprobarnombresLineasRegistradaBySemana_Cedula_CodigoPdv/"+semana+"_"+cedula+"_"+codigo_pdv;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }
+
 
 }
 

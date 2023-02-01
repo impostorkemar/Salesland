@@ -39,7 +39,7 @@ export class IngresarVentaComponent implements OnInit {
   month!: any;
   monthArray = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
   name: number;
-  
+  lineas: any;
 
   constructor(
     private fb: FormBuilder,
@@ -137,7 +137,8 @@ export class IngresarVentaComponent implements OnInit {
       semana: "",
     });
     
-    this.cargarPuntosVenta() 
+    this.cargarPuntosVenta();
+   
   }
 
   registrarVenta(): void {
@@ -210,6 +211,10 @@ export class IngresarVentaComponent implements OnInit {
   }
 
   changeTienda(e: any) {
+    let Array: string[]=[];
+    let Array2: string[]=[];
+    let Array3: string[]=[]; 
+    let Array4: string[]=[];
     if (this.nombreTienda?.invalid){
       this.flagInsert=false;
       this.MenuIngresar.setValue({
@@ -240,6 +245,7 @@ export class IngresarVentaComponent implements OnInit {
         total_semanal: 0,
         semana: "",
       });
+     
     }
     this.nombreTienda?.setValue(e.target.value, {
       onlySelf: true,      
@@ -258,7 +264,43 @@ export class IngresarVentaComponent implements OnInit {
         message: ''    
       });
     }
+    console.log("NameTienda",this.NameTienda)
+    this.testuserService.ObtenerCodigoPuntoVenta(this.NameTienda).subscribe(data2=>{
+      this.cod_pdv = data2['codigo_pdv'];
+      //console.log(data2);
+      console.log("IDS:",this.id_lineaConsult,this.cod_pdv)
+      this.testuserService.ObtenerClaveUsuarioByUser_Pass(localStorage.getItem('USER') as string,localStorage.getItem('PASS') as string).subscribe(data3=>{
+        const json = JSON.stringify(data3);
+        JSON.parse(json, (key, value) => { 
+          if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+            //console.log('key:'+key+'Array:'+Array.indexOf(key));
+            Array2.push(value);
+          }    
+        });             
+        this.testuserService.ObtenerCedulaUsuarioByClave(Array2[0]).subscribe(data4=>{
+          const json2 = JSON.stringify(data4);
+          JSON.parse(json2, (key, value) => { 
+            if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+              //console.log('key:'+key+'Array:'+Array.indexOf(key));
+              Array.push(value);
+            }    
+          });  
+          console.log("CLAVE:",Array2[0],"CEDULA:",Array[0]);           
+          this.testuserService.comprobarLineaRegistradaBase(this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",Array[0],this.cod_pdv).subscribe(data6=>{
+            const json2 = JSON.stringify(data6);
+            JSON.parse(json2, (key, value) => { 
+              if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+                //console.log('key:'+key+'Array:'+Array.indexOf(key));
+                Array4.push(value);
+              }    
+            });
+            console.log("DATA6:",Array4);
+          }); 
+        });   
+      }); 
+    }); 
     
+   
   }
 
   async onSubmit(buttonType: any): Promise<void> {
@@ -340,7 +382,7 @@ export class IngresarVentaComponent implements OnInit {
                   semana:this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
                 });   
                 console.log(this.ventasUsuario.value)  
-                this.flagInsert=true;
+                this.flagInsert=true;                 
                 this.MenuIngresar.setValue({            
                   semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
                   id_venta: '',   
@@ -409,6 +451,7 @@ export class IngresarVentaComponent implements OnInit {
     }       
     
   }
+  
   
 
   

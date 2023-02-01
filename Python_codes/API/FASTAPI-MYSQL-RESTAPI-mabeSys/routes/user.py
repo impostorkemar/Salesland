@@ -86,3 +86,8 @@ async def get_cedulaPromotorByUser_Pass(clave: str):
 async def get_ComprobarVentatByIdLinea_Semana_Cedula(idLinea: str, semana: str,cedula: str,codigo_pdv: str ):
     print("SELECT id_venta FROM venta WHERE semana = '"+str(semana)+"' AND cedula = '"+str(cedula)+"' AND id_linea='"+str(idLinea)+"' AND codigo_pdv = '"+str(codigo_pdv)+"';")
     return conn.execute("SELECT id_venta FROM venta WHERE semana = '"+str(semana)+"' AND cedula = '"+str(cedula)+"' AND id_linea='"+str(idLinea)+"' AND codigo_pdv = '"+str(codigo_pdv)+"';").first()
+
+@user.get("/comprobarnombresLineasRegistradaBySemana_Cedula_CodigoPdv/{semana}_{cedula}_{codigo_pdv}", tags=["ventas"])
+async def get_comprobarLineaRegistradaBase(semana: str,cedula: str,codigo_pdv: str ):
+    print("SELECT linea.nombre_linea FROM venta, linea WHERE venta.id_linea = linea.id_linea AND venta.cedula = '"+str(cedula)+"' AND venta.codigo_pdv= '"+str(codigo_pdv)+"' AND venta.semana = '"+str(semana)+"';")
+    return conn.execute("SELECT linea.nombre_linea FROM venta, linea WHERE venta.id_linea = linea.id_linea AND venta.cedula = '"+str(cedula)+"' AND venta.codigo_pdv= '"+str(codigo_pdv)+"' AND venta.semana = '"+str(semana)+"';").fetchall()
