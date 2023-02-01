@@ -38,7 +38,8 @@ export class IngresarVentaComponent implements OnInit {
   weekNumber!: any;
   month!: any;
   monthArray = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
-  encendi!: Boolean;
+  name: number;
+  
 
   constructor(
     private fb: FormBuilder,
@@ -48,8 +49,8 @@ export class IngresarVentaComponent implements OnInit {
     private testuserService:TestuserService,
     private router:Router,
     private authService: AuthService,    
-  ) {    
-    this.encendi = true;
+  ) {
+    this.name = 1;
     this.flagInsert = false;
     this.MenuIngresar = this.fb.group({
       semana: ['',Validators.required],
@@ -93,7 +94,7 @@ export class IngresarVentaComponent implements OnInit {
       
   }
  
-  ngOnInit(): void {   
+  ngOnInit(): void { 
     this.currentDate = new Date();    
     this.startDate = new Date(this.currentDate.getFullYear(), 0, 1);
     var days = Math.floor((this.currentDate - this.startDate)/(24 * 60 * 60 * 1000));
@@ -382,6 +383,7 @@ export class IngresarVentaComponent implements OnInit {
                         semana: "",
                       });
                     });
+                    this.name = 1;
                   }else{
                     this.MenuIngresar.setValue({            
                       semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
@@ -390,6 +392,7 @@ export class IngresarVentaComponent implements OnInit {
                       id_linea: [buttonType],
                       message: 'REGISTRO REPETIDO',            
                     });
+                    this.name = 0;
                   }
                   
                 });
