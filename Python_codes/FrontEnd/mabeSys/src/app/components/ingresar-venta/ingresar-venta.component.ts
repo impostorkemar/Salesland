@@ -40,6 +40,12 @@ export class IngresarVentaComponent implements OnInit {
   monthArray = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
   name: number;
   lineas: any;
+  AIRESFLAG: Boolean;
+  COCINASFLAG: Boolean;
+  EMPOTREFLAG: Boolean;
+  GLOBALESFLAG: Boolean;
+  LAVADOFLAG: Boolean;
+  REFRIGERACIONFLAG: Boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -50,6 +56,7 @@ export class IngresarVentaComponent implements OnInit {
     private router:Router,
     private authService: AuthService,    
   ) {
+    
     this.name = 1;
     this.flagInsert = false;
     this.MenuIngresar = this.fb.group({
@@ -84,14 +91,25 @@ export class IngresarVentaComponent implements OnInit {
         firstName: new FormControl()
     });
     this.registrationForm = this.fb4.group({
-      nombreTienda: ['', [Validators.required]],     
+      nombreTienda: ['', [Validators.required]],
+      //AIRES: ['', [Validators.required]],  
+      //COCINAS: ['', [Validators.required]],  
+      //EMPOTRE: ['', [Validators.required]],  
+      //GLOBALES: ['', [Validators.required]],  
+      //LAVADO: ['', [Validators.required]],  
+      //REFRIGERACIÓN: ['', [Validators.required]],       
     });
     this.isSubmitted = false;
     this.selectedTeam = "";   
     this.NameTienda = "";
     this.id_lineaConsult = 0;
     this.cod_pdv = 0;  
-      
+    this.AIRESFLAG = true;
+    this.COCINASFLAG = true;
+    this.EMPOTREFLAG = true;
+    this.GLOBALESFLAG = true;
+    this.LAVADOFLAG = true;
+    this.REFRIGERACIONFLAG = true;
   }
  
   ngOnInit(): void { 
@@ -138,7 +156,7 @@ export class IngresarVentaComponent implements OnInit {
     });
     
     this.cargarPuntosVenta();
-   
+    
   }
 
   registrarVenta(): void {
@@ -224,6 +242,12 @@ export class IngresarVentaComponent implements OnInit {
         codigo_pdv: 'ESCOGE TIENDA', 
         message: '',             
       });
+      this.AIRESFLAG = true;
+      this.COCINASFLAG = true;
+      this.EMPOTREFLAG = true;
+      this.GLOBALESFLAG = true;
+      this.LAVADOFLAG = true;
+      this.REFRIGERACIONFLAG = true;
       this.ventasUsuario.setValue({  
         clave: 0,
         cedula: 0,
@@ -295,6 +319,29 @@ export class IngresarVentaComponent implements OnInit {
               }    
             });
             console.log("DATA6:",Array4);
+            for (let i = 0; i < Array4.length; i++) {
+              console.log("BOTON ",i ,":",Array4[i]," BLOQUEADO");
+              if (Array4[i] == 'AIRES'){
+                this.AIRESFLAG = false;
+              }
+              if (Array4[i] == 'COCINASFLAG') {
+                this.COCINASFLAG = false;
+              }              
+              if (Array4[i] == 'EMPOTREFLAG') {
+                this.EMPOTREFLAG = false;
+              }
+              if (Array4[i] == 'GLOBALESFLAG') {
+                this.GLOBALESFLAG = false;
+              }
+              if (Array4[i] == 'LAVADOFLAG') {
+                this.LAVADOFLAG = false;
+              }
+              if (Array4[i] == 'REFRIGERACIONFLAG') {
+                this.REFRIGERACIONFLAG = false;
+              }               
+                           
+            }       
+            //this.registrationForm.controls['AIRES'].disable();     
           }); 
         });   
       }); 

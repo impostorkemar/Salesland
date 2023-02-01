@@ -57,12 +57,12 @@
                 <sup>*</sup>ESCOJA TIENDA
               </div>
               <div class="d-grid gap-2 mb-3">                  
-                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="AIRES" (click)="onSubmit('AIRES')">VENTAS AIRES</button>
-                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="COCINAS" (click)="onSubmit('COCINAS')">VENTAS COCINAS</button>
-                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="EMPOTRE" (click)="onSubmit('EMPOTRE')">VENTAS EMPOTRE</button>
-                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="GLOBALES" (click)="onSubmit('GLOBALES')">VENTAS GLOBALES</button>
-                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="LAVADO" (click)="onSubmit('LAVADO')">VENTAS LAVADO</button>
-                <button type="submit" class="btn btn-secondary btn-lg btn-block" name="REFRIGERACIÓN" (click)="onSubmit('REFRIGERACIÓN')">REFRIGERACIÓN</button>
+                <button *ngIf="AIRESFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="AIRES" (click)="onSubmit('AIRES')">VENTAS AIRES</button>
+                <button *ngIf="COCINASFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="COCINAS" (click)="onSubmit('COCINAS')">VENTAS COCINAS</button>
+                <button *ngIf="EMPOTREFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="EMPOTRE" (click)="onSubmit('EMPOTRE')">VENTAS EMPOTRE</button>
+                <button *ngIf="GLOBALESFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="GLOBALES" (click)="onSubmit('GLOBALES')">VENTAS GLOBALES</button>
+                <button *ngIf="LAVADOFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="LAVADO" (click)="onSubmit('LAVADO')">VENTAS LAVADO</button>
+                <button *ngIf="REFRIGERACIONFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="REFRIGERACIÓN" (click)="onSubmit('REFRIGERACIÓN')">REFRIGERACIÓN</button>
                 
               </div>                
               </div>            
