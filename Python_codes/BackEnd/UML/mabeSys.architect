@@ -4,8 +4,8 @@
  <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="(Target Database)" />
    <property key="Connection Type" value="MySQL" />
+   <property key="Logical" value="PlayPen Database" />
    <property key="JDBC URL" value="jdbc:mysql://localhost:3306/mabesys" />
    <property key="UID" value="mabeSys" />
    <property key="PWD" value="rootmabe" />
@@ -15,7 +15,7 @@
    <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
    <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
   </data-source>
-  <data-source id="DS2">
+  <data-source id="DS0">
    <property key="Connection Type" value="MySQL" />
    <property key="Logical" value="PlayPen Database" />
    <property key="JDBC URL" value="jdbc:mysql://localhost:3306/mabesys" />
@@ -29,7 +29,7 @@
   </data-source>
  </project-data-sources>
  <source-databases>
-  <database id="DB0" populated="true" UUID="2492ee6c-a7c1-4755-b407-7bebd8b022a0" dbcs-ref="DS2" name="PlayPen Database" physicalName="mabeSys" >
+  <database id="DB0" populated="true" UUID="2492ee6c-a7c1-4755-b407-7bebd8b022a0" dbcs-ref="DS0" name="PlayPen Database" physicalName="mabeSys" >
    <catalog id="CAT1" populated="false" UUID="d7e575c3-4858-4642-be73-d989dea86217" name="information_schema" nativeTerm="database" physicalName="information_schema" >
    </catalog>
    <catalog id="CAT2" populated="false" UUID="84a8049b-aa52-417d-9515-7d9d23334d41" name="mabesys" nativeTerm="database" physicalName="mabesys" >
@@ -251,27 +251,27 @@
    </folder>
   </table>
   <relationships>
-   <relationship id="REL74" populated="true" UUID="bc981492-f454-451e-abff-9ca82c059e56" deferrability="7" deleteRule="3" fk-table-ref="TAB41" fkCardinality="7" identifying="true" name="USUARIO_VENTA_fk" physicalName="usuario_venta_fk" pk-table-ref="TAB10" pkCardinality="2" updateRule="3" >
+   <relationship id="REL74" populated="true" UUID="bc981492-f454-451e-abff-9ca82c059e56" deferrability="7" deleteRule="3" fk-table-ref="TAB41" fkCardinality="7" identifying="true" name="USUARIO_VENTA_fk" physicalName="USUARIO_VENTA_fk" pk-table-ref="TAB10" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP75" populated="true" UUID="2596da65-3dad-4be4-b611-5fa4c5820e4c" fk-column-ref="COL43" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL11" />
     <column-mapping id="CMP76" populated="true" UUID="730d3730-c8d2-4a26-902a-80a0282cc647" fk-column-ref="COL44" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL12" />
     <column-mapping id="CMP77" populated="true" UUID="b566cd7e-b44e-4552-87fc-56879bd38600" fk-column-ref="COL45" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL13" />
    </relationship>
-   <relationship id="REL78" populated="true" UUID="e80b1be4-173c-4255-89fa-b78d154fe48c" deferrability="7" deleteRule="3" fk-table-ref="TAB10" fkCardinality="7" identifying="true" name="PUNTO_VENTA_USUARIO_fk" physicalName="punto_venta_usuario_fk" pk-table-ref="TAB25" pkCardinality="2" updateRule="3" >
+   <relationship id="REL78" populated="true" UUID="e80b1be4-173c-4255-89fa-b78d154fe48c" deferrability="7" deleteRule="3" fk-table-ref="TAB10" fkCardinality="7" identifying="true" name="PUNTO_VENTA_USUARIO_fk" physicalName="PUNTO_VENTA_USUARIO_fk" pk-table-ref="TAB25" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP79" populated="true" UUID="7579ec23-d3b9-42b1-85c5-b8716047177f" fk-column-ref="COL14" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL26" />
    </relationship>
-   <relationship id="REL80" populated="true" UUID="164c41ef-0503-43c9-852d-73ac65837a1b" deferrability="7" deleteRule="3" fk-table-ref="TAB33" fkCardinality="7" identifying="true" name="PUNTO_VENTA_LINEA_fk" physicalName="punto_venta_linea_fk" pk-table-ref="TAB25" pkCardinality="2" updateRule="3" >
+   <relationship id="REL80" populated="true" UUID="164c41ef-0503-43c9-852d-73ac65837a1b" deferrability="7" deleteRule="3" fk-table-ref="TAB33" fkCardinality="7" identifying="true" name="PUNTO_VENTA_LINEA_fk" physicalName="PUNTO_VENTA_LINEA_fk" pk-table-ref="TAB25" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP81" populated="true" UUID="b55a6bb0-2d3e-4323-abbf-5c8887724a41" fk-column-ref="COL35" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL26" />
    </relationship>
-   <relationship id="REL82" populated="true" UUID="0872853d-059e-4bbc-9462-a9ca19ed5032" deferrability="7" deleteRule="3" fk-table-ref="TAB41" fkCardinality="7" identifying="true" name="LINEA_VENTA_fk" physicalName="linea_venta_fk" pk-table-ref="TAB33" pkCardinality="2" updateRule="3" >
+   <relationship id="REL82" populated="true" UUID="0872853d-059e-4bbc-9462-a9ca19ed5032" deferrability="7" deleteRule="3" fk-table-ref="TAB41" fkCardinality="7" identifying="true" name="LINEA_VENTA_fk" physicalName="LINEA_VENTA_fk" pk-table-ref="TAB33" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP83" populated="true" UUID="39dedf49-9453-48a1-a883-6503eb5de798" fk-column-ref="COL46" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL34" />
     <column-mapping id="CMP84" populated="true" UUID="b36b44e1-c7e5-4ca7-b423-a80be63b2a2f" fk-column-ref="COL47" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL35" />
    </relationship>
-   <relationship id="REL85" populated="true" UUID="5b03f549-d5ce-4df1-9c28-16d4c1ad8974" deferrability="7" deleteRule="3" fk-table-ref="TAB10" fkCardinality="7" identifying="true" name="SUPERVISOR_USUARIO_fk" physicalName="supervisor_usuario_fk" pk-table-ref="TAB69" pkCardinality="2" updateRule="3" >
+   <relationship id="REL85" populated="true" UUID="5b03f549-d5ce-4df1-9c28-16d4c1ad8974" deferrability="7" deleteRule="3" fk-table-ref="TAB10" fkCardinality="7" identifying="true" name="SUPERVISOR_USUARIO_fk" physicalName="SUPERVISOR_USUARIO_fk" pk-table-ref="TAB69" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP86" populated="true" UUID="29e4513e-2ea8-4a25-b5f3-91e32016a9ce" fk-column-ref="COL13" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL70" />
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.MySqlDDLGenerator" allow-connection="false" target-catalog="mabesys"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.MySqlDDLGenerator" allow-connection="true" target-catalog="mabesys"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
