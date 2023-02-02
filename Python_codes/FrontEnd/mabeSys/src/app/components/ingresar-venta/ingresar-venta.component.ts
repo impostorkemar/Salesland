@@ -26,6 +26,7 @@ export class IngresarVentaComponent implements OnInit {
   Ejecuciones:any; 
   datos:any;
   codigoPdv: any;
+  ID_LINEAArray: any;
   isSubmitted: boolean;
   selectedTeam: string;
   NameTienda: String;
@@ -45,7 +46,10 @@ export class IngresarVentaComponent implements OnInit {
   EMPOTREFLAG: Boolean;
   GLOBALESFLAG: Boolean;
   LAVADOFLAG: Boolean;
-  REFRIGERACIONFLAG: Boolean;
+  REFRIGERACIONFLAG: Boolean;  
+  COD_PDVArray: string[]=[];
+  CLAVE_Array: string[]=[]; 
+  CEDULA_Array: string[]=[];
 
   constructor(
     private fb: FormBuilder,
@@ -117,8 +121,7 @@ export class IngresarVentaComponent implements OnInit {
     this.startDate = new Date(this.currentDate.getFullYear(), 0, 1);
     var days = Math.floor((this.currentDate - this.startDate)/(24 * 60 * 60 * 1000));
     this.weekNumber = Math.ceil(days / 7);
-    console.log("Week:"+ this.weekNumber, "Month:", this.monthArray[this.currentDate.getMonth()]);
-    
+    //console.log("Week:"+ this.weekNumber, "Month:", this.monthArray[this.currentDate.getMonth()]);    
 
     this.MenuIngresar.setValue({
       semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
@@ -155,7 +158,7 @@ export class IngresarVentaComponent implements OnInit {
       semana: "",
     });
     
-    this.cargarPuntosVenta();
+    this.cargarPuntosVenta(); 
     
   }
 
@@ -182,7 +185,7 @@ export class IngresarVentaComponent implements OnInit {
   }
 
   logout() {
-    console.log("Deslogueo")
+    //console.log("Deslogueo")
     this.authService.logout()
       .subscribe(res => {
         if (!res.success) {
@@ -211,19 +214,114 @@ export class IngresarVentaComponent implements OnInit {
         if (Array.indexOf(aux)==-1 && isNaN(parseInt(aux, 10)) && aux!=''){
           //console.log('aux:'+aux+'Array:'+Array.indexOf(aux));
           Array.push((aux.replaceAll("_"," ")).toUpperCase());             
-        }            
-                       
+        }             
       });
       this.Cabeceras=Array;
       this.datos=Array2;
       this.Ejecuciones=Array3; 
-      console.log("CABECERAS:",this.Cabeceras);
-      console.log("DATOS:",this.datos);
-      console.log("EJECUCIONES:",this.Ejecuciones);
-      console.log("RESPONSE:",this.puntosVenta);
-    });
+      //console.log("CABECERAS:",this.Cabeceras);
+      //console.log("DATOS:",this.datos);
+      //console.log("EJECUCIONES:",this.Ejecuciones);
+      //console.log("RESPONSE:",this.puntosVenta);
+    });    
+  }
+
+  ObtenerTienda(e: any){
+    //console.log("nombreTienda:",this.nombreTienda?.value);
+    if (this.nombreTienda?.invalid){      
+      this.flagInsert=false;
+      this.MenuIngresar.setValue({
+        semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
+        id_venta: 'ESCOGE TIENDA',   
+        id_linea: 'ESCOGE TIENDA',  
+        codigo_pdv: 'ESCOGE TIENDA', 
+        message: '',             
+      });
+      this.AIRESFLAG = true;
+      this.COCINASFLAG = true;
+      this.EMPOTREFLAG = true;
+      this.GLOBALESFLAG = true;
+      this.LAVADOFLAG = true;
+      this.REFRIGERACIONFLAG = true;
+      this.ventasUsuario.setValue({  
+        clave: 0,
+        cedula: 0,
+        id_supervisor: 0,   
+        id_linea: 0,  
+        codigo_pdv: 0,
+        ventas_mabe: 0,
+        ventas_indurama: 0,
+        ventas_whirlpool: 0,
+        ventas_lg: 0,
+        ventas_samsung: 0,
+        ventas_electrolux: 0,
+        mastertech: 0,
+        hove: 0,
+        teka: 0,
+        smc: 0,
+        otros: 0,
+        validacion: 1,
+        total_semanal: 0,
+        semana: "",
+      });
+      this.flagInsert=false;    
+       
+    }else{
+      if (this.nombreTienda?.value != null){
+        console.log("ENTRE")
+        this.nombreTienda?.setValue(e.target.value, {onlySelf: true,}); 
+        this.thenum= (this.nombreTienda?.value as string).match(/\d/g);
+        if (this.thenum != null){
+          this.thenum = this.thenum.join("");
+          this.thenum = (this.thenum as number)-1;
+          //console.log("OBJECT->",this.nombreTienda?.value,"DATO[",this.thenum,"]:", this.datos[this.thenum] );
+          this.NameTienda = this.datos[this.thenum];
+          this.MenuIngresar.setValue({
+            semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
+            id_venta: '',   
+            id_linea: '',  
+            codigo_pdv: this.datos[this.thenum], 
+            message: ''    
+          });         
+        } 
+        this.ObtenerIdLineaXCodigoPdv_nombreLinea('AIRES',this.NameTienda as string)
+        console.log("ID_LINEAArray:",this.ID_LINEAArray)
+      }      
+    }    
+     
+  }
+
+  ObtenerIdLineaXCodigoPdv_nombreLinea(buttonType: string, NameTienda: string){ 
+    let Array: string[]=[];   
+    let Array2: string[]=[]; 
+    let Array3: string[]=[];
+    this.testuserService.ObtenerIdLineaByCodigoPdv_nombreLinea(buttonType,NameTienda).subscribe(respuesta2=>{
+      this.puntosVenta = respuesta2;      
+      const json = JSON.stringify(respuesta2);
+      JSON.parse(json, (key, value) => { 
+        if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+          //console.log('key:'+key+'Array:'+Array.indexOf(key));
+          Array2.push(value);    
+          //Array3.push("consulta.".concat(key.toString()))  
+          Array3.push(key.toString())
+        }
+        let aux=(key.replaceAll("_"," ")).toUpperCase();
+        if (Array.indexOf(aux)==-1 && isNaN(parseInt(aux, 10)) && aux!=''){
+          //console.log('aux:'+aux+'Array:'+Array.indexOf(aux));
+          Array.push((aux.replaceAll("_"," ")).toUpperCase());             
+        }             
+      });
+      //this.Cabeceras=Array;
+      this.ID_LINEAArray=Array2;
+      //this.Ejecuciones=Array3; 
+      //console.log("CABECERAS:",this.Cabeceras);
+      //console.log("DATOS:",this.ID_LINEAArray);
+      //console.log("EJECUCIONES:",this.Ejecuciones);
+      //console.log("RESPONSE:",this.puntosVenta);      
+    });   
     
   }
+  
   get nombreTienda() {
     return this.registrationForm.get('nombreTienda');
   }
@@ -269,83 +367,110 @@ export class IngresarVentaComponent implements OnInit {
         total_semanal: 0,
         semana: "",
       });
+      this.flagInsert=false;
      
-    }
-    this.nombreTienda?.setValue(e.target.value, {
-      onlySelf: true,      
-    }); 
-    this.thenum= (this.nombreTienda?.value as string).match(/\d/g);
-    if (this.thenum != null){
-      this.thenum = this.thenum.join("");
-      this.thenum = (this.thenum as number)-1;
-      console.log("DATO->",this.nombreTienda?.value,"DATO[",this.thenum,"]:", this.datos[this.thenum] );
-      this.NameTienda = this.datos[this.thenum];
-      this.MenuIngresar.setValue({
-        semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
-        id_venta: '',   
-        id_linea: '',  
-        codigo_pdv: this.datos[this.thenum], 
-        message: ''    
-      });
-    }
-    console.log("NameTienda",this.NameTienda)
-    this.testuserService.ObtenerCodigoPuntoVenta(this.NameTienda).subscribe(data2=>{
-      this.cod_pdv = data2['codigo_pdv'];
-      //console.log(data2);
-      console.log("IDS:",this.id_lineaConsult,this.cod_pdv)
-      this.testuserService.ObtenerClaveUsuarioByUser_Pass(localStorage.getItem('USER') as string,localStorage.getItem('PASS') as string).subscribe(data3=>{
-        const json = JSON.stringify(data3);
-        JSON.parse(json, (key, value) => { 
-          if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
-            //console.log('key:'+key+'Array:'+Array.indexOf(key));
-            Array2.push(value);
-          }    
-        });             
-        this.testuserService.ObtenerCedulaUsuarioByClave(Array2[0]).subscribe(data4=>{
-          const json2 = JSON.stringify(data4);
-          JSON.parse(json2, (key, value) => { 
+    }else{
+      this.nombreTienda?.setValue(e.target.value, {
+        onlySelf: true,      
+      }); 
+      this.thenum= (this.nombreTienda?.value as string).match(/\d/g);
+      if (this.thenum != null){
+        this.thenum = this.thenum.join("");
+        this.thenum = (this.thenum as number)-1;
+        //console.log("DATO->",this.nombreTienda?.value,"DATO[",this.thenum,"]:", this.datos[this.thenum] );
+        this.NameTienda = this.datos[this.thenum];
+        this.MenuIngresar.setValue({
+          semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
+          id_venta: '',   
+          id_linea: '',  
+          codigo_pdv: this.datos[this.thenum], 
+          message: ''    
+        });
+      }
+      //console.log("NameTienda",this.NameTienda)
+      this.testuserService.ObtenerCodigoPuntoVenta(this.NameTienda).subscribe(data2=>{
+        this.cod_pdv = data2['codigo_pdv'];
+        //console.log(data2);
+        //console.log("IDS:",this.id_lineaConsult,this.cod_pdv)
+        this.testuserService.ObtenerClaveUsuarioByUser_Pass(localStorage.getItem('USER') as string,localStorage.getItem('PASS') as string).subscribe(data3=>{
+          const json = JSON.stringify(data3);
+          JSON.parse(json, (key, value) => { 
             if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
               //console.log('key:'+key+'Array:'+Array.indexOf(key));
-              Array.push(value);
+              Array2.push(value);
             }    
-          });  
-          console.log("CLAVE:",Array2[0],"CEDULA:",Array[0]);           
-          this.testuserService.comprobarLineaRegistradaBase(this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",Array[0],this.cod_pdv).subscribe(data6=>{
-            const json2 = JSON.stringify(data6);
+          });             
+          this.testuserService.ObtenerCedulaUsuarioByClave(Array2[0]).subscribe(data4=>{
+            const json2 = JSON.stringify(data4);
             JSON.parse(json2, (key, value) => { 
               if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
                 //console.log('key:'+key+'Array:'+Array.indexOf(key));
-                Array4.push(value);
+                Array.push(value);
               }    
-            });
-            console.log("DATA6:",Array4);
-            for (let i = 0; i < Array4.length; i++) {
-              console.log("BOTON ",i ,":",Array4[i]," BLOQUEADO");
-              if (Array4[i] == 'AIRES'){
-                this.AIRESFLAG = false;
-              }
-              if (Array4[i] == 'COCINASFLAG') {
-                this.COCINASFLAG = false;
-              }              
-              if (Array4[i] == 'EMPOTREFLAG') {
-                this.EMPOTREFLAG = false;
-              }
-              if (Array4[i] == 'GLOBALESFLAG') {
-                this.GLOBALESFLAG = false;
-              }
-              if (Array4[i] == 'LAVADOFLAG') {
-                this.LAVADOFLAG = false;
-              }
-              if (Array4[i] == 'REFRIGERACIONFLAG') {
-                this.REFRIGERACIONFLAG = false;
-              }               
-                           
-            }       
-            //this.registrationForm.controls['AIRES'].disable();     
-          }); 
-        });   
-      }); 
-    }); 
+            });  
+            //console.log("CLAVE:",Array2[0],"CEDULA:",Array[0]);           
+            this.testuserService.comprobarLineaRegistradaBase(this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",Array[0],this.cod_pdv).subscribe(data6=>{
+              const json2 = JSON.stringify(data6);
+              JSON.parse(json2, (key, value) => { 
+                if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+                  //console.log('key:'+key+'Array:'+Array.indexOf(key));
+                  Array4.push(value);
+                }    
+              });
+              //console.log("DATA6:",Array4);
+              for (let i = 0; i < Array4.length; i++) {              
+                if (Array4[i] == 'AIRES'){
+                  this.AIRESFLAG = false;
+                  //console.log("BOTON ",i ,":",Array4[i]," BLOQUEADO");
+                }
+                if (Array4[i] == 'COCINAS') {
+                  this.COCINASFLAG = false;
+                  //console.log("BOTON ",i ,":",Array4[i]," BLOQUEADO");
+                }              
+                if (Array4[i] == 'EMPOTRE') {
+                  this.EMPOTREFLAG = false;
+                  //console.log("BOTON ",i ,":",Array4[i]," BLOQUEADO");
+                }
+                if (Array4[i] == 'GLOBALES') {
+                  this.GLOBALESFLAG = false;
+                  //console.log("BOTON ",i ,":",Array4[i]," BLOQUEADO");
+                }
+                if (Array4[i] == 'LAVADO') {
+                  this.LAVADOFLAG = false;
+                  //console.log("BOTON ",i ,":",Array4[i]," BLOQUEADO");
+                }
+                if (Array4[i] == 'REFRIGERACIÓN') {
+                  this.REFRIGERACIONFLAG = false;
+                  //console.log("BOTON ",i ,":",Array4[i]," BLOQUEADO");
+                }          
+              }   
+              if(this.AIRESFLAG === false && this.COCINASFLAG === false && this.EMPOTREFLAG === false 
+                && this.GLOBALESFLAG === false && this.LAVADOFLAG === false && this.REFRIGERACIONFLAG === false){
+                  this.thenum= (this.nombreTienda?.value as string).match(/\d/g);               
+                  if (this.thenum != null){
+                    this.thenum = this.thenum.join("");
+                    this.thenum = (this.thenum as number)-1;
+                    //console.log("DATO->",this.nombreTienda?.value,"DATO[",this.thenum,"]:", this.datos[this.thenum] );
+                    this.NameTienda = this.datos[this.thenum];
+                    this.MenuIngresar.setValue({
+                      semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
+                      id_venta: '',   
+                      id_linea: '',  
+                      codigo_pdv: this.datos[this.thenum], 
+                      message: 'SEMANA YA REGISTRADA'    
+                    });
+                    this.MenuIngresar.controls
+                  }
+                  this.flagInsert=true;
+                  this.name = 0;
+              }    
+              //this.registrationForm.controls['AIRES'].disable();     
+            }); 
+          });   
+        }); 
+      });
+    }
+     
     
    
   }
@@ -385,7 +510,7 @@ export class IngresarVentaComponent implements OnInit {
           this.testuserService.ObtenerCodigoPuntoVenta(this.NameTienda).subscribe(data2=>{
             this.cod_pdv = data2['codigo_pdv'];
             //console.log(data2);
-            console.log("IDS:",this.id_lineaConsult,this.cod_pdv)
+            //console.log("IDS:",this.id_lineaConsult,this.cod_pdv)
             this.testuserService.ObtenerClaveUsuarioByUser_Pass(localStorage.getItem('USER') as string,localStorage.getItem('PASS') as string).subscribe(data3=>{
               const json = JSON.stringify(data3);
               JSON.parse(json, (key, value) => { 
@@ -402,33 +527,41 @@ export class IngresarVentaComponent implements OnInit {
                     Array.push(value);
                   }    
                 });  
-                console.log("CLAVE:",Array2[0],"CEDULA:",Array[0]);   
-                this.ventasUsuario.setValue({   
-                  clave: Array2[0],
-                  cedula: Array[0],
-                  id_supervisor: 1,  
-                  id_linea: this.id_lineaConsult,  
-                  codigo_pdv: this.cod_pdv,
-                  ventas_mabe: this.ventasUsuario.value.ventas_mabe,
-                  ventas_indurama: this.ventasUsuario.value.ventas_indurama,
-                  ventas_whirlpool: this.ventasUsuario.value.ventas_whirlpool,
-                  ventas_lg: this.ventasUsuario.value.ventas_lg,
-                  ventas_samsung: this.ventasUsuario.value.ventas_samsung,
-                  ventas_electrolux: this.ventasUsuario.value.ventas_electrolux,
-                  mastertech: this.ventasUsuario.value.mastertech,
-                  hove: this.ventasUsuario.value.hove,
-                  teka: this.ventasUsuario.value.teka,
-                  smc: this.ventasUsuario.value.smc,
-                  otros: this.ventasUsuario.value.otros,
-                  validacion: 1,
-                  total_semanal: this.ventasUsuario.value.ventas_mabe+this.ventasUsuario.value.ventas_indurama
-                  +this.ventasUsuario.value.ventas_whirlpool+this.ventasUsuario.value.ventas_lg
-                  +this.ventasUsuario.value.ventas_samsung+this.ventasUsuario.value.ventas_electrolux
-                  +this.ventasUsuario.value.mastertech+this.ventasUsuario.value.hove+this.ventasUsuario.value.teka
-                  +this.ventasUsuario.value.smc+this.ventasUsuario.value.otros,
-                  semana:this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
-                });   
-                console.log(this.ventasUsuario.value)  
+                //console.log("CLAVE:",Array2[0],"CEDULA:",Array[0]);  
+                this.testuserService.ObteneridSupervisorByUser_Pass(localStorage.getItem('USER') as string,localStorage.getItem('PASS') as string).subscribe(data7=>{
+                  const json2 = JSON.stringify(data7);
+                  JSON.parse(json2, (key, value) => { 
+                    if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+                      //console.log('key:'+key+'Array:'+Array.indexOf(key));
+                      Array4.push(value);
+                    }
+                    //console.log("ID SUPERVISOR:",Array4[0]);
+                    this.ventasUsuario.setValue({   
+                      clave: Array2[0],
+                      cedula: Array[0],
+                      id_supervisor: Array4[0],  
+                      id_linea: this.id_lineaConsult,  
+                      codigo_pdv: this.cod_pdv,
+                      ventas_mabe: this.ventasUsuario.value.ventas_mabe,
+                      ventas_indurama: this.ventasUsuario.value.ventas_indurama,
+                      ventas_whirlpool: this.ventasUsuario.value.ventas_whirlpool,
+                      ventas_lg: this.ventasUsuario.value.ventas_lg,
+                      ventas_samsung: this.ventasUsuario.value.ventas_samsung,
+                      ventas_electrolux: this.ventasUsuario.value.ventas_electrolux,
+                      mastertech: this.ventasUsuario.value.mastertech,
+                      hove: this.ventasUsuario.value.hove,
+                      teka: this.ventasUsuario.value.teka,
+                      smc: this.ventasUsuario.value.smc,
+                      otros: this.ventasUsuario.value.otros,
+                      validacion: 1,
+                      total_semanal: this.ventasUsuario.value.ventas_mabe+this.ventasUsuario.value.ventas_indurama
+                      +this.ventasUsuario.value.ventas_whirlpool+this.ventasUsuario.value.ventas_lg
+                      +this.ventasUsuario.value.ventas_samsung+this.ventasUsuario.value.ventas_electrolux
+                      +this.ventasUsuario.value.mastertech+this.ventasUsuario.value.hove+this.ventasUsuario.value.teka
+                      +this.ventasUsuario.value.smc+this.ventasUsuario.value.otros,
+                      semana:this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
+                    });
+                //console.log(this.ventasUsuario.value)  
                 this.flagInsert=true;                 
                 this.MenuIngresar.setValue({            
                   semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
@@ -446,10 +579,11 @@ export class IngresarVentaComponent implements OnInit {
                       Array3.push(value);
                     }    
                   });
-                  console.log("DATA5:",Array3[0]);
+                  //console.log("DATA5:",Array3[0]);
                   if (Array3[0] == null){
+                    
                     this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
-                      console.log(respuesta);
+                      //console.log(respuesta);
                       this.ventasUsuario.setValue({  
                         clave: 0,
                         cedula: 0,
@@ -472,6 +606,7 @@ export class IngresarVentaComponent implements OnInit {
                         semana: "",
                       });
                     });
+                    
                     this.name = 1;
                   }else{
                     this.MenuIngresar.setValue({            
@@ -482,25 +617,19 @@ export class IngresarVentaComponent implements OnInit {
                       message: 'REGISTRO REPETIDO',            
                     });
                     this.name = 0;
-                  }
-                  
+                  }                  
                 });
-                
+                }); 
               });              
             });
             this.flagInsert = true;
           });               
-        });
-          
-        
-      }      
-      
-    }       
-    
+        });     
+      });   
+      }  
+    }  
   }
-  
-  
 
-  
+
 
 }

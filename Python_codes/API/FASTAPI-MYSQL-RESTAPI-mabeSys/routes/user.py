@@ -37,6 +37,13 @@ async def get_Tablas():
 async def get_NombresPuntosVentas(user: str, passw: str):
     return conn.execute("SELECT nombre_pdv FROM punto_venta WHERE codigo_pdv IN (SELECT codigo_pdv FROM usuario WHERE usuario = '"+str(user)+"' AND password =  '"+str(passw)+"');").fetchall()
 
+@user.get("/idLineaByNames/{nombreLinea}_{nombrePDV}", tags=["lineas"])
+async def get_idLineaByName(nombreLinea: str,nombrePDV: str ):
+    print(nombreLinea,"->",nombrePDV)    
+    sql2 = "SELECT id_linea FROM linea where nombre_linea = '"+str(nombreLinea)+"' AND codigo_pdv = (SELECT codigo_pdv FROM punto_venta where nombre_pdv = '"+str(nombrePDV)+"');"
+    print(sql2)
+    return conn.execute("SELECT id_linea FROM linea where nombre_linea = '"+str(nombreLinea)+"' AND codigo_pdv = (SELECT codigo_pdv FROM punto_venta where nombre_pdv = '"+str(nombrePDV)+"');").fetchall()
+
 @user.get("/codigoPuntoVentaByName/{name}", tags=["puntosVentas"])
 async def get_CodigoPuntoVentaByName(name: str):
     return conn.execute("SELECT codigo_pdv FROM punto_venta WHERE nombre_pdv = '"+str(name)+"' LIMIT 1;").first()
@@ -53,14 +60,7 @@ async def create_venta(venta: Venta):
     print(ventas.insert().values(nueva_venta))
     result = conn.execute(ventas.insert().values(nueva_venta))    
     return conn.execute( ventas.select().where(ventas.c.id_venta == result.lastrowid)).first()
-    
-@user.get("/idLineaByNames/{nombreLinea}_{nombrePDV}", tags=["lineas"])
-async def get_idLineaByName(nombreLinea: str,nombrePDV: str ):
-    print(nombreLinea,"->",nombrePDV)    
-    sql2 = "SELECT id_linea FROM linea where nombre_linea = '"+str(nombreLinea)+"' AND codigo_pdv = (SELECT codigo_pdv FROM punto_venta where nombre_pdv = '"+str(nombrePDV)+"');"
-    print(sql2)
-    return conn.execute(sql2).first()
-    
+   
 @user.get("/ventaSemanalByPromotor_Linea_Semana/{promotor}_{linea}_{semana}", tags=["ventas"])
 async def get_VentaSemanalByPromotor_Linea_Semana(promotor: str,linea: str, semana: str ):
     print(promotor,"->",linea,"->",semana)     
@@ -81,6 +81,11 @@ async def get_clavePromotorByUser_Pass(user: str, passw: str):
 async def get_cedulaPromotorByUser_Pass(clave: str):
     print("SELECT cedula FROM usuario WHERE clave = '"+str(clave)+"';")
     return conn.execute("SELECT cedula FROM usuario WHERE clave = '"+str(clave)+"';").first()
+
+@user.get("/idSupervisorByUser_Pass/{user}-{pass}", tags=["supervisor"])
+async def get_idSupervisorByUser_Pass(user:str,passw: str):
+    print("SELECT id_supervisor FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"' LIMIT 1;")
+    return conn.execute("SELECT id_supervisor FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"' LIMIT 1;").first()
 
 @user.get("/comprobarVentatByIdLinea_Semana_Cedula/{idLinea}_{semana}_{cedula}_{codigo_pdv}", tags=["ventas"])
 async def get_ComprobarVentatByIdLinea_Semana_Cedula(idLinea: str, semana: str,cedula: str,codigo_pdv: str ):

@@ -32,9 +32,9 @@ export class TestuserService {
   }
   //SERVICIOS USUARIO
   AgregarUsuario(datosUsuario:Usuario): Observable<any>{   
-    console.log("USER",datosUsuario);
+    //console.log("USER",datosUsuario);
     var urlAPI="usuarios/";
-    console.log("URL=",this.API +urlAPI);
+    //console.log("URL=",this.API +urlAPI);
     return this.postData(datosUsuario,urlAPI)
   }
 
@@ -52,12 +52,12 @@ export class TestuserService {
   }
   ObtenerConsultaDinamica(){
     var urlAPI="consultaDinamica/";
-    console.log("URI",this.API+urlAPI)
+    //console.log("URI",this.API+urlAPI)
     return this.clienteHttp.get(this.API+urlAPI);
   }
   ObtenerTablasBaseDatos(){
     var urlAPI="nombresTablas/";
-    console.log("URI",this.API+urlAPI)
+    //console.log("URI",this.API+urlAPI)
     return this.clienteHttp.get(this.API+urlAPI);
   }
 
@@ -67,9 +67,9 @@ export class TestuserService {
   } 
   
   AgregarVenta(datosVenta:Venta): Observable<any>{   
-    console.log("Venta:",datosVenta);
+    //console.log("Venta:",datosVenta);
     var urlAPI="ventas/";
-    console.log("URL=",this.API +urlAPI);
+    //console.log("URL=",this.API +urlAPI);
     return this.postData(datosVenta,urlAPI)
   }
 
@@ -85,13 +85,13 @@ export class TestuserService {
   }
 
   ConsultarNombrePromotor(user:any,pass:any):Observable<any>{
-    console.log("usuario:",user,"pass:", pass)
+    //console.log("usuario:",user,"pass:", pass)
     var urlAPI="nombrePromotorByUser_Pass/"+user+"-{pass}?passw="+pass;    
     return this.clienteHttp.get(this.API+urlAPI);
   }
 
   ComprobarVentaSemanalByPromotor_Linea_Semana(promotor: any, linea:any, semana:any):Observable<any>{
-    console.log("promotor:",promotor,"linea:", linea,"semana:",semana)
+    //console.log("promotor:",promotor,"linea:", linea,"semana:",semana)
     var urlAPI="ventaSemanalByPromotor_Linea_Semana/"+promotor+"_"+linea+"_"+semana;      
     return this.clienteHttp.get(this.API+urlAPI);                
   }
@@ -109,18 +109,22 @@ export class TestuserService {
   }
 
   ComprobarVentatByIdLinea_Semana_Cedula(idLinea:any,semana:any,cedula:any, codigo_pdv:any):Observable<any>{
-    console.log("idLinea:",idLinea,"semana:",semana,"cedula:",cedula,"codigo_pdv:",codigo_pdv)
+    //console.log("idLinea:",idLinea,"semana:",semana,"cedula:",cedula,"codigo_pdv:",codigo_pdv)
     var urlAPI="comprobarVentatByIdLinea_Semana_Cedula/"+idLinea+"_"+semana+"_"+cedula+"_"+codigo_pdv;      
     return this.clienteHttp.get(this.API+urlAPI);                
   }
 
   comprobarLineaRegistradaBase(semana:any,cedula:any, codigo_pdv:any):Observable<any>{
-    console.log("semana:",semana,"cedula:",cedula,"codigo_pdv:",codigo_pdv)
+    //console.log("semana:",semana,"cedula:",cedula,"codigo_pdv:",codigo_pdv)
     var urlAPI="comprobarnombresLineasRegistradaBySemana_Cedula_CodigoPdv/"+semana+"_"+cedula+"_"+codigo_pdv;      
     return this.clienteHttp.get(this.API+urlAPI);                
   }
 
-
+  ObteneridSupervisorByUser_Pass(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="idSupervisorByUser_Pass/"+user+"-{pass}?passw="+pass;       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }
 }
 
 
