@@ -45,6 +45,11 @@ def update_user(id: str, user: User):
 def get_usuarios():
     return conn.execute(usuarios.select()).fetchall()
 
+@user.get("/usuarios/{user}-{pass}", tags=["usuarios"])
+def comprobar_usuario(user: str, passw: str):   
+    #print("SELECT * FROM `personal` WHERE  `id_personal` ='"+str(id)+"' AND `id_centro_costo` ='"+str(id_centro_costo)+"' AND `cedula` ='"+str(cedula)+"'")
+    return conn.execute("SELECT tipo FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';").first()
+
 @user.post('/usuarios/', response_model=Usuario,tags=["usuarios"])
 def create_usuario(usuario: Usuario):
     nuevo_usuario = {"cedula":usuario.cedula, "nombre_usuario":usuario.nombre_usuario, "password":usuario.password}
@@ -62,7 +67,7 @@ def delete_usuario(id: str):
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 @user.put("/usuarios/{id}",response_model=Usuario,tags=["usuarios"])
-def update_usuario(id: str,usuario: Usuario):  
+def update_usuario(id: str,usuario: Usuario): 
     sql="UPDATE `usuario` SET `id_usuario`='"+str(usuario.id_usuario)+"',`cedula`='"+str(usuario.cedula)+"',`nombre_usuario`='"+str(usuario.nombre_usuario)+"',`password`='"+str(usuario.password)+"' WHERE `id_usuario` = '"+str(id)+"'"  
     conn.execute(sql)
     return get_usuario(usuario.id_usuario)
@@ -123,6 +128,7 @@ def update_contrato(id: str, contrato: Contrato):
     sql="UPDATE `contrato` SET `id_contrato`='"+str(contrato.id_contrato)+"',`tipo_contrato`='"+str(contrato.tipo_contrato)+"',`fecha_inicio_contrato`='"+str(contrato.fecha_inicio_contrato)+"',`salario`='"+str(contrato.salario)+"',`observaciones`='"+str(contrato.observaciones)+"' WHERE `id_contrato` = '"+str(id)+"'"
     conn.execute(sql)
     return get_contrato(contrato.id_contrato)
+
 
 #CONSULTA EXPERIENCIA_LABORAL
 @user.get("/experiencia_laborales/", tags=["experiencia_laborales"])

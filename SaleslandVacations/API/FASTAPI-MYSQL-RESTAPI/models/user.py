@@ -13,7 +13,8 @@ usuarios = Table("usuario", meta,
     Column("id_usuario", Integer, primary_key=True),
     Column("cedula", String(10)),
     Column("nombre_usuario", String(20)),
-    Column("password", String(10))
+    Column("password", String(10)),
+    Column("tipo", String(20))
 )
 
 candidatos = Table("candidato", meta, 

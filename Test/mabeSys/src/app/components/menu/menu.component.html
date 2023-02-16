@@ -1,0 +1,58 @@
+<form [formGroup]="control_vistas">
+    <div class="wrapper">    
+        <div  class="body" >
+            <div style="text-align: center; justify-content: center; align-items: center;">                
+                <img src="./assets/SALESLAND.jpg" class="center">            
+            </div>
+            <div>            
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                    <div class="nav navbar-nav">     
+                        <div>            
+                            <a class="nav-item nav-link style=center"> USUARIO</a>                
+                            <input id="name_usuario" name="name_usuario" formControlName="name_usuario" type="text" class="form-control" />                            
+                        </div>                   
+                        <div *ngIf="probarRol_IV" >
+                            <a class="nav-item nav-link" (click)="activate_mostrar_IV()" >INGRESAR VENTA</a> 
+                        </div>
+                        <div *ngIf="probarRol_RU">
+                            <a class="nav-item nav-link" (click)="activate_mostrar_RU()" >REGISTRAR USUARIO</a>      
+                        </div>
+                        <div *ngIf="probarRol_IPV">
+                            <a class="nav-item nav-link" (click)="activate_mostrar_IPV()" >REGISTRAR PUNTO VENTA</a>
+                        </div> 
+                        <div *ngIf="probarRol_D">
+                            <a class="nav-item nav-link" (click)="activate_mostrar_D()" >REPORTE</a>
+                        </div> 
+                        
+                        <div>
+                            <a class="nav-item nav-link active" href="#" aria-current="page">CERRAR SESIÓN <span class="visually-hidden">(current)</span></a><br>
+                        </div>
+                        
+                        
+                         
+                    </div>
+                </nav>
+            </div>
+        </div>    
+    </div>
+    <div  id="router-outlet">
+        <router-outlet></router-outlet>
+    </div>
+
+    <div *ngIf="opcion == 1" >
+        <app-ingresar-venta></app-ingresar-venta>
+    </div>
+    <div *ngIf="opcion == 2" >
+        <app-registrar-usuario></app-registrar-usuario>
+    </div>
+    <div *ngIf="opcion == 3" >
+        <app-dashboard></app-dashboard>
+    </div>
+    <div *ngIf="opcion == 4" >
+        <app-registrar-punto-venta></app-registrar-punto-venta>
+    </div>
+    <div>
+
+    </div>
+</form>
+

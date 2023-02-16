@@ -30,6 +30,7 @@ import { ConsultaComponent } from './componentes/consulta/consulta.component';
 const routes: Routes = [
 
   {path: '',pathMatch:'full',redirectTo:'login-personal'},
+  {path: 'login-personal', component: LoginPersonalComponent},
   {path: 'agregar-personal', component: AgregarPersonalComponent },
   {path: 'editar-personal/:id', component: EditarPersonalComponent },
   {path: 'editar-personal', component: EditarPersonalComponent },

@@ -8,12 +8,6 @@ class User(BaseModel):
     password: str
 
 class Centro_costo(BaseModel):
-    id_centro_costo: Optional[int]
-    nombre_centro: str
-    tienda: str    
-    cuenta: str
-
-class Centro_costo(BaseModel):
     id_centro_costo: int
     nombre_centro: str
     tienda: str    
@@ -55,6 +49,7 @@ class Usuario(BaseModel):
     cedula: str
     nombre_usuario: str    
     password: str
+    tipo: str
 
 class Cargo(BaseModel):
     id_cargo: int    

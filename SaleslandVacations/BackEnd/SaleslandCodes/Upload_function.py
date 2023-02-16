@@ -86,6 +86,8 @@ def consultarIdContrato(tipo_contrato,fecha_inicio_contrato,salario,observacione
     fecha_inicio_contrato+"' and `salario` = '"+str(salario)+"' and `observaciones` = '"+str(observaciones)+"'")
     return auxString
 
+#Dropeo table usuario
+ejecutarSQL("DELETE FROM supervisor;")
 #Dropeo tabla cargo
 ejecutarSQL("DELETE FROM personal;")
 #Dropeo tabla centro_base 
@@ -105,6 +107,8 @@ ejecutarSQL("DELETE FROM cargo;")
 #Consulta tabla centro_costo base 
 #consultarSQL("SELECT * FROM centro_costo;")
 
+
+
 #Insercion en tabla desde dataframe
 for i in range(df2.shape[0]):
     list = []
@@ -117,9 +121,20 @@ for i in range(df2.shape[0]):
     #print("sql:",sql)
     ejecutarSQL(sql)
 
-df3 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/archivo_madre.csv", dtype='object')
+df3 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/archivo_madre.csv",sep = ';', dtype='object')
 print(df3);
 
+result = []; list = [];
+for i in range (df3.shape[0]):
+    list.append(df3.iloc[i,:][30])
+#print("\n",list) 
+[result.append(x) for x in list if x not in result] 
+for item in result:
+    sql = "INSERT INTO `supervisor`(`nombre_supervisor`, `email`) VALUES"
+    sql = sql + "('"+str(item)+"','test@example.com')"
+    print("\n",sql)
+
+"""
 #INSERCION A CANDIDATOS
 
 for i in range (df3.shape[0]):
@@ -204,8 +219,8 @@ for i in range (df3.shape[0]):
 #Insertar tabla usuarios
 list = consultarCedulasCandidatos()
 for i in range(len(list)):
-    sql = "INSERT INTO `usuario`(`cedula`, `nombre_usuario`, `password`) VALUES"
-    datos = (list[i][0],list[i][0],list[i][0])
+    sql = "INSERT INTO `usuario`(`cedula`, `nombre_usuario`, `password`, `tipo`) VALUES"
+    datos = (list[i][0],list[i][0],list[i][0],"test")
     sql = sql + str(datos)
     ejecutarSQL(sql)
     print(sql)
@@ -250,5 +265,5 @@ for i in range(df5.shape[0]):
         sql += str(datos)
         print(sql)
         ejecutarSQL(sql)
-
+"""
 
