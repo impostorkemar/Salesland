@@ -11,7 +11,7 @@ import os
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/centro_costos3.csv")
+df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/centro_costos3.csv")
 print(df2) 
 #print(df2.shape); print(df2.size); print(df2.columns); print(df2.dtypes) print(df2.iloc[0,:]); print("len",df2.iloc[0,:].size);
 
@@ -117,13 +117,13 @@ for i in range(df2.shape[0]):
     #print("sql:",sql)
     ejecutarSQL(sql)
 
-df3 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/archivo_madre.csv", dtype='object')
+df3 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/archivo_madre.csv", dtype='object')
 print(df3);
 
 #INSERCION A CANDIDATOS
 
 for i in range (df3.shape[0]):
-    list = []
+    list = []; auxFecha = ""; edadAux=0;
     sql = "INSERT INTO `candidato`(`cedula`, `nombre`, `apellido`, `genero`, `direccion_domicilio`, `ciudad`, `provincia`, `estado_civil`, `telefono_celular`, `telefono_casa`, `direccion_correo`, `fecha_nacimiento`, `edad`, `nacionalidad`,`status` ) VALUES"
     for j in range (df3.iloc[0,:].size):
         list.append(df3.iloc[i,:][j])
@@ -211,7 +211,7 @@ for i in range(len(list)):
     print(sql)
 
 #Insertar cargos
-df4 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/cargos.csv", dtype='object')
+df4 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/cargos.csv", dtype='object')
 #print(df4);
 
 for i in range (df4.shape[0]):
@@ -224,7 +224,7 @@ for i in range (df4.shape[0]):
     print(sql)
     ejecutarSQL(sql)
 
-df5 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/archivo_madre.csv", dtype='object')
+df5 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/archivo_madre.csv", dtype='object')
 print(df5);
 
 #Setear incremental en 0
