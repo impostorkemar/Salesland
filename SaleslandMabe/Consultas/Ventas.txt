@@ -1,0 +1,4 @@
+SELECT codigo_pdv FROM punto_venta where nombre_pdv = '781 - ALMA. ESPAÑA ARENAL';
+SELECT id_linea FROM linea where nombre_linea = 'AIRES';
+SELECT id_linea FROM linea where nombre_linea = 'AIRES' AND codigo_pdv = '1';
+SELECT id_linea FROM linea where nombre_linea = 'AIRES' AND codigo_pdv = (SELECT codigo_pdv FROM punto_venta where nombre_pdv = '781 - ALMA. ESPAÑA ARENAL');

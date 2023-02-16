@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" routerLink="/agregar-personal/" >AGREGAR NUEVO PERSONAL</a>
+        <a class="btn btn-warning"(click)="exportToCSV()" role="button">EXPORT  TO CSV</a>
+    </div>
+    <div class="card-body">
+        <h1> Lista de Personal </h1>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID PERSONAL</th>
+                        <th scope="col">ID CENTRO COSTO</th>
+                        <th scope="col">CEDULA</th>
+                        <th scope="col">STATUS</th>
+                        <th scope="col">ADENDUM CONTRATO</th>
+                        <th scope="col">ID CONTRATO</th>
+                        <th scope="col">ID CARGO</th>  
+                        <th scope="col">ACCIONES</th>                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let personal of Personal; let iControl=index" class="">
+                        <td scope="row">{{personal.id_personal}}</td>
+                        <td>{{personal.id_centro_costo}}</td>
+                        <td>{{personal.cedula}}</td>
+                        <td>{{personal.status}}</td>
+                        <td>{{personal.adendum_contrato}}</td>
+                        <td>{{personal.id_contrato}}</td>
+                        <td>{{personal.id_cargo}}</td>                        
+                        <td>
+                            <a class="btn btn-info" routerLink="/editar-personal/{{personal.id_personal}}-{{personal.id_centro_costo}}-{{personal.cedula}}" >EDITAR</a>
+                            |
+                            <a class="btn btn-danger"(click)="borrarRegistro(personal.id_personal,iControl)" role="button">BORRAR</a>                        
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+    </div>    
+</div>

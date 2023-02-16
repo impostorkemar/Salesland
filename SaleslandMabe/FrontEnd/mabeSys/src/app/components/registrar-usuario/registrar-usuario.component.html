@@ -1,0 +1,55 @@
+<div [formGroup]="myGroup">
+    <h1 style="text-align: center; justify-content: center; align-items: center;"> REGISTRAR USUARIO</h1>
+    
+    <div class="wrapper1">    
+        <div  class="body1">            
+        <form (ngSubmit)="registrar()" [formGroup]="registrarUsuario">           
+            
+            <div class="form-floating mb-3">                
+                <input type="text" class="form-control" name="nombre_usuario" formControlName="nombre_usuario" id="nombre_usuario" aria-describedby="helpId" placeholder="Escribe tu usuario">
+                <label>INGRESAR USUARIO</label>
+            </div>
+            
+            <div class="form-floating mb-3">                
+                <input id="password" name="password" formControlName="password" type="password" class="form-control" placeholder="Escribe tu contraseña"/>
+                <label >INGRESAR PASSWORD</label>
+            </div>
+
+            <div class="form-floating mb-3">                
+                <input id="password2" name="password2" formControlName="password2" type="password" class="form-control" placeholder="Escribe tu contraseña"/>
+                <label >REPETIR PASSWORD</label>
+            </div>
+
+            <div class="d-grid gap-2 mb-3" >
+                <button class="btn btn-primary btn-lg" type="submit" >ACEPTAR</button>                                
+            </div>
+
+            <a class="mt-3 " routerLink="/login"> volver</a>
+        </form>
+        </div>
+    </div>
+    <div>
+        <div class="wrapper1">
+            <div  class="body2">
+                <form [formGroup]="registrarCamposPersonales">
+                    <div class="form-floating mb-3">                
+                        <input type="text" class="form-control" name="cedula" formControlName="cedula" id="cedula" aria-describedby="helpId" placeholder="Escribe tu cedula">
+                        <label>CEDULA</label>
+                    </div>
+                    
+                    <div class="form-floating mb-3">                
+                        <input id="tipo" name="tipo" formControlName="tipo" type="text" class="form-control" placeholder="Escribe tu tipo"/>
+                        <label >TIPO</label>
+                    </div>
+    
+                    <div class="form-floating mb-3">                
+                        <input id="nombre" name="nombre" formControlName="nombre" type="text" class="form-control" placeholder="Escribe tu nombre"/>
+                        <label >NOMBRE COMPLETO</label>
+                    </div>
+    
+                </form>
+            </div>
+        </div>        
+    </div>
+</div>
+

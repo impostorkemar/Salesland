@@ -1,0 +1,37 @@
+<div class="card">    
+    <div class="card-header">        
+        <a class="btn btn-warning"(click)="exportToCSV()" role="button">EXPORT  TO CSV</a>
+    </div>
+    <p></p><label for="" class="form-label">ORDENAR POR </label><p></p>
+    <select [(ngModel)]="opcionSeleccionado" (change)="capturar()">
+        <option value="0">Selecciona una opción</option>
+        <option *ngFor="let dato of datos">
+            {{dato}}
+        </option>
+    </select>
+    <!-- Prueba para ver la opción seleccionado -->
+    <p [hidden]="opcionSeleccionado == '0'">Haz seleccionado la opción # {{ verSeleccion }}</p>
+    
+    
+    <!-- Prueba para ver la opción seleccionado -->
+    <p [hidden]="opcionSeleccionado2 == '0'">Haz seleccionado la opción # {{ verSeleccion }}</p>
+          
+    <div class="card-body">
+        <h1> Consulta Personalizada Centro Costo y Personal</h1>
+        <div class="table-responsive">            
+            <table class="table table-primary">                
+                <thead>
+                    <tr >
+                        <td scope="col" *ngFor="let cabecera of Cabeceras; let iControl=index" class=""><strong>{{cabecera}}</strong></td>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rows of Consultas ; let iControl=index" class="[ng-class]">
+                        <td *ngFor="let varB of Ejecuciones; let iControl=index" class="">{{rows[varB]}}</td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>        
+    </div>    
+</div>

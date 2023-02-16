@@ -1,0 +1,3 @@
+SELECT personal.id_personal, centro_costo.id_centro_costo, centro_costo.nombre_centro, centro_costo.cuenta, candidato.cedula, candidato.nombre, candidato.apellido, candidato.status, candidato.ciudad 
+FROM candidato, centro_costo, personal
+WHERE personal.cedula = candidato.cedula AND personal.id_centro_costo = centro_costo.id_centro_costo;

@@ -1,0 +1,5 @@
+SELECT *,
+(SELECT LOCAL FROM personal_ppto_vs_real where NAE = CODIGO_USUARIO) AS TIENDA, 
+(SELECT EJECUTIVO FROM personal_ppto_vs_real where NAE = CODIGO_USUARIO) AS EJECUTIVO,
+DAY(FECHA_ALTA) AS DIA
+FROM prepago

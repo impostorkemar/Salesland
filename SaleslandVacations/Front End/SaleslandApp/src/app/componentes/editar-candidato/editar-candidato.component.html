@@ -1,0 +1,101 @@
+<div class="card">
+    <div class="card-header">
+        EDITAR CANDIDATO
+    </div>
+    <div class="card-body">
+        <form ngNativeValidate [formGroup]="formularioDeCandidato" (ngSubmit)="enviarDatos()" >
+                        
+            <div class="mb-3">
+                <label for="" class="form-label">CEDULA</label>
+                <input required type="text"
+                  class="form-control" name="cedula" formControlName="cedula"  id="" aria-describedby="helpId" placeholder="Escribe la cedula" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">NOMBRE</label>
+                <input required type="text"
+                  class="form-control" name="nombre" formControlName="nombre" id="" aria-describedby="helpId" placeholder="Escribe tu nombre" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">APELLIDO</label>
+                <input required type="text"
+                  class="form-control" name="apellido" formControlName="apellido" id="" aria-describedby="helpId" placeholder="Escribe tu apellido" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">GENERO</label>
+                <input required type="text"
+                  class="form-control" name="genero" formControlName="genero" id="" aria-describedby="helpId" placeholder="Escribe tu genero" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">DIRECCION DE DOMICILIO</label>
+                <input required type="correo"
+                  class="form-control" name="direccion_domicilio" formControlName="direccion_domicilio" id="" aria-describedby="helpId" placeholder="Escribe tu direccion de domicilio" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">CIUDAD</label>
+                <input required type="text"
+                  class="form-control" name="ciudad" formControlName="ciudad" id="" aria-describedby="helpId" placeholder="Escribe tu ciudad" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">PROVINCIA</label>
+                <input required type="text"
+                  class="form-control" name="provincia" formControlName="provincia" id="" aria-describedby="helpId" placeholder="Escribe tu provincia" required>
+              </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">ESTADO CIVIL</label>
+                <input required type="text"
+                  class="form-control" name="estado_civil" formControlName="estado_civil" id="" aria-describedby="helpId" placeholder="Escribe tu estado  civil" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">TELEFONO CELULAR</label>
+                <input required type="text"
+                  class="form-control" name="telefono_celular" formControlName="telefono_celular" id="" aria-describedby="helpId" placeholder="Escribe tu telefono celular" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">TELEFONO CASA</label>
+                <input type="text"
+                  class="form-control" name="telefono_casa" formControlName="telefono_casa" id="" aria-describedby="helpId" placeholder="Escribe tu telefono de casa" >
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">DIRECCION CORREO</label>
+                <input required type="text"
+                  class="form-control" name="direccion_correo" formControlName="direccion_correo" id="" aria-describedby="helpId" placeholder="Escribe tu direccion de correo" required>
+              </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">FECHA NACIMIENTO</label>
+                <input required type="text"
+                  class="form-control" name="fecha_nacimiento" formControlName="fecha_nacimiento" id="" aria-describedby="helpId" placeholder="Escribe tu fecha de nacimiento" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">EDAD</label>
+                <input required type="text"
+                  class="form-control" name="edad" formControlName="edad" id="" aria-describedby="helpId" placeholder="Escribe tu edad" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">NACIONALIDAD</label>
+                <input required type="text"
+                  class="form-control" name="nacionalidad" formControlName="nacionalidad" id="" aria-describedby="helpId" placeholder="Escribe tu nacionalidad" required>
+              </div>            
+                      
+            <div class="btn-group" role="group" aria-label="Button group name">
+                <button type="submit" class="btn btn-warning">MODIFICAR REGISTRO</button>
+                <button type="button"  routerLink="/listar-candidatos" class="btn btn-primary">CANCELAR</button>                
+            </div>
+
+        </form>
+    </div>
+    
+</div>
+

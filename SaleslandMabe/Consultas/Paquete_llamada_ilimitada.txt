@@ -1,0 +1,5 @@
+SELECT *,
+(SELECT LOCAL FROM personal_ppto_vs_real where NAE = USUARIO_ACTIVACION) AS TIENDA,
+(SELECT EJECUTIVO FROM personal_ppto_vs_real where NAE = USUARIO_ACTIVACION) AS EJECUTIVO,
+3 as TARIFA
+FROM paq_llamad_ilim;

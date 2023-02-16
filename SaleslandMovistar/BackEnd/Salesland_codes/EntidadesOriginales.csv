@@ -1,0 +1,88 @@
+﻿Personal_ppto_vs_Real;BDD_Cnet;Pospago;Cambio_de_Plan;Terminales;Paq_Llamad_Ilim;Seguros;Mplay;CDF_FOX_HBO;Retenciones;NPS;Prepago
+NAE;Id;LINEA_NEGOCIO;TELEFONO;FECHA_FACTURA;TELEFONO;TELEFONO;Fecha;Fecha;nro_ticket;ticket_name;TELEFONO
+ID_SIN_COLAS;Fecha;NUM_TELEFONICO;SEGMENTO;LINEA_NEGOCIO;FECHA ALTA ABONADO;FECHA ALTA ABONADO;MIN;MIN;dia;fecha_creacion;ACCOUNT_NUM
+CARGO;Fecha act.;ACCOUNT_NUM;DOCUMENTO_CLIENTE;SEGMENTO;SEGMENTO;SEGMENTO;Nombre de paquete;Nombre de paquete;mes;dia_creacion;FECHA_ALTA
+JEFE;Fecha fact./alb.;FECHA_ALTA;PROVINCIA;TELEFONO;CODIGO PLAN;CODIGO PLAN;Ejecutivo;Ejecutivo;anio;mes_creacion;CLIENTE
+ESPECIALISTA;Tipo;CLIENTE;FORMA_PAGO;TIPO_DOCUMENTO;DESCRIPCION  PLAN;DESCRIPCION  PLAN;NOM_USUARIO;NOM_USUARIO;cod_usuario_creador;anio_creacion;DOCUMENTO_CLIENTE
+EJECUTIVO;Operación;DOCUMENTO_CLIENTE;PLAN_CODIGO;NUM_FACTURA;TARIFA BASICA PLAN;TARIFA BASICA PLAN;segmento;sub_segmento;created_by_group;cod_usuario_creador;TIPO_DOC_CLIENTE
+LOCAL;Tipo duplicado;TIPO_DOC_CLIENTE;DESCRIPCION_PLAN_ACTUAL;NUM_FACTURA_RELACIONADA;SLO CONTRATADO;SLO CONTRATADO;TIENDAS;TIENDA;assign_to;usuario_creadori;NOMBRE_PLAN
+ESTADO;Modelo;PlanDesc;TARIFA_BASICA_ACTUAL;ACCOUNT_NUM;DESCRIPCION SLO;DESCRIPCION SLO;EJECUTIVOS;EJECUTIVOS;assigned_to_group;created_by_group;IMEI
+CONDICION;Fabricante;IMEI;COD_PLAN_ACTIVO;NOMBRE_CLIENTE;TARIFA SLO;TARIFA SLO;TARIFA;TARIFA;usuario_asig;assign_to;ICC
+;Categoria;ICCID;DESCRIPCION_PLAN_ANTERIOR;IDENTIFICACION_CLIENTE;FECHA ACTIVACION SLO;FECHA ACTIVACION SLO;;;estado;assigned_to_group;SUB_SEGMENTO
+;IMEI;SUB_SEGMENTO;TARIFA_BASICA_ANTERIOR;MODELO_TERMINAL;USUARIO ACTIVACION;USUARIO ACTIVACION;;;motivo_atencion;locacion;REGION
+;Teléfono;SEGMENTO;FECHA_CAMBIO_PLAN;IMEI;USUARIO ACTIVACION BONO;NOM_USUARIO;;;category_1;direccalle;TIPO_CLIENTE
+;ICC;FECHA_PROCESO;DOMAIN_LOGIN_OW;CANTIDAD;TIENDA;CIUDAD;;;category_2;prov;CODIGO_USUARIO
+;Nombre;TARIFA_BASICA;CANAL;MONTO;EJECUTIVO;TIENDA;;;category_3;prov1;TIENDA
+;Tipo Documento;Oficina;CIUDAD_DISTRIBUIDOR;MOVIMIENTO;TARIFA;EJECUTIVO;;;category_4;prov2;EJECUTIVO
+;NIF/CIF;PORTABILIDAD;TIPO_MOVIMIENTO;COSTO_UNITARIO;;ASISTENCIA;;;pronopro;problem_area;DIA
+;Segmento;Operadora_origen;PLAN_NOMBRE;;UPSS+;;;numero_telefono;access_id;;
+;Firma Digital;FORMA_PAGO;DIF. TARIFAS;;SEGURIDAD DIGITAL;;;name;cta_facturacion;;
+;Forma Registro;FORMA_PAGO_FINAL;C. COMISIÓN TME;TARIFA_BASICA;;TARIFA ASISTENCIA;;;segmento;motivo_atencion;
+;Consiente RGPD;USUARIO;TIPO DE MOVIMIENTO SLSL;USUARIO_FINAL;;;;;sub_segmento;secunda_prima;
+;Id autor;NOM_DISTRIBUIDOR_FINAL;NOM_PLAZA;TIPO_VENTA_2;;;;;linea_negocio;category_1;
+;Autor;TIPO_MOVIMIENTO;CRUCE_CONTROLNET;TIPO_VENTA;;;;;ciclo;category_2;
+;Id com.;ALTA_CON_TERMINAL;DIA;CUOTAS_FINANCIADAS;;;;;nom_usuario;category_3;
+;Comercial;PLANES TELEVENTAS;TIENDA;forma_pago_factura;;;;;canal;category_4;
+;Grupo;PREVIO PAGO;EJECUTIVO;CUOTA_INICIAL;;;;;campania;lineasafect;
+;Punto de venta;IP'S;RETENCION BI;tarjeta_banco;;;;;nom_plaza;ip_address;
+;SFID;Dolarazo;PLANES ADULTO MAYOR;cuotas;;;;;ciudad;pronopro;
+;Tarifa;CRUCE_CNET;;FORMAS DE PAGO;;;;;sub_canal;description;
+;Consumo;LOCALES;;FINANCIAMIENTO_TERCEROS;;;;;provincia;numero_telefono;
+;Contrato antiguo;EJECUTIVO;;CRUCE_CONTROLNET;;;;;region;name;
+;Consumo anterior;TIPO;;LOCALES;;;;;orden_venta;email;
+;Promoción;DIA;;EJECUTIVO;;;;;tienda;cta_facturacion;
+;Operador Donante;PLAN $11,42;;TIPO ALTA;;;;;ejecutivo;cliente_ident_tipo;
+;Compromiso;PLAN TELE;;TIPO ALTA COMISIONES;;;;;cruce;cta_ident_num;
+;Nº Plazos;PLANES TOTAL;;DIA;;;;;reten1eralinea;segmento;
+;Tarjeta;PLANES $11,42 Y TELE;;COMISIONES TERMINALES;;;;;retentotal;cta_segmento;
+;Servicio;MODABILIDAD ACT.;;COMISIONES RENOVACIONES;;;;;ingresos;linea_neg_cta;
+;Accesorio;COMISION UPFRONT;;COMISIONES BONO;;;;;numero_telefono;cliente_fecha_alta;
+;IMEI acc.;COMISION BC;;COMISION TOTAL;;;;;;cliente_id;
+;Estado;COMISION BF;;PROY. COM. TERMINALES;;;;;;ciclo;
+;Fact./alb.;;;PROY. COM. RENOV.;;;;;;nom_usuario;
+;Abono;;;PROY. COM. 2%;;;;;;local_oficina;
+;F. pago;;;PROY. COM. TOTAL;;;;;;nom_distribuidor;
+;A pagar fact.;;;;;;;;;provincia;
+;A pagar oper.;;;;;;;;;region;
+;Canon;;;;;;;;;tipo;
+;Puntos tipo;;;;;;;;;contesta_encuesta;
+;Núm. puntos;;;;;;;;;q1nps;
+;Doc.;;;;;;;;;q2satisfaccion;
+;Código Terminal/Tarjeta;;;;;;;;;q3solucion;
+;Código Promo;;;;;;;;;q4bioseguridad;
+;Monto Equipo Chip;;;;;;;;;q5comentarios;
+;Aplica porcentaje;;;;;;;;;fuente_respuesta;
+;Aplica Pago Anticipado;;;;;;;;;tipo_encuestado;
+;Importe Pago Anticipado;;;;;;;;;motivo;
+;NAE;;;;;;;;;submotivo;
+;Es televenta;;;;;;;;;tienda;
+;Aplica 50% adulto mayor;;;;;;;;;p_d;
+;Aplica 50% Conadis;;;;;;;;;encuestas;
+;Es venta externa;;;;;;;;;;
+;Cupo Crediticio;;;;;;;;;;
+;Tipo de cliente;;;;;;;;;;
+;Valor equipo sin iva;;;;;;;;;;
+;Descarga App Movistar Play;;;;;;;;;;
+;Bono Movistar Play ayudó;;;;;;;;;;
+;ACT.;;;;;;;;;;
+;BI FECHA;;;;;;;;;;
+;TIENDA;;;;;;;;;;
+;PRODUCTOS;;;;;;;;;;
+;SERVICIOS;;;;;;;;;;
+;CRUCE POSPAGO BI;;;;;;;;;;
+;ALTAS BI;;;;;;;;;;
+;TIPO ALTA BI;;;;;;;;;;
+;TARIFA BASICA BI;;;;;;;;;;
+;TERMINALES ALTA;;;;;;;;;;
+;TIPO PAGO TERMINALES;;;;;;;;;;
+;TERMINALES MONTO;;;;;;;;;;
+;CAMBIO DE PLAN;;;;;;;;;;
+;CAMBIO DE PLAN DIF;;;;;;;;;;
+;PAQ. LLAMADAS;;;;;;;;;;
+;MPLAY;;;;;;;;;;
+;SEGUROS;;;;;;;;;;
+;CDF-FOX-HBO;;;;;;;;;;
+;PREPAGO;;;;;;;;;;
+;RETENCION;;;;;;;;;;
+;FECHA OPERACION;;;;;;;;;;
+;Cruce Hibridos;;;;;;;;;;
