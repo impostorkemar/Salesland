@@ -1,5 +1,0 @@
-SELECT *,
-(SELECT LOCAL FROM personal_ppto_vs_real where NAE = cdf_fox_hbo.EJECUTIVO) AS TIENDA, 
-(SELECT EJECUTIVO FROM personal_ppto_vs_real where NAE = cdf_fox_hbo.EJECUTIVO) AS EJECUTIVO,
-'14.99' AS TARIFA
-FROM cdf_fox_hbo;
