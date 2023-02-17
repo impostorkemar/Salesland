@@ -129,7 +129,7 @@
     <column id="COL29" populated="true" UUID="1d32cd9f-d081-4304-9b7d-fe04663d828f" autoIncrement="false" autoIncrementSequenceName="CANDIDATO_direccion_correo_seq" defaultValue="" name="direccion_correo" nullable="0" physicalName="direccion_correo" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL30" populated="true" UUID="46ecb232-8e7c-4db9-881e-0a21274f2378" autoIncrement="false" autoIncrementSequenceName="CANDIDATO_fecha_nacimiento_seq" defaultValue="" name="fecha_nacimiento" nullable="0" physicalName="fecha_nacimiento" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+    <column id="COL30" populated="true" UUID="46ecb232-8e7c-4db9-881e-0a21274f2378" autoIncrement="false" autoIncrementSequenceName="CANDIDATO_fecha_nacimiento_seq" defaultValue="" name="fecha_nacimiento" nullable="0" physicalName="fecha_nacimiento" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL31" populated="true" UUID="040ab8b2-cc8f-48d3-a72e-5555c033cb29" autoIncrement="false" autoIncrementSequenceName="CANDIDATO_edad_seq" defaultValue="" name="edad" nullable="0" physicalName="edad" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
@@ -271,7 +271,7 @@
     <column id="COL70" populated="true" UUID="ed76dc50-5472-4c53-95ae-905667841712" autoIncrement="false" autoIncrementSequenceName="CONTRATO_tipo_contrato_seq" defaultValue="" name="tipo_contrato" nullable="0" physicalName="tipo_contrato" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL71" populated="true" UUID="82c8b283-fed2-481d-a4ed-d8be5bd9d954" autoIncrement="false" autoIncrementSequenceName="CONTRATO_fecha_inicio_contrato_seq" defaultValue="" name="fecha_inicio_contrato" nullable="1" physicalName="fecha_inicio_contrato" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+    <column id="COL71" populated="true" UUID="82c8b283-fed2-481d-a4ed-d8be5bd9d954" autoIncrement="false" autoIncrementSequenceName="CONTRATO_fecha_inicio_contrato_seq" defaultValue="" name="fecha_inicio_contrato" nullable="0" physicalName="fecha_inicio_contrato" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL72" populated="true" UUID="001bc297-c8be-4426-9c93-0ed5d508d8c2" autoIncrement="false" autoIncrementSequenceName="CONTRATO_salario_seq" defaultValue="" name="salario" nullable="1" physicalName="salario" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >

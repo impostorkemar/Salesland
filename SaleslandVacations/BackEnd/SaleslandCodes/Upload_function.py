@@ -132,7 +132,8 @@ for i in range (df3.shape[0]):
 for item in result:
     sql = "INSERT INTO `supervisor`(`nombre_supervisor`, `email`) VALUES"
     sql = sql + "('"+str(item)+"','test@example.com')"
-    print("\n",sql)
+    print("\n",sql);
+    #ejecutarSQL(sql);
 
 """
 #INSERCION A CANDIDATOS
