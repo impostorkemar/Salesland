@@ -51,8 +51,8 @@ def comprobar_usuario(user: str, passw: str):
     return conn.execute("SELECT tipo FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';").first()
 
 @user.post('/usuarios/', response_model=Usuario,tags=["usuarios"])
-def create_usuario(usuario: Usuario):
-    nuevo_usuario = {"cedula":usuario.cedula, "nombre_usuario":usuario.nombre_usuario, "password":usuario.password}
+def create_usuario(user: Usuario):
+    nuevo_usuario = {"cedula":user.cedula, "usuario":user.usuario, "password":user.password}
     result = conn.execute(usuarios.insert().values(nuevo_usuario))    
     return conn.execute( usuarios.select().where(usuarios.c.id_usuario == result.lastrowid)).first()
 
@@ -67,10 +67,10 @@ def delete_usuario(id: str):
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 @user.put("/usuarios/{id}",response_model=Usuario,tags=["usuarios"])
-def update_usuario(id: str,usuario: Usuario): 
-    sql="UPDATE `usuario` SET `id_usuario`='"+str(usuario.id_usuario)+"',`cedula`='"+str(usuario.cedula)+"',`nombre_usuario`='"+str(usuario.nombre_usuario)+"',`password`='"+str(usuario.password)+"' WHERE `id_usuario` = '"+str(id)+"'"  
+def update_usuario(id: str,user: Usuario): 
+    sql="UPDATE `usuario` SET `id_usuario`='"+str(user.id_usuario)+"',`cedula`='"+str(user.cedula)+"',`usuario`='"+str(user.usuario)+"',`password`='"+str(user.password)+"' WHERE `id_usuario` = '"+str(id)+"'"  
     conn.execute(sql)
-    return get_usuario(usuario.id_usuario)
+    return get_usuario(user.id_usuario)
 
 #CONSULTA CENTRO_COSTO
 @user.get("/centro_costos/", tags=["centro_costos"])
@@ -273,5 +273,8 @@ async def get_Tablas(varConsul : str, varOrd : str ):
     return conn.execute(sql+";").fetchall()  
     #return None  
 
+@user.get("/nombreUsuarioByUser_Pass/{user}-{pass}", tags=["usuarios"])
+async def get_NombresPuntosVentas(user: str, passw: str):
+    return conn.execute("SELECT usuario FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';").first()
 
 

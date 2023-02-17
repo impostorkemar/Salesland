@@ -12,7 +12,7 @@ users = Table("users", meta,
 usuarios = Table("usuario", meta, 
     Column("id_usuario", Integer, primary_key=True),
     Column("cedula", String(10)),
-    Column("nombre_usuario", String(20)),
+    Column("usuario", String(20)),
     Column("password", String(10)),
     Column("tipo", String(20))
 )
@@ -67,12 +67,20 @@ centro_costos = Table("centro_costo", meta,
 
 personales = Table("personal", meta, 
     Column("id_personal", Integer, primary_key=True),
-    Column("id_centro_costo", Numeric(10), primary_key=True),
+    Column("id_centro_costo", Numeric(10), primary_key=True),    
     Column("cedula", String(10), primary_key=True),
+    Column("id_supervisor", String(30)),
     Column("status", String(20)),   
     Column("adendum_contrato", String(20)),
     Column("id_contrato", Integer),
     Column("id_cargo", Numeric)
+   
+)
+
+users = Table("supervisor", meta, 
+    Column("id_supervisor", Integer, primary_key=True),
+    Column("nombre_supervisor", String(255)),
+    Column("email", String(255)),    
 )
 
 meta.create_all(engine)

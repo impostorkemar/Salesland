@@ -34,7 +34,7 @@ export class MenuComponent implements OnInit {
     var user = localStorage.getItem('USER') as string;
     var passw = localStorage.getItem('PASS') as string
     this.opcion = 0;
-    this.testuserService.ConsultarNombrePromotor(user,passw).subscribe(respuesta=>{
+    this.testuserService.ConsultarNombreUsuario(user,passw).subscribe(respuesta=>{
         console.log("MENU",user,passw,"RESPONSE:",respuesta);
         if (respuesta != null){
           const json = JSON.stringify(respuesta);
@@ -50,7 +50,7 @@ export class MenuComponent implements OnInit {
         });
       }     
     });
-    
+    this.activate_mostrar_IV();
   }
 
   mostrarDatos(){

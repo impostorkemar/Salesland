@@ -84,9 +84,9 @@ export class TestuserService {
     return this.clienteHttp.get(this.API+urlAPI);                
   }
 
-  ConsultarNombrePromotor(user:any,pass:any):Observable<any>{
+  ConsultarNombreUsuario(user:any,pass:any):Observable<any>{
     //console.log("usuario:",user,"pass:", pass)
-    var urlAPI="nombrePromotorByUser_Pass/"+user+"-{pass}?passw="+pass;    
+    var urlAPI="nombreUsuarioByUser_Pass/"+user+"-{pass}?passw="+pass;    
     return this.clienteHttp.get(this.API+urlAPI);
   }
 

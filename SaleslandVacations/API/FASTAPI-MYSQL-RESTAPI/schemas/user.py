@@ -47,7 +47,7 @@ class Contrato(BaseModel):
 class Usuario(BaseModel):
     id_usuario: Optional[int]
     cedula: str
-    nombre_usuario: str    
+    usuario: str    
     password: str
     tipo: str
 
@@ -59,6 +59,7 @@ class Personal(BaseModel):
     id_personal: Optional[int]
     id_centro_costo: int
     cedula: str    
+    id_supervisor: int
     status: str
     adendum_contrato: str
     id_contrato: int

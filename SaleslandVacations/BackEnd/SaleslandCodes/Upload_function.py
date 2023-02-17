@@ -10,6 +10,7 @@ import io
 import os
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import re
 
 df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/centro_costos3.csv")
 print(df2) 
@@ -124,18 +125,18 @@ for i in range(df2.shape[0]):
 df3 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/archivo_madre.csv",sep = ';', dtype='object')
 print(df3);
 
-result = []; list = [];
+result = []; listDF3 = [];
 for i in range (df3.shape[0]):
-    list.append(df3.iloc[i,:][30])
+    listDF3.append(df3.iloc[i,:][30])
 #print("\n",list) 
-[result.append(x) for x in list if x not in result] 
+[result.append(x) for x in listDF3 if x not in result] 
 for item in result:
     sql = "INSERT INTO `supervisor`(`nombre_supervisor`, `email`) VALUES"
     sql = sql + "('"+str(item)+"','test@example.com')"
     print("\n",sql);
-    #ejecutarSQL(sql);
+    ejecutarSQL(sql);
 
-"""
+
 #INSERCION A CANDIDATOS
 
 for i in range (df3.shape[0]):
@@ -218,13 +219,15 @@ for i in range (df3.shape[0]):
     ejecutarSQL(sql)
 
 #Insertar tabla usuarios
+ejecutarSQL("ALTER TABLE supervisor AUTO_INCREMENT=0")
 list = consultarCedulasCandidatos()
 for i in range(len(list)):
-    sql = "INSERT INTO `usuario`(`cedula`, `nombre_usuario`, `password`, `tipo`) VALUES"
+    sql = "INSERT INTO `usuario`(`cedula`, `usuario`,`password`, `tipo`) VALUES"   
     datos = (list[i][0],list[i][0],list[i][0],"test")
     sql = sql + str(datos)
     ejecutarSQL(sql)
     print(sql)
+
 
 #Insertar cargos
 df4 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/cargos.csv", dtype='object')
@@ -240,31 +243,32 @@ for i in range (df4.shape[0]):
     print(sql)
     ejecutarSQL(sql)
 
-df5 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/archivo_madre.csv", dtype='object')
-print(df5);
+#df5 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/archivo_madre.csv", dtype='object')
+#print(df5);
 
 #Setear incremental en 0
 ejecutarSQL("ALTER TABLE personal AUTO_INCREMENT=0")
-
-for i in range(df5.shape[0]): 
-    list = consultarIdCentroXTienda(df5.iloc[i,:][25])
+for i in range(df3.shape[0]): 
+    list = consultarIdCentroXTienda(df3.iloc[i,:][25])
     #print("\n\t",df5.iloc[i,:][25])
     for j in range(len(list)):
-        sql="INSERT INTO `personal`( `id_centro_costo`, `cedula`, `status`, `adendum_contrato`, `id_contrato`, `id_cargo`) VALUES ";
-        if isNaN(df5.iloc[i,:][29]):
+        sql="INSERT INTO `personal`( `id_centro_costo`, `cedula`,`id_supervisor`, `status`, `adendum_contrato`, `id_contrato`, `id_cargo`) VALUES ";
+        if isNaN(df3.iloc[i,:][29]):
             auxObs = ""
         else:
-            auxObs = df5.iloc[i,:][29]
-        if isNaN(df5.iloc[i,:][26]):
+            auxObs = df3.iloc[i,:][29]
+        if isNaN(df3.iloc[i,:][26]):
             auxFecha = ""
         else:        
-            fechaAux = str(df5.iloc[i,:][26]).split("/")        
+            fechaAux = str(df3.iloc[i,:][26]).split("/")        
             auxFecha = fechaAux[2]+"-"+fechaAux[0]+"-"+fechaAux[1]
         #print("fechaAUx:",fechaAux,"auxFecha:",auxFecha)
         #print(list[j][0],df5.iloc[i,:][0], df5.iloc[i,:][23], "",consultarIdContrato(df5.iloc[i,:][13],str(auxFecha),str(df5.iloc[i,:][27]).replace("$",""),auxObs),"")
-        datos = str(list[j][0]),df5.iloc[i,:][0], df5.iloc[i,:][23], "",str(i+1),"1"
+        id_supervisor = consultarSQL("SELECT `id_supervisor` FROM `supervisor` WHERE `nombre_supervisor` =  '"+str(listDF3[i])+"';");
+        x = re.search('\d+', id_supervisor)        
+        datos = str(list[j][0]),df3.iloc[i,:][0],x.group(), df3.iloc[i,:][23], "",str(i+1),"1"
         sql += str(datos)
         print(sql)
         ejecutarSQL(sql)
-"""
+
 
