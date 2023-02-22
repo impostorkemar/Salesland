@@ -23,10 +23,15 @@ export class MenuComponent implements OnInit {
     
     this.control_vistas = this.fb.group({
       name_usuario: ['',Validators.required],
+      stateVacaciones: ['',Validators.required],
+      stateReportes: ['',Validators.required],   
+
     });
   }
 
   ngOnInit(): void {
+   
+    
     let Array: string[]=[];
     let Array2: string[]=[];
     this.mostrarDatos();    
@@ -47,10 +52,12 @@ export class MenuComponent implements OnInit {
         console.log("DATOS:",Array[0]);       
         this.control_vistas.setValue({
           name_usuario: Array[0],
+          stateVacaciones: 'VACACIONES',
+          stateReportes: 'REPORTES',
         });
       }     
     });
-    this.activate_mostrar_IV();
+   
   }
 
   mostrarDatos(){
@@ -91,6 +98,15 @@ export class MenuComponent implements OnInit {
   activate_mostrar_IPV(){
     console.log("Active PDV"); 
     this.opcion=4;
+  }
+
+  menuReportes(){
+    console.log("REPORTES:",this.control_vistas.value.stateReportes); 
+    
+    if (this.control_vistas.value.stateReportes as string === '1'){
+      console.log("ENTRE"); 
+      this.opcion=5;
+      }
   }
 
   

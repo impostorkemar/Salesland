@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/servicio/crud.service';
+import { CrudService } from 'src/app/services/crud.service';
 import { ExportListService } from 'src/app/servicio/export-list.service';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import { concat } from 'rxjs';

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { toChildArray } from 'preact';
-import { CrudService } from '../../servicio/crud.service';
+import { CrudService } from 'src/app/services/crud.service';
 import { Router } from '@angular/router';
 
 @Component({

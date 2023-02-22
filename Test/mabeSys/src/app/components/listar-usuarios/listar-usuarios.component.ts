@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/servicio/crud.service';
-import { ExportListService } from 'src/app/servicio/export-list.service';
+import { CrudService } from 'src/app/services/crud.service';
+import { ExportListService } from 'src/app/services/export-list.service';
 
 
 @Component({

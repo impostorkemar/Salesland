@@ -11,11 +11,12 @@
                             <h1 class="nav-item nav-link style=center text"> USUARIO: <input id="name_usuario" name="name_usuario" formControlName="name_usuario" type="text"  /></h1>                
                         </div>                  
                         <div *ngIf="true" >
-                            <select class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
+                     
+                            <select formControlName="stateVacaciones" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
                                 <option selected>VACACIONES</option>
                                 <option *ngIf="true" value="1">INGRESO</option>  
-                                <option *ngIf="true" value="2">REPORTE PERSONAL</option>  
-                                <option *ngIf="true" value="3">REPORTE GENERAL</option>                            
+                                <option *ngIf="true" value="2">REPORTE PERSONAL</option> 
+                                <option *ngIf="true" value="2">REPORTE GENERAL</option>
                               </select>                  
                         </div>
                         <div *ngIf="true" >
@@ -26,14 +27,14 @@
                               </select>                  
                         </div>
                         <div *ngIf="true" >
-                            <select class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
+                            <select (click)="menuReportes()" formControlName="stateReportes"  class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example" >
                                 <option selected>REPORTES</option>
-                                <option *ngIf="true" value="1">USUARIO</option> 
-                                <option *ngIf="true" value="2">CANDIDATO</option>   
-                                <option *ngIf="true" value="3">CARGO</option>
-                                <option *ngIf="true" value="4">CENTRO COSTO</option>  
-                                <option *ngIf="true" value="5">CONTRATO</option>  
-                                <option *ngIf="true" value="6">EXPERIENCIA LABORAL</option> 
+                                <option *ngIf="true" value="1" >USUARIO</option> 
+                                <option *ngIf="true" value="2" >CANDIDATO</option>   
+                                <option *ngIf="true" value="3" >CARGO</option>
+                                <option *ngIf="true" value="4" >CENTRO COSTO</option>  
+                                <option *ngIf="true" value="5" >CONTRATO</option>  
+                                <option *ngIf="true" value="6" >EXPERIENCIA LABORAL</option> 
                               </select>                  
                         </div>   
                          
@@ -61,8 +62,9 @@
     <div *ngIf="opcion == 4" >
         <app-registrar-punto-venta></app-registrar-punto-venta>
     </div>
-    <div>
-
+    <div *ngIf="opcion == 5" >
+        <app-listar-usuarios></app-listar-usuarios>
     </div>
+    
 </form>
 
