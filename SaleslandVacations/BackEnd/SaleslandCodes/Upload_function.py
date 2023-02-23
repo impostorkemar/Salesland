@@ -199,7 +199,7 @@ ejecutarSQL("ALTER TABLE contrato AUTO_INCREMENT=0")
 # Insert tabla contrato
 for i in range (df3.shape[0]):
     list = []
-    sql = "INSERT INTO `contrato`(`tipo_contrato`, `fecha_inicio_contrato`, `salario`, `observaciones`) VALUES"
+    sql = "INSERT INTO `contrato`(`tipo_contrato`, `fecha_inicio_contrato`, `fecha_fin_contrato`, `salario`, `observaciones`) VALUES"
     for j in range (df3.iloc[0,:].size):
         list.append(df3.iloc[i,:][j])
     #print(list)
@@ -213,7 +213,7 @@ for i in range (df3.shape[0]):
         fechaAux = str(list[26]).split("/")
         auxFecha = fechaAux[2]+"-"+fechaAux[0]+"-"+fechaAux[1]
     #print(list[27])
-    datos = (list[13],auxFecha,str(list[27]).replace("$",""),auxObs)
+    datos = (list[13],auxFecha,'',str(list[27]).replace("$",""),auxObs)
     sql = sql + str(datos) 
     print(sql)
     ejecutarSQL(sql)
