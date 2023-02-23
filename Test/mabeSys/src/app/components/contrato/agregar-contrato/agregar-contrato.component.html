@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-header">
+        AGREGAR CONTRATO
+    </div>
+    <div class="card-body">
+        <form ngNativeValidate [formGroup]="formularioContrato" (ngSubmit)="enviarDatos()" >
+                        
+                      
+            <div class="mb-3">
+                <label for="" class="form-label">TIPO CONTRATO</label>
+                <input required type="text"
+                  class="form-control" name="tipo_contrato" formControlName="tipo_contrato" id="" aria-describedby="helpId" placeholder="Escribe tu tipo contrato">
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">FECHA INICIO CONTRATO</label>
+                <input required type="text"
+                  class="form-control" name="fecha_inicio_contrato" formControlName="fecha_inicio_contrato" id="" aria-describedby="helpId" placeholder="Escribe la fecha inicio contrato">
+              </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">SALARIO</label>
+                <input required type="text"
+                  class="form-control" name="salario" formControlName="salario" id="" aria-describedby="helpId" placeholder="Escribe tu salario">
+              </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">OBSERVACIONES</label>
+                <input required type="text"
+                  class="form-control" name="observaciones" formControlName="observaciones" id="" aria-describedby="helpId" placeholder="Escribe las observaciones">
+              </div>
+
+            <div class="btn-group" role="group" aria-label="Button group name">
+                <button type="submit" class="btn btn-success">AGREGAR</button>
+                <button type="button" routerLink="/menu" class="btn btn-primary">CANCELAR</button>                
+            </div>
+
+        </form>
+    </div>
+    
+</div>

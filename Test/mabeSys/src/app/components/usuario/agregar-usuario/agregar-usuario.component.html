@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header">
+        AGREGAR USUARIO
+    </div>
+    <div class="card-body">
+        <form ngNativeValidate [formGroup]="formularioDeUsuario" (ngSubmit)="enviarDatos()" >
+                        
+            <div class="mb-3">
+                <label for="" class="form-label">CEDULA</label>
+                <input required type="text"
+                  class="form-control" name="cedula" formControlName="cedula"  id="cedula" aria-describedby="helpId" placeholder="Escribe la cedula" required>
+              </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">NOMBRE USUARIO</label>
+                <input required type="text"
+                  class="form-control" name="nombre_usuario" formControlName="nombre_usuario" id="nombre_usuario" aria-describedby="helpId" placeholder="Escribe tu usuario" required>
+              </div>
+            
+            <div class="mb-3">
+                <label id="password_label" for="password">PASSWORD</label>
+                <input required id="password" name="password" formControlName="password" type="password" class="form-control" placeholder="Escribe tu contraseña" required/>
+            </div>
+
+            <div class="btn-group" role="group" aria-label="Button group name">
+                <button type="submit" class="btn btn-success">AGREGAR</button>
+                <button type="button" routerLink="/menu" class="btn btn-primary">CANCELAR</button>                
+            </div>
+
+        </form>
+    </div>
+    
+</div>

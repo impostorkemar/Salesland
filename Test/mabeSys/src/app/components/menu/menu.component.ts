@@ -9,11 +9,15 @@ import { TestuserService } from 'src/app/services/testuser.service';
 })
 export class MenuComponent implements OnInit {
   control_vistas: FormGroup;
-  probarRol_IV!: Boolean
-  probarRol_RU!: Boolean
-  probarRol_D!: Boolean  
-  probarRol_IPV!: Boolean
+  rolVacations!: Boolean;
+  rolPersonal!: Boolean;
+  rolReportes!: Boolean; 
+  probarRol_IV!: Boolean;
+  probarRol_RU!: Boolean;
+  probarRol_D!: Boolean;  
+  probarRol_IPV!: Boolean;
   opcion:number =1;
+  nombreVentana:string = "";
 
 
   constructor(
@@ -30,8 +34,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
-    
+    this.nombreVentana="";    
     let Array: string[]=[];
     let Array2: string[]=[];
     this.mostrarDatos();    
@@ -49,7 +52,7 @@ export class MenuComponent implements OnInit {
             Array.push(value);  
           }                      
         });  
-        console.log("DATOS:",Array[0]);       
+        //console.log("DATOS:",Array[0]);       
         this.control_vistas.setValue({
           name_usuario: Array[0],
           stateVacaciones: 'VACACIONES',
@@ -64,49 +67,48 @@ export class MenuComponent implements OnInit {
     console.log("MENU ROL:",localStorage.getItem('ROLE') as string)
     if (localStorage.getItem('ROLE') as string == 'ROLE_ADMIN'){
       console.log("PROBAR: admin");             
-      this.probarRol_IV = true;
-      this.probarRol_RU = true;
-      this.probarRol_D = true;
-      this.probarRol_IPV = true;
+      this.rolVacations = true;
+      this.rolPersonal = true; 
+      this.rolReportes = true;  
     }if (localStorage.getItem('ROLE') as string ==='ROLE_SUPERVISOR') {
       console.log("PROBAR: supervisor"); 
-      this.probarRol_IV = false;
-      this.probarRol_RU = false;
-      this.probarRol_D = true; 
-      this.probarRol_IPV = false;  
+      this.rolVacations = true;
+      this.rolPersonal = true; 
+      this.rolReportes = false;   
     }if (localStorage.getItem('ROLE') as string ==='ROLE_USER') {
       console.log("PROBAR: promotor");
-      this.probarRol_IV = true;
-      this.probarRol_RU = false;
-      this.probarRol_D = false; 
-      this.probarRol_IPV = false;    
+      this.rolVacations = true;
+      this.rolPersonal = false; 
+      this.rolReportes = false;   
     }
   }
-
-  activate_mostrar_IV(){
-    console.log("Active IV");    
-    this.opcion=1;
-  }
-  activate_mostrar_RU(){
-    console.log("Active RU"); 
-    this.opcion=2;
-  }
-  activate_mostrar_D(){
-    console.log("Active D"); 
-    this.opcion=3;
-  }
-  activate_mostrar_IPV(){
-    console.log("Active PDV"); 
-    this.opcion=4;
-  }
-
+  
   menuReportes(){
-    console.log("REPORTES:",this.control_vistas.value.stateReportes); 
-    
+         
     if (this.control_vistas.value.stateReportes as string === '1'){
-      console.log("ENTRE"); 
-      this.opcion=5;
-      }
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='USUARIO';
+    }
+    if (this.control_vistas.value.stateReportes as string === '2'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='CANDIDATO';
+    }
+    if (this.control_vistas.value.stateReportes as string === '3'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='CARGOS';
+    }
+    if (this.control_vistas.value.stateReportes as string === '4'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='CENTRO-COSTO';
+    }
+    if (this.control_vistas.value.stateReportes as string === '5'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='CONTRATO';
+    }
+    if (this.control_vistas.value.stateReportes as string === '6'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='EXPERIENCIA-LABORAL';
+    }
   }
 
   

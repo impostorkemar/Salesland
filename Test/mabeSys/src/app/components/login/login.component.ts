@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         }if (respuesta2['tipo'] as string ==='supervisor') {
           console.log("COMPARA: supervisor")
           this.login('ROLE_SUPERVISOR');
-        }if (respuesta2['tipo'] as string ==='promotor') {
+        }if (respuesta2['tipo'] as string ==='user') {
           console.log("COMPARA: promotor")
           this.login('ROLE_USER');
         } 
@@ -84,11 +84,11 @@ export class LoginComponent implements OnInit {
   goToDashBoard() {
     let role = this.authService.getRole();
     if (role === 'ROLE_ADMIN')
-      this.router.navigate(['/ingresar_venta']);
+      this.router.navigate(['/login']);
     if (role === 'ROLE_USER')
-      this.router.navigate(['/ingresar_venta']);
+      this.router.navigate(['/login']);
     if (role === 'ROLE_SUPERVISOR')
-      this.router.navigate(['/ingresar_venta']);
+      this.router.navigate(['/login']);
 
   }
 

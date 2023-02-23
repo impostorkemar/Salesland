@@ -14,27 +14,26 @@
                      
                             <select formControlName="stateVacaciones" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
                                 <option selected>VACACIONES</option>
-                                <option *ngIf="true" value="1">INGRESO</option>  
-                                <option *ngIf="true" value="2">REPORTE PERSONAL</option> 
-                                <option *ngIf="true" value="2">REPORTE GENERAL</option>
+                                <option *ngIf="rolVacations" value="1">1.INGRESO</option>  
+                                <option *ngIf="rolVacations" value="2">2.REPORTE PERSONAL</option> 
+                                <option *ngIf="rolVacations" value="2">3.REPORTE GENERAL</option>
                               </select>                  
                         </div>
                         <div *ngIf="true" >
                             <select class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
-                                <option selected>PERSONAL</option>
-                                <option *ngIf="true" value="1">AGREGAR PERSONAL</option>   
-                                <option *ngIf="true" value="1">REPORTE PERSONAL</option>                               
+                                <option selected>PERSONAL</option>                                   
+                                <option *ngIf="rolPersonal" value="1">1.PERSONAL</option>                               
                               </select>                  
                         </div>
                         <div *ngIf="true" >
-                            <select (click)="menuReportes()" formControlName="stateReportes"  class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example" >
+                            <select (change)="menuReportes()" formControlName="stateReportes"  class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example" >
                                 <option selected>REPORTES</option>
-                                <option *ngIf="true" value="1" >USUARIO</option> 
-                                <option *ngIf="true" value="2" >CANDIDATO</option>   
-                                <option *ngIf="true" value="3" >CARGO</option>
-                                <option *ngIf="true" value="4" >CENTRO COSTO</option>  
-                                <option *ngIf="true" value="5" >CONTRATO</option>  
-                                <option *ngIf="true" value="6" >EXPERIENCIA LABORAL</option> 
+                                <option *ngIf="rolReportes" value="1" >1.USUARIO</option> 
+                                <option *ngIf="rolReportes" value="2" >2.CANDIDATO</option>   
+                                <option *ngIf="rolReportes" value="3" >3.CARGO</option>
+                                <option *ngIf="rolReportes" value="4" >4.CENTRO COSTO</option>  
+                                <option *ngIf="rolReportes" value="5" >5.CONTRATO</option>  
+                                <option *ngIf="rolReportes" value="6" >6.EXPERIENCIA LABORAL</option> 
                               </select>                  
                         </div>   
                          
@@ -50,20 +49,27 @@
     <div  id="router-outlet">
         <router-outlet></router-outlet>
     </div>
-    <div *ngIf="opcion == 1" >
-        <app-ingresar-venta></app-ingresar-venta>
+    
+    <div *ngIf="nombreVentana === 'PERSONAL'" >
+        <app-listar-personal></app-listar-personal>
     </div>
-    <div *ngIf="opcion == 2" >
-        <app-registrar-usuario></app-registrar-usuario>
-    </div>
-    <div *ngIf="opcion == 3" >
-        <app-dashboard></app-dashboard>
-    </div>
-    <div *ngIf="opcion == 4" >
-        <app-registrar-punto-venta></app-registrar-punto-venta>
-    </div>
-    <div *ngIf="opcion == 5" >
+    <div *ngIf="nombreVentana === 'USUARIO'" >
         <app-listar-usuarios></app-listar-usuarios>
+    </div>
+    <div *ngIf="nombreVentana === 'CANDIDATO'" >
+        <app-listar-candidatos></app-listar-candidatos>
+    </div>
+    <div *ngIf="nombreVentana === 'CARGOS'" >
+        <app-listar-candidatos></app-listar-candidatos>
+    </div>
+    <div *ngIf="nombreVentana === 'CENTRO-COSTO'" >
+        <app-listar-centros-costos></app-listar-centros-costos>
+    </div>
+    <div *ngIf="nombreVentana === 'CONTRATO'" >
+        <app-listar-contratos></app-listar-contratos>
+    </div>
+    <div *ngIf="nombreVentana === 'EXPERIENCIA-LABORAL'" >
+        <app-listar-experiencias-laborales></app-listar-experiencias-laborales>
     </div>
     
 </form>
