@@ -54,6 +54,7 @@ contratos = Table("contrato", meta,
     Column("id_contrato", Integer, primary_key=True),
     Column("tipo_contrato", String(100)),
     Column("fecha_inicio_contrato", String(10)),   
+    Column("fecha_fin_contrato", String(10)),
     Column("salario", Float), 
     Column("observaciones", String(20))
 )
@@ -67,8 +68,8 @@ centro_costos = Table("centro_costo", meta,
 
 personales = Table("personal", meta, 
     Column("id_personal", Integer, primary_key=True),
-    Column("id_centro_costo", Numeric(10), primary_key=True),    
-    Column("cedula", String(10), primary_key=True),
+    Column("id_centro_costo", Numeric(10)),    
+    Column("cedula", String(10)),
     Column("id_supervisor", String(30)),
     Column("status", String(20)),   
     Column("adendum_contrato", String(20)),
@@ -77,10 +78,22 @@ personales = Table("personal", meta,
    
 )
 
-users = Table("supervisor", meta, 
+supervisores = Table("supervisor", meta, 
     Column("id_supervisor", Integer, primary_key=True),
     Column("nombre_supervisor", String(255)),
     Column("email", String(255)),    
+)
+
+vacaciones = Table("vacacion", meta, 
+    Column("id_vacaciones", Integer, primary_key=True),
+    Column("id_personal", Integer),
+    Column("fecha_solicitud", String(255)),    
+    Column("fecha_inicio_vacaciones", String(255)),
+    Column("fecha_fin_vacaciones", String(255)),
+    Column("dias_lab_solicitados", Numeric),
+    Column("dias_disponibles_acum", Numeric),
+    Column("status", String(255)),
+    Column("observaciones", String(255)),
 )
 
 meta.create_all(engine)

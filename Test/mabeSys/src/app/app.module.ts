@@ -41,6 +41,9 @@ import { EditarContratoComponent } from './components/contrato/editar-contrato/e
 import { ListarExperienciasLaboralesComponent } from './components/experiencias_laborales/listar-experiencias-laborales/listar-experiencias-laborales.component';
 import { AgregarExperienciaLaboralComponent } from './components/experiencias_laborales/agregar-experiencia-laboral/agregar-experiencia-laboral.component';
 import { EditarExperienciaLaboralComponent } from './components/experiencias_laborales/editar-experiencia-laboral/editar-experiencia-laboral.component';
+import { ListarVacacionesComponent } from './components/vacaciones/listar-vacaciones/listar-vacaciones.component';
+import { AgregarVacacionComponent } from './components/vacaciones/agregar-vacacion/agregar-vacacion.component';
+import { ListarReporteGeneralPersonalComponent } from './components/vacaciones/listar-reporte-general-personal/listar-reporte-general-personal.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,10 @@ import { EditarExperienciaLaboralComponent } from './components/experiencias_lab
     EditarContratoComponent,
     ListarExperienciasLaboralesComponent,
     AgregarExperienciaLaboralComponent,
-    EditarExperienciaLaboralComponent,
+    EditarExperienciaLaboralComponent,    
+    ListarVacacionesComponent,
+    AgregarVacacionComponent,
+    ListarReporteGeneralPersonalComponent,
     
   ],
   imports: [

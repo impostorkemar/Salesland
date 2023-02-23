@@ -40,7 +40,8 @@ class Experiencia_laboral(BaseModel):
 class Contrato(BaseModel):
     id_contrato: Optional[int]
     tipo_contrato: str
-    fecha_inicio_contrato: str    
+    fecha_inicio_contrato: str 
+    fecha_fin_contrato: str   
     salario: float
     observaciones: str
 
@@ -64,3 +65,19 @@ class Personal(BaseModel):
     adendum_contrato: str
     id_contrato: int
     id_cargo: int
+
+class Supervisor(BaseModel):
+    id_supervisor: int    
+    nombre_supervisor: str   
+    email: str
+
+class Vacacion(BaseModel):
+    id_vacaciones: Optional[int]
+    id_personal: int
+    fecha_solicitud: str    
+    fecha_inicio_vacaciones: str
+    fecha_fin_vacaciones: str
+    dias_lab_solicitados: float
+    dias_disponibles_acum: float
+    status: str
+    observaciones: str

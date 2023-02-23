@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response
 from config.db import conn
-from models.user import users, usuarios, candidatos, personales, cargos, contratos, centro_costos
-from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato, Personal, Experiencia_laboral
+from models.user import users, usuarios, candidatos, personales, cargos, contratos, centro_costos, vacaciones, supervisores
+from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato, Personal, Experiencia_laboral, Vacacion, Supervisor
 from cryptography.fernet import Fernet
 from starlette import status
 from sqlalchemy.sql import select

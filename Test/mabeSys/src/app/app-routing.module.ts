@@ -30,7 +30,9 @@ import { EditarContratoComponent } from './components/contrato/editar-contrato/e
 import { ListarExperienciasLaboralesComponent } from './components/experiencias_laborales/listar-experiencias-laborales/listar-experiencias-laborales.component';
 import { AgregarExperienciaLaboralComponent } from './components/experiencias_laborales/agregar-experiencia-laboral/agregar-experiencia-laboral.component';
 import { EditarExperienciaLaboralComponent } from './components/experiencias_laborales/editar-experiencia-laboral/editar-experiencia-laboral.component';
-
+import { AgregarVacacionComponent } from './components/vacaciones/agregar-vacacion/agregar-vacacion.component';
+import { ListarVacacionesComponent } from './components/vacaciones/listar-vacaciones/listar-vacaciones.component';
+import { ListarReporteGeneralPersonalComponent } from './components/vacaciones/listar-reporte-general-personal/listar-reporte-general-personal.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},  
@@ -243,6 +245,24 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       role: ['ROLE_ADMIN']
+    }
+  },
+  {path: 'agregar-vacacion', component: AgregarVacacionComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR']
+    }
+  },
+  {path: 'listar-vacaciones', component: ListarVacacionesComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR']
+    }
+  },
+  {path: 'listar-reporte-general-personal', component: ListarReporteGeneralPersonalComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_SUP_SUPERVISOR']
     }
   },
 

@@ -28,6 +28,7 @@ export class MenuComponent implements OnInit {
     this.control_vistas = this.fb.group({
       name_usuario: ['',Validators.required],
       stateVacaciones: ['',Validators.required],
+      statePersonal: ['',Validators.required],
       stateReportes: ['',Validators.required],   
 
     });
@@ -56,6 +57,7 @@ export class MenuComponent implements OnInit {
         this.control_vistas.setValue({
           name_usuario: Array[0],
           stateVacaciones: 'VACACIONES',
+          statePersonal: 'PERSONAL',
           stateReportes: 'REPORTES',
         });
       }     
@@ -110,6 +112,27 @@ export class MenuComponent implements OnInit {
       this.nombreVentana='EXPERIENCIA-LABORAL';
     }
   }
+  menuVacaciones(){
+         
+    if (this.control_vistas.value.stateVacaciones as string === '1'){
+      console.log("OPCION:",this.control_vistas.value.stateVacaciones);
+      this.nombreVentana='INGRESO-VACACION';
+    }
+    if (this.control_vistas.value.stateVacaciones as string === '2'){
+      console.log("OPCION:",this.control_vistas.value.stateVacaciones);
+      this.nombreVentana='REPORTE-PERSONAL';
+    }
+    
+  }
+  menuPersonal(){
+         
+    if (this.control_vistas.value.statePersonal as string === '1'){
+      console.log("OPCION:",this.control_vistas.value.statePersonal);
+      this.nombreVentana='REPORTE-GENERAL-VACACIONES-PERSONAL';
+    }
+    
+  }
+
 
   
 

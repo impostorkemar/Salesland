@@ -12,17 +12,16 @@
                         </div>                  
                         <div *ngIf="true" >
                      
-                            <select formControlName="stateVacaciones" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
+                            <select (change)="menuVacaciones()" formControlName="stateVacaciones" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
                                 <option selected>VACACIONES</option>
                                 <option *ngIf="rolVacations" value="1">1.INGRESO</option>  
-                                <option *ngIf="rolVacations" value="2">2.REPORTE PERSONAL</option> 
-                                <option *ngIf="rolVacations" value="2">3.REPORTE GENERAL</option>
+                                <option *ngIf="rolVacations" value="2">2.REPORTE PERSONAL</option>                                 
                               </select>                  
                         </div>
                         <div *ngIf="true" >
-                            <select class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
+                            <select (change)="menuPersonal()" formControlName="statePersonal" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
                                 <option selected>PERSONAL</option>                                   
-                                <option *ngIf="rolPersonal" value="1">1.PERSONAL</option>                               
+                                <option *ngIf="rolPersonal" value="1">1.REPORTE GENERAL</option>                               
                               </select>                  
                         </div>
                         <div *ngIf="true" >
@@ -48,6 +47,18 @@
     </div>
     <div  id="router-outlet">
         <router-outlet></router-outlet>
+    </div>
+
+    <div *ngIf="nombreVentana === 'INGRESO-VACACION'" >
+        <app-agregar-vacacion></app-agregar-vacacion>
+    </div>
+
+    <div *ngIf="nombreVentana === 'REPORTE-PERSONAL'" >
+        <app-listar-vacaciones></app-listar-vacaciones>
+    </div>
+
+    <div *ngIf="nombreVentana === 'REPORTE-GENERAL-VACACIONES-PERSONAL'" >
+        <app-listar-reporte-general-personal></app-listar-reporte-general-personal>
     </div>
     
     <div *ngIf="nombreVentana === 'PERSONAL'" >
