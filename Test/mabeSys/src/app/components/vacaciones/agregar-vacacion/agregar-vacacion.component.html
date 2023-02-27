@@ -15,16 +15,37 @@
           <label for="" class="form-label">DIAS TOMADOS</label>
           <input type="text"
             class="form-control" name="dias_tomados" formControlName="dias_tomados" id="dias_tomados" aria-describedby="helpId" placeholder="0">
-        </div>
+        </div>              
+
+        <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+        </ngb-datepicker>
         
+        <ng-template #t let-date let-focused="focused">
+          <span
+            class="custom-day"
+            [class.focused]="focused"
+            [class.range]="isRange(date)"
+            [class.faded]="isHovered(date) || isInside(date)"
+            (mouseenter)="hoveredDate = date"
+            (mouseleave)="hoveredDate = null"
+          >
+            {{ date.day }}
+          </span>
+        </ng-template>
+        
+        <hr />
+        
+        <pre>Vacaciones: {{ fromDate | json }}</pre>
+        <pre>To: {{ toDate | json }}</pre>
 
         <div class="btn-group" role="group" aria-label="Button group name">
-            <button type="submit" class="btn btn-success">INGRESAR</button>
-            <button type="button" class="btn btn-primary">CANCELAR</button>
+          <button type="submit" class="btn btn-success">INGRESAR</button>
+          <button type="button" class="btn btn-primary">CANCELAR</button>
         </div>
 
       </form>
       
+     
   
 </div>
 

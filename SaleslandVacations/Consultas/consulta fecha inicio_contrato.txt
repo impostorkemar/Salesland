@@ -1,0 +1,15 @@
+SELECT usuario.cedula, personal.cedula, personal.id_contrato, personal.id_contrato, contrato.fecha_inicio_contrato 
+FROM contrato, personal, usuario 
+WHERE personal.id_contrato = contrato.id_contrato and usuario.cedula = personal.cedula;
+
+SELECT contrato.fecha_inicio_contrato 
+FROM contrato, personal, usuario 
+WHERE personal.id_contrato = contrato.id_contrato and usuario.cedula = personal.cedula;
+
+SELECT contrato.fecha_inicio_contrato FROM contrato, personal, usuario WHERE personal.id_contrato = contrato.id_contrato and usuario.cedula = personal.cedula;
+
+SELECT contrato.fecha_inicio_contrato 
+FROM contrato, personal, usuario 
+WHERE personal.id_contrato = contrato.id_contrato and usuario.cedula = personal.cedula and usuario.cedula = '1724124084';
+
+SELECT contrato.fecha_inicio_contrato FROM contrato, personal, usuario WHERE personal.id_contrato = contrato.id_contrato and usuario.cedula = personal.cedula and usuario.cedula = '1724124084' LIMIT 1;

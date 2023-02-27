@@ -44,6 +44,8 @@ import { EditarExperienciaLaboralComponent } from './components/experiencias_lab
 import { ListarVacacionesComponent } from './components/vacaciones/listar-vacaciones/listar-vacaciones.component';
 import { AgregarVacacionComponent } from './components/vacaciones/agregar-vacacion/agregar-vacacion.component';
 import { ListarReporteGeneralPersonalComponent } from './components/vacaciones/listar-reporte-general-personal/listar-reporte-general-personal.component';
+import { DatepickerRangeTsComponent } from './components/datepicker-range/datepicker-range.ts/datepicker-range.ts.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -82,6 +84,7 @@ import { ListarReporteGeneralPersonalComponent } from './components/vacaciones/l
     ListarVacacionesComponent,
     AgregarVacacionComponent,
     ListarReporteGeneralPersonalComponent,
+    DatepickerRangeTsComponent,
     
   ],
   imports: [
@@ -91,6 +94,7 @@ import { ListarReporteGeneralPersonalComponent } from './components/vacaciones/l
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    NgbModule,
     
   ],
   providers: [],

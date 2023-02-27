@@ -309,4 +309,15 @@ API:string = 'http://192.168.1.37:8000/';
     console.log("URI",this.API+urlAPI)
     return this.clienteHttp.get(this.API+urlAPI);
   }
+
+  ObtenerFechaInicioContrato(id:any):Observable<any>{
+    var urlAPI="fechaInicioContratoByCedula/";    
+    return this.clienteHttp.get(this.API+urlAPI+id);
+  }
+
+  ObtenerCedulaByUser_Pass(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="cedByPassAndUSer/"+user+"-{pass}?passw="+pass;       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }
 }

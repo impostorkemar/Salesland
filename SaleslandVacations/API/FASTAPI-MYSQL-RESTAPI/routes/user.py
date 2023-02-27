@@ -277,4 +277,10 @@ async def get_Tablas(varConsul : str, varOrd : str ):
 async def get_NombresPuntosVentas(user: str, passw: str):
     return conn.execute("SELECT usuario FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"';").first()
 
+@user.get("/fechaInicioContratoByCedula/{ced}", tags=["contratos"])
+async def get_fechaInicioContratoByCedula(ced: str):
+    return conn.execute("SELECT contrato.fecha_inicio_contrato FROM contrato, personal, usuario WHERE personal.id_contrato = contrato.id_contrato and usuario.cedula = personal.cedula and usuario.cedula = '"+str(ced)+"' LIMIT 1;").first()
 
+@user.get("/cedByPassAndUSer/{user}-{pass}", tags=["usuarios"])
+async def get_cedByPassAndUSer(user: str, passw: str):
+    return conn.execute("SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"' LIMIT 1;").first()
