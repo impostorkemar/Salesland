@@ -84,7 +84,7 @@ supervisores = Table("supervisor", meta,
     Column("email", String(255)),    
 )
 
-vacaciones = Table("vacacion", meta, 
+vacaciones = Table("vacaciones", meta, 
     Column("id_vacaciones", Integer, primary_key=True),
     Column("id_personal", Integer),
     Column("fecha_solicitud", String(255)),    

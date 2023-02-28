@@ -320,4 +320,50 @@ API:string = 'http://192.168.1.37:8000/';
     var urlAPI="cedByPassAndUSer/"+user+"-{pass}?passw="+pass;       
     return this.clienteHttp.get(this.API+urlAPI);                
   }
+
+  AgregarVacaciones(fecha_sol: string, fecha_inicio_vac: string, fecha_fin_vac: string, dias_lab_sol: number, 
+    dias_disp_acu:  number):Observable<any>{
+    let Array: Array<string>=[];
+    let Array2: string[]=[];
+    var Array3: Array<any>=[] ;
+    var urlAPI="vacation2/";
+    var user = localStorage.getItem('USER') as string;
+    var passw = localStorage.getItem('PASS') as string;
+    var data; 
+    var id_per: any;
+    var response: any; 
+    this.ObtenerIDPersonal(user,passw).subscribe(respuesta=>{      
+      response = respuesta;
+      const json = JSON.stringify(respuesta);
+      JSON.parse(json, (key, value) => { 
+        if (Array.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+          console.log('key:'+key+'\nValue:'+value);
+          Array.push(value);
+          Array2.push(key);
+          Array3.push(value);
+        }else{
+          Array.push("");
+          Array2.push("");
+          Array3.push("");
+        }
+       
+      });
+      id_per = Array[0];
+    });
+    console.log("Array:",Array,"\nArray2:",Array2 ,"\nArray3:",Array3);
+    console.log("Array[0]:",Array[0]);
+    console.log("Array[1]:",Array2[1]);
+    console.log("Array[1]:",Array3[1]);
+    data = {"id_personal":id_per,"fecha_solicitud":fecha_sol ,"fecha_inicio_vacaciones":fecha_inicio_vac, 
+              "fecha_fin_vacaciones":fecha_fin_vac, "dias_lab_solicitados":dias_lab_sol,
+              "dias_disponibles_acum":dias_disp_acu,"status":"", "observaciones":""}
+    console.log("data:",data);
+    return this.clienteHttp.post(this.API + urlAPI, data);
+    
+  }
+
+  public ObtenerIDPersonal(user:any,pass:any){
+    var urlAPI="cedByPassAndUSer/"+user+"-{pass}?passw="+pass;       
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
 }

@@ -5,6 +5,7 @@ from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato,
 from cryptography.fernet import Fernet
 from starlette import status
 from sqlalchemy.sql import select
+import re
 
 key = Fernet.generate_key()
 f = Fernet(key)
@@ -284,3 +285,36 @@ async def get_fechaInicioContratoByCedula(ced: str):
 @user.get("/cedByPassAndUSer/{user}-{pass}", tags=["usuarios"])
 async def get_cedByPassAndUSer(user: str, passw: str):
     return conn.execute("SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"' LIMIT 1;").first()
+
+@user.get("/idpersonalByPassAndUSer/{user}-{pass}", tags=["personales"])
+def get_idpersonalByPassAndUSer(user: str, passw: str):
+    return conn.execute("SELECT id_personal from personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"') LIMIT 1;").first()
+
+@user.post("/vacation2/", tags=["vacaciones"])
+async def create_vacation2(vacacion : Vacacion ):    
+    sql = "INSERT INTO `vacaciones`(`id_personal`, `fecha_solicitud`, `fecha_inicio_vacaciones`, `fecha_fin_vacaciones`, `dias_lab_solicitados`, `dias_disponibles_acum`, `status`, `observaciones`) VALUES"
+    datos = (vacacion.id_personal,vacacion.fecha_solicitud,vacacion.fecha_inicio_vacaciones,vacacion.fecha_fin_vacaciones,
+             vacacion.dias_lab_solicitados,vacacion.dias_disponibles_acum,vacacion.status, vacacion.observaciones) 
+    sql = sql + str(datos) 
+    print(sql);
+    result = conn.execute(sql)
+    return conn.execute(vacaciones.select().where(vacaciones.c.id_vacaciones == result.lastrowid)).first() 
+    
+
+@user.post("/vacation/{user}_{pass}_{fechaSol}_{fechaInicioVac}_{fechaFinVac}_{diasLabSol}_{diasDispAcu}", tags=["vacaciones"])
+async def create_vacation(user:str, passw:str, fechaSol:str, fechaInicioVac: str, fechaFinVac: str,diasLabSol: str,diasDispAcu:str ):
+    id_perAux = str(get_idpersonalByPassAndUSer(user,passw))    
+    x = re.search('\d+', id_perAux)   
+    if ( x != None):
+        #print(x.group())        
+        vaca = {"id_personal":str(x.group()),"fecha_solicitud":fechaSol ,"fecha_inicio_vacaciones":fechaInicioVac, 
+            "fecha_fin_vacaciones":fechaFinVac, "dias_lab_solicitados":diasLabSol,
+            "dias_disponibles_acum":diasDispAcu,"status":"", "observaciones":""}
+        sql = "INSERT INTO `vacaciones`(`id_personal`, `fecha_solicitud`, `fecha_inicio_vacaciones`, `fecha_fin_vacaciones`, `dias_lab_solicitados`, `dias_disponibles_acum`, `status`, `observaciones`) VALUES"
+        datos = () 
+        sql = sql + str(datos)    
+        print(vacaciones.insert().values(vaca))
+        result = conn.execute(vacaciones.insert().values(vaca))
+        return conn.execute(vacaciones.select().where(vacaciones.c.id_vacaciones == result.lastrowid)).first() 
+    else:
+        return "USER NOT EXIST";

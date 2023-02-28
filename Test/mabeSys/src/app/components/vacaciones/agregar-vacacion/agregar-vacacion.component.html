@@ -6,13 +6,19 @@
       <form [formGroup]="formularioDeVacacion" (ngSubmit)="enviarDatos()">
 
         <div class="mb-3">
-          <label for="" class="form-label">VACACIONES DISPONIBLES</label>
+          <label for="" class="form-label">VACACIONES DISPONIBLES (DIAS)</label>
           <input type="text"
             class="form-control" name="vaca_disp" formControlName="vaca_disp" id="vaca_disp" aria-describedby="helpId" placeholder="15">
         </div>
 
         <div class="mb-3">
-          <label for="" class="form-label">DIAS TOMADOS</label>
+          <label for="" class="form-label">DÍAS TOMADOS PREVIAMENTE</label>
+          <input type="text"
+            class="form-control" name="saldo_dias" formControlName="saldo_dias" id="saldo_dias" aria-describedby="helpId" placeholder="0">
+        </div>
+
+        <div class="mb-3">
+          <label for="" class="form-label">DÍAS SOLICITADOS</label>
           <input type="text"
             class="form-control" name="dias_tomados" formControlName="dias_tomados" id="dias_tomados" aria-describedby="helpId" placeholder="0">
         </div>              
@@ -35,12 +41,10 @@
         
         <hr />
         
-        <pre>Vacaciones: {{ fromDate | json }}</pre>
-        <pre>To: {{ toDate | json }}</pre>
+        
 
-        <div class="btn-group" role="group" aria-label="Button group name">
-          <button type="submit" class="btn btn-success">INGRESAR</button>
-          <button type="button" class="btn btn-primary">CANCELAR</button>
+        <div class="btn-group" role="group" aria-label="Button group name" >
+          <button type="submit" class="btn btn-success" [disabled]="btnIngresar" >SOLICITA VACACIÓN</button>
         </div>
 
       </form>
