@@ -181,6 +181,7 @@ export class AgregarVacacionComponent {
           saldo_dias: aux2,
           dias_tomados: 0,         
         });
+        window.confirm("Vacación registrada")
         this.router.navigate(['/login']);
       }else{
         console.log("Excede días disponibles");
