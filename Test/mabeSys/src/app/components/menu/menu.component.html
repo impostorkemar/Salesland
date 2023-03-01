@@ -1,8 +1,8 @@
 <form [formGroup]="control_vistas">
     <div class="wrapper">    
         <div  class="body" >
-            <div style="text-align: center; justify-content: center; align-items: center;">                
-                <img src="./assets/SALESLAND.jpg" class="center">            
+            <div style="text-align: center; justify-content: center; align-items: center;  ">                
+                <img src="./assets/SALESLAND.jpg" class="center redimension1" >            
             </div>
             <div>            
                 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -12,20 +12,20 @@
                         </div>                  
                         <div *ngIf="true" >
                      
-                            <select (change)="menuVacaciones()" formControlName="stateVacaciones" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
-                                <option selected>VACACIONES</option>
+                            <select (click)="menuVacaciones()"  formControlName="stateVacaciones" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
+                                <option  selected>VACACIONES</option>
                                 <option *ngIf="rolVacations" value="1">1.INGRESO</option>  
                                 <option *ngIf="rolVacations" value="2">2.REPORTE PERSONAL</option>                                 
                               </select>                  
                         </div>
                         <div *ngIf="true" >
-                            <select (change)="menuPersonal()" formControlName="statePersonal" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
+                            <select (click)="menuPersonal()" formControlName="statePersonal" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
                                 <option selected>PERSONAL</option>                                   
                                 <option *ngIf="rolPersonal" value="1">1.REPORTE GENERAL</option>                               
                               </select>                  
                         </div>
                         <div *ngIf="true" >
-                            <select (change)="menuReportes()" formControlName="stateReportes"  class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example" >
+                            <select (click)="menuReportes()" formControlName="stateReportes"  class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example" >
                                 <option selected>REPORTES</option>
                                 <option *ngIf="rolReportes" value="1" >1.USUARIO</option> 
                                 <option *ngIf="rolReportes" value="2" >2.CANDIDATO</option>   

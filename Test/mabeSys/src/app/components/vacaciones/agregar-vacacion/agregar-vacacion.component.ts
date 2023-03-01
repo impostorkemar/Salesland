@@ -9,6 +9,7 @@ import { TestuserService } from 'src/app/services/testuser.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 
 
+
 @Component({
   selector: 'app-agregar-vacacion',  
   templateUrl: './agregar-vacacion.component.html',
@@ -27,6 +28,10 @@ export class AgregarVacacionComponent {
   corte!: NgbDate;
   contrato!: Date;
   antiguedad!: number;
+  resp!:String[];
+  message!:String;
+  user!:String;
+  passw!:String;
 
   constructor(
     public formulario:FormBuilder,
@@ -35,6 +40,7 @@ export class AgregarVacacionComponent {
     calendar: NgbCalendar,
     private testuserService: TestuserService,    
     private _decimalPipe: DecimalPipe,
+    private router:Router,
   ) { 
     this.formularioDeVacacion = this.formulario.group({      
       vaca_disp:[''],
@@ -49,33 +55,140 @@ export class AgregarVacacionComponent {
     this.corte = new NgbDate(0,0,0);
     this.contrato = new Date();
     this.antiguedad = 0;
+    this.message="";
+    this.user = localStorage.getItem('USER') as string;
+    this.passw = localStorage.getItem('PASS') as string
   }
 
   ngOnInit(): void {
     this.formularioDeVacacion.controls['vaca_disp'].disable();
     this.formularioDeVacacion.controls['dias_tomados'].disable();
     this.formularioDeVacacion.controls['saldo_dias'].disable();
-    this.cargarDiasDisponibles();
-    
+    this.btnIngresar = true;
+    this.precargarDias();       
+  }
+
+   //RESPONSE
+  setRespen(response: any, name:string) {
+    this.resp = response;
+    localStorage.removeItem(name);
+    localStorage.setItem(name, JSON.stringify(response));
+    //console.log(name,":",localStorage.getItem(name));
+    }
+  getRespen(name:string) {
+    return JSON.parse(localStorage.getItem(name) as string);
+  }
+
+  precargarDias(){    
+    var aux1 = this.cargarDiasDisponibles();
+    var aux2 = this.cargarDiasTomadosPreviamente();
+    if ( aux2 == null){
+      this.formularioDeVacacion.setValue({      
+        vaca_disp: aux1,
+        saldo_dias: 0,
+        dias_tomados: 0,         
+      });
+    }else{
+      this.formularioDeVacacion.setValue({      
+        vaca_disp: aux1,
+        saldo_dias: aux2,
+        dias_tomados: 0,         
+      });
+    }    
+    console.log("cargarDiasDisponibles:", this.cargarDiasDisponibles()); 
+    console.log("cargarDiasTomadosPreviamente:", this.cargarDiasTomadosPreviamente()); 
+  }
+
+  cargarDiasTomadosPreviamente():string{
+    let Key2: string[] = [];
+    let Value2: string[]=[];
+    this.crudService.ObtenertotalVacacionesTomadas(this.user,this.passw).subscribe(respuesta=>{
+      //console.log("respuesta:",respuesta);
+      this.setRespen(respuesta,"totalVaca");                  
+    });   
+    const json = JSON.stringify(this.getRespen("totalVaca"));
+      JSON.parse(json, (key, value) => {
+        Key2.push(key);
+        Value2.push(value);
+      });
+    //console.log("Value2[0]:",Value2[0]);    
+    return Value2[0];
+  }
+
+  cargarDiasDisponibles():string{
+    let key1: string[]=[];
+    let Value1: string[]=[];
+    let key2: string[]=[];
+    let Value2: string[]=[];
+    this.crudService.ObtenerCedulaByUser_Pass(this.user,this.passw).subscribe(respuesta=>{      
+      //console.log("MENU",this.user,this.passw,"RESPONSE:",respuesta);
+        this.setRespen(respuesta,"cedula");      
+    });  
+    const json = JSON.stringify(this.getRespen("cedula"));
+    JSON.parse(json, (key, value) => { 
+      key1.push(value);  
+      Value1.push(value);                     
+    });  
+    this.cedula = Value1[0];    
+      this.crudService.ObtenerFechaInicioContrato(this.cedula).subscribe(respuesta2=>{
+        //console.log("CEDULA:",this.cedula,"RESPONSE:",respuesta2);          
+          this.setRespen(respuesta2,"fechaContrato");        
+      });
+      const json2 = JSON.stringify(this.getRespen("fechaContrato"));
+      JSON.parse(json2, (key, value) => { 
+        key2.push(value);  
+        Value2.push(value);    
+        const datePipe = new DatePipe('en-US'); 
+        var corteYear = new Date().getFullYear();
+        this.corte =  new NgbDate(corteYear,1,31);              
+        this.contrato = new Date((Value2[0] as string));  
+        this.antiguedad = (this._decimalPipe.transform(((this.corte.year-this.contrato.getFullYear())*12+(this.corte.month-this.contrato.getMonth())+(this.corte.day-this.contrato.getDate())/30)*1.25,"1.0-1") as any) as number;           
+      });
+      return this.antiguedad as unknown as string;    
   }
 
   enviarDatos(): void{    
     /*console.log("FORMULARIO:",this.formularioDeUsuario.value);*/
-    if (this.formularioDeVacacion)      
-      this.crudService.AgregarVacaciones((this.fechaActual.getFullYear()) as any+"-"+(this.fechaActual.getMonth()) as any 
-      +"-"+(this.fechaActual.getDate()) as any ,this.fromDate?.year+"-"+
-      this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+this.toDate?.month+"-"+
-      this.toDate?.day,this.formularioDeVacacion.value.saldo_dias as number,
-      this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta=>{
-        console.log(respuesta);
-        this.ruteador.navigateByUrl('/menu');
+    if (this.formularioDeVacacion){     
+      let key1: string[]=[];
+      let Value1: string[]=[];      
+      this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(      
+        respuesta =>{
+          this.setRespen(respuesta,"idpersonal");  
+          //console.log(respuesta);    
+        });    
+      const json = JSON.stringify(this.getRespen("idpersonal"));
+      JSON.parse(json, (key, value) => {
+        key1.push(key);
+        Value1.push(value);
       });
-      
+
+      if (this.formularioDeVacacion.value.vaca_disp >= this.formularioDeVacacion.value.dias_tomados){
+        this.crudService.AgregarVacaciones(Value1[0] as string,(this.fechaActual.getFullYear()) as any+"-"+(this.fechaActual.getMonth()) as any 
+        +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()+":"+this.fechaActual.getMinutes()+":"+
+        this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
+        this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+this.toDate?.month+"-"+
+        this.toDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
+        this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta=>{
+          console.log("respuesta:",respuesta);
+          this.ruteador.navigateByUrl('/menu');
+        });
+        var aux1 = this.cargarDiasDisponibles();
+        var aux2 = this.cargarDiasTomadosPreviamente();
+        console.log("aux1:",aux1,"\naux2:",aux2);
+        this.formularioDeVacacion.setValue({      
+          vaca_disp: aux1,
+          saldo_dias: aux2,
+          dias_tomados: 0,         
+        });
+        this.router.navigate(['/login']);
+      }else{
+        console.log("Excede días disponibles");
+      }      
+    }
   }
 
   onDateSelection(date: NgbDate) {
-
-
 		if (!this.fromDate && !this.toDate) {
 			this.fromDate = date;
       //console.log("this.fromDate: ",this.fromDate)
@@ -88,20 +201,24 @@ export class AgregarVacacionComponent {
       //console.log("this.fromDate: ",this.fromDate)
       //console.log("this.toDate: ",this.toDate)
 		}
-
     if (this.fromDate != null && this.toDate != null){
       this.formularioDeVacacion.setValue({
         vaca_disp:this.formularioDeVacacion.value.vaca_disp,
-        dias_tomados:this.countWorkDay(this.fromDate,this.toDate),  
         saldo_dias:this.formularioDeVacacion.value.saldo_dias,
+        dias_tomados:this.countWorkDay(this.fromDate,this.toDate),  
+        
       }); 
     }
-
     if(this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.dias_tomados){
-      this.btnIngresar = false;
-    }else{
+      this.btnIngresar = true;
+    }else if ( (this.formularioDeVacacion.value.vaca_disp-this.formularioDeVacacion.value.saldo_dias) <= this.formularioDeVacacion.value.dias_tomados){
       this.btnIngresar = true;
     }
+    else{
+      this.btnIngresar = false;
+      
+    }
+    
 	}
 
 	isHovered(date: NgbDate) {
@@ -146,59 +263,5 @@ export class AgregarVacacionComponent {
     }
     return days;
   }
-
-  cargarDiasDisponibles(){
-    let Array: string[]=[];
-    let Array2: string[]=[];
-    var user = localStorage.getItem('USER') as string;
-    var passw = localStorage.getItem('PASS') as string
-    this.crudService.ObtenerCedulaByUser_Pass(user,passw).subscribe(respuesta=>{      
-      //console.log("MENU",user,passw,"RESPONSE:",respuesta);
-      if (respuesta != null){
-        const json = JSON.stringify(respuesta);
-        JSON.parse(json, (key, value) => { 
-          if (Array.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
-            //console.log('key:'+key+'Array:'+Array.indexOf(key));
-            Array.push(value);  
-          }                      
-        });  
-        this.cedula = Array[0];        
-        this.crudService.ObtenerFechaInicioContrato(this.cedula).subscribe(respuesta2=>{
-          //console.log("CEDULA:",this.cedula,"RESPONSE:",respuesta2);          
-          if (respuesta2 != null){
-            const json = JSON.stringify(respuesta2);
-            JSON.parse(json, (key, value) => { 
-              if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
-                //console.log('key:'+key+'Array:'+Array.indexOf(key));
-                Array2.push(value);
-
-              }    
-              const datePipe = new DatePipe('en-US'); 
-              var corteYear = new Date().getFullYear();
-              this.corte =  new NgbDate(corteYear,1,31);              
-              this.contrato = new Date((Array2[0] as string));  
-              //console.log("\ncorte: ",corte.year+"/"+corte.month+"/"+corte.day ,
-              //"\ncontrato",contrato.getFullYear()+"/"+contrato.getMonth()+"/"+contrato.getDate()) 
-              this.antiguedad = (this._decimalPipe.transform(((this.corte.year-this.contrato.getFullYear())*12+(this.corte.month-this.contrato.getMonth())+(this.corte.day-this.contrato.getDate())/30)*1.25,"1.0-1") as any) as number;           
-             
-              //console.log("\nantigued:",(corte.year-contrato.getFullYear())*12,"\n",(corte.month-contrato.getMonth()),"\n",(corte.day),"\n",(contrato.getDate())); 
-              //console.log("antiguedad: ",antiguedad);
-              this.formularioDeVacacion.setValue({
-                vaca_disp:this.antiguedad,
-                dias_tomados:0,    
-                saldo_dias:0,
-              });
-                              
-            }); 
-          }
-        });
-      }
-    });      
-    
-
-  }
-
-  
-   
   
 }

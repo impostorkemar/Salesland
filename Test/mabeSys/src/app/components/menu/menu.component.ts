@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TestuserService } from 'src/app/services/testuser.service';
 
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -117,6 +118,7 @@ export class MenuComponent implements OnInit {
     if (this.control_vistas.value.stateVacaciones as string === '1'){
       console.log("OPCION:",this.control_vistas.value.stateVacaciones);
       this.nombreVentana='INGRESO-VACACION';
+      
     }
     if (this.control_vistas.value.stateVacaciones as string === '2'){
       console.log("OPCION:",this.control_vistas.value.stateVacaciones);
