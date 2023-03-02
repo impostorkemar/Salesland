@@ -69,7 +69,7 @@ def delete_usuario(id: str):
 
 @user.put("/usuarios/{id}",response_model=Usuario,tags=["usuarios"])
 def update_usuario(id: str,user: Usuario): 
-    sql="UPDATE `usuario` SET `id_usuario`='"+str(user.id_usuario)+"',`cedula`='"+str(user.cedula)+"',`usuario`='"+str(user.usuario)+"',`password`='"+str(user.password)+"' WHERE `id_usuario` = '"+str(id)+"'"  
+    sql="UPDATE `usuario` SET `id_usuario`='"+str(user.id_usuario)+"',`cedula`='"+str(user.cedula)+"',`usuario`='"+str(user.usuario)+"',`password`='"+str(user.password)+"',`tipo`='"+str(user.tipo)+"' WHERE `id_usuario` = '"+str(id)+"'"  
     conn.execute(sql)
     return get_usuario(user.id_usuario)
 
@@ -303,3 +303,17 @@ async def create_vacation2(vacacion : Vacacion ):
     print(sql);
     result = conn.execute(sql)
     return conn.execute(vacaciones.select().where(vacaciones.c.id_vacaciones == result.lastrowid)).first() 
+
+
+@user.get("/vacacionesPersonal/", tags=["vacaciones"])
+async def get_vacacionesPersonal():
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula;").fetchall()
+
+@user.get("/vacacionesByUserAndPass/{user}-{pass}", tags=["vacaciones"])
+async def get_vacacionesByUserAndPass(user: str, passw: str):
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND usuario.cedula = candidato.cedula and usuario.usuario = '"+str(user)+"' and usuario.password = '"+str(passw)+"';").fetchall()
+
+@user.delete("/vacaciones/{id}", status_code=status.HTTP_204_NO_CONTENT, tags=["candidatos"])
+def delete_candidato(id: str):
+    conn.execute("DELETE FROM `vacaciones` WHERE  id_vacaciones = '"+str(id)+"'")
+    return Response(status_code=status.HTTP_204_NO_CONTENT)

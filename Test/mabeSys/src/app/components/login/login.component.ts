@@ -42,16 +42,19 @@ export class LoginComponent implements OnInit {
         console.log("LOGEO INCORRECTO")
       }else{        
         console.log("RESPUESTA2:",respuesta2['tipo']);        
-        if (respuesta2['tipo'] as string == 'admin'){
+        if (respuesta2['tipo'] as string === 'admin'){
           console.log("COMPARA: admin")
           this.login('ROLE_ADMIN');          
-        }if (respuesta2['tipo'] as string ==='supervisor') {
+        }else if (respuesta2['tipo'] as string ==='supervisor') {
           console.log("COMPARA: supervisor")
           this.login('ROLE_SUPERVISOR');
-        }if (respuesta2['tipo'] as string ==='user') {
+        }else if (respuesta2['tipo'] as string ==='user') {
           console.log("COMPARA: promotor")
           this.login('ROLE_USER');
-        } 
+        } else {
+          console.log("COMPARA: otro")
+          this.login('ROLE_USER');
+        }
         localStorage.setItem('USER', email);
         localStorage.setItem('PASS', password);
         console.log("ROLE:",localStorage.getItem('ROLE') as string)

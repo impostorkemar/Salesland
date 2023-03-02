@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { Usuario } from '../models/Usuario';
+import { Usuario } from './Usuario';
 import { Candidato } from './Candidato';
 import { CentroCosto } from './CentroCosto';
 import { Cargo } from './Cargo';
@@ -363,4 +363,30 @@ resp!:String[];
     var urlAPI="totalVacacionesTomadas/"+user as string+"-{pass}?passw="+pass as string;       
     return this.clienteHttp.get(this.API+urlAPI);                
   }  
+
+  ObtenerVacacionesPersonal():Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesPersonal/";       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerVacacionesByUserAndPass(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesByUserAndPass/"+user as string+"-{pass}?passw="+pass as string;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  BorrarVacacion(id:any,Vacaciones:any,iControl:any) {
+    var urlAPI="vacaciones/";
+    //console.log("URL=",this.API +urlAPI+id);
+    //console.log("ID=",id);
+    if(window.confirm("¿Desea borrar el registro?")){
+      return this.clienteHttp.delete(this.API +urlAPI+id).subscribe((respuesta)=>{
+        Vacaciones.splice(iControl,1);
+      });    
+    }
+    else{
+      return null;
+    }    
+  }
 }

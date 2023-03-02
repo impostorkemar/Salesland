@@ -1,0 +1,13 @@
+//CONSULTA GENERAL DEL PERSONAL
+SELECT candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones,
+vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones 
+FROM candidato, vacaciones, personal, usuario
+WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula;
+
+
+//CONSULTA PERSONALIZADA
+SELECT candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones,
+vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones 
+FROM candidato, vacaciones, personal, usuario
+WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND 
+usuario.cedula = candidato.cedula and usuario.usuario = '1724124084' and usuario.password = '1724124084';

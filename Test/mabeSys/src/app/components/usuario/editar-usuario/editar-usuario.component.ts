@@ -29,7 +29,8 @@ export class EditarUsuarioComponent implements OnInit {
           id_usuario:respuesta['id_usuario'],
           cedula:respuesta['cedula'],
           usuario:respuesta['usuario'],
-          password:respuesta['password']
+          password:respuesta['password'],
+          tipo:respuesta['tipo']
         });
        
       }
@@ -39,7 +40,8 @@ export class EditarUsuarioComponent implements OnInit {
       id_usuario:[''],
       cedula:[''],
       usuario:[''],
-      password:['']
+      password:[''],
+      tipo:['']
     });
   }
 
