@@ -59,8 +59,7 @@ export class IngresarVentaComponent implements OnInit {
     private testuserService:TestuserService,
     private router:Router,
     private authService: AuthService,    
-  ) {
-    
+  ) {    
     this.name = 1;
     this.flagInsert = false;
     this.MenuIngresar = this.fb.group({
@@ -200,6 +199,9 @@ export class IngresarVentaComponent implements OnInit {
     let Array2: string[]=[];
     let Array3: string[]=[]; 
     let Array4: string[]=[];
+
+    //OBTENER NOMBRES PUNTOS DE VENTA
+
     this.testuserService.ObtenerNombresPuntosVenta(localStorage.getItem('USER'),localStorage.getItem('PASS')).subscribe(respuesta2=>{
       this.puntosVenta = respuesta2;      
       const json = JSON.stringify(respuesta2);
@@ -268,7 +270,7 @@ export class IngresarVentaComponent implements OnInit {
        
     }else{
       if (this.nombreTienda?.value != null){
-        console.log("ENTRE")
+        //console.log("ENTRE")
         this.nombreTienda?.setValue(e.target.value, {onlySelf: true,}); 
         this.thenum= (this.nombreTienda?.value as string).match(/\d/g);
         if (this.thenum != null){
@@ -284,6 +286,8 @@ export class IngresarVentaComponent implements OnInit {
             message: ''    
           });         
         } 
+
+
         this.ObtenerIdLineaXCodigoPdv_nombreLinea('AIRES',this.NameTienda as string)
         console.log("ID_LINEAArray:",this.ID_LINEAArray)
       }      
@@ -470,9 +474,6 @@ export class IngresarVentaComponent implements OnInit {
         }); 
       });
     }
-     
-    
-   
   }
 
   async onSubmit(buttonType: any): Promise<void> {
@@ -480,8 +481,12 @@ export class IngresarVentaComponent implements OnInit {
     let Array2: string[]=[];
     let Array3: string[]=[]; 
     let Array4: string[]=[];
+    let Array5: string[]=[];
     //console.log(this.registrationForm);
     this.isSubmitted = true;
+
+    //REGISTRATION FORM  VALID
+
     if (!this.registrationForm.valid) {
       false;      
     } else {      
@@ -500,17 +505,37 @@ export class IngresarVentaComponent implements OnInit {
       const semana  = this.ventasUsuario.value.semana;
       //console.log(buttonType,ventas_mabe,ventas_indurama,ventas_whirlpool,ventas_lg,ventas_samsung,ventas_electrolux,
       //  mastertech,hove,teka,smc,otros);
+    
+    
     }    
     
+    //VENTAS USUARIO NO VACÍO
+
     if (this.ventasUsuario){      
+
+      //NAME TIENDA NO VACÍO
+
       if (this.NameTienda != ""){
-        this.testuserService.ObtenerIdLineaByCodigoPdv_nombreLinea(buttonType,this.NameTienda).subscribe(data=>{
-          this.id_lineaConsult = data['id_linea'];   
-          //console.log(data);   
+
+        // OBTENER ID LINEA
+
+        this.testuserService.ObtenerIdLineaByCodigoPdv_nombreLinea(buttonType,this.NameTienda).subscribe(data=>{          
+          const json = JSON.stringify(data);
+          JSON.parse(json, (key, value) => { 
+            if (Array5.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+              //console.log('key:'+key+'Array:'+Array.indexOf(key));
+              Array5.push(value);
+            }    
+          });
+          this.id_lineaConsult = Array5[0] as unknown as number;   
+          //console.log("id_lineaConsult:",this.id_lineaConsult as unknown as string); 
+
+          //OBTENER CODIGO
+
           this.testuserService.ObtenerCodigoPuntoVenta(this.NameTienda).subscribe(data2=>{
             this.cod_pdv = data2['codigo_pdv'];
             //console.log(data2);
-            //console.log("IDS:",this.id_lineaConsult,this.cod_pdv)
+            console.log("IDS:",this.id_lineaConsult,"\ncod_pdv:",this.cod_pdv)
             this.testuserService.ObtenerClaveUsuarioByUser_Pass(localStorage.getItem('USER') as string,localStorage.getItem('PASS') as string).subscribe(data3=>{
               const json = JSON.stringify(data3);
               JSON.parse(json, (key, value) => { 
@@ -518,7 +543,10 @@ export class IngresarVentaComponent implements OnInit {
                   //console.log('key:'+key+'Array:'+Array.indexOf(key));
                   Array2.push(value);
                 }    
-              });             
+              });         
+              
+              // OBTENER CEDULA
+
               this.testuserService.ObtenerCedulaUsuarioByClave(Array2[0]).subscribe(data4=>{
                 const json2 = JSON.stringify(data4);
                 JSON.parse(json2, (key, value) => { 
@@ -527,15 +555,18 @@ export class IngresarVentaComponent implements OnInit {
                     Array.push(value);
                   }    
                 });  
-                //console.log("CLAVE:",Array2[0],"CEDULA:",Array[0]);  
+                console.log("CLAVE:",Array2[0],"\nCEDULA:",Array[0]);  
+
+                //OBTENER ID SUPERVISOR
+
                 this.testuserService.ObteneridSupervisorByUser_Pass(localStorage.getItem('USER') as string,localStorage.getItem('PASS') as string).subscribe(data7=>{
                   const json2 = JSON.stringify(data7);
                   JSON.parse(json2, (key, value) => { 
-                    if (Array2.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
+                    if (Array4.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
                       //console.log('key:'+key+'Array:'+Array.indexOf(key));
                       Array4.push(value);
                     }
-                    //console.log("ID SUPERVISOR:",Array4[0]);
+                    console.log("ID SUPERVISOR:",Array4[0]);
                     this.ventasUsuario.setValue({   
                       clave: Array2[0],
                       cedula: Array[0],
@@ -561,15 +592,9 @@ export class IngresarVentaComponent implements OnInit {
                       +this.ventasUsuario.value.smc+this.ventasUsuario.value.otros,
                       semana:this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
                     });
-                //console.log(this.ventasUsuario.value)  
-                this.flagInsert=true;                 
-                this.MenuIngresar.setValue({            
-                  semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
-                  id_venta: '',   
-                  codigo_pdv: this.datos[this.thenum],
-                  id_linea: [buttonType],
-                  message: 'DATO INGRESADO CON ÉXITO',            
-                }); 
+
+                //COMPROBAR VENTA BY LINEA-SEMANA-CEDULA
+
                 this.testuserService.ComprobarVentatByIdLinea_Semana_Cedula(this.id_lineaConsult,this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
                 Array[0],this.cod_pdv).subscribe(data5=>{
                   const json2 = JSON.stringify(data5);
@@ -580,32 +605,47 @@ export class IngresarVentaComponent implements OnInit {
                     }    
                   });
                   //console.log("DATA5:",Array3[0]);
-                  if (Array3[0] == null){
+
+                  if (Array3[0] == null){ //VALIDADOR DE REGISTRO REPETIDO
                     
-                    this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
-                      //console.log(respuesta);
-                      this.ventasUsuario.setValue({  
-                        clave: 0,
-                        cedula: 0,
-                        id_supervisor: 0,   
-                        id_linea: 0,  
-                        codigo_pdv: 0,
-                        ventas_mabe: 0,
-                        ventas_indurama: 0,
-                        ventas_whirlpool: 0,
-                        ventas_lg: 0,
-                        ventas_samsung: 0,
-                        ventas_electrolux: 0,
-                        mastertech: 0,
-                        hove: 0,
-                        teka: 0,
-                        smc: 0,
-                        otros: 0,
-                        validacion: 1,
-                        total_semanal: 0,
-                        semana: "",
-                      });
+                    //AGREGAR VENTA
+                    console.log("AGREGUE VENTA");
+                    console.log(this.ventasUsuario.value);
+                    /*this.testuserService.AgregarVenta(this.ventasUsuario.value).subscribe(respuesta=>{
+                      //console.log(respuesta);                      
+                    });*/
+
+                    this.ventasUsuario.setValue({  
+                      clave: 0,
+                      cedula: 0,
+                      id_supervisor: 0,   
+                      id_linea: 0,  
+                      codigo_pdv: 0,
+                      ventas_mabe: 0,
+                      ventas_indurama: 0,
+                      ventas_whirlpool: 0,
+                      ventas_lg: 0,
+                      ventas_samsung: 0,
+                      ventas_electrolux: 0,
+                      mastertech: 0,
+                      hove: 0,
+                      teka: 0,
+                      smc: 0,
+                      otros: 0,
+                      validacion: 1,
+                      total_semanal: 0,
+                      semana: "",
                     });
+
+                    this.flagInsert=true;    
+
+                    this.MenuIngresar.setValue({            
+                      semana: this.monthArray[this.currentDate.getMonth()]+"-"+this.weekNumber+" SEMANA",
+                      id_venta: '',   
+                      codigo_pdv: this.datos[this.thenum],
+                      id_linea: [buttonType],
+                      message: 'DATO INGRESADO CON ÉXITO',            
+                    }); 
                     
                     this.name = 1;
                   }else{

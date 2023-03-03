@@ -84,4 +84,10 @@ export class DashboardComponent implements OnInit {
     this.exportList.downloadConsult(this.Consultas,"Consultas",this.Ejecuciones);
   }
 
+  borrarRegistro(id:any,iControl:any){
+    //console.log(id);
+    //console.log(iControl);
+    //this.crudService.BorrarVacacion(id, this.Vacaciones, iControl);
+  }
+
 }

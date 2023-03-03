@@ -210,8 +210,37 @@ export class AgregarVacacionComponent {
       let Value1: string[]=[];      
 
       //BUSQUEDA ID PERSONAL
+      if ( this.fromDate != null && this.toDate != null){
+        this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
+          this.setRespen(respuesta,"idpersonal");  
+          //console.log(respuesta);
+          const json = JSON.stringify(this.getRespen("idpersonal"));
+          JSON.parse(json, (key, value) => {
+            key1.push(key);
+            Value1.push(value);
+          });
 
-      this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
+          //AGREGAR VACACION
+
+          if (this.formularioDeVacacion.value.vaca_disp >= this.formularioDeVacacion.value.dias_tomados){
+            this.crudService.AgregarVacaciones(Value1[0] as string,(this.fechaActual.getFullYear()) as any+"-"+(this.fechaActual.getMonth()) as any 
+            +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()+":"+this.fechaActual.getMinutes()+":"+
+            this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
+            this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+
+            this.fromDate?.month+"-"+ this.fromDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
+            this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta=>{
+              console.log("respuesta:",respuesta);
+              this.ruteador.navigateByUrl('/menu');
+            });
+            this.precargarDias();
+            window.confirm("Vacación registrada")
+            this.router.navigate(['/login']);
+          }else{
+            console.log("Excede días disponibles");
+          }           
+        }); 
+      }else{
+        this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
           this.setRespen(respuesta,"idpersonal");  
           //console.log(respuesta);
           const json = JSON.stringify(this.getRespen("idpersonal"));
@@ -238,7 +267,10 @@ export class AgregarVacacionComponent {
           }else{
             console.log("Excede días disponibles");
           }           
-        }); 
+        });
+      }
+
+     
     }
   }
 
@@ -279,19 +311,41 @@ export class AgregarVacacionComponent {
       //console.log("fechaActual:",act)
       //console.log("fromDate:",from);
       //console.log("toDate:",to);      
-      if (this.compare(fechaActualNg,from,to) == 1){
+      var aux1 = new Date(fechaActualNg.year, fechaActualNg.month, fechaActualNg.day);
+      var aux2 =new Date(from.year, from.month, from.day);
+      var aux3 =new Date(to.year, to.month, to.day);
+      if (this.compareDates(aux1,aux2) == 1 || this.compareDates(aux1,aux3) == 1){
         this.btnIngresar = true;
       }else{
         this.btnIngresar = false;
-      }      
+      }
+    }else{
+      var from = new NgbDate( this.fromDate.year,this.fromDate.month,this.fromDate.day);
+      var aux1 = new Date(fechaActualNg.year, fechaActualNg.month, fechaActualNg.day);
+      var aux2 =new Date(from.year, from.month, from.day);
+      if (this.compareDates(aux1,aux2) == 1 ){
+        this.btnIngresar = true;
+      }else{
+        this.btnIngresar = false;
+      }
     }
-    
-    
 	}
 
-  compare(dateTimeA: NgbDate, dateTimeB: NgbDate, dateTimeC: NgbDate){
-
-    return 1      
+  compareDates(dateTimeA: Date, dateTimeB: Date){
+    //let day1 = formatDate(new Date(dateTimeA.year, dateTimeA.month - 1, dateTimeA.day), 'yyyy/MM/dd','en');
+    //let day2 = formatDate(new Date(dateTimeB.year, dateTimeB.month - 1, dateTimeB.day), 'yyyy/MM/dd','en');
+    var MILISENGUNDOS_POR_DIA = 1000 * 60 * 60 * 24;
+    const diferenciaEnMilisegundos = (dateTimeA.getTime() - dateTimeB.getTime());
+    let days = Math.floor(diferenciaEnMilisegundos / MILISENGUNDOS_POR_DIA);
+    console.log("Actual:",dateTimeA.getTime(),"\nConsulta:",dateTimeB.getTime(),"\ndays:",days);
+    if ( days < 0){
+      return 0
+    }else if(days==0){
+      return 0
+    }else{
+      return 1
+    }
+    
   }
 
 	isHovered(date: NgbDate) {

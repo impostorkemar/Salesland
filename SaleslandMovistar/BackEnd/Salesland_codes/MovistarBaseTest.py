@@ -116,15 +116,16 @@ def calculateLadder(tarifa):
         return -1
 
     #READING ENTIDADES.CSV
-df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/EntidadesOriginales.csv",sep=";", dtype=object)
+
+df2 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandMovistar/BackEnd/Salesland_codes/EntidadesOriginales.csv",sep=";", dtype=object)
 #print(df2) 
 #print(df2.shape); print(df2.size); print(df2.columns); print(df2.dtypes) print(df2.iloc[0,:]); print("len",df2.iloc[0,:].size);
     #READING 11 Tablero TM Noviembre.xlsx
-df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/11 Tablero TM Noviembre.xlsx", sheet_name=None)
-
+df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/SaleslandMovistar/BackEnd/Salesland_codes/11 Tablero TM Noviembre.xlsx", sheet_name=None)
+#print(df3)
 #TABLE DELETES
-delete_Tables(df2)
-
+#delete_Tables(df2)
+"""
 #TABLE CREATIONS
 sql=""
 cab = []
@@ -152,6 +153,7 @@ for column in df2:
     sql += ");"
     print(sql)   
     ejecutarSQL(sql)
+
 
 #COMPARATION NAMES AND SHEET_NAMES/DATA CURATION
 list = [name.lower() for name in list]
@@ -258,7 +260,7 @@ df3['Comisiones'] = df3['Comisiones'].iloc[1:].reset_index(drop=True)
 df3['Comisiones'].drop(df3['Comisiones'].columns[[0]], axis=1, inplace=True)
 #print(df3['Comisiones'])
 
-ejecutarSQL("DELETE FROM comisiones;")
+#ejecutarSQL("DELETE FROM comisiones;")
 ejecutarSQL("DROP TABLE IF EXISTS comisiones;")
 
 
@@ -298,11 +300,11 @@ for item in range(df3['Comisiones'].shape[0]-14):
     print("\nSQL:\n",sql)
     ejecutarSQL(sql)
     i+=1
-
+"""
 KEYS3 = ['PRONOPRO','CATEGORY_3','ESTADO','CATEGORY_2']
 #print(df3['Cruces'].columns)
 
-ejecutarSQL('DELETE FROM cruceRetenciones;')
+#ejecutarSQL('DELETE FROM cruceRetenciones;')
 ejecutarSQL('DROP TABLE IF EXISTS cruceRetenciones;')
 
 sql = "CREATE TABLE cruceRetenciones (\n"; k=0; auxArr=""

@@ -157,7 +157,7 @@ def borrarTables():
 
 def cargarPuntoVenta(): 
         #READING 10. Cuota SO Noviembre 2022 (final).xlsx
-    df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
+    df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/SaleslandMabe/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
     #print(df3)
 
     list2 = []; keysA=[];
@@ -223,7 +223,7 @@ def cargarPuntoVenta():
         i+=1
 
 def cargarSupervisor():
-    df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
+    df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/SaleslandMabe/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
     #print(df3)
 
     list2 = []; keysA=[];
@@ -265,7 +265,7 @@ def cargarSupervisor():
         i+=1
  
 def cargarLinea():
-    df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
+    df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/SaleslandMabe/BackEnd/Salesland_codes/01. Cuota Enero SO 2023 Ajustada.xlsx", sheet_name=None)
     #print(df3)
 
     list2 = []; keysA=[];
@@ -311,7 +311,7 @@ def cargarLinea():
 
 def cargarUsuario():
     #READING Rutero.CSV
-    df4 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/Python_codes/BackEnd/Salesland_codes/Rutero Ene-23.xlsx", sheet_name=None)
+    df4 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/SaleslandMabe/BackEnd/Salesland_codes/Rutero Ene-23.xlsx", sheet_name=None)
     #print(df4)
 
     list2 = []; keysA=[];
@@ -387,8 +387,8 @@ def cargarUsuario():
 #borrarTables();
 #cargarPuntoVenta();
 #cargarSupervisor();
-#ejecutarSQL("DELETE FROM linea")
-#cargarLinea();
-#cargarUsuario();
+ejecutarSQL("DELETE FROM linea")
+cargarLinea();
+cargarUsuario();
 
 
