@@ -18,17 +18,19 @@ export class AgregarUsuarioComponent implements OnInit {
   ) { 
     this.formularioDeUsuario = this.formulario.group({
       cedula:[""],
-      nombre_usuario:[""],
-      password:[""]
+      usuario:[""],
+      password:[""],
+      tipo:[""],
     });
   }
 
   ngOnInit(): void {
   }
   enviarDatos(): void{    
-    /*console.log("FORMULARIO:",this.formularioDeUsuario.value);*/
+    //console.log("FORMULARIO:",this.formularioDeUsuario.value);
     if (this.formularioDeUsuario)      
       this.crudService.AgregarUsuario(this.formularioDeUsuario.value).subscribe(respuesta=>{
+        console.log(respuesta);
         this.ruteador.navigateByUrl('/menu');
       });
       

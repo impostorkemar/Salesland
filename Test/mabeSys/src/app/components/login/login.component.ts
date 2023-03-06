@@ -79,6 +79,7 @@ export class LoginComponent implements OnInit {
     this.authService.logout()
       .subscribe(res => {
         if (!res.success) {
+          localStorage.clear();
           this.router.navigate(['/login']);
         }
       });

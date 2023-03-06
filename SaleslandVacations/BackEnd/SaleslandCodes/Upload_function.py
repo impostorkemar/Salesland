@@ -88,9 +88,11 @@ def consultarIdContrato(tipo_contrato,fecha_inicio_contrato,salario,observacione
     return auxString
 
 #Dropeo table usuario
-ejecutarSQL("DELETE FROM supervisor;")
+ejecutarSQL("DELETE FROM vacaciones;") 
 #Dropeo tabla cargo
 ejecutarSQL("DELETE FROM personal;")
+#Dropeo table usuario
+ejecutarSQL("DELETE FROM supervisor;") 
 #Dropeo tabla centro_base 
 ejecutarSQL("DELETE FROM centro_costo;")
 #Dropeo table usuario
@@ -223,7 +225,7 @@ ejecutarSQL("ALTER TABLE supervisor AUTO_INCREMENT=0")
 list = consultarCedulasCandidatos()
 for i in range(len(list)):
     sql = "INSERT INTO `usuario`(`cedula`, `usuario`,`password`, `tipo`) VALUES"   
-    datos = (list[i][0],list[i][0],list[i][0],"test")
+    datos = (list[i][0],list[i][0],list[i][0],"promotor")
     sql = sql + str(datos)
     ejecutarSQL(sql)
     print(sql)

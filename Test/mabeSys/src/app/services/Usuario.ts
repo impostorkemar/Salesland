@@ -1,6 +1,6 @@
 export class Usuario{
     cedula!:String;
-    nombre_usuario!:String;
+    usuario!:String;
     password!:String;
     tipo!:String;
 }

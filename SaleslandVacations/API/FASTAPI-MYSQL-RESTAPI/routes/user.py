@@ -53,8 +53,9 @@ def comprobar_usuario(user: str, passw: str):
 
 @user.post('/usuarios/', response_model=Usuario,tags=["usuarios"])
 def create_usuario(user: Usuario):
-    nuevo_usuario = {"cedula":user.cedula, "usuario":user.usuario, "password":user.password}
+    nuevo_usuario = {"cedula":user.cedula, "usuario":user.usuario, "password":user.password, "tipo": user.tipo}
     result = conn.execute(usuarios.insert().values(nuevo_usuario))    
+    print(result)
     return conn.execute( usuarios.select().where(usuarios.c.id_usuario == result.lastrowid)).first()
 
 @user.get("/usuarios/{id}",response_model=Usuario, tags=["usuarios"])
