@@ -53,3 +53,9 @@ WHERE 1 IN (CASE
                                      FROM usuario 
                                      WHERE usuario = '1724124084' AND password = '1724124084'));
 
+SELECT 
+fecha_inicio_vacaciones, 
+fecha_fin_vacaciones
+FROM vacaciones
+WHERE id_vacaciones = '53';
+

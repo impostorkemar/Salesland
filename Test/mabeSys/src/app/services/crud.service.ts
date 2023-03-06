@@ -396,9 +396,15 @@ resp!:String[];
     return this.clienteHttp.get(this.API+urlAPI);
   }
 
-  ObteneVvacacionesAReasignarByUserPassword(user:any,pass:any,fecha:any):Observable<any>{
+  ObteneVacacionesAReasignarByUserPassword(user:any,pass:any,fecha:any):Observable<any>{
     //console.log("user:",user,"pass:", pass)
     var urlAPI="vacacionesAReasignarByUserPassword/"+user as string+"_{pass}_"+fecha as string+"?passw="+pass as string;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  ObteneVacacionesFechaInicioAndFin(idVacacion:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesFechaInicioAndFin/"+idVacacion;      
     return this.clienteHttp.get(this.API+urlAPI);
   }
 

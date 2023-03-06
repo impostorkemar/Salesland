@@ -156,7 +156,11 @@ export class AgregarVacacionComponent {
     /*console.log("FORMULARIO:",this.formularioDeUsuario.value);*/
     if (this.formularioDeVacacion){     
       let key1: string[]=[];
-      let Value1: string[]=[];      
+      let Value1: string[]=[];   
+      let key2: string[]=[];
+      let Value2: string[]=[];  
+      let key3: string[]=[];
+      let Value3: string[]=[];  
 
       //BUSQUEDA ID PERSONAL
       if ( this.fromDate != null && this.toDate != null){
@@ -192,8 +196,35 @@ export class AgregarVacacionComponent {
       }else if(this.fromDate != null && this.toDate == null){
         console.log("SOLO FROM DATE");
 
-        //this.crudService.ObtenerExistenciaVacaciones(this.user,this.passw)
-        this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
+        this.crudService.ObtenerExistenciaVacaciones(this.user,this.passw,this.fromDate?.year+"-"+
+        this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta6 =>{
+          console.log("respuesta6:",respuesta6);
+          this.setRespen(respuesta6,"FECHAS_CAL"); 
+          const json = JSON.stringify(this.getRespen("FECHAS_CAL"));
+          JSON.parse(json, (key, value) => {
+            key2.push(key);
+            Value2.push(value);
+          });
+          console.log("Value2[0]:",Value2[0]);
+          if(Value2[0] as unknown as number === 0){
+            console.log("PUEDE REGISTRAR:");
+          }else{
+            this.crudService.ObteneVacacionesAReasignarByUserPassword(this.user,this.passw,this.fromDate?.year+"-"+
+            this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta7 =>{
+              console.log("respuesta7:",respuesta7);
+              this.setRespen(respuesta7,"id_vacaciones"); 
+              const json = JSON.stringify(this.getRespen("id_vacaciones"));
+              JSON.parse(json, (key, value) => {
+                key3.push(key);
+                Value3.push(value);
+              });
+              console.log("Value3[0]:",Value3[0]);
+              window.confirm("¿REASIGNAR PETICIÓN DE VACACIÓN?"+Value3[0] )
+            });
+           
+          }
+        });
+        /*this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
           this.setRespen(respuesta,"idpersonal");  
           //console.log(respuesta);
           const json = JSON.stringify(this.getRespen("idpersonal"));
@@ -221,7 +252,7 @@ export class AgregarVacacionComponent {
             console.log("Excede días disponibles");
           } 
                      
-        });
+        });*/
       }
 
      
