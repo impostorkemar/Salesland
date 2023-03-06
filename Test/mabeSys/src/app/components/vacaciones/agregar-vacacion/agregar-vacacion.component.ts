@@ -191,6 +191,8 @@ export class AgregarVacacionComponent {
         }); 
       }else if(this.fromDate != null && this.toDate == null){
         console.log("SOLO FROM DATE");
+
+        //this.crudService.ObtenerExistenciaVacaciones(this.user,this.passw)
         this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
           this.setRespen(respuesta,"idpersonal");  
           //console.log(respuesta);

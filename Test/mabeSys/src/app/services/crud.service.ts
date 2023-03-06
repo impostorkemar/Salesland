@@ -389,4 +389,17 @@ resp!:String[];
       return null;
     }    
   }
+
+  ObtenerExistenciaVacaciones(user:any,pass:any, fecha:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="comprobarVacacionesRegistradasByUserPassword/"+user as string+"_{pass}_"+fecha as string+"?passw="+pass as string;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  ObteneVvacacionesAReasignarByUserPassword(user:any,pass:any,fecha:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesAReasignarByUserPassword/"+user as string+"_{pass}_"+fecha as string+"?passw="+pass as string;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
 }

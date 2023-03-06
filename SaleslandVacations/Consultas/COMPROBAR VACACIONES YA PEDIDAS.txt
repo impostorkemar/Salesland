@@ -1,0 +1,55 @@
+SELECT 
+'2023-3-16' AS 'actual',
+fecha_inicio_vacaciones, 
+fecha_fin_vacaciones, 
+CASE 
+	WHEN fecha_inicio_vacaciones < '2023-3-16' AND fecha_fin_vacaciones > '2023-3-16' THEN '1'
+    WHEN fecha_inicio_vacaciones = '2023-3-16' THEN '1'
+    WHEN fecha_fin_vacaciones = '2023-3-16' THEN '1'
+    ELSE  '0'
+END AS FECHAS_CAL,
+CASE 
+	WHEN fecha_inicio_vacaciones < '2023-3-16' AND fecha_fin_vacaciones > '2023-3-16' THEN 'DENTRO DE'
+    WHEN fecha_inicio_vacaciones = '2023-3-16' THEN 'IGUAL'
+    WHEN fecha_fin_vacaciones = '2023-3-16' THEN 'IGUAL'
+    ELSE  'FUERA DE'
+END AS FECHAS_CAL_NAME
+FROM `vacaciones` 
+WHERE id_personal = (SELECT id_personal FROM	personal WHERE cedula = '1724124084');
+
+
+SELECT 
+SUM(CASE 
+	WHEN fecha_inicio_vacaciones < '2023-3-16' AND fecha_fin_vacaciones > '2023-3-16' THEN '1'
+    WHEN fecha_inicio_vacaciones = '2023-3-16' THEN '1'
+    WHEN fecha_fin_vacaciones = '2023-3-16' THEN '1'
+    ELSE  '0'
+END) AS FECHAS_CAL
+FROM `vacaciones` 
+WHERE id_personal = (SELECT id_personal FROM	personal WHERE cedula = '1724124084');
+
+SELECT 
+SUM(CASE 
+	WHEN fecha_inicio_vacaciones < '2023-3-16' AND fecha_fin_vacaciones > '2023-3-16' THEN '1'
+    WHEN fecha_inicio_vacaciones = '2023-3-16' THEN '1'
+    WHEN fecha_fin_vacaciones = '2023-3-16' THEN '1'
+    ELSE  '0'
+END) AS FECHAS_CAL
+FROM `vacaciones` 
+WHERE id_personal = (SELECT id_personal FROM	personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '1724124084' AND password = '1724124084'));
+
+
+SELECT 
+id_vacaciones
+FROM `vacaciones` 
+WHERE 1 IN (CASE 
+                WHEN fecha_inicio_vacaciones < '2023-3-16' AND fecha_fin_vacaciones > '2023-3-16' THEN '1'
+                WHEN fecha_inicio_vacaciones = '2023-3-16' THEN '1'
+                WHEN fecha_fin_vacaciones = '2023-3-16' THEN '1'
+                ELSE  '0'
+            END) AND id_personal = (SELECT id_personal 
+                     FROM	personal 
+                     WHERE cedula = (SELECT cedula 
+                                     FROM usuario 
+                                     WHERE usuario = '1724124084' AND password = '1724124084'));
+
