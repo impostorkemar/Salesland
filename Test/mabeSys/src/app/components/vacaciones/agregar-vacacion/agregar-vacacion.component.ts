@@ -219,17 +219,18 @@ export class AgregarVacacionComponent {
             });
           }else if (Value2[0] as unknown as number > 0){
             console.log("PUEDE REGISTRAR >0:");
-
+            var input:any;
             this.crudService.ObteneVacacionesAReasignarByUserPasswordFechasInfo(this.user,this.passw,this.fromDate?.year+"-"+
             this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+
             this.toDate?.month+"-"+ this.toDate?.day).subscribe(respuesta13 =>{
-              const json = JSON.stringify(respuesta13);
-              console.log("JSON:",json)
-              JSON.parse(json, (key, value) => {
-                key5.push(key);
-                Value5.push(value);
+              input = Object.keys(respuesta13).map((key) => {
+                return {
+                 id_vacaciones: key,
+                 fecha_inicio_vacaciones: respuesta13[key],
+                 fecha_fin_vacaciones: respuesta13[key]
+                }
               });
-              var aux = "ELIMINAR SOLICITUD DE PETICIÓN DE VACACIÓN?\n"+ json as string;
+              var aux = "ELIMINAR SOLICITUD DE PETICIÓN DE VACACIÓN?\n"+ input as string;
               console.log("aux:"+ aux);
               window.confirm(aux)
 
