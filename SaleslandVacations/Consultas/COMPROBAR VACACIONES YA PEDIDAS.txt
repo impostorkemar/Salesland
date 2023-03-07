@@ -32,11 +32,12 @@ SELECT
 SUM(CASE 
 	WHEN fecha_inicio_vacaciones < '2023-3-16' AND fecha_fin_vacaciones > '2023-3-16' THEN '1'
     WHEN fecha_inicio_vacaciones = '2023-3-16' THEN '1'
-    WHEN fecha_fin_vacaciones = '2023-3-16' THEN '1'
+    WHEN fecha_fin_vacaciones = '2023-3-16' THEN '1'   
     ELSE  '0'
 END) AS FECHAS_CAL
 FROM `vacaciones` 
 WHERE id_personal = (SELECT id_personal FROM	personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '1724124084' AND password = '1724124084'));
+
 
 
 SELECT 
@@ -59,3 +60,45 @@ fecha_fin_vacaciones
 FROM vacaciones
 WHERE id_vacaciones = '53';
 
+
+//VACACIONES CON FECHA INICIO Y FIN
+
+
+SELECT 
+SUM(CASE 
+	WHEN '2023-3-9' < fecha_inicio_vacaciones AND fecha_fin_vacaciones < '2023-3-10' THEN '1'
+    WHEN fecha_inicio_vacaciones = '2023-3-9' AND fecha_fin_vacaciones < '2023-3-10' THEN '1'
+    WHEN '2023-3-9' < fecha_inicio_vacaciones AND fecha_fin_vacaciones = '2023-3-10' THEN '1'
+    WHEN fecha_inicio_vacaciones = '2023-3-9' AND fecha_fin_vacaciones = '2023-3-10' THEN '1'
+    WHEN fecha_inicio_vacaciones = '2023-3-9' THEN '1'
+    WHEN fecha_fin_vacaciones = '2023-3-10' THEN '1'
+    WHEN fecha_inicio_vacaciones < '2023-3-10' AND fecha_fin_vacaciones > '2023-3-10' THEN '1'
+    WHEN fecha_inicio_vacaciones < '2023-3-9' AND fecha_fin_vacaciones > '2023-3-9' THEN '1'
+    WHEN fecha_fin_vacaciones = '2023-3-9' THEN '1'
+    WHEN fecha_inicio_vacaciones = '2023-3-10' THEN '1'
+    ELSE  '0'
+END) AS FECHAS_CAL
+FROM `vacaciones` 
+WHERE id_personal = (SELECT id_personal FROM	personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '1724124084' AND password = '1724124084'));
+
+
+SELECT 
+id_vacaciones
+FROM `vacaciones` 
+WHERE 1 IN (CASE 
+                WHEN '2023-3-17' < fecha_inicio_vacaciones AND fecha_fin_vacaciones < '2023-3-20' THEN '1'
+                WHEN fecha_inicio_vacaciones = '2023-3-17' AND fecha_fin_vacaciones < '2023-3-20' THEN '1'
+                WHEN '2023-3-17' < fecha_inicio_vacaciones AND fecha_fin_vacaciones = '2023-3-20' THEN '1'
+                WHEN fecha_inicio_vacaciones = '2023-3-17' AND fecha_fin_vacaciones = '2023-3-20' THEN '1'
+                WHEN fecha_inicio_vacaciones = '2023-3-17' THEN '1'
+                WHEN fecha_fin_vacaciones = '2023-3-20' THEN '1'
+                WHEN fecha_inicio_vacaciones < '2023-3-20' AND fecha_fin_vacaciones > '2023-3-20' THEN '1'
+                WHEN fecha_inicio_vacaciones < '2023-3-17' AND fecha_fin_vacaciones > '2023-3-17' THEN '1'
+		WHEN fecha_fin_vacaciones = '2023-3-17' THEN '1'
+    		WHEN fecha_inicio_vacaciones = '2023-3-20' THEN '1'
+                ELSE  '0'
+            END) AND id_personal = (SELECT id_personal 
+                                 FROM	personal 
+                                 WHERE cedula = (SELECT cedula 
+                                                 FROM usuario 
+                                                 WHERE usuario = '1724124084' AND password = '1724124084'));

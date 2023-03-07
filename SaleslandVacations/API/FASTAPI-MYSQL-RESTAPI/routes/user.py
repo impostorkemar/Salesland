@@ -127,6 +127,7 @@ def delete_contrato(id: str):
 
 @user.put("/contratos/{id}",response_model=Contrato, tags=["contratos"])
 def update_contrato(id: str, contrato: Contrato):  
+    print(contrato);
     sql="UPDATE `contrato` SET `id_contrato`='"+str(contrato.id_contrato)+"',`tipo_contrato`='"+str(contrato.tipo_contrato)+"',`fecha_inicio_contrato`='"+str(contrato.fecha_inicio_contrato)+"',`salario`='"+str(contrato.salario)+"',`observaciones`='"+str(contrato.observaciones)+"' WHERE `id_contrato` = '"+str(id)+"'"
     conn.execute(sql)
     return get_contrato(contrato.id_contrato)
@@ -321,8 +322,8 @@ def delete_candidato(id: str):
 
 @user.get("/comprobarVacacionesRegistradasByUserPassword/{user}_{pass}_{fecha}", tags=["vacaciones"])
 async def get_vacacionesregistradasByUserPassword(user: str, passw: str, fecha: str):
-    print("SELECT SUM(CASE WHEN fecha_inicio_vacaciones < '"+str(fecha)+"' AND fecha_fin_vacaciones > '"+str(fecha)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha)+"' THEN '1' WHEN fecha_fin_vacaciones = '"+str(fecha)+"' THEN '1' ELSE '0' END) AS FECHAS_CAL FROM `vacaciones` WHERE id_personal = (SELECT id_personal FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));)")
-    return conn.execute("SELECT SUM(CASE WHEN fecha_inicio_vacaciones < '"+str(fecha)+"' AND fecha_fin_vacaciones > '"+str(fecha)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha)+"' THEN '1' WHEN fecha_fin_vacaciones = '"+str(fecha)+"' THEN '1' ELSE '0' END) AS FECHAS_CAL FROM `vacaciones` WHERE id_personal = (SELECT id_personal FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));").first()
+    sql = ("SELECT SUM(CASE WHEN fecha_inicio_vacaciones < '"+str(fecha)+"' AND fecha_fin_vacaciones > '"+str(fecha)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha)+"' THEN '1' WHEN fecha_fin_vacaciones = '"+str(fecha)+"' THEN '1' ELSE '0' END) AS FECHAS_CAL FROM `vacaciones` WHERE id_personal = (SELECT id_personal FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));")
+    return conn.execute(sql).first()
 
 @user.get('/vacacionesAReasignarByUserPassword/{user}_{pass}_{fecha}',tags=["vacaciones"])
 async def get_vacacionesAReasignarByUserPassword(user: str, passw: str, fecha: str):
@@ -333,4 +334,18 @@ async def get_vacacionesAReasignarByUserPassword(user: str, passw: str, fecha: s
 async def get_vacacionesFechaInicioAndFin(idVacacion: str):
     return conn.execute("SELECT fecha_inicio_vacaciones, fecha_fin_vacaciones FROM vacaciones WHERE id_vacaciones = '"+str(idVacacion)+"';").first()
 
+@user.get("/comprobarVacacionesRegistradasByUserPasswordFechas/{user}_{pass}_{fecha1}_{fecha2}", tags=["vacaciones"])
+async def get_VacacionesRegistradasByUserPasswordFechas(user: str, passw: str, fecha1: str, fecha2 :str):
+    sql = ("SELECT SUM(CASE WHEN '"+str(fecha1)+"' > fecha_inicio_vacaciones AND fecha_fin_vacaciones > '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha1)+"' AND fecha_fin_vacaciones < '"+str(fecha2)+"' THEN '1' WHEN '"+str(fecha1)+"' < fecha_inicio_vacaciones AND fecha_fin_vacaciones = '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha1)+"' AND fecha_fin_vacaciones = '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha1)+"' THEN '1' WHEN fecha_fin_vacaciones = '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones < '"+str(fecha2)+"' AND fecha_fin_vacaciones > '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones < '"+str(fecha1)+"' AND fecha_fin_vacaciones > '"+str(fecha1)+"' THEN '1' WHEN fecha_fin_vacaciones = '"+str(fecha1)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha2)+"' THEN '1' ELSE '0' END) AS FECHAS_CAL FROM `vacaciones` WHERE id_personal = (SELECT id_personal FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));")
+    #print("comprobarVacacionesRegistradasByUserPasswordFechas:\n",sql)
+    return conn.execute(sql).first()
 
+@user.get('/vacacionesAReasignarByUserPasswordFechas/{user}_{pass}_{fecha1}_{fecha2}',tags=["vacaciones"])
+async def get_vacacionesAReasignarByUserPasswordFechas(user: str, passw: str, fecha1: str, fecha2 : str):
+    sql = ("SELECT id_vacaciones FROM `vacaciones` WHERE 1 IN (CASE WHEN '"+str(fecha1)+"' < fecha_inicio_vacaciones AND fecha_fin_vacaciones < '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha1)+"' AND fecha_fin_vacaciones < '"+str(fecha2)+"' THEN '1' WHEN '"+str(fecha1)+"' < fecha_inicio_vacaciones AND fecha_fin_vacaciones = '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha1)+"' AND fecha_fin_vacaciones = '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha1)+"' THEN '1' WHEN fecha_fin_vacaciones = '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones < '"+str(fecha2)+"' AND fecha_fin_vacaciones > '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones < '"+str(fecha1)+"' AND fecha_fin_vacaciones > '"+str(fecha1)+"' THEN '1' WHEN fecha_fin_vacaciones = '"+str(fecha1)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha2)+"' THEN '1' ELSE '0' END) AND id_personal = (SELECT id_personal FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));")
+    return conn.execute(sql).fetchall()
+
+@user.get('/vacacionesAReasignarByUserPasswordFechasInfo/{user}_{pass}_{fecha1}_{fecha2}',tags=["vacaciones"])
+async def get_vacacionesAReasignarByUserPasswordFechasInfo(user: str, passw: str, fecha1: str, fecha2 : str):
+    sql = ("SELECT id_vacaciones, fecha_inicio_vacaciones, fecha_fin_vacaciones FROM `vacaciones` WHERE 1 IN (CASE WHEN '"+str(fecha1)+"' < fecha_inicio_vacaciones AND fecha_fin_vacaciones < '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha1)+"' AND fecha_fin_vacaciones < '"+str(fecha2)+"' THEN '1' WHEN '"+str(fecha1)+"' < fecha_inicio_vacaciones AND fecha_fin_vacaciones = '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha1)+"' AND fecha_fin_vacaciones = '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha1)+"' THEN '1' WHEN fecha_fin_vacaciones = '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones < '"+str(fecha2)+"' AND fecha_fin_vacaciones > '"+str(fecha2)+"' THEN '1' WHEN fecha_inicio_vacaciones < '"+str(fecha1)+"' AND fecha_fin_vacaciones > '"+str(fecha1)+"' THEN '1' WHEN fecha_fin_vacaciones = '"+str(fecha1)+"' THEN '1' WHEN fecha_inicio_vacaciones = '"+str(fecha2)+"' THEN '1' ELSE '0' END) AND id_personal = (SELECT id_personal FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));")
+    return conn.execute(sql).fetchall()

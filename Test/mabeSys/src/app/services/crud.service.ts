@@ -390,6 +390,13 @@ resp!:String[];
     }    
   }
 
+  BorrarVacacionById(id:any) :Observable<any> {
+    var urlAPI="vacaciones/";
+    //console.log("URL=",this.API +urlAPI+id);
+    //console.log("ID=",id);  
+    return this.clienteHttp.delete(this.API +urlAPI+id);               
+  }
+
   ObtenerExistenciaVacaciones(user:any,pass:any, fecha:any):Observable<any>{
     //console.log("user:",user,"pass:", pass)
     var urlAPI="comprobarVacacionesRegistradasByUserPassword/"+user as string+"_{pass}_"+fecha as string+"?passw="+pass as string;      
@@ -405,6 +412,24 @@ resp!:String[];
   ObteneVacacionesFechaInicioAndFin(idVacacion:any):Observable<any>{
     //console.log("user:",user,"pass:", pass)
     var urlAPI="vacacionesFechaInicioAndFin/"+idVacacion;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  ObtenerExistenciaVacacionesByInicioFin(user:any,pass:any, fecha1:any, fecha2:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="comprobarVacacionesRegistradasByUserPasswordFechas/"+user as string+"_{pass}_"+fecha1 as string+"_"+fecha2 as string+"?passw="+pass as string;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  ObteneVacacionesAReasignarByUserPasswordFechas(user:any,pass:any,fecha1:any, fecha2: any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesAReasignarByUserPasswordFechas/"+user as string+"_{pass}_"+fecha1 as string+"_"+fecha2 as string+"?passw="+pass as string;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  ObteneVacacionesAReasignarByUserPasswordFechasInfo(user:any,pass:any,fecha1:any, fecha2: any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesAReasignarByUserPasswordFechasInfo/"+user as string+"_{pass}_"+fecha1 as string+"_"+fecha2 as string+"?passw="+pass as string;      
     return this.clienteHttp.get(this.API+urlAPI);
   }
 

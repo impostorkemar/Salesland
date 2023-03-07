@@ -28,6 +28,7 @@ export class EditarContratoComponent implements OnInit {
           id_contrato:respuesta["id_contrato"],   
           tipo_contrato:respuesta["tipo_contrato"],
           fecha_inicio_contrato:respuesta["fecha_inicio_contrato"],
+          fecha_fin_contrato:respuesta["fecha_fin_contrato"],
           salario:respuesta["salario"],
           observaciones:respuesta["observaciones"]
         });
@@ -39,8 +40,10 @@ export class EditarContratoComponent implements OnInit {
       id_contrato:[""],     
       tipo_contrato:[""],
       fecha_inicio_contrato:[""],
+      fecha_fin_contrato:[""],
       salario:[""],
-      observaciones:[""]
+      observaciones:[""],
+      
     });
    }
 
