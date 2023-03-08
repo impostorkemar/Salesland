@@ -342,7 +342,7 @@ resp!:String[];
     var data; 
     data = {"id_personal":id_personal,"fecha_solicitud":fecha_sol ,"fecha_inicio_vacaciones":fecha_inicio_vac, 
     "fecha_fin_vacaciones":fecha_fin_vac, "dias_lab_solicitados":dias_lab_sol,
-    "dias_disponibles_acum":dias_disp_acu,"status":"", "observaciones":""}
+    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente", "observaciones":""}
     return this.clienteHttp.post(this.API + urlAPI, data);
     
   }
@@ -370,9 +370,45 @@ resp!:String[];
     return this.clienteHttp.get(this.API+urlAPI);                
   } 
 
+  ObtenerVacacionesPersonalPendientes():Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesPersonalPendientes/";       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerVacacionesPersonalAprobadas():Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesPersonalAprobadas/";       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerVacacionesPersonalNegadas():Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesPersonalNegadas/";       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
   ObtenerVacacionesByUserAndPass(user:any,pass:any):Observable<any>{
     //console.log("user:",user,"pass:", pass)
     var urlAPI="vacacionesByUserAndPass/"+user as string+"-{pass}?passw="+pass as string;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerVacacionesByUserAndPassPendientes(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesByUserAndPassPendientes/"+user as string+"-{pass}?passw="+pass as string;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerVacacionesByUserAndPassAprobadas(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesByUserAndPassAprobadas/"+user as string+"-{pass}?passw="+pass as string;      
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerVacacionesByUserAndPassNegadas(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesByUserAndPassNegadas/"+user as string+"-{pass}?passw="+pass as string;      
     return this.clienteHttp.get(this.API+urlAPI);                
   } 
 

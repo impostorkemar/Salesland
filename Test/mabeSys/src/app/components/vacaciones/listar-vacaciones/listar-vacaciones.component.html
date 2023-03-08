@@ -1,45 +1,131 @@
-<div class="card">
-  <div class="card-header">
-      <a *ngIf="false" class="btn btn-success" routerLink="/agregar-candidato/" >AGREGAR NUEVO CANDIDATO</a>
-      <a class="btn btn-warning"(click)="exportToCSV()" role="button">EXPORT  TO CSV</a>
-  </div>
-  <div class="card-body">
-      <h1> Lista de Vacaciones Solicitadas </h1>
-      <div class="table-responsive">
-          <table class="table table-primary">
-              <thead>
-                  <tr>
-                      <th scope="col">ACCIONES</th>  
-                      <th scope="col">ID VACACIONES</th>                    
-                      <th scope="col">NOMBRE</th>
-                      <th scope="col">APELLIDO</th>
-                      <th scope="col">FECHA SOLICITUD</th>
-                      <th scope="col">FECHA INICIO VACACIONES</th>
-                      <th scope="col">FECHA FIN VACACIONES</th>
-                      <th scope="col">DIAS LABORABLES SOLICITADOS</th>
-                      <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
-                      <th scope="col">STATUS</th>
-                      <th scope="col">OBSERVACIONES</th>                                              
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let vacacion of Vacaciones; let iControl=index" class="">
-                      <td>                          
-                          <a class="btn btn-danger" style="width: 100%;" (click)="borrarRegistro(vacacion.id_vacaciones,iControl)" role="button">BORRAR</a>
-                      <td scope="row">{{vacacion.id_vacaciones}}</td>   
-                      <td>{{vacacion.nombre}}</td>                   
-                      <td>{{vacacion.apellido}}</td>
-                      <td>{{vacacion.fecha_solicitud}}</td>
-                      <td>{{vacacion.fecha_inicio_vacaciones}}</td>
-                      <td>{{vacacion.fecha_fin_vacaciones}}</td>
-                      <td>{{vacacion.dias_lab_solicitados}}</td>
-                      <td>{{vacacion.dias_disponibles_acum}}</td>
-                      <td>{{vacacion.status}}</td>
-                      <td>{{vacacion.observaciones}}</td>
-                  </tr>
-                  
-              </tbody>
-          </table>
-      </div>        
-  </div>    
-</div>
+<form [formGroup]="formularioDeVacacion">
+    <div class="card">
+        <div class="card-header">
+            <a *ngIf="false" class="btn btn-success" routerLink="/agregar-candidato/" >AGREGAR NUEVO CANDIDATO</a>
+            <a class="btn btn-warning"(click)="exportToCSV()" role="button">EXPORT  TO CSV</a>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="" class="form-label">MOTIVO</label>
+                <input type="text"
+                class="form-control" name="motivo" formControlName="motivo" id="motivo" aria-describedby="helpId" placeholder="ESCRIBA SU MOTIVO">
+            </div>
+        </div>
+        <div class="card-body">
+            <h1> Pendientes </h1>
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">ACCIONES</th>  
+                            <th scope="col">ID VACACIONES</th>                    
+                            <th scope="col">NOMBRE</th>
+                            <th scope="col">APELLIDO</th>
+                            <th scope="col">FECHA SOLICITUD</th>
+                            <th scope="col">FECHA INICIO VACACIONES</th>
+                            <th scope="col">FECHA FIN VACACIONES</th>
+                            <th scope="col">DIAS LABORABLES SOLICITADOS</th>
+                            <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
+                            <th scope="col">STATUS</th>
+                            <th scope="col">OBSERVACIONES</th>                                              
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let vacacion of VacacionesPendientes; let iControl=index" class="">
+                            <td>                          
+                                <a class="btn btn-danger" style="width: 100%;" (click)="borrarRegistro(vacacion.id_vacaciones,iControl)" role="button">SOLICITAR CANCELACIÓN</a>
+                            <td scope="row">{{vacacion.id_vacaciones}}</td>   
+                            <td>{{vacacion.nombre}}</td>                   
+                            <td>{{vacacion.apellido}}</td>
+                            <td>{{vacacion.fecha_solicitud}}</td>
+                            <td>{{vacacion.fecha_inicio_vacaciones}}</td>
+                            <td>{{vacacion.fecha_fin_vacaciones}}</td>
+                            <td>{{vacacion.dias_lab_solicitados}}</td>
+                            <td>{{vacacion.dias_disponibles_acum}}</td>
+                            <td>{{vacacion.status}}</td>
+                            <td>{{vacacion.observaciones}}</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>        
+        </div>  
+        <div class="card-body">
+          <h1> Negadas </h1>
+          <div class="table-responsive">
+              <table class="table table-primary">
+                  <thead>
+                      <tr>
+                          <th scope="col">ID VACACIONES</th>                    
+                          <th scope="col">NOMBRE</th>
+                          <th scope="col">APELLIDO</th>
+                          <th scope="col">FECHA SOLICITUD</th>
+                          <th scope="col">FECHA INICIO VACACIONES</th>
+                          <th scope="col">FECHA FIN VACACIONES</th>
+                          <th scope="col">DIAS LABORABLES SOLICITADOS</th>
+                          <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
+                          <th scope="col">STATUS</th>
+                          <th scope="col">OBSERVACIONES</th>                                              
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let vacacion of VacacionesNegadas; let iControl=index" class="">
+                          <td>                          
+                          <td scope="row">{{vacacion.id_vacaciones}}</td>   
+                          <td>{{vacacion.nombre}}</td>                   
+                          <td>{{vacacion.apellido}}</td>
+                          <td>{{vacacion.fecha_solicitud}}</td>
+                          <td>{{vacacion.fecha_inicio_vacaciones}}</td>
+                          <td>{{vacacion.fecha_fin_vacaciones}}</td>
+                          <td>{{vacacion.dias_lab_solicitados}}</td>
+                          <td>{{vacacion.dias_disponibles_acum}}</td>
+                          <td>{{vacacion.status}}</td>
+                          <td>{{vacacion.observaciones}}</td>
+                      </tr>
+                      
+                  </tbody>
+              </table>
+          </div>        
+      </div>  
+      <div class="card-body">
+          <h1>Aprobadas </h1>
+          <div class="table-responsive">
+              <table class="table table-primary">
+                  <thead>
+                      <tr>
+                          <th scope="col">ACCIONES</th> 
+                          <th scope="col">ID VACACIONES</th>                    
+                          <th scope="col">NOMBRE</th>
+                          <th scope="col">APELLIDO</th>
+                          <th scope="col">FECHA SOLICITUD</th>
+                          <th scope="col">FECHA INICIO VACACIONES</th>
+                          <th scope="col">FECHA FIN VACACIONES</th>
+                          <th scope="col">DIAS LABORABLES SOLICITADOS</th>
+                          <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
+                          <th scope="col">STATUS</th>
+                          <th scope="col">OBSERVACIONES</th>                                              
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let vacacion of VacacionesAprobadas; let iControl=index" class="">
+                          <td>                    
+                              <a class="btn btn-danger" style="width: 100%;" (click)="borrarRegistro(vacacion.id_vacaciones,iControl)" role="button">SOLICITAR CANCELACIÓN</a>
+                          <td scope="row">{{vacacion.id_vacaciones}}</td>   
+                          <td>{{vacacion.nombre}}</td>                   
+                          <td>{{vacacion.apellido}}</td>
+                          <td>{{vacacion.fecha_solicitud}}</td>
+                          <td>{{vacacion.fecha_inicio_vacaciones}}</td>
+                          <td>{{vacacion.fecha_fin_vacaciones}}</td>
+                          <td>{{vacacion.dias_lab_solicitados}}</td>
+                          <td>{{vacacion.dias_disponibles_acum}}</td>
+                          <td>{{vacacion.status}}</td>
+                          <td>{{vacacion.observaciones}}</td>
+                      </tr>
+                      
+                  </tbody>
+              </table>
+          </div>        
+      </div> 
+      </div>
+</form>
+
