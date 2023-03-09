@@ -127,12 +127,19 @@ export class MenuComponent implements OnInit {
     
   }
   menuPersonal(){
-         
-    if (this.control_vistas.value.statePersonal as string === '1'){
-      console.log("OPCION:",this.control_vistas.value.statePersonal);
-      this.nombreVentana='REPORTE-GENERAL-VACACIONES-PERSONAL';
+    if (localStorage.getItem('ROLE') as string == 'ROLE_ADMIN'){
+      console.log("ADMIN")
+      if (this.control_vistas.value.statePersonal as string === '1'){
+        console.log("OPCION:",this.control_vistas.value.statePersonal);
+        this.nombreVentana='REPORTE-GENERAL-VACACIONES-PERSONAL';
+      }    
+    }if (localStorage.getItem('ROLE') as string ==='ROLE_SUPERVISOR') {
+      console.log("SUPERVISOR")
+      if (this.control_vistas.value.statePersonal as string === '1'){
+        console.log("OPCION:",this.control_vistas.value.statePersonal);
+        this.nombreVentana='REPORTE-GENERAL-VACACIONES-SUPERVISOR';
+      }
     }
-    
   }
 
 

@@ -342,7 +342,7 @@ resp!:String[];
     var data; 
     data = {"id_personal":id_personal,"fecha_solicitud":fecha_sol ,"fecha_inicio_vacaciones":fecha_inicio_vac, 
     "fecha_fin_vacaciones":fecha_fin_vac, "dias_lab_solicitados":dias_lab_sol,
-    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente", "observaciones":""}
+    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente-aprobacion", "observaciones":""}
     return this.clienteHttp.post(this.API + urlAPI, data);
     
   }
@@ -387,6 +387,30 @@ resp!:String[];
     var urlAPI="vacacionesPersonalNegadas/";       
     return this.clienteHttp.get(this.API+urlAPI);                
   } 
+
+  ObtenerVacacionesPersonalBySupervisor(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesPersonalBySupervisor/"+user as string+"-{pass}?passw="+pass as string;        
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }
+
+  ObtenerVacacionesPersonalPendientesBySupervisor(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesPersonalPendientesBySupervisor/"+user as string+"-{pass}?passw="+pass as string;        
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerVacacionesPersonalAprobadasBySupervisor(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesPersonalAprobadasBySupervisor/"+user as string+"-{pass}?passw="+pass as string; ;       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerVacacionesPersonalNegadasBySupervisor(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="vacacionesPersonalNegadasBySupervisor/"+user as string+"-{pass}?passw="+pass as string; ;       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }
 
   ObtenerVacacionesByUserAndPass(user:any,pass:any):Observable<any>{
     //console.log("user:",user,"pass:", pass)

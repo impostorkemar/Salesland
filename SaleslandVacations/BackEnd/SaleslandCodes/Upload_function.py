@@ -127,20 +127,9 @@ for i in range(df2.shape[0]):
 df3 = pd.read_csv("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/archivo_madre.csv",sep = ';', dtype='object')
 print(df3);
 
-result = []; listDF3 = [];
-for i in range (df3.shape[0]):
-    listDF3.append(df3.iloc[i,:][30])
-#print("\n",list) 
-[result.append(x) for x in listDF3 if x not in result] 
-for item in result:
-    sql = "INSERT INTO `supervisor`(`nombre_supervisor`, `email`) VALUES"
-    sql = sql + "('"+str(item)+"','test@example.com')"
-    print("\n",sql);
-    ejecutarSQL(sql);
-
-
 #INSERCION A CANDIDATOS
-
+SQLaUX = "INSERT INTO `candidato`(`cedula`, `nombre`, `apellido`, `genero`, `direccion_domicilio`, `ciudad`, `provincia`, `estado_civil`, `telefono_celular`, `telefono_casa`, `direccion_correo`, `fecha_nacimiento`, `edad`, `nacionalidad`,`status` ) VALUES ('0000000000','NAN', 'NAN', 'NAN', 'NAN', 'NAN', 'NAN', 'NAN', 'NAN', 'NAN', 'test@salesland.net', '0000-00-00', '0', 'NAN' , 'CONTRATADO' )"
+ejecutarSQL(SQLaUX)
 for i in range (df3.shape[0]):
     list = []; auxFecha = ""; edadAux=0;
     sql = "INSERT INTO `candidato`(`cedula`, `nombre`, `apellido`, `genero`, `direccion_domicilio`, `ciudad`, `provincia`, `estado_civil`, `telefono_celular`, `telefono_casa`, `direccion_correo`, `fecha_nacimiento`, `edad`, `nacionalidad`,`status` ) VALUES"
@@ -177,6 +166,23 @@ for i in range (df3.shape[0]):
         print("No existe:",list[0])
     else:
         print('Candidato duplicada:',list[0])
+
+
+#INSERCIÓN SUPERVISORES
+
+#Setear incremental en 0
+ejecutarSQL("ALTER TABLE supervisor AUTO_INCREMENT=0")
+
+result = []; listDF3 = [];
+for i in range (df3.shape[0]):
+    listDF3.append(df3.iloc[i,:][30])
+#print("\n",list) 
+[result.append(x) for x in listDF3 if x not in result] 
+for item in result:
+    sql = "INSERT INTO `supervisor`(`cedula`,`nombre_supervisor`, `email`) VALUES"
+    sql = sql + "('0000000000','"+str(item)+"','test@salesland.net')"
+    print("\n",sql);
+    ejecutarSQL(sql);
 
 #Setear incremental en 0
 ejecutarSQL("ALTER TABLE experiencia_laboral AUTO_INCREMENT=0")

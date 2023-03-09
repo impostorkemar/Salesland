@@ -88,7 +88,7 @@ const routes: Routes = [
   {path: 'agregar-personal', component: AgregarPersonalComponent,
     canActivate: [AuthGuard],
     data: {
-      role: ['ROLE_ADMIN', 'ROLE_SUPERVISOR']
+      role: ['ROLE_ADMIN']
     }
   },
   {path: 'editar-personal', component: EditarPersonalComponent,

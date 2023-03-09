@@ -313,7 +313,15 @@ async def get_vacacionesPersonal():
 
 @user.get("/vacacionesPersonalPendientes/", tags=["vacaciones"])
 async def get_vacacionesPersonalPendientes():
-    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND vacaciones.status = 'pendiente';").fetchall()
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND (vacaciones.status = 'pendiente-aprobacion'  OR vacaciones.status = 'pendiente-cancelacion');").fetchall()
+
+@user.get("/vacacionesPersonalPendientesAprobacion/", tags=["vacaciones"])
+async def get_vacacionesPersonalPendientesAprobacion():
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND vacaciones.status = 'pendiente-aprobacion';").fetchall()
+
+@user.get("/vacacionesPersonalPendientesCancelacion/", tags=["vacaciones"])
+async def get_vacacionesPersonalPendientesCancelacion():
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND vacaciones.status = 'pendiente-cancelacion';").fetchall()
 
 @user.get("/vacacionesPersonalAprobadas/", tags=["vacaciones"])
 async def get_vacacionesPersonalAprobadas():
@@ -323,13 +331,45 @@ async def get_vacacionesPersonalAprobadas():
 async def get_vacacionesPersonalNegadas():
     return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND vacaciones.status = 'negada';").fetchall()
 
+@user.get("/vacacionesPersonalBySupervisor/{user}-{pass}", tags=["vacaciones"])
+async def get_vacacionesPersonalBySupervisor(user: str, passw: str):
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND personal.id_supervisor = (SELECT id_supervisor FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));").fetchall()
+
+@user.get("/vacacionesPersonalPendientesBySupervisor/{user}-{pass}", tags=["vacaciones"])
+async def get_vacacionesPersonalPendientesBySupervisor(user: str, passw: str):
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND (vacaciones.status = 'pendiente-aprobacion'  OR vacaciones.status = 'pendiente-cancelacion') AND personal.id_supervisor = (SELECT id_supervisor FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));").fetchall()
+
+@user.get("/vacacionesPersonalPendientesAprobacionBySupervisor/{user}-{pass}", tags=["vacaciones"])
+async def get_vacacionesPersonalPendientesAprobacionBySupervisor(user: str, passw: str):
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND vacaciones.status = 'pendiente-aprobacion' AND personal.id_supervisor = (SELECT id_supervisor FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));").fetchall()
+
+@user.get("/vacacionesPersonalPendientesCancelacionBySupervisor/{user}-{pass}", tags=["vacaciones"])
+async def get_vacacionesPersonalPendientesCancelacionBySupervisor(user: str, passw: str):
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND vacaciones.status = 'pendiente-cancelacion' AND personal.id_supervisor = (SELECT id_supervisor FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));").fetchall()
+
+@user.get("/vacacionesPersonalAprobadasBySupervisor/{user}-{pass}", tags=["vacaciones"])
+async def get_vacacionesPersonalAprobadasBySupervisor(user: str, passw: str):
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND vacaciones.status = 'aprobada' AND personal.id_supervisor = (SELECT id_supervisor FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));").fetchall()
+
+@user.get("/vacacionesPersonalNegadasBySupervisor/{user}-{pass}", tags=["vacaciones"])
+async def get_vacacionesPersonalNegadasBySupervisor(user: str, passw: str):
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND vacaciones.status = 'negada' AND personal.id_supervisor = (SELECT id_supervisor FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));").fetchall()
+
 @user.get("/vacacionesByUserAndPass/{user}-{pass}", tags=["vacaciones"])
 async def get_vacacionesByUserAndPass(user: str, passw: str):
     return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND usuario.cedula = candidato.cedula and usuario.usuario = '"+str(user)+"' and usuario.password = '"+str(passw)+"';").fetchall()
 
 @user.get("/vacacionesByUserAndPassPendientes/{user}-{pass}", tags=["vacaciones"])
 async def get_vacacionesByUserAndPassPendientes(user: str, passw: str):
-    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND usuario.cedula = candidato.cedula and usuario.usuario = '"+str(user)+"' and usuario.password = '"+str(passw)+"' AND vacaciones.status = 'pendiente';").fetchall()
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND usuario.cedula = candidato.cedula and usuario.usuario = '"+str(user)+"' and usuario.password = '"+str(passw)+"' AND ( vacaciones.status = 'pendiente-aprobacion' OR vacaciones.status = 'pendiente-cancelacionS');").fetchall()
+
+@user.get("/vacacionesByUserAndPassPendientesAprobacion/{user}-{pass}", tags=["vacaciones"])
+async def get_vacacionesByUserAndPassPendientesAprobacion(user: str, passw: str):
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND usuario.cedula = candidato.cedula and usuario.usuario = '"+str(user)+"' and usuario.password = '"+str(passw)+"' AND vacaciones.status = 'pendiente-aprobacion';").fetchall()
+
+@user.get("/vacacionesByUserAndPassPendientesCancelacion/{user}-{pass}", tags=["vacaciones"])
+async def get_vacacionesByUserAndPassPendientesCancelacion(user: str, passw: str):
+    return conn.execute("SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.observaciones FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND usuario.cedula = candidato.cedula and usuario.usuario = '"+str(user)+"' and usuario.password = '"+str(passw)+"' AND vacaciones.status = 'pendiente-cancelacion';").fetchall()
 
 @user.get("/vacacionesByUserAndPassAprobadas/{user}-{pass}", tags=["vacaciones"])
 async def get_vacacionesByUserAndPassAprobadas(user: str, passw: str):

@@ -46,6 +46,7 @@ import { AgregarVacacionComponent } from './components/vacaciones/agregar-vacaci
 import { ListarReporteGeneralPersonalComponent } from './components/vacaciones/listar-reporte-general-personal/listar-reporte-general-personal.component';
 import { DatepickerRangeTsComponent } from './components/datepicker-range/datepicker-range.ts/datepicker-range.ts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones/listar-reporte-general-supervisor/listar-reporte-general-supervisor.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AgregarVacacionComponent,
     ListarReporteGeneralPersonalComponent,
     DatepickerRangeTsComponent,
+    ListarReporteGeneralSupervisorComponent,
     
   ],
   imports: [
