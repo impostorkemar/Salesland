@@ -90,9 +90,11 @@ vacaciones = Table("vacaciones", meta,
     Column("fecha_solicitud", String(255)),    
     Column("fecha_inicio_vacaciones", String(255)),
     Column("fecha_fin_vacaciones", String(255)),
+    Column("fecha_respuesta", String(255)),
     Column("dias_lab_solicitados", Numeric),
     Column("dias_disponibles_acum", Numeric),
     Column("status", String(255)),
+    Column("peticion", String(255)),
     Column("observaciones", String(255)),
 )
 

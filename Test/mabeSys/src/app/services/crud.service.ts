@@ -10,6 +10,7 @@ import { ExperienciaLaboral } from './ExperienciaLaboral';
 import { Personal } from './Personal';
 import { map } from 'rxjs/operators';
 import { HttpPostService } from './HttpPostService';	
+import { Vacaciones } from './Vacaciones';
 
 
 @Injectable({
@@ -341,8 +342,8 @@ resp!:String[];
     var urlAPI="vacation2/";
     var data; 
     data = {"id_personal":id_personal,"fecha_solicitud":fecha_sol ,"fecha_inicio_vacaciones":fecha_inicio_vac, 
-    "fecha_fin_vacaciones":fecha_fin_vac, "dias_lab_solicitados":dias_lab_sol,
-    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente-aprobacion", "observaciones":""}
+    "fecha_fin_vacaciones":fecha_fin_vac,"fecha_respuesta":"", "dias_lab_solicitados":dias_lab_sol,
+    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente","peticion":"aprobacion", "observaciones":""}
     return this.clienteHttp.post(this.API + urlAPI, data);
     
   }
@@ -492,5 +493,47 @@ resp!:String[];
     var urlAPI="vacacionesAReasignarByUserPasswordFechasInfo/"+user as string+"_{pass}_"+fecha1 as string+"_"+fecha2 as string+"?passw="+pass as string;      
     return this.clienteHttp.get(this.API+urlAPI);
   }
+
+  ObtenerVacacionById(idVacacion:any):Observable<any>{
+    var urlAPI="vacacionesById/"+idVacacion;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  ModificarSolicitudVacacionACancelar(id:any,observaciones:any, VacacionesPen:any,VacacionesApr:any,VacacionesNeg:any,iControl:any){
+    let options = this.createRequestOptions();
+    this.ObtenerVacacionById(id).subscribe(response0 => {
+      //console.log(response0);
+      if(window.confirm("¿Desea solicitar la cancelación de la solicitud?\nID VACACIONES: "+
+      response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+      "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
+      + response0['fecha_fin_vacaciones'])){
+        let options = this.createRequestOptions();
+        var urlAPI="vacacionesACancelarbyId/"+id;
+        var vaca: Vacaciones ={
+          id_vacaciones: response0['id_vacaciones'],
+          id_personal: response0['id_personal'],
+          fecha_solicitud:response0['fecha_solicitud'],
+          fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+          fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+          dias_lab_solicitados: response0['dias_lab_solicitados'],
+          dias_disponibles_acum: response0['dias_disponibles_acum'],
+          fecha_respuesta: response0['fecha_respuesta'],
+          status: response0['status'],
+          peticion: 'cancelacion',
+          observaciones: observaciones as string,
+        }
+        console.log("vaca: ",vaca);
+        this.putData(vaca,urlAPI).subscribe(response0=>{
+          VacacionesPen.splice(iControl,1);
+          //VacacionesApr.splice(iControl,1);
+          //VacacionesNeg.splice(iControl,1);
+        });
+      }      
+    });
+
+    }
+    
+  
+
 
 }

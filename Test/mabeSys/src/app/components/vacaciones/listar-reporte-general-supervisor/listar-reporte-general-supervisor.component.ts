@@ -52,7 +52,7 @@ export class ListarReporteGeneralSupervisorComponent {
   borrarRegistro(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
-    this.crudService.BorrarVacacion(id, this.VacacionesBySupervisor, iControl);
+    this.crudService.BorrarVacacion(id, this.VacacionesPendientesBySupervisor, iControl);
   }
 
   AceptarRegistro(id:any,iControl:any){

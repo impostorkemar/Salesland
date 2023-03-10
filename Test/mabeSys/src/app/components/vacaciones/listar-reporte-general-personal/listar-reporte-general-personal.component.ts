@@ -52,7 +52,7 @@ export class ListarReporteGeneralPersonalComponent {
   borrarRegistro(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
-    this.crudService.BorrarVacacion(id, this.Vacaciones, iControl);
+    this.crudService.BorrarVacacion(id, this.VacacionesPendientes, iControl);
   }
 
   AceptarRegistro(id:any,iControl:any){

@@ -51,7 +51,22 @@ export class ListarVacacionesComponent {
   borrarRegistro(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
-    this.crudService.BorrarVacacion(id, this.Vacaciones, iControl);
+    this.crudService.BorrarVacacion(id, this.VacacionesPendientes, iControl);
+  }
+
+  solicitarCancelacion(id:any,iControl:any){
+    //console.log(id);
+    //console.log(iControl);
+    var aux = "";
+    if(!this.formularioDeVacacion.value.motivo){
+      aux = "Solicitar cancelacion"
+    }else{
+      aux = this.formularioDeVacacion.value.motivo
+    }
+    this.crudService.ModificarSolicitudVacacionACancelar(id,aux,this.VacacionesPendientes, this.VacacionesAprobadas, this.VacacionesNegadas, iControl);
+    
+    
+    
   }
 
   AceptarRegistro(id:any,iControl:any){
