@@ -294,7 +294,7 @@ async def get_idpersonalByPassAndUSer(user: str, passw: str):
 
 @user.get("/totalVacacionesTomadas/{user}-{pass}", tags=["vacaciones"])
 async def get_totalVacacionesTomadas(user: str, passw: str):
-    return conn.execute("SELECT SUM(vacaciones.dias_lab_solicitados) AS VACA_PREV FROM vacaciones WHERE id_personal = (select id_personal FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"')) LIMIT 1;").first()
+    return conn.execute("SELECT SUM(vacaciones.dias_lab_solicitados) AS VACA_PREV FROM vacaciones WHERE id_personal = (select id_personal FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"')) AND vacaciones.status = 'APROBADA' LIMIT 1;").first()
 
 @user.post("/vacation2/", tags=["vacaciones"])
 async def create_vacation2(vacacion : Vacacion ):    
