@@ -12,21 +12,21 @@
                         </div>                  
                         <div *ngIf="true" >
                      
-                            <select (click)="menuVacaciones()"  formControlName="stateVacaciones" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
-                                <option  selected>VACACIONES</option>
+                            <select *ngIf="rolVacations" (click)="menuVacaciones()"  formControlName="stateVacaciones" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
+                                <option selected>VACACIONES</option>
                                 <option *ngIf="rolVacations" value="1">1.INGRESO</option>  
                                 <option *ngIf="rolVacations" value="2">2.SOLICITUDES</option>                                 
                               </select>                  
                         </div>
                         <div *ngIf="true" >
-                            <select (click)="menuPersonal()" formControlName="statePersonal" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
+                            <select *ngIf="rolPersonal" (click)="menuPersonal()" formControlName="statePersonal" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
                                 <option selected>PERSONAL</option>                                   
-                                <option *ngIf="rolPersonal" value="1">1.REPORTE GENERAL</option>                               
+                                <option *ngIf="rolPersonal" value="1">1.APROBACIÓN SOLICITUDES</option>                               
                               </select>                  
                         </div>
                         <div *ngIf="true" >
-                            <select (click)="menuReportes()" formControlName="stateReportes"  class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example" >
-                                <option selected>REPORTES</option>
+                            <select *ngIf="rolReportes" (click)="menuReportes()" formControlName="stateReportes"  class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example" >
+                                <option  selected>REPORTES</option>
                                 <option *ngIf="rolReportes" value="1" >1.USUARIO</option> 
                                 <option *ngIf="rolReportes" value="2" >2.CANDIDATO</option>   
                                 <option *ngIf="rolReportes" value="3" >3.CARGO</option>
