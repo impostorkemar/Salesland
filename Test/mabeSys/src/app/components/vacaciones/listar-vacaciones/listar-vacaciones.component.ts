@@ -64,8 +64,7 @@ export class ListarVacacionesComponent {
       aux = this.formularioDeVacacion.value.motivo
     }
     this.crudService.ModificarSolicitudVacacionACancelar(id,aux,this.VacacionesPendientes, this.VacacionesAprobadas, this.VacacionesNegadas, iControl);
-    
-    
+
     
   }
 

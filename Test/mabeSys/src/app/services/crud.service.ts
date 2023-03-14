@@ -11,6 +11,10 @@ import { Personal } from './Personal';
 import { map } from 'rxjs/operators';
 import { HttpPostService } from './HttpPostService';	
 import { Vacaciones } from './Vacaciones';
+import { TestuserService } from 'src/app/services/testuser.service';
+import { DatePipe, DecimalPipe } from '@angular/common';
+import {formatDate} from '@angular/common';
+import { NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Injectable({
@@ -624,6 +628,8 @@ resp!:String[];
 
     AceptarSolicitudVacacion(id:any,observaciones:any, VacacionesPen:any,VacacionesApr:any,VacacionesNeg:any,iControl:any){
       var urlAPI="aprobarVacacionById/";
+      var myDate = new Date();
+      var Fecha_respt = myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDay()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds()      
       this.ObtenerVacacionById(id).subscribe(response0 => {
         if (response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion' ){
           if(window.confirm("¿Desea aprobar la solicitud?\nID VACACIONES: "+
@@ -640,7 +646,7 @@ resp!:String[];
               fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
               dias_lab_solicitados: response0['dias_lab_solicitados'],
               dias_disponibles_acum: response0['dias_disponibles_acum'],
-              fecha_respuesta: response0['fecha_respuesta'],
+              fecha_respuesta: Fecha_respt as string,
               status: 'aprobada',
               peticion: response0['peticion'],
               observaciones: observaciones as string,
@@ -686,7 +692,7 @@ resp!:String[];
               fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
               dias_lab_solicitados: response0['dias_lab_solicitados'],
               dias_disponibles_acum: response0['dias_disponibles_acum'],
-              fecha_respuesta: response0['fecha_respuesta'],
+              fecha_respuesta: Fecha_respt as string,
               status: 'cancelada',
               peticion: response0['peticion'],
               observaciones: response0['observaciones']+'\nPeticion de cancelacion:\n'+observaciones as string,
@@ -720,6 +726,8 @@ resp!:String[];
     }
     RechazarSolicitudVacacion(id:any,observaciones:any, VacacionesPen:any,VacacionesApr:any,VacacionesNeg:any,iControl:any){
       var urlAPI="negarVacacionById/";
+      var myDate = new Date();
+      var Fecha_respt = myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDay()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds()      
       this.ObtenerVacacionById(id).subscribe(response0 => {
         if ( response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion'){
           if(window.confirm("¿Desea aprobar la solicitud?\nID VACACIONES: "+
@@ -736,7 +744,7 @@ resp!:String[];
               fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
               dias_lab_solicitados: response0['dias_lab_solicitados'],
               dias_disponibles_acum: response0['dias_disponibles_acum'],
-              fecha_respuesta: response0['fecha_respuesta'],
+              fecha_respuesta: Fecha_respt as string,
               status: 'negada',
               peticion: 'aprobacion',
               observaciones: observaciones as string,
@@ -781,7 +789,7 @@ resp!:String[];
               fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
               dias_lab_solicitados: response0['dias_lab_solicitados'],
               dias_disponibles_acum: response0['dias_disponibles_acum'],
-              fecha_respuesta: response0['fecha_respuesta'],
+              fecha_respuesta: Fecha_respt as string,
               status: 'pendiente',
               peticion: 'aprobacion',
               observaciones: "Preaprobado:\n"+observaciones as string,

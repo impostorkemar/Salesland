@@ -405,9 +405,10 @@ export class AgregarVacacionComponent {
       var aux2 =new Date(from.year, from.month, from.day);
       var aux3 =new Date(to.year, to.month, to.day);
 
-      if (this.compareDates(aux1,aux2) == 1 || this.compareDates(aux1,aux3) == 1){
+      if (this.compareDates(aux1,aux2) == 1 || this.compareDates(aux1,aux3) == 1){ //COMPARA SI ES ESTA DETRAS DEL ACTUAL
         //console.log("CompareDateIncorrectos");
         this.btnIngresar = true;
+        //window.confirm("No se puede tomar vacaciones antes de la fecha actual");
       }else{
         //console.log("CompareDateCorrectos");
         if (
@@ -417,6 +418,7 @@ export class AgregarVacacionComponent {
           <= this.formularioDeVacacion.value.dias_tomados
           ){
             this.btnIngresar = true;
+            window.confirm("Excede la totalidad de días disponibles");
           }else{
             this.btnIngresar = false;
             
@@ -444,6 +446,7 @@ export class AgregarVacacionComponent {
       if (this.compareDates(aux1,aux2) == 1 ){
         //console.log("CompareDateIncorrectos");
         this.btnIngresar = true;
+        window.confirm("No se puede escoger vacaciones antes de la fecha actual");
       }else{
         //console.log("CompareDateCorrectos");
         this.btnIngresar = false;           

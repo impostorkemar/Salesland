@@ -445,6 +445,7 @@ def update_vacacionesAAprobarbyId(id: str,vacacion : Vacacion):
     #conn.execute(sql)
     conn.execute(
         vacaciones.update().values(
+            fecha_respuesta=vacacion.fecha_respuesta,
             status=vacacion.status,
             peticion='aprobacion',
             observaciones=vacacion.observaciones
@@ -458,6 +459,7 @@ def update_aprobarVacacionById(id: str,vacacion : Vacacion):
     #conn.execute(sql)
     conn.execute(
         vacaciones.update().values(
+            fecha_respuesta=vacacion.fecha_respuesta,
             status=vacacion.status,
             peticion=vacacion.peticion,
             observaciones=vacacion.observaciones
