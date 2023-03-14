@@ -24,27 +24,31 @@
                           <th scope="col">FECHA SOLICITUD</th>
                           <th scope="col">FECHA INICIO VACACIONES</th>
                           <th scope="col">FECHA FIN VACACIONES</th>
+                          <th scope="col">FECHA RESPUESTA</th>
                           <th scope="col">DIAS LABORABLES SOLICITADOS</th>
                           <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
                           <th scope="col">STATUS</th>
+                          <th scope="col">PETICION</th>
                           <th scope="col">OBSERVACIONES</th>                                              
                       </tr>
                   </thead>
                   <tbody>
                       <tr *ngFor="let vacacion of VacacionesPendientesBySupervisor; let iControl=index" class="">
-                          <td>                          
+                        <td>                          
                             <a class="btn btn-danger" style="width: 100%;" (click)="RechazarRegistro(vacacion.id_vacaciones,iControl)" role="button">RECHAZAR</a>
                             <a class="btn btn-success" style="width: 100%;" (click)="AceptarRegistro(vacacion.id_vacaciones,iControl)" role="button">ACEPTAR</a>
-    
+                        </td>
                             <td scope="row">{{vacacion.id_vacaciones}}</td>   
                           <td>{{vacacion.nombre}}</td>                   
                           <td>{{vacacion.apellido}}</td>
                           <td>{{vacacion.fecha_solicitud}}</td>
                           <td>{{vacacion.fecha_inicio_vacaciones}}</td>
                           <td>{{vacacion.fecha_fin_vacaciones}}</td>
+                          <td>{{vacacion.fecha_respuesta}}</td>
                           <td>{{vacacion.dias_lab_solicitados}}</td>
                           <td>{{vacacion.dias_disponibles_acum}}</td>
                           <td>{{vacacion.status}}</td>
+                          <td>{{vacacion.peticion}}</td>
                           <td>{{vacacion.observaciones}}</td>
                       </tr>
                       
@@ -64,24 +68,27 @@
                         <th scope="col">FECHA SOLICITUD</th>
                         <th scope="col">FECHA INICIO VACACIONES</th>
                         <th scope="col">FECHA FIN VACACIONES</th>
+                        <th scope="col">FECHA RESPUESTA</th>
                         <th scope="col">DIAS LABORABLES SOLICITADOS</th>
                         <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
                         <th scope="col">STATUS</th>
+                        <th scope="col">PETICION</th>
                         <th scope="col">OBSERVACIONES</th>                                              
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let vacacion of VacacionesNegadasBySupervisor; let iControl=index" class="">
-                        <td>                          
                         <td scope="row">{{vacacion.id_vacaciones}}</td>   
                         <td>{{vacacion.nombre}}</td>                   
                         <td>{{vacacion.apellido}}</td>
                         <td>{{vacacion.fecha_solicitud}}</td>
                         <td>{{vacacion.fecha_inicio_vacaciones}}</td>
                         <td>{{vacacion.fecha_fin_vacaciones}}</td>
+                        <td>{{vacacion.fecha_respuesta}}</td>
                         <td>{{vacacion.dias_lab_solicitados}}</td>
                         <td>{{vacacion.dias_disponibles_acum}}</td>
                         <td>{{vacacion.status}}</td>
+                        <td>{{vacacion.peticion}}</td>
                         <td>{{vacacion.observaciones}}</td>
                     </tr>
                     
@@ -101,24 +108,28 @@
                         <th scope="col">FECHA SOLICITUD</th>
                         <th scope="col">FECHA INICIO VACACIONES</th>
                         <th scope="col">FECHA FIN VACACIONES</th>
+                        <th scope="col">FECHA RESPUESTA</th>
                         <th scope="col">DIAS LABORABLES SOLICITADOS</th>
                         <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
                         <th scope="col">STATUS</th>
+                        <th scope="col">PETICION</th>
                         <th scope="col">OBSERVACIONES</th>                                              
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let vacacion of VacacionesAprobadasBySupervisor; let iControl=index" class="">
-                        <td>               
+                                  
                         <td scope="row">{{vacacion.id_vacaciones}}</td>   
                         <td>{{vacacion.nombre}}</td>                   
                         <td>{{vacacion.apellido}}</td>
                         <td>{{vacacion.fecha_solicitud}}</td>
                         <td>{{vacacion.fecha_inicio_vacaciones}}</td>
                         <td>{{vacacion.fecha_fin_vacaciones}}</td>
+                        <td>{{vacacion.fecha_respuesta}}</td>
                         <td>{{vacacion.dias_lab_solicitados}}</td>
                         <td>{{vacacion.dias_disponibles_acum}}</td>
                         <td>{{vacacion.status}}</td>
+                        <td>{{vacacion.peticion}}</td>
                         <td>{{vacacion.observaciones}}</td>
                     </tr>
                     

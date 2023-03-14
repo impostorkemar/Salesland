@@ -17,7 +17,7 @@ import { Vacaciones } from './Vacaciones';
   providedIn: 'root'
 })
 export class CrudService {
-API:string = 'http://192.168.1.37:8000/';
+API:string = 'http://192.168.1.29:8000/';
 resp!:String[];
 
   constructor(
@@ -449,7 +449,7 @@ resp!:String[];
     else{
       return null;
     }    
-  }
+  } 
 
   BorrarVacacionById(id:any) :Observable<any> {
     var urlAPI="vacaciones/";
@@ -503,34 +503,316 @@ resp!:String[];
     let options = this.createRequestOptions();
     this.ObtenerVacacionById(id).subscribe(response0 => {
       //console.log(response0);
-      if(window.confirm("¿Desea solicitar la cancelación de la solicitud?\nID VACACIONES: "+
-      response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
-      "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
-      + response0['fecha_fin_vacaciones'])){
-        let options = this.createRequestOptions();
-        var urlAPI="vacacionesACancelarbyId/"+id;
-        var vaca: Vacaciones ={
-          id_vacaciones: response0['id_vacaciones'],
-          id_personal: response0['id_personal'],
-          fecha_solicitud:response0['fecha_solicitud'],
-          fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
-          fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
-          dias_lab_solicitados: response0['dias_lab_solicitados'],
-          dias_disponibles_acum: response0['dias_disponibles_acum'],
-          fecha_respuesta: response0['fecha_respuesta'],
-          status: response0['status'],
-          peticion: 'cancelacion',
-          observaciones: observaciones as string,
+      if (response0['peticion'] === 'cancelacion'){
+        window.confirm('Solicitud ya en petición de cancelación')        
+      }else if (response0['peticion'] === 'aprobacion'){
+        if(window.confirm("¿Desea solicitar la cancelación de la solicitud?\nID VACACIONES: "+
+        response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+        "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
+        + response0['fecha_fin_vacaciones'])){
+          let options = this.createRequestOptions();
+          var urlAPI="vacacionesACancelarbyId/"+id;
+          var vaca: Vacaciones ={
+            id_vacaciones: response0['id_vacaciones'],
+            id_personal: response0['id_personal'],
+            fecha_solicitud:response0['fecha_solicitud'],
+            fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+            fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+            dias_lab_solicitados: response0['dias_lab_solicitados'],
+            dias_disponibles_acum: response0['dias_disponibles_acum'],
+            fecha_respuesta: response0['fecha_respuesta'],
+            status: response0['status'],
+            peticion: 'cancelacion',
+            observaciones: observaciones as string,
+          }
+          //console.log("vaca: ",vaca);          
+          this.putData(vaca,urlAPI).subscribe(response0=>{ 
+            var user = localStorage.getItem('USER') as string;
+            var passw = localStorage.getItem('PASS') as string;            
+            this.ObtenerVacacionesByUserAndPassPendientes(user,passw).subscribe(respuesta=>{
+              console.log("respuesta[iControl]:",respuesta[iControl]);
+              VacacionesPen.splice(iControl,1);
+              VacacionesPen.splice(iControl,0,respuesta[iControl]);             
+            });
+            
+          });
+          //VacacionesPen.splice(iControl,1,VacacionesPen[iControl]);
+         
+          
         }
-        console.log("vaca: ",vaca);
-        this.putData(vaca,urlAPI).subscribe(response0=>{
-          VacacionesPen.splice(iControl,1);
-          //VacacionesApr.splice(iControl,1);
-          //VacacionesNeg.splice(iControl,1);
-        });
-      }      
+      }
+           
     });
 
+    }
+
+    ModificarSolicitudVacacionAAprobar(id:any,observaciones:any, VacacionesPen:any,VacacionesApr:any,VacacionesNeg:any,iControl:any){
+      let options = this.createRequestOptions();
+      this.ObtenerVacacionById(id).subscribe(response0 => {
+        if (response0['peticion'] === 'aprobacion'){
+          if(window.confirm("¿Desea aprobar la solicitud?\nID VACACIONES: "+
+          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones'])){
+            let options = this.createRequestOptions();
+            var urlAPI="vacacionesACancelarbyId/"+id;
+            var vaca: Vacaciones ={
+              id_vacaciones: response0['id_vacaciones'],
+              id_personal: response0['id_personal'],
+              fecha_solicitud:response0['fecha_solicitud'],
+              fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+              fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+              dias_lab_solicitados: response0['dias_lab_solicitados'],
+              dias_disponibles_acum: response0['dias_disponibles_acum'],
+              fecha_respuesta: response0['fecha_respuesta'],
+              status: 'aprobada',
+              peticion: '',
+              observaciones: observaciones as string,
+            }
+            console.log("vaca: ",vaca);
+            this.putData(vaca,urlAPI).subscribe(response0=>{ 
+              var user = localStorage.getItem('USER') as string;
+              var passw = localStorage.getItem('PASS') as string;            
+              this.ObtenerVacacionesByUserAndPassPendientes(user,passw).subscribe(respuesta=>{
+                console.log("respuesta[iControl]:",respuesta[iControl]);
+                VacacionesPen.splice(iControl,1);
+              });
+              
+            });
+
+          }
+        }else if (response0['peticion'] === 'cancelacion'){
+          if(window.confirm("¿Desea negar la solicitud?\nID VACACIONES: "+
+          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones'])){
+            let options = this.createRequestOptions();
+            var urlAPI="vacacionesACancelarbyId/"+id;
+            var vaca: Vacaciones ={
+              id_vacaciones: response0['id_vacaciones'],
+              id_personal: response0['id_personal'],
+              fecha_solicitud:response0['fecha_solicitud'],
+              fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+              fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+              dias_lab_solicitados: response0['dias_lab_solicitados'],
+              dias_disponibles_acum: response0['dias_disponibles_acum'],
+              fecha_respuesta: response0['fecha_respuesta'],
+              status: 'negada',
+              peticion: '',
+              observaciones: observaciones as string,
+            }
+            console.log("vaca: ",vaca);
+            this.putData(vaca,urlAPI).subscribe(response0=>{ 
+              var user = localStorage.getItem('USER') as string;
+              var passw = localStorage.getItem('PASS') as string;            
+              this.ObtenerVacacionesByUserAndPassPendientes(user,passw).subscribe(respuesta=>{
+                console.log("respuesta[iControl]:",respuesta[iControl]);
+                VacacionesPen.splice(iControl,1);
+              });
+              
+            });
+          }
+        }
+      });
+    }
+
+    ObtenerNombreApellidoByIdVacacion(id:any):Observable<any>{
+      var urlAPI="nombreApellidoPersonalByIdVacacion/"+id;      
+      return this.clienteHttp.get(this.API+urlAPI);
+    }
+    
+
+    AceptarSolicitudVacacion(id:any,observaciones:any, VacacionesPen:any,VacacionesApr:any,VacacionesNeg:any,iControl:any){
+      var urlAPI="aprobarVacacionById/";
+      this.ObtenerVacacionById(id).subscribe(response0 => {
+        if (response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion' ){
+          if(window.confirm("¿Desea aprobar la solicitud?\nID VACACIONES: "+
+          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones'])){
+            let options = this.createRequestOptions();
+            var urlAPI="aprobarVacacionById/"+id;
+            var vaca: Vacaciones ={
+              id_vacaciones: response0['id_vacaciones'],
+              id_personal: response0['id_personal'],
+              fecha_solicitud:response0['fecha_solicitud'],
+              fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+              fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+              dias_lab_solicitados: response0['dias_lab_solicitados'],
+              dias_disponibles_acum: response0['dias_disponibles_acum'],
+              fecha_respuesta: response0['fecha_respuesta'],
+              status: 'aprobada',
+              peticion: response0['peticion'],
+              observaciones: observaciones as string,
+            }
+            //console.log("vaca: ",vaca);
+            this.putData(vaca,urlAPI).subscribe(response0=>{ 
+              //console.log("response0: ",response0)
+              VacacionesPen.splice(iControl,1);                    
+              this.ObtenerNombreApellidoByIdVacacion(vaca['id_vacaciones']).subscribe(respuesta=>{
+                var vacaPers ={
+                  id_vacaciones: vaca['id_vacaciones'],
+                  nombre: respuesta['nombre'],
+                  apellido: respuesta['apellido'],
+                  fecha_solicitud:vaca['fecha_solicitud'],
+                  fecha_inicio_vacaciones: vaca['fecha_inicio_vacaciones'],
+                  fecha_fin_vacaciones: vaca['fecha_fin_vacaciones'],
+                  dias_lab_solicitados: vaca['dias_lab_solicitados'],
+                  dias_disponibles_acum: vaca['dias_disponibles_acum'],
+                  fecha_respuesta: vaca['fecha_respuesta'],
+                  status: vaca['status'],
+                  peticion: vaca['peticion'],
+                  observaciones: vaca['observaciones'],
+                }
+                VacacionesApr.splice(iControl,0,vacaPers)
+                //console.log("respuesta[iControl]:",respuesta[iControl])
+              });
+            });
+                          
+            
+          }
+        }else if (response0['status'] === 'pendiente' && response0['peticion'] === 'cancelacion'){
+          if(window.confirm("¿Desea aprobar la cancelación de la solicitud?\nID VACACIONES: "+
+          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones'])){
+            let options = this.createRequestOptions();
+            var urlAPI="negarVacacionById/"+id;
+            var vaca: Vacaciones ={
+              id_vacaciones: response0['id_vacaciones'],
+              id_personal: response0['id_personal'],
+              fecha_solicitud:response0['fecha_solicitud'],
+              fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+              fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+              dias_lab_solicitados: response0['dias_lab_solicitados'],
+              dias_disponibles_acum: response0['dias_disponibles_acum'],
+              fecha_respuesta: response0['fecha_respuesta'],
+              status: 'cancelada',
+              peticion: response0['peticion'],
+              observaciones: response0['observaciones']+'\nPeticion de cancelacion:\n'+observaciones as string,
+            }
+            //console.log("vaca: ",vaca);
+            this.putData(vaca,urlAPI).subscribe(response0=>{ 
+              //console.log("response0: ",response0)
+              VacacionesPen.splice(iControl,1); 
+              this.ObtenerNombreApellidoByIdVacacion(vaca['id_vacaciones']).subscribe(respuesta=>{
+                //console.log(respuesta);
+                var vacaPers ={
+                  id_vacaciones: vaca['id_vacaciones'],
+                  nombre: respuesta['nombre'],
+                  apellido: respuesta['apellido'],
+                  fecha_solicitud:vaca['fecha_solicitud'],
+                  fecha_inicio_vacaciones: vaca['fecha_inicio_vacaciones'],
+                  fecha_fin_vacaciones: vaca['fecha_fin_vacaciones'],
+                  dias_lab_solicitados: vaca['dias_lab_solicitados'],
+                  dias_disponibles_acum: vaca['dias_disponibles_acum'],
+                  fecha_respuesta: vaca['fecha_respuesta'],
+                  status: vaca['status'],
+                  peticion: vaca['peticion'],
+                  observaciones: vaca['observaciones'],
+                }
+                VacacionesNeg.splice(iControl,0,vacaPers)               
+              });
+            });
+          }
+        }
+      }); 
+    }
+    RechazarSolicitudVacacion(id:any,observaciones:any, VacacionesPen:any,VacacionesApr:any,VacacionesNeg:any,iControl:any){
+      var urlAPI="negarVacacionById/";
+      this.ObtenerVacacionById(id).subscribe(response0 => {
+        if ( response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion'){
+          if(window.confirm("¿Desea aprobar la solicitud?\nID VACACIONES: "+
+          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones'])){
+            let options = this.createRequestOptions();
+            var urlAPI="vacacionesACancelarbyId/"+id;
+            var vaca: Vacaciones ={
+              id_vacaciones: response0['id_vacaciones'],
+              id_personal: response0['id_personal'],
+              fecha_solicitud:response0['fecha_solicitud'],
+              fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+              fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+              dias_lab_solicitados: response0['dias_lab_solicitados'],
+              dias_disponibles_acum: response0['dias_disponibles_acum'],
+              fecha_respuesta: response0['fecha_respuesta'],
+              status: 'negada',
+              peticion: 'aprobacion',
+              observaciones: observaciones as string,
+            }
+            console.log("vaca: ",vaca);
+            //console.log("vaca: ",vaca);
+            this.putData(vaca,urlAPI).subscribe(response0=>{ 
+              //console.log("response0: ",response0)
+              VacacionesPen.splice(iControl,1);                           
+              this.ObtenerNombreApellidoByIdVacacion(vaca['id_vacaciones']).subscribe(respuesta=>{
+                var vacaPers ={
+                  id_vacaciones: vaca['id_vacaciones'],
+                  nombre: respuesta['nombre'],
+                  apellido: respuesta['apellido'],
+                  fecha_solicitud:vaca['fecha_solicitud'],
+                  fecha_inicio_vacaciones: vaca['fecha_inicio_vacaciones'],
+                  fecha_fin_vacaciones: vaca['fecha_fin_vacaciones'],
+                  dias_lab_solicitados: vaca['dias_lab_solicitados'],
+                  dias_disponibles_acum: vaca['dias_disponibles_acum'],
+                  fecha_respuesta: vaca['fecha_respuesta'],
+                  status: vaca['status'],
+                  peticion: vaca['peticion'],
+                  observaciones: vaca['observaciones'],
+                }
+                VacacionesNeg.splice(iControl,0,vacaPers) 
+                //console.log("respuesta[iControl]:",respuesta[iControl])
+              });
+            });
+          }
+        }else if ( response0['status'] === 'pendiente' && response0['peticion'] === 'cancelacion'){
+          if(window.confirm("¿Desea aprobar la cancelación de la solicitud?\nID VACACIONES: "+
+          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones'])){
+            let options = this.createRequestOptions();
+            var urlAPI="vacacionesACancelarbyId/"+id;
+            var vaca: Vacaciones ={
+              id_vacaciones: response0['id_vacaciones'],
+              id_personal: response0['id_personal'],
+              fecha_solicitud:response0['fecha_solicitud'],
+              fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+              fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+              dias_lab_solicitados: response0['dias_lab_solicitados'],
+              dias_disponibles_acum: response0['dias_disponibles_acum'],
+              fecha_respuesta: response0['fecha_respuesta'],
+              status: 'pendiente',
+              peticion: 'aprobacion',
+              observaciones: "Preaprobado:\n"+observaciones as string,
+            }
+            console.log("vaca: ",vaca);
+            //console.log("vaca: ",vaca);
+            this.putData(vaca,urlAPI).subscribe(response0=>{ 
+              //console.log("response0: ",response0)
+              VacacionesPen.splice(iControl,1);
+              this.ObtenerNombreApellidoByIdVacacion(vaca['id_vacaciones']).subscribe(respuesta=>{
+                var vacaPers ={
+                  id_vacaciones: vaca['id_vacaciones'],
+                  nombre: respuesta['nombre'],
+                  apellido: respuesta['apellido'],
+                  fecha_solicitud:vaca['fecha_solicitud'],
+                  fecha_inicio_vacaciones: vaca['fecha_inicio_vacaciones'],
+                  fecha_fin_vacaciones: vaca['fecha_fin_vacaciones'],
+                  dias_lab_solicitados: vaca['dias_lab_solicitados'],
+                  dias_disponibles_acum: vaca['dias_disponibles_acum'],
+                  fecha_respuesta: vaca['fecha_respuesta'],
+                  status: vaca['status'],
+                  peticion: vaca['peticion'],
+                  observaciones: vaca['observaciones'],
+                }
+                VacacionesPen.splice(iControl,0,vacaPers)
+                //console.log("respuesta[iControl]:",respuesta[iControl])
+              });  
+            });
+          }
+        }
+      }); 
     }
     
   

@@ -31,19 +31,19 @@ export class ListarReporteGeneralSupervisorComponent {
 
    ngOnInit(): void {
 
-    this.crudService.ObtenerVacacionesPersonal().subscribe(respuesta=>{
+    this.crudService.ObtenerVacacionesPersonalBySupervisor(this.user, this.passw).subscribe(respuesta=>{
       //console.log(respuesta);
       this.VacacionesBySupervisor=respuesta;
     });
-    this.crudService.ObtenerVacacionesPersonalPendientes().subscribe(respuesta=>{
+    this.crudService.ObtenerVacacionesPersonalPendientesBySupervisor(this.user, this.passw).subscribe(respuesta=>{
       //console.log(respuesta);
       this.VacacionesPendientesBySupervisor=respuesta;
     });
-    this.crudService.ObtenerVacacionesPersonalNegadas().subscribe(respuesta=>{
+    this.crudService.ObtenerVacacionesPersonalNegadasBySupervisor(this.user, this.passw).subscribe(respuesta=>{
       //console.log(respuesta);
       this.VacacionesNegadasBySupervisor=respuesta;
     });
-    this.crudService.ObtenerVacacionesPersonalAprobadas().subscribe(respuesta=>{
+    this.crudService.ObtenerVacacionesPersonalAprobadasBySupervisor(this.user, this.passw).subscribe(respuesta=>{
       //console.log(respuesta);
       this.VacacionesAprobadasBySupervisor=respuesta;
     });
@@ -58,13 +58,27 @@ export class ListarReporteGeneralSupervisorComponent {
   AceptarRegistro(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
-    this.crudService.BorrarVacacion(id, this.VacacionesBySupervisor, iControl);
+    var aux = "";
+    if(!this.formularioDeVacacion.value.motivo){
+      aux = "Sin observaciones"
+    }else{
+      aux = this.formularioDeVacacion.value.motivo
+    }
+    this.crudService.AceptarSolicitudVacacion(id,aux,this.VacacionesPendientesBySupervisor, this.VacacionesAprobadasBySupervisor
+      , this.VacacionesNegadasBySupervisor, iControl); 
   }
 
   RechazarRegistro(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
-    this.crudService.BorrarVacacion(id, this.VacacionesBySupervisor, iControl);
+    var aux = "";
+    if(!this.formularioDeVacacion.value.motivo){
+      aux = "Sin observaciones"
+    }else{
+      aux = this.formularioDeVacacion.value.motivo
+    }
+    this.crudService.RechazarSolicitudVacacion(id,aux,this.VacacionesPendientesBySupervisor, this.VacacionesAprobadasBySupervisor
+      , this.VacacionesNegadasBySupervisor, iControl);
   }
 
   exportToCSV(){

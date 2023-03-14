@@ -32,10 +32,10 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let vacacion of VacacionesPendientes; let iControl=index" class="">
-                            <td>                          
+                            <td>
                               <a class="btn btn-danger" style="width: 100%;" (click)="RechazarRegistro(vacacion.id_vacaciones,iControl)" role="button">RECHAZAR</a>
                               <a class="btn btn-success" style="width: 100%;" (click)="AceptarRegistro(vacacion.id_vacaciones,iControl)" role="button">ACEPTAR</a>
-      
+                            </td>
                               <td scope="row">{{vacacion.id_vacaciones}}</td>   
                             <td>{{vacacion.nombre}}</td>                   
                             <td>{{vacacion.apellido}}</td>
@@ -72,7 +72,6 @@
                   </thead>
                   <tbody>
                       <tr *ngFor="let vacacion of VacacionesNegadas; let iControl=index" class="">
-                          <td>                          
                           <td scope="row">{{vacacion.id_vacaciones}}</td>   
                           <td>{{vacacion.nombre}}</td>                   
                           <td>{{vacacion.apellido}}</td>
@@ -109,7 +108,6 @@
                   </thead>
                   <tbody>
                       <tr *ngFor="let vacacion of VacacionesAprobadas; let iControl=index" class="">
-                          <td>               
                           <td scope="row">{{vacacion.id_vacaciones}}</td>   
                           <td>{{vacacion.nombre}}</td>                   
                           <td>{{vacacion.apellido}}</td>

@@ -378,7 +378,7 @@
     <column id="COL100" populated="true" UUID="81db0a0a-20f8-4775-b8d5-fd8e8e2f1dc2" autoIncrement="false" autoIncrementSequenceName="VACACIONES_status_seq" defaultValue="" name="status" nullable="0" physicalName="status" precision="20" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL101" populated="true" UUID="7094b783-c64b-42e8-bb14-d1df2a1f4e00" autoIncrement="false" autoIncrementSequenceName="VACACIONES_Observacion_seq" defaultValue="" name="Observacion" nullable="0" physicalName="Observacion" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL101" populated="true" UUID="7094b783-c64b-42e8-bb14-d1df2a1f4e00" autoIncrement="false" autoIncrementSequenceName="VACACIONES_observaciones_seq" defaultValue="" name="observaciones" nullable="0" physicalName="observaciones" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     </folder>

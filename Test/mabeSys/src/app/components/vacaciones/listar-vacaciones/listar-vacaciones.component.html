@@ -64,8 +64,7 @@
           <div class="table-responsive">
               <table class="table table-primary">
                   <thead>
-                      <tr>
-                        <th scope="col">ACCIONES</th>  
+                      <tr>                          
                         <th scope="col">ID VACACIONES</th>                    
                         <th scope="col">NOMBRE</th>
                         <th scope="col">APELLIDO</th>
@@ -81,8 +80,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let vacacion of VacacionesNegadas; let iControl=index" class="">
-                                               
+                      <tr *ngFor="let vacacion of VacacionesNegadas; let iControl=index" class="">                        
                         <td scope="row">{{vacacion.id_vacaciones}}</td>   
                         <td>{{vacacion.nombre}}</td>                   
                         <td>{{vacacion.apellido}}</td>
@@ -107,7 +105,6 @@
               <table class="table table-primary">
                   <thead>
                       <tr>
-                        <th scope="col">ACCIONES</th>  
                         <th scope="col">ID VACACIONES</th>                    
                         <th scope="col">NOMBRE</th>
                         <th scope="col">APELLIDO</th>
@@ -124,20 +121,18 @@
                   </thead>
                   <tbody>
                       <tr *ngFor="let vacacion of VacacionesAprobadas; let iControl=index" class="">
-                          <td>                    
-                              <a class="btn btn-danger" style="width: 100%;" (click)="solicitarCancelacion(vacacion.id_vacaciones,iControl)" role="button">SOLICITAR CANCELACIÓN</a>
-                              <td scope="row">{{vacacion.id_vacaciones}}</td>   
-                              <td>{{vacacion.nombre}}</td>                   
-                              <td>{{vacacion.apellido}}</td>
-                              <td>{{vacacion.fecha_solicitud}}</td>
-                              <td>{{vacacion.fecha_inicio_vacaciones}}</td>
-                              <td>{{vacacion.fecha_fin_vacaciones}}</td>
-                              <td>{{vacacion.fecha_respuesta}}</td>
-                              <td>{{vacacion.dias_lab_solicitados}}</td>
-                              <td>{{vacacion.dias_disponibles_acum}}</td>
-                              <td>{{vacacion.status}}</td>
-                              <td>{{vacacion.peticion}}</td>
-                              <td>{{vacacion.observaciones}}</td>
+                            <td scope="row">{{vacacion.id_vacaciones}}</td>   
+                            <td>{{vacacion.nombre}}</td>                   
+                            <td>{{vacacion.apellido}}</td>
+                            <td>{{vacacion.fecha_solicitud}}</td>
+                            <td>{{vacacion.fecha_inicio_vacaciones}}</td>
+                            <td>{{vacacion.fecha_fin_vacaciones}}</td>
+                            <td>{{vacacion.fecha_respuesta}}</td>
+                            <td>{{vacacion.dias_lab_solicitados}}</td>
+                            <td>{{vacacion.dias_disponibles_acum}}</td>
+                            <td>{{vacacion.status}}</td>
+                            <td>{{vacacion.peticion}}</td>
+                            <td>{{vacacion.observaciones}}</td>
                       </tr>
                       
                   </tbody>
