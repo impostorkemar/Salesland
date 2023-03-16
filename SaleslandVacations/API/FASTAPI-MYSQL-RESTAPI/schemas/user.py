@@ -83,3 +83,13 @@ class Vacacion(BaseModel):
     status: str
     peticion: str
     observaciones: str
+
+class Consult(BaseModel):
+    user: str
+    passw: str
+    id: str    
+
+class Consult2(BaseModel):    
+    id: str  
+    
+    

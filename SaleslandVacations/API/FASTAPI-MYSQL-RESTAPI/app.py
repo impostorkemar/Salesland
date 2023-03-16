@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from routes.user import user
+from routes.email import email
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -48,6 +49,8 @@ app.add_middleware(
 )
 
 app.include_router(user)
+app.include_router(email)
+
 
 
 

@@ -369,6 +369,12 @@ resp!:String[];
     return this.clienteHttp.get(this.API+urlAPI);                
   }  
 
+  ObtenertotalVacacionesTomadasPendientes(user:any,pass:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="totalVacacionesTomadasPendientes/"+user as string+"-{pass}?passw="+pass as string;       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }  
+
   ObtenerVacacionesPersonal():Observable<any>{
     //console.log("user:",user,"pass:", pass)
     var urlAPI="vacacionesPersonal/";       
@@ -538,6 +544,9 @@ resp!:String[];
               VacacionesPen.splice(iControl,1);
               VacacionesPen.splice(iControl,0,respuesta[iControl]);             
             });
+            this.EnviarCorreoNotificacionCancelacionPeticion(user,passw,id).subscribe(respuesta15=>{
+              console.log("respuesta15:",respuesta15)
+            })
             
           });
           //VacacionesPen.splice(iControl,1,VacacionesPen[iControl]);
@@ -671,11 +680,13 @@ resp!:String[];
                   observaciones: vaca['observaciones'],
                 }
                 VacacionesApr.splice(iControl,0,vacaPers)
+                
                 //console.log("respuesta[iControl]:",respuesta[iControl])
               });
-            });
-                          
-            
+              this.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
+                console.log("respuesta15:",respuesta15)
+              })
+            });   
           }
         }else if (response0['status'] === 'pendiente' && response0['peticion'] === 'cancelacion'){
           if(window.confirm("¿Desea aprobar la cancelación de la solicitud?\nID VACACIONES: "+
@@ -717,7 +728,10 @@ resp!:String[];
                   peticion: vaca['peticion'],
                   observaciones: vaca['observaciones'],
                 }
-                VacacionesNeg.splice(iControl,0,vacaPers)               
+                VacacionesNeg.splice(iControl,0,vacaPers)   
+                this.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
+                  console.log("respuesta15:",respuesta15)
+                })            
               });
             });
           }
@@ -771,6 +785,9 @@ resp!:String[];
                 }
                 VacacionesNeg.splice(iControl,0,vacaPers) 
                 //console.log("respuesta[iControl]:",respuesta[iControl])
+                this.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
+                  console.log("respuesta15:",respuesta15)
+                })
               });
             });
           }
@@ -816,12 +833,36 @@ resp!:String[];
                 }
                 VacacionesPen.splice(iControl,0,vacaPers)
                 //console.log("respuesta[iControl]:",respuesta[iControl])
+                this.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
+                  console.log("respuesta15:",respuesta15)
+                })
               });  
             });
           }
         }
       }); 
     }
+
+    EnviarCorreoNotificacionIngresoSolicitud(user:any,passw:any,id:any): Observable<any>{
+      var consult = {"user":user, "passw":passw, "id":id}
+      console.log(consult.user,consult.passw,consult.id)     
+      var urlAPI="sendEmailIngresoSolicitud/?user="+(user) as string+"&passw="+(passw) as string+"&idvacacion="+(id) as string;
+      return this.clienteHttp.post(this.API + urlAPI, consult);
+    }
+
+    EnviarCorreoNotificacionCancelacionPeticion(user:any,passw:any,id:any): Observable<any>{
+      var consult = {"user":user, "passw":passw, "id":id}
+      console.log(consult.user,consult.passw,consult.id)     
+      var urlAPI="sendEmailSolicitudACancelacion/?user="+(user) as string+"&passw="+(passw) as string+"&idvacacion="+(id) as string;
+      return this.clienteHttp.post(this.API + urlAPI, consult);
+    }
+
+    EnviarCorreoCambioEstadoSolicitud(id:any): Observable<any>{
+      var consult2 = {"id":id}
+      var urlAPI="sendEmailCambioEstadoSolicitud/"
+      return this.clienteHttp.post(this.API + urlAPI, consult2);
+    }
+
     
   
 

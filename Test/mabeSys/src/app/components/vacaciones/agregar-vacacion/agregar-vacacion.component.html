@@ -1,6 +1,8 @@
 <div class="card">
   <div class="card-header">
-      AGREGAR PERSONAL
+    <h1>
+      AGREGAR SOLICITUD DE VACACIÓN
+    </h1>     
   </div>
   <div class="card-body">
       <form [formGroup]="formularioDeVacacion" (ngSubmit)="enviarDatos()">
@@ -18,7 +20,13 @@
         </div>
 
         <div class="mb-3">
-          <label for="" class="form-label">DÍAS SOLICITADOS</label>
+          <label for="" class="form-label">DÍAS SOLICITADOS PENDIENTES</label>
+          <input type="text"
+            class="form-control" name="dias_solicitudes_pen" formControlName="dias_solicitudes_pen" id="dias_solicitudes_pen" aria-describedby="helpId" placeholder="0">
+        </div>  
+
+        <div class="mb-3">
+          <label for="" class="form-label">DÍAS SELECCIONADOS</label>
           <input type="text"
             class="form-control" name="dias_tomados" formControlName="dias_tomados" id="dias_tomados" aria-describedby="helpId" placeholder="0">
         </div>              

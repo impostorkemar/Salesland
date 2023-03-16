@@ -48,6 +48,7 @@ export class AgregarVacacionComponent {
       vaca_disp:[''],
       dias_tomados:[''],
       saldo_dias:[''],
+      dias_solicitudes_pen:[''],
     });
     this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
@@ -68,6 +69,7 @@ export class AgregarVacacionComponent {
     this.formularioDeVacacion.controls['vaca_disp'].disable();
     this.formularioDeVacacion.controls['dias_tomados'].disable();
     this.formularioDeVacacion.controls['saldo_dias'].disable();
+    this.formularioDeVacacion.controls['dias_solicitudes_pen'].disable();
     this.precargarDias();       
   }
 
@@ -135,19 +137,28 @@ export class AgregarVacacionComponent {
                 Value3.push(value);
               });       
               var aux2 = Value3[0];
-              if ( aux2 == null){
-                this.formularioDeVacacion.setValue({      
-                  vaca_disp: aux1,
-                  saldo_dias: 0,
-                  dias_tomados: 0,         
-                });
-              }else{
-                this.formularioDeVacacion.setValue({      
-                  vaca_disp: aux1,
-                  saldo_dias: aux2,
-                  dias_tomados: 0,         
-                });
-              }
+              let Key4: string[] = [];
+              let Value4: string[]=[];
+              this.crudService.ObtenertotalVacacionesTomadasPendientes(this.user,this.passw).subscribe(respuesta=>{
+                console.log("VACA_PREV:",respuesta['VACA_PREV'])
+                var aux3 = respuesta['VACA_PREV']
+                if ( aux2 == null || aux3 == null){
+                  this.formularioDeVacacion.setValue({      
+                    vaca_disp: aux1,
+                    saldo_dias: 0,
+                    dias_tomados: 0,   
+                    dias_solicitudes_pen: 0,
+                  });
+                }else{
+                  this.formularioDeVacacion.setValue({      
+                    vaca_disp: aux1,
+                    saldo_dias: aux2,
+                    dias_tomados: 0,  
+                    dias_solicitudes_pen: aux3,
+                  });
+                }
+              });
+              
               //console.log("cargarDiasDisponibles:", this.cargarDiasDisponibles()); 
               //console.log("cargarDiasTomadosPreviamente:", this.cargarDiasTomadosPreviamente()); 
             });
@@ -207,10 +218,14 @@ export class AgregarVacacionComponent {
                 this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+this.toDate?.month+"-"+
                 this.toDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
                 this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta=>{
+                  this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta['id_vacaciones']).subscribe(respuesta15=>{
+                    console.log("respuesta15:",respuesta15)
+                  })
                   console.log("respuesta:",respuesta);
                   this.ruteador.navigateByUrl('/menu');
                 });
                 this.precargarDias();
+               
                 window.confirm("Solicitud de Vacación registrada")
                 this.router.navigate(['/menu']);
               }else{
@@ -229,10 +244,11 @@ export class AgregarVacacionComponent {
                 let aux1 = Object.values(item);
                 msg = msg +"\nID:" + aux1[0]+ "\nFecha Inicio:" + aux1[1] + "\nFecha Fin:" + aux1[2] ; 
               }              
-              var aux = "ELIMINAR SOLICITUD DE PETICIÓN DE VACACIÓN?\n"+ msg as string;
+              var aux = "CONFLICTO CON LAS SOLICITUDES DE VACACIÓN:\n"+ msg as string;
               //console.log("aux:"+ aux);
-              if (window.confirm(aux)){
-                for ( let item of respuesta13){
+              window.confirm(aux)
+              /*if (window.confirm(aux)){
+                for ( let item of respuesta13){ //ELIMINADOR POR BLOQUE DE VACACIONES CRUZADAS
                   let aux = Object.values(item);
                   this.crudService.BorrarVacacionById(aux[0] as string).subscribe(respuesta8 =>{ //BORRAR SOLICITUD VACACION
                     console.log("respuesta8:",respuesta8);
@@ -266,7 +282,7 @@ export class AgregarVacacionComponent {
                     console.log("Excede días disponibles");
                   }          
                 });
-              }
+              }*/
             });
           }
         });
@@ -305,6 +321,9 @@ export class AgregarVacacionComponent {
                 this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta=>{
                   console.log("respuesta:",respuesta);
                   this.ruteador.navigateByUrl('/menu');
+                  this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta['id_vacaciones']).subscribe(respuesta15=>{
+                    console.log("respuesta15:",respuesta15)
+                  })
                 });
                 this.precargarDias();                    
                 this.router.navigate(['/menu']);
@@ -333,8 +352,10 @@ export class AgregarVacacionComponent {
                   key4.push(key);
                   Value4.push(value);
                 });
-                console.log("Value4[0]:",Value4[0],Value4[1]);                
-                if (window.confirm("SOLICITUD REPETIDA: \nELIMINAR SOLICITUD DE PETICIÓN DE VACACIÓN?\nID:"+Value3[0]+"\n\tFECHA INICIO:"+ Value4[0] as string+
+                console.log("Value4[0]:",Value4[0],Value4[1]);   
+                window.confirm("CONFLICTO CON LAS SOLICITUDES DE VACACIÓN:\nID:"+Value3[0]+"\n\tFECHA INICIO:"+ Value4[0] as string+
+                 "\n\tFECHA FIN:" + Value4[1] as string)             
+                /*if (window.confirm("SOLICITUD REPETIDA: \nELIMINAR SOLICITUD DE PETICIÓN DE VACACIÓN?\nID:"+Value3[0]+"\n\tFECHA INICIO:"+ Value4[0] as string+
                  "\n\tFECHA FIN:" + Value4[1] as string)){
                   this.crudService.BorrarVacacionById(Value3[0] as string).subscribe(respuesta8 =>{ //BORRAR SOLICITUD VACACION
                     this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
@@ -367,7 +388,7 @@ export class AgregarVacacionComponent {
                     });
                   })
                   
-                }                
+                }*/                
               });             
             });
            
@@ -394,8 +415,9 @@ export class AgregarVacacionComponent {
         if (diferenciaDias != null){
           this.formularioDeVacacion.setValue({
             vaca_disp:this.formularioDeVacacion.value.vaca_disp,
-            saldo_dias:this.formularioDeVacacion.value.saldo_dias,
-            dias_tomados:diferenciaDias,         
+            saldo_dias:this.formularioDeVacacion.value.saldo_dias,            
+            dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen, 
+            dias_tomados:diferenciaDias,        
           }); 
         }     
       }
@@ -414,11 +436,12 @@ export class AgregarVacacionComponent {
         if (
           this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.dias_tomados
           || 
-          (this.formularioDeVacacion.value.vaca_disp-this.formularioDeVacacion.value.saldo_dias) 
+          (this.formularioDeVacacion.value.vaca_disp-(this.formularioDeVacacion.value.saldo_dias
+            +this.formularioDeVacacion.value.dias_solicitudes_pen)) 
           <= this.formularioDeVacacion.value.dias_tomados
           ){
             this.btnIngresar = true;
-            window.confirm("Excede la totalidad de días disponibles");
+          window.confirm("Excede la totalidad de días disponibles:\n\tSolicite cancelación de solicitudes de vacaciones");
           }else{
             this.btnIngresar = false;
             
@@ -439,7 +462,8 @@ export class AgregarVacacionComponent {
             this.formularioDeVacacion.setValue({
               vaca_disp:this.formularioDeVacacion.value.vaca_disp,
               saldo_dias:this.formularioDeVacacion.value.saldo_dias,
-              dias_tomados:diferenciaDias,         
+              dias_tomados:diferenciaDias,  
+              dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen,       
             }); 
            }     
         }      
@@ -449,7 +473,19 @@ export class AgregarVacacionComponent {
         window.confirm("No se puede escoger vacaciones antes de la fecha actual");
       }else{
         //console.log("CompareDateCorrectos");
-        this.btnIngresar = false;           
+        if (
+          this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.dias_tomados
+          || 
+          (this.formularioDeVacacion.value.vaca_disp-(this.formularioDeVacacion.value.saldo_dias
+            +this.formularioDeVacacion.value.dias_solicitudes_pen)) 
+          <= this.formularioDeVacacion.value.dias_tomados
+          ){
+            this.btnIngresar = true;
+          window.confirm("Excede la totalidad de días disponibles:\n\tSolicite cancelación de solicitudes de vacaciones");
+          }else{
+            this.btnIngresar = false;
+            
+          }           
       }
       
 		}    
