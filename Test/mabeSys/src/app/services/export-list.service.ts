@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +30,8 @@ export class ExportListService {
     }
     return str;
   }
+
+
 
   downloadFileUsuarios(data:any, filename = 'Usuarios') {    
     let csvData = this.ConvertToCSV(data, [
@@ -224,9 +227,11 @@ export class ExportListService {
     document.body.removeChild(dwldLink);
   }
 
-  downloadFileVacaciones(data:any, filename = 'Vacaciones') {
+  
+
+  downloadFileSolicitudesVacaciones(data:any, filename = 'Vacaciones') {
     let csvData = this.ConvertToCSV(data, [
-        'nombre', 'apellido', 'fecha_solicitud', 'fecha_inicio_vacaciones', 'fecha_fin_vacaciones', 'dias_lab_solicitados', 'dias_disponibles_acum', 'status', 'observaciones'
+        'id_vacaciones', 'nombre', 'apellido', 'fecha_solicitud', 'fecha_inicio_vacaciones', 'fecha_fin_vacaciones', 'fecha_respuesta', 'dias_lab_solicitados', 'dias_disponibles_acum', 'status', 'peticion', 'observaciones'
     ]);
     console.log(csvData)
     let blob = new Blob(['\ufeff' + csvData], {
@@ -247,6 +252,8 @@ export class ExportListService {
     dwldLink.click();
     document.body.removeChild(dwldLink);
   }
+
+  
 }
 
 

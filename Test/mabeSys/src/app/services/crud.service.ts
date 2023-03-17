@@ -358,7 +358,7 @@ resp!:String[];
     return this.clienteHttp.get(this.API+urlAPI);                
   }  
 
-  public ObtenerIDPersonal(user:any,pass:any){
+  public ObtenerIDPersonal(user:any,pass:any):Observable<any>{
     var urlAPI="idpersonalByPassAndUSer/"+user as string+"-{pass}?passw="+pass as string;       
     return this.clienteHttp.get(this.API+urlAPI);
   }
@@ -469,13 +469,13 @@ resp!:String[];
   }
 
   ObtenerExistenciaVacaciones(user:any,pass:any, fecha:any):Observable<any>{
-    //console.log("user:",user,"pass:", pass)
+    console.log("user:",user,"pass:", pass,"fecha:", fecha);
     var urlAPI="comprobarVacacionesRegistradasByUserPassword/"+user as string+"_{pass}_"+fecha as string+"?passw="+pass as string;      
     return this.clienteHttp.get(this.API+urlAPI);
   }
 
   ObteneVacacionesAReasignarByUserPassword(user:any,pass:any,fecha:any):Observable<any>{
-    //console.log("user:",user,"pass:", pass)
+    console.log("user:",user,"pass:", pass,"fecha:",fecha);
     var urlAPI="vacacionesAReasignarByUserPassword/"+user as string+"_{pass}_"+fecha as string+"?passw="+pass as string;      
     return this.clienteHttp.get(this.API+urlAPI);
   }
@@ -706,7 +706,7 @@ resp!:String[];
               fecha_respuesta: Fecha_respt as string,
               status: 'cancelada',
               peticion: response0['peticion'],
-              observaciones: response0['observaciones']+'\nPeticion de cancelacion:\n'+observaciones as string,
+              observaciones: response0['observaciones']+'\tPeticion de cancelacion:\t'+observaciones as string,
             }
             //console.log("vaca: ",vaca);
             this.putData(vaca,urlAPI).subscribe(response0=>{ 
@@ -809,7 +809,7 @@ resp!:String[];
               fecha_respuesta: Fecha_respt as string,
               status: 'pendiente',
               peticion: 'aprobacion',
-              observaciones: "Preaprobado:\n"+observaciones as string,
+              observaciones: "Preaprobado:\t"+observaciones as string,
             }
             console.log("vaca: ",vaca);
             //console.log("vaca: ",vaca);

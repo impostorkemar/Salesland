@@ -49,10 +49,30 @@ export class ListarReporteGeneralPersonalComponent {
     });
   }  
 
-  borrarRegistro(id:any,iControl:any){
+  borrarRegistroNegadas(id:any,iControl:any){
+    //console.log(id);
+    //console.log(iControl);
+    this.crudService.BorrarVacacion(id, this.VacacionesNegadas, iControl);
+    this.borrarRegistro(id,iControl)
+  }
+
+  borrarRegistroAprobadas(id:any,iControl:any){
+    //console.log(id);
+    //console.log(iControl);
+    this.crudService.BorrarVacacion(id, this.VacacionesAprobadas, iControl);
+    this.borrarRegistro(id,iControl)
+  }
+
+  borrarRegistroPendientes(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
     this.crudService.BorrarVacacion(id, this.VacacionesPendientes, iControl);
+  }
+
+  borrarRegistro(id:any,iControl:any){
+    //console.log(id);
+    //console.log(iControl);
+    this.crudService.BorrarVacacion(id, this.Vacaciones, iControl);
   }
 
   AceptarRegistro(id:any,iControl:any){
@@ -68,6 +88,6 @@ export class ListarReporteGeneralPersonalComponent {
   }
 
   exportToCSV(){
-    this.exportList.downloadFileVacaciones(this.Vacaciones,"Vacaciones");
+    this.exportList.downloadFileSolicitudesVacaciones(this.Vacaciones,"Vacaciones");
   }
 }

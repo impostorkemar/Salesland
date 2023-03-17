@@ -64,7 +64,7 @@ export class ListarVacacionesComponent {
       aux = this.formularioDeVacacion.value.motivo
     }
     this.crudService.ModificarSolicitudVacacionACancelar(id,aux,this.VacacionesPendientes, this.VacacionesAprobadas, this.VacacionesNegadas, iControl);
-
+    
     
   }
 
@@ -81,7 +81,7 @@ export class ListarVacacionesComponent {
   }
 
   exportToCSV(){
-    this.exportList.downloadFileVacaciones(this.Vacaciones,"Vacaciones");
+    this.exportList.downloadFileSolicitudesVacaciones(this.Vacaciones,"Vacaciones");
   }
 
 }

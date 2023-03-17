@@ -1,6 +1,6 @@
 from email.message import EmailMessage
 from fastapi import APIRouter, Response, FastAPI
-from config.db import conn
+from config.db import conn, engine
 from models.user import users, usuarios, candidatos, personales, cargos, contratos, centro_costos, vacaciones, supervisores
 from schemas.user import Consult,Consult2
 from cryptography.fernet import Fernet
@@ -30,12 +30,12 @@ email = APIRouter()
 
 @email.get("/datosEmailSupervisor/{user}-{pass}", tags=["mail"])#EJEMPLO
 def get_datosEmailSupervisor(user: str, passw: str):
+  conn = engine.connect()
   sql = ("SELECT supervisor.nombre_supervisor, supervisor.email FROM supervisor WHERE supervisor.id_supervisor = (SELECT id_supervisor FROM personal WHERE cedula = (SELECT cedula FROM usuario WHERE usuario = '1724124084' AND password = '1724124084'));")
   return conn.execute(sql).first()
 
 @email.post("/sendEmailIngresoSolicitud/")
 async def sendEmailIngresoSolicitud(consult:Consult):
-
   print(consult.user,consult.passw,consult.id)
 
   datosEnvio = get_datosEmailSupervisor(consult.user,consult.passw)
@@ -77,7 +77,6 @@ async def sendEmailIngresoSolicitud(consult:Consult):
   
 @email.post("/sendEmailSolicitudACancelacion/")
 async def sendEmailSolicitudACancelacion(consult:Consult):
-
   print(consult.user,consult.passw,consult.id)
 
   datosEnvio = get_datosEmailSupervisor(consult.user,consult.passw)
@@ -119,6 +118,7 @@ async def sendEmailSolicitudACancelacion(consult:Consult):
   
 @email.get("/datosEmailUser/{idVacacion}", tags=["mail"])#EJEMPLO
 def get_datosEmailUser(idVacacion: str):
+  conn = engine.connect()
   sql = ("SELECT candidato.nombre, candidato.direccion_correo FROM candidato WHERE candidato.cedula = ( SELECT cedula FROM personal WHERE id_personal = (SELECT id_personal FROM vacaciones WHERE vacaciones.id_vacaciones = '"+str(idVacacion)+"'));")
   return conn.execute(sql).first()
   

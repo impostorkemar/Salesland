@@ -35,6 +35,7 @@
                             <td>
                               <a class="btn btn-danger" style="width: 100%;" (click)="RechazarRegistro(vacacion.id_vacaciones,iControl)" role="button">RECHAZAR</a>
                               <a class="btn btn-success" style="width: 100%;" (click)="AceptarRegistro(vacacion.id_vacaciones,iControl)" role="button">ACEPTAR</a>
+                              <a class="btn btn-warning" style="width: 100%;" (click)="borrarRegistroPendientes(vacacion.id_vacaciones,iControl)" role="button">ELIMINAR</a>
                             </td>
                               <td scope="row">{{vacacion.id_vacaciones}}</td>   
                             <td>{{vacacion.nombre}}</td>                   
@@ -58,6 +59,7 @@
               <table class="table table-primary">
                   <thead>
                       <tr>
+                        <th scope="col">ACCIONES</th>
                           <th scope="col">ID VACACIONES</th>                    
                           <th scope="col">NOMBRE</th>
                           <th scope="col">APELLIDO</th>
@@ -72,6 +74,9 @@
                   </thead>
                   <tbody>
                       <tr *ngFor="let vacacion of VacacionesNegadas; let iControl=index" class="">
+                            <td>
+                            <a class="btn btn-danger" style="width: 100%;" (click)="borrarRegistroNegadas(vacacion.id_vacaciones,iControl)" role="button">ELIMINAR</a>
+                          </td>
                           <td scope="row">{{vacacion.id_vacaciones}}</td>   
                           <td>{{vacacion.nombre}}</td>                   
                           <td>{{vacacion.apellido}}</td>
@@ -94,6 +99,7 @@
               <table class="table table-primary">
                   <thead>
                       <tr>
+                        <th scope="col">ACCIONES</th>
                           <th scope="col">ID VACACIONES</th>                    
                           <th scope="col">NOMBRE</th>
                           <th scope="col">APELLIDO</th>
@@ -108,6 +114,9 @@
                   </thead>
                   <tbody>
                       <tr *ngFor="let vacacion of VacacionesAprobadas; let iControl=index" class="">
+                        <td>
+                            <a class="btn btn-danger" style="width: 100%;" (click)="borrarRegistroAprobadas(vacacion.id_vacaciones,iControl)" role="button">ELIMINAR</a>
+                          </td>
                           <td scope="row">{{vacacion.id_vacaciones}}</td>   
                           <td>{{vacacion.nombre}}</td>                   
                           <td>{{vacacion.apellido}}</td>

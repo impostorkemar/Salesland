@@ -82,7 +82,7 @@ export class ListarReporteGeneralSupervisorComponent {
   }
 
   exportToCSV(){
-    this.exportList.downloadFileVacaciones(this.VacacionesBySupervisor,"Vacaciones");
+    this.exportList.downloadFileSolicitudesVacaciones(this.VacacionesBySupervisor,"Vacaciones");
   }
 
 }

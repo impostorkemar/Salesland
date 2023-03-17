@@ -34,6 +34,7 @@ export class AgregarVacacionComponent {
   user!:String;
   passw!:String;
   msg!: any;
+  vacasDispo!:any;
 
   constructor(
     public formulario:FormBuilder,
@@ -49,6 +50,8 @@ export class AgregarVacacionComponent {
       dias_tomados:[''],
       saldo_dias:[''],
       dias_solicitudes_pen:[''],
+      lbl_inicio:[''],
+      lbl_fin:[''],
     });
     this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
@@ -63,6 +66,7 @@ export class AgregarVacacionComponent {
     this.passw = localStorage.getItem('PASS') as string;
     this.btnIngresar = true;
     this.msg = "";
+    this.vacasDispo = 0;
   }
 
   ngOnInit(): void {
@@ -70,6 +74,8 @@ export class AgregarVacacionComponent {
     this.formularioDeVacacion.controls['dias_tomados'].disable();
     this.formularioDeVacacion.controls['saldo_dias'].disable();
     this.formularioDeVacacion.controls['dias_solicitudes_pen'].disable();
+    this.formularioDeVacacion.controls['lbl_inicio'].disable();
+    this.formularioDeVacacion.controls['lbl_fin'].disable();
     this.precargarDias();       
   }
 
@@ -84,159 +90,123 @@ export class AgregarVacacionComponent {
     return JSON.parse(localStorage.getItem(name) as string);
   }
 
-  precargarDias(){    
-    //var aux1 = this.cargarDiasDisponibles();
-    //var aux2 = this.cargarDiasTomadosPreviamente();
-
-
-    //CARGA DIAS DISPONIBLES
-
-    let key1: string[]=[];
-    let Value1: string[]=[];
-    let key2: string[]=[];
-    let Value2: string[]=[];    
+  precargarDias(){        
 
     //CARGA CEDULA USER
 
-    this.crudService.ObtenerCedulaByUser_Pass(this.user,this.passw).subscribe(respuesta=>{      
-      //console.log("MENU",this.user,this.passw,"RESPONSE:",respuesta);
-      this.setRespen(respuesta,"cedula");  
-      const json = JSON.stringify(this.getRespen("cedula"));
-      JSON.parse(json, (key, value) => { 
-        key1.push(value);  
-        Value1.push(value);                     
-      });  
-      this.cedula = Value1[0];    
+    this.crudService.ObtenerCedulaByUser_Pass(this.user,this.passw).subscribe(respuesta=>{
+      this.cedula = respuesta['cedula'];    
 
         //CARGA FECHA INICIO CONTRATO
 
         this.crudService.ObtenerFechaInicioContrato(this.cedula).subscribe(respuesta2=>{
-          //console.log("CEDULA:",this.cedula,"RESPONSE:",respuesta2);          
-          this.setRespen(respuesta2,"fechaContrato");     
-          const json2 = JSON.stringify(this.getRespen("fechaContrato"));
-          JSON.parse(json2, (key, value) => { 
-            key2.push(value);  
-            Value2.push(value);    
-            const datePipe = new DatePipe('en-US'); 
-            var corteYear = new Date().getFullYear();
-            this.corte =  new NgbDate(corteYear,1,31);              
-            this.contrato = new Date((Value2[0] as string));  
-            this.antiguedad = (this._decimalPipe.transform(((this.corte.year-this.contrato.getFullYear())*12+(this.corte.month-this.contrato.getMonth())+(this.corte.day-this.contrato.getDate())/30)*1.25,"1.0-1") as any) as number;           
-            var aux1 = this.antiguedad;
+                  
+          const datePipe = new DatePipe('en-US'); 
+          var corteYear = new Date().getFullYear();
+          this.corte =  new NgbDate(corteYear,1,31);              
+          //this.contrato = new Date((Value2[0] as string));  
+          this.contrato = new Date((respuesta2['fechaContrato'] as string));
+          this.antiguedad = (this._decimalPipe.transform(((this.corte.year-this.contrato.getFullYear())*12+(this.corte.month-this.contrato.getMonth())+(this.corte.day-this.contrato.getDate())/30)*1.25,"1.0-1") as any) as number;           
+          var aux1 = this.antiguedad;
 
-            //CARGA VACACIONES TOMADAS
-
-            let Key3: string[] = [];
-            let Value3: string[]=[];
+          //CARGA VACACIONES TOMADAS
+          console.log("aux1->this.antiguedad",respuesta2['fechaContrato'])
+          if ( aux1 != null){
             this.crudService.ObtenertotalVacacionesTomadas(this.user,this.passw).subscribe(respuesta=>{
-              //console.log("respuesta:",respuesta);
-              this.setRespen(respuesta,"totalVaca");       
-              const json = JSON.stringify(this.getRespen("totalVaca"));
-              JSON.parse(json, (key, value) => {
-                Key3.push(key);
-                Value3.push(value);
-              });       
-              var aux2 = Value3[0];
-              let Key4: string[] = [];
-              let Value4: string[]=[];
-              this.crudService.ObtenertotalVacacionesTomadasPendientes(this.user,this.passw).subscribe(respuesta=>{
-                console.log("VACA_PREV:",respuesta['VACA_PREV'])
-                var aux3 = respuesta['VACA_PREV']
-                if ( aux2 == null || aux3 == null){
+              
+              var aux2 = respuesta['VACA_PREV'];  
+              console.log("aux2->totalVacacionesAprobadas",respuesta['VACA_PREV'])            
+              this.crudService.ObtenertotalVacacionesTomadasPendientes(this.user,this.passw).subscribe(respuesta15=>{
+                
+                var aux3 = respuesta15['VACA_PREV']
+                console.log("aux3->totalVacacionesPendientes:",respuesta15['VACA_PREV'])
+                if ( aux2 == null ){
                   this.formularioDeVacacion.setValue({      
                     vaca_disp: aux1,
                     saldo_dias: 0,
-                    dias_tomados: 0,   
                     dias_solicitudes_pen: 0,
+                    dias_tomados: 0, 
+                    lbl_inicio:0,
+                    lbl_fin:0,
                   });
+                }else if ( aux3 == null){
+                  this.formularioDeVacacion.setValue({      
+                    vaca_disp: aux1,
+                    saldo_dias: aux2,
+                    dias_solicitudes_pen: 0,
+                    dias_tomados: 0,
+                    lbl_inicio:0,
+                    lbl_fin:0,
+                  });                  
                 }else{
                   this.formularioDeVacacion.setValue({      
                     vaca_disp: aux1,
                     saldo_dias: aux2,
-                    dias_tomados: 0,  
                     dias_solicitudes_pen: aux3,
+                    dias_tomados: 0, 
+                    lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
+                    lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
                   });
                 }
-              });
-              
-              //console.log("cargarDiasDisponibles:", this.cargarDiasDisponibles()); 
-              //console.log("cargarDiasTomadosPreviamente:", this.cargarDiasTomadosPreviamente()); 
+              });             
+             
             });
-          });   
+          }
+            
         });        
     });    
   }
   enviarDatos(): void{    
     /*console.log("FORMULARIO:",this.formularioDeUsuario.value);*/
     if (this.formularioDeVacacion){     
-      let key1: string[]=[];
-      let Value1: string[]=[];   
-      let key2: string[]=[];
-      let Value2: string[]=[];  
-      let key3: string[]=[];
-      let Value3: string[]=[];  
+       
       let key4: string[]=[];
       let Value4: string[]=[]; 
-      let key5: string[]=[];
-      let Value5: string[]=[];
-      localStorage.removeItem('id_vacaciones');
-      localStorage.removeItem('FECHAS_CAL');
+     
       //BUSQUEDA ID PERSONAL
       
       if ( this.fromDate != null && this.toDate != null){
         console.log(" FROM DATE && TO DATE");        
-        console.log(this.user,this.passw,this.fromDate?.year+"-"+
-        this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+
-        this.toDate?.month+"-"+ this.toDate?.day)
+        
         this.crudService.ObtenerExistenciaVacacionesByInicioFin(this.user,this.passw,this.fromDate?.year+"-"+
         this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+
-        this.toDate?.month+"-"+ this.toDate?.day).subscribe(respuesta10 =>{
-          console.log("respuesta10:",respuesta10);
-          this.setRespen(respuesta10,"FECHAS_CAL");
-          const json = JSON.stringify(this.getRespen("FECHAS_CAL"));
-          JSON.parse(json, (key, value) => {
-            key2.push(key);
-            Value2.push(value);
-          });
-          console.log("Comrpobador dentro/fuera Value2[0]:",Value2[0]);
-          if(Value2[0] as unknown as number === 0 || Value2[0] === null){
+        this.toDate?.month+"-"+ this.toDate?.day).subscribe(respuesta10 =>{          
+          
+          console.log("FECHAS_CAL:",respuesta10['FECHAS_CAL']);
+          
+          if(respuesta10['FECHAS_CAL'] as unknown as number === 0 || respuesta10['FECHAS_CAL'] === null){
             console.log("PUEDE REGISTRAR 0:");
             this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
-              this.setRespen(respuesta,"idpersonal");  
-              //console.log(respuesta);
-              const json = JSON.stringify(this.getRespen("idpersonal"));
-              JSON.parse(json, (key, value) => {
-                key1.push(key);
-                Value1.push(value);
-              });
+              
               //AGREGAR VACACION
 
               if (this.formularioDeVacacion.value.vaca_disp >= this.formularioDeVacacion.value.dias_tomados){
-                this.crudService.AgregarVacaciones(Value1[0] as string,(this.fechaActual.getFullYear()) as any+"-"+(this.fechaActual.getMonth()) as any 
-                +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()+":"+this.fechaActual.getMinutes()+":"+
-                this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
+                this.crudService.AgregarVacaciones(respuesta['id_personal'] as string,(this.fechaActual.getFullYear()) as any
+                +"-"+(this.fechaActual.getMonth()) as any +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()
+                +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
                 this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+this.toDate?.month+"-"+
                 this.toDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
-                this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta=>{
-                  this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta['id_vacaciones']).subscribe(respuesta15=>{
+                this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta22=>{
+
+                  this.precargarDias();
+                  this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta22['id_vacaciones']).subscribe(respuesta15=>{
                     console.log("respuesta15:",respuesta15)
                   })
-                  console.log("respuesta:",respuesta);
                   this.ruteador.navigateByUrl('/menu');
-                });
-                this.precargarDias();
+                });                
                
                 window.confirm("Solicitud de Vacación registrada")
-                this.router.navigate(['/menu']);
+               
               }else{
                 console.log("Excede días disponibles");
               }
             });
-          }else if (Value2[0] as unknown as number > 0){
+          }else if (respuesta10['FECHAS_CAL'] as unknown as number > 0){
             console.log("PUEDE REGISTRAR >0:");
             this.crudService.ObteneVacacionesAReasignarByUserPasswordFechasInfo(this.user,this.passw,this.fromDate?.year+"-"+
             this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+
             this.toDate?.month+"-"+ this.toDate?.day).subscribe(respuesta13 =>{
+
               console.log("respuesta13:",respuesta13);
               var msg = "";
               for ( let item of respuesta13) {
@@ -291,60 +261,46 @@ export class AgregarVacacionComponent {
 
         this.crudService.ObtenerExistenciaVacaciones(this.user,this.passw,this.fromDate?.year+"-"+
         this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta6 =>{
-          console.log("respuesta6:",respuesta6);
-          this.setRespen(respuesta6,"FECHAS_CAL"); 
-          const json = JSON.stringify(this.getRespen("FECHAS_CAL"));
-          JSON.parse(json, (key, value) => {
-            key2.push(key);
-            Value2.push(value);
-          });
-          //console.log("Comrpobador dentro/fuera Value2[0]:",Value2[0]);
-          if(Value2[0] as unknown as number === 0 || Value2[0] === null){ //VACACIÓN 
+
+          console.log("respuesta6->FECHAS_CAL:",respuesta6['FECHAS_CAL']);
+          
+          if(respuesta6['FECHAS_CAL'] as unknown as number === 0 || respuesta6['FECHAS_CAL'] === null){ 
+            
+            //VACACIÓN 
             console.log("PUEDE REGISTRAR 0:");
             this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
-              this.setRespen(respuesta,"idpersonal");  
-              //console.log(respuesta);
-              const json = JSON.stringify(this.getRespen("idpersonal"));
-              JSON.parse(json, (key, value) => {
-                key1.push(key);
-                Value1.push(value);
-              });
-    
+                  
               //AGREGAR VACACION
     
               if (this.formularioDeVacacion.value.vaca_disp >= this.formularioDeVacacion.value.dias_tomados){
-                this.crudService.AgregarVacaciones(Value1[0] as string,(this.fechaActual.getFullYear()) as any+"-"+(this.fechaActual.getMonth()) as any 
-                +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()+":"+this.fechaActual.getMinutes()+":"+
-                this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
-                this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+
-                this.fromDate?.month+"-"+ this.fromDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
-                this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta=>{
-                  console.log("respuesta:",respuesta);
+                this.crudService.AgregarVacaciones(respuesta['id_personal'] as string,(this.fechaActual.getFullYear()) as any
+                +"-"+(this.fechaActual.getMonth()) as any +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()
+                +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"
+                +this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+this.fromDate?.month+"-"+
+                this.fromDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
+                this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta22=>{
+                  console.log("respuesta22:",respuesta22);
+                  this.precargarDias();
                   this.ruteador.navigateByUrl('/menu');
-                  this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta['id_vacaciones']).subscribe(respuesta15=>{
+                  this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta22['id_vacaciones']).subscribe(respuesta15=>{
                     console.log("respuesta15:",respuesta15)
                   })
                 });
-                this.precargarDias();                    
+                                    
                 this.router.navigate(['/menu']);
               }else{
                 console.log("Excede días disponibles");
               }          
             });
             window.confirm("VACACIÓN REGISTRADA");
-          }else if (Value2[0] as unknown as number > 0){
+          }else if (respuesta6['FECHAS_CAL'] as unknown as number > 0){
             console.log("PUEDE REGISTRAR >0:");
             this.crudService.ObteneVacacionesAReasignarByUserPassword(this.user,this.passw,this.fromDate?.year+"-"+
             this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta7 =>{
-              console.log("respuesta7:",respuesta7);
-              this.setRespen(respuesta7,"id_vacaciones"); 
-              const json = JSON.stringify(this.getRespen("id_vacaciones"));
-              JSON.parse(json, (key, value) => {
-                key3.push(key);
-                Value3.push(value);
-              });
-              console.log("Value3:",Value3);
-              this.crudService.ObteneVacacionesFechaInicioAndFin(Value3[0] as string).subscribe(respuesta8 =>{
+
+              console.log("respuesta7:",respuesta7)
+              console.log("respuesta7['id_vacaciones']:",respuesta7[0]['id_vacaciones'])
+              this.crudService.ObteneVacacionesFechaInicioAndFin(respuesta7[0]['id_vacaciones'] as string).subscribe(respuesta8 =>{
                 console.log("respuesta8:",respuesta8);
                 this.setRespen(respuesta8,"FechaInicioAndFin"); 
                 const json = JSON.stringify(this.getRespen("FechaInicioAndFin"));
@@ -353,7 +309,7 @@ export class AgregarVacacionComponent {
                   Value4.push(value);
                 });
                 console.log("Value4[0]:",Value4[0],Value4[1]);   
-                window.confirm("CONFLICTO CON LAS SOLICITUDES DE VACACIÓN:\nID:"+Value3[0]+"\n\tFECHA INICIO:"+ Value4[0] as string+
+                window.confirm("CONFLICTO CON LAS SOLICITUDES DE VACACIÓN:\nID:"+respuesta7[0]['id_vacaciones']+"\n\tFECHA INICIO:"+ Value4[0] as string+
                  "\n\tFECHA FIN:" + Value4[1] as string)             
                 /*if (window.confirm("SOLICITUD REPETIDA: \nELIMINAR SOLICITUD DE PETICIÓN DE VACACIÓN?\nID:"+Value3[0]+"\n\tFECHA INICIO:"+ Value4[0] as string+
                  "\n\tFECHA FIN:" + Value4[1] as string)){
@@ -418,6 +374,8 @@ export class AgregarVacacionComponent {
             saldo_dias:this.formularioDeVacacion.value.saldo_dias,            
             dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen, 
             dias_tomados:diferenciaDias,        
+            lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
+            lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
           }); 
         }     
       }
@@ -463,7 +421,9 @@ export class AgregarVacacionComponent {
               vaca_disp:this.formularioDeVacacion.value.vaca_disp,
               saldo_dias:this.formularioDeVacacion.value.saldo_dias,
               dias_tomados:diferenciaDias,  
-              dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen,       
+              dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen,  
+              lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
+              lbl_fin:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day   
             }); 
            }     
         }      
@@ -473,6 +433,10 @@ export class AgregarVacacionComponent {
         window.confirm("No se puede escoger vacaciones antes de la fecha actual");
       }else{
         //console.log("CompareDateCorrectos");
+        console.log("this.formularioDeVacacion.value.vaca_disp:",this.formularioDeVacacion.value.vaca_disp)
+        console.log("this.formularioDeVacacion.value.dias_tomados:",this.formularioDeVacacion.value.dias_tomados)
+        console.log("this.formularioDeVacacion.value.saldo_dias:",this.formularioDeVacacion.value.saldo_dias)
+        console.log("this.formularioDeVacacion.value.dias_solicitudes_pen:",this.formularioDeVacacion.value.dias_solicitudes_pen)
         if (
           this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.dias_tomados
           || 
