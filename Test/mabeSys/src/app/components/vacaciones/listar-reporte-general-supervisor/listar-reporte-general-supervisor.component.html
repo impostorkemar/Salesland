@@ -35,8 +35,8 @@
                   <tbody>
                       <tr *ngFor="let vacacion of VacacionesPendientesBySupervisor; let iControl=index" class="">
                         <td>                          
-                            <a class="btn btn-danger" style="width: 100%;" (click)="RechazarRegistro(vacacion.id_vacaciones,iControl)" role="button">RECHAZAR</a>
-                            <a class="btn btn-success" style="width: 100%;" (click)="AceptarRegistro(vacacion.id_vacaciones,iControl)" role="button">ACEPTAR</a>
+                            <a ng-disabled="btnRechazar" class="btn btn-danger" style="width: 100%;" (click)="RechazarRegistro(vacacion.id_vacaciones,iControl)" role="button">RECHAZAR</a>
+                            <a ng-disabled="btnAceptar" class="btn btn-success" style="width: 100%;" (click)="AceptarRegistro(vacacion.id_vacaciones,iControl)" role="button">ACEPTAR</a>
                         </td>
                             <td scope="row">{{vacacion.id_vacaciones}}</td>   
                           <td>{{vacacion.nombre}}</td>                   

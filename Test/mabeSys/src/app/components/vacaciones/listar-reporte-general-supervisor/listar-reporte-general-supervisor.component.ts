@@ -25,7 +25,7 @@ export class ListarReporteGeneralSupervisorComponent {
     this.user = localStorage.getItem('USER') as string;
     this.passw = localStorage.getItem('PASS') as string
     this.formularioDeVacacion = this.formulario.group({      
-      motivo:[''],      
+      motivo:[''],
     });
    }
 
@@ -65,7 +65,8 @@ export class ListarReporteGeneralSupervisorComponent {
       aux = this.formularioDeVacacion.value.motivo
     }
     this.crudService.AceptarSolicitudVacacion(id,aux,this.VacacionesPendientesBySupervisor, this.VacacionesAprobadasBySupervisor
-      , this.VacacionesNegadasBySupervisor, iControl); 
+      , this.VacacionesNegadasBySupervisor, iControl)
+    
   }
 
   RechazarRegistro(id:any,iControl:any){
@@ -78,7 +79,7 @@ export class ListarReporteGeneralSupervisorComponent {
       aux = this.formularioDeVacacion.value.motivo
     }
     this.crudService.RechazarSolicitudVacacion(id,aux,this.VacacionesPendientesBySupervisor, this.VacacionesAprobadasBySupervisor
-      , this.VacacionesNegadasBySupervisor, iControl);
+      , this.VacacionesNegadasBySupervisor, iControl)
   }
 
   exportToCSV(){
