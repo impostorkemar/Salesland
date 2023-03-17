@@ -53,14 +53,14 @@ export class ListarReporteGeneralPersonalComponent {
     //console.log(id);
     //console.log(iControl);
     this.crudService.BorrarVacacion(id, this.VacacionesNegadas, iControl);
-    this.borrarRegistro(id,iControl)
+    
   }
 
   borrarRegistroAprobadas(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
     this.crudService.BorrarVacacion(id, this.VacacionesAprobadas, iControl);
-    this.borrarRegistro(id,iControl)
+    
   }
 
   borrarRegistroPendientes(id:any,iControl:any){
@@ -88,6 +88,10 @@ export class ListarReporteGeneralPersonalComponent {
   }
 
   exportToCSV(){
+    this.crudService.ObtenerVacacionesPersonal().subscribe(respuesta=>{
+      //console.log(respuesta);
+      this.Vacaciones=respuesta;
+    });
     this.exportList.downloadFileSolicitudesVacaciones(this.Vacaciones,"Vacaciones");
   }
 }

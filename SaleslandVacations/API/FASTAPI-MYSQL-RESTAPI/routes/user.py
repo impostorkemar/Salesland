@@ -329,7 +329,9 @@ def get_NombresPuntosVentas(user: str, passw: str):
 @user.get("/fechaInicioContratoByCedula/{ced}", tags=["contratos"])
 def get_fechaInicioContratoByCedula(ced: str):
     conn = engine.connect()
-    return conn.execute("SELECT contrato.fecha_inicio_contrato as fechaContrato FROM contrato, personal, usuario WHERE personal.id_contrato = contrato.id_contrato and usuario.cedula = personal.cedula and usuario.cedula = '"+str(ced)+"' LIMIT 1;").first()
+    sql = "SELECT contrato.fecha_inicio_contrato as fechaContrato FROM contrato, personal, usuario WHERE personal.id_contrato = contrato.id_contrato and usuario.cedula = personal.cedula and usuario.cedula = '"+str(ced)+"' LIMIT 1;"
+    print(sql)
+    return conn.execute(sql).first()
 
 @user.get("/cedByPassAndUSer/{user}-{pass}", tags=["usuarios"])
 def get_cedByPassAndUSer(user: str, passw: str):

@@ -100,11 +100,13 @@ export class AgregarVacacionComponent {
         //CARGA FECHA INICIO CONTRATO
 
         this.crudService.ObtenerFechaInicioContrato(this.cedula).subscribe(respuesta2=>{
-                  
-          const datePipe = new DatePipe('en-US'); 
+
+          if (respuesta2 != null){
+            const datePipe = new DatePipe('en-US'); 
           var corteYear = new Date().getFullYear();
           this.corte =  new NgbDate(corteYear,1,31);              
           //this.contrato = new Date((Value2[0] as string));  
+
           this.contrato = new Date((respuesta2['fechaContrato'] as string));
           this.antiguedad = (this._decimalPipe.transform(((this.corte.year-this.contrato.getFullYear())*12+(this.corte.month-this.contrato.getMonth())+(this.corte.day-this.contrato.getDate())/30)*1.25,"1.0-1") as any) as number;           
           var aux1 = this.antiguedad;
@@ -152,6 +154,11 @@ export class AgregarVacacionComponent {
              
             });
           }
+          }else{
+            window.confirm("Usuario sin perfil de contrato")
+          }
+                  
+          
             
         });        
     });    
