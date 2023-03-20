@@ -22,7 +22,7 @@
                 <table class="table table-primary">
                     <thead>
                         <tr>
-                            <th scope="col">ACCIONES</th>  
+                            <th *ngIf="false" scope="col">ACCIONES</th>  
                             <th scope="col">ID VACACIONES</th>                    
                             <th scope="col">NOMBRE</th>
                             <th scope="col">APELLIDO</th>
@@ -39,9 +39,10 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let vacacion of VacacionesPendientes; let iControl=index" class="">
-                            <td>                          
-                                <a class="btn btn-danger" style="width: 100%;" (click)="solicitarCancelacion(vacacion.id_vacaciones,iControl)" role="button">SOLICITAR CANCELACIÓN</a>
-                            <td scope="row">{{vacacion.id_vacaciones}}</td>   
+                            <td *ngIf="false">                          
+                                <a  class="btn btn-danger" style="width: 100%;" (click)="solicitarCancelacion(vacacion.id_vacaciones,iControl)" role="button">SOLICITAR CANCELACIÓN</a>
+                            </td>
+                                <td scope="row">{{vacacion.id_vacaciones}}</td>   
                             <td>{{vacacion.nombre}}</td>                   
                             <td>{{vacacion.apellido}}</td>
                             <td>{{vacacion.fecha_solicitud}}</td>

@@ -744,7 +744,7 @@ resp!:String[];
       var Fecha_respt = myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDay()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds()      
       this.ObtenerVacacionById(id).subscribe(response0 => {
         if ( response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion'){
-          if(window.confirm("¿Desea aprobar la solicitud?\nID VACACIONES: "+
+          if(window.confirm("¿Desea rechazar la solicitud?\nID VACACIONES: "+
           response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
           "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
           + response0['fecha_fin_vacaciones'])){

@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule, HttpClient, HttpRequest, HttpResponse, HttpEventType} from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -97,6 +98,7 @@ import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones
     BrowserAnimationsModule,
     MatDialogModule,
     NgbModule,
+    NgxPaginationModule
     
   ],
   providers: [],

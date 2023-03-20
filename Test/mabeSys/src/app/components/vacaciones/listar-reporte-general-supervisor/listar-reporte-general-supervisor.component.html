@@ -11,93 +11,9 @@
             class="form-control" name="motivo" formControlName="motivo" id="motivo" aria-describedby="helpId" placeholder="ESCRIBA SU MOTIVO">
         </div>
         </div>
-      <div class="card-body">
-          <h1> SOLICITUDES PENDIENTES </h1>
-          <div class="table-responsive">
-              <table class="table table-primary">
-                  <thead>
-                      <tr>
-                          <th scope="col">ACCIONES</th>  
-                          <th scope="col">ID VACACIONES</th>                    
-                          <th scope="col">NOMBRE</th>
-                          <th scope="col">APELLIDO</th>
-                          <th scope="col">FECHA SOLICITUD</th>
-                          <th scope="col">FECHA INICIO VACACIONES</th>
-                          <th scope="col">FECHA FIN VACACIONES</th>
-                          <th scope="col">FECHA RESPUESTA</th>
-                          <th scope="col">DIAS LABORABLES SOLICITADOS</th>
-                          <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
-                          <th scope="col">STATUS</th>
-                          <th scope="col">PETICION</th>
-                          <th scope="col">OBSERVACIONES</th>                                              
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr *ngFor="let vacacion of VacacionesPendientesBySupervisor; let iControl=index" class="">
-                        <td>                          
-                            <a ng-disabled="btnRechazar" class="btn btn-danger" style="width: 100%;" (click)="RechazarRegistro(vacacion.id_vacaciones,iControl)" role="button">RECHAZAR</a>
-                            <a ng-disabled="btnAceptar" class="btn btn-success" style="width: 100%;" (click)="AceptarRegistro(vacacion.id_vacaciones,iControl)" role="button">ACEPTAR</a>
-                        </td>
-                            <td scope="row">{{vacacion.id_vacaciones}}</td>   
-                          <td>{{vacacion.nombre}}</td>                   
-                          <td>{{vacacion.apellido}}</td>
-                          <td>{{vacacion.fecha_solicitud}}</td>
-                          <td>{{vacacion.fecha_inicio_vacaciones}}</td>
-                          <td>{{vacacion.fecha_fin_vacaciones}}</td>
-                          <td>{{vacacion.fecha_respuesta}}</td>
-                          <td>{{vacacion.dias_lab_solicitados}}</td>
-                          <td>{{vacacion.dias_disponibles_acum}}</td>
-                          <td>{{vacacion.status}}</td>
-                          <td>{{vacacion.peticion}}</td>
-                          <td>{{vacacion.observaciones}}</td>
-                      </tr>
-                      
-                  </tbody>
-              </table>
-          </div>        
-      </div>   
-      <div class="card-body">
-        <h1> SOLICITUDES NEGADAS </h1>
-        <div class="table-responsive">
-            <table class="table table-primary">
-                <thead>
-                    <tr>
-                        <th scope="col">ID VACACIONES</th>                    
-                        <th scope="col">NOMBRE</th>
-                        <th scope="col">APELLIDO</th>
-                        <th scope="col">FECHA SOLICITUD</th>
-                        <th scope="col">FECHA INICIO VACACIONES</th>
-                        <th scope="col">FECHA FIN VACACIONES</th>
-                        <th scope="col">FECHA RESPUESTA</th>
-                        <th scope="col">DIAS LABORABLES SOLICITADOS</th>
-                        <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
-                        <th scope="col">STATUS</th>
-                        <th scope="col">PETICION</th>
-                        <th scope="col">OBSERVACIONES</th>                                              
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let vacacion of VacacionesNegadasBySupervisor; let iControl=index" class="">
-                        <td scope="row">{{vacacion.id_vacaciones}}</td>   
-                        <td>{{vacacion.nombre}}</td>                   
-                        <td>{{vacacion.apellido}}</td>
-                        <td>{{vacacion.fecha_solicitud}}</td>
-                        <td>{{vacacion.fecha_inicio_vacaciones}}</td>
-                        <td>{{vacacion.fecha_fin_vacaciones}}</td>
-                        <td>{{vacacion.fecha_respuesta}}</td>
-                        <td>{{vacacion.dias_lab_solicitados}}</td>
-                        <td>{{vacacion.dias_disponibles_acum}}</td>
-                        <td>{{vacacion.status}}</td>
-                        <td>{{vacacion.peticion}}</td>
-                        <td>{{vacacion.observaciones}}</td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </div>        
-    </div> 
+
     <div class="card-body">
-        <h1> SOLICITUDES APROBADAS </h1>
+        <h1>SOLICITUDES PENDIENTES</h1>
         <div class="table-responsive">
             <table class="table table-primary">
                 <thead>
@@ -117,26 +33,112 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let vacacion of VacacionesAprobadasBySupervisor; let iControl=index" class="">
-                                  
-                        <td scope="row">{{vacacion.id_vacaciones}}</td>   
-                        <td>{{vacacion.nombre}}</td>                   
-                        <td>{{vacacion.apellido}}</td>
-                        <td>{{vacacion.fecha_solicitud}}</td>
-                        <td>{{vacacion.fecha_inicio_vacaciones}}</td>
-                        <td>{{vacacion.fecha_fin_vacaciones}}</td>
-                        <td>{{vacacion.fecha_respuesta}}</td>
-                        <td>{{vacacion.dias_lab_solicitados}}</td>
-                        <td>{{vacacion.dias_disponibles_acum}}</td>
-                        <td>{{vacacion.status}}</td>
-                        <td>{{vacacion.peticion}}</td>
-                        <td>{{vacacion.observaciones}}</td>
+                <tr *ngFor="let vacacion of VacacionesPendientesBySupervisor | paginate: {id: 'pagination1', itemsPerPage: 6, currentPage: pP, totalItems: totalP }; let iControl=index" class="">
+                <td>                          
+                    <a ng-disabled="btnRechazar" class="btn btn-danger" style="width: 100%;" (click)="RechazarRegistro(vacacion.id_vacaciones,iControl)" role="button">RECHAZAR</a>
+                    <a ng-disabled="btnAceptar" class="btn btn-success" style="width: 100%;" (click)="AceptarRegistro(vacacion.id_vacaciones,iControl)" role="button">ACEPTAR</a>
+                </td>
+                    <td scope="row">{{vacacion.id_vacaciones}}</td>   
+                <td>{{vacacion.nombre}}</td>                   
+                <td>{{vacacion.apellido}}</td>
+                <td>{{vacacion.fecha_solicitud}}</td>
+                <td>{{vacacion.fecha_inicio_vacaciones}}</td>
+                <td>{{vacacion.fecha_fin_vacaciones}}</td>
+                <td>{{vacacion.fecha_respuesta}}</td>
+                <td>{{vacacion.dias_lab_solicitados}}</td>
+                <td>{{vacacion.dias_disponibles_acum}}</td>
+                <td>{{vacacion.status}}</td>
+                <td>{{vacacion.peticion}}</td>
+                <td>{{vacacion.observaciones}}</td>
                     </tr>
-                    
                 </tbody>
-            </table>
-        </div>        
-    </div>  
+            </table> 
+            <pagination-controls id="pagination1" (pageChange)="pageChangeEventPendientes($event)"></pagination-controls>
+        </div>
+    </div>
+    
+    <div class="card-body">
+        <h1>SOLICITUDES NEGADAS</h1>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID VACACIONES</th>                    
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">APELLIDO</th>
+                        <th scope="col">FECHA SOLICITUD</th>
+                        <th scope="col">FECHA INICIO VACACIONES</th>
+                        <th scope="col">FECHA FIN VACACIONES</th>
+                        <th scope="col">FECHA RESPUESTA</th>
+                        <th scope="col">DIAS LABORABLES SOLICITADOS</th>
+                        <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
+                        <th scope="col">STATUS</th>
+                        <th scope="col">PETICION</th>
+                        <th scope="col">OBSERVACIONES</th>                                              
+                    </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let vacacion of VacacionesNegadasBySupervisor | paginate: {id: 'pagination2', itemsPerPage: 6, currentPage: pN, totalItems: totalN }; let iControl=index" class="">
+                <td scope="row">{{vacacion.id_vacaciones}}</td>   
+                <td>{{vacacion.nombre}}</td>                   
+                <td>{{vacacion.apellido}}</td>
+                <td>{{vacacion.fecha_solicitud}}</td>
+                <td>{{vacacion.fecha_inicio_vacaciones}}</td>
+                <td>{{vacacion.fecha_fin_vacaciones}}</td>
+                <td>{{vacacion.fecha_respuesta}}</td>
+                <td>{{vacacion.dias_lab_solicitados}}</td>
+                <td>{{vacacion.dias_disponibles_acum}}</td>
+                <td>{{vacacion.status}}</td>
+                <td>{{vacacion.peticion}}</td>
+                <td>{{vacacion.observaciones}}</td>
+                    </tr>
+                </tbody>
+            </table> 
+            <pagination-controls id="pagination2" (pageChange)="pageChangeEventNegadas($event)"></pagination-controls>
+        </div>
+    </div>
+    
+    <div class="card-body">
+        <h1>SOLICITUDES APROBADAS</h1>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID VACACIONES</th>                    
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">APELLIDO</th>
+                        <th scope="col">FECHA SOLICITUD</th>
+                        <th scope="col">FECHA INICIO VACACIONES</th>
+                        <th scope="col">FECHA FIN VACACIONES</th>
+                        <th scope="col">FECHA RESPUESTA</th>
+                        <th scope="col">DIAS LABORABLES SOLICITADOS</th>
+                        <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
+                        <th scope="col">STATUS</th>
+                        <th scope="col">PETICION</th>
+                        <th scope="col">OBSERVACIONES</th>                                              
+                    </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let vacacion of VacacionesAprobadasBySupervisor | paginate: {id: 'pagination3', itemsPerPage: 6, currentPage: pA, totalItems: totalA }; let iControl=index" class="">
+                <td scope="row">{{vacacion.id_vacaciones}}</td>   
+                <td>{{vacacion.nombre}}</td>                   
+                <td>{{vacacion.apellido}}</td>
+                <td>{{vacacion.fecha_solicitud}}</td>
+                <td>{{vacacion.fecha_inicio_vacaciones}}</td>
+                <td>{{vacacion.fecha_fin_vacaciones}}</td>
+                <td>{{vacacion.fecha_respuesta}}</td>
+                <td>{{vacacion.dias_lab_solicitados}}</td>
+                <td>{{vacacion.dias_disponibles_acum}}</td>
+                <td>{{vacacion.status}}</td>
+                <td>{{vacacion.peticion}}</td>
+                <td>{{vacacion.observaciones}}</td>
+                    </tr>
+                </tbody>
+            </table> 
+            <pagination-controls id="pagination3" (pageChange)="pageChangeEventAprobadas($event)"></pagination-controls>
+        </div>
+    </div>
+
     </div>
 </form>
 

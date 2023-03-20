@@ -16,6 +16,13 @@ export class ListarReporteGeneralSupervisorComponent {
   user!:String;
   passw!:String;
   formularioDeVacacion:FormGroup;
+  pP: number = 1;
+  pA: number = 1;
+  pN: number = 1;
+  totalP: number = 0;
+  totalA: number = 0;
+  totalN: number = 0;
+  consults:any;
   
   constructor(
     private crudService:CrudService,
@@ -84,6 +91,47 @@ export class ListarReporteGeneralSupervisorComponent {
 
   exportToCSV(){
     this.exportList.downloadFileSolicitudesVacaciones(this.VacacionesBySupervisor,"Vacaciones");
+  }
+  getDataPendientes(){
+    this.crudService.ObtenerVacacionesPersonalPendientesBySupervisor(this.user, this.passw).subscribe((respuesta:any) =>{
+      //console.log(respuesta);
+      this.VacacionesPendientesBySupervisor=respuesta;
+      this.consults = respuesta.data;
+      this.totalP = respuesta.total;
+    });   
+  }
+
+  getDataNegadas(){
+    this.crudService.ObtenerVacacionesPersonalNegadasBySupervisor(this.user, this.passw).subscribe((respuesta:any) =>{
+      //console.log(respuesta);
+      this.VacacionesNegadasBySupervisor=respuesta;
+      this.consults = respuesta.data;
+      this.totalN = respuesta.total;
+    });
+  }
+
+  getDataAprobadas(){
+    this.crudService.ObtenerVacacionesPersonalAprobadasBySupervisor(this.user, this.passw).subscribe((respuesta:any) =>{
+      //console.log(respuesta);
+      this.VacacionesAprobadasBySupervisor=respuesta;
+      this.consults = respuesta.data;
+      this.totalA = respuesta.total;
+    });    
+  }
+
+  pageChangeEventPendientes(event: number){
+    this.pP = event;
+    this.getDataPendientes();
+  }
+
+  pageChangeEventNegadas(event: number){
+    this.pN = event;
+    this.getDataNegadas();
+  }
+
+  pageChangeEventAprobadas(event: number){
+    this.pA = event;
+    this.getDataAprobadas();
   }
 
 }
