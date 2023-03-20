@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Modulos
 import { AppRoutingModule } from './app-routing.module';
@@ -7,7 +8,7 @@ import { AppComponent } from './app.component';
 import {HttpClientModule, HttpClient, HttpRequest, HttpResponse, HttpEventType} from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatSortModule} from '@angular/material/sort';
-
+import { MatTableModule } from '@angular/material/table';
 
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -20,7 +21,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IngresarVentaComponent } from './components/ingresar-venta/ingresar-venta.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RegistrarPuntoVentaComponent } from './components/registrar-punto-venta/registrar-punto-venta.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PopupComponent } from './popup/popup.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ListarPersonalComponent } from './components/personal/listar-personal/listar-personal.component';
@@ -50,6 +50,7 @@ import { ListarReporteGeneralPersonalComponent } from './components/vacaciones/l
 import { DatepickerRangeTsComponent } from './components/datepicker-range/datepicker-range.ts/datepicker-range.ts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones/listar-reporte-general-supervisor/listar-reporte-general-supervisor.component';
+
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones
     MatDialogModule,
     NgbModule,
     NgxPaginationModule,
-    MatSortModule
+    MatSortModule,
+    MatTableModule,
     
   ],
   providers: [],

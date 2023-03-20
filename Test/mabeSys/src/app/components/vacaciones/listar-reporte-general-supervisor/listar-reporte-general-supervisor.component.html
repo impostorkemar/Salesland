@@ -98,49 +98,84 @@
             </div>
         </div>
         
+        
+
         <div class="card-body">
-            <h1>SOLICITUDES APROBADAS</h1>
+            <h1>TEST</h1>
             <div class="table-responsive">
-                <table class="table table-primary">
+                <table 
+                mat-table 
+                matSort 
+                matSortActive="id_vacaciones" 
+                matSortDirection="asc"
+                matSortDisableClear
+                (matSortChange)="sortInfo($event)"
+                [dataSource]="VacacionesAprobadasBySupervisor" 
+                class="table table-primary">
                     <thead>
                         <tr>
-                            <th scope="col">ID VACACIONES</th>                    
-                            <th scope="col">NOMBRE</th>
-                            <th scope="col">APELLIDO</th>
-                            <th scope="col">FECHA SOLICITUD</th>
-                            <th scope="col">FECHA INICIO VACACIONES</th>
-                            <th scope="col">FECHA FIN VACACIONES</th>
-                            <th scope="col">FECHA RESPUESTA</th>
-                            <th scope="col">DIAS LABORABLES SOLICITADOS</th>
-                            <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col">PETICION</th>
-                            <th scope="col">OBSERVACIONES</th>                                              
-                        </tr>
+                            <ng-container matColumnDef = "id_vacaciones">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >ID VACACIONES</th>
+                                <td mat-cell *matCellDef="let element" >{{element.id_vacaciones}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "nombre">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >NOMBRE</th>
+                                <td mat-cell *matCellDef="let element" >{{element.nombre}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "apellido">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >APELLIDO</th>
+                                <td mat-cell *matCellDef="let element" >{{element.apellido}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "fecha_solicitud">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >FECHA SOLICITUD</th>
+                                <td mat-cell *matCellDef="let element" >{{element.fecha_solicitud}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "fecha_inicio_vacaciones">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >FECHA INICIO VACACIONES</th>
+                                <td mat-cell *matCellDef="let element" >{{element.fecha_inicio_vacaciones}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "fecha_fin_vacaciones">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >FECHA FIN VACACIONES</th>
+                                <td mat-cell *matCellDef="let element" >{{element.fecha_fin_vacaciones}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "fecha_respuesta">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >FECHA RESPUESTA</th>
+                                <td mat-cell *matCellDef="let element" >{{element.fecha_respuesta}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "dias_lab_solicitados">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >DIAS LABORABLES SOLICITADOS</th>
+                                <td mat-cell *matCellDef="let element" >{{element.dias_lab_solicitados}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "dias_disponibles_acum">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >DIAS DISPONIBLES ACUMULADOS</th>
+                                <td mat-cell *matCellDef="let element" >{{element.dias_disponibles_acum}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "status">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >STATUS</th>
+                                <td mat-cell *matCellDef="let element" >{{element.status}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "peticion">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >PETICION</th>
+                                <td mat-cell *matCellDef="let element" >{{element.peticion}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef = "observaciones">
+                                <th scope="col" mat-header-cell mat-sort-header *matHeaderCellDef >OBSERVACIONES</th>
+                                <td mat-cell *matCellDef="let element" >{{element.observaciones}}</td>
+                            </ng-container>
+                        </tr>                      
+
                     </thead>
                     <tbody>
-                    <tr *ngFor="let vacacion of VacacionesAprobadasBySupervisor | paginate: {id: 'pagination3', itemsPerPage: 5, currentPage: pA, totalItems: totalA }; let iControl=index" class="">
-                    <td scope="row">{{vacacion.id_vacaciones}}</td>   
-                    <td>{{vacacion.nombre}}</td>                   
-                    <td>{{vacacion.apellido}}</td>
-                    <td>{{vacacion.fecha_solicitud}}</td>
-                    <td>{{vacacion.fecha_inicio_vacaciones}}</td>
-                    <td>{{vacacion.fecha_fin_vacaciones}}</td>
-                    <td>{{vacacion.fecha_respuesta}}</td>
-                    <td>{{vacacion.dias_lab_solicitados}}</td>
-                    <td>{{vacacion.dias_disponibles_acum}}</td>
-                    <td>{{vacacion.status}}</td>
-                    <td>{{vacacion.peticion}}</td>
-                    <td>{{vacacion.observaciones}}</td>
-                        </tr>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns | paginate: {id: 'pagination2', itemsPerPage: 12, currentPage: pN, totalItems: totalN }; "></tr>
                     </tbody>
-                </table> 
+
+                </table>
                 <pagination-controls id="pagination3" (pageChange)="pageChangeEventAprobadas($event)"></pagination-controls>
             </div>
+                
         </div>
-
-    
-
     </div>
 </form>
 

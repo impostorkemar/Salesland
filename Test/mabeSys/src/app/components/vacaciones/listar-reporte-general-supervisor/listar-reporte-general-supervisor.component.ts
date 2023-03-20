@@ -3,11 +3,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { ExportListService } from 'src/app/services/export-list.service';
 import {MatSort, Sort} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Component({
   selector: 'app-listar-reporte-general-supervisor',
   templateUrl: './listar-reporte-general-supervisor.component.html',
-  styleUrls: ['./listar-reporte-general-supervisor.component.css']
+  styleUrls: ['./listar-reporte-general-supervisor.component.css'],
 })
 export class ListarReporteGeneralSupervisorComponent {
   VacacionesBySupervisor:any;
@@ -24,6 +27,10 @@ export class ListarReporteGeneralSupervisorComponent {
   totalA: number = 0;
   totalN: number = 0;
   consults:any;
+  displayedColumns: string[] = ['id_vacaciones','nombre','apellido','fecha_solicitud','fecha_inicio_vacaciones',
+  'fecha_fin_vacaciones','fecha_respuesta','dias_lab_solicitados','dias_disponibles_acum','status','peticion',
+  'observaciones'];
+  
   
   constructor(
     private crudService:CrudService,
@@ -55,6 +62,7 @@ export class ListarReporteGeneralSupervisorComponent {
       //console.log(respuesta);
       this.VacacionesAprobadasBySupervisor=respuesta;
     });
+    this.loadVacacionesPersonalAprobadasBySupervisor({active: 'id_vacaciones', direction  : 'asc'})
   }  
 
   borrarRegistro(id:any,iControl:any){
@@ -134,6 +142,17 @@ export class ListarReporteGeneralSupervisorComponent {
   pageChangeEventAprobadas(event: number){
     this.pA = event;
     this.getDataAprobadas();
+  }
+
+  loadVacacionesPersonalAprobadasBySupervisor(sort: Sort): void{
+    this.crudService.ObtenerVacacionesPersonalAprobadasBySupervisorSort(this.user, this.passw, sort).subscribe((respuesta)=>{
+      //console.log(respuesta);
+      this.VacacionesAprobadasBySupervisor = respuesta
+    });
+  }
+
+  sortInfo(sort: Sort):void{
+    this.loadVacacionesPersonalAprobadasBySupervisor(sort);
   }
 
 }

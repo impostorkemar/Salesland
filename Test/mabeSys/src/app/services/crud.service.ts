@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { Usuario } from './Usuario';
 import { Candidato } from './Candidato';
@@ -15,7 +15,7 @@ import { TestuserService } from 'src/app/services/testuser.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import {formatDate} from '@angular/common';
 import { NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
-
+import {MatSort, Sort} from '@angular/material/sort';
 
 @Injectable({
   providedIn: 'root'
@@ -412,7 +412,15 @@ resp!:String[];
   } 
 
   ObtenerVacacionesPersonalAprobadasBySupervisor(user:any,pass:any):Observable<any>{
+    var urlAPI="vacacionesPersonalAprobadasBySupervisor/"+user as string+"-{pass}?passw="+pass as string; ;       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  } 
+
+  ObtenerVacacionesPersonalAprobadasBySupervisorSort(user:any,pass:any, sort: Sort):Observable<any>{
     //console.log("user:",user,"pass:", pass)
+    const params = new HttpParams()
+      .set('_sort',sort.active)
+      .set('_order',sort.direction);
     var urlAPI="vacacionesPersonalAprobadasBySupervisor/"+user as string+"-{pass}?passw="+pass as string; ;       
     return this.clienteHttp.get(this.API+urlAPI);                
   } 
