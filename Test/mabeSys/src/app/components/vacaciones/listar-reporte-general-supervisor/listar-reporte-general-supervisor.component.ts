@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { ExportListService } from 'src/app/services/export-list.service';
+import {MatSort, Sort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-listar-reporte-general-supervisor',
@@ -98,6 +99,7 @@ export class ListarReporteGeneralSupervisorComponent {
       this.VacacionesPendientesBySupervisor=respuesta;
       this.consults = respuesta.data;
       this.totalP = respuesta.total;
+      
     });   
   }
 
