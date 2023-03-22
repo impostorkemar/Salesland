@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { ExportListService } from 'src/app/services/export-list.service';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import { BehaviorSubject } from 'rxjs';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import { Solicitudes } from '../../model/Solicitudes';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 
 @Component({
@@ -16,36 +20,50 @@ export class ListarReporteGeneralSupervisorComponent {
   VacacionesBySupervisor:any;
   VacacionesPendientesBySupervisor:any;
   VacacionesNegadasBySupervisor:any;
-  VacacionesAprobadasBySupervisor:any;
+  VacacionesAprobadasBySupervisor!:any;
   user!:String;
   passw!:String;
-  formularioDeVacacion:FormGroup;
-  pP: number = 1;
-  pA: number = 1;
-  pN: number = 1;
-  totalP: number = 0;
-  totalA: number = 0;
-  totalN: number = 0;
+  formularioDeVacacion:FormGroup;  
   consults:any;
   displayedColumns: string[] = ['id_vacaciones','nombre','apellido','fecha_solicitud','fecha_inicio_vacaciones',
   'fecha_fin_vacaciones','fecha_respuesta','dias_lab_solicitados','dias_disponibles_acum','status','peticion',
   'observaciones'];
-  
+  datosA: Solicitudes[] = [];
+  dataSourceA:any;
   
   constructor(
     private crudService:CrudService,
     private exportList:ExportListService,
     public formulario:FormBuilder,
+    private _liveAnnouncer: LiveAnnouncer
   ) {
     this.user = localStorage.getItem('USER') as string;
     this.passw = localStorage.getItem('PASS') as string
     this.formularioDeVacacion = this.formulario.group({      
       motivo:[''],
-    });
-   }
+    });    
+   } 
 
-   ngOnInit(): void {
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator; 
+  @ViewChild('empTbSort') empTbSort = new MatSort();
 
+  SortInfo() {
+    this.dataSourceA.sort = this.empTbSort;
+  }
+
+  announceSortChange(sortState: Sort) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+  
+  ngOnInit(): void {
     this.crudService.ObtenerVacacionesPersonalBySupervisor(this.user, this.passw).subscribe(respuesta=>{
       //console.log(respuesta);
       this.VacacionesBySupervisor=respuesta;
@@ -61,9 +79,17 @@ export class ListarReporteGeneralSupervisorComponent {
     this.crudService.ObtenerVacacionesPersonalAprobadasBySupervisor(this.user, this.passw).subscribe(respuesta=>{
       //console.log(respuesta);
       this.VacacionesAprobadasBySupervisor=respuesta;
+      this.datosA=respuesta;
+      this.dataSourceA = new MatTableDataSource<Solicitudes>(this.datosA);
+      this.dataSourceA.paginator = this.paginator;
+      console.log("dataSource:",this.dataSourceA);
+      console.log("dataSource.paginator:",  this.dataSourceA.paginator);
+      this.SortInfo();
     });
-    this.loadVacacionesPersonalAprobadasBySupervisor({active: 'id_vacaciones', direction  : 'asc'})
+    //this.loadVacacionesPersonalAprobadasBySupervisor({active: 'id_vacaciones', direction  : 'asc'})
   }  
+
+
 
   borrarRegistro(id:any,iControl:any){
     //console.log(id);
@@ -101,50 +127,9 @@ export class ListarReporteGeneralSupervisorComponent {
   exportToCSV(){
     this.exportList.downloadFileSolicitudesVacaciones(this.VacacionesBySupervisor,"Vacaciones");
   }
-  getDataPendientes(){
-    this.crudService.ObtenerVacacionesPersonalPendientesBySupervisor(this.user, this.passw).subscribe((respuesta:any) =>{
-      //console.log(respuesta);
-      this.VacacionesPendientesBySupervisor=respuesta;
-      this.consults = respuesta.data;
-      this.totalP = respuesta.total;
-      
-    });   
-  }
+  
 
-  getDataNegadas(){
-    this.crudService.ObtenerVacacionesPersonalNegadasBySupervisor(this.user, this.passw).subscribe((respuesta:any) =>{
-      //console.log(respuesta);
-      this.VacacionesNegadasBySupervisor=respuesta;
-      this.consults = respuesta.data;
-      this.totalN = respuesta.total;
-    });
-  }
-
-  getDataAprobadas(){
-    this.crudService.ObtenerVacacionesPersonalAprobadasBySupervisor(this.user, this.passw).subscribe((respuesta:any) =>{
-      //console.log(respuesta);
-      this.VacacionesAprobadasBySupervisor=respuesta;
-      this.consults = respuesta.data;
-      this.totalA = respuesta.total;
-    });    
-  }
-
-  pageChangeEventPendientes(event: number){
-    this.pP = event;
-    this.getDataPendientes();
-  }
-
-  pageChangeEventNegadas(event: number){
-    this.pN = event;
-    this.getDataNegadas();
-  }
-
-  pageChangeEventAprobadas(event: number){
-    this.pA = event;
-    this.getDataAprobadas();
-  }
-
-  loadVacacionesPersonalAprobadasBySupervisor(sort: Sort): void{
+  /*loadVacacionesPersonalAprobadasBySupervisor(sort: Sort): void{
     this.crudService.ObtenerVacacionesPersonalAprobadasBySupervisorSort(this.user, this.passw, sort).subscribe((respuesta)=>{
       //console.log(respuesta);
       this.VacacionesAprobadasBySupervisor = respuesta
@@ -153,6 +138,7 @@ export class ListarReporteGeneralSupervisorComponent {
 
   sortInfo(sort: Sort):void{
     this.loadVacacionesPersonalAprobadasBySupervisor(sort);
-  }
+  }*/
 
 }
+

@@ -4,7 +4,7 @@ import { TestuserService } from 'src/app/services/testuser.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import {parse, stringify, toJSON, fromJSON} from 'flatted';
-import { Venta } from 'src/app/services/Venta';
+import { Venta } from 'src/app/components/model/Venta';
 import { STRING_TYPE } from '@angular/compiler';
 
 

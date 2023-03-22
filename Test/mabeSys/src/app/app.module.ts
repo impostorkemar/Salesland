@@ -9,6 +9,7 @@ import {HttpClientModule, HttpClient, HttpRequest, HttpResponse, HttpEventType} 
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatSortModule} from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -104,7 +105,7 @@ import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones
     NgxPaginationModule,
     MatSortModule,
     MatTableModule,
-    
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
