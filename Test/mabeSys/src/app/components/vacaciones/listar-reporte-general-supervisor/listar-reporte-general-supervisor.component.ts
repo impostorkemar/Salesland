@@ -9,6 +9,7 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { Solicitudes } from '../../model/Solicitudes';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import {MatInputModule} from '@angular/material/input';
 
 
 @Component({
@@ -45,10 +46,15 @@ export class ListarReporteGeneralSupervisorComponent {
    } 
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator; 
-  @ViewChild('empTbSort') empTbSort = new MatSort();
+  @ViewChild('solicApr') solicApr = new MatSort();
 
   SortInfo() {
-    this.dataSourceA.sort = this.empTbSort;
+    this.dataSourceA.sort = this.solicApr;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceA.filter = filterValue.trim().toLowerCase();
   }
 
   announceSortChange(sortState: Sort) {

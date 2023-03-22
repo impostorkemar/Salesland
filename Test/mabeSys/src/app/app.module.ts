@@ -10,6 +10,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {MatSortModule} from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -105,7 +107,10 @@ import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones
     NgxPaginationModule,
     MatSortModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatInputModule,
+    MatFormFieldModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

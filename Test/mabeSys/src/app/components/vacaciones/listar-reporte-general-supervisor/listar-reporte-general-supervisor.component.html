@@ -4,9 +4,20 @@
         <div class="card-body">
             <h1>TEST</h1>
             <div class="table-responsive">
+                <mat-form-field appearance="standard">
+                    <mat-label>
+                        Filter by subject
+                    </mat-label>
+                    <input 
+                        matInput 
+                        (keyup)="applyFilter($event)" 
+                        placeholder="Filter by subject" 
+                        #input 
+                    />
+                </mat-form-field>
                 <table 
                 mat-table [dataSource]="dataSourceA" class="table table-primary mat-elevation-z8"
-                matSort #empTbSort="matSort" (matSortChange)="announceSortChange($event)">
+                matSort #solicApr="matSort" (matSortChange)="announceSortChange($event)">
 
                     <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
                         <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
