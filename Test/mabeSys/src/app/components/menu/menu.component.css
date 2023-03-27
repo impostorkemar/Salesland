@@ -1,5 +1,5 @@
 .selectStyle{
-  background-color: #6c757d;
+  background-color: #16261C;
   color: white;
 }
 .text{
@@ -13,4 +13,11 @@
 .redimension2 {
   max-width:50%;
   max-height:50%;
+}
+
+#sect1 { 
+  background-color: #16261C;
+  color: white;
+  background-size:100%;  
+  background-size: cover;  
 }

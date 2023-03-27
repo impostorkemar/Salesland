@@ -525,9 +525,10 @@ resp!:String[];
         window.confirm('Solicitud ya en petición de cancelación')        
       }else if (response0['peticion'] === 'aprobacion'){
         if(window.confirm("¿Desea solicitar la cancelación de la solicitud?\nID VACACIONES: "+
-        response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
-        "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
-        + response0['fecha_fin_vacaciones'])){
+        response0['id_vacaciones']+"\n\tNOMBRE:"+response0['nombre']+" "+response0['apellido'] + "\n\tFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+        "\n\tFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\n\tFECHA FIN VACACIONES: "
+        + response0['fecha_fin_vacaciones']+ "\n\tDIAS SOLICITADOS: "
+        + response0['dias_lab_solicitados'])){
           let options = this.createRequestOptions();
           var urlAPI="vacacionesACancelarbyId/"+id;
           var vaca: Vacaciones ={
@@ -572,9 +573,10 @@ resp!:String[];
       this.ObtenerVacacionById(id).subscribe(response0 => {
         if (response0['peticion'] === 'aprobacion'){
           if(window.confirm("¿Desea aprobar la solicitud?\nID VACACIONES: "+
-          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
-          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
-          + response0['fecha_fin_vacaciones'])){
+          response0['id_vacaciones']+"\n\tNOMBRE:"+response0['nombre']+" "+response0['apellido'] + "\n\tFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\n\tFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\n\tFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones']+ "\n\tDIAS SOLICITADOS: "
+          + response0['dias_lab_solicitados'])){
             let options = this.createRequestOptions();
             var urlAPI="vacacionesACancelarbyId/"+id;
             var vaca: Vacaciones ={
@@ -604,9 +606,10 @@ resp!:String[];
           }
         }else if (response0['peticion'] === 'cancelacion'){
           if(window.confirm("¿Desea negar la solicitud?\nID VACACIONES: "+
-          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
-          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
-          + response0['fecha_fin_vacaciones'])){
+          response0['id_vacaciones']+"\n\tNOMBRE:"+response0['nombre']+" "+response0['apellido'] + "\n\tFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\n\tFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\n\tFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones']+ "\n\tDIAS SOLICITADOS: "
+          + response0['dias_lab_solicitados'])){
             let options = this.createRequestOptions();
             var urlAPI="vacacionesACancelarbyId/"+id;
             var vaca: Vacaciones ={
@@ -650,9 +653,10 @@ resp!:String[];
       this.ObtenerVacacionById(id).subscribe(response0 => {
         if (response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion' ){
           if(window.confirm("¿Desea aprobar la solicitud?\nID VACACIONES: "+
-          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
-          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
-          + response0['fecha_fin_vacaciones'])){
+          response0['id_vacaciones']+"\n\tNOMBRE:"+response0['nombre']+" "+response0['apellido'] +"\n\tFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\n\tFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\n\tFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones']+ "\n\tDIAS SOLICITADOS: "
+          + response0['dias_lab_solicitados'])){
             let options = this.createRequestOptions();
             var urlAPI="aprobarVacacionById/"+id;
             var vaca: Vacaciones ={
@@ -698,9 +702,10 @@ resp!:String[];
           }
         }else if (response0['status'] === 'pendiente' && response0['peticion'] === 'cancelacion'){
           if(window.confirm("¿Desea aprobar la cancelación de la solicitud?\nID VACACIONES: "+
-          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
-          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
-          + response0['fecha_fin_vacaciones'])){
+          response0['id_vacaciones']+"\n\tNOMBRE:"+response0['nombre']+" "+response0['apellido'] + "\n\tFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\n\tFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\n\tFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones']+ "\n\tDIAS SOLICITADOS: "
+          + response0['dias_lab_solicitados'])){
             let options = this.createRequestOptions();
             var urlAPI="negarVacacionById/"+id;
             var vaca: Vacaciones ={
@@ -753,9 +758,10 @@ resp!:String[];
       this.ObtenerVacacionById(id).subscribe(response0 => {
         if ( response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion'){
           if(window.confirm("¿Desea rechazar la solicitud?\nID VACACIONES: "+
-          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
-          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
-          + response0['fecha_fin_vacaciones'])){
+          response0['id_vacaciones']+"\n\tNOMBRE:"+response0['nombre']+" "+response0['apellido'] + "\n\tFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\n\tFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\n\tFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones']+ "\n\tDIAS SOLICITADOS: "
+          + response0['dias_lab_solicitados'])){
             let options = this.createRequestOptions();
             var urlAPI="vacacionesACancelarbyId/"+id;
             var vaca: Vacaciones ={
@@ -801,9 +807,10 @@ resp!:String[];
           }
         }else if ( response0['status'] === 'pendiente' && response0['peticion'] === 'cancelacion'){
           if(window.confirm("¿Desea aprobar la cancelación de la solicitud?\nID VACACIONES: "+
-          response0['id_vacaciones']+ "\nFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
-          "\nFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\nFECHA FIN VACACIONES: "
-          + response0['fecha_fin_vacaciones'])){
+          response0['id_vacaciones']+"\n\tNOMBRE:"+response0['nombre']+" "+response0['apellido'] + "\n\tFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+          "\n\tFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\n\tFECHA FIN VACACIONES: "
+          + response0['fecha_fin_vacaciones']+ "\n\tDIAS SOLICITADOS: "
+          + response0['dias_lab_solicitados'])){
             let options = this.createRequestOptions();
             var urlAPI="vacacionesACancelarbyId/"+id;
             var vaca: Vacaciones ={

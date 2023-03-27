@@ -133,11 +133,19 @@ export class MenuComponent implements OnInit {
         console.log("OPCION:",this.control_vistas.value.statePersonal);
         this.nombreVentana='REPORTE-GENERAL-VACACIONES-PERSONAL';
       }    
+      if (this.control_vistas.value.statePersonal as string === '2'){
+        console.log("OPCION:",this.control_vistas.value.statePersonal);
+        this.nombreVentana='REPORTE-GENERAL';
+      }
     }if (localStorage.getItem('ROLE') as string ==='ROLE_SUPERVISOR') {
       console.log("SUPERVISOR")
       if (this.control_vistas.value.statePersonal as string === '1'){
         console.log("OPCION:",this.control_vistas.value.statePersonal);
         this.nombreVentana='REPORTE-GENERAL-VACACIONES-SUPERVISOR';
+      }
+      if (this.control_vistas.value.statePersonal as string === '2'){
+        console.log("OPCION:",this.control_vistas.value.statePersonal);
+        this.nombreVentana='REPORTE-GENERAL';
       }
     }
   }

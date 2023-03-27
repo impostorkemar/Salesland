@@ -511,7 +511,7 @@ def get_vacacionesAReasignarByUserPasswordFechasInfo(user: str, passw: str, fech
 @user.get('/vacacionesById/{id}',tags=["vacaciones"])
 def get_vacacionesById(id : str):
     conn = engine.connect()
-    sql = ("SELECT * FROM vacaciones WHERE id_vacaciones = '"+str(id)+"';")
+    sql = ("SELECT vacaciones.id_vacaciones,candidato.nombre,candidato.apellido, vacaciones.id_personal, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_disponibles_acum, vacaciones.dias_lab_solicitados, vacaciones.status, vacaciones.peticion, vacaciones.observaciones FROM vacaciones,personal, candidato WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND id_vacaciones = '"+str(id)+"';")
     return conn.execute(sql).first()
 
 @user.put("/vacacionesACancelarbyId/{id}",response_model=Vacacion, tags=["vacaciones"])

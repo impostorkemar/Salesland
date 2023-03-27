@@ -1,0 +1,244 @@
+#Carga csv centro costos
+from asyncio.windows_events import NULL
+from cmath import nan
+from numpy import NAN, equal
+import numpy
+import pandas as pd
+import numpy as np
+import mysql.connector
+import csv
+import io
+import os
+import math
+import os.path
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+import time
+import re
+from openpyxl import load_workbook, Workbook
+import openpyxl
+from datetime import date
+from openpyxl.styles import Font, Alignment,NamedStyle,PatternFill, Border,Side
+
+df3 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/SaleslandMovistarCorreoComisiones/1. Comis.Indiv. Ejecutivo Feb23.xlsx", sheet_name=None)
+#print(df3)
+
+df4 = pd.read_excel("C:/Users/user/Documents/GitHub/Salesland/SaleslandMovistarCorreoComisiones/Comisiones Febrero.xlsx", sheet_name=None)
+#print(df4)
+
+#print('Ejecutivo Movistar:\n',df4['Ejecutivo Movistar'])
+#print('Especialistas y Jefes:\n',df4['Especialistas y Jefes'])
+
+#col = df4.shape[1]; fil = df4.shape[0]; i=0; sql =""; 
+
+def CalculoPorcentajeCumplido(porcPeso,porcCumplido):
+  if(porcCumplido >100):
+    return float(round(porcPeso*100,2))
+  else: 
+    return float(round(porcPeso*porcCumplido,2))
+
+def totalComision(cumplPond,totalCumplPond):
+  if(totalCumplPond>80):
+    return float((cumplPond/100)*250)    
+  else:
+    return float(0)
+   
+
+#for column in df4['Ejecutivo Movistar']:    
+#    list.append(str(column).lower())
+#print(list)
+j=0;
+i=8;
+l=10;
+listEjecutivos = [];
+for i in range(i,l): 
+  if ("TIENDA" not in df4['Ejecutivo Movistar'].iloc[i][j] ):
+    #print("\n[",i,"]:\n",df4['Ejecutivo Movistar'].iloc[i,:])    
+    listEjecutivos.append((df4['Ejecutivo Movistar'].iloc[i,:95]))
+for item in range(len(listEjecutivos)):
+  #print("Item:\n",item)
+  nombre = (listEjecutivos[item][0]) 
+  metaAltasDomiciliadas = (listEjecutivos[item][1])
+  realAltasDomicialdas = (listEjecutivos[item][2])
+  metaTransfeDomicialdas = (listEjecutivos[item][6])
+  realTransfeDomicialdas = (listEjecutivos[item][7])
+  metaQPospago = (listEjecutivos[item][11])
+  realQPospago = (listEjecutivos[item][12])
+  metaTarifaBasicaPromedio = (listEjecutivos[item][16])
+  realTarifaBasicaPromedio = (listEjecutivos[item][17])
+  metaTerminalesUPSS =  (listEjecutivos[item][33])
+  realTerminalesUPSS =  (listEjecutivos[item][34])
+  metaUpsellMplayFutbolPaqIlimSOS = (listEjecutivos[item][50])
+  realUpsellMplayFutbolPaqIlimSOS = (listEjecutivos[item][51])
+  metaRetenciones = (listEjecutivos[item][54])
+  realRetenciones = (listEjecutivos[item][57])
+  metaPrepago = (listEjecutivos[item][59])
+  realPrepago = (listEjecutivos[item][60])
+  metaNPS = (listEjecutivos[item][63])
+  realNPS = (listEjecutivos[item][66])
+
+  totalCumplPondetaAltasDomiciliadas = (CalculoPorcentajeCumplido(0.15,(realAltasDomicialdas/metaAltasDomiciliadas)*100))
+  totalCumplPondTransfeDomicialdas = (CalculoPorcentajeCumplido(0.10,(realTransfeDomicialdas/metaTransfeDomicialdas)*100))
+  totalCumplPondQPospago = (CalculoPorcentajeCumplido(0.10,(realQPospago/metaQPospago)*100))
+  totalCumplPondTarifaBasicaPromedio =  (CalculoPorcentajeCumplido(0.10,(realTarifaBasicaPromedio/metaTarifaBasicaPromedio)*100))
+  totalCumplPondTerminalesUPSS = (CalculoPorcentajeCumplido(0.2,(realTerminalesUPSS/metaTerminalesUPSS)*100))
+  totalCumplPondUpsellMplayFutbolPaqIlimSOS = (CalculoPorcentajeCumplido(0.075,(realUpsellMplayFutbolPaqIlimSOS/metaUpsellMplayFutbolPaqIlimSOS)*100))
+  totalCumplPondRetenciones = (CalculoPorcentajeCumplido(0.075,(realRetenciones/metaRetenciones)*100))
+  totalCumplPondPrepago = (CalculoPorcentajeCumplido(0.1,(realPrepago/metaPrepago)*100))
+  totalCumplPondNPS = (CalculoPorcentajeCumplido(0.1,(realNPS/metaNPS)*100))
+
+  totalCumplPond = totalCumplPondetaAltasDomiciliadas + totalCumplPondTransfeDomicialdas + totalCumplPondQPospago + totalCumplPondTarifaBasicaPromedio + totalCumplPondTerminalesUPSS + totalCumplPondUpsellMplayFutbolPaqIlimSOS + totalCumplPondRetenciones + totalCumplPondPrepago + totalCumplPondNPS
+ 
+  totalComisionAltasDomiciliadas = totalComision(totalCumplPondetaAltasDomiciliadas,totalCumplPond)
+  totalComisionTransfeDomicialdas = totalComision(totalCumplPondTransfeDomicialdas,totalCumplPond)
+  totalComisionQPospago = totalComision(totalCumplPondQPospago,totalCumplPond)
+  totalComisionTarifaBasicaPromedio = totalComision(totalCumplPondTarifaBasicaPromedio,totalCumplPond)
+  totalComisionTerminalesUPSS = totalComision(totalCumplPondTerminalesUPSS,totalCumplPond)  
+  totalComisionUpsellMplayFutbolPaqIlimSOS = totalComision(totalCumplPondUpsellMplayFutbolPaqIlimSOS,totalCumplPond)
+  totalComisionRetenciones = totalComision(totalCumplPondRetenciones,totalCumplPond)
+  totalComisionPrepago = totalComision(totalCumplPondPrepago,totalCumplPond)
+  totalComisionNPS = totalComision(totalCumplPondNPS,totalCumplPond)
+
+  subtotal = totalComisionAltasDomiciliadas + totalComisionTransfeDomicialdas + totalComisionQPospago + totalComisionTarifaBasicaPromedio + totalComisionTerminalesUPSS + totalComisionUpsellMplayFutbolPaqIlimSOS + totalComisionRetenciones + totalComisionPrepago + totalComisionNPS
+
+  malaAtencionventa = 0
+  descuentos = 0
+
+  totalComisionRecibir = subtotal - malaAtencionventa - descuentos
+
+  data = ( 
+  ("","","","","","","",""),
+  ("","LIQUIDACION COMISIONES MES FEBRERO 2023","","","","","",""),   
+  ("","NOMBRE:","","","","","",""), 
+  ("",nombre,"","","","","",""), 
+  ("","EJECUTIVO DE VENTAS Y ATENCIÓN","","","","","",""), 
+  ("","TIENDA:","TEST","","","","",""), 
+  ("","VARIABLES","%PESO","META","REAL","% CUMPLIM.","%CUMPL. PONDERADO","TOTAL COMIS."), 
+  ("","ALTAS DOMICILIADAS","15%", metaAltasDomiciliadas, realAltasDomicialdas, (realAltasDomicialdas/metaAltasDomiciliadas)*100, totalCumplPondetaAltasDomiciliadas,totalComisionAltasDomiciliadas), 
+  ("","TRANSFERENCIAS DOMICILIADAS", "10%", metaTransfeDomicialdas, realTransfeDomicialdas,(realTransfeDomicialdas/metaTransfeDomicialdas)*100 ,totalCumplPondTransfeDomicialdas,totalComisionTransfeDomicialdas ), 
+  ("","TOTAL Q POSPAGO", "10%", metaQPospago, realQPospago,(realQPospago/metaQPospago)*100,totalCumplPondQPospago,totalComisionQPospago), 
+  ("","ARPU", "10%", metaTarifaBasicaPromedio, realTarifaBasicaPromedio,(realTarifaBasicaPromedio/metaTarifaBasicaPromedio)*100, totalCumplPondTarifaBasicaPromedio,totalComisionTarifaBasicaPromedio ), 
+  ("","UPSELL + MPLAY + FUTBOL + PAQ.ILIM + SOS", "7,5%", metaUpsellMplayFutbolPaqIlimSOS, realUpsellMplayFutbolPaqIlimSOS,(realUpsellMplayFutbolPaqIlimSOS/metaUpsellMplayFutbolPaqIlimSOS)*100,totalCumplPondUpsellMplayFutbolPaqIlimSOS,totalComisionUpsellMplayFutbolPaqIlimSOS), 
+  ("","TERMINALES + UPSS+ ", "20%", metaTerminalesUPSS, realTerminalesUPSS,(realTerminalesUPSS/metaTerminalesUPSS)*100,totalCumplPondTerminalesUPSS,totalComisionTerminalesUPSS), 
+  ("","RETENCIONES", "7,5%", str(metaRetenciones*100)+"%", str(realRetenciones*100)+"%",(realRetenciones/metaRetenciones)*100,totalCumplPondRetenciones,totalComisionRetenciones), 
+  ("","PREPAGO", "10%", metaPrepago, realPrepago,(realPrepago/metaPrepago)*100,totalCumplPondPrepago,totalComisionPrepago),
+  ("","NPS", "10%", str(metaNPS*100)+"%", str(realNPS*100)+"%",(realNPS/metaNPS)*100,totalCumplPondNPS,totalComisionNPS),
+  ("","SUBTOTAL", "", "", "","","",subtotal),  
+  (""," (-) DESCUENTOS", "", "", "","","",descuentos), 
+  ("","MALA ATENCIÓN VENTA", "", "", "","","",malaAtencionventa), 
+  ("","TOTAL COMISIÓN A RECIBIR", "", "", "","","",totalComisionRecibir),
+  ("","Consideraciones:", "", "", "","","",""),
+  ("","*Para comisionar deben cumplir mínimo al 80% del total de las variables", "", "", "","","",""),
+  ("","*Para acceder al sobrecumplimiento de alguna de las variables debe haber cumplido al 100% en Q Total Pospago y mínimo al 80% en el resto variables", "", "", "","","",""),
+  ("","*Descuentos incluye: \n-Impedimentos de Pago de la Reliq. Oct-22 y de la Preliq Ene-23 \n-Charge back de la Liq. Ene-23 de los meses Ago-22, Sep-22, Oct-22, Nov-22 y Dic22", "", "", "","","",""),
+  ("","*El NPS se paga de acuerdo al porcentaje alcanzado en la tienda", "", "", "","VARIABLE COMISIONAL","","250"),
+  ("","*Se realiza el descuento de charge back e IP de acuerdo a la tabla notificada", "", "", "","","",""),
+  ("","*Se paga comisiones de Febrero en el rol de Marzo 2023", "", "", "","","",""),
+
+  )
+  
+
+  data2 = (
+    ("IMPEDIMENTOS DE PAGO PRE-LIQ.OCTUBRE 21","","","","","",""), 
+    ("Tipo de Transacción","Línea de Negocio","Celular","Código de Cliente","Plan","Código de Vendedor","Observación","Cliente","Fecha Alta","Tipo de Alta","Canal Interno","TIENDA","EJECUTIVO","OBSERVACIONES"), 
+  )
+
+  data3 = (
+    ("CHARGE BACK LIQ. SEPTIEMBRE 21","","","","","",""),
+    ("Celular","Codigo de Cliente","Codigo Vendedor","Plan","Cliente","Observacion","Fecha Activacion","Fecha Terminacion","Dias desde Alta hasta la Baja","Canal Interno","TIENDA","EJECUTIVO")
+  )
+
+  today = date.today() 
+  wb = openpyxl.Workbook()
+  sheetname = "Comis. "+str(date.today())+" Ejec."  
+  
+  ws1 = wb.create_sheet(sheetname) #Sheetname
+  ws1.title = sheetname
+  ws11 = wb[sheetname]
+  for i in data: 
+   ws11.append(i) 
+
+  ws2 = wb.create_sheet("Descuentos por Impedimentos") #Descuentos por Impedimentos
+  ws2.title = "Descuentos por Impedimentos"
+  ws22 = wb["Descuentos por Impedimentos"]
+  for i in data2: 
+   ws22.append(i) 
+  
+  ws3 = wb.create_sheet("Descuentos por Chargeback") #Descuentos por Chargeback
+  ws3.title = "Descuentos por Chargeback"
+  ws33 = wb["Descuentos por Chargeback"]
+  for i in data3: 
+   ws33.append(i) 
+
+  #print(wb.get_sheet_names())#Get sheet names
+  wb.remove(wb['Sheet'])#Delete pred Sheet  
+
+  #STYLES SHEETNAME 
+
+  filename = 'C:/Users/user/Documents/GitHub/Salesland/SaleslandMovistarCorreoComisiones/'+nombre+'.xlsx'
+  wb.save(filename)
+  
+  workbook = load_workbook(filename)
+  sheet = workbook[sheetname]
+  font = Font(name='Calibri', size=12, bold=True) # create a font object
+  alignment = Alignment(horizontal='center', vertical='center') # create an alignment object
+  fill = PatternFill(start_color='FFC000', end_color='FFC000', fill_type='solid') # create a pattern fill object
+  border_fino = Border(left=Side(border_style='thin'), 
+                      right=Side(border_style='thin'), 
+                      top=Side(border_style='thin'), 
+                      bottom=Side(border_style='thin'))
+  
+  border_grueso = Border(left=Side(style='thin'), 
+                right=Side(style='thin'), 
+                top=Side(style='thick'), 
+                bottom=Side(style='thick'))
+  
+  border_grueso_abajo = Border( 
+                bottom=Side(style='thick'))
+  
+  border_grueso_arriba = Border( 
+                top=Side(style='thick'))
+  
+  border_grueso_izq = Border( 
+                left=Side(style='thick'))  
+
+  border_grueso_der = Border( 
+                right=Side(style='thick')) 
+
+  cell_range = sheet['B7':'H7']
+  for row in cell_range:
+    for cell in row:
+      cell.font = font
+      cell.alignment = alignment
+      cell.fill = fill
+      cell.border = border_grueso  
+  
+  cell_range = sheet['B17':'H20']
+  for row in cell_range:
+   for cell in row:      
+      cell.border = border_grueso 
+
+  cell_range = sheet['B21':'H29']
+  for row in cell_range:
+    for cell in row:     
+      cell.border = border_grueso 
+
+
+  workbook.save(filename)
+      
+
+  
+
+  
+  
+  
+
+
+  
+
+
+
+
+#print('Ejecutivo Movistar:\n',df4['Ejecutivo Movistar'])
+#print('Ejecutivo Movistar:\n',df4['Comisiones'])
+

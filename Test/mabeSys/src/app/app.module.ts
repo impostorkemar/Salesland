@@ -53,6 +53,7 @@ import { ListarReporteGeneralPersonalComponent } from './components/vacaciones/l
 import { DatepickerRangeTsComponent } from './components/datepicker-range/datepicker-range.ts/datepicker-range.ts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones/listar-reporte-general-supervisor/listar-reporte-general-supervisor.component';
+import { ReporteGeneralComponent } from './components/reporte-estadistico/reporte-general/reporte-general.component';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones
     ListarReporteGeneralPersonalComponent,
     DatepickerRangeTsComponent,
     ListarReporteGeneralSupervisorComponent,
+    ReporteGeneralComponent,
     
   ],
   imports: [
