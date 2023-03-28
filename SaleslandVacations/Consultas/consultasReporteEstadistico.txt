@@ -1,0 +1,69 @@
+SELECT vacaciones.id_vacaciones, vacaciones.dias_disponibles_acum as vacaAcum, vacaciones.dias_lab_solicitados as vacaTomadas,personal.id_supervisor ,personal.cedula, contrato.fecha_inicio_contrato
+FROM vacaciones,personal 
+WHERE vacaciones.id_personal = personal.id_personal AND personal.id_supervisor = (SELECT supervisor.id_supervisor FROM supervisor WHERE supervisor.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario.usuario = '2' AND usuario.password = '2'));
+
+//VACACIONES ACUMULADAS POR PERSONAL
+SELECT 
+CAST('202-01-31' AS DATE) AS converted_date,
+candidato.cedula, 
+contrato.fecha_inicio_contrato,
+(CASE
+    WHEN ((YEAR(CAST('2023-01-31' AS DATE))-YEAR(fecha_inicio_contrato))*12+(MONTH(CAST('2023-01-31' AS DATE))-MONTH(fecha_inicio_contrato))+(DAY(CAST('2023-01-31' AS DATE))-DAY(fecha_inicio_contrato))/30) IS NOT NULL THEN ((YEAR(CAST('2023-01-31' AS DATE))-YEAR(fecha_inicio_contrato))*12+(MONTH(CAST('2023-01-31' AS DATE))-MONTH(fecha_inicio_contrato))+(DAY(CAST('2023-01-31' AS DATE))-DAY(fecha_inicio_contrato))/30)
+    ELSE 0
+END) AS ANTIGUEDAD
+FROM candidato,contrato, personal 
+WHERE personal.id_contrato = contrato.id_contrato AND personal.cedula = candidato.cedula;
+
+//VACACIONES ACUMULADAS + VACACIONES TOMADAS
+
+SELECT
+	ROUND((SELECT     
+    SUM(CASE
+        WHEN ((YEAR(CAST('2023-01-31' AS DATE))-YEAR(fecha_inicio_contrato))*12+(MONTH(CAST('2023-01-31' AS DATE))-MONTH(fecha_inicio_contrato))+(DAY(CAST('2023-01-31' AS DATE))-DAY(fecha_inicio_contrato))/30) IS NOT NULL THEN ((YEAR(CAST('2023-01-31' AS DATE))-YEAR(fecha_inicio_contrato))*12+(MONTH(CAST('2023-01-31' AS DATE))-MONTH(fecha_inicio_contrato))+(DAY(CAST('2023-01-31' AS DATE))-DAY(fecha_inicio_contrato))/30)
+        ELSE 0
+    END) AS ANTIGUEDAD
+    FROM candidato,contrato, personal 
+    WHERE personal.id_contrato = contrato.id_contrato AND personal.cedula = candidato.cedula),2) AS 'vaca_acum',
+	ROUND((SELECT
+SUM(CASE
+ 	WHEN (SELECT vacaciones.dias_lab_solicitados
+    FROM vacaciones
+    WHERE vacaciones.status = 'aprobada' 
+     AND CAST(vacaciones.fecha_fin_vacaciones AS DATE) < CAST(('2023-03-28') AS DATE)) IS NOT NULL THEN (SELECT vacaciones.dias_lab_solicitados
+    FROM vacaciones
+    WHERE vacaciones.status = 'aprobada' 
+     AND CAST(vacaciones.fecha_fin_vacaciones AS DATE) < CAST(('2023-03-28') AS DATE))
+    ELSE 0
+END)),2)  AS 'vaca_tomadas',
+	ROUND((SELECT     
+    SUM(CASE
+        WHEN ((YEAR(CAST('2023-01-31' AS DATE))-YEAR(fecha_inicio_contrato))*12+(MONTH(CAST('2023-01-31' AS DATE))-MONTH(fecha_inicio_contrato))+(DAY(CAST('2023-01-31' AS DATE))-DAY(fecha_inicio_contrato))/30) IS NOT NULL THEN ((YEAR(CAST('2023-01-31' AS DATE))-YEAR(fecha_inicio_contrato))*12+(MONTH(CAST('2023-01-31' AS DATE))-MONTH(fecha_inicio_contrato))+(DAY(CAST('2023-01-31' AS DATE))-DAY(fecha_inicio_contrato))/30)
+        ELSE 0
+    END) AS ANTIGUEDAD
+    FROM candidato,contrato, personal 
+    WHERE personal.id_contrato = contrato.id_contrato AND personal.cedula = candidato.cedula)-
+          (SELECT
+	SUM(CASE
+ 	WHEN (SELECT SUM(vacaciones.dias_lab_solicitados)
+    FROM vacaciones
+    WHERE vacaciones.status = 'aprobada' 
+     AND CAST(vacaciones.fecha_fin_vacaciones AS DATE) < CAST(('2023-03-28') AS DATE)) IS NOT NULL THEN (SELECT 							SUM(vacaciones.dias_lab_solicitados)
+    FROM vacaciones
+    WHERE vacaciones.status = 'aprobada' 
+     AND CAST(vacaciones.fecha_fin_vacaciones AS DATE) < CAST(('2023-03-28') AS DATE))
+    ELSE 0
+END)),2) AS 'dias_dispo',
+(SELECT 
+(CASE 
+    WHEN ((SELECT SUM(vacaciones.dias_lab_solicitados)
+FROM vacaciones 
+WHERE vacaciones.status = 'aprobada' 
+AND CAST(vacaciones.fecha_fin_vacaciones AS DATE) > CAST(('2023-03-28') AS DATE))) IS NOT NULL THEN ((SELECT SUM(vacaciones.dias_lab_solicitados)
+FROM vacaciones 
+WHERE vacaciones.status = 'aprobada' 
+AND CAST(vacaciones.fecha_fin_vacaciones AS DATE) > CAST(('2023-03-28') AS DATE)))
+ ELSE 0
+ END)) AS 'dias_PorTomar_Apro'
+	
+	
+

@@ -94,7 +94,7 @@ resp!:String[];
     window.alert("Registro "+id+" actualizado")
   }
   //SERVICIOS CANDIDATOS
-  ObtenerCandidatos(){
+  ObtenerCandidatos():Observable<any>{
     var urlAPI="candidatos/";
     return this.clienteHttp.get(this.API +urlAPI);
   }
@@ -130,7 +130,7 @@ resp!:String[];
   }
  
   //SERVICIOS CENTROS DE COSTO
-  ObtenerCentrosCostos(){
+  ObtenerCentrosCostos():Observable<any>{
     var urlAPI="centro_costos/";
     return this.clienteHttp.get(this.API +urlAPI);
   }
