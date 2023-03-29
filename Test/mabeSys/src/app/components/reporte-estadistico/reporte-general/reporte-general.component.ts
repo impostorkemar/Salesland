@@ -25,11 +25,6 @@ export class ReporteGeneralComponent {
   diasDispo !: any;
   vacaToma !: any;
   vacaPorTomarAprob !: any;
-
-  
-
-
-
   NameTienda!: String;
 
   constructor(
@@ -55,9 +50,14 @@ export class ReporteGeneralComponent {
       vaca_apro: [''], 
       nombreTienda: [''], 
     }) 
+    this.registrationForm.controls['vaca_acum'].disable();
+    this.registrationForm.controls['dias_dispo'].disable();
+    this.registrationForm.controls['vacac_tom'].disable();
+    this.registrationForm.controls['vaca_apro'].disable();
+    
     this.cargarCentrosCostos();
     this.cargarColaboradores();
-
+    this.cargarDataReporteEstadistico();
 
   }
 
@@ -78,6 +78,28 @@ export class ReporteGeneralComponent {
       //console.log(columnData)
     });
   }
+
+  cargarDataReporteEstadistico():void{
+    var myDate = new Date();
+    var diaActual = myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate()
+    var corte = "2023-01-31"
+    this.crudService.ObtenerDataReporteEstadistico(corte,diaActual).subscribe(respuesta=>{
+      this.registrationForm.setValue({
+        vaca_acum: respuesta['vaca_acum'], 
+        dias_dispo: respuesta['dias_dispo'],
+        vacac_tom: respuesta['vaca_tomadas'],
+        vaca_apro: respuesta['dias_PorTomar_Apro'],
+        nombreTienda: [''],     
+      }) 
+      /*
+      console.log("respuesta:",respuesta);
+      console.log(respuesta['vaca_acum']);
+      console.log(respuesta['vaca_tomadas']);
+      console.log(respuesta['dias_dispo']);
+      console.log(respuesta['dias_PorTomar_Apro']);
+      */
+    })
+  } 
 
   changeTienda(e: any) {
   

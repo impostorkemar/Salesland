@@ -28,8 +28,6 @@ resp!:String[];
     private clienteHttp:HttpClient,
     ) { this.resp = []}
 
-  
-
   private createRequestOptions() {
     let headers = new HttpHeaders({
         "accept": "application/json",
@@ -876,6 +874,11 @@ resp!:String[];
       var consult2 = {"id":id}
       var urlAPI="sendEmailCambioEstadoSolicitud/"
       return this.clienteHttp.post(this.API + urlAPI, consult2);
+    }
+
+    ObtenerDataReporteEstadistico(corte: any, actual:any):Observable<any>{
+      var urlAPI="dataReporteEstadistico/"+corte as string+"_"+actual as string;      
+      return this.clienteHttp.get(this.API+urlAPI);
     }
 
     
