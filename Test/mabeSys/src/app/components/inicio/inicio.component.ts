@@ -31,5 +31,9 @@ export class InicioComponent {
     this.router.navigate(['/viajes']);
   }
 
+  navigateToenConstruccion() {
+    this.router.navigate(['/enContruccion']);
+  }
+
 
 }
