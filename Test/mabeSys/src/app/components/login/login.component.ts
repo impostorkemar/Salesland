@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
         console.log("ROLE:",localStorage.getItem('ROLE') as string)
         console.log("USER:",localStorage.getItem('USER') as string)
         console.log("PASS:",localStorage.getItem('PASS') as string)
-        this.router.navigate(['/menu']);
+        this.router.navigate(['/inicio']);
       }      
       
     });

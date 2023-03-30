@@ -1,0 +1,102 @@
+<div class="card" >
+    <h1 style="align-self: center; background-color: white; color: #16261C;">
+      AGREGAR SOLICITUD DE VACACIÓN
+    </h1>     
+  <form [formGroup]="formularioDeVacacion" (ngSubmit)="enviarDatos()">
+    <div class="card-body">    
+      <div class="table-responsive table-bordered table-striped">
+        <table class="table table-primary">
+          <thead>              
+          </thead>
+          <tbody>
+              <tr>
+                <TD>
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">VACACIONES DISPONIBLES (DIAS)</label>
+                      <input type="text"
+                        class="form-control" name="vaca_disp" formControlName="vaca_disp" id="vaca_disp" aria-describedby="helpId" placeholder="15">
+                    </div>
+                  </div>                      
+                </TD>
+                <TD> 
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">DÍAS APROBADOS PREVIAMENTE</label>
+                      <input type="text"
+                        class="form-control" name="saldo_dias" formControlName="saldo_dias" id="saldo_dias" aria-describedby="helpId" placeholder="0">
+                    </div>
+                  </div>                  
+                </TD>
+                <TD>
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">DÍAS SOLICITADOS PENDIENTES</label>
+                      <input type="text"
+                        class="form-control" name="dias_solicitudes_pen" formControlName="dias_solicitudes_pen" id="dias_solicitudes_pen" aria-describedby="helpId" placeholder="0">
+                    </div>
+                  </div>                   
+                </TD>
+                <TD>
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">DÍAS SELECCIONADOS</label>
+                      <input type="text"
+                        class="form-control" name="dias_tomados" formControlName="dias_tomados" id="dias_tomados" aria-describedby="helpId" placeholder="0">
+                    </div>
+                  </div>                   
+                </TD>
+              </tr>              
+          </tbody>
+        </table>
+      </div>
+    </div>    
+    <div class="card-body" >      
+      <div class="table-responsive">
+        <table class="table table-primary center" >          
+          <tbody>   
+                         
+            <TD>
+              <div class="card-body" >
+                <div class="mb-3 etiqueta">
+                  <label for="" class="form-label">FECHA INICIO</label>
+                  <input type="text"
+                    class="form-control" name="lbl_inicio" formControlName="lbl_inicio" id="lbl_inicio" aria-describedby="helpId" placeholder="0">
+                </div>      
+                <div class="mb-3 etiqueta">
+                  <label for="" class="form-label">FECHA FIN</label>
+                  <input type="text"
+                    class="form-control" name="lbl_fin" formControlName="lbl_fin" id="lbl_fin " aria-describedby="helpId" placeholder="0">
+                </div>      
+                <div class="btn-group" role="group" aria-label="Button group name" >
+                  <button type="submit" class="btn btn-success" [disabled]="btnIngresar" >AGREGAR</button>
+                </div>
+              </div>                    
+            </TD>  
+            <TD>  
+              <div class="card-body" style="width: 490px; height: 315px;" >
+                <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+                </ngb-datepicker> 
+                <ng-template #t let-date let-focused="focused">
+                  <span
+                    class="custom-day"
+                    [class.focused]="focused"
+                    [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)"
+                    (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null"
+                  >
+                      {{ date.day }}    
+                  </span>
+                </ng-template>
+              </div>                
+           </TD>
+                       
+            
+          </tbody>
+        </table>        
+      </div>
+    </div>
+  </form>
+</div>
+

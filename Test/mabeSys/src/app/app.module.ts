@@ -54,6 +54,11 @@ import { DatepickerRangeTsComponent } from './components/datepicker-range/datepi
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones/listar-reporte-general-supervisor/listar-reporte-general-supervisor.component';
 import { ReporteGeneralComponent } from './components/reporte-estadistico/reporte-general/reporte-general.component';
+import { HomeComponent } from './components/home/home.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { SeguroComponent } from './components/seguro/seguro.component';
+import { ViajesComponent } from './components/viajes/viajes.component';
+import { EnConstruccionComponent } from './components/en-construccion/en-construccion.component';
 
 
 @NgModule({
@@ -96,6 +101,11 @@ import { ReporteGeneralComponent } from './components/reporte-estadistico/report
     DatepickerRangeTsComponent,
     ListarReporteGeneralSupervisorComponent,
     ReporteGeneralComponent,
+    HomeComponent,
+    InicioComponent,
+    SeguroComponent,
+    ViajesComponent,
+    EnConstruccionComponent,
     
   ],
   imports: [

@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" routerLink="/agregar-usuario/" >AGREGAR NUEVO USUARIO</a>
+        <a class="btn btn-warning"(click)="exportToCSV()" role="button">EXPORT  TO CSV</a>
+    </div>
+    <div class="card-body">
+        <h1> Lista de Usuarios </h1>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">CEDULA</th>
+                        <th scope="col">USUARIO</th>
+                        <th scope="col">CONTRASEÑA</th>
+                        <th scope="col">TIPO</th>                        
+                        <th scope="col">ACCIONES</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of Usuarios; let iControl=index" >
+                        <td scope="row">{{usuario.id_usuario}}</td>
+                        <td>{{usuario.cedula}}</td>
+                        <td>{{usuario.usuario}}</td>
+                        <td>{{usuario.password}}</td>     
+                        <td>{{usuario.tipo}}</td>          
+                        <td>
+                            <a class="btn btn-info" routerLink="/editar-usuario/{{usuario.id_usuario}}" >EDITAR</a>                              
+                            |
+                            <a class="btn btn-danger"(click)="borrarRegistro(usuario.id_usuario,iControl)" role="button">BORRAR</a>
+                            
+                        </td>                        
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>
+        
+    </div>    
+</div>

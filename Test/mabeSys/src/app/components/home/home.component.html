@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Landing Page de Salesland Ecuador</title>
+    <link rel="stylesheet" href="home.component.css">
+  </head>
+  <body>
+    <header>
+      <nav >
+        <ul >
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Servicios</a></li>
+          <li><a href="#">Nosotros</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a routerLink="/login" href="#">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="hero">
+        <h1>Bienvenido a Salesland Ecuador</h1>
+        <div style="text-align: center; justify-content: center; align-items: center;  ">                
+          <img src="./assets/SALESLAND2.jpg" class="center redimension1" >            
+      </div>
+        <p>Somos una empresa en busca de ser lideres en el mercado de ventas y marketing.</p>
+        <a href="#" class="btn-primary">Ver servicios</a>
+      </section>
+      <section id="services">
+        <h2>Servicios que ofrecemos</h2>
+        <ul>
+          <li><a href="#">Ventas directas</a></li>
+          <li><a href="#">Telemarketing</a></li>
+          <li><a href="#">Promociones y eventos</a></li>
+        </ul>
+      </section>
+      <section id="about">
+        <h2>Sobre nosotros</h2>
+        <p>Salesland Ecuador es una empresa multinacional con presencia en varios países. Nuestro objetivo es ayudar a las empresas a alcanzar sus metas de ventas y marketing.</p>
+      </section>
+      <section id="contact">
+        <h2>Contáctanos</h2>
+        <form action="#" method="post">
+          <div style="align-items: center; align-self: center; align-content: center; text-align: center;">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email">          
+            <label for="message">Mensaje:</label>
+            <div>
+              <textarea id="message" name="message"></textarea>
+            </div>            
+            <input type="submit" value="Enviar">
+          </div>         
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 Salesland Ecuador. Todos los derechos reservados.</p>
+    </footer>
+  </body>
+</html>

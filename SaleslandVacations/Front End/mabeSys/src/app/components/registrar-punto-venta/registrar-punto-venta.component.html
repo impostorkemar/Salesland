@@ -1,0 +1,92 @@
+<div [formGroup]="myGroup">    
+    <h1 style="text-align: center; justify-content: center; align-items: center;"> INGRESAR PUNTO VENTA</h1>
+    <div class="wrapper1">    
+        <div  class="body1">            
+            <form (ngSubmit)="registrarVenta()" [formGroup]="MenuIngresar">
+                           
+                <div class="form-floating mb-3">                
+                    <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
+                    <label>CODIGO PDV</label>
+                </div>
+                
+                <div class="form-floating mb-3">                
+                    <input id="nombre_pdv" name="nombre_pdv" formControlName="nombre_pdv" type="text" class="form-control" placeholder="Escribe tu nombre_pdv"/>
+                    <label >NOMBRE PDV</label>
+                </div>
+    
+                <div class="form-floating mb-3">                
+                    <input type="text" class="form-control" name="retail_mapping" formControlName="retail_mapping" id="" aria-describedby="helpId" placeholder="Escribe tu retail_mapping">
+                    <label>RETAIL MAPPING</label>
+                </div> 
+                
+                <div class="form-floating mb-3">                
+                    <input type="text" class="form-control" name="cobertura" formControlName="cobertura" id="" aria-describedby="helpId" placeholder="Escribe tu cobertura">
+                    <label>COBERTURA</label>
+                </div>
+                
+                <div class="form-floating mb-3">                
+                    <input type="text" class="form-control" name="nombre_cliente" formControlName="nombre_cliente" id="" aria-describedby="helpId" placeholder="Escribe tu nombre_cliente">
+                    <label>NOMBRE CLIENTE</label>
+                </div>
+
+                <a class="mt-3" routerLink=logout()> Salir</a>
+            </form>            
+        </div>
+    </div>
+    <div class="wrapper2">
+        <form>
+            <div class="btn-group d-grid gap-2 mb-3">
+                <button class="btn btn-secondary d-grid gap-2 mb-3" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                            TIENDA
+                </button>
+                <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
+                    <a class="dropdown-item " href="#">CENTRO</a>
+                    <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">CUENCA</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item disabled" href="#">Disabled action</a>
+                    <h6 class="dropdown-header">Section header</h6>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">After divider action</a>
+                </div>
+            </div>
+
+            <div class="btn-group-vertical mb-3" role="group" aria-label="First group">
+                <button type="button" class="btn btn-secondary">VENTAS MABE</button>
+                <button type="button" class="btn btn-secondary">VENTAS INDURAMA</button>
+                <button type="button" class="btn btn-secondary">VENTAS WHIRLPOOL</button>
+                <button type="button" class="btn btn-secondary">VENTAS LG</button>
+                <button type="button" class="btn btn-secondary">VENTAS SAMSUNG</button>
+                <button type="button" class="btn btn-secondary">VENTAS ELECTROLUX</button>
+                <button type="button" class="btn btn-secondary">MASTERTECH</button>
+                <button type="button" class="btn btn-secondary">HOVE</button>
+                <button type="button" class="btn btn-secondary">TEKA</button>
+                <button type="button" class="btn btn-secondary">SMC</button>
+                <button type="button" class="btn btn-secondary">OTROS</button>
+            </div>
+            
+            <div  class="d-grid gap-2 mb-3" >
+                <button class="btn btn-primary btn-lg" type="submit" >INGRESAR</button>                                
+            </div>            
+        </form>
+    </div>
+    <div class="wrapper3">    
+        <div  class="body2">  
+            <form [formGroup]="lineas">
+                 <div class="form-check">
+                   <input class="form-check-input" type="checkbox" value="" id="">
+                   <label class="form-check-label" for="">
+                     COCINA
+                   </label>
+                 </div>
+                 <div class="form-floating mb-3 style= background-color">                
+                    <input id="cuota" name="cuota" formControlName="cuota" type="number" class="form-control" placeholder="Escribe tu cuota"/>
+                    <label >CUOTA LINEA</label>
+                </div>                               
+            </form> 
+        </div>
+    </div>       
+</div>

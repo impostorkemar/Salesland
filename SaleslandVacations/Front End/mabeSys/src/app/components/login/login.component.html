@@ -1,0 +1,29 @@
+<div class="wrapper">    
+    <div class="body">
+        <h1 style="text-align: center; justify-content: center; align-items: center;"> LOGIN</h1>
+        <form (ngSubmit)="testUser()" [formGroup]="loginUsuario">
+            <div style="text-align: center; justify-content: center; align-items: center;">                
+                <img src="./assets/login.png" class="center">            
+            </div>
+            
+            <div class="form-floating mb-3">                
+                <input type="text" class="form-control" name="nombre_usuario" formControlName="nombre_usuario" id="" aria-describedby="helpId" placeholder="Escribe tu usuario">
+                <label>NOMBRE USUARIO</label>
+            </div>
+            
+            <div class="form-floating mb-3">                
+                <input id="password" name="password" formControlName="password" type="password" class="form-control" placeholder="Escribe tu contraseña"/>
+                <label >PASSWORD</label>
+            </div>
+
+            <div class="d-grid gap-2 mb-3" >
+                <button class="btn btn-primary btn-lg" type="submit" >LOGIN</button>                                
+            </div>
+
+            <p class="mt-3">Si no tienes cuenta comunicate con soporte de IT <a routerLink="/registrar-usuario">Registrar</a></p>
+            <a class="mt-3" routerLink="/recuperar-password"> Recuperar contraseña</a>
+        </form>
+    </div>
+    
+</div>
+

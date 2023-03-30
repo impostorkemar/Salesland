@@ -1,0 +1,50 @@
+.body {
+    width: 100%;
+    max-width: 330px;
+    margin: auto;
+    padding: 15px;
+    text-align: center;
+}
+.body1 {
+    width: 100%;
+    max-width: none;
+    margin: auto;
+    padding: 1%;
+    text-align: center;
+}
+.body2 {
+    width: 100%;
+    max-width: none;
+    margin: auto;
+    padding: 1%;
+    text-align: center;
+}
+.wrapper1{
+    width: 100%;
+    max-width: 300px;
+    float: left;
+    text-align: center;
+    padding: 1%;
+}
+
+.wrapper2{
+    width: 100%;
+    max-width: 300px;
+    float: left; 
+    text-align: center;
+    padding: 1%; 
+}
+.wrapper3{
+    width: 100%;
+    max-width: 300px;
+    float: left; 
+    text-align: center;
+    padding: 1%; 
+}
+.wrapper4{
+    width: 100%;
+    max-width: 300px;
+    float: left; 
+    text-align: center;
+    padding: 1%; 
+}

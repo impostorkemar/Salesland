@@ -1,0 +1,183 @@
+<div [formGroup]="myGroup">    
+    <h1 style="text-align: center; justify-content: center; align-items: center;"> INGRESAR VENTA</h1>
+    <div *ngIf="false" class="form-floating mb-3">                
+        <input type="text" class="form-control" name="firstName" formControlName="firstName" id="" aria-describedby="helpId" placeholder="Escribe tu firstName">
+        <label>ID VENTA</label>
+    </div>
+    <div class="wrapper1">    
+        <div  class="body1">            
+            <form (ngSubmit)="registrarVenta()" [formGroup]="MenuIngresar">
+                    
+                <div *ngIf="true" class="form-floating mb-3">                
+                    <input id="semana" name="semana" formControlName="semana" type="text" class="form-control" placeholder="Escribe tu semana"/>
+                    <label >SEMANA</label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-3">                
+                    <input type="text" class="form-control" name="id_venta" formControlName="id_venta" id="" aria-describedby="helpId" placeholder="Escribe tu id_venta">
+                    <label>VENTA</label>
+                </div>
+
+                <div *ngIf="true" class="form-floating mb-3">                
+                    <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
+                    <label>PUNTO DE VENTA </label>
+                </div>
+                
+                <div *ngIf="true" class="form-floating mb-3">                
+                    <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
+                    <label >LINEA</label>
+                </div>
+
+                <div *ngIf="flagInsert" class="form-floating mb-3">                
+                    <input id="message" name="message" formControlName="message" type="text" [ngClass]="{'correct': name===1,'error': name === 0}" class="form-control"  placeholder="Escribe tu id_linea"/>
+                    <label ></label>
+                </div>
+    
+                    
+                
+            </form>            
+        </div>
+    </div>
+    <div class="wrapper2">
+        <form [formGroup]="registrationForm">
+            <div class="d-grid"  aria-labelledby="triggerId">
+                
+                <select 
+                  class="custom-select mb-3" 
+                  (change)="changeTienda($event)"
+                  formControlName="nombreTienda"
+                  (ngModelOptions)="{standalone: true}" 
+                >
+                <option value="">ESCOGE LA TIENDA</option>
+                <option *ngFor="let dato of datos" [ngValue]="nombreTienda" >
+                  {{ dato }}
+                </option>
+              </select>
+              <div class="d-grid gap-2 mb-3" *ngIf="isSubmitted && nombreTienda?.invalid">
+                <sup>*</sup>ESCOJA TIENDA
+              </div>
+              <div class="d-grid gap-2 mb-3">                  
+                <button *ngIf="AIRESFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="AIRES" (click)="onSubmit('AIRES')">VENTAS AIRES</button>
+                <button *ngIf="COCINASFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="COCINAS" (click)="onSubmit('COCINAS')">VENTAS COCINAS</button>
+                <button *ngIf="EMPOTREFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="EMPOTRE" (click)="onSubmit('EMPOTRE')">VENTAS EMPOTRE</button>
+                <button *ngIf="GLOBALESFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="GLOBALES" (click)="onSubmit('GLOBALES')">VENTAS GLOBALES</button>
+                <button *ngIf="LAVADOFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="LAVADO" (click)="onSubmit('LAVADO')">VENTAS LAVADO</button>
+                <button *ngIf="REFRIGERACIONFLAG" type="submit" class="btn btn-secondary btn-lg btn-block" name="REFRIGERACIÓN" (click)="onSubmit('REFRIGERACIÓN')">REFRIGERACIÓN</button>
+                
+              </div>                
+              </div>            
+            
+            <div *ngIf="false"  class="d-grid gap-2 mb-3" >
+                <button class="btn btn-primary btn-lg" type="submit" >INGRESAR</button>                                
+            </div>
+
+            
+        </form>
+    </div>
+    <div class="wrapper3">    
+        <div  class="body2">  
+            <form  [formGroup]="ventasUsuario">
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input type="text" class="form-control" name="id_venta" formControlName="id_venta" id="" aria-describedby="helpId" placeholder="Escribe tu id_venta">
+                    <label>ID VENTA</label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input id="clave" name="clave" formControlName="clave" type="number" class="form-control" placeholder="Escribe tu clave"/>
+                    <label >CLAVE</label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input id="cedula" name="cedula" formControlName="cedula" type="number" class="form-control" placeholder="Escribe tu cedula"/>
+                    <label >CEDULA</label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input id="id_supervisor" name="id_supervisor" formControlName="id_supervisor" type="number" class="form-control" placeholder="Escribe tu id_supervisor"/>
+                    <label >ID SUPERVISOR</label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input id="id_linea" name="id_linea" formControlName="id_linea" type="text" class="form-control" placeholder="Escribe tu id_linea"/>
+                    <label >ID LINEA</label>
+                </div>
+                               
+                <div *ngIf="false" class="form-floating mb-2">                
+                    <input type="text" class="form-control" name="codigo_pdv" formControlName="codigo_pdv" id="" aria-describedby="helpId" placeholder="Escribe tu codigo_pdv">
+                    <label>PUNTO DE VENTA </label>
+                </div>
+    
+                <div *ngIf="false" class="form-floating mb-3">                
+                    <input id="semana" name="semana" formControlName="semana" type="text" class="form-control" placeholder="Escribe tu semana"/>
+                    <label >SEMANA</label>
+                </div>
+                <div class="form-floating mb-3">                
+                    <input id="ventas_mabe" name="ventas_mabe" formControlName="ventas_mabe" type="number" class="form-control" placeholder="Escribe tu aires"/>
+                    <label >MABE</label>
+                </div>
+                <div class="form-floating mb-3">                
+                    <input id="ventas_indurama" name="ventas_indurama" formControlName="ventas_indurama" type="number" class="form-control" placeholder="Escribe tu cocinas"/>
+                    <label >INDURAMA</label>
+                </div>
+                <div class="form-floating mb-3">                
+                    <input id="ventas_whirlpool" name="ventas_whirlpool" formControlName="ventas_whirlpool" type="number" class="form-control" placeholder="Escribe tu empotre"/>
+                    <label >WHIRLPOOL</label>
+                </div>
+                <div class="form-floating mb-3">                
+                    <input id="ventas_lg" name="ventas_lg" formControlName="ventas_lg" type="number" class="form-control" placeholder="Escribe tu globales"/>
+                    <label >LG</label>
+                </div>
+                <div class="form-floating mb-3">                
+                    <input id="ventas_samsung" name="ventas_samsung" formControlName="ventas_samsung" type="number" class="form-control" placeholder="Escribe tu lavado"/>
+                    <label >SAMSUNG</label>
+                </div>
+                <div class="form-floating mb-3">                
+                    <input id="ventas_electrolux" name="ventas_electrolux" formControlName="ventas_electrolux" type="number" class="form-control" placeholder="Escribe tu lavado"/>
+                    <label >ELECTROLUX</label>
+                </div>
+                <div class="form-floating mb-3">                
+                    <input id="mastertech" name="mastertech" formControlName="mastertech" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >MASTERTECH</label>
+                </div>
+
+                <div class="form-floating mb-3">                
+                    <input id="hove" name="hove" formControlName="hove" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >HOVE</label>
+                </div>
+
+                <div class="form-floating mb-3">                
+                    <input id="teka" name="teka" formControlName="teka" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >TEKA</label>
+                </div>
+
+                <div class="form-floating ">                
+                    <input id="smc" name="smc" formControlName="smc" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >SMC</label>
+                </div>
+
+                <div class="form-floating ">                
+                    <input id="otros" name="otros" formControlName="otros" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >OTROS</label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-3">                
+                    <input id="validacion" name="validacion" formControlName="validacion" type="number" class="form-control" placeholder="Escribe tu refrigeracion"/>
+                    <label >VALIDACION</label>
+                </div>
+
+                <div *ngIf="false" class="form-floating mb-3">                
+                    <input id="total_semanal" name="total_semanal" formControlName="total_semanal" type="number" class="form-control" placeholder="Escribe tu total_semanal"/>
+                    <label >total_semanal</label>
+                </div>
+
+                
+            </form> 
+        </div>
+    </div>    
+</div>
+
+
+
+    
+
+
