@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./seguro.component.css']
 })
 export class SeguroComponent {
-
+  
 }
+  
