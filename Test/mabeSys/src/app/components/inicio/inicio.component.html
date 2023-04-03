@@ -3,22 +3,36 @@
   <title>Salesland Ecuador</title>
   <link rel="stylesheet" href="inicio.component.css">
 </head>
-<body>
-  <div class="container">
-    <h1>Salesland Ecuador<p></p><button><a routerLink="/home" href="#">LOG OUT</a></button></h1>
-    
-    <div class="button-group">
-      <button (click)="goToExternalLinkVacaciones()"><i class="fas fa-umbrella-beach"></i> Vacaciones</button>      
-      <button (click)="navigateToenConstruccion()"><i class="fas fa-headset"></i> Soporte</button>
-      <button (click)="navigateToenConstruccion()"><i class="fas fa-file-alt"></i> Postulate</button>
-      <button (click)="navigateToenConstruccion()"><i class="fas fa-money-check-alt"></i> Rol de pagos</button>
-      <button (click)="goToExternalLinkCampusSalesland()"><i class="fas fa-university"></i> Campus Salesland</button>
-      <button (click)="navigateToSeguros()"><i class="fas fa-hospital"></i> Seguro Médico</button>
-      <button (click)="navigateToViajes()"><i class="fas fa-plane-departure"></i> Viajes</button>
-      <button (click)="goToExternalLinkControlnet()"><i class="fas fa-wifi"></i> Control Net</button>
-      <button (click)="goToExternalLinkAracne()"><i class="fas fa-spider"></i> ARACNE</button>
-    </div>
-    <br>    
+<body>   
+  <header>
+    <nav >
+      <ul >
+        
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>          
+        <li><a routerLink="/login" href="#">Login</a></li>
+        <li><a routerLink="/home" href="#">Logout</a></li>
        
+      </ul>
+    </nav>
+  </header>
+  <div id="containerInicio" class="card containerInicio">    
+    <p></p>
+    <div class="button-group">
+      <button (click)="goToExternalLinkVacaciones()">Vacaciones<br><i class="fas fa-umbrella-beach fa-4x"></i> </button>      
+      <button (click)="navigateToenConstruccion()">Soporte<br><i class="fas fa-headset fa-4x"></i> </button>
+      <button (click)="navigateToenConstruccion()">Postulate<br><i class="fas fa-file-alt fa-4x"></i> </button>
+      <button (click)="navigateToenConstruccion()">Rol de pagos<br><i class="fas fa-money-check-alt fa-4x"></i></button>
+      <button (click)="goToExternalLinkCampusSalesland()">Campus Salesland<br><i class="fas fa-university fa-4x"></i> </button>
+      <button (click)="navigateToSeguros()">Seguro Médicoz<br><i class="fas fa-hospital fa-4x"></i> </button>
+      <button (click)="navigateToViajes()">Viajes<br><i class="fas fa-plane-departure fa-4x"></i></button>
+      <button (click)="goToExternalLinkControlnet()">Control Net<br><i class="fas fa-wifi fa-4x"></i></button>
+      <button (click)="goToExternalLinkAracne()">ARACNE<br><i class="fas fa-spider fa-4x"></i></button>      
+    </div>
+    <br> 
   </div>
+    
 </body>
+

@@ -41,6 +41,35 @@ nav ul li a {
 }
 
 .redimension1 {
-  width:1000px;
+  width:2000px;
   height:auto;
+}
+
+.center{
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin: auto;
+  width: 75%; /* ajusta el tamaño de la imagen según sea necesario */
+}
+
+.menuImg {
+  display: block;
+  margin: auto;
+  width: 100%; /* ajusta el tamaño de la imagen según sea necesario */
+}
+
+.textOnImg{
+  color: aliceblue;
+  font-size: 35px;
+  text-shadow: 3px #020202;
+  text-shadow: 4px 4px #020202;
+}
+
+.titleImg{
+  color: aliceblue;
+  font-size: 45px;
+  text-shadow: 4px 4px #020202;
 }

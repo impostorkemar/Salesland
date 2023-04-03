@@ -9,7 +9,7 @@ import { Venta } from '../components/model/Venta';
   providedIn: 'root'
 })
 export class TestuserService {
-  API:string = 'http://192.168.0.100:8000/';
+  API:string = 'http://192.168.0.29:8000/';
 
   constructor(private clienteHttp:HttpClient) { }
 

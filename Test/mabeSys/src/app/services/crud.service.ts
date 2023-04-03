@@ -21,7 +21,7 @@ import {MatSort, Sort} from '@angular/material/sort';
   providedIn: 'root'
 })
 export class CrudService {
-API:string = 'http://192.168.0.100:8000/';
+API:string = 'http://192.168.0.29:8000/';
 resp!:String[];
 
   constructor(

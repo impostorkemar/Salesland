@@ -13,7 +13,7 @@ export class InicioComponent {
   ) {}
 
   goToExternalLinkVacaciones() {
-    window.location.href = 'http://192.168.0.100:4202/login';
+    window.location.href = 'http://192.168.0.29:4202/';
   }
   goToExternalLinkCampusSalesland() {
     window.location.href = 'https://campus.salesland.net/login/login-image/login.php';
