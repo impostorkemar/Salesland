@@ -2,37 +2,14 @@
   <meta charset="UTF-8">
   <title>Salesland Ecuador</title>
   <link rel="stylesheet" href="inicio.component.css">
+  
 </head>
-<body>   
-  <header>
-    <nav >
-      <ul >
-        
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Contacto</a></li>          
-        <li><a routerLink="/login" href="#">Login</a></li>
-        <li><a routerLink="/home" href="#">Logout</a></li>
-       
-      </ul>
-    </nav>
-  </header>
-  <div id="containerInicio" class="card containerInicio">    
-    <p></p>
-    <div class="button-group">
-      <button (click)="goToExternalLinkVacaciones()">Vacaciones<br><i class="fas fa-umbrella-beach fa-4x"></i> </button>      
-      <button (click)="navigateToenConstruccion()">Soporte<br><i class="fas fa-headset fa-4x"></i> </button>
-      <button (click)="navigateToenConstruccion()">Postulate<br><i class="fas fa-file-alt fa-4x"></i> </button>
-      <button (click)="navigateToenConstruccion()">Rol de pagos<br><i class="fas fa-money-check-alt fa-4x"></i></button>
-      <button (click)="goToExternalLinkCampusSalesland()">Campus Salesland<br><i class="fas fa-university fa-4x"></i> </button>
-      <button (click)="navigateToSeguros()">Seguro Médicoz<br><i class="fas fa-hospital fa-4x"></i> </button>
-      <button (click)="navigateToViajes()">Viajes<br><i class="fas fa-plane-departure fa-4x"></i></button>
-      <button (click)="goToExternalLinkControlnet()">Control Net<br><i class="fas fa-wifi fa-4x"></i></button>
-      <button (click)="goToExternalLinkAracne()">ARACNE<br><i class="fas fa-spider fa-4x"></i></button>      
-    </div>
-    <br> 
+<body> 
+  <div>
+    <app-menu-inicio></app-menu-inicio> 
+  </div>   
+  <div class="menuBottons">
+    <app-menu-botones></app-menu-botones> 
   </div>
-    
 </body>
 

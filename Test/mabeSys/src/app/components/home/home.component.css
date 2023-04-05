@@ -7,18 +7,19 @@ body {
 header {
   background-color: #333;
   color: #fff;
-  padding: 1em;
+  padding: 0.5em;
 }
 
 nav ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0;  
 }
 
 nav ul li {
   display: inline-block;
-  margin-right: 1em;
+  margin-right: 4em;
+  margin-bottom: 2em;
 }
 
 nav ul li a {
@@ -72,4 +73,47 @@ img {
   color: aliceblue;
   font-size: 45px;
   text-shadow: 4px 4px #020202;
+}
+
+.elemento1 {
+  background-image: url('/../assets/presentacion3.gif');
+  background-size: cover;
+  background-position: center;
+  height: 650px; 
+  width: 1545px;
+}
+
+.elemento2 {
+  background-image: url('/../assets/mision.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 650px; 
+  width: 1545px;
+}
+
+.elemento3 {
+  background-image: url('/../assets/vision.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 650px; 
+  width: 1545px;
+}
+
+.contenedor-gif {
+  position: relative;
+  display: inline-block;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.left-ul {
+  float: left;
+}
+
+.right-ul {
+  float: right;
 }

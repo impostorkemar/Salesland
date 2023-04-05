@@ -8,6 +8,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { EnConstruccionComponent } from './components/en-construccion/en-construccion.component';
 import { SeguroComponent } from './components/seguro/seguro.component';
 import { ViajesComponent } from './components/viajes/viajes.component';
+import { MenuInicioComponent } from './components/menu-inicio/menu-inicio.component';
+import { MenuBotonesComponent } from './components/menu-botones/menu-botones.component';
 
 
 const routes: Routes = [
@@ -15,6 +17,18 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'inicio', component: InicioComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
+  {path: 'menuBotones', component: MenuBotonesComponent,
+  canActivate: [AuthGuard],
+  data: {
+    role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+  }
+},
+  {path: 'menuInicio', component: MenuInicioComponent,
     canActivate: [AuthGuard],
     data: {
       role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]

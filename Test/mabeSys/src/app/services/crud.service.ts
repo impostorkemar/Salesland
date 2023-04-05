@@ -881,6 +881,11 @@ resp!:String[];
       return this.clienteHttp.get(this.API+urlAPI);
     }
 
+    ObtenerCentroCostoByUserAndPass(user:any, passw:any):Observable<any>{
+      var urlAPI="centroCostoByUserPass/"+user as string+"_"+passw as string;      
+      return this.clienteHttp.get(this.API+urlAPI);
+    }
+
     
   
 

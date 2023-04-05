@@ -7,17 +7,9 @@
   </head>
   <body>
     <header>
-      <nav >
-        <ul >
-          
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Servicios</a></li>
-          <li><a href="#">Nosotros</a></li>
-          <li><a href="#">Contacto</a></li>          
-          <li><a routerLink="/login" href="#">Login</a></li>
-         
-        </ul>
-      </nav>
+      <div>
+        <app-menu-inicio></app-menu-inicio>
+      </div>      
     </header>
     <main>
       <section id="CarouselInicio">
@@ -27,17 +19,17 @@
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-              <img src="./assets/presentacion3.gif" class="d-block w-20" alt="Imagen en el centro">
+        
+          <div class="carousel-inner elemento1">
+            <div class="carousel-item active" data-bs-interval="40000">
               <div class="carousel-caption d-none d-md-block">
-                <img src="./assets/SALESLAND2.jpg" class="menuImg" alt="Imagen en el centro">
+                <img src="./assets/SALESLAND2.jpg" class="menuImg " alt="Imagen en el centro">
                 <h1 class="titleImg">Bienvenido a Salesland Ecuador</h1>
-                <p class="textOnImg">Somos una empresa en busca de ser lideres en el mercado de ventas y marketing.</p>
+                <p class="textOnImg texto-superpuesto">Somos una empresa en busca de ser lideres en el mercado de ventas y marketing.</p>
               </div>
             </div>
-            <div class="carousel-item" data-bs-interval="2000">
-              <img src="./assets/mision.jpg" class="d-block w-60" alt="...">
+            <div class="carousel-item elemento2" data-bs-interval="2000">
+              <img src="./assets/mision.jpg" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h1 class="titleImg">Servicios que ofrecemos</h1>
                 <p class="textOnImg">Ventas directas</p>
@@ -45,8 +37,8 @@
                 <p class="textOnImg">Promociones y eventos</p>
               </div>
             </div>
-            <div class="carousel-item">
-              <img src="./assets/vision.jpg" class="d-block w-60" alt="...">
+            <div class="carousel-item elemento3">
+              <img src="./assets/vision.jpg" class="d-block w-100" style="height: 80%;" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h1 class="titleImg">Sobre nosotros</h1>
                 <p class="textOnImg">Salesland Ecuador es una empresa multinacional con presencia en varios países. Nuestro objetivo es ayudar a las empresas a alcanzar sus metas de ventas y marketing.</p>
@@ -90,6 +82,7 @@
       </section>
       <section id="contact">
         <div class="card-align center">
+          <p></p>
           <h2>Contáctanos</h2>
           <form action="#" method="post">
             <div>

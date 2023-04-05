@@ -70,7 +70,10 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         if (res.success) {
           //this.closeModal.nativeElement.click();
+          window.confirm("LOGEO EXITOSO")
           console.log("LOGEO EXITOSO");
+        }else{
+          window.confirm("CREDENCIALES INCORRECTAS")
         }
       });
   }

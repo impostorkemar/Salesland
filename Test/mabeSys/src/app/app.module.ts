@@ -59,6 +59,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { SeguroComponent } from './components/seguro/seguro.component';
 import { ViajesComponent } from './components/viajes/viajes.component';
 import { EnConstruccionComponent } from './components/en-construccion/en-construccion.component';
+import { MenuInicioComponent } from './components/menu-inicio/menu-inicio.component';
+import { MenuBotonesComponent } from './components/menu-botones/menu-botones.component';
 
 
 @NgModule({
@@ -106,6 +108,8 @@ import { EnConstruccionComponent } from './components/en-construccion/en-constru
     SeguroComponent,
     ViajesComponent,
     EnConstruccionComponent,
+    MenuInicioComponent,
+    MenuBotonesComponent,
     
   ],
   imports: [

@@ -16,10 +16,19 @@ export class HomeComponent {
     private router:Router,
     private authService: AuthService
     ) {
-
+      this.logout()
     }
 
   navigateToLogin() {
     this.router.navigate(['/login']);
+  }
+
+  logout() {    
+    this.authService.logout()
+      .subscribe(res => {
+        if (!res.success) {
+          localStorage.clear();          
+        }
+      });
   }
 }

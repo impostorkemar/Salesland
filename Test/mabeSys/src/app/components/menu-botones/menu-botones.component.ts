@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css']
+  selector: 'app-menu-botones',
+  templateUrl: './menu-botones.component.html',
+  styleUrls: ['./menu-botones.component.css']
 })
-export class InicioComponent {
-
+export class MenuBotonesComponent {
+  centroCostoFlag!:Boolean
   constructor(
     private router:Router,
+    private crudService: CrudService,
   ) {}
+
+  ngOnInit(): void {
+   this.ValidarCentroCosto();
+  }
 
   goToExternalLinkVacaciones() {
     //window.location.href = 'http://192.168.0.29:4202/';
@@ -34,6 +40,23 @@ export class InicioComponent {
 
   navigateToenConstruccion() {
     this.router.navigate(['/enContruccion']);
+  }
+
+  ValidarCentroCosto(){
+    var user = localStorage.getItem('USER') as string;
+    var passw = localStorage.getItem('PASS') as string    
+    this.crudService.ObtenerCentroCostoByUserAndPass(user,passw).subscribe(respuesta=>{
+      console.log("cuenta:\n",respuesta['cuenta'])
+      if(respuesta['cuenta'] == 'Estructura' || respuesta['cuenta'] == 'MOVISTAR' ){
+        this.centroCostoFlag=true;
+      }else{
+        this.centroCostoFlag=false;
+      }
+
+    })
+
+    
+
   }
 
 
