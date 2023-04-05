@@ -26,6 +26,13 @@ export class ReporteGeneralComponent {
   vacaToma !: any;
   vacaPorTomarAprob !: any;
   NameTienda!: String;
+  linkReporteAdmin!:Boolean;
+  linkReport1!:Boolean;
+  linkReport2!:Boolean;
+  linkReport3!:Boolean;
+  linkReport4!:Boolean;
+  linkReport5!:Boolean;
+
 
   constructor(
     private fb: FormBuilder,
@@ -58,7 +65,7 @@ export class ReporteGeneralComponent {
     this.cargarCentrosCostos();
     this.cargarColaboradores();
     this.cargarDataReporteEstadistico();
-
+    this.cargarGraphReporteEstadistico();
   }
 
   cargarCentrosCostos():void{
@@ -100,6 +107,15 @@ export class ReporteGeneralComponent {
       */
     })
   } 
+
+  cargarGraphReporteEstadistico(){
+    this.linkReporteAdmin=true;
+    this.linkReport1=false;
+    this.linkReport2=false;
+    this.linkReport3=false;
+    this.linkReport4=false;
+    this.linkReport5=false;
+  }
 
   changeTienda(e: any) {
   
