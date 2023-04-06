@@ -109,16 +109,72 @@ export class ReporteGeneralComponent {
   } 
 
   cargarGraphReporteEstadistico(){
-    this.linkReporteAdmin=true;
-    this.linkReport1=false;
-    this.linkReport2=false;
-    this.linkReport3=false;
-    this.linkReport4=false;
-    this.linkReport5=false;
+    
+    var rol = localStorage.getItem('ROLE') as string
+    var user = localStorage.getItem('USER') as string
+    var passw = localStorage.getItem('PASS') as string
+    console.log("ROLE:",rol)
+    if (rol == 'ROLE_ADMIN'){
+      this.linkReporteAdmin=true;
+      this.linkReport1=false;
+      this.linkReport2=false;
+      this.linkReport3=false;
+      this.linkReport4=false;
+      this.linkReport5=false;
+    }else{
+      this.crudService.ObtenerIdSupervisorByuserAndPass(user,passw).subscribe(respuesta =>{
+        console.log(respuesta)
+        if(respuesta == null){
+          window.confirm("Supervisor no registrado contacte con TI")
+        }else if (respuesta['id_supervisor'] == 3){
+          this.linkReporteAdmin=true;
+          this.linkReport1=false;
+          this.linkReport2=false;
+          this.linkReport3=false;
+          this.linkReport4=false;
+          this.linkReport5=false;
+        }else{
+          if (respuesta['id_supervisor'] == 1){
+            this.linkReporteAdmin=false;
+            this.linkReport1=true;
+            this.linkReport2=false;
+            this.linkReport3=false;
+            this.linkReport4=false;
+            this.linkReport5=false;
+          }else if(respuesta['id_supervisor'] == 2){
+            this.linkReporteAdmin=false;
+            this.linkReport1=false;
+            this.linkReport2=true;
+            this.linkReport3=false;
+            this.linkReport4=false;
+            this.linkReport5=false;
+          }
+          else if(respuesta['id_supervisor'] == 4){
+            this.linkReporteAdmin=false;
+            this.linkReport1=false;
+            this.linkReport2=false;
+            this.linkReport3=false;
+            this.linkReport4=true;
+            this.linkReport5=false;
+          }else if(respuesta['id_supervisor'] == 5){
+            this.linkReporteAdmin=false;
+            this.linkReport1=false;
+            this.linkReport2=false;
+            this.linkReport3=false;
+            this.linkReport4=false;
+            this.linkReport5=true;
+          }
+
+        }
+      })
+    }
+    
   }
 
-  changeTienda(e: any) {
   
+
+  changeTienda(e: any) {
+    
   }
 }
 

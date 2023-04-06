@@ -590,3 +590,12 @@ def get_dataReporteEstadistico(user: str, passw:str):
     sql="SELECT centro_costo.cuenta FROM centro_costo,personal,usuario WHERE personal.id_centro_costo = centro_costo.id_centro_costo AND usuario.cedula = personal.cedula AND usuario.usuario = '"+str(user)+"' AND password = '"+str(passw)+"';"
     print(sql)
     return conn.execute(sql).first()
+
+@user.get("/idSupervisorByUserAndPass/{user}_{passw}",tags=['supervisor'])
+def get_dataReporteEstadistico(user: str, passw:str): 
+    print("user:",user,"\passw:",passw)
+    conn = engine.connect()
+    sql="SELECT supervisor.id_supervisor FROM supervisor WHERE cedula = (SELECT usuario.cedula FROM usuario	WHERE usuario.usuario='"+str(user)+"' AND usuario.password='"+str(passw)+"');"
+    print(sql)
+    return conn.execute(sql).first()
+
