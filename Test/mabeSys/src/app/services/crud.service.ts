@@ -890,6 +890,11 @@ resp!:String[];
       var urlAPI="idSupervisorByUserAndPass/"+user as string+"_"+passw as string;      
       return this.clienteHttp.get(this.API+urlAPI);
     }
+
+    ObtenerDataPersonaByUserAndPass(user:any, passw:any):Observable<any>{
+      var urlAPI="dataPersonabyUserAndPass/"+user as string+"_"+passw as string;      
+      return this.clienteHttp.get(this.API+urlAPI);
+    }
     
 
     

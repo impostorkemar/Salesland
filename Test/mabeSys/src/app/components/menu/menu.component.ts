@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TestuserService } from 'src/app/services/testuser.service';
+import { CrudService } from 'src/app/services/crud.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,19 +22,24 @@ export class MenuComponent implements OnInit {
   opcion:number =1;
   nombreVentana:string = "";
 
-
   constructor(
     private fb: FormBuilder,
-    private testuserService: TestuserService
+    private testuserService: TestuserService,
+    private crudService: CrudService,
+    private router:Router,
   ) { 
     
     this.control_vistas = this.fb.group({
       name_usuario: ['',Validators.required],
+      lastname_usuario: ['',Validators.required],
+      cedula: ['',Validators.required],
+      cuenta: ['',Validators.required],
       stateVacaciones: ['',Validators.required],
       statePersonal: ['',Validators.required],
       stateReportes: ['',Validators.required],   
 
     });
+    this.opcion = 1;
   }
 
   ngOnInit(): void {
@@ -40,10 +47,12 @@ export class MenuComponent implements OnInit {
     let Array: string[]=[];
     let Array2: string[]=[];
     this.mostrarDatos();    
-    this.control_vistas.controls['name_usuario'].disable();
+    this.control_vistas.controls['name_usuario'].disable();    
+    this.opcion = 0;
+
+    /*
     var user = localStorage.getItem('USER') as string;
     var passw = localStorage.getItem('PASS') as string
-    this.opcion = 0;
     this.testuserService.ConsultarNombreUsuario(user,passw).subscribe(respuesta=>{
         console.log("MENU",user,passw,"RESPONSE:",respuesta);
         if (respuesta != null){
@@ -57,14 +66,20 @@ export class MenuComponent implements OnInit {
         //console.log("DATOS:",Array[0]);       
         this.control_vistas.setValue({
           name_usuario: Array[0],
+          lastname_usuario: '',
+          cedula: '',
+          cuenta: '',
           stateVacaciones: 'VACACIONES',
           statePersonal: 'PERSONAL',
           stateReportes: 'REPORTES',
         });
       }     
     });
-   
+    */
+    this.mostrarDataUser();
   }
+
+  
 
   mostrarDatos(){
     console.log("MENU ROL:",localStorage.getItem('ROLE') as string)
@@ -84,6 +99,7 @@ export class MenuComponent implements OnInit {
       this.rolPersonal = false; 
       this.rolReportes = false;   
     }
+    this.menuVacaciones2(2)
   }
   
   menuReportes(){
@@ -113,8 +129,32 @@ export class MenuComponent implements OnInit {
       this.nombreVentana='EXPERIENCIA-LABORAL';
     }
   }
-  menuVacaciones(){
-         
+
+  menuReportes2(op: number){
+    console.log("value:",op)     
+    if (op as unknown as string == '1'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='USUARIO';
+    }else if (op as unknown as string == '2'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='CANDIDATO';
+    }else if (op as unknown as string == '3'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='CARGOS';
+    }else if (op as unknown as string == '4'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='CENTRO-COSTO';
+    }else if (op as unknown as string == '5'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='CONTRATO';
+    }else if (op as unknown as string == '6'){
+      console.log("OPCION:",this.control_vistas.value.stateReportes);
+      this.nombreVentana='EXPERIENCIA-LABORAL';
+    }
+  }
+
+
+  menuVacaciones(){    
     if (this.control_vistas.value.stateVacaciones as string === '1'){
       console.log("OPCION:",this.control_vistas.value.stateVacaciones);
       this.nombreVentana='INGRESO-VACACION';
@@ -123,6 +163,22 @@ export class MenuComponent implements OnInit {
     if (this.control_vistas.value.stateVacaciones as string === '2'){
       console.log("OPCION:",this.control_vistas.value.stateVacaciones);
       this.nombreVentana='REPORTE-PERSONAL';
+    }
+  }
+
+  menuVacaciones2(op: number){
+    console.log("value:",op)
+    if (op as unknown as string == '1'){
+      
+      this.nombreVentana='INGRESO-VACACION';
+      console.log("OPCION:",this.nombreVentana);
+      
+    }else if (op as unknown as string == '2'){
+      
+      this.nombreVentana='REPORTE-PERSONAL';
+      console.log("OPCION:",this.nombreVentana);
+    }else{
+      console.log("OPCION: VACIO");
     }
     
   }
@@ -150,6 +206,48 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  menuPersonal2(op:number){
+    if (localStorage.getItem('ROLE') as string == 'ROLE_ADMIN'){
+      console.log("ADMIN")
+      if (op as unknown as string == '1'){
+        console.log("OPCION:",this.control_vistas.value.statePersonal);
+        this.nombreVentana='REPORTE-GENERAL-VACACIONES-PERSONAL';
+      } else if (op as unknown as string == '2'){
+        console.log("OPCION:",this.control_vistas.value.statePersonal);
+        this.nombreVentana='REPORTE-GENERAL';
+      }
+    }else if (localStorage.getItem('ROLE') as string ==='ROLE_SUPERVISOR') {
+      console.log("SUPERVISOR")
+      if (op as unknown as string == '1'){
+        console.log("OPCION:",this.control_vistas.value.statePersonal);
+        this.nombreVentana='REPORTE-GENERAL-VACACIONES-SUPERVISOR';
+      }else if (op as unknown as string == '2'){
+        console.log("OPCION:",this.control_vistas.value.statePersonal);
+        this.nombreVentana='REPORTE-GENERAL';
+      }
+    }    
+  }
+
+  mostrarDataUser(){
+    var user = localStorage.getItem('USER') as string;
+    var passw = localStorage.getItem('PASS') as string
+    this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
+      console.log("DATAUSER:",respuesta);
+      this.control_vistas.setValue({
+        name_usuario: respuesta['nombre'],
+        lastname_usuario: respuesta['apellido'],
+        cedula: respuesta['cedula'],
+        cuenta: respuesta['cuenta'],
+        stateVacaciones: 'VACACIONES',
+        statePersonal: 'PERSONAL',
+        stateReportes: 'REPORTES',
+      });
+    });
+  }
+
+  goToMenuBotones(){
+    this.router.navigate(['/menuBotones']);
+  }
 
   
 

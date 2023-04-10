@@ -25,3 +25,36 @@
 #name_usuario{
   background-color: white;
 }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+}
+
+.my-input {
+  background-color: black;
+  color: white;
+}
+
+.textCenter{
+  text-align: center;
+}

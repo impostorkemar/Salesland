@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, FormsModule } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { JsonPipe } from '@angular/common';
 import * as moment from 'moment';
@@ -44,6 +44,7 @@ export class AgregarVacacionComponent {
     private testuserService: TestuserService,    
     private _decimalPipe: DecimalPipe,
     private router:Router,
+    private route: ActivatedRoute
   ) { 
     this.formularioDeVacacion = this.formulario.group({      
       vaca_disp:[''],
@@ -121,21 +122,22 @@ export class AgregarVacacionComponent {
                 this.crudService.ObtenertotalVacacionesTomadasPendientes(this.user,this.passw).subscribe(respuesta15=>{
                   
                   var aux3 = respuesta15['VACA_PREV']
+                  console.log(respuesta15)
                   console.log("aux3->totalVacacionesPendientes:",respuesta15['VACA_PREV'])
                   if ( aux2 == null ){
                     this.formularioDeVacacion.setValue({      
-                      vaca_disp: aux1,
-                      saldo_dias: 0,
-                      dias_solicitudes_pen: 0,
+                      vaca_disp: aux1, //vacaciones por contrato
+                      saldo_dias: 0,  //vacaciones saldo
+                      dias_solicitudes_pen: 0, // vacaciones tomadas
                       dias_tomados: 0, 
                       lbl_inicio:0,
                       lbl_fin:0,
                     });
                   }else if ( aux3 == null){
                     this.formularioDeVacacion.setValue({      
-                      vaca_disp: aux1,
-                      saldo_dias: aux2,
-                      dias_solicitudes_pen: 0,
+                      vaca_disp: aux1,  //vacaciones por contrato
+                      saldo_dias: aux1-aux2, //vacaciones saldo
+                      dias_solicitudes_pen: 0, // vacaciones tomadas
                       dias_tomados: 0,
                       lbl_inicio:0,
                       lbl_fin:0,
@@ -143,9 +145,9 @@ export class AgregarVacacionComponent {
                   }else{
                     if (this.toDate){
                       this.formularioDeVacacion.setValue({      
-                        vaca_disp: aux1,
-                        saldo_dias: aux2,
-                        dias_solicitudes_pen: aux3,
+                        vaca_disp: aux1,  //vacaciones por contrato
+                        saldo_dias: aux1-aux2, //vacaciones saldo
+                        dias_solicitudes_pen: aux3, // vacaciones tomadas
                         dias_tomados: 0, 
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
@@ -208,8 +210,10 @@ export class AgregarVacacionComponent {
                     
                     this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta22['id_vacaciones']).subscribe(respuesta15=>{
                       console.log("respuesta15:",respuesta15)
-                    })
-                    this.ruteador.navigateByUrl('/menu');
+                    })                   
+                    if(window.confirm("Solcitud ingresada. ¡Revisar solicitud?")){
+                      this.reloadComponent();
+                    }
                 });
               }            
             }else{
@@ -300,11 +304,12 @@ export class AgregarVacacionComponent {
                     console.log("respuesta22:",respuesta22);
                     this.btnIngresar = true;
                     this.precargarDias();    
-                                  
-                    this.ruteador.navigateByUrl('/menu');
                     this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta22['id_vacaciones']).subscribe(respuesta15=>{
                       console.log("respuesta15:",respuesta15)
-                    })
+                    })                   
+                    if(window.confirm("Solcitud ingresada. ¡Revisar solicitud?")){
+                      this.reloadComponent();
+                    }
                   });
                 }                 
               }else{
@@ -550,5 +555,18 @@ export class AgregarVacacionComponent {
     }   
     return days;
   }
+
+  reloadComponent() {
+    if(this.route.snapshot.routeConfig != null){
+      const currentRoute = this.route.snapshot.routeConfig.path;
+      const currentUrl = "menu";
+      this.router.navigateByUrl('/menu')
+      /*this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+        this.router.navigate([currentUrl]));*/
+        
+    }
+   
+  }
   
 }
+
