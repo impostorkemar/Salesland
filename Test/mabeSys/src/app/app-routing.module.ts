@@ -11,11 +11,16 @@ import { ViajesComponent } from './components/viajes/viajes.component';
 import { MenuInicioComponent } from './components/menu-inicio/menu-inicio.component';
 import { MenuBotonesComponent } from './components/menu-botones/menu-botones.component';
 
-
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},  
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'inicio', component: InicioComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
   {path: 'inicio', component: InicioComponent,
     canActivate: [AuthGuard],
     data: {

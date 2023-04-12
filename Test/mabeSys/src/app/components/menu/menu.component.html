@@ -11,13 +11,13 @@
                         </div> 
                         
                         <div class="navbar-center">
-                            <div *ngIf="rolVacations" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                            <div *ngIf="rolVacations" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
                                 <button *ngIf="rolVacations" (click)="menuVacaciones2(1)" type="button" class="btn btn-primary">1.INGRESO</button>
                                 <button *ngIf="rolVacations" (click)="menuVacaciones2(2)" type="button" class="btn btn-primary">2.SOLICITUDES</button>
                             </div>
-                            <div *ngIf="rolPersonal" class="btn-group-vertical" role="group" aria-label="Vertical button group">
-                                <button *ngIf="rolPersonal" (click)="menuPersonal2(1)" type="button" class="btn btn-primary">1.APROBACIÓN SOLICITUDES</button>
-                                <button *ngIf="rolPersonal" (click)="menuPersonal2(2)" type="button" class="btn btn-primary">2.REPORTE GRÁFICO</button>
+                            <div *ngIf="rolPersonal" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
+                                <button *ngIf="rolPersonal" (click)="menuPersonal2(1)" type="button" class="btn btn-primary">3.APROBACIÓN SOLICITUDES</button>
+                                <button *ngIf="rolPersonal" (click)="menuPersonal2(2)" type="button" class="btn btn-primary">4.REPORTE GRÁFICO</button>
                             </div>   
                             <div *ngIf="rolReportes" class="btn-group-vertical" role="group" aria-label="Vertical button group">
                                 <button *ngIf="rolReportes" (click)="menuReportes2(1)" type="button" class="btn btn-primary">1.USUARIO</button>
@@ -59,26 +59,24 @@
                         <div class="navbar-right">                            
                             <div >
                                 <div>                                    
-                                    <label >NOMBRE:</label>
+                                    <label ></label>
                                     <input type="text" id="name_usuario" formControlName="name_usuario" class="my-input textCenter" style="background-color: #16261C; color: white;">
-                                </div>
-                                <div>
-                                    <label >APELLIDO:</label>
+                                    <label ></label>
                                     <input type="text" id="lastname_usuario" formControlName="lastname_usuario" class="my-input textCenter" style="background-color: #16261C; color: white;">
-                                </div>    
+                                </div>                                   
                                 <div>    
-                                    <label >CEDULA:</label>
+                                    <label ></label>
                                     <input type="text" id="cedula" formControlName="cedula" class="my-input textCenter" style="background-color: #16261C; color: white;">
-                                </div>
-                                <div>    
-                                    <label >CUENTA:</label>
+                                    <label ></label>
                                     <input type="text" id="cuenta" formControlName="cuenta" class="my-input textCenter" style="background-color: #16261C; color: white;">
-                                </div>
-                            </div>                                
-                        </div>
-                        <div  class="navbar-left">
-                            <a class="nav-item nav-link active" href="#" aria-current="page">CERRAR SESIÓN <span class="visually-hidden">(current)</span></a>
-                        </div>
+                                </div>   
+                                <br>
+                                <div style="text-align: center;">
+                                    <a class="nav-item nav-link active" href="#" aria-current="page">CERRAR SESIÓN <span class="visually-hidden">(current)</span></a>
+                                </div>                             
+                            </div>  
+                                                          
+                        </div>                        
                     </nav>
                 </div>
             </div>    

@@ -9,6 +9,7 @@ import { CrudService } from 'src/app/services/crud.service';
 })
 export class MenuBotonesComponent {
   centroCostoFlag!:Boolean
+  mabeOptionsFlag!:Boolean
   constructor(
     private router:Router,
     private crudService: CrudService,
@@ -42,6 +43,10 @@ export class MenuBotonesComponent {
     this.router.navigate(['/enContruccion']);
   }
 
+  goToExternalLinkAmigosMABE() {
+    window.location.href = 'https://www.amigosmabeplus.com/index.php';
+  }
+
   ValidarCentroCosto(){
     var user = localStorage.getItem('USER') as string;
     var passw = localStorage.getItem('PASS') as string    
@@ -49,8 +54,10 @@ export class MenuBotonesComponent {
       console.log("cuenta:\n",respuesta['cuenta'])
       if(respuesta['cuenta'] == 'Estructura' || respuesta['cuenta'] == 'MOVISTAR' ){
         this.centroCostoFlag=true;
+        this.mabeOptionsFlag=false;
       }else{
         this.centroCostoFlag=false;
+        this.mabeOptionsFlag=true;
       }
 
     })

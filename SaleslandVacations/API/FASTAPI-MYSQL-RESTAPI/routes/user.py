@@ -550,12 +550,15 @@ def update_vacacionesACancelarbyId(id: str,vacacion : Vacacion):
     #sql="UPDATE `vacaciones` SET `status`='pendiente-cancelacion',`observaciones`='"+str(observaciones)+"' WHERE  id_vacaciones = '"+str(id)+"';" 
     #conn.execute(sql)
     conn = engine.connect()
-    conn.execute(
-        vacaciones.update().values(
+    print("vacacion:",vacacion)
+    sql = (vacaciones.update().values(
+            fecha_respuesta=vacacion.fecha_respuesta,
             status=vacacion.status,
             peticion=vacacion.peticion,
             observaciones=vacacion.observaciones
     ).where(vacaciones.c.id_vacaciones == id))
+    print("vacacionesACancelarbyId:",sql)
+    conn.execute(sql)
     return get_vacacionesById(id)
 
 @user.put("/vacacionesAAprobarbyId/{id}",response_model=Vacacion, tags=["vacaciones"])
@@ -563,13 +566,15 @@ def update_vacacionesAAprobarbyId(id: str,vacacion : Vacacion):
     #sql="UPDATE `vacaciones` SET `status`='pendiente-cancelacion',`observaciones`='"+str(observaciones)+"' WHERE  id_vacaciones = '"+str(id)+"';" 
     #conn.execute(sql)
     conn = engine.connect()
-    conn.execute(
-        vacaciones.update().values(
+    print("vacacion:",vacacion)
+    sql = (vacaciones.update().values(
             fecha_respuesta=vacacion.fecha_respuesta,
             status=vacacion.status,
             peticion='aprobacion',
             observaciones=vacacion.observaciones
     ).where(vacaciones.c.id_vacaciones == id))
+    print("vacacionesAAprobarbyId:",sql)
+    conn.execute(sql)
     return get_vacacionesById(id)
 
 
@@ -578,13 +583,14 @@ def update_aprobarVacacionById(id: str,vacacion : Vacacion):
     #sql="UPDATE `vacaciones` SET `status`='pendiente-cancelacion',`observaciones`='"+str(observaciones)+"' WHERE  id_vacaciones = '"+str(id)+"';" 
     #conn.execute(sql)
     conn = engine.connect()
-    conn.execute(
-        vacaciones.update().values(
+    sql = (vacaciones.update().values(
             fecha_respuesta=vacacion.fecha_respuesta,
             status=vacacion.status,
             peticion=vacacion.peticion,
             observaciones=vacacion.observaciones
     ).where(vacaciones.c.id_vacaciones == id))
+    print(sql)
+    conn.execute("aprobarVacacionById:",sql)
     return get_vacacionesById(id)
 
 @user.put("/negarVacacionById/{id}",response_model=Vacacion, tags=["vacaciones"])
@@ -592,12 +598,14 @@ def update_negarVacacionById(id: str,vacacion : Vacacion):
     #sql="UPDATE `vacaciones` SET `status`='pendiente-cancelacion',`observaciones`='"+str(observaciones)+"' WHERE  id_vacaciones = '"+str(id)+"';" 
     #conn.execute(sql)
     conn = engine.connect()
-    conn.execute(
-        vacaciones.update().values(
+    sql = (vacaciones.update().values(
+            fecha_respuesta=vacacion.fecha_respuesta,
             status=vacacion.status,
             peticion=vacacion.peticion,
             observaciones=vacacion.observaciones
     ).where(vacaciones.c.id_vacaciones == id))
+    print("negarVacacionById:",sql)
+    conn.execute(sql)
     return get_vacacionesById(id)
 
 @user.get("/nombreApellidoPersonalByIdVacacion/{id}", tags=["vacaciones"])

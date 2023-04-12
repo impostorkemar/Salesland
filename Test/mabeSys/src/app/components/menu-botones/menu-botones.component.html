@@ -9,8 +9,10 @@
       <button (click)="goToExternalLinkCampusSalesland()">Campus Salesland<br><i class="fas fa-university fa-4x"></i> </button>
       <button *ngIf="centroCostoFlag" (click)="navigateToSeguros()">Seguro Médico<br><i class="fas fa-hospital fa-4x"></i> </button>
       <button (click)="navigateToViajes()">Viajes<br><i class="fas fa-plane-departure fa-4x"></i></button>
-      <button (click)="goToExternalLinkControlnet()">Control Net<br><i class="fas fa-wifi fa-4x"></i></button>
-      <button (click)="goToExternalLinkAracne()">ARACNE<br><i class="fas fa-spider fa-4x"></i></button>      
+      <button *ngIf="centroCostoFlag" (click)="goToExternalLinkControlnet()">Control Net<br><i class="fas fa-wifi fa-4x"></i></button>
+      <button *ngIf="centroCostoFlag" (click)="goToExternalLinkAracne()">ARACNE<br><i class="fas fa-spider fa-4x"></i></button>  
+      <button *ngIf="mabeOptionsFlag" (click)="goToExternalLinkAmigosMABE()">Amigos MABE<br><i class="fas fa-spider fa-4x"></i></button>
+      <button *ngIf="mabeOptionsFlag" (click)="navigateToenConstruccion()">Credenciales MABE<br><i class="fas fa-wifi fa-4x"></i></button>    
     </div>
     <br> 
   </div>    

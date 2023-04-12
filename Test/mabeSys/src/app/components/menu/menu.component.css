@@ -53,8 +53,11 @@ nav {
 .my-input {
   background-color: black;
   color: white;
+  border: 1px solid #16261C;
 }
 
 .textCenter{
-  text-align: center;
+  text-align: center;  
 }
+
+

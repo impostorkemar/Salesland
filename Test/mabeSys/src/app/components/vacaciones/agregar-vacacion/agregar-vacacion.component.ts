@@ -35,6 +35,7 @@ export class AgregarVacacionComponent {
   passw!:String;
   msg!: any;
   vacasDispo!:any;
+  fechaSeleccionada!:any;
 
   constructor(
     public formulario:FormBuilder,
@@ -181,7 +182,9 @@ export class AgregarVacacionComponent {
       //BUSQUEDA ID PERSONAL
       
       if ( this.fromDate != null && this.toDate != null){
-        console.log(" FROM DATE && TO DATE");        
+        console.log(" FROM DATE && TO DATE");     
+        
+        console.log("fromDate:",this.fromDate,"\ntoDate:",this.toDate)
         
         this.crudService.ObtenerExistenciaVacacionesByInicioFin(this.user,this.passw,this.fromDate?.year+"-"+
         this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+
@@ -416,14 +419,14 @@ export class AgregarVacacionComponent {
       }else{
         //console.log("CompareDateCorrectos");
         if (
-          this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.dias_tomados
-          || 
+          this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.saldo_dias
+          /*|| 
           (this.formularioDeVacacion.value.vaca_disp-(this.formularioDeVacacion.value.saldo_dias
             +this.formularioDeVacacion.value.dias_solicitudes_pen)) 
-          <= this.formularioDeVacacion.value.dias_tomados
+          <= this.formularioDeVacacion.value.dias_tomados*/
           ){
             this.btnIngresar = true;
-          window.confirm("Excede la totalidad de días disponibles:\n\tSolicite cancelación de solicitudes de vacaciones");
+          window.confirm("Excede la totalidad de días disponibles:\n\t");
           }else{
             this.btnIngresar = false;
             
@@ -462,14 +465,14 @@ export class AgregarVacacionComponent {
         console.log("this.formularioDeVacacion.value.saldo_dias:",this.formularioDeVacacion.value.saldo_dias)
         console.log("this.formularioDeVacacion.value.dias_solicitudes_pen:",this.formularioDeVacacion.value.dias_solicitudes_pen)
         if (
-          this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.dias_tomados
-          || 
+          this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.saldo_dias
+          /*|| 
           (this.formularioDeVacacion.value.vaca_disp-(this.formularioDeVacacion.value.saldo_dias
             +this.formularioDeVacacion.value.dias_solicitudes_pen)) 
-          <= this.formularioDeVacacion.value.dias_tomados
+          <= this.formularioDeVacacion.value.dias_tomados*/
           ){
             this.btnIngresar = true;
-          window.confirm("Excede la totalidad de días disponibles:\n\tSolicite cancelación de solicitudes de vacaciones");
+          window.confirm("Excede la totalidad de días disponibles:\n\t");
           }else{
             this.btnIngresar = false;
             
@@ -566,6 +569,11 @@ export class AgregarVacacionComponent {
         
     }
    
+  }
+
+  esFinDeSemana = (date: NgbDate) => {
+    const day = new Date(date.year, date.month - 1, date.day).getDay();
+    return day === 0 || day === 6;
   }
   
 }
