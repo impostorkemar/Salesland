@@ -247,10 +247,22 @@ export class AgregarVacacionComponent {
           });
 
         }else{         
+          console.log("Its friday");         
+          this.toDate=NgbDate.from(this.dateToNgbDate(this.addDays(2,this.toDate)))
+          console.log("date+2:\n",this.toDate)
 
-          const ngbDate: NgbDate = new NgbDate(this.toDate?.year, this.toDate?.month, this.toDate?.day);          
-          //const ngbDateAvanzado: NgbDateStruct = ngbDate.addDays(2).toStruct();
-          
+          var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
+          //console.log("diferenciaDias: ",diferenciaDias)
+          if (diferenciaDias != null){
+            this.formularioDeVacacion.setValue({
+              vaca_disp:this.formularioDeVacacion.value.vaca_disp,
+              saldo_dias:this.formularioDeVacacion.value.saldo_dias,            
+              dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen, 
+              dias_tomados:diferenciaDias,        
+              lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
+              lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
+            }); 
+          }
 
           this.crudService.ObtenerExistenciaVacacionesByInicioFin(this.user,this.passw,this.fromDate?.year+"-"+
           this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+
@@ -308,76 +320,164 @@ export class AgregarVacacionComponent {
               });
             }
           });
-          }
+
+        }
         
         
         
       }else if(this.fromDate != null && this.toDate == null){
         console.log("SOLO FROM DATE");
 
-        this.crudService.ObtenerExistenciaVacaciones(this.user,this.passw,this.fromDate?.year+"-"+
-        this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta6 =>{
+        if(!this.isFriday(this.fromDate)){
 
-          console.log("respuesta6->FECHAS_CAL:",respuesta6['FECHAS_CAL']);
-          
-          if(respuesta6['FECHAS_CAL'] as unknown as number === 0 || respuesta6['FECHAS_CAL'] === null){ 
+          this.crudService.ObtenerExistenciaVacaciones(this.user,this.passw,this.fromDate?.year+"-"+
+          this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta6 =>{
+
+            console.log("respuesta6->FECHAS_CAL:",respuesta6['FECHAS_CAL']);
             
-            //VACACIÓN 
-            console.log("PUEDE REGISTRAR 0:");
-            this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
-                  
-              //AGREGAR VACACION
-    
-              if (this.formularioDeVacacion.value.vaca_disp >= this.formularioDeVacacion.value.dias_tomados){
-                if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
-                this.fromDate?.month+"-"+ this.fromDate?.day+"\nal\n"+this.fromDate?.year+"-"+
-                this.fromDate?.month+"-"+ this.fromDate?.day)){
-                  this.crudService.AgregarVacaciones(respuesta['id_personal'] as string,(this.fechaActual.getFullYear()) as any
-                  +"-"+(this.fechaActual.getMonth()) as any +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()
-                  +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"
-                  +this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+this.fromDate?.month+"-"+
-                  this.fromDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
-                  this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta22=>{
-                    console.log("respuesta22:",respuesta22);
-                    this.btnIngresar = true;
-                    this.precargarDias();    
-                    this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta22['id_vacaciones']).subscribe(respuesta15=>{
-                      console.log("respuesta15:",respuesta15)
-                    })                   
-                    if(window.confirm("Solcitud ingresada. ¡Revisar solicitud?")){
-                      this.reloadComponent();
-                    }
+            if(respuesta6['FECHAS_CAL'] as unknown as number === 0 || respuesta6['FECHAS_CAL'] === null){ 
+              
+              //VACACIÓN 
+              console.log("PUEDE REGISTRAR 0:");
+              this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
+                    
+                //AGREGAR VACACION
+      
+                if (this.formularioDeVacacion.value.vaca_disp >= this.formularioDeVacacion.value.dias_tomados){
+                  if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
+                  this.fromDate?.month+"-"+ this.fromDate?.day+"\nal\n"+this.fromDate?.year+"-"+
+                  this.fromDate?.month+"-"+ this.fromDate?.day)){
+                    this.crudService.AgregarVacaciones(respuesta['id_personal'] as string,(this.fechaActual.getFullYear()) as any
+                    +"-"+(this.fechaActual.getMonth()) as any +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()
+                    +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"
+                    +this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+this.fromDate?.month+"-"+
+                    this.fromDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
+                    this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta22=>{
+                      console.log("respuesta22:",respuesta22);
+                      this.btnIngresar = true;
+                      this.precargarDias();    
+                      this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta22['id_vacaciones']).subscribe(respuesta15=>{
+                        console.log("respuesta15:",respuesta15)
+                      })                   
+                      if(window.confirm("Solcitud ingresada. ¡Revisar solicitud?")){
+                        this.reloadComponent();
+                      }
+                    });
+                  }                 
+                }else{
+                  console.log("Excede días disponibles");
+                }          
+              });
+              
+            }else if (respuesta6['FECHAS_CAL'] as unknown as number > 0){
+              console.log("PUEDE REGISTRAR >0:");
+              this.crudService.ObteneVacacionesAReasignarByUserPassword(this.user,this.passw,this.fromDate?.year+"-"+
+              this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta7 =>{
+
+                console.log("respuesta7:",respuesta7)
+                console.log("respuesta7['id_vacaciones']:",respuesta7[0]['id_vacaciones'])
+                this.crudService.ObteneVacacionesFechaInicioAndFin(respuesta7[0]['id_vacaciones'] as string).subscribe(respuesta8 =>{
+                  console.log("respuesta8:",respuesta8);
+                  this.setRespen(respuesta8,"FechaInicioAndFin"); 
+                  const json = JSON.stringify(this.getRespen("FechaInicioAndFin"));
+                  JSON.parse(json, (key, value) => {
+                    key4.push(key);
+                    Value4.push(value);
                   });
-                }                 
-              }else{
-                console.log("Excede días disponibles");
-              }          
-            });
+                  console.log("Value4[0]:",Value4[0],Value4[1]);   
+                  window.confirm("CONFLICTO CON LAS SOLICITUDES DE VACACIÓN:\nID:"+respuesta7[0]['id_vacaciones']+"\n\tFECHA INICIO:"+ Value4[0] as string+
+                  "\n\tFECHA FIN:" + Value4[1] as string) 
+                });             
+              });
             
-          }else if (respuesta6['FECHAS_CAL'] as unknown as number > 0){
-            console.log("PUEDE REGISTRAR >0:");
-            this.crudService.ObteneVacacionesAReasignarByUserPassword(this.user,this.passw,this.fromDate?.year+"-"+
-            this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta7 =>{
+            }
+          });
 
-              console.log("respuesta7:",respuesta7)
-              console.log("respuesta7['id_vacaciones']:",respuesta7[0]['id_vacaciones'])
-              this.crudService.ObteneVacacionesFechaInicioAndFin(respuesta7[0]['id_vacaciones'] as string).subscribe(respuesta8 =>{
-                console.log("respuesta8:",respuesta8);
-                this.setRespen(respuesta8,"FechaInicioAndFin"); 
-                const json = JSON.stringify(this.getRespen("FechaInicioAndFin"));
-                JSON.parse(json, (key, value) => {
-                  key4.push(key);
-                  Value4.push(value);
-                });
-                console.log("Value4[0]:",Value4[0],Value4[1]);   
-                window.confirm("CONFLICTO CON LAS SOLICITUDES DE VACACIÓN:\nID:"+respuesta7[0]['id_vacaciones']+"\n\tFECHA INICIO:"+ Value4[0] as string+
-                 "\n\tFECHA FIN:" + Value4[1] as string) 
-              });             
-            });
-           
+        }else{
+          console.log("Its friday");
+
+          this.toDate=NgbDate.from(this.dateToNgbDate(this.addDays(2,this.fromDate)))
+          console.log("date+2:\n",this.fromDate)
+
+          var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
+          //console.log("diferenciaDias: ",diferenciaDias)
+          if (diferenciaDias != null){
+            this.formularioDeVacacion.setValue({
+              vaca_disp:this.formularioDeVacacion.value.vaca_disp,
+              saldo_dias:this.formularioDeVacacion.value.saldo_dias,            
+              dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen, 
+              dias_tomados:diferenciaDias,        
+              lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
+              lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
+            }); 
           }
-        });
-        
+
+          this.crudService.ObtenerExistenciaVacaciones(this.user,this.passw,this.fromDate?.year+"-"+
+          this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta6 =>{
+
+            console.log("respuesta6->FECHAS_CAL:",respuesta6['FECHAS_CAL']);
+            
+            if(respuesta6['FECHAS_CAL'] as unknown as number === 0 || respuesta6['FECHAS_CAL'] === null){ 
+              
+              //VACACIÓN 
+              console.log("PUEDE REGISTRAR 0:");
+              this.crudService.ObtenerIDPersonal(this.user,this.passw).subscribe(respuesta =>{
+                    
+                //AGREGAR VACACION
+      
+                if (this.formularioDeVacacion.value.vaca_disp >= this.formularioDeVacacion.value.dias_tomados){
+                  if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
+                  this.fromDate?.month+"-"+ this.fromDate?.day+"\nal\n"+this.fromDate?.year+"-"+
+                  this.fromDate?.month+"-"+ this.fromDate?.day)){
+                    this.crudService.AgregarVacaciones(respuesta['id_personal'] as string,(this.fechaActual.getFullYear()) as any
+                    +"-"+(this.fechaActual.getMonth()) as any +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()
+                    +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"
+                    +this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+this.fromDate?.month+"-"+
+                    this.fromDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
+                    this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta22=>{
+                      console.log("respuesta22:",respuesta22);
+                      this.btnIngresar = true;
+                      this.precargarDias();    
+                      this.crudService.EnviarCorreoNotificacionIngresoSolicitud(this.user,this.passw,respuesta22['id_vacaciones']).subscribe(respuesta15=>{
+                        console.log("respuesta15:",respuesta15)
+                      })                   
+                      if(window.confirm("Solcitud ingresada. ¡Revisar solicitud?")){
+                        this.reloadComponent();
+                      }
+                    });
+                  }                 
+                }else{
+                  console.log("Excede días disponibles");
+                }          
+              });
+              
+            }else if (respuesta6['FECHAS_CAL'] as unknown as number > 0){
+              console.log("PUEDE REGISTRAR >0:");
+              this.crudService.ObteneVacacionesAReasignarByUserPassword(this.user,this.passw,this.fromDate?.year+"-"+
+              this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta7 =>{
+
+                console.log("respuesta7:",respuesta7)
+                console.log("respuesta7['id_vacaciones']:",respuesta7[0]['id_vacaciones'])
+                this.crudService.ObteneVacacionesFechaInicioAndFin(respuesta7[0]['id_vacaciones'] as string).subscribe(respuesta8 =>{
+                  console.log("respuesta8:",respuesta8);
+                  this.setRespen(respuesta8,"FechaInicioAndFin"); 
+                  const json = JSON.stringify(this.getRespen("FechaInicioAndFin"));
+                  JSON.parse(json, (key, value) => {
+                    key4.push(key);
+                    Value4.push(value);
+                  });
+                  console.log("Value4[0]:",Value4[0],Value4[1]);   
+                  window.confirm("CONFLICTO CON LAS SOLICITUDES DE VACACIÓN:\nID:"+respuesta7[0]['id_vacaciones']+"\n\tFECHA INICIO:"+ Value4[0] as string+
+                  "\n\tFECHA FIN:" + Value4[1] as string) 
+                });             
+              });
+            
+            }
+          });
+
+          
+
+        }
       }     
     }
   }
@@ -435,11 +535,7 @@ export class AgregarVacacionComponent {
 		} else {  //ESCOGIO UN DÍA
       //console.log("CASO 3");
 			this.toDate = null;
-			this.fromDate = date;
-
-      if (date.day && new Date(date.year, date.month - 1, date.day).getDay() === 5) {
-        this.fechaSeleccionada = new NgbDate(date.year, date.month, date.day + 2);
-      }
+			this.fromDate = date;      
       
       var from = new NgbDate( this.fromDate.year,this.fromDate.month,this.fromDate.day);
       var aux1 = new Date(fechaActualNg.year, fechaActualNg.month, fechaActualNg.day);   
@@ -485,6 +581,16 @@ export class AgregarVacacionComponent {
       
 		}    
 	}
+
+  dateToNgbDate(date: Date): NgbDateStruct {
+    return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
+  }
+
+  addDays(days: number, ngbdate: NgbDate): Date {
+    const jsDate = new Date(ngbdate.year,ngbdate.month - 1, ngbdate.day);
+    jsDate.setDate(jsDate.getDate() + days);
+    return jsDate  
+  }
 
   compareDates(dateTimeA: Date, dateTimeB: Date){
     //let day1 = formatDate(new Date(dateTimeA.year, dateTimeA.month - 1, dateTimeA.day), 'yyyy/MM/dd','en');
@@ -570,9 +676,7 @@ export class AgregarVacacionComponent {
       this.router.navigateByUrl('/menu')
       /*this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
         this.router.navigate([currentUrl]));*/
-        
-    }
-   
+    }   
   }
 
   esFinDeSemana = (date: NgbDate) => {
