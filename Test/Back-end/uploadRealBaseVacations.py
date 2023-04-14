@@ -55,11 +55,11 @@ def isNaN(num):
 
 def clearTables():
   #Dropeo tabla cargo
+  ejecutarSQL("DELETE FROM personal;")
+  #Dropeo tabla cargo
   ejecutarSQL("DELETE FROM cargo;")  
   #Dropeo table usuario
-  ejecutarSQL("DELETE FROM vacaciones;") 
-  #Dropeo tabla cargo
-  ejecutarSQL("DELETE FROM personal;")
+  ejecutarSQL("DELETE FROM vacaciones;")   
   #Dropeo table usuario
   ejecutarSQL("DELETE FROM supervisor;") 
   #Dropeo tabla centro_base 
@@ -110,6 +110,7 @@ def cargarCargos():
     print(sql)
     ejecutarSQL(sql) 
     jCargos=jCargos+1
+  
 
 def existeRegistroCandidato(id):
     aux = consultarSQL("SELECT * FROM `candidato` WHERE `cedula` = '"+str(id)+"'")
@@ -123,7 +124,7 @@ def cargarCandidato():
   l=551
   listPersonal = [];
   for i in range(i,l):
-    listPersonal.append(df5['VACACIONES PERSONAL SALESLAND'].iloc[i,1:17])
+    listPersonal.append(df5['VACACIONES PERSONAL SALESLAND'].iloc[i,1:18])
     #print(df2['VACACIONES PERSONAL SALESLAND'].iloc[i,1:17])
   #print(listPersonal)
   for item  in range(len(listPersonal)):
@@ -132,25 +133,226 @@ def cargarCandidato():
     centro_costo = (listPersonal[item][3]) 
     tienda = (listPersonal[item][4]) 
     cargo = (listPersonal[item][5]) 
-    apellido = (listPersonal[item][10]) 
+    apellido = (listPersonal[item][12]) 
     nombre = (listPersonal[item][11]) 
-    correo = (listPersonal[item][14])
-    fecha_inicio_contrato = (listPersonal[item][15])
+    correo = (listPersonal[item][15])
+    fecha_inicio_contrato = (listPersonal[item][16])
+    if(status == 'Activo'):
+      if isNaN(fecha_inicio_contrato):
+        edadAux = 0  
+        fecha = ""
+      else:
+        #print("Entre lista:",list[9])         
+        fecha_inicio_contrato = str(fecha_inicio_contrato).replace("//","/") 
+        fechaAux = str(fecha_inicio_contrato).split("/")        
+        edad = datetime.now()
+        #print('fecha:',fechaAux[0],fechaAux[1],fechaAux[2])
+        if int(fechaAux[0]) > 12 :
+            fecha_nacimiento = datetime.strptime(str(fecha_inicio_contrato), "%d/%m/%Y")
+            edad = relativedelta(datetime.now(), fecha_nacimiento)
+            edadAux = edad.years
+            auxFecha = fechaAux[2]+"-"+fechaAux[1]+"-"+fechaAux[0]
+        elif int(fechaAux[0]) <= 12 :
+            fecha_nacimiento = datetime.strptime(str(fecha_inicio_contrato), "%m/%d/%Y")        
+            edad = relativedelta(datetime.now(), fecha_nacimiento)
+            edadAux = edad.years    
+            auxFecha = fechaAux[2]+"-"+fechaAux[0]+"-"+fechaAux[1]
+          
+        #print(status,"-",cedula,"-",centro_costo,"-",tienda,"-",cargo,"-",apellido,"-",nombre,"-",correo,"-",fecha_inicio_contrato)
+        sql = "INSERT INTO `candidato`(`cedula`, `nombre`, `apellido`, `genero`, `direccion_domicilio`, `ciudad`,`provincia`, `estado_civil`, `telefono_celular`, `telefono_casa`, `direccion_correo`, `fecha_nacimiento`, `edad`, `nacionalidad`,`status` ) VALUES"
+        datos = (str(cedula),str(nombre),str(apellido),'','','','','','','',str(correo),'',edadAux,'',str(status))
+        sql = sql + str(datos)
+        print(sql)
+        ejecutarSQL(sql)
+        """
+        if existeRegistroCandidato(str(list[0])) == "":
+            ejecutarSQL(sql)        
+            print("No existe:",list[0])
+        else:
+            print('Candidato duplicada:',list[0])
+        """
 
-    if(status == 'Activo'):    
-      #print(status,"-",cedula,"-",centro_costo,"-",tienda,"-",cargo,"-",apellido,"-",nombre,"-",correo,"-",fecha_inicio_contrato)
-      sql = "INSERT INTO `candidato`(`cedula`, `nombre`, `apellido`, `genero`, `direccion_domicilio`, `ciudad`,`provincia`, `estado_civil`, `telefono_celular`, `telefono_casa`, `direccion_correo`, `fecha_nacimiento`, `edad`, `nacionalidad`,`status` ) VALUES"
-      datos = (str(cedula),str(nombre),str(apellido),'','','','','','','',str(correo),'','','',"contratado")
+def cargarSupervisores():
+  ejecutarSQL("ALTER TABLE supervisor AUTO_INCREMENT=0")
+  jCargos=1;
+  iCargos=1;
+  lCargos=6;
+  listCargos = [];
+  for i in range(iCargos,lCargos):
+    listCargos.append(df5['supervisores'].iloc[i,0])
+    sql = "INSERT INTO `supervisor`(`cedula`,`nombre_supervisor`, `email`) VALUES"
+    datos = (df5['supervisores'].iloc[i,0],df5['supervisores'].iloc[i,1],df5['supervisores'].iloc[i,2])
+    sql = sql + str(datos) 
+    print(sql)
+    ejecutarSQL(sql) 
+    jCargos=jCargos+1
+
+def consultarCedulasCandidatos():
+  aux = consultarSQL_Lista("SELECT cedula FROM candidato;")
+  return aux
+
+def cargarusuarios():
+  #Insertar tabla usuarios
+  ejecutarSQL("ALTER TABLE usuario AUTO_INCREMENT=0")
+  list = consultarCedulasCandidatos()
+  for i in range(len(list)):
+      sql = "INSERT INTO `usuario`(`cedula`, `usuario`,`password`, `tipo`) VALUES"   
+      datos = (list[i][0],list[i][0],list[i][0],"promotor")
       sql = sql + str(datos)
+      ejecutarSQL(sql)
+      print(sql)
+
+def cargarContratos():
+  ejecutarSQL("ALTER TABLE contrato AUTO_INCREMENT=0")
+  j=0;
+  i=6;
+  #l=10;
+  l=551
+  listPersonal = [];
+  for i in range(i,l):
+    listPersonal.append(df5['VACACIONES PERSONAL SALESLAND'].iloc[i,1:18])
+    #print(df2['VACACIONES PERSONAL SALESLAND'].iloc[i,1:17])
+  #print(listPersonal)
+  for item  in range(len(listPersonal)):
+    status = (listPersonal[item][0])
+    fecha_inicio_contrato = (listPersonal[item][16])
+    if(status == 'Activo'): 
+      fechaAux = str(fecha_inicio_contrato).split("/")
+      print("\nfechaAux:",fechaAux)
+      if int(fechaAux[0]) > 12 :
+        fecha_nacimiento = datetime.strptime(str(fecha_inicio_contrato), "%d/%m/%Y")
+        edad = relativedelta(datetime.now(), fecha_nacimiento)
+        edadAux = edad.years
+        auxFecha = fechaAux[2]+"-"+fechaAux[1]+"-"+fechaAux[0]
+      elif int(fechaAux[0]) <= 12 :
+        fecha_nacimiento = datetime.strptime(str(fecha_inicio_contrato), "%m/%d/%Y")        
+        edad = relativedelta(datetime.now(), fecha_nacimiento)
+        edadAux = edad.years    
+        auxFecha = fechaAux[2]+"-"+fechaAux[0]+"-"+fechaAux[1]
+      else:  
+        auxFecha = fechaAux[2]+"-"+fechaAux[0]+"-"+fechaAux[1]
+      sql = "INSERT INTO `contrato`(`tipo_contrato`, `fecha_inicio_contrato`, `fecha_fin_contrato`, `salario`, `observaciones`) VALUES"
+      datos = ("NUEVO",auxFecha,"","0","FIRMO CONTRATO")
+      sql = sql + str(datos) 
       print(sql)
       ejecutarSQL(sql)
-      """
-      if existeRegistroCandidato(str(list[0])) == "":
-          ejecutarSQL(sql)        
-          print("No existe:",list[0])
-      else:
-          print('Candidato duplicada:',list[0])
-      """
+
+def cargarExpeLaboral():
+  #Insertar tabla usuarios
+  ejecutarSQL("ALTER TABLE experiencia_laboral AUTO_INCREMENT=0")
+  list = consultarCedulasCandidatos()
+  for i in range(len(list)):
+    sql = "INSERT INTO `experiencia_laboral`( `cedula`,`nombre_experiencia`, `tiempo_experiencia`, `estudios_universitarios`) VALUES"
+    datos = (str(list[i][0]),'Experiencia profesional','0','0')
+    sql = sql + str(datos)
+    print(sql)
+    ejecutarSQL(sql)
+
+def consultarSupervisor(cedulaSupervisor: str):
+  sql= "SELECT `id_supervisor` FROM `supervisor` WHERE `cedula` =  '"+str(cedulaSupervisor)+"' LIMIT 1;"
+  print(sql)
+  id_supervisor = consultarSQL_Lista(sql);
+  return id_supervisor
+
+def consultarCargo(nombreCargo:str):
+  sql= "SELECT id_cargo FROM cargo WHERE cargo.nombre_cargo = '"+str(nombreCargo)+"' LIMIT 1;"
+  print(sql)
+  id_cargo = consultarSQL_Lista(sql);
+  return id_cargo
+
+def consultarContrato(fechaInicioContrato:str):
+  sql= "SELECT id_contrato FROM contrato WHERE contrato.fecha_inicio_contrato = '"+str(fechaInicioContrato)+"' LIMIT 1;"
+  print(sql)
+  id_contrato = consultarSQL_Lista(sql);
+  return id_contrato
+      
+def cargarPersonal():
+  #Setear incremental en 0
+  ejecutarSQL("ALTER TABLE personal AUTO_INCREMENT=0")
+  j=0;
+  i=6;
+  #l=10;
+  l=551
+  k=0
+  listPersonal = [];
+  for i in range(i,l):
+    listPersonal.append(df5['VACACIONES PERSONAL SALESLAND'].iloc[i,1:20])
+    #print(df2['VACACIONES PERSONAL SALESLAND'].iloc[i,1:17])
+  #print(listPersonal)
+  for item  in range(len(listPersonal)):
+    status = (listPersonal[item][0])
+    cedula = (listPersonal[item][2]) 
+    centro_costo = (listPersonal[item][3]) 
+    tienda = (listPersonal[item][4]) 
+    cargo = (listPersonal[item][6]) 
+    apellido = (listPersonal[item][12]) 
+    nombre = (listPersonal[item][11]) 
+    correo = (listPersonal[item][15])
+    fecha_inicio_contrato = (listPersonal[item][16])
+    cedulaSupervisor = (listPersonal[item][17])
+    nombreSupervisor = (listPersonal[item][18])    
+    if(status == 'Activo'):       
+      listIdSup  = consultarSupervisor(str(cedulaSupervisor))      
+      listIdCargo = consultarCargo(str(cargo))
+      fechaAux = str(fecha_inicio_contrato).split("/")
+      print("\nfechaAux:",fechaAux)
+      if int(fechaAux[0]) > 12 :
+        fecha_nacimiento = datetime.strptime(str(fecha_inicio_contrato), "%d/%m/%Y")
+        edad = relativedelta(datetime.now(), fecha_nacimiento)
+        edadAux = edad.years
+        auxFecha = fechaAux[2]+"-"+fechaAux[1]+"-"+fechaAux[0]
+      elif int(fechaAux[0]) <= 12 :
+        fecha_nacimiento = datetime.strptime(str(fecha_inicio_contrato), "%m/%d/%Y")        
+        edad = relativedelta(datetime.now(), fecha_nacimiento)
+        edadAux = edad.years    
+        auxFecha = fechaAux[2]+"-"+fechaAux[0]+"-"+fechaAux[1]
+      else:  
+        auxFecha = fechaAux[2]+"-"+fechaAux[0]+"-"+fechaAux[1]
+      listIdContrato = consultarContrato(str(auxFecha))
+
+      idSUper= ""; idCargo = ""; idContrato = "";
+      for i in range(len(listIdSup)):
+        idSUper= listIdSup[0][0]
+      for i in range(len(listIdCargo)):
+        idCargo = listIdCargo[0][0]
+      for i in range(len(listIdContrato)):
+        idContrato = listIdContrato[0][0]  
+      if (idCargo == ""):
+         idCargo = '46' 
+      print("idSUper:",idSUper,"\nidCargo:",idCargo)
+      sql="INSERT INTO `personal`( `id_centro_costo`, `cedula`,`id_supervisor`, `status`, `adendum_contrato`, `id_contrato`, `id_cargo`) VALUES ";
+      datos = (str(centro_costo),str(cedula),str(idSUper), str(status), "",str(idContrato),str(idCargo))
+      sql += str(datos)
+      print(sql)
+      ejecutarSQL(sql)
+
+def cambiarRolesAdmins():
+  sql1 = "UPDATE `usuario` SET `tipo`='admin' WHERE  `cedula` = '1724124084';"
+  ejecutarSQL(sql1)
+  sql2 = "UPDATE `usuario` SET `tipo`='admin' WHERE  `cedula` = '0606156461';"
+  ejecutarSQL(sql2)
+   
+def cambiarRolesSupervisores():
+  sql2 = "UPDATE `usuario` SET `tipo`='supervisor' WHERE  `cedula` = '1713085593';"
+  ejecutarSQL(sql2)
+  sql2 = "UPDATE `usuario` SET `tipo`='supervisor' WHERE  `cedula` = '0956659049';"
+  ejecutarSQL(sql2)
+  sql2 = "UPDATE `usuario` SET `tipo`='supervisor' WHERE  `cedula` = '6105797275';"
+  ejecutarSQL(sql2)
+  sql2 = "UPDATE `usuario` SET `tipo`='supervisor' WHERE  `cedula` = '1710213966';"
+  ejecutarSQL(sql2)
+  sql2 = "UPDATE `usuario` SET `tipo`='supervisor' WHERE  `cedula` = '1314587427';"
+  ejecutarSQL(sql2)
+
+def cambiarJefedeSupervisores():
+  sql2 = "UPDATE `personal` SET `id_supervisor`='1' WHERE `cedula` = '0956659049';"
+  ejecutarSQL(sql2)
+  sql2 = "UPDATE `personal` SET `id_supervisor`='1' WHERE `cedula` = '6105797275';"
+  ejecutarSQL(sql2)
+  sql2 = "UPDATE `personal` SET `id_supervisor`='1' WHERE `cedula` = '1710213966';"
+  ejecutarSQL(sql2)
+  sql2 = "UPDATE `personal` SET `id_supervisor`='1' WHERE `cedula` = '1314587427';"
+  ejecutarSQL(sql2)
 
 df5 = readExcelXLS("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/Vacaciones Salesland 2021-2022 (corte 31 jul22).xlsx")
 #print(df5) 
@@ -162,7 +364,12 @@ clearTables()
 cargarCentroCosto()
 cargarCargos()
 cargarCandidato()
+cargarSupervisores()
+cargarusuarios()
+cargarContratos()
+cargarExpeLaboral()
+cargarPersonal()
 
-
-  
-   
+cambiarRolesAdmins()
+cambiarRolesSupervisores()
+cambiarJefedeSupervisores()

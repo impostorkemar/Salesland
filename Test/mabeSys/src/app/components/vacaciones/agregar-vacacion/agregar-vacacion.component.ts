@@ -518,6 +518,10 @@ export class AgregarVacacionComponent {
         //window.confirm("No se puede tomar vacaciones antes de la fecha actual");
       }else{
         //console.log("CompareDateCorrectos");
+        console.log("\nvaca_disp:",this.formularioDeVacacion.value.vaca_disp)
+        console.log("dias_tomados:",this.formularioDeVacacion.value.dias_tomados)
+        console.log("saldo_dias:",this.formularioDeVacacion.value.saldo_dias)
+        console.log("dias_solicitudes_pen:",this.formularioDeVacacion.value.dias_solicitudes_pen) 
         if (
           this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.saldo_dias
           /*|| 
@@ -560,10 +564,10 @@ export class AgregarVacacionComponent {
         window.confirm("No se puede escoger vacaciones antes de la fecha actual");
       }else{
         //console.log("CompareDateCorrectos");
-        console.log("this.formularioDeVacacion.value.vaca_disp:",this.formularioDeVacacion.value.vaca_disp)
-        console.log("this.formularioDeVacacion.value.dias_tomados:",this.formularioDeVacacion.value.dias_tomados)
-        console.log("this.formularioDeVacacion.value.saldo_dias:",this.formularioDeVacacion.value.saldo_dias)
-        console.log("this.formularioDeVacacion.value.dias_solicitudes_pen:",this.formularioDeVacacion.value.dias_solicitudes_pen)
+        console.log("\nvaca_disp:",this.formularioDeVacacion.value.vaca_disp)
+        console.log("dias_tomados:",this.formularioDeVacacion.value.dias_tomados)
+        console.log("saldo_dias:",this.formularioDeVacacion.value.saldo_dias)
+        console.log("dias_solicitudes_pen:",this.formularioDeVacacion.value.dias_solicitudes_pen)        
         if (
           this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.saldo_dias
           /*|| 
