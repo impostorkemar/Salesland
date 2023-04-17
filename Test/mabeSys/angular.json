@@ -70,10 +70,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "mabeSys:build:production"
+              "browserTarget": "mabeSys:build:production",
+              "disableHostCheck": true
             },
             "development": {
-              "browserTarget": "mabeSys:build:development"
+              "browserTarget": "mabeSys:build:development",
+              "disableHostCheck": true
             }
           },
           "defaultConfiguration": "development"

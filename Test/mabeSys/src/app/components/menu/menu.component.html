@@ -40,7 +40,7 @@
                                     <select *ngIf="rolPersonal" (click)="menuPersonal()" formControlName="statePersonal" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
                                         <option selected>PERSONAL</option>                                   
                                         <option *ngIf="rolPersonal" value="1">1.APROBACIÓN SOLICITUDES</option> 
-                                        <option *ngIf="rolPersonal" value="2">2.REPORTE GRÁFICO</option>                              
+                                        <option *ngIf="false" value="2">2.REPORTE GRÁFICO</option>                              
                                         </select>                  
                                 </div>
                                 <div *ngIf="true" >
@@ -106,7 +106,7 @@
             <app-listar-candidatos></app-listar-candidatos>
         </div>
         <div *ngIf="nombreVentana === 'CARGOS'" >
-            <app-listar-candidatos></app-listar-candidatos>
+            <app-listar-cargos></app-listar-cargos>
         </div>
         <div *ngIf="nombreVentana === 'CENTRO-COSTO'" >
             <app-listar-centros-costos></app-listar-centros-costos>

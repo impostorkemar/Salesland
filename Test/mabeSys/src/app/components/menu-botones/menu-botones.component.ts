@@ -36,7 +36,7 @@ export class MenuBotonesComponent {
     this.router.navigate(['/seguros']);
   }
   navigateToViajes() {
-    this.router.navigate(['/viajes']);
+    this.router.navigate(['/enContruccion']);
   }
 
   navigateToenConstruccion() {

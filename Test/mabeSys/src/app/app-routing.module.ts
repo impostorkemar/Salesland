@@ -7,7 +7,6 @@ import { HomeComponent } from './components/home/home.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { EnConstruccionComponent } from './components/en-construccion/en-construccion.component';
 import { SeguroComponent } from './components/seguro/seguro.component';
-import { ViajesComponent } from './components/viajes/viajes.component';
 import { MenuInicioComponent } from './components/menu-inicio/menu-inicio.component';
 import { MenuBotonesComponent } from './components/menu-botones/menu-botones.component';
 
@@ -50,13 +49,7 @@ const routes: Routes = [
     data: {
       role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
     }
-  },
-  {path: 'viajes', component: ViajesComponent,
-    canActivate: [AuthGuard],
-    data: {
-      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
-    }
-  },
+  },  
   {path: 'enContruccion', component: EnConstruccionComponent,
     canActivate: [AuthGuard],
     data: {

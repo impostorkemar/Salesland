@@ -97,10 +97,10 @@ def cargarCentroCosto():
       #print("sql:",sql)
       ejecutarSQL(sql)
 
-def cargarCargos():
+def cargarCargos(numCargos):
   jCargos=1;
   iCargos=2;
-  lCargos=48;
+  lCargos=numCargos;
   listCargos = [];
   for i in range(iCargos,lCargos):
     listCargos.append(df5['cargos'].iloc[i,0])
@@ -117,11 +117,11 @@ def existeRegistroCandidato(id):
     print("Consulta:",id,'-->',aux)
     return aux
 
-def cargarCandidato():
+def cargarCandidato(numUsuarios):
   j=0;
   i=6;
   #l=10;
-  l=551
+  l=numUsuarios
   listPersonal = [];
   for i in range(i,l):
     listPersonal.append(df5['VACACIONES PERSONAL SALESLAND'].iloc[i,1:18])
@@ -202,12 +202,12 @@ def cargarusuarios():
       ejecutarSQL(sql)
       print(sql)
 
-def cargarContratos():
+def cargarContratos(numUsuarios):
   ejecutarSQL("ALTER TABLE contrato AUTO_INCREMENT=0")
   j=0;
   i=6;
   #l=10;
-  l=551
+  l=numUsuarios
   listPersonal = [];
   for i in range(i,l):
     listPersonal.append(df5['VACACIONES PERSONAL SALESLAND'].iloc[i,1:18])
@@ -256,7 +256,7 @@ def consultarSupervisor(cedulaSupervisor: str):
 
 def consultarCargo(nombreCargo:str):
   sql= "SELECT id_cargo FROM cargo WHERE cargo.nombre_cargo = '"+str(nombreCargo)+"' LIMIT 1;"
-  print(sql)
+  #print(sql)
   id_cargo = consultarSQL_Lista(sql);
   return id_cargo
 
@@ -266,13 +266,13 @@ def consultarContrato(fechaInicioContrato:str):
   id_contrato = consultarSQL_Lista(sql);
   return id_contrato
       
-def cargarPersonal():
+def cargarPersonal(numUsuarios):
   #Setear incremental en 0
   ejecutarSQL("ALTER TABLE personal AUTO_INCREMENT=0")
   j=0;
   i=6;
   #l=10;
-  l=551
+  l=numUsuarios
   k=0
   listPersonal = [];
   for i in range(i,l):
@@ -360,16 +360,18 @@ df5 = readExcelXLS("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/
 df2 = readCSV("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/centro_costos3.csv")
 #print(df2) 
 
+numCargos = 48
+numUsuarios = 559
+
 clearTables()
 cargarCentroCosto()
-cargarCargos()
-cargarCandidato()
+cargarCargos(numCargos)
+cargarCandidato(numUsuarios)
 cargarSupervisores()
 cargarusuarios()
-cargarContratos()
+cargarContratos(numUsuarios)
 cargarExpeLaboral()
-cargarPersonal()
-
+cargarPersonal(numUsuarios)
 cambiarRolesAdmins()
 cambiarRolesSupervisores()
 cambiarJefedeSupervisores()
