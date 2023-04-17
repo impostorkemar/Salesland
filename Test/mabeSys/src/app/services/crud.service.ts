@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { Usuario } from '../components/model/Usuario';
-import { Candidato } from '../components/model/Candidato';
-import { CentroCosto } from '../components/model/CentroCosto';
-import { Cargo } from '../components/model/Cargo';
-import { Contrato } from '../components/model/Contrato';
-import { ExperienciaLaboral } from '../components/model/ExperienciaLaboral';
-import { Personal } from '../components/model/Personal';
+import { Usuario } from '../components/classModels/Usuario';
+import { Candidato } from '../components/classModels/Candidato';
+import { CentroCosto } from '../components/classModels/CentroCosto';
+import { Cargo } from '../components/classModels/Cargo';
+import { Contrato } from '../components/classModels/Contrato';
+import { ExperienciaLaboral } from '../components/classModels/ExperienciaLaboral';
+import { Personal } from '../components/classModels/Personal';
 import { map } from 'rxjs/operators';
 import { HttpPostService } from './HttpPostService';	
-import { Vacaciones } from '../components/model/Vacaciones';
+import { Vacaciones } from '../components/classModels/Vacaciones';
 import { TestuserService } from 'src/app/services/testuser.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import {formatDate} from '@angular/common';
@@ -21,7 +21,7 @@ import {MatSort, Sort} from '@angular/material/sort';
   providedIn: 'root'
 })
 export class CrudService {
-API:string = 'http://192.168.0.29:8000/';
+API:string = 'http://intranetsaleslandecuador.net:8000/';
 resp!:String[];
 
   constructor(

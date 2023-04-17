@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { Usuario } from '../components/model/Usuario';
-import { Venta } from '../components/model/Venta';
+import { Usuario } from '../components/classModels/Usuario';
+import { Venta } from '../components/classModels/Venta';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestuserService {
-  API:string = 'http://192.168.0.29:8000/';
+  API:string = 'http://intranetsaleslandecuador.net:8000/';
 
   constructor(private clienteHttp:HttpClient) { }
 

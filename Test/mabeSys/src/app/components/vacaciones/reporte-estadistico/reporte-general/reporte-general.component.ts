@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { TestuserService } from 'src/app/services/testuser.service';
 import { CrudService } from 'src/app/services/crud.service';
-import { CentroCosto } from '../../model/CentroCosto';
+import { CentroCosto } from 'src/app/components/classModels/CentroCosto';
 import { map } from 'rxjs';
 
 @Component({

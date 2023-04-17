@@ -36,11 +36,15 @@ export class MenuBotonesComponent {
     this.router.navigate(['/seguros']);
   }
   navigateToViajes() {
-    this.router.navigate(['/enContruccion']);
+    this.router.navigate(['/menuViaje']);
   }
 
   navigateToenConstruccion() {
     this.router.navigate(['/enContruccion']);
+  }
+
+  navigateToRolPagos() {
+    this.router.navigate(['/menuRolPago']);
   }
 
   goToExternalLinkAmigosMABE() {
