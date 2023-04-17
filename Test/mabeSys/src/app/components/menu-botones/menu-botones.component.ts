@@ -46,13 +46,17 @@ export class MenuBotonesComponent {
   goToExternalLinkAmigosMABE() {
     window.location.href = 'https://www.amigosmabeplus.com/index.php';
   }
+  
+  goToExternalLinkTickets() {
+    window.location.href = 'http://192.168.0.101/soporte/upload/index.php';
+  }
 
   ValidarCentroCosto(){
     var user = localStorage.getItem('USER') as string;
     var passw = localStorage.getItem('PASS') as string    
     this.crudService.ObtenerCentroCostoByUserAndPass(user,passw).subscribe(respuesta=>{
       console.log("cuenta:\n",respuesta['cuenta'])
-      if(respuesta['cuenta'] == 'Estructura' || respuesta['cuenta'] == 'MOVISTAR' ){
+      if(respuesta['cuenta'] == 'Estructura' || respuesta['cuenta'] == 'MOVISTAR' || respuesta['cuenta'] == 'Administracion' ){
         this.centroCostoFlag=true;
         this.mabeOptionsFlag=false;
       }else{

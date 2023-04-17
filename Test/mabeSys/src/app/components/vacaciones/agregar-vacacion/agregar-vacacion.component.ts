@@ -106,11 +106,20 @@ export class AgregarVacacionComponent {
           if (respuesta2 != null){
             const datePipe = new DatePipe('en-US'); 
             var corteYear = new Date().getFullYear();
-            this.corte =  new NgbDate(corteYear,1,31);              
+            this.corte =  new NgbDate(corteYear,1,31);      
+            console.log("corte:",this.corte)        
             //this.contrato = new Date((Value2[0] as string));  
 
             this.contrato = new Date((respuesta2['fechaContrato'] as string));
-            this.antiguedad = (this._decimalPipe.transform(((this.corte.year-this.contrato.getFullYear())*12+(this.corte.month-this.contrato.getMonth())+(this.corte.day-this.contrato.getDate())/30)*1.25,"1.0-1") as any) as number;           
+           
+            var yearCal = (this.corte.year-this.contrato.getFullYear())*12
+            console.log("this.corte.month\n:",this.corte.month,"\nthis.contrato.getMonth():",this.contrato.getMonth())
+            var monthCal = (this.corte.month-(this.contrato.getMonth()+1))
+            var dateCal = (this.corte.day-this.contrato.getDate())/30
+            console.log("Year\n:",yearCal,"monthCal\n:",monthCal,"dateCal\n:",dateCal)
+            var antiguedadAux = (yearCal+monthCal+dateCal)
+            console.log("Antiguedad:",antiguedadAux)
+            this.antiguedad = (this._decimalPipe.transform(antiguedadAux*1.25,"1.0-1") as any) as number;           
             var aux1 = this.antiguedad;
 
             //CARGA VACACIONES TOMADAS
