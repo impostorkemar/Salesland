@@ -1,0 +1,72 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+
+#containerInicio {
+  height: 100%;
+  width: 100%;
+  background-color: #16261C;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+button {
+  background-color: #045959;
+  color: #ffffff;
+  width: 500px;
+  height: 168px;
+  font-size: 24px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+}
+
+i {  
+  text-align: center;
+  align-content: center;
+  width:7;
+  height:7;
+
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 2em;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
+.left-ul {
+  float: left;
+}
+
+.right-ul {
+  float: right;
+}

@@ -1,0 +1,19 @@
+<head>
+  <meta charset="UTF-8">
+  <title>Salesland Ecuador</title>
+  <link rel="stylesheet" href="menu-inicio.component.css">
+</head>
+<body>   
+  <header>
+    <nav >
+      <ul class="left-ul">        
+        <li><a href="#">Home</a></li>          
+      </ul>
+      <ul class="right-ul">
+        <li *ngIf="chargeLoginvalue" ><a routerLink="/login" href="#">Login</a></li>
+        <li *ngIf="chargeLogoutvalue"><a (onclick)="logout()" routerLink="/home" href="#">Logout</a></li>
+      </ul>
+    </nav>
+  </header>  
+    
+</body>

@@ -69,11 +69,13 @@ export class ListarReporteGeneralSupervisorComponent {
     var aux = "";
     if(!this.formularioDeVacacion.value.motivo){
       aux = "Sin observaciones"
+      window.confirm("Rellene motivo")
     }else{
       aux = this.formularioDeVacacion.value.motivo
+      this.crudService.AceptarSolicitudVacacion(id,aux,this.VacacionesPendientesBySupervisor, this.VacacionesAprobadasBySupervisor
+        , this.VacacionesNegadasBySupervisor, iControl)
     }
-    this.crudService.AceptarSolicitudVacacion(id,aux,this.VacacionesPendientesBySupervisor, this.VacacionesAprobadasBySupervisor
-      , this.VacacionesNegadasBySupervisor, iControl)
+    
     
   }
 
@@ -83,11 +85,13 @@ export class ListarReporteGeneralSupervisorComponent {
     var aux = "";
     if(!this.formularioDeVacacion.value.motivo){
       aux = "Sin observaciones"
+      window.confirm("Rellene motivo")
     }else{
       aux = this.formularioDeVacacion.value.motivo
+      this.crudService.RechazarSolicitudVacacion(id,aux,this.VacacionesPendientesBySupervisor, this.VacacionesAprobadasBySupervisor
+        , this.VacacionesNegadasBySupervisor, iControl)
     }
-    this.crudService.RechazarSolicitudVacacion(id,aux,this.VacacionesPendientesBySupervisor, this.VacacionesAprobadasBySupervisor
-      , this.VacacionesNegadasBySupervisor, iControl)
+    
   }
 
   exportToCSV(){

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { Usuario } from '../components/model/Usuario';
-import { Candidato } from '../components/model/Candidato';
-import { CentroCosto } from '../components/model/CentroCosto';
-import { Cargo } from '../components/model/Cargo';
-import { Contrato } from '../components/model/Contrato';
-import { ExperienciaLaboral } from '../components/model/ExperienciaLaboral';
-import { Personal } from '../components/model/Personal';
+import { Usuario } from '../components/classModels/Usuario';
+import { Candidato } from '../components/classModels/Candidato';
+import { CentroCosto } from '../components/classModels/CentroCosto';
+import { Cargo } from '../components/classModels/Cargo';
+import { Contrato } from '../components/classModels/Contrato';
+import { ExperienciaLaboral } from '../components/classModels/ExperienciaLaboral';
+import { Personal } from '../components/classModels/Personal';
 import { map } from 'rxjs/operators';
 import { HttpPostService } from './HttpPostService';	
-import { Vacaciones } from '../components/model/Vacaciones';
+import { Vacaciones } from '../components/classModels/Vacaciones';
 import { TestuserService } from 'src/app/services/testuser.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import {formatDate} from '@angular/common';
@@ -21,7 +21,7 @@ import {MatSort, Sort} from '@angular/material/sort';
   providedIn: 'root'
 })
 export class CrudService {
-API:string = 'http://192.168.0.29:8000/';
+API:string = 'http://intranetsaleslandecuador.net:8000/';
 resp!:String[];
 
   constructor(
@@ -645,7 +645,7 @@ resp!:String[];
     
 
     AceptarSolicitudVacacion(id:any,observaciones:any, VacacionesPen:any,VacacionesApr:any,VacacionesNeg:any,iControl:any){
-      var urlAPI="aprobarVacacionById/";
+      var urlAPI="vacacionesAAprobarbyId/";
       var myDate = new Date();
       var Fecha_respt = myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDay()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds()      
       this.ObtenerVacacionById(id).subscribe(response0 => {
@@ -656,7 +656,7 @@ resp!:String[];
           + response0['fecha_fin_vacaciones']+ "\n\tDIAS SOLICITADOS: "
           + response0['dias_lab_solicitados'])){
             let options = this.createRequestOptions();
-            var urlAPI="aprobarVacacionById/"+id;
+            var urlAPI="vacacionesAAprobarbyId/"+id;
             var vaca: Vacaciones ={
               id_vacaciones: response0['id_vacaciones'],
               id_personal: response0['id_personal'],
@@ -752,7 +752,7 @@ resp!:String[];
     RechazarSolicitudVacacion(id:any,observaciones:any, VacacionesPen:any,VacacionesApr:any,VacacionesNeg:any,iControl:any){
       var urlAPI="negarVacacionById/";
       var myDate = new Date();
-      var Fecha_respt = myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDay()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds()      
+      var Fecha_respt = myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDay()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds()
       this.ObtenerVacacionById(id).subscribe(response0 => {
         if ( response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion'){
           if(window.confirm("¿Desea rechazar la solicitud?\nID VACACIONES: "+
@@ -762,6 +762,7 @@ resp!:String[];
           + response0['dias_lab_solicitados'])){
             let options = this.createRequestOptions();
             var urlAPI="vacacionesACancelarbyId/"+id;
+            console.log("Fecha_respt:",Fecha_respt)
             var vaca: Vacaciones ={
               id_vacaciones: response0['id_vacaciones'],
               id_personal: response0['id_personal'],
@@ -880,6 +881,22 @@ resp!:String[];
       var urlAPI="dataReporteEstadistico/"+corte as string+"_"+actual as string;      
       return this.clienteHttp.get(this.API+urlAPI);
     }
+
+    ObtenerCentroCostoByUserAndPass(user:any, passw:any):Observable<any>{
+      var urlAPI="centroCostoByUserPass/"+user as string+"_"+passw as string;      
+      return this.clienteHttp.get(this.API+urlAPI);
+    }
+
+    ObtenerIdSupervisorByuserAndPass(user:any, passw:any):Observable<any>{
+      var urlAPI="idSupervisorByUserAndPass/"+user as string+"_"+passw as string;      
+      return this.clienteHttp.get(this.API+urlAPI);
+    }
+
+    ObtenerDataPersonaByUserAndPass(user:any, passw:any):Observable<any>{
+      var urlAPI="dataPersonabyUserAndPass/"+user as string+"_"+passw as string;      
+      return this.clienteHttp.get(this.API+urlAPI);
+    }
+    
 
     
   

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Landing Page de Salesland Ecuador</title>
+    <link rel="stylesheet" href="home.component.css">
+  </head>
+  <body>
+    <header>
+      <div>
+        <app-menu-inicio></app-menu-inicio>
+      </div>      
+    </header>
+    <main>
+      <section id="CarouselInicio">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide " data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+        
+          <div class="carousel-inner elemento1">
+            <img src="./assets/SALESLAND2.jpg" class="menuImg " alt="Imagen superpuesta">
+            <div class="carousel-item active" data-bs-interval="40000">
+              <div class="carousel-caption d-none d-md-block">
+               
+                <h1 class="titleImg">Bienvenido a Salesland Ecuador</h1>
+                <p class="textOnImg texto-superpuesto">Somos una empresa en busca de ser lideres en el mercado de ventas y marketing.</p>
+              </div>
+            </div>
+            <div class="carousel-item elemento2" data-bs-interval="2000">
+              <img src="./assets/mision.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h1 class="titleImg">Servicios que ofrecemos</h1>
+                <p class="textOnImg">Ventas directas</p>
+                <p class="textOnImg">Telemarketing</p>  
+                <p class="textOnImg">Promociones y eventos</p>
+              </div>
+            </div>
+            <div class="carousel-item elemento3">
+              <img src="./assets/vision.jpg" class="d-block w-100" style="height: 80%;" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h1 class="titleImg">Sobre nosotros</h1>
+                <p class="textOnImg">Salesland Ecuador es una empresa multinacional con presencia en varios países. Nuestro objetivo es ayudar a las empresas a alcanzar sus metas de ventas y marketing.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+      <section *ngIf="false" id="hero">
+        <h1>Bienvenido a Salesland Ecuador</h1>
+        <div style="text-align: center; justify-content: center; align-items: center;  ">                
+          <img src="./assets/SALESLAND2.jpg" class="center redimension1" >            
+      </div>
+        <p>Somos una empresa en busca de ser lideres en el mercado de ventas y marketing.</p>
+        <a href="#" class="btn-primary">Ver servicios</a>
+      </section>
+      <section *ngIf="false" id="services">
+        <div class="container">
+          <h2>Servicios que ofrecemos</h2>
+          <ul>
+            <li><a href="#">Ventas directas</a></li>
+            <li><a href="#">Telemarketing</a></li>
+            <li><a href="#">Promociones y eventos</a></li>
+          </ul>
+        </div>
+        
+      </section>
+      <section *ngIf="false" id="about">
+        <div class="container">
+          <h2>Sobre nosotros</h2>
+          <p>Salesland Ecuador es una empresa multinacional con presencia en varios países. Nuestro objetivo es ayudar a las empresas a alcanzar sus metas de ventas y marketing.</p>
+        </div>       
+      </section>
+      <section *ngIf="false" id="contact">
+        <div class="card-align center">
+          <p></p>
+          <h2>Contáctanos</h2>
+          <form action="#" method="post">
+            <div>
+              <div>
+                <label for="name">Nombre:</label>
+                <br>
+                <input type="text" id="name" name="name">
+              </div>
+              <div>
+                <label for="email">Correo electrónico:</label>
+                <br>
+              <input type="email" id="email" name="email">
+              </div>
+              <div>
+                <label for="message">Mensaje:</label>
+                <br>
+                <textarea id="message" name="message"></textarea>
+              </div>  
+              <input type="submit" value="Enviar">
+            </div>         
+          </form>
+        </div>        
+      </section>
+    </main>
+    <footer>
+      <div class="container center">
+        <p>&copy; 2023 Salesland Ecuador. Todos los derechos reservados.</p>
+      </div>      
+    </footer>
+  </body>
+</html>

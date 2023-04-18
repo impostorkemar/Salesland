@@ -1,0 +1,157 @@
+<div class="card-body">    
+  <div class="table-responsive table-bordered table-striped">
+    <form [formGroup]="registrationForm">
+      <table class="table table-primary align-middle" >
+        <tbody>
+          <tr>
+            <td><div class="card-body ">
+              <div class="mb-3">
+                <label for="" class="form-label">VACACIONES ACUMULADAS</label>
+                <input type="text"
+                  class="form-control" name="vaca_acum" formControlName="vaca_acum" id="vaca_acum" aria-describedby="helpId" placeholder="15">
+              </div>
+            </div></td>
+            <td><div class="card-body ">
+              <div class="mb-3">
+                <label for="" class="form-label">DÍAS<br> DISPONIBLES</label>
+                <input type="text"
+                  class="form-control" name="dias_dispo" formControlName="dias_dispo" id="dias_dispo" aria-describedby="helpId" placeholder="10">
+              </div>
+            </div></td>
+            <td><div class="card-body ">
+              <div class="mb-3">
+                <label for="" class="form-label">VACACIONES TOMADAS</label>
+                <input type="text"
+                  class="form-control" name="vacac_tom" formControlName="vacac_tom" id="vacac_tom" aria-describedby="helpId" placeholder="10">
+              </div>
+            </div></td>
+            <td><div class="card-body ">
+                <div class="mb-3">
+                  <label for="" class="form-label">VACACIONES POR TOMAR APROBADAS</label>
+                  <input type="text"
+                    class="form-control" name="vaca_apro" formControlName="vaca_apro" id="vaca_apro" aria-describedby="helpId" placeholder="10">
+                </div>
+            </div></td>
+            <td *ngIf="false"><div style="text-align: center; ">FILTROS</div></td>
+            
+          </tr>
+          <tr>
+            <td colspan="4" style="align-content:center; align-items: center; text-align:center;">
+              <div>
+                GRÁFICO
+              </div>
+              <div *ngIf="linkReporteAdmin">
+                <iframe title="Report Section" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiYWIyNDFlODUtMDZlZi00N2ZhLWIzMmMtYmMzNDFhYzQ0NWUxIiwidCI6ImQ2NDM4MDgyLWViOTgtNGMzZi04Mzk3LTVkYmRmZTQwMzZmZCIsImMiOjR9&pageName=ReportSectionb752c71e5677ffe943b8" frameborder="0" allowFullScreen="true"></iframe>
+              </div>              
+              <div *ngIf="linkReport1">
+                <iframe title="Supervisor1ReporteVacaciones" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiNmQ0ZmI0MzktNTA1Mi00YzM1LWJhYjktODc0ZWY4M2Q3MTU0IiwidCI6ImQ2NDM4MDgyLWViOTgtNGMzZi04Mzk3LTVkYmRmZTQwMzZmZCIsImMiOjR9&pageName=ReportSectionb752c71e5677ffe943b8" frameborder="0" allowFullScreen="true"></iframe>
+              </div>
+              <div *ngIf="linkReport2">
+                <iframe title="Report Section" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiZWFjMDdkYzUtZmUwYS00MjA1LTg1MjYtMjMzYWM3Y2I1YmI4IiwidCI6ImQ2NDM4MDgyLWViOTgtNGMzZi04Mzk3LTVkYmRmZTQwMzZmZCIsImMiOjR9&pageName=ReportSectionb752c71e5677ffe943b8" frameborder="0" allowFullScreen="true"></iframe>
+              </div>
+              <div *ngIf="linkReport3">
+                <iframe title="Supervisor3ReporteVacaciones" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiZWIxNjQ1ZjMtYmM2YS00NDUwLTk3YTAtZTM4NzQ0ZDkwYTU3IiwidCI6ImQ2NDM4MDgyLWViOTgtNGMzZi04Mzk3LTVkYmRmZTQwMzZmZCIsImMiOjR9&pageName=ReportSectionb752c71e5677ffe943b8" frameborder="0" allowFullScreen="true"></iframe>
+              </div>
+              <div *ngIf="linkReport4">
+                <iframe title="Report Section" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiMDFmZTBkOTYtNzkyOC00ZTFlLWJhMjUtMDlhZDcxY2M0Y2EyIiwidCI6ImQ2NDM4MDgyLWViOTgtNGMzZi04Mzk3LTVkYmRmZTQwMzZmZCIsImMiOjR9&pageName=ReportSectionb752c71e5677ffe943b8" frameborder="0" allowFullScreen="true"></iframe>
+              </div>
+              <div *ngIf="linkReport5">
+                <iframe title="Report Section" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiY2IwZDA1YjktOTY4Mi00MmM1LWJjNDItZjcyY2MzYzkzZWRkIiwidCI6ImQ2NDM4MDgyLWViOTgtNGMzZi04Mzk3LTVkYmRmZTQwMzZmZCIsImMiOjR9&pageName=ReportSectionb752c71e5677ffe943b8" frameborder="0" allowFullScreen="true"></iframe>
+              </div>
+            <td *ngIf="false">
+              <tr>
+                <td>
+                  <div class="card-body ">
+                    <div class="mb-3">
+                      <select 
+                        class="custom-select mb-3" 
+                        (change)="changeTienda($event)"
+                        formControlName="nombreTienda"
+                        (ngModelOptions)="{standalone: true}">
+                        <option value="">CENTRO COSTO</option>
+                        <option *ngFor="let dato of datosCentrosCostos" >{{ dato }}</option>
+                      </select>                      
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="card-body ">
+                    <div class="mb-3">
+                      <select 
+                        class="custom-select mb-3" 
+                        (change)="changeTienda($event)"
+                        formControlName="nombreTienda"
+                        (ngModelOptions)="{standalone: true}">
+                        <option value="">ESTADO</option>
+                        <option *ngFor="let dato of estados" >{{ dato }}</option>
+                      </select>                      
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="card-body ">
+                    <div class="mb-3">
+                      <select 
+                        class="custom-select mb-3" 
+                        (change)="changeTienda($event)"
+                        formControlName="nombreTienda"
+                        (ngModelOptions)="{standalone: true}">
+                        <option value="">COLABORADOR</option>
+                        <option *ngFor="let dato of datosColaboradores" >{{ dato }}</option>
+                      </select>                      
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="card-body ">
+                    <div class="mb-3">
+                      <select 
+                        class="custom-select mb-3" 
+                        (change)="changeTienda($event)"
+                        formControlName="nombreTienda"
+                        (ngModelOptions)="{standalone: true}">
+                        <option value="">AÑO</option>
+                        <option *ngFor="let dato of anios" >{{ dato }}</option>
+                      </select>                      
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="card-body ">
+                    <div class="mb-3">
+                      <select 
+                        class="custom-select mb-3" 
+                        (change)="changeTienda($event)"
+                        formControlName="nombreTienda"
+                        (ngModelOptions)="{standalone: true}">
+                        <option value="">MES</option>
+                        <option *ngFor="let dato of meses" >{{ dato }}</option>
+                      </select>                      
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="card-body ">
+                    <div class="mb-3">
+                      <select 
+                        class="custom-select mb-3" 
+                        (change)="changeTienda($event)"
+                        formControlName="nombreTienda"
+                        (ngModelOptions)="{standalone: true}">
+                        <option value="">DÍA</option>
+                        <option *ngFor="let dato of dias" >{{ dato }}</option>
+                      </select>                      
+                    </div>
+                  </div>
+                </td>
+              </tr>              
+            </td>            
+          </tr> 
+        </tbody>      
+      </table>
+    </form>
+  </div>
+</div>
+

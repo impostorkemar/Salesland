@@ -1,0 +1,126 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 0.5em;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;  
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 4em;
+  margin-bottom: 2em;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#hero {
+  background-color: #333;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#hero:before {
+  content:#fff;
+}
+
+.redimension1 {
+  width:2000px;
+  height:auto;
+}
+
+.center{
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin: auto;
+  width: 75%; /* ajusta el tamaño de la imagen según sea necesario */
+}
+
+.menuImg {
+  display: block;
+  margin: auto;
+  width: 100%; /* ajusta el tamaño de la imagen según sea necesario */
+}
+
+.textOnImg{
+  color: aliceblue;
+  font-size: 35px;
+  text-shadow: 3px #020202;
+  text-shadow: 4px 4px #020202;
+}
+
+.titleImg{
+  color: aliceblue;
+  font-size: 45px;
+  text-shadow: 4px 4px #020202;
+}
+
+.elemento1 {
+  background-image: url('/../assets/fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 650px; 
+  width: 1545px;
+}
+
+.elemento1 img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.elemento2 {
+  background-image: url('/../assets/mision.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 650px; 
+  width: 1545px;
+}
+
+.elemento3 {
+  background-image: url('/../assets/vision.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 650px; 
+  width: 1545px;
+}
+
+.contenedor-gif {
+  position: relative;
+  display: inline-block;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.left-ul {
+  float: left;
+}
+
+.right-ul {
+  float: right;
+}

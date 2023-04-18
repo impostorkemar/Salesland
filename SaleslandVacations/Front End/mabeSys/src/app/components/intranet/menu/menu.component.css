@@ -1,0 +1,63 @@
+.selectStyle{
+  background-color: #16261C;
+  color: white;
+}
+.text{
+  color: white;
+}
+.redimension1 {
+  width:500px;
+  height:auto;
+}
+
+.redimension2 {
+  max-width:50%;
+  max-height:50%;
+}
+
+#sect1 { 
+  background-color: #16261C;
+  color: white;
+  background-size:100%;  
+  background-size: cover;  
+}
+
+#name_usuario{
+  background-color: white;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+}
+
+.my-input {
+  background-color: black;
+  color: white;
+  border: 1px solid #16261C;
+}
+
+.textCenter{
+  text-align: center;  
+}
+
+
