@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response
 from config.db import conn, engine
 from models.user import users, usuarios, candidatos, personales, cargos, contratos, centro_costos, vacaciones, supervisores
-from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato, Personal, Experiencia_laboral, Vacacion, Supervisor
+from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato, Personal, Experiencia_laboral, Vacacion, Supervisor, Rol_pagos, Ingresos, Descuentos
 from cryptography.fernet import Fernet
 from starlette import status
 from sqlalchemy.sql import select
@@ -646,3 +646,4 @@ def get_dataReporteEstadistico(user: str, passw:str):
     print(sql)
     return conn.execute(sql).first()
 
+#Consultas Rol

@@ -1,0 +1,29 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+.img {
+    height: 75px;
+    width: auto;
+}
+
+.p-center {
+    padding: 1px;
+    margin-left: 50px;
+}
+
+.h-r {
+    padding-right: 50px;
+}
+
+.container-rol {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+}

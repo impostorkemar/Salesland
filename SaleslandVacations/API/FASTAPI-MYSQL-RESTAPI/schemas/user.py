@@ -84,6 +84,43 @@ class Vacacion(BaseModel):
     peticion: str
     observaciones: str
 
+class Rol_pagos(BaseModel):
+    id_rol_pagos: Optional[int]
+    id_personal: int
+    id_calendario: int
+    id_ingresos: int
+    id_descuentos: int
+    numero_horas_extraordinarias: float
+    numero_recargo_nocturno: float
+    dias_de_enfermedad: float
+    numero_horas_complementarias: float
+
+class Ingresos(BaseModel):
+    id_ingresos: Optional[int]
+    valor_horas_extrardinarias: float
+    valor_horas_complementarias: float
+    subsidio_enfermedad: float
+    movilizacion: float
+    comisiones: float
+    bono_plan_celular: float
+    decimo_tercero: float
+    decimo_cuarto: float
+    fondo_reserva: float
+
+class Descuentos(BaseModel):
+    id_descuentos: Optional[int]
+    aporte_iess: float
+    anticipo_sueldo: float
+    impuesto_renta: float
+    prestamo_hipotecario: float
+    prestamo_quirografario: float
+    extension_conyugue: float
+    extension_conyugue_mes_anterior: float
+    sobregiro: float
+    seguro_movil: float
+    copago_seguro: float
+
+
 class Consult(BaseModel):
     user: str
     passw: str
@@ -91,5 +128,7 @@ class Consult(BaseModel):
 
 class Consult2(BaseModel):    
     id: str  
+
+
     
     

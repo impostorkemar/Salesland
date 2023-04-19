@@ -1,0 +1,10 @@
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+343  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+406  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+406  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+406  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+406  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+406  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+422  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+422  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+484  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
