@@ -8,3 +8,1434 @@
 422  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
 422  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
 484  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+390  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+512  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+513  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+513  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+514  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+515  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+516  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+516  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+583  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22356 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312182 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312198 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setTopLeftCorner
+312214 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+312678 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+315553 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@17a71fae]
+318739 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@17a71fae]
+340650 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE DESCUENTOS (
+                id_descuentos INT AUTO_INCREMENT NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                anticipo_sueldo DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                extension_conyugue_mes_anterior DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                PRIMARY KEY (id_descuentos)
+)
+340650 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE INGRESOS (
+                id_ingresos INT AUTO_INCREMENT NOT NULL,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_complementarias DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                decimo_tercero DOUBLE PRECISION,
+                decimo_cuarto DOUBLE PRECISION,
+                fondos_reserva DOUBLE PRECISION,
+                PRIMARY KEY (id_ingresos)
+)
+340650 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+340650 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+340650 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+340650 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+340650 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+340650 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                id_ingresos INT NOT NULL,
+                id_descuentos INT NOT NULL,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                numero_recargo_nocturno DOUBLE PRECISION,
+                dias_de_enfermedad DOUBLE PRECISION,
+                fecha_inicio VARCHAR(10) NOT NULL,
+                fecha_fin VARCHAR(10) NOT NULL,
+                numero_horas_complementarias DOUBLE PRECISION,
+                PRIMARY KEY (id_rol_pagos, id_personal, id_ingresos, id_descuentos)
+)
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT descuentos_rol_pagos_fk
+FOREIGN KEY (id_descuentos)
+REFERENCES DESCUENTOS (id_descuentos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT ingresos_rol_pagos_fk
+FOREIGN KEY (id_ingresos)
+REFERENCES INGRESOS (id_ingresos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+340665 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :24
+343040 [Thread-7] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+343571 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+346695 [Thread-9] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+346726 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Starting DDL Generation at Wed Apr 19 09:13:14 COT 2023
+346726 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Database Target: salesland
+346726 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Playpen Dump: salesland
+346726 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+CREATE TABLE DESCUENTOS (
+                id_descuentos INT AUTO_INCREMENT NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                anticipo_sueldo DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                extension_conyugue_mes_anterior DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                PRIMARY KEY (id_descuentos)
+)
+346851 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE INGRESOS (
+                id_ingresos INT AUTO_INCREMENT NOT NULL,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_complementarias DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                decimo_tercero DOUBLE PRECISION,
+                decimo_cuarto DOUBLE PRECISION,
+                fondos_reserva DOUBLE PRECISION,
+                PRIMARY KEY (id_ingresos)
+)
+346898 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+346992 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+347070 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+347132 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+347179 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+347242 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+347320 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+347508 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+347586 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                id_ingresos INT NOT NULL,
+                id_descuentos INT NOT NULL,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                numero_recargo_nocturno DOUBLE PRECISION,
+                dias_de_enfermedad DOUBLE PRECISION,
+                fecha_inicio VARCHAR(10) NOT NULL,
+                fecha_fin VARCHAR(10) NOT NULL,
+                numero_horas_complementarias DOUBLE PRECISION,
+                PRIMARY KEY (id_rol_pagos, id_personal, id_ingresos, id_descuentos)
+)
+347710 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+347789 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT descuentos_rol_pagos_fk
+FOREIGN KEY (id_descuentos)
+REFERENCES DESCUENTOS (id_descuentos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+348179 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT ingresos_rol_pagos_fk
+FOREIGN KEY (id_ingresos)
+REFERENCES INGRESOS (id_ingresos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+348491 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+349382 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+349929 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+351053 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+351725 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+352194 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+352522 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+352912 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+353365 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+353834 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+354615 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Successfully executed 24 out of 24 statements.
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+360  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+422  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+422  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+422  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+422  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+422  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+422  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+422  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+469  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+19099 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+19849 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+20037 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+22177 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE DESCUENTOS (
+                id_descuentos INT AUTO_INCREMENT NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                anticipo_sueldo DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                extension_conyugue_mes_anterior DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                PRIMARY KEY (id_descuentos)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE INGRESOS (
+                id_ingresos INT AUTO_INCREMENT NOT NULL,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_complementarias DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                decimo_tercero DOUBLE PRECISION,
+                decimo_cuarto DOUBLE PRECISION,
+                fondos_reserva DOUBLE PRECISION,
+                PRIMARY KEY (id_ingresos)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                id_ingresos INT NOT NULL,
+                id_descuentos INT NOT NULL,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                numero_recargo_nocturno DOUBLE PRECISION,
+                dias_de_enfermedad DOUBLE PRECISION,
+                fecha_inicio VARCHAR(10) NOT NULL,
+                fecha_fin VARCHAR(10) NOT NULL,
+                numero_horas_complementarias DOUBLE PRECISION,
+                PRIMARY KEY (id_rol_pagos, id_personal, id_ingresos, id_descuentos)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT descuentos_rol_pagos_fk
+FOREIGN KEY (id_descuentos)
+REFERENCES DESCUENTOS (id_descuentos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT ingresos_rol_pagos_fk
+FOREIGN KEY (id_ingresos)
+REFERENCES INGRESOS (id_ingresos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22474 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+22489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :24
+23708 [Thread-7] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+23817 [Thread-9] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+23817 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Starting DDL Generation at Wed Apr 19 09:17:33 COT 2023
+23817 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Database Target: (Target Database)
+23817 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Playpen Dump: (Target Database)
+23817 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+CREATE TABLE DESCUENTOS (
+                id_descuentos INT AUTO_INCREMENT NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                anticipo_sueldo DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                extension_conyugue_mes_anterior DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                PRIMARY KEY (id_descuentos)
+)
+24067 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE INGRESOS (
+                id_ingresos INT AUTO_INCREMENT NOT NULL,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_complementarias DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                decimo_tercero DOUBLE PRECISION,
+                decimo_cuarto DOUBLE PRECISION,
+                fondos_reserva DOUBLE PRECISION,
+                PRIMARY KEY (id_ingresos)
+)
+24223 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+24333 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+24426 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+24551 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+24629 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+24676 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+24754 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+24879 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+25005 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                id_ingresos INT NOT NULL,
+                id_descuentos INT NOT NULL,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                numero_recargo_nocturno DOUBLE PRECISION,
+                dias_de_enfermedad DOUBLE PRECISION,
+                fecha_inicio VARCHAR(10) NOT NULL,
+                fecha_fin VARCHAR(10) NOT NULL,
+                numero_horas_complementarias DOUBLE PRECISION,
+                PRIMARY KEY (id_rol_pagos, id_personal, id_ingresos, id_descuentos)
+)
+25207 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+25364 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT descuentos_rol_pagos_fk
+FOREIGN KEY (id_descuentos)
+REFERENCES DESCUENTOS (id_descuentos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+25973 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT ingresos_rol_pagos_fk
+FOREIGN KEY (id_ingresos)
+REFERENCES INGRESOS (id_ingresos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+26723 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+27113 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+27597 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+28285 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+28800 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+29222 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+29801 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+30300 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+31175 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+31612 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+31925 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Successfully executed 24 out of 24 statements.
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE DESCUENTOS (
+                id_descuentos INT AUTO_INCREMENT NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                anticipo_sueldo DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                extension_conyugue_mes_anterior DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                PRIMARY KEY (id_descuentos)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE INGRESOS (
+                id_ingresos INT AUTO_INCREMENT NOT NULL,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_complementarias DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                decimo_tercero DOUBLE PRECISION,
+                decimo_cuarto DOUBLE PRECISION,
+                fondos_reserva DOUBLE PRECISION,
+                PRIMARY KEY (id_ingresos)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                id_ingresos INT NOT NULL,
+                id_descuentos INT NOT NULL,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                numero_recargo_nocturno DOUBLE PRECISION,
+                dias_de_enfermedad DOUBLE PRECISION,
+                fecha_inicio VARCHAR(10) NOT NULL,
+                fecha_fin VARCHAR(10) NOT NULL,
+                numero_horas_complementarias DOUBLE PRECISION,
+                PRIMARY KEY (id_rol_pagos, id_personal, id_ingresos, id_descuentos)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT descuentos_rol_pagos_fk
+FOREIGN KEY (id_descuentos)
+REFERENCES DESCUENTOS (id_descuentos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT ingresos_rol_pagos_fk
+FOREIGN KEY (id_ingresos)
+REFERENCES INGRESOS (id_ingresos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+174215 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :24
