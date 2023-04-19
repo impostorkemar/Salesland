@@ -910,8 +910,9 @@ resp!:String[];
 
     uploadFile(file: File, name: any): Promise<any> {
       const formData = new FormData();
-      formData.append('file', file, file.name);
-      return this.clienteHttp.post(this.API+"/uploadFile/"+name as string, formData).toPromise();
+      formData.append('file', file, name);
+
+      return this.clienteHttp.post(this.API+"uploadFile" as string, formData).toPromise();
     }
   
     

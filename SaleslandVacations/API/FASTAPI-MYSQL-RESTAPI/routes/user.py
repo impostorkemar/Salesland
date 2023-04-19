@@ -338,9 +338,9 @@ def get_dataHistoricaViajePersonabyUserAndPass(user: str, passw:str):
     print(sql)
     return conn.execute(sql).fetchall()
 
-@user.post("/uploadFile/{name}")
-async def upload_file(name: str,file: UploadFile = File(...) ):
-    save_path = os.path.join("C:/comprobantes/", name)
+@user.post("/uploadFile/")
+async def upload_file(file: UploadFile = File(...) ):
+    save_path = os.path.join("C:/comprobantes/", file.filename)
     with open(save_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     return {"filename": file.filename, "saved_path": save_path}
