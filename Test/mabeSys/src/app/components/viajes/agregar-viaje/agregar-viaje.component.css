@@ -1,0 +1,87 @@
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+
+.custom-day.focused {
+  background-color: #16261C;
+}
+
+.custom-day.range,
+.custom-day:hover {
+  background-color: rgb(243, 238, 238);
+  color: black;
+}
+.custom-day.faded {
+  background-color: rgb(243, 238, 238);
+}
+
+.custom2-day2 {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+
+.custom2-day2.focused2 {
+  background-color: #16261C;
+}
+
+.custom2-day2.range2,
+.custom2-day2:hover {
+  background-color: rgb(243, 238, 238);
+  color: black;
+}
+.custom2-day2.faded2 {
+  background-color: rgb(243, 238, 238);
+}
+
+.card{
+  background-color: rgb(243, 238, 238);
+  color: white;
+}
+.etiqueta{
+  background-color: #16261C;
+  color: white;
+  text-align: center;
+  align-items: center; 
+  align-self: center;
+}
+.text{
+  color: white;
+  text-align: center;
+  
+  align-self: center;
+}
+.text2{
+  background-color: white;
+  color: #16261C;
+  text-align: center;
+  align-items: center; 
+  align-self: center;
+}
+.calendar{
+  width: 490px;
+  height: 315px;  
+  background-color: #16261C;
+  color: white;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+::ng-deep .ngb-dp-months {
+  background-color: black;
+  color: #045959;
+}
+
+::ng-deep .ngb-dp2-months {
+  background-color: black;
+  color: #045959;
+}
