@@ -72,8 +72,6 @@ def clearTables():
   ejecutarSQL("DELETE FROM candidato;")
   #Dropeo table contrato
   ejecutarSQL("DELETE FROM contrato;")
-  #Dropeo tabla calendario
-  ejecutarSQL("DELETE FROM calendario;")
   #Dropeo tabla rol_pagos
   ejecutarSQL("DELETE FROM rol_pagos;")
 
