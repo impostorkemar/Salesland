@@ -105,7 +105,14 @@
                   <button type="submit" class="btn btn-success" [disabled]="btnIngresar" >AGREGAR</button>
                 </div>
               </td>              
-            </tr>         
+            </tr>   
+            <tr>
+              <td colspan="4">
+                <div class="card-body" role="group" aria-label="Button group name" style="align-self: ceter; text-align: center; align-items: center; align-content: center;"  >
+                  <input type="file" (change)="onFileSelected($event)">
+                </div>
+              </td>
+            </tr>      
         </tbody>
       </table>
     </div>    

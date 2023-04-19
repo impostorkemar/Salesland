@@ -329,6 +329,8 @@ def cambiarRolesAdmins():
   ejecutarSQL(sql1)
   sql2 = "UPDATE `usuario` SET `tipo`='admin' WHERE  `cedula` = '0606156461';"
   ejecutarSQL(sql2)
+  sql3 = "UPDATE `usuario` SET `tipo`='admin' WHERE  `cedula` = '1721858551';"
+  ejecutarSQL(sql3)
    
 def cambiarRolesSupervisores():
   sql2 = "UPDATE `usuario` SET `tipo`='supervisor' WHERE  `cedula` = '1713085593';"

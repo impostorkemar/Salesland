@@ -29,6 +29,7 @@ export class AgregarViajeComponent {
   resp!:String[];  
   user!:String;
   passw!:String;
+  file!:any;
 
   constructor(
     public formulario:FormBuilder,
@@ -58,11 +59,11 @@ export class AgregarViajeComponent {
     this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     this.cedula = "";
-    this.btnIngresar = false;   
+    this.btnIngresar = true;   
     this.fechaActual =  new Date();    
     this.user = localStorage.getItem('USER') as string;
     this.passw = localStorage.getItem('PASS') as string;
-    this.btnIngresar = true;
+   
    
   }
 
@@ -94,10 +95,13 @@ export class AgregarViajeComponent {
   
   enviarDatos(): void{    
     /*console.log("FORMULARIO:",this.formularioDeUsuario.value);*/
+
     if (this.formularioDeViaje){     
        
       let key4: string[]=[];
       let Value4: string[]=[]; 
+
+      this.uploadFile()
      
       //BUSQUEDA ID PERSONAL
       
@@ -277,18 +281,19 @@ export class AgregarViajeComponent {
 	}
 
 	isInside2(date: NgbDate) {
-		return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+		return this.chargeDate && date.after(this.fromDate) && date.before(this.toDate);
 	}
 
-	isRange2(date: NgbDate) {
+  isRange2(date: NgbDate) {
 		return (
-			date.equals(this.fromDate) ||
-			(this.toDate && date.equals(this.toDate)) ||
+			date.equals(this.chargeDate) ||
+			(this.chargeDate && date.equals(this.chargeDate)) ||
 			this.isInside(date) ||
 			this.isHovered(date)
 		);
 	}
 
+	
   countWorkDay(sDay:any,eDay:any){
     const startDate  = new Date(sDay.year, sDay.month - 1, sDay.day);
     const endDate  = new Date(eDay.year, eDay.month - 1, eDay.day);
@@ -386,10 +391,40 @@ export class AgregarViajeComponent {
         cantidad_comprobantes:[''],
         importe:[''],
       });
-
-    });
-        
+    });        
   }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+      reader.onload = () => {
+        const arrayBuffer = reader.result as ArrayBuffer;
+        // Aquí puedes hacer lo que quieras con el archivo ZIP, por ejemplo:
+        // - Descomprimirlo
+        // - Leer sus contenidos
+        // - Enviar el archivo al servidor
+        this.file = file;
+        this.btnIngresar = false;   
+      };
+    }else{
+      this.btnIngresar = true;   
+    }
+  }
+
+  uploadFile(){
+    if (this.file != null){
+      var nombre = this.formularioDeViaje.value.nombre+"_"+ this.formularioDeViaje.value.fecha_reembolso+".rar"
+      this.crudService.uploadFile(this.file,nombre).then(data =>{
+        console.log('Data:', data);
+      }).catch(error => {
+        console.error('Error:', error);
+      });
+    }
+    
+  }
+
 
   
 

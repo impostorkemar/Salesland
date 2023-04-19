@@ -64,6 +64,7 @@ import { AgregarViajeComponent } from './components/viajes/agregar-viaje/agregar
 import { MenuViajesComponent } from './components/viajes/menu-viajes/menu-viajes.component';
 import { MenuRolpagoComponent } from './components/rol-pagos/menu-rolpago/menu-rolpago.component';
 import { AgregarRolpagoComponent } from './components/rol-pagos/agregar-rolpago/agregar-rolpago.component';
+import { ListarviajesReporteGeneralPersonalComponent } from './components/viajes/listarviajes-reporte-general-personal/listarviajes-reporte-general-personal.component';
 
 
 @NgModule({
@@ -116,6 +117,7 @@ import { AgregarRolpagoComponent } from './components/rol-pagos/agregar-rolpago/
     MenuViajesComponent,
     MenuRolpagoComponent,
     AgregarRolpagoComponent,
+    ListarviajesReporteGeneralPersonalComponent,
     
   ],
   imports: [
