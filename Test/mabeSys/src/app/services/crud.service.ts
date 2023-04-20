@@ -908,13 +908,13 @@ resp!:String[];
       return this.clienteHttp.get(this.API+urlAPI);                
     } 
 
-    uploadFile(file: File, nombre: any): Promise<any> {
+    uploadFile(file: File, name: any): Promise<any> {
       const formData = new FormData();
-      //formData.append('file', file, name);
-      formData.append('file', new Blob([file]), nombre);
+      formData.append('file', file, name);
 
       return this.clienteHttp.post(this.API+"uploadFile" as string, formData).toPromise();
-    }  
+    }
+  
     
     ObtenerDatosRolPagos():Observable<any>{
       var urlAPI="dataRolpago/";

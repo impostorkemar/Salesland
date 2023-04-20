@@ -448,11 +448,17 @@ export class AgregarViajeComponent {
       zip.file(file.name, file);
     }
 
-    if (files) {
-      this.file = files;
-      this.btnIngresar = false;
-    }else{
-      this.btnIngresar = true;   
+    let anio = this.fechaActual.getFullYear();
+    let mes = this.fechaActual.getMonth() + 1; // los meses empiezan en 0, por lo que hay que sumar 1
+    let dia = this.fechaActual.getDate();
+    let dateFormated = `${anio}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
+    if (this.file != null){
+      var nombre = this.formularioDeViaje.value.nombre+"_"+dateFormated+".rar"
+      this.crudService.uploadFile(this.file,nombre).then(data =>{
+        console.log('Data:', data);
+      }).catch(error => {
+        console.error('Error:', error);
+      });
     }
 
 
