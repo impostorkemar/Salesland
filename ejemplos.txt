@@ -1,6 +1,0 @@
-SELECT candidato.nombre, candidato.apellido 
-FROM candidato,personal 
-WHERE personal.cedula = candidato.cedula AND
-personal.cedula = (SELECT usuario.cedula 
-                                                               FROM usuario
-                                                               WHERE usuario.usuario = '1724124084' AND usuario.password = '1724124084')

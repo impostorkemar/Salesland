@@ -9,7 +9,6 @@ import { TestuserService } from 'src/app/services/testuser.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import {formatDate} from '@angular/common';
 import { NONE_TYPE } from '@angular/compiler';
-import * as JSZip from 'jszip';
 
 @Component({
   selector: 'app-agregar-viaje',
@@ -427,9 +426,11 @@ export class AgregarViajeComponent {
         console.error('Error:', error);
       });
     }
+    
   }
 
 
+<<<<<<< HEAD
   onFileSelectTypesFiles(event: any) {
     const files: FileList = event.target.files;
     const allowedExtensions = ["rar", "pdf", "jpg", "jpeg", "png", "gif"];
@@ -467,6 +468,8 @@ export class AgregarViajeComponent {
 
 
   }
+=======
+>>>>>>> parent of 89223ee (changes)
   
 
 }
