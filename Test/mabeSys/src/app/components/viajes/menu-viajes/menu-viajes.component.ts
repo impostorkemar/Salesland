@@ -47,6 +47,9 @@ export class MenuViajesComponent {
     let Array2: string[]=[];
     this.mostrarDatos();    
     this.control_vistas.controls['name_usuario'].disable();    
+    this.control_vistas.controls['lastname_usuario'].disable();    
+    this.control_vistas.controls['cedula'].disable();    
+    this.control_vistas.controls['cuenta'].disable();    
     this.opcion = 0;
     this.mostrarDataUser();
   }

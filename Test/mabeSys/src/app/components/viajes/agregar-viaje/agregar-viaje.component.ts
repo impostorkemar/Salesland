@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, FormsModule } from '@angular/forms';
+import {FormGroup, FormBuilder, FormsModule,FormControl, Validators  } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
@@ -31,6 +31,7 @@ export class AgregarViajeComponent {
   user!:String;
   passw!:String;
   file!:any;
+  myForm!:any;
 
   constructor(
     public formulario:FormBuilder,
@@ -42,6 +43,22 @@ export class AgregarViajeComponent {
     private router:Router,
     private route: ActivatedRoute
   ) { 
+    this.formularioDeViaje = this.formulario.group({
+      lugar: ['',Validators.required],
+      fecha_reembolso: ['',Validators.required],
+      nombre: ['',Validators.required],
+      cedula: ['',Validators.required],
+      fecha_viaje_inicio: ['',Validators.required],
+      fecha_viaje_fin: ['',Validators.required],
+      duracion: ['',Validators.required],   
+      punto_partida: ['',Validators.required],
+      punto_destino: ['',Validators.required],
+      fecha_gasto: ['',Validators.required],
+      moneda: ['',Validators.required],
+      cantidad_comprobantes: ['',Validators.required],
+      importe: ['',Validators.required],
+
+    });
     this.formularioDeViaje = this.formulario.group({      
       lugar:'' ,
       fecha_reembolso:[''],disabled: true,
@@ -57,6 +74,7 @@ export class AgregarViajeComponent {
       cantidad_comprobantes:[''],
       importe:[''],
     });
+    
     this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     this.cedula = "";
@@ -71,8 +89,10 @@ export class AgregarViajeComponent {
   ngOnInit(): void {
        
     
-    this.cargarDatosInfoPersonal();
+    this.cargarDatosInfoPersonal();    
+    
     this.formularioDeViaje.controls['lugar'].disable();
+    //this.formularioDeViaje.get('lugar').disable();
     this.formularioDeViaje.controls['fecha_reembolso'].disable();
     this.formularioDeViaje.controls['nombre'].disable();
     this.formularioDeViaje.controls['cedula'].disable();
@@ -392,7 +412,8 @@ export class AgregarViajeComponent {
         cantidad_comprobantes:[''],
         importe:[''],
       });
-    });        
+    });    
+       
   }
 
   onFileSelected(event: any) {
@@ -421,12 +442,17 @@ export class AgregarViajeComponent {
     let dateFormated = `${anio}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
     if (this.file != null){
       var nombre = this.formularioDeViaje.value.nombre+"_"+dateFormated+".zip"
-      this.crudService.uploadFile(this.file,nombre).then(data =>{
-        console.log('Data:', data);
-      }).catch(error => {
-        console.error('Error:', error);
-      });
+
+      if(window.confirm("¿Esta seguro de cargar los archivos?")){
+        this.crudService.uploadFile(this.file,nombre).then(data =>{
+          console.log('Data:', data);
+        }).catch(error => {
+          console.error('Error:', error);
+        });
+      }
+      
     }
+
   }
 
 
@@ -435,25 +461,65 @@ export class AgregarViajeComponent {
     const allowedExtensions = ["rar","zip", "pdf", "jpg", "jpeg", "png", "gif"];
 
     const zip = new JSZip();
+    let isValid = true;
+    let archivos = ""
+    let i
 
-    for (let i = 0; i < files.length; i++) {
+    for (i = 0; i < files.length; i++) {
       const file: File = files[i];
       const extension = file.name.split(".").pop()?.toLowerCase()??'';
+      
 
       if (!allowedExtensions.includes(extension)) {
-        console.log(`File ${file.name} has an invalid extension.`);
-        continue;
-      }
-      zip.file(file.name, file);
+        archivos = archivos + `\n\t${file.name}` ;
+        isValid = false;
+       
+      }else{
+        zip.file(file.name, file);
+      }     
+      
     }
 
-    if (zip) {
+    if(!isValid) {
+      window.alert(`Tipo de archivos: \n\t${archivos} \ntienen una extensión inválida`);    
+      this.formularioDeViaje.setValue({
+        lugar:this.formularioDeViaje.value.lugar,
+        fecha_reembolso:this.formularioDeViaje.value.fecha_reembolso,disabled: true,
+        nombre:this.formularioDeViaje.value.nombre,
+        cedula:this.formularioDeViaje.value.cedula,
+        fecha_viaje_inicio:this.formularioDeViaje.value.fecha_viaje_inicio,
+        fecha_viaje_fin:this.formularioDeViaje.value.fecha_viaje_fin,
+        duracion:this.formularioDeViaje.value.duracion,
+        punto_partida:this.formularioDeViaje.value.punto_partida,
+        punto_destino:this.formularioDeViaje.value.punto_destino,
+        fecha_gasto:this.formularioDeViaje.value.fecha_gasto,
+        moneda:this.formularioDeViaje.value.moneda,
+        cantidad_comprobantes:0,
+        importe:this.formularioDeViaje.value.importe,            
+      });
+      this.btnIngresar = true;
+      event.target.value = ''; // reset the file input
+    }else{
+
+      this.formularioDeViaje.setValue({
+        lugar:this.formularioDeViaje.value.lugar,
+        fecha_reembolso:this.formularioDeViaje.value.fecha_reembolso,disabled: true,
+        nombre:this.formularioDeViaje.value.nombre,
+        cedula:this.formularioDeViaje.value.cedula,
+        fecha_viaje_inicio:this.formularioDeViaje.value.fecha_viaje_inicio,
+        fecha_viaje_fin:this.formularioDeViaje.value.fecha_viaje_fin,
+        duracion:this.formularioDeViaje.value.duracion,
+        punto_partida:this.formularioDeViaje.value.punto_partida,
+        punto_destino:this.formularioDeViaje.value.punto_destino,
+        fecha_gasto:this.formularioDeViaje.value.fecha_gasto,
+        moneda:this.formularioDeViaje.value.moneda,
+        cantidad_comprobantes:i as unknown as string,
+        importe:this.formularioDeViaje.value.importe,            
+      });
       this.file = zip;
       this.btnIngresar = false;
-    }else{
-      this.btnIngresar = true;   
+      
     }
-
 
     /*zip.generateAsync({ type: "blob" }).then((content) => {
       const url = window.URL.createObjectURL(content);
