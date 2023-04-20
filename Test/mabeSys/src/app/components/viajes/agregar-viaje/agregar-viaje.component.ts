@@ -9,6 +9,7 @@ import { TestuserService } from 'src/app/services/testuser.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import {formatDate} from '@angular/common';
 import { NONE_TYPE } from '@angular/compiler';
+import * as JSZip from 'jszip';
 
 @Component({
   selector: 'app-agregar-viaje',
@@ -426,10 +427,52 @@ export class AgregarViajeComponent {
         console.error('Error:', error);
       });
     }
-    
   }
 
 
+  onFileSelectTypesFiles(event: any) {
+    const files: FileList = event.target.files;
+    const allowedExtensions = ["rar", "pdf", "jpg", "jpeg", "png", "gif"];
+
+    const zip = new JSZip();
+
+    for (let i = 0; i < files.length; i++) {
+      const file: File = files[i];
+      const extension = file.name.split(".").pop()?.toLowerCase()??'';
+
+      if (!allowedExtensions.includes(extension)) {
+        console.log(`File ${file.name} has an invalid extension.`);
+        continue;
+      }
+
+      zip.file(file.name, file);
+    }
+
+    let anio = this.fechaActual.getFullYear();
+    let mes = this.fechaActual.getMonth() + 1; // los meses empiezan en 0, por lo que hay que sumar 1
+    let dia = this.fechaActual.getDate();
+    let dateFormated = `${anio}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
+    if (this.file != null){
+      var nombre = this.formularioDeViaje.value.nombre+"_"+dateFormated+".rar"
+      this.crudService.uploadFile(this.file,nombre).then(data =>{
+        console.log('Data:', data);
+      }).catch(error => {
+        console.error('Error:', error);
+      });
+    }
+
+
+    /*zip.generateAsync({ type: "blob" }).then((content) => {
+      const url = window.URL.createObjectURL(content);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'files.zip';
+      link.click();
+      console.log("comprimi")
+    });*/
+
+
+  }
   
 
 }
