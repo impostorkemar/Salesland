@@ -432,7 +432,7 @@ export class AgregarViajeComponent {
 
   onFileSelectTypesFiles(event: any) {
     const files: FileList = event.target.files;
-    const allowedExtensions = ["rar", "pdf", "jpg", "jpeg", "png", "gif"];
+    const allowedExtensions = ["rar","zip", "pdf", "jpg", "jpeg", "png", "gif"];
 
     const zip = new JSZip();
 
@@ -444,12 +444,11 @@ export class AgregarViajeComponent {
         console.log(`File ${file.name} has an invalid extension.`);
         continue;
       }
-
       zip.file(file.name, file);
     }
 
-    if (files) {
-      this.file = files;
+    if (zip) {
+      this.file = zip;
       this.btnIngresar = false;
     }else{
       this.btnIngresar = true;   

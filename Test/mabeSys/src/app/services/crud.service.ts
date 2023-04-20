@@ -16,6 +16,7 @@ import { DatePipe, DecimalPipe } from '@angular/common';
 import {formatDate} from '@angular/common';
 import { NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatSort, Sort} from '@angular/material/sort';
+import * as JSZip from 'jszip';
 
 @Injectable({
   providedIn: 'root'
@@ -908,11 +909,21 @@ resp!:String[];
       return this.clienteHttp.get(this.API+urlAPI);                
     } 
 
-    uploadFile(file: File, nombre: any): Promise<any> {
-      const formData = new FormData();
-      //formData.append('file', file, name);
-      formData.append('file', new Blob([file]), nombre);
-      return this.clienteHttp.post(this.API+"uploadFile" as string, formData).toPromise();
+    uploadFile(zip: JSZip, nombre: any): Promise<any> {
+      return zip.generateAsync({ type: 'blob' }).then((blob: Blob) => {
+
+        // Create a new FormData object
+        const formData = new FormData();
+
+        // Append the zip file to the FormData object
+        //formData.append('zipFile', blob, nombre);
+        formData.append('file', blob, nombre);
+
+        // Send the FormData to the server using HttpClient or XMLHttpRequest
+        // ...
+        return this.clienteHttp.post(this.API + "uploadFile" as string, formData).toPromise();
+      });   
+      
     }
   
     
