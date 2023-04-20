@@ -646,10 +646,4 @@ def get_dataReporteEstadistico(user: str, passw:str):
     print(sql)
     return conn.execute(sql).first()
 
-#Consultas Rol-Pagos
-@user.get("/dataRolpago/",tags=['Rol_pago'])
-def get_dataRolpago(): 
-    conn = engine.connect()
-    sql="SELECT c.cedula, c.nombre, c.apellido, con.fecha_inicio_contrato, car.nombre_cargo FROM personal p JOIN candidato c ON p.cedula = c.cedula JOIN contrato con ON p.id_contrato = con.id_contrato JOIN cargo car ON p.id_cargo = car.id_cargo JOIN rol_pagos r ON r.id_personal = p.id_personal;"
-    return conn.execute(sql).first()
-
+#Consultas Rol

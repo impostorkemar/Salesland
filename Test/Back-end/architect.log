@@ -1439,36 +1439,3 @@ REFERENCES PERSONAL (id_personal)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 174215 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :24
-0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
-468  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
-547  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
-547  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
-547  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-547  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-547  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-547  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-547  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-593  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
-22567 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
-0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
-359  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
-437  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
-437  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
-437  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-437  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-437  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-437  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-437  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-500  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
-22245 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
-0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
-406  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
-469  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
-469  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
-469  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-469  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-469  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-469  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-469  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
-531  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
-22667 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
