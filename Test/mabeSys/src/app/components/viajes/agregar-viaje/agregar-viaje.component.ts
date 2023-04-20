@@ -433,6 +433,7 @@ export class AgregarViajeComponent {
       });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     
   }
 
@@ -442,6 +443,11 @@ export class AgregarViajeComponent {
   }
 
 
+=======
+  }
+
+
+>>>>>>> parent of 97df5d0 (changes)
   onFileSelectTypesFiles(event: any) {
     const files: FileList = event.target.files;
     const allowedExtensions = ["rar", "pdf", "jpg", "jpeg", "png", "gif"];
@@ -485,7 +491,10 @@ export class AgregarViajeComponent {
 
 
   }
+<<<<<<< HEAD
 >>>>>>> parent of dd4dae3 (Revert "Merge branch 'main' of https://github.com/impostorkemar/Salesland")
+=======
+>>>>>>> parent of 97df5d0 (changes)
   
 
 }
