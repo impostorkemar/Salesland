@@ -9,7 +9,6 @@ import { TestuserService } from 'src/app/services/testuser.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import {formatDate} from '@angular/common';
 import { NONE_TYPE } from '@angular/compiler';
-import * as JSZip from 'jszip';
 
 @Component({
   selector: 'app-agregar-viaje',
@@ -30,7 +29,6 @@ export class AgregarViajeComponent {
   resp!:String[];  
   user!:String;
   passw!:String;
-  file!:any;
 
   constructor(
     public formulario:FormBuilder,
@@ -60,11 +58,11 @@ export class AgregarViajeComponent {
     this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     this.cedula = "";
-    this.btnIngresar = true;   
+    this.btnIngresar = false;   
     this.fechaActual =  new Date();    
     this.user = localStorage.getItem('USER') as string;
     this.passw = localStorage.getItem('PASS') as string;
-   
+    this.btnIngresar = true;
    
   }
 
@@ -96,13 +94,10 @@ export class AgregarViajeComponent {
   
   enviarDatos(): void{    
     /*console.log("FORMULARIO:",this.formularioDeUsuario.value);*/
-
     if (this.formularioDeViaje){     
        
       let key4: string[]=[];
       let Value4: string[]=[]; 
-
-      this.uploadFile()
      
       //BUSQUEDA ID PERSONAL
       
@@ -282,19 +277,18 @@ export class AgregarViajeComponent {
 	}
 
 	isInside2(date: NgbDate) {
-		return this.chargeDate && date.after(this.fromDate) && date.before(this.toDate);
+		return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
 	}
 
-  isRange2(date: NgbDate) {
+	isRange2(date: NgbDate) {
 		return (
-			date.equals(this.chargeDate) ||
-			(this.chargeDate && date.equals(this.chargeDate)) ||
+			date.equals(this.fromDate) ||
+			(this.toDate && date.equals(this.toDate)) ||
 			this.isInside(date) ||
 			this.isHovered(date)
 		);
 	}
 
-	
   countWorkDay(sDay:any,eDay:any){
     const startDate  = new Date(sDay.year, sDay.month - 1, sDay.day);
     const endDate  = new Date(eDay.year, eDay.month - 1, eDay.day);
@@ -392,87 +386,11 @@ export class AgregarViajeComponent {
         cantidad_comprobantes:[''],
         importe:[''],
       });
-    });        
+
+    });
+        
   }
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsArrayBuffer(file);
-      reader.onload = () => {
-        const arrayBuffer = reader.result as ArrayBuffer;
-        // Aquí puedes hacer lo que quieras con el archivo ZIP, por ejemplo:
-        // - Descomprimirlo
-        // - Leer sus contenidos
-        // - Enviar el archivo al servidor
-        this.file = file;
-        this.btnIngresar = false;   
-      };
-    }else{
-      this.btnIngresar = true;   
-    }
-  }
-
-  uploadFile(){
-    let anio = this.fechaActual.getFullYear();
-    let mes = this.fechaActual.getMonth() + 1; // los meses empiezan en 0, por lo que hay que sumar 1
-    let dia = this.fechaActual.getDate();
-    let dateFormated = `${anio}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
-    if (this.file != null){
-      var nombre = this.formularioDeViaje.value.nombre+"_"+dateFormated+".rar"
-      this.crudService.uploadFile(this.file,nombre).then(data =>{
-        console.log('Data:', data);
-      }).catch(error => {
-        console.error('Error:', error);
-      });
-    }
-  }
-
-
-  onFileSelectTypesFiles(event: any) {
-    const files: FileList = event.target.files;
-    const allowedExtensions = ["rar", "pdf", "jpg", "jpeg", "png", "gif"];
-
-    const zip = new JSZip();
-
-    for (let i = 0; i < files.length; i++) {
-      const file: File = files[i];
-      const extension = file.name.split(".").pop()?.toLowerCase()??'';
-
-      if (!allowedExtensions.includes(extension)) {
-        console.log(`File ${file.name} has an invalid extension.`);
-        continue;
-      }
-
-      zip.file(file.name, file);
-    }
-
-    let anio = this.fechaActual.getFullYear();
-    let mes = this.fechaActual.getMonth() + 1; // los meses empiezan en 0, por lo que hay que sumar 1
-    let dia = this.fechaActual.getDate();
-    let dateFormated = `${anio}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
-    if (this.file != null){
-      var nombre = this.formularioDeViaje.value.nombre+"_"+dateFormated+".rar"
-      this.crudService.uploadFile(this.file,nombre).then(data =>{
-        console.log('Data:', data);
-      }).catch(error => {
-        console.error('Error:', error);
-      });
-    }
-
-
-    /*zip.generateAsync({ type: "blob" }).then((content) => {
-      const url = window.URL.createObjectURL(content);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'files.zip';
-      link.click();
-      console.log("comprimi")
-    });*/
-
-
-  }
   
 
 }

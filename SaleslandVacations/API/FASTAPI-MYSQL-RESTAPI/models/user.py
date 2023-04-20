@@ -97,20 +97,4 @@ vacaciones = Table("vacaciones", meta,
     Column("observaciones", String(255)),
 )
 
-viajes = Table("viaje", meta, 
-    Column("id_viaje", Integer, primary_key=True),
-    Column("id_personal", Integer),
-    Column("lugar", String(255)),
-    Column("fecha_reembolso", String(255)),    
-    Column("fecha_viaje_inicio", String(255)),
-    Column("fecha_viaje_fin", String(255)),
-    Column("duracion", Numeric),
-    Column("punto_partida", String(255)),
-    Column("punto_destino", String(255)),
-    Column("fecha_gasto", String(255)),
-    Column("moneda", String(255)),
-    Column("cantidad_comprobantes", Numeric),
-    Column("importe", Numeric),    
-)
-
 meta.create_all(engine)

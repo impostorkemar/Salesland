@@ -896,25 +896,6 @@ resp!:String[];
       var urlAPI="dataPersonabyUserAndPass/"+user as string+"_"+passw as string;      
       return this.clienteHttp.get(this.API+urlAPI);
     }
-
-    ObtenerDataHistoricaViajesPersonal(user:any, passw:any):Observable<any>{
-      var urlAPI="dataHistoricaViajePersonabyUserAndPass/"+user as string+"_"+passw as string;      
-      return this.clienteHttp.get(this.API+urlAPI);
-    }
-    
-    ObtenerViajesPersonal(user:any,passw:any):Observable<any>{
-      //console.log("user:",user,"pass:", pass)
-      var urlAPI="dataHistoricaViajePersonabyUserAndPass/"+user as string+"_"+passw as string;       
-      return this.clienteHttp.get(this.API+urlAPI);                
-    } 
-
-    uploadFile(file: File, name: any): Promise<any> {
-      const formData = new FormData();
-      formData.append('file', file, name);
-
-      return this.clienteHttp.post(this.API+"uploadFile" as string, formData).toPromise();
-    }
-  
     
     ObtenerDatosRolPagos():Observable<any>{
       var urlAPI="dataRolpago/";

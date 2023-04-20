@@ -129,22 +129,6 @@ class Consult(BaseModel):
 class Consult2(BaseModel):    
     id: str  
 
-class Viaje(BaseModel):
-    id_viaje: Optional[int]
-    id_personal: int
-    lugar: str    
-    fecha_reembolso: str
-    fecha_viaje_inicio: str
-    fecha_viaje_fin: str
-    duracion: int
-    punto_partida: str
-    punto_destino: str
-    fecha_gasto: str
-    moneda: str
-    cantidad_comprobantes: int
-    importe: float
-
-
 
     
     

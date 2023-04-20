@@ -57,22 +57,16 @@ export class MenuBotonesComponent {
 
   ValidarCentroCosto(){
     var user = localStorage.getItem('USER') as string;
-    var passw = localStorage.getItem('PASS') as string;  
+    var passw = localStorage.getItem('PASS') as string    
     this.crudService.ObtenerCentroCostoByUserAndPass(user,passw).subscribe(respuesta=>{
       console.log("cuenta:\n",respuesta['cuenta'])
-      if (localStorage.getItem('ROLE') as string == 'ROLE_ADMIN' ){
+      if(respuesta['cuenta'] == 'Estructura' || respuesta['cuenta'] == 'MOVISTAR' || respuesta['cuenta'] == 'Administracion' ){
         this.centroCostoFlag=true;
-        this.mabeOptionsFlag=true;
+        this.mabeOptionsFlag=false;
       }else{
-        if(respuesta['cuenta'] == 'Estructura' || respuesta['cuenta'] == 'MOVISTAR' || respuesta['cuenta'] == 'Administracion' ){
-          this.centroCostoFlag=true;
-          this.mabeOptionsFlag=false;
-        }else{
-          this.centroCostoFlag=false;
-          this.mabeOptionsFlag=true;
-        }
+        this.centroCostoFlag=false;
+        this.mabeOptionsFlag=true;
       }
-     
 
     })
 
