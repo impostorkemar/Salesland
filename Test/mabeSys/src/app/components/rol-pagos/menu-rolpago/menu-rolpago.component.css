@@ -21,9 +21,24 @@ body {
     padding-right: 50px;
 }
 
+.h-c {
+    align-self: center;
+    padding-bottom: 15px;
+}
 .container-rol {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: space-between;
+}
+
+.container-data {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 50px;
+}
+
+.separator {
+    border: solid 3px;
 }

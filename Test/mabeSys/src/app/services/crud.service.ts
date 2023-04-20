@@ -897,9 +897,9 @@ resp!:String[];
       return this.clienteHttp.get(this.API+urlAPI);
     }
     
-
-    
-  
-
+    ObtenerDatosRolPagos():Observable<any>{
+      var urlAPI="dataRolpago/";
+      return this.clienteHttp.get(this.API +urlAPI);
+    }
 
 }
