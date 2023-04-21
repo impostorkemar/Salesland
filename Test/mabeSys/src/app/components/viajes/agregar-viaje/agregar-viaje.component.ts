@@ -551,9 +551,9 @@ export class AgregarViajeComponent implements OnInit {
           viaje1.punto_partida = 'test';
           viaje1.punto_destino = 'test';
           viaje1.fecha_gasto = '0000-00-00';
-          viaje1.moneda = 'dolar';
+          viaje1.moneda = this.formularioDeViaje.get('moneda')?.value;
           viaje1.cantidad_comprobantes = this.formularioDeViaje.get('cantidad_comprobantes')?.value;
-          viaje1.importe = '100';         
+          viaje1.importe = this.formularioDeViaje.get('importe')?.value;         
           
         if(window.confirm("Desea agregar este viaje a reembolso:\n\tLugar:"
         +viaje1.lugar+"\n\tFecha Reembolso:"+viaje1.fecha_reembolso+"\n\tFecha_viaje_inicio:"+viaje1.fecha_viaje_inicio
