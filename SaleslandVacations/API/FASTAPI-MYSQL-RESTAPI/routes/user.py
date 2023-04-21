@@ -360,31 +360,30 @@ def get_comprobante():
     return conn.execute("SELECT * FROM comprobante;").fetchall()
 
 @user.post("/comprobante/", tags=["comprobante"])
-def create_comprobante(viaje: Viaje):
+def create_comprobante(comprobante: Comprobante):
     conn = engine.connect()
     #password = f.encrypt(usuario.password.encode("utf-8"))
-    sql = "INSERT INTO `comprobante`(`id_comprobante`, `id_viaje`, `ruta_zip`) VALUES"
-    datos = (viaje.id_personal,viaje.lugar, viaje.fecha_reembolso, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin,viaje.duracion,
-             viaje.punto_partida,viaje.punto_destino,viaje.fecha_gasto,viaje.moneda,viaje.cantidad_comprobantes,viaje.importe) 
+    sql = "INSERT INTO `comprobante`(`id_viaje`, `ruta_zip`) VALUES"
+    datos = (comprobante.id_viaje, comprobante.ruta_zip) 
     sql = sql + str(datos)
     result = conn.execute(sql)
-    return conn.execute("SELECT * FROM `viaje` WHERE  id_viaje = "+str(result.lastrowid)).first()
+    return conn.execute("SELECT * FROM `comprobante` WHERE  id_comprobante = "+str(result.lastrowid)).first()
 
 @user.get("/comprobante/{id}", tags=["comprobante"])
 def get_comprobante(id: str):    
     conn = engine.connect()
-    return conn.execute("SELECT * FROM `viaje` WHERE  id_viaje = "+str(id)).first()
+    return conn.execute("SELECT * FROM `comprobante` WHERE  id_comprobante = "+str(id)).first()
 
 @user.delete("/comprobante/{id}", status_code=status.HTTP_204_NO_CONTENT, tags=["comprobante"])
 def delete_comprobante(id: str):    
     conn = engine.connect()
-    conn.execute("DELETE FROM `viaje` WHERE  id_viaje = "+str(id))
+    conn.execute("DELETE FROM `comprobante` WHERE  id_comprobante = "+str(id))
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
-@user.put("/comprobante/{id}",response_model=Viaje, tags=["comprobante"])
-def update_comprobante(id: str, viaje: Viaje):   
+@user.put("/comprobante/{id}",response_model=Comprobante, tags=["comprobante"])
+def update_comprobante(id: str, comprobante: Comprobante):   
     conn = engine.connect()
-    sql="UPDATE `viaje` SET`id_personal`='"+str(viaje.id_personal)+"',`lugar`='"+str(viaje.lugar)+"',`fecha_reembolso`='"+str(viaje.fecha_reembolso)+"',`fecha_viaje_inicio`='"+str(viaje.fecha_viaje_inicio)+"',`fecha_viaje_fin`='"+str(viaje.fecha_viaje_fin)+"',`duracion`='"+str(viaje.duracion)+"',`punto_partida`='"+str(viaje.punto_partida)+"',`punto_destino`='"+str(viaje.punto_destino)+"',`fecha_gasto`='"+str(viaje.fecha_gasto)+"',`moneda`='"+str(viaje.moneda)+"',`cantidad_comprobantes`='"+str(viaje.cantidad_comprobantes)+"',`importe`='"+str(viaje.importe)+"' WHERE `id_viaje` = '"+str(id)+"';" 
+    sql="UPDATE `comprobante` SET `id_viaje`='"+str(comprobante.id_viaje)+"',`ruta_zip`='"+str(comprobante.ruta_zip)+"' WHERE `id_comprobante` = "+str(id)+";" 
     conn.execute(sql)
     return get_comprobante(id)
 
