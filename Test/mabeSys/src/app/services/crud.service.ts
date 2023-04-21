@@ -18,6 +18,7 @@ import { NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-boot
 import {MatSort, Sort} from '@angular/material/sort';
 import * as JSZip from 'jszip';
 import { Viaje } from '../components/classModels/Viaje';
+import { Comprobante } from '../components/classModels/Comprobante';
 
 @Injectable({
   providedIn: 'root'
@@ -932,10 +933,17 @@ resp!:String[];
     }
     
     AgregarViaje(viaje : Viaje):Observable<any>{   
-      console.log("viaje",viaje);
+      //console.log("viaje",viaje);
       var urlAPI="viaje/";
       //console.log("URL=",this.API +urlAPI);
       return this.postData(viaje,urlAPI)
+    }
+
+    AgregarComprobante(comprobante : Comprobante):Observable<any>{   
+      console.log("comprobante:",comprobante);
+      var urlAPI="comprobante/";
+      //console.log("URL=",this.API +urlAPI);
+      return this.postData(comprobante,urlAPI)
     }
 
 

@@ -12,6 +12,7 @@ import { NONE_TYPE } from '@angular/compiler';
 import * as JSZip from 'jszip';
 import { Viaje } from '../../classModels/Viaje';
 import { getCurrencySymbol } from '@angular/common';
+import { Comprobante } from '../../classModels/Comprobante';
 
 @Component({
   selector: 'app-agregar-viaje',
@@ -81,13 +82,15 @@ export class AgregarViajeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.formularioDeViaje.controls['fecha_reembolso'].disable();    
     this.formularioDeViaje.controls['nombre'].disable();    
     this.formularioDeViaje.controls['cedula'].disable();    
     this.formularioDeViaje.controls['dias_viaje'].disable();   
     this.formularioDeViaje.controls['cantidad_comprobantes'].disable();  
-    this.cargarDatosInfoPersonal();  
     this.crearFechaActual();
+    this.cargarDatosInfoPersonal();  
+    
     
   }
 
@@ -109,9 +112,9 @@ export class AgregarViajeComponent implements OnInit {
        
       let key4: string[]=[];
       let Value4: string[]=[]; 
-
-      this.uploadFile();
       this.agregarViaje();
+      
+     
       //BUSQUEDA ID PERSONAL
       
       if ( this.fromDate != null && this.toDate != null){
@@ -408,7 +411,8 @@ export class AgregarViajeComponent implements OnInit {
         cantidad_comprobantes:[''],
         importe:[''],
       });
-    });    
+    });      
+    
        
   }
 
@@ -433,15 +437,13 @@ export class AgregarViajeComponent implements OnInit {
 
   uploadFile(){
    
-    if (this.file != null){
-      this.nombreFile = this.formularioDeViaje.value.nombre+"_"+this.fechaActualText+".zip"
-      if(window.confirm("¿Esta seguro de cargar los archivos?")){
-        this.crudService.uploadFile(this.file,this.nombreFile).then(data =>{
-          console.log('Data:', data);
-        }).catch(error => {
-          console.error('Error:', error);
-        });
-      }
+    if (this.file != null){           
+      this.crudService.uploadFile(this.file,this.nombreFile).then(data =>{
+        console.log('Data:', data);
+      }).catch(error => {
+        console.error('Error:', error);
+      });
+      
       
     }
 
@@ -531,7 +533,8 @@ export class AgregarViajeComponent implements OnInit {
   
 
   agregarViaje(){
-
+    
+    this.nombreFile = this.formularioDeViaje.get('nombre')?.value as string+"_"+this.fechaActualText+".zip"
     var user = localStorage.getItem('USER') as string;
     var passw = localStorage.getItem('PASS') as string
     this.crudService.ObtenerIDPersonal(user,passw).subscribe(respuesta=>{
@@ -550,12 +553,33 @@ export class AgregarViajeComponent implements OnInit {
           viaje1.fecha_gasto = '0000-00-00';
           viaje1.moneda = 'dolar';
           viaje1.cantidad_comprobantes = this.formularioDeViaje.get('cantidad_comprobantes')?.value;
-          viaje1.importe = '100';          
-        
-        this.crudService.AgregarViaje(viaje1).subscribe(respuesta2 =>{
-          console.log("viaje1:\n",respuesta2)
+          viaje1.importe = '100';         
           
-        });
+        if(window.confirm("Desea agregar este viaje a reembolso:\n\tLugar:"
+        +viaje1.lugar+"\n\tFecha Reembolso:"+viaje1.fecha_reembolso+"\n\tFecha_viaje_inicio:"+viaje1.fecha_viaje_inicio
+        +"\n\tFecha_viaje_fin:"+viaje1.fecha_viaje_fin+"\n\tDuracion:"+viaje1.duracion+"\n\tPunto_partida:"+viaje1.punto_partida
+        +"\n\tPunto_destino:"+viaje1.punto_destino+"\n\tFecha_gasto:"+viaje1.fecha_gasto+"\n\tMoneda:"+viaje1.moneda
+        +"\n\tCantidad_comprobantes:"+viaje1.cantidad_comprobantes+"\n\tImporte:"+viaje1.importe)){
+
+          this.crudService.AgregarViaje(viaje1).subscribe(respuesta2 =>{
+            console.log("viaje1:\n",respuesta2)
+  
+            if ( respuesta2){
+  
+              const comprobante1 = new Comprobante();
+              comprobante1.id_viaje = respuesta2['id_viaje'];
+              comprobante1.ruta_zip = this.nombreFile;
+  
+              this.crudService.AgregarComprobante(comprobante1).subscribe(respuesta3 =>{
+                console.log("comprobante1:\n",respuesta3)
+                this.uploadFile();
+              });
+            }
+            
+          });
+        }
+        
+        
       }      
     });
   
