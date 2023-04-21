@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response
 from config.db import conn, engine
-from models.user import users, usuarios, candidatos, personales, cargos, contratos, centro_costos, vacaciones, supervisores, viajes
-from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato, Personal, Experiencia_laboral, Vacacion, Supervisor, Rol_pagos, Ingresos, Descuentos, Viaje
+from models.user import users, usuarios, candidatos, personales, cargos, contratos, centro_costos, vacaciones, supervisores, viajes, comprobantes
+from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato, Personal, Experiencia_laboral, Vacacion, Supervisor, Rol_pagos, Ingresos, Descuentos, Viaje, Comprobante
 from cryptography.fernet import Fernet
 from starlette import status
 from sqlalchemy.sql import select
@@ -352,6 +352,41 @@ async def upload_file(file: UploadFile = File(...) ):
     with open(save_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     return {"filename": file.filename, "saved_path": save_path}
+
+#CONSULTA COMPROBANTE
+@user.get("/comprobante/", tags=["comprobante"])
+def get_comprobante():
+    conn = engine.connect()
+    return conn.execute("SELECT * FROM comprobante;").fetchall()
+
+@user.post("/comprobante/", tags=["comprobante"])
+def create_comprobante(viaje: Viaje):
+    conn = engine.connect()
+    #password = f.encrypt(usuario.password.encode("utf-8"))
+    sql = "INSERT INTO `comprobante`(`id_comprobante`, `id_viaje`, `ruta_zip`) VALUES"
+    datos = (viaje.id_personal,viaje.lugar, viaje.fecha_reembolso, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin,viaje.duracion,
+             viaje.punto_partida,viaje.punto_destino,viaje.fecha_gasto,viaje.moneda,viaje.cantidad_comprobantes,viaje.importe) 
+    sql = sql + str(datos)
+    result = conn.execute(sql)
+    return conn.execute("SELECT * FROM `viaje` WHERE  id_viaje = "+str(result.lastrowid)).first()
+
+@user.get("/comprobante/{id}", tags=["comprobante"])
+def get_comprobante(id: str):    
+    conn = engine.connect()
+    return conn.execute("SELECT * FROM `viaje` WHERE  id_viaje = "+str(id)).first()
+
+@user.delete("/comprobante/{id}", status_code=status.HTTP_204_NO_CONTENT, tags=["comprobante"])
+def delete_comprobante(id: str):    
+    conn = engine.connect()
+    conn.execute("DELETE FROM `viaje` WHERE  id_viaje = "+str(id))
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+@user.put("/comprobante/{id}",response_model=Viaje, tags=["comprobante"])
+def update_comprobante(id: str, viaje: Viaje):   
+    conn = engine.connect()
+    sql="UPDATE `viaje` SET`id_personal`='"+str(viaje.id_personal)+"',`lugar`='"+str(viaje.lugar)+"',`fecha_reembolso`='"+str(viaje.fecha_reembolso)+"',`fecha_viaje_inicio`='"+str(viaje.fecha_viaje_inicio)+"',`fecha_viaje_fin`='"+str(viaje.fecha_viaje_fin)+"',`duracion`='"+str(viaje.duracion)+"',`punto_partida`='"+str(viaje.punto_partida)+"',`punto_destino`='"+str(viaje.punto_destino)+"',`fecha_gasto`='"+str(viaje.fecha_gasto)+"',`moneda`='"+str(viaje.moneda)+"',`cantidad_comprobantes`='"+str(viaje.cantidad_comprobantes)+"',`importe`='"+str(viaje.importe)+"' WHERE `id_viaje` = '"+str(id)+"';" 
+    conn.execute(sql)
+    return get_comprobante(id)
 
 #Consultas sistema Salesland
 

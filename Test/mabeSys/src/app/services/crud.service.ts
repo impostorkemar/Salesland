@@ -17,6 +17,7 @@ import {formatDate} from '@angular/common';
 import { NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatSort, Sort} from '@angular/material/sort';
 import * as JSZip from 'jszip';
+import { Viaje } from '../components/classModels/Viaje';
 
 @Injectable({
   providedIn: 'root'
@@ -922,14 +923,20 @@ resp!:String[];
         // Send the FormData to the server using HttpClient or XMLHttpRequest
         // ...
         return this.clienteHttp.post(this.API + "uploadFile" as string, formData).toPromise();
-      });   
-      
-    }
-  
+      });         
+    }  
     
     ObtenerDatosRolPagos():Observable<any>{
       var urlAPI="dataRolpago/";
       return this.clienteHttp.get(this.API +urlAPI);
     }
+    
+    AgregarViaje(viaje : Viaje):Observable<any>{   
+      console.log("viaje",viaje);
+      var urlAPI="viaje/";
+      //console.log("URL=",this.API +urlAPI);
+      return this.postData(viaje,urlAPI)
+    }
+
 
 }

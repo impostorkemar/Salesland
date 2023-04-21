@@ -51,6 +51,9 @@
   align-items: center; 
   align-self: center;
 }
+.inputRight{  
+  text-align: right;
+}
 .text{
   color: white;
   text-align: center;
