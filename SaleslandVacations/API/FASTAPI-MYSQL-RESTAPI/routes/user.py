@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response
 from config.db import conn, engine
 from models.user import users, usuarios, candidatos, personales, cargos, contratos, centro_costos, vacaciones, supervisores, viajes
-from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato, Personal, Experiencia_laboral, Vacacion, Supervisor, Rol_pagos, Ingresos, Descuentos, Viaje
+from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato, Personal, Experiencia_laboral, Vacacion, Supervisor, Rol_pagos, Viaje
 from cryptography.fernet import Fernet
 from starlette import status
 from sqlalchemy.sql import select
@@ -709,9 +709,12 @@ def get_dataReporteEstadistico(user: str, passw:str):
     return conn.execute(sql).first()
 
 #Consultas Rol-Pagos
-@user.get("/dataRolpago/",tags=['Rol_pago'])
-def get_dataRolpago(): 
+
+#Encabezado ROl de Pagos segun Usuario
+@user.get("/dataRolpago/{user}_{passw}",tags=['Rol_pago'])
+def get_dataRolpago(user: str, passw:str):
+    print("user:",user,"\passw:",passw) 
     conn = engine.connect()
-    sql="SELECT c.cedula, c.nombre, c.apellido, con.fecha_inicio_contrato, car.nombre_cargo FROM personal p JOIN candidato c ON p.cedula = c.cedula JOIN contrato con ON p.id_contrato = con.id_contrato JOIN cargo car ON p.id_cargo = car.id_cargo JOIN rol_pagos r ON r.id_personal = p.id_personal;"
+    sql="SELECT candidato.nombre, candidato.apellido, contrato.fecha_inicio_contrato, cargo.nombre_cargo, candidato.cedula,rol_pagos.sueldo_nominal,rol_pagos.tiempo_parcial,rol_pagos.dias_trabajados,rol_pagos.sueldo_base,rol_pagos.sueldo_vacaciones,rol_pagos.dias_paternidad,rol_pagos.permiso_paternidad,rol_pagos.dias_subsidio_maternidad,rol_pagos.subsidio_maternidad,rol_pagos.dias_enfermedad,rol_pagos.subsidio_enfermedad,rol_pagos.numero_horas_suplementarias,rol_pagos.valor_horas_suplementarias,rol_pagos.numero_horas_extraordinarias,rol_pagos.valor_horas_extraordinarias,rol_pagos.comisiones,rol_pagos.comisiones_mes_anterior,rol_pagos.incentivo_upsell,rol_pagos.movilizacion,rol_pagos.incentivo_dolarazo,rol_pagos.incentivo_alta_gama,rol_pagos.bono_pospago_ruc,rol_pagos.bono_plan_celular,rol_pagos.base_iess,rol_pagos.alimentacion,rol_pagos.decimo_tercero_mensual,rol_pagos.decimo_cuarta_mensual,rol_pagos.fondo_reserva_mensual,rol_pagos.total_ingresos,rol_pagos.aporte_iess,rol_pagos.chargeback_aplicar,rol_pagos.impuesto_renta,rol_pagos.prestamo_hipotecario_iess,rol_pagos.prestamo_quirografario,rol_pagos.prestamo_empresa,rol_pagos.extension_conyugue,rol_pagos.sobregiro,rol_pagos.anticipo_comisiones_mes_anterior,rol_pagos.seguro_movil,rol_pagos.copago_seguro,rol_pagos.total_egresos,rol_pagos.neto_recibir,rol_pagos.provision_decimo_tercer_sueldo,rol_pagos.provision_decimo_cuarto_sueldo,rol_pagos.provision_fondos_reserva,rol_pagos.dias_vacaciones_tomados,rol_pagos.provision_vacaciones,rol_pagos.provision_aporte_iess_patronal,rol_pagos.ccc,rol_pagos.reverso_vacaciones_tomadas,rol_pagos.fecha_rol_pago FROM candidato,personal,contrato,cargo, rol_pagos WHERE personal.id_personal = rol_pagos.id_personal AND personal.cedula = candidato.cedula AND personal.id_contrato = contrato.id_contrato AND personal.id_cargo = cargo.id_cargo AND personal.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"');"
     return conn.execute(sql).first()
 

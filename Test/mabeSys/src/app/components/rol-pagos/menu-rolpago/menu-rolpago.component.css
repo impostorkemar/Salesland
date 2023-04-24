@@ -6,7 +6,41 @@ body {
     padding: 0;
   }
   
+  /*Estilos del Menu*/
+  nav {
+    background-color: #16261C;
+    color: white;
+    height: 80px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  li {
+    margin: 0 10px;
+  }
+  
+  li.l{
+    margin-left: auto;
+  }
 
+  a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 25px;
+  }
+  select {
+    padding: 25px;
+    border: none;
+    background-color: #16261C;
+    color: white;
+    margin-left: auto;
+  }
+
+  /*Estilos de Body*/
 .img {
     height: 75px;
     width: auto;
@@ -25,6 +59,12 @@ body {
     align-self: center;
     padding-bottom: 15px;
 }
+
+ul.font-bold {
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .container-rol {
     display: flex;
     flex-wrap: wrap;
@@ -36,9 +76,100 @@ body {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    padding-left: 50px;
+    font-size: 20px;
 }
+
+.container-gris {
+    background-color: grey;
+    display: flex;
+}
+
+.contenedor-table {
+    width: 100%;
+    max-width: 1960px; /* ajusta este valor según tus necesidades */
+    overflow-x: auto;
+    
+  }
 
 .separator {
     border: solid 3px;
+    background-color: grey;
 }
+
+.tabla-encabezado {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .tabla-head {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    font-size: 20px;
+  }
+
+.color-gris {
+    background-color: grey;
+    text-align: center;
+}
+
+td.table-ingresos-descuentos{
+    padding-left: 3px;
+    border: 1px solid lightgray;
+    font-size: 20px;
+}
+
+td.table-results {
+    background-color: lightgray;
+    border-left: 1px solid rgb(172, 172, 172);
+}
+
+th.table-head {
+    border-left: 1px solid rgb(172, 172, 172);
+}
+
+tfoot.foot-center {
+    background-color: grey;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Estilo para el botón de generación de PDF */
+.pdf-generate-btn {
+    display: inline-block;
+    width: 100px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .pdf-generate-btn:hover {
+    background-color: #0062cc;
+  }
+
+  /*Div para botones Centrados*/
+  .btn-center {
+    padding: 15px;
+    text-align: center;
+  }
+
+ .contenedor-hoja {
+    padding: 60px;
+    margin: auto;
+  }
+

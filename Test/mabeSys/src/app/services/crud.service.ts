@@ -925,10 +925,9 @@ resp!:String[];
       });   
       
     }
-  
-    
-    ObtenerDatosRolPagos():Observable<any>{
-      var urlAPI="dataRolpago/";
+
+    ObtenerDatosRolPagos(user:any,passw:any):Observable<any>{
+      var urlAPI="dataRolpago/"+user as string+"_"+passw as string;
       return this.clienteHttp.get(this.API +urlAPI);
     }
 

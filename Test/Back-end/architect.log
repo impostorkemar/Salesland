@@ -1472,3 +1472,1788 @@ ON UPDATE NO ACTION
 469  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
 531  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
 22667 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+438  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+501  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+501  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+501  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+501  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+501  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+501  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+501  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+554  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22446 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+1655367 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@132b3ade]
+2140380 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+2141383 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+2141747 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+2251069 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+2251803 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+2251803 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+2558161 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+2558161 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+2558161 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+2558163 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+2558165 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+2558165 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+2558166 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+2558166 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+2558166 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VIAJE (
+                id_viaje INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                lugar VARCHAR(15) NOT NULL,
+                fecha_reembolso VARCHAR(10) NOT NULL,
+                fecha_viaje_inicio VARCHAR(1) NOT NULL,
+                fecha_viaje_fin VARCHAR(10) NOT NULL,
+                duracion NUMERIC NOT NULL,
+                punto_partida VARCHAR(30) NOT NULL,
+                punto_destino VARCHAR(30) NOT NULL,
+                fecha_gasto VARCHAR(10) NOT NULL,
+                moneda VARCHAR(20) NOT NULL,
+                cantidad_comprobantes NUMERIC NOT NULL,
+                importe DOUBLE PRECISION NOT NULL,
+                PRIMARY KEY (id_viaje)
+)
+2558166 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE COMPROBANTE (
+                id_comprobante INT AUTO_INCREMENT NOT NULL,
+                id_viaje INT NOT NULL,
+                ruta_zip VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_comprobante)
+)
+2558167 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                sueldo_nominal DOUBLE PRECISION,
+                tiempo_parcial DOUBLE PRECISION,
+                dias_trabajados DOUBLE PRECISION,
+                sueldo_base DOUBLE PRECISION NOT NULL,
+                sueldo_vacaciones DOUBLE PRECISION,
+                dias_paternidad DOUBLE PRECISION,
+                permiso_paternidad DOUBLE PRECISION,
+                dias_subsidio_maternidad DOUBLE PRECISION,
+                subsidio_maternidad DOUBLE PRECISION,
+                dias_enfermedad DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                numero_horas_suplementarias DOUBLE PRECISION,
+                valor_horas_suplementarias DOUBLE PRECISION,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                comisiones_mes_anterior DOUBLE PRECISION,
+                incentivo_upsell DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                incentivo_dolarazo DOUBLE PRECISION,
+                incentivo_alta_gama DOUBLE PRECISION,
+                bono_pospago_ruc DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                base_iess DOUBLE PRECISION NOT NULL,
+                alimentacion DOUBLE PRECISION,
+                decimo_tercero_mensual DOUBLE PRECISION,
+                decimo_cuarta_mensual DOUBLE PRECISION,
+                fondo_reserva_mensual DOUBLE PRECISION,
+                total_ingresos DOUBLE PRECISION NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                chargeback_aplicar DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                prestamo_empresa DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                anticipo_comisiones_mes_anterior DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                total_egresos DOUBLE PRECISION,
+                neto_recibir DOUBLE PRECISION,
+                provision_decimo_tercer_sueldo DOUBLE PRECISION,
+                provision_decimo_cuarto_sueldo DOUBLE PRECISION,
+                provision_fondos_reserva DOUBLE PRECISION,
+                dias_vacaciones_tomados DOUBLE PRECISION,
+                provision_vacaciones DOUBLE PRECISION,
+                provision_aporte_iess_patronal DOUBLE PRECISION,
+                ccc DOUBLE PRECISION,
+                reverso_vacaciones_tomadas DOUBLE PRECISION,
+                PRIMARY KEY (id_rol_pagos, id_personal)
+)
+2558167 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+2558168 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558168 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558168 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558169 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558169 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558169 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558170 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558170 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558171 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558171 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558172 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VIAJE ADD CONSTRAINT personal_viaje_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558173 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE COMPROBANTE ADD CONSTRAINT viaje_comprobante_fk
+FOREIGN KEY (id_viaje)
+REFERENCES VIAJE (id_viaje)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2558234 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :24
+2559849 [Thread-7] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560128 [Thread-7] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+2560131 [Thread-9] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+2560178 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Starting DDL Generation at Fri Apr 21 09:51:21 COT 2023
+2560178 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Database Target: salesland
+2560179 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Playpen Dump: salesland
+2560181 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+2560519 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+2560629 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+2560730 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+2560865 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+2561030 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+2561133 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+2561216 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+2561318 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE VIAJE (
+                id_viaje INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                lugar VARCHAR(15) NOT NULL,
+                fecha_reembolso VARCHAR(10) NOT NULL,
+                fecha_viaje_inicio VARCHAR(1) NOT NULL,
+                fecha_viaje_fin VARCHAR(10) NOT NULL,
+                duracion NUMERIC NOT NULL,
+                punto_partida VARCHAR(30) NOT NULL,
+                punto_destino VARCHAR(30) NOT NULL,
+                fecha_gasto VARCHAR(10) NOT NULL,
+                moneda VARCHAR(20) NOT NULL,
+                cantidad_comprobantes NUMERIC NOT NULL,
+                importe DOUBLE PRECISION NOT NULL,
+                PRIMARY KEY (id_viaje)
+)
+2561431 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE COMPROBANTE (
+                id_comprobante INT AUTO_INCREMENT NOT NULL,
+                id_viaje INT NOT NULL,
+                ruta_zip VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_comprobante)
+)
+2561516 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                sueldo_nominal DOUBLE PRECISION,
+                tiempo_parcial DOUBLE PRECISION,
+                dias_trabajados DOUBLE PRECISION,
+                sueldo_base DOUBLE PRECISION NOT NULL,
+                sueldo_vacaciones DOUBLE PRECISION,
+                dias_paternidad DOUBLE PRECISION,
+                permiso_paternidad DOUBLE PRECISION,
+                dias_subsidio_maternidad DOUBLE PRECISION,
+                subsidio_maternidad DOUBLE PRECISION,
+                dias_enfermedad DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                numero_horas_suplementarias DOUBLE PRECISION,
+                valor_horas_suplementarias DOUBLE PRECISION,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                comisiones_mes_anterior DOUBLE PRECISION,
+                incentivo_upsell DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                incentivo_dolarazo DOUBLE PRECISION,
+                incentivo_alta_gama DOUBLE PRECISION,
+                bono_pospago_ruc DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                base_iess DOUBLE PRECISION NOT NULL,
+                alimentacion DOUBLE PRECISION,
+                decimo_tercero_mensual DOUBLE PRECISION,
+                decimo_cuarta_mensual DOUBLE PRECISION,
+                fondo_reserva_mensual DOUBLE PRECISION,
+                total_ingresos DOUBLE PRECISION NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                chargeback_aplicar DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                prestamo_empresa DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                anticipo_comisiones_mes_anterior DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                total_egresos DOUBLE PRECISION,
+                neto_recibir DOUBLE PRECISION,
+                provision_decimo_tercer_sueldo DOUBLE PRECISION,
+                provision_decimo_cuarto_sueldo DOUBLE PRECISION,
+                provision_fondos_reserva DOUBLE PRECISION,
+                dias_vacaciones_tomados DOUBLE PRECISION,
+                provision_vacaciones DOUBLE PRECISION,
+                provision_aporte_iess_patronal DOUBLE PRECISION,
+                ccc DOUBLE PRECISION,
+                reverso_vacaciones_tomadas DOUBLE PRECISION,
+                PRIMARY KEY (id_rol_pagos, id_personal)
+)
+2561633 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+2561716 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2562534 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2562890 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2563806 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2564216 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2564499 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2564839 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2565298 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2566343 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2566814 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2567189 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE VIAJE ADD CONSTRAINT personal_viaje_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2567631 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE COMPROBANTE ADD CONSTRAINT viaje_comprobante_fk
+FOREIGN KEY (id_viaje)
+REFERENCES VIAJE (id_viaje)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+2568101 [Thread-9] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Successfully executed 24 out of 24 statements.
+3651261 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+3651969 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+3651976 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+3653328 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+3653329 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+3653329 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+3653329 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+3653329 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+3653329 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+3653329 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+3653329 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+3653331 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VIAJE (
+                id_viaje INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                lugar VARCHAR(15) NOT NULL,
+                fecha_reembolso VARCHAR(10) NOT NULL,
+                fecha_viaje_inicio VARCHAR(1) NOT NULL,
+                fecha_viaje_fin VARCHAR(10) NOT NULL,
+                duracion NUMERIC NOT NULL,
+                punto_partida VARCHAR(30) NOT NULL,
+                punto_destino VARCHAR(30) NOT NULL,
+                fecha_gasto VARCHAR(10) NOT NULL,
+                moneda VARCHAR(20) NOT NULL,
+                cantidad_comprobantes NUMERIC NOT NULL,
+                importe DOUBLE PRECISION NOT NULL,
+                PRIMARY KEY (id_viaje)
+)
+3653331 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE COMPROBANTE (
+                id_comprobante INT AUTO_INCREMENT NOT NULL,
+                id_viaje INT NOT NULL,
+                ruta_zip VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_comprobante)
+)
+3653331 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                sueldo_nominal DOUBLE PRECISION,
+                tiempo_parcial DOUBLE PRECISION,
+                dias_trabajados DOUBLE PRECISION,
+                sueldo_base DOUBLE PRECISION NOT NULL,
+                sueldo_vacaciones DOUBLE PRECISION,
+                dias_paternidad DOUBLE PRECISION,
+                permiso_paternidad DOUBLE PRECISION,
+                dias_subsidio_maternidad DOUBLE PRECISION,
+                subsidio_maternidad DOUBLE PRECISION,
+                dias_enfermedad DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                numero_horas_suplementarias DOUBLE PRECISION,
+                valor_horas_suplementarias DOUBLE PRECISION,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                comisiones_mes_anterior DOUBLE PRECISION,
+                incentivo_upsell DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                incentivo_dolarazo DOUBLE PRECISION,
+                incentivo_alta_gama DOUBLE PRECISION,
+                bono_pospago_ruc DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                base_iess DOUBLE PRECISION NOT NULL,
+                alimentacion DOUBLE PRECISION,
+                decimo_tercero_mensual DOUBLE PRECISION,
+                decimo_cuarta_mensual DOUBLE PRECISION,
+                fondo_reserva_mensual DOUBLE PRECISION,
+                total_ingresos DOUBLE PRECISION NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                chargeback_aplicar DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                prestamo_empresa DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                anticipo_comisiones_mes_anterior DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                total_egresos DOUBLE PRECISION,
+                neto_recibir DOUBLE PRECISION,
+                provision_decimo_tercer_sueldo DOUBLE PRECISION,
+                provision_decimo_cuarto_sueldo DOUBLE PRECISION,
+                provision_fondos_reserva DOUBLE PRECISION,
+                dias_vacaciones_tomados DOUBLE PRECISION,
+                provision_vacaciones DOUBLE PRECISION,
+                provision_aporte_iess_patronal DOUBLE PRECISION,
+                ccc DOUBLE PRECISION,
+                reverso_vacaciones_tomadas DOUBLE PRECISION,
+                fecha_rol_pago VARCHAR NOT NULL,
+                PRIMARY KEY (id_rol_pagos, id_personal)
+)
+3653333 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+3653333 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653333 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653333 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653334 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653334 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653334 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653335 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653335 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653335 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653335 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653336 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VIAJE ADD CONSTRAINT personal_viaje_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653336 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE COMPROBANTE ADD CONSTRAINT viaje_comprobante_fk
+FOREIGN KEY (id_viaje)
+REFERENCES VIAJE (id_viaje)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3653337 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :24
+3654348 [Thread-10] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+3654510 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654510 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654510 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654510 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654510 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654510 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654510 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654510 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654510 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654511 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654511 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654511 [Thread-10] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3654511 [Thread-12] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+3654514 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Starting DDL Generation at Fri Apr 21 10:09:35 COT 2023
+3654515 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Database Target: (Target Database)
+3654515 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Playpen Dump: (Target Database)
+3654516 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+3654637 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+3654742 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+3654825 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+3654934 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+3655002 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+3655088 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+3655152 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+3655268 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE VIAJE (
+                id_viaje INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                lugar VARCHAR(15) NOT NULL,
+                fecha_reembolso VARCHAR(10) NOT NULL,
+                fecha_viaje_inicio VARCHAR(1) NOT NULL,
+                fecha_viaje_fin VARCHAR(10) NOT NULL,
+                duracion NUMERIC NOT NULL,
+                punto_partida VARCHAR(30) NOT NULL,
+                punto_destino VARCHAR(30) NOT NULL,
+                fecha_gasto VARCHAR(10) NOT NULL,
+                moneda VARCHAR(20) NOT NULL,
+                cantidad_comprobantes NUMERIC NOT NULL,
+                importe DOUBLE PRECISION NOT NULL,
+                PRIMARY KEY (id_viaje)
+)
+3655552 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE COMPROBANTE (
+                id_comprobante INT AUTO_INCREMENT NOT NULL,
+                id_viaje INT NOT NULL,
+                ruta_zip VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_comprobante)
+)
+3655719 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                sueldo_nominal DOUBLE PRECISION,
+                tiempo_parcial DOUBLE PRECISION,
+                dias_trabajados DOUBLE PRECISION,
+                sueldo_base DOUBLE PRECISION NOT NULL,
+                sueldo_vacaciones DOUBLE PRECISION,
+                dias_paternidad DOUBLE PRECISION,
+                permiso_paternidad DOUBLE PRECISION,
+                dias_subsidio_maternidad DOUBLE PRECISION,
+                subsidio_maternidad DOUBLE PRECISION,
+                dias_enfermedad DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                numero_horas_suplementarias DOUBLE PRECISION,
+                valor_horas_suplementarias DOUBLE PRECISION,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                comisiones_mes_anterior DOUBLE PRECISION,
+                incentivo_upsell DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                incentivo_dolarazo DOUBLE PRECISION,
+                incentivo_alta_gama DOUBLE PRECISION,
+                bono_pospago_ruc DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                base_iess DOUBLE PRECISION NOT NULL,
+                alimentacion DOUBLE PRECISION,
+                decimo_tercero_mensual DOUBLE PRECISION,
+                decimo_cuarta_mensual DOUBLE PRECISION,
+                fondo_reserva_mensual DOUBLE PRECISION,
+                total_ingresos DOUBLE PRECISION NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                chargeback_aplicar DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                prestamo_empresa DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                anticipo_comisiones_mes_anterior DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                total_egresos DOUBLE PRECISION,
+                neto_recibir DOUBLE PRECISION,
+                provision_decimo_tercer_sueldo DOUBLE PRECISION,
+                provision_decimo_cuarto_sueldo DOUBLE PRECISION,
+                provision_fondos_reserva DOUBLE PRECISION,
+                dias_vacaciones_tomados DOUBLE PRECISION,
+                provision_vacaciones DOUBLE PRECISION,
+                provision_aporte_iess_patronal DOUBLE PRECISION,
+                ccc DOUBLE PRECISION,
+                reverso_vacaciones_tomadas DOUBLE PRECISION,
+                fecha_rol_pago VARCHAR NOT NULL,
+                PRIMARY KEY (id_rol_pagos, id_personal)
+)
+3655836 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - sql statement failed: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+                PRIMARY KEY (id_rol_pagos, id_personal)
+)' at line 54
+3663027 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+3663240 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3663757 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3664205 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3664618 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3665165 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3665500 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3666171 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3666633 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3667334 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3667989 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3667990 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - sql statement failed: Table 'salesland.rol_pagos' doesn't exist
+3669958 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Export cancelled by user.
+3669958 [Thread-12] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Successfully executed 20 out of 22 statements.
+3693461 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+3694371 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+3694374 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+3695790 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+3695790 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+3695791 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+3695791 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+3695791 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+3695792 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+3695792 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+3695792 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+3695793 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VIAJE (
+                id_viaje INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                lugar VARCHAR(15) NOT NULL,
+                fecha_reembolso VARCHAR(10) NOT NULL,
+                fecha_viaje_inicio VARCHAR(1) NOT NULL,
+                fecha_viaje_fin VARCHAR(10) NOT NULL,
+                duracion NUMERIC NOT NULL,
+                punto_partida VARCHAR(30) NOT NULL,
+                punto_destino VARCHAR(30) NOT NULL,
+                fecha_gasto VARCHAR(10) NOT NULL,
+                moneda VARCHAR(20) NOT NULL,
+                cantidad_comprobantes NUMERIC NOT NULL,
+                importe DOUBLE PRECISION NOT NULL,
+                PRIMARY KEY (id_viaje)
+)
+3695793 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE COMPROBANTE (
+                id_comprobante INT AUTO_INCREMENT NOT NULL,
+                id_viaje INT NOT NULL,
+                ruta_zip VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_comprobante)
+)
+3695794 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                sueldo_nominal DOUBLE PRECISION,
+                tiempo_parcial DOUBLE PRECISION,
+                dias_trabajados DOUBLE PRECISION,
+                sueldo_base DOUBLE PRECISION NOT NULL,
+                sueldo_vacaciones DOUBLE PRECISION,
+                dias_paternidad DOUBLE PRECISION,
+                permiso_paternidad DOUBLE PRECISION,
+                dias_subsidio_maternidad DOUBLE PRECISION,
+                subsidio_maternidad DOUBLE PRECISION,
+                dias_enfermedad DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                numero_horas_suplementarias DOUBLE PRECISION,
+                valor_horas_suplementarias DOUBLE PRECISION,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                comisiones_mes_anterior DOUBLE PRECISION,
+                incentivo_upsell DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                incentivo_dolarazo DOUBLE PRECISION,
+                incentivo_alta_gama DOUBLE PRECISION,
+                bono_pospago_ruc DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                base_iess DOUBLE PRECISION NOT NULL,
+                alimentacion DOUBLE PRECISION,
+                decimo_tercero_mensual DOUBLE PRECISION,
+                decimo_cuarta_mensual DOUBLE PRECISION,
+                fondo_reserva_mensual DOUBLE PRECISION,
+                total_ingresos DOUBLE PRECISION NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                chargeback_aplicar DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                prestamo_empresa DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                anticipo_comisiones_mes_anterior DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                total_egresos DOUBLE PRECISION,
+                neto_recibir DOUBLE PRECISION,
+                provision_decimo_tercer_sueldo DOUBLE PRECISION,
+                provision_decimo_cuarto_sueldo DOUBLE PRECISION,
+                provision_fondos_reserva DOUBLE PRECISION,
+                dias_vacaciones_tomados DOUBLE PRECISION,
+                provision_vacaciones DOUBLE PRECISION,
+                provision_aporte_iess_patronal DOUBLE PRECISION,
+                ccc DOUBLE PRECISION,
+                reverso_vacaciones_tomadas DOUBLE PRECISION,
+                fecha_rol_pago VARCHAR(10) NOT NULL,
+                PRIMARY KEY (id_rol_pagos, id_personal)
+)
+3695794 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+3695795 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695795 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695795 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695795 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695795 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695796 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695796 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695796 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695797 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695797 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695797 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VIAJE ADD CONSTRAINT personal_viaje_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695797 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE COMPROBANTE ADD CONSTRAINT viaje_comprobante_fk
+FOREIGN KEY (id_viaje)
+REFERENCES VIAJE (id_viaje)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3695799 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :24
+3696763 [Thread-13] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+3696972 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696972 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696972 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696972 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696973 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696973 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696973 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696973 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696973 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696974 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696974 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3696974 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+3700685 [Thread-15] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+3700690 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Starting DDL Generation at Fri Apr 21 10:10:21 COT 2023
+3700690 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Database Target: (Target Database)
+3700690 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Playpen Dump: (Target Database)
+3700692 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+3700738 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+3700803 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+3700865 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+3700922 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+3700970 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+3701155 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+3701243 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+3701347 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE VIAJE (
+                id_viaje INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                lugar VARCHAR(15) NOT NULL,
+                fecha_reembolso VARCHAR(10) NOT NULL,
+                fecha_viaje_inicio VARCHAR(1) NOT NULL,
+                fecha_viaje_fin VARCHAR(10) NOT NULL,
+                duracion NUMERIC NOT NULL,
+                punto_partida VARCHAR(30) NOT NULL,
+                punto_destino VARCHAR(30) NOT NULL,
+                fecha_gasto VARCHAR(10) NOT NULL,
+                moneda VARCHAR(20) NOT NULL,
+                cantidad_comprobantes NUMERIC NOT NULL,
+                importe DOUBLE PRECISION NOT NULL,
+                PRIMARY KEY (id_viaje)
+)
+3701405 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE COMPROBANTE (
+                id_comprobante INT AUTO_INCREMENT NOT NULL,
+                id_viaje INT NOT NULL,
+                ruta_zip VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_comprobante)
+)
+3701540 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                sueldo_nominal DOUBLE PRECISION,
+                tiempo_parcial DOUBLE PRECISION,
+                dias_trabajados DOUBLE PRECISION,
+                sueldo_base DOUBLE PRECISION NOT NULL,
+                sueldo_vacaciones DOUBLE PRECISION,
+                dias_paternidad DOUBLE PRECISION,
+                permiso_paternidad DOUBLE PRECISION,
+                dias_subsidio_maternidad DOUBLE PRECISION,
+                subsidio_maternidad DOUBLE PRECISION,
+                dias_enfermedad DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                numero_horas_suplementarias DOUBLE PRECISION,
+                valor_horas_suplementarias DOUBLE PRECISION,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                comisiones_mes_anterior DOUBLE PRECISION,
+                incentivo_upsell DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                incentivo_dolarazo DOUBLE PRECISION,
+                incentivo_alta_gama DOUBLE PRECISION,
+                bono_pospago_ruc DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                base_iess DOUBLE PRECISION NOT NULL,
+                alimentacion DOUBLE PRECISION,
+                decimo_tercero_mensual DOUBLE PRECISION,
+                decimo_cuarta_mensual DOUBLE PRECISION,
+                fondo_reserva_mensual DOUBLE PRECISION,
+                total_ingresos DOUBLE PRECISION NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                chargeback_aplicar DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                prestamo_empresa DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                anticipo_comisiones_mes_anterior DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                total_egresos DOUBLE PRECISION,
+                neto_recibir DOUBLE PRECISION,
+                provision_decimo_tercer_sueldo DOUBLE PRECISION,
+                provision_decimo_cuarto_sueldo DOUBLE PRECISION,
+                provision_fondos_reserva DOUBLE PRECISION,
+                dias_vacaciones_tomados DOUBLE PRECISION,
+                provision_vacaciones DOUBLE PRECISION,
+                provision_aporte_iess_patronal DOUBLE PRECISION,
+                ccc DOUBLE PRECISION,
+                reverso_vacaciones_tomadas DOUBLE PRECISION,
+                fecha_rol_pago VARCHAR(10) NOT NULL,
+                PRIMARY KEY (id_rol_pagos, id_personal)
+)
+3701786 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+3701919 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3702651 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3703034 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3703741 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3704378 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3704787 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3705078 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3705345 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3705917 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3706401 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3707249 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE VIAJE ADD CONSTRAINT personal_viaje_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3707802 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE COMPROBANTE ADD CONSTRAINT viaje_comprobante_fk
+FOREIGN KEY (id_viaje)
+REFERENCES VIAJE (id_viaje)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+3708457 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Successfully executed 24 out of 24 statements.
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+734  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+796  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+796  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+796  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+796  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+796  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+796  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+796  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
+859  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22856 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!

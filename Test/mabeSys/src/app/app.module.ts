@@ -65,7 +65,7 @@ import { MenuViajesComponent } from './components/viajes/menu-viajes/menu-viajes
 import { MenuRolpagoComponent } from './components/rol-pagos/menu-rolpago/menu-rolpago.component';
 import { AgregarRolpagoComponent } from './components/rol-pagos/agregar-rolpago/agregar-rolpago.component';
 import { ListarviajesReporteGeneralPersonalComponent } from './components/viajes/listarviajes-reporte-general-personal/listarviajes-reporte-general-personal.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -134,6 +134,7 @@ import { ListarviajesReporteGeneralPersonalComponent } from './components/viajes
     MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,
+    FormsModule,
     
   ],
   providers: [],
