@@ -157,7 +157,54 @@ export class MenuRolpagoComponent {
       this.dias_vacacion_tomados = respuesta.dias_vacaciones_tomados;
       this.dias_enfermedad = respuesta.dias_enfermedad;
       this.dias_trabajados = respuesta.dias_trabajados;
+      this.sueldo_nominal = respuesta.
+      this.tiempo_parcial = respuesta.
+      this.sueldo_vacaciones = respuesta.
+      this.dias_paternidad = respuesta.
+      this.permiso_paternidad = respuesta.
+      this.dia_subsidio_maternidad = respuesta.
+      this.subsidio_maternidad = respuesta.
+      this.subsidio_enfermedad = respuesta.
+      this.numero_horas_suplementarias = respuesta.
+      this.valor_horas_suplementarias = respuesta.
+      this.valor_horas_extraordinarias = respuesta.
+      this.comisiones = respuesta.
+      this.comisiones_mes_anterior = respuesta.
+      this.incentivo_upsell = respuesta.
+      this.movilizacion = respuesta.
+      this.incentivo_dolarazo = respuesta.
+      this.incentivo_alta_gama = respuesta.
+      this.bono_pospago_ruc = respuesta.
+      this.bono_plan_celular = respuesta.
+      this.base_iess = respuesta.
+      this.alimentacion = respuesta.
+      this.decimo_tercero_mensual = respuesta.
+      this.decimo_cuarta_mensual = respuesta.
+      this.fondo_reserva_mensual = respuesta.
+      this.total_ingresos = respuesta.
+      this.aporte_iess = respuesta.
+      this.chargeback_aplicar = respuesta.
+      this.impuesto_renta = respuesta.
+      this.prestamo_hipotecario = respuesta.
+      this.prestamo_quirografario = respuesta.
+      this.prestamo_empresa = respuesta.
+      this.extension_conyugue = respuesta.
+      this.sobregiro = respuesta.
+      this.anticipo_comisiones_mes_anterior = respuesta.
+      this.seguro_movil = respuesta.
+      this.copago_seguro = respuesta.
+      this.total_egresos = respuesta.
+      this.neto_recibir = respuesta.
+      this.provision_decimo_tercer_sueldo = respuesta.
+      this.provision_decimo_cuarto_sueldo = respuesta.
+      this.provision_fondos_reserva = respuesta.
+      this.dias_vacaciones_tomados = respuesta.
+      this.provision_vacaciones = respuesta.
+      this.provision_aporte_iess_patronal = respuesta.
+      this.ccc = respuesta.
+      this.reverso_vacaciones_tomadas = respuesta.
       this.fecha_rol_pago = respuesta.fecha_rol_pago;
+      
        })
    }
 
