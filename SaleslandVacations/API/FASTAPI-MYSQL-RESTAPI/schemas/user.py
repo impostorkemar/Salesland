@@ -118,6 +118,12 @@ class Viaje(BaseModel):
     cantidad_comprobantes: int
     importe: float
 
+class Comprobante(BaseModel):
+    id_comprobante: Optional[int]
+    id_viaje: int
+    ruta_zip: str    
+
+
 
 
     

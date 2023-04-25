@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TestuserService } from 'src/app/services/testuser.service';
 import { CrudService } from 'src/app/services/crud.service';
 import { Router } from '@angular/router';
+import { Viaje } from '../../classModels/Viaje';
 
 @Component({
   selector: 'app-menu-viajes',
@@ -54,7 +55,6 @@ export class MenuViajesComponent {
     this.mostrarDataUser();
   }
 
-  
 
   mostrarDatos(){
     console.log("MENU ROL:",localStorage.getItem('ROLE') as string)
@@ -111,7 +111,5 @@ export class MenuViajesComponent {
   goToMenuBotones(){
     this.router.navigate(['/menuBotones']);
   }
-
-
 
 }

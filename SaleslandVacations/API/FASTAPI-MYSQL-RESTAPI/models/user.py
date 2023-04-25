@@ -113,4 +113,10 @@ viajes = Table("viaje", meta,
     Column("importe", Numeric),    
 )
 
+comprobantes = Table("comprobante", meta, 
+    Column("id_comprobante", Integer, primary_key=True),
+    Column("id_viaje", Integer),
+    Column("ruta_zip", String(255)),    
+)
+
 meta.create_all(engine)
