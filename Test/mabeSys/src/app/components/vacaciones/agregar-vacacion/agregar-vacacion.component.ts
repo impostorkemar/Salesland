@@ -51,6 +51,7 @@ export class AgregarVacacionComponent {
       vaca_disp:[''],
       dias_tomados:[''],
       saldo_dias:[''],
+      saldo_dias2:[''],
       dias_solicitudes_pen:[''],
       lbl_inicio:[''],
       lbl_fin:[''],
@@ -75,6 +76,7 @@ export class AgregarVacacionComponent {
     this.formularioDeVacacion.controls['vaca_disp'].disable();
     this.formularioDeVacacion.controls['dias_tomados'].disable();
     this.formularioDeVacacion.controls['saldo_dias'].disable();
+    this.formularioDeVacacion.controls['saldo_dias2'].disable();
     this.formularioDeVacacion.controls['dias_solicitudes_pen'].disable();
     this.formularioDeVacacion.controls['lbl_inicio'].disable();
     this.formularioDeVacacion.controls['lbl_fin'].disable();
@@ -138,6 +140,7 @@ export class AgregarVacacionComponent {
                     this.formularioDeVacacion.setValue({      
                       vaca_disp: aux1, //vacaciones por contrato
                       saldo_dias: 0,  //vacaciones saldo
+                      saldo_dias2:aux1,
                       dias_solicitudes_pen: 0, // vacaciones tomadas
                       dias_tomados: 0, 
                       lbl_inicio:0,
@@ -147,6 +150,7 @@ export class AgregarVacacionComponent {
                     this.formularioDeVacacion.setValue({      
                       vaca_disp: aux1,  //vacaciones por contrato
                       saldo_dias: aux1-aux2, //vacaciones saldo
+                      saldo_dias2:aux1-aux2,
                       dias_solicitudes_pen: 0, // vacaciones tomadas
                       dias_tomados: 0,
                       lbl_inicio:0,
@@ -157,6 +161,7 @@ export class AgregarVacacionComponent {
                       this.formularioDeVacacion.setValue({      
                         vaca_disp: aux1,  //vacaciones por contrato
                         saldo_dias: aux1-aux2, //vacaciones saldo
+                        saldo_dias2: aux1-aux2, //vacaciones saldo
                         dias_solicitudes_pen: aux3, // vacaciones tomadas
                         dias_tomados: 0, 
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
@@ -265,7 +270,8 @@ export class AgregarVacacionComponent {
           if (diferenciaDias != null){
             this.formularioDeVacacion.setValue({
               vaca_disp:this.formularioDeVacacion.value.vaca_disp,
-              saldo_dias:this.formularioDeVacacion.value.saldo_dias,            
+              saldo_dias:this.formularioDeVacacion.value.saldo_dias,     
+              saldo_dias2:this.formularioDeVacacion.value.saldo_dias2,            
               dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen, 
               dias_tomados:diferenciaDias,        
               lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
@@ -413,7 +419,8 @@ export class AgregarVacacionComponent {
           if (diferenciaDias != null){
             this.formularioDeVacacion.setValue({
               vaca_disp:this.formularioDeVacacion.value.vaca_disp,
-              saldo_dias:this.formularioDeVacacion.value.saldo_dias,            
+              saldo_dias:this.formularioDeVacacion.value.saldo_dias,     
+              saldo_dias2:this.formularioDeVacacion.value.saldo_dias2,                   
               dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen, 
               dias_tomados:diferenciaDias,        
               lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
@@ -507,7 +514,8 @@ export class AgregarVacacionComponent {
         if (diferenciaDias != null){
           this.formularioDeVacacion.setValue({
             vaca_disp:this.formularioDeVacacion.value.vaca_disp,
-            saldo_dias:this.formularioDeVacacion.value.saldo_dias,            
+            saldo_dias:this.formularioDeVacacion.value.saldo_dias,     
+            saldo_dias2:this.formularioDeVacacion.value.saldo_dias2,                   
             dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen, 
             dias_tomados:diferenciaDias,        
             lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
@@ -560,6 +568,7 @@ export class AgregarVacacionComponent {
             this.formularioDeVacacion.setValue({
               vaca_disp:this.formularioDeVacacion.value.vaca_disp,
               saldo_dias:this.formularioDeVacacion.value.saldo_dias,
+              saldo_dias2:this.formularioDeVacacion.value.saldo_dias2,            
               dias_tomados:diferenciaDias,  
               dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen,  
               lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
