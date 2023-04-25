@@ -22,8 +22,6 @@ import { Comprobante } from '../../classModels/Comprobante';
 })
 export class AgregarViajeComponent implements OnInit {
   hoveredDate: NgbDate | null = null;
-  hoveredDate2: NgbDate | null = null;
-  chargeDate: NgbDate | null = null;  
 	fromDate: NgbDate | null;
 	toDate: NgbDate | null = null;  
   cedula!: any;
@@ -41,6 +39,9 @@ export class AgregarViajeComponent implements OnInit {
   fechaActualTextFile!:any; 
   nombreFile!:any;
 
+  hoveredDate2: NgbDate | null = null;
+  fromDate2: NgbDate | null = null;
+  
   constructor(
     private fb: FormBuilder,    
     private crudService:CrudService,
@@ -49,7 +50,8 @@ export class AgregarViajeComponent implements OnInit {
     private testuserService: TestuserService,    
     private _decimalPipe: DecimalPipe,
     private router:Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private calendar2: NgbCalendar
   ) {         
     
     this.formularioDeViaje = this.fb.group({
@@ -88,6 +90,9 @@ export class AgregarViajeComponent implements OnInit {
     this.formularioDeViaje.controls['cedula'].disable();    
     this.formularioDeViaje.controls['dias_viaje'].disable();   
     this.formularioDeViaje.controls['cantidad_comprobantes'].disable();  
+    this.formularioDeViaje.controls['fecha_viaje_inicio'].disable();  
+    this.formularioDeViaje.controls['fecha_viaje_fin'].disable();  
+    this.formularioDeViaje.controls['fecha_gasto'].disable();  
     this.crearFechaActual();
     this.cargarDatosInfoPersonal();  
     
@@ -112,7 +117,8 @@ export class AgregarViajeComponent implements OnInit {
        
       let key4: string[]=[];
       let Value4: string[]=[]; 
-      this.agregarViaje();
+      
+      
       
      
       //BUSQUEDA ID PERSONAL
@@ -124,122 +130,24 @@ export class AgregarViajeComponent implements OnInit {
         
       }else if(this.fromDate != null && this.toDate == null){
         console.log("SOLO FROM DATE");
+        console.log("fromDate:",this.fromDate,"\ntoDate:",this.toDate); 
                 
       }     
-    }
-  }
 
-  onDateSelection(date: NgbDate) {
-    var myDate = new Date();
-    var fechaActualNg = new NgbDate(myDate.getFullYear(),myDate.getMonth()+1,myDate.getDate());
-		if (!this.fromDate && !this.toDate) { // NO ESCOGIO NINGUN DÍA
-      //console.log("CASO 1");
-			this.fromDate = date;
-      
-		} else if (this.fromDate && !this.toDate && date.after(this.fromDate)) { //ESCOGIO RANGO 
-      //console.log("CASO 2");
-			this.toDate = date;
-      if (this.fromDate != null && this.toDate != null){ //RELLENAR DIAS SOLICITADOS
-        var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
-        //console.log("diferenciaDias: ",diferenciaDias)
-        if (diferenciaDias != null){
-          this.formularioDeViaje.setValue({
-            lugar:this.formularioDeViaje.value.lugar,
-            fecha_reembolso:this.formularioDeViaje.value.fecha_reembolso,disabled: true,
-            nombre:this.formularioDeViaje.value.nombre,
-            cedula:this.formularioDeViaje.value.cedula,
-            fecha_viaje_inicio:this.formularioDeViaje.value.fecha_viaje_inicio,
-            fecha_viaje_fin:this.formularioDeViaje.value.fecha_viaje_fin,
-            dias_viaje:this.formularioDeViaje.value.dias_viaje,
-            punto_partida:this.formularioDeViaje.value.punto_partida,
-            punto_destino:this.formularioDeViaje.value.punto_destino,
-            fecha_gasto:this.formularioDeViaje.value.fecha_gasto,
-            moneda:this.formularioDeViaje.value.moneda,
-            cantidad_comprobantes:this.formularioDeViaje.value.cantidad_comprobantes,
-            importe:this.formularioDeViaje.value.importe,            
-          }); 
-        }     
+      if ( this.formularioDeViaje.get('punto_partida')?.value == ""
+        || this.formularioDeViaje.get('punto_destino')?.value == ""
+        || this.formularioDeViaje.get('importe')?.value == ""
+        || this.formularioDeViaje.get('fecha_viaje_inicio')?.value == ""
+        || this.formularioDeViaje.get('fecha_viaje_fin')?.value == ""
+        || this.formularioDeViaje.get('fecha_gasto')?.value == 0){
+          window.confirm("Rellene campos vacíos")          
+      }else{        
+        this.agregarViaje();
       }
-      var from = new NgbDate( this.fromDate.year,this.fromDate.month,this.fromDate.day);
-      var to = new NgbDate( this.toDate.year,this.toDate.month,this.toDate.day);
-      var aux1 = new Date(fechaActualNg.year, fechaActualNg.month, fechaActualNg.day);
-      var aux2 =new Date(from.year, from.month, from.day);
-      var aux3 =new Date(to.year, to.month, to.day);
-
-      //console.log("CompareDateCorrectos");
-      console.log("\lugar:",this.formularioDeViaje.value.lugar)
-      console.log("fecha_reembolso:",this.formularioDeViaje.value.fecha_reembolso)
-      console.log("nombre:",this.formularioDeViaje.value.nombre)
-      console.log("cedula:",this.formularioDeViaje.value.cedula)      
-      console.log("fecha_viaje_inicio:",this.formularioDeViaje.value.fecha_viaje_inicio)
-      console.log("fecha_viaje_fin:",this.formularioDeViaje.value.fecha_viaje_fin)
-      console.log("dias_viaje:",this.formularioDeViaje.value.dias_viaje)
-      console.log("punto_partida:",this.formularioDeViaje.value.punto_partida)
-      console.log("punto_destino:",this.formularioDeViaje.value.punto_destino)
-      console.log("fecha_gasto:",this.formularioDeViaje.value.fecha_gasto)     
-      console.log("moneda:",this.formularioDeViaje.value.moneda)
-      console.log("cantidad_comprobantes:",this.formularioDeViaje.value.cantidad_comprobantes)
-      console.log("importe:",this.formularioDeViaje.value.importe)      
-            
-		} else {  //ESCOGIO UN DÍA
-      //console.log("CASO 3");
-			this.toDate = null;
-			this.fromDate = date;      
       
-      var from = new NgbDate( this.fromDate.year,this.fromDate.month,this.fromDate.day);
-      var aux1 = new Date(fechaActualNg.year, fechaActualNg.month, fechaActualNg.day);   
-      var aux2 =new Date(from.year, from.month, from.day);
-      if (this.fromDate != null && this.toDate == null){ //RELLENAR DIAS SOLICITADOS
-          var diferenciaDias = this.countWorkDay(this.fromDate,this.fromDate);
-          //console.log("diferenciaDias: ",diferenciaDias)
-           if (diferenciaDias != null){
-            this.formularioDeViaje.setValue({
-              lugar:this.formularioDeViaje.value.lugar,
-              fecha_reembolso:this.formularioDeViaje.value.fecha_reembolso,
-              nombre:this.formularioDeViaje.value.nombre,
-              cedula:this.formularioDeViaje.value.cedula,
-              fecha_viaje_inicio:this.formularioDeViaje.value.fecha_viaje_inicio,
-              fecha_viaje_fin:this.formularioDeViaje.value.fecha_viaje_fin,
-              dias_viaje:this.formularioDeViaje.value.dias_viaje,
-              punto_partida:this.formularioDeViaje.value.punto_partida,
-              punto_destino:this.formularioDeViaje.value.punto_destino,
-              fecha_gasto:this.formularioDeViaje.value.fecha_gasto,
-              moneda:this.formularioDeViaje.value.moneda,
-              cantidad_comprobantes:this.formularioDeViaje.value.cantidad_comprobantes,
-              importe:this.formularioDeViaje.value.importe,            
-            }); 
-           }     
-        }  
-      //console.log("CompareDateCorrectos");
-      console.log("\lugar:",this.formularioDeViaje.value.lugar)
-      console.log("fecha_reembolso:",this.formularioDeViaje.value.fecha_reembolso)
-      console.log("nombre:",this.formularioDeViaje.value.nombre)
-      console.log("cedula:",this.formularioDeViaje.value.cedula)      
-      console.log("fecha_viaje_inicio:",this.formularioDeViaje.value.fecha_viaje_inicio)
-      console.log("fecha_viaje_fin:",this.formularioDeViaje.value.fecha_viaje_fin)
-      console.log("dias_viaje:",this.formularioDeViaje.value.dias_viaje)
-      console.log("punto_partida:",this.formularioDeViaje.value.punto_partida)
-      console.log("punto_destino:",this.formularioDeViaje.value.punto_destino)
-      console.log("fecha_gasto:",this.formularioDeViaje.value.fecha_gasto)     
-      console.log("moneda:",this.formularioDeViaje.value.moneda)
-      console.log("cantidad_comprobantes:",this.formularioDeViaje.value.cantidad_comprobantes)
-      console.log("importe:",this.formularioDeViaje.value.importe)           
-		}    
-	}
-
-  onDateSelection2(date: NgbDate) {
-    var myDate = new Date();
-    var fechaActualNg = new NgbDate(myDate.getFullYear(),myDate.getMonth()+1,myDate.getDate());
-		if (!this.chargeDate ) { // NO ESCOGIO NINGUN DÍA
-      //console.log("CASO 1");
-			this.chargeDate = date;
-      
-		}else {  //ESCOGIO UN DÍA
-      //console.log("CASO 3");			
-			this.chargeDate = date;
     }
-  }
-
+  }  
+  
   dateToNgbDate(date: Date): NgbDateStruct {
     return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
   }
@@ -267,6 +175,27 @@ export class AgregarViajeComponent implements OnInit {
     
   }
 
+  onDateSelection(date: NgbDate) {      
+    var myDate = new Date();
+    var fechaActualNg = new NgbDate(myDate.getFullYear(),myDate.getMonth()+1,myDate.getDate());
+		if (!this.fromDate && !this.toDate) { // NO ESCOGIO NINGUN DÍA
+      //console.log("CASO 1");
+			this.fromDate = date;
+      
+		} else if (this.fromDate && !this.toDate && date.after(this.fromDate)) { //ESCOGIO RANGO 
+      //console.log("CASO 2");
+			this.toDate = date;
+      this.cargarDatosInfoPersonal()
+                       
+		} else {  //ESCOGIO UN DÍA
+      //console.log("CASO 3");
+			this.toDate = null;
+			this.fromDate = date;      
+      this.cargarDatosInfoPersonal()      
+                
+		}    
+	}
+
 	isHovered(date: NgbDate) {
 		return (
 			this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
@@ -285,34 +214,39 @@ export class AgregarViajeComponent implements OnInit {
 			this.isHovered(date)
 		);
 	}
+  
+  isDisabled2(date2: NgbDate) {
+    const current = this.calendar2.getToday();
+    return date2.after(current);
+  }
 
-  isHovered2(date: NgbDate) {
-		return (
-			this.chargeDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
-		);
-	}
+  isSelected2(date2: NgbDate) {
+    return this.fromDate2 && date2.equals(this.fromDate2);
+  }
 
-	isInside2(date: NgbDate) {
-		return this.chargeDate && date.after(this.fromDate) && date.before(this.toDate);
-	}
+  onDateSelection2(date2: NgbDate) {    
+    if (this.fromDate2 != null) {      
+      this.fromDate2 = date2;
+      this.cargarDatosInfoPersonal()
+      console.log("this.fromDate2:",this.fromDate2)
+      
+    } else if (this.fromDate2 && date2.equals(this.fromDate2)) {
+      this.fromDate2 = null;
+      this.cargarDatosInfoPersonal()
+      console.log("this.fromDate2:",this.fromDate2)
+    } else {
+      this.fromDate2 = date2;
+      this.cargarDatosInfoPersonal()
+      console.log("this.fromDate2:",this.fromDate2)
+    }
+  }
 
-  isRange2(date: NgbDate) {
-		return (
-			date.equals(this.chargeDate) ||
-			(this.chargeDate && date.equals(this.chargeDate)) ||
-			this.isInside(date) ||
-			this.isHovered(date)
-		);
-	}
-
-	
   countWorkDay(sDay:any,eDay:any){
     const startDate  = new Date(sDay.year, sDay.month - 1, sDay.day);
     const endDate  = new Date(eDay.year, eDay.month - 1, eDay.day);
     //console.log("\nstartDate:",startDate,"\nendDate:",endDate);  
     //console.log("workingDaysWithWeekends:",this.workingDaysWithWeekends(sDay.day+"/"+sDay.month+"/"+sDay.year,eDay.day+"/"+eDay.month+"/"+eDay.year));     
-    return this.workingDaysWithWeekends(sDay.day+"/"+sDay.month+"/"+sDay.year,eDay.day+"/"+eDay.month+"/"+eDay.year);
-    
+    return this.workingDaysWithWeekends(sDay.day+"/"+sDay.month+"/"+sDay.year,eDay.day+"/"+eDay.month+"/"+eDay.year);    
   }
 
   workingDays(dateFrom: any, dateTo: any) {
@@ -360,12 +294,7 @@ export class AgregarViajeComponent implements OnInit {
   esFinDeSemana = (date: NgbDate) => {
     const day = new Date(date.year, date.month - 1, date.day).getDay();
     return day === 0 || day === 6;
-  }
-
-  esFinDeSemana2 = (date: NgbDate) => {
-    const day = new Date(date.year, date.month - 1, date.day).getDay();
-    return day === 0 || day === 6;
-  }
+  }  
 
   isFriday(date: NgbDate): boolean {
     const dayOfWeek = new Date(date.year, date.month - 1, date.day).getDay();
@@ -391,29 +320,136 @@ export class AgregarViajeComponent implements OnInit {
   }
 
   cargarDatosInfoPersonal(){    
-
-    var user = localStorage.getItem('USER') as string;
-    var passw = localStorage.getItem('PASS') as string
-    this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
-      console.log("DATAUSER:",respuesta);
-      this.formularioDeViaje.setValue({      
-        lugar:'QUITO',
-        fecha_reembolso:this.fechaActualText,
-        nombre:respuesta['nombre'] + respuesta['apellido'],
-        cedula:respuesta['cedula'],
-        fecha_viaje_inicio:[''],
-        fecha_viaje_fin:[''],
-        dias_viaje:[''],
-        punto_partida:[''],
-        punto_destino:[''],
-        fecha_gasto:[''],
-        moneda:this.formularioDeViaje.get('moneda')?.value,
-        cantidad_comprobantes:[''],
-        importe:[''],
-      });
-    });      
-    
-       
+    console.log("this.fromDate:",this.fromDate);
+    console.log("this.toDate:",this.toDate);
+    if ( this.fromDate != null && this.toDate != null  ){
+      if ( this.fromDate2 != null){
+        console.log("this.fromDate != null && this.toDate != null")
+        var user = localStorage.getItem('USER') as string;
+        var passw = localStorage.getItem('PASS') as string
+        this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
+          console.log("DATAUSER:",respuesta);
+          var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
+          var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
+          var fecha_v_fin = this.toDate?.year+"-"+this.toDate?.month+"-"+this.toDate?.day as unknown as string
+          var fecha_gasto = this.fromDate2?.year+"-"+this.fromDate2?.month+"-"+this.fromDate2?.day as unknown as string
+          this.formularioDeViaje.setValue({      
+            lugar:'QUITO',
+            fecha_reembolso:this.fechaActualText,
+            nombre:respuesta['nombre'] + respuesta['apellido'],
+            cedula:respuesta['cedula'],
+            fecha_viaje_inicio:fecha_v_in,
+            fecha_viaje_fin:fecha_v_fin,
+            dias_viaje:diferenciaDias,
+            punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
+            punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
+            fecha_gasto:fecha_gasto,
+            moneda:this.formularioDeViaje.get('moneda')?.value,
+            cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
+            importe:this.formularioDeViaje.get('importe')?.value,
+          });
+        });
+      }else{
+        console.log("this.fromDate != null && this.toDate != null")
+        var user = localStorage.getItem('USER') as string;
+        var passw = localStorage.getItem('PASS') as string
+        this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
+          console.log("DATAUSER:",respuesta);
+          var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
+          var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
+          var fecha_v_fin = this.toDate?.year+"-"+this.toDate?.month+"-"+this.toDate?.day as unknown as string         
+          this.formularioDeViaje.setValue({      
+            lugar:'QUITO',
+            fecha_reembolso:this.fechaActualText,
+            nombre:respuesta['nombre'] + respuesta['apellido'],
+            cedula:respuesta['cedula'],
+            fecha_viaje_inicio:fecha_v_in,
+            fecha_viaje_fin:fecha_v_fin,
+            dias_viaje:diferenciaDias,
+            punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
+            punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
+            fecha_gasto:0,
+            moneda:this.formularioDeViaje.get('moneda')?.value,
+            cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
+            importe:this.formularioDeViaje.get('importe')?.value,
+          });
+        });
+      }
+           
+    }else if ( this.fromDate != null && this.toDate == null){
+      if ( this.fromDate2 != null){
+        console.log("this.fromDate != null && this.toDate == null")
+        var user = localStorage.getItem('USER') as string;
+        var passw = localStorage.getItem('PASS') as string
+        this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
+          console.log("DATAUSER:",respuesta);
+          var diferenciaDias = this.countWorkDay(this.fromDate,this.fromDate);
+          var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
+          var fecha_gasto = this.fromDate2?.year+"-"+this.fromDate2?.month+"-"+this.fromDate2?.day as unknown as string
+          this.formularioDeViaje.setValue({      
+            lugar:'QUITO',
+            fecha_reembolso:this.fechaActualText,
+            nombre:respuesta['nombre'] + respuesta['apellido'],
+            cedula:respuesta['cedula'],
+            fecha_viaje_inicio:fecha_v_in,
+            fecha_viaje_fin:fecha_v_in,
+            dias_viaje:diferenciaDias,
+            punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
+            punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
+            fecha_gasto:fecha_gasto,
+            moneda:this.formularioDeViaje.get('moneda')?.value,
+            cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
+            importe:this.formularioDeViaje.get('importe')?.value,
+          });
+        });
+      } else{
+        console.log("this.fromDate != null && this.toDate == null")
+        var user = localStorage.getItem('USER') as string;
+        var passw = localStorage.getItem('PASS') as string
+        this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
+          console.log("DATAUSER:",respuesta);
+          var diferenciaDias = this.countWorkDay(this.fromDate,this.fromDate);
+          var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
+          this.formularioDeViaje.setValue({      
+            lugar:'QUITO',
+            fecha_reembolso:this.fechaActualText,
+            nombre:respuesta['nombre'] + respuesta['apellido'],
+            cedula:respuesta['cedula'],
+            fecha_viaje_inicio:fecha_v_in,
+            fecha_viaje_fin:fecha_v_in,
+            dias_viaje:diferenciaDias,
+            punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
+            punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
+            fecha_gasto:0,
+            moneda:this.formularioDeViaje.get('moneda')?.value,
+            cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
+            importe:this.formularioDeViaje.get('importe')?.value,
+          });
+        });
+      }  
+    }else if(this.fromDate == null && this.toDate == null){
+      console.log("this.fromDate == null && this.toDate == null")
+      var user = localStorage.getItem('USER') as string;
+      var passw = localStorage.getItem('PASS') as string
+      this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
+        console.log("DATAUSER:",respuesta);       
+        this.formularioDeViaje.setValue({      
+          lugar:'QUITO',
+          fecha_reembolso:this.fechaActualText,
+          nombre:respuesta['nombre'] + respuesta['apellido'],
+          cedula:respuesta['cedula'],
+          fecha_viaje_inicio:'Escoge dias de viaje',
+          fecha_viaje_fin:'Escoge dias de viaje',
+          dias_viaje:0,
+          punto_partida:'Ingresa tu lugar de partida',
+          punto_destino:'Ingresa tu lugar de destino',
+          fecha_gasto:'Escoge fecha de gasto',
+          moneda:this.formularioDeViaje.get('moneda')?.value,
+          cantidad_comprobantes:[''],
+          importe:'Ingresa importe total',
+        });
+      });    
+    }
   }
 
   onFileSelected(event: any) {
@@ -443,10 +479,7 @@ export class AgregarViajeComponent implements OnInit {
       }).catch(error => {
         console.error('Error:', error);
       });
-      
-      
     }
-
   }
 
 
@@ -494,7 +527,6 @@ export class AgregarViajeComponent implements OnInit {
       this.btnIngresar = true;
       event.target.value = ''; // reset the file input
     }else{
-
       this.formularioDeViaje.setValue({
         lugar:this.formularioDeViaje.get('lugar')?.value,
         fecha_reembolso:this.formularioDeViaje.get('fecha_reembolso')?.value,
@@ -511,10 +543,8 @@ export class AgregarViajeComponent implements OnInit {
         importe:this.formularioDeViaje.get('importe')?.value,            
       });
       this.file = zip;
-      this.btnIngresar = false;
-      
+      this.btnIngresar = false;      
     }
-
     /*zip.generateAsync({ type: "blob" }).then((content) => {
       const url = window.URL.createObjectURL(content);
       const link = document.createElement('a');
@@ -523,67 +553,54 @@ export class AgregarViajeComponent implements OnInit {
       link.click();
       console.log("comprimi")
     });*/
-
-
   }
 
   getSymbol(currency: string): string {
     return getCurrencySymbol(currency, 'wide');
-  }
-  
+  }  
 
-  agregarViaje(){
-    
+  agregarViaje(){    
     this.nombreFile = this.formularioDeViaje.get('nombre')?.value as string+"_"+this.fechaActualText+".zip"
     var user = localStorage.getItem('USER') as string;
     var passw = localStorage.getItem('PASS') as string
     this.crudService.ObtenerIDPersonal(user,passw).subscribe(respuesta=>{
       console.log("Id_personal:\n",respuesta)
-      if (respuesta){
-        
+      if (respuesta){        
         const viaje1 = new Viaje();
           viaje1.id_personal = respuesta['id_personal'];   
           viaje1.lugar =  this.formularioDeViaje.get('lugar')?.value;
           viaje1.fecha_reembolso = this.formularioDeViaje.get('fecha_reembolso')?.value;     
-          viaje1.fecha_viaje_inicio = '0000-00-00';     
-          viaje1.fecha_viaje_fin = '0000-00-00';
-          viaje1.duracion = '0';
-          viaje1.punto_partida = 'test';
-          viaje1.punto_destino = 'test';
-          viaje1.fecha_gasto = '0000-00-00';
+          viaje1.fecha_viaje_inicio = this.formularioDeViaje.get('fecha_viaje_inicio')?.value;;     
+          viaje1.fecha_viaje_fin = this.formularioDeViaje.get('fecha_viaje_fin')?.value;;
+          viaje1.duracion = this.formularioDeViaje.get('dias_viaje')?.value;;
+          viaje1.punto_partida = this.formularioDeViaje.get('punto_partida')?.value;;
+          viaje1.punto_destino = this.formularioDeViaje.get('punto_destino')?.value;;
+          viaje1.fecha_gasto = this.formularioDeViaje.get('fecha_gasto')?.value;;
           viaje1.moneda = this.formularioDeViaje.get('moneda')?.value;
           viaje1.cantidad_comprobantes = this.formularioDeViaje.get('cantidad_comprobantes')?.value;
-          viaje1.importe = this.formularioDeViaje.get('importe')?.value;         
-          
+          viaje1.importe = this.formularioDeViaje.get('importe')?.value; 
         if(window.confirm("Desea agregar este viaje a reembolso:\n\tLugar:"
         +viaje1.lugar+"\n\tFecha Reembolso:"+viaje1.fecha_reembolso+"\n\tFecha_viaje_inicio:"+viaje1.fecha_viaje_inicio
         +"\n\tFecha_viaje_fin:"+viaje1.fecha_viaje_fin+"\n\tDuracion:"+viaje1.duracion+"\n\tPunto_partida:"+viaje1.punto_partida
         +"\n\tPunto_destino:"+viaje1.punto_destino+"\n\tFecha_gasto:"+viaje1.fecha_gasto+"\n\tMoneda:"+viaje1.moneda
         +"\n\tCantidad_comprobantes:"+viaje1.cantidad_comprobantes+"\n\tImporte:"+viaje1.importe)){
-
           this.crudService.AgregarViaje(viaje1).subscribe(respuesta2 =>{
             console.log("viaje1:\n",respuesta2)
-  
             if ( respuesta2){
-  
               const comprobante1 = new Comprobante();
               comprobante1.id_viaje = respuesta2['id_viaje'];
               comprobante1.ruta_zip = this.nombreFile;
-  
               this.crudService.AgregarComprobante(comprobante1).subscribe(respuesta3 =>{
                 console.log("comprobante1:\n",respuesta3)
                 this.uploadFile();
               });
             }
-            
           });
         }
-        
-        
       }      
     });
-  
-    
   }
+
+  
 
 }

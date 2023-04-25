@@ -15,11 +15,13 @@
   background-color: rgb(243, 238, 238);
   color: black;
 }
+
 .custom-day.faded {
   background-color: rgb(243, 238, 238);
 }
 
-.custom2-day2 {
+
+.custom-day2 {
   text-align: center;
   padding: 0.185rem 0.25rem;
   display: inline-block;
@@ -27,16 +29,31 @@
   width: 2rem;
 }
 
-.custom2-day2.focused2 {
-  background-color: #16261C;
-}
-
-.custom2-day2.range2,
-.custom2-day2:hover {
+.custom-day2.selected  {
   background-color: rgb(243, 238, 238);
   color: black;
 }
-.custom2-day2.faded2 {
+
+.custom-day2.focused2 {
+  background-color: #16261C;
+}
+
+.custom-day2.range2,
+.custom-day2:hover {
+  background-color: rgb(243, 238, 238);
+  color: black;
+}
+
+.custom-day2 {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+
+
+.custom-day2.faded2 {
   background-color: rgb(243, 238, 238);
 }
 
@@ -56,8 +73,7 @@
 }
 .text{
   color: white;
-  text-align: center;
-  
+  text-align: center;  
   align-self: center;
 }
 .text2{

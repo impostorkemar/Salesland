@@ -933,7 +933,7 @@ resp!:String[];
     }
     
     AgregarViaje(viaje : Viaje):Observable<any>{   
-      //console.log("viaje",viaje);
+      console.log("viaje",viaje);
       var urlAPI="viaje/";
       //console.log("URL=",this.API +urlAPI);
       return this.postData(viaje,urlAPI)
