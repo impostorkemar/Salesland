@@ -3,16 +3,17 @@
       <ul>
         <li><a routerLink="/inicio">Inicio</a></li>
         <li class="l">
-          <select [(ngModel)]="anioSeleccionado" (ngModelChange)="filtrarInformacion(anioSeleccionado, mesSeleccionado)">
+          <select [(ngModel)]="anioSeleccionado" (ngModelChange)="cambioAnio()">
             <option selected>Selecciona un año</option>
+            <option value="2020">2020</option>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
             <option value="2023">2023</option>
-            <!-- Agregar más opciones si se requiere -->
+          
           </select>
         </li>
         <li>
-          <select [(ngModel)]="mesSeleccionado" (ngModelChange)="filtrarInformacion(anioSeleccionado, mesSeleccionado)">
+          <select [(ngModel)]="mesSeleccionado" (ngModelChange)="cambioMes()">
             <option selected>Selecciona un mes</option>
             <option value="01">Enero</option>
             <option value="02">Febrero</option>
@@ -31,16 +32,19 @@
       </ul>
     </nav>
   </div>
+
+
+
 <div class="contenedor-hoja" id="html-a-exportar" >
 <div>
     <img class="img" src="./assets/salesland_nf.png" alt="Logo Salesland">
     <div class="container-rol">
         <p class="p-center">SALESLAND ECUADOR S.A.S.</p>
-        <h1 class="h-r" *ngIf="listaFiltrada.length > 0">{{mes}} {{anio}}</h1>
+        <h1 class="h-r" *ngIf="listaFiltrada.length > 0">{{fechaFormateada}}</h1>
     </div>
     <hr class="separator">
 </div>
-<div class="container-data">
+<div class="container-data" *ngIf="listaFiltrada.length > 0">
     <H2 class="h-c">ROL DE PAGOS INDIVIDUAL</H2>
     <ul class="font-bold">NOMBRE: {{nombre}} {{apellido}}</ul>
     <ul class="font-bold">CEDULA: {{cedula}}</ul>
@@ -49,7 +53,7 @@
 </div>
 <hr class="separator"> 
 
-<div *ngIf="listaFiltrada.length > 0">
+<div *ngIf="listaFiltrada.length > 0" >
     <table class="tabla-encabezado">
         <tbody>
           <tr>
@@ -83,72 +87,72 @@
         <tbody>
           <tr>
             <td class="table-ingresos-descuentos">Sueldo:</td>
-            <td class="table-ingresos-descuentos">$ &nbsp; {{sueldo_base}}</td>
+            <td class="table-ingresos-descuentos">{{sueldo_base}}</td>
             <td class="table-ingresos-descuentos">Aporte IESS:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{aporte_iess}}</td>
           </tr>
           <tr>
             <td class="table-ingresos-descuentos">Valor horas complementarias 50%:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{valor_horas_suplementarias}}</td>
             <td class="table-ingresos-descuentos">Anticipo sueldo:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos">{{anticipo_sueldo}}</td>
           </tr>
           <tr>
             <td class="table-ingresos-descuentos">Valor Horas extraordinarias 100%:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{valor_horas_extraordinarias}}</td>
             <td class="table-ingresos-descuentos">Impuesto a la Renta:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{impuesto_renta}}</td>
           </tr>
           <tr>
             <td class="table-ingresos-descuentos">Subsidio Enfermedad:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{subsidio_enfermedad}}</td>
             <td class="table-ingresos-descuentos">Préstamo Hipotecario IESS:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{prestamo_hipotecario}}</td>
           </tr>
           <tr>
             <td class="table-ingresos-descuentos">Comisiones:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{comisiones}}</td>
             <td class="table-ingresos-descuentos">Préstamo Quirografario:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{prestamo_quirografario}}</td>
           </tr>
           <tr>
             <td class="table-ingresos-descuentos">Movilización:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{movilizacion}}</td>
             <td class="table-ingresos-descuentos">Extensión cónyuge:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{extension_conyugue}}</td>
           </tr>
           <tr>
             <td class="table-ingresos-descuentos">Bono Plan celular:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{bono_plan_celular}}</td>
             <td class="table-ingresos-descuentos">Extensión cónyuge mes anterior:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{extension_conyugue}}</td>
           </tr>
           <tr>
             <td class="table-ingresos-descuentos">Décimo tercera remuneración mensual:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{decimo_tercero_mensual}}</td>
             <td class="table-ingresos-descuentos">Sobregiro:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{sobregiro}}</td>
           </tr>
           <tr>
             <td class="table-ingresos-descuentos">Décimo cuarta remuneración mensual:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{decimo_cuarta_mensual}}</td>
             <td class="table-ingresos-descuentos">Seguro movil:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{seguro_movil}}</td>
           </tr>
           <tr>
             <td class="table-ingresos-descuentos">Fondos de reserva Mensual:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{fondo_reserva_mensual}}</td>
             <td class="table-ingresos-descuentos">Copago seguro:</td>
-            <td class="table-ingresos-descuentos">-</td>
+            <td class="table-ingresos-descuentos"> {{copago_seguro}}</td>
           </tr>
           <tr>
-            <td colspan="2" class="table-results">Total Ingresos: -</td>
-            <td colspan="2" class="table-results">Total Descuentos: -</td>
+            <td colspan="2" class="table-results">Total Ingresos:  {{total_ingresos}}</td>
+            <td colspan="2" class="table-results">Total Descuentos: {{total_egresos}}</td>
           </tr>
         </tbody>
         <tfoot class="foot-center">
             <tr>
-              <td colspan="4">Neto a Recibir: -</td>
+              <td colspan="4">Neto a Recibir: {{neto_recibir}}</td>
             </tr>
           </tfoot>
       </table>
