@@ -19,6 +19,7 @@ import {MatSort, Sort} from '@angular/material/sort';
 import * as JSZip from 'jszip';
 import { Viaje } from '../components/classModels/Viaje';
 import { Comprobante } from '../components/classModels/Comprobante';
+import { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -944,6 +945,13 @@ resp!:String[];
       var urlAPI="comprobante/";
       //console.log("URL=",this.API +urlAPI);
       return this.postData(comprobante,urlAPI)
+    }
+
+    downloadExcelFormatoReembolso():Observable<any> {
+      var urlAPI="download-excel-FormatoReembolso/";      
+      console.log(this.API +urlAPI)
+      return this.clienteHttp.get<Blob>(this.API +urlAPI, {responseType: 'blob' as 'json'});
+      
     }
 
 

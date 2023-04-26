@@ -6,6 +6,7 @@ from cryptography.fernet import Fernet
 from starlette import status
 from sqlalchemy.sql import select
 from fastapi import APIRouter, Response, FastAPI,File, UploadFile
+from fastapi.responses import FileResponse
 import re
 import os
 import shutil
@@ -332,11 +333,12 @@ def update_viaje(id: str, viaje: Viaje):
     conn.execute(sql)
     return get_viaje(id)
 
-@user.get("/dataHistoricaViajePersonabyUserAndPass/{user}_{passw}",tags=['viaje'])
+@user.get("/dataHistoricaViajePersonabyUserAndPass/{user}_{passw}-",tags=['viaje'])
 def get_dataHistoricaViajePersonabyUserAndPass(user: str, passw:str): 
     print("user:",user,"\passw:",passw)
     conn = engine.connect()
     sql="SELECT viaje.id_viaje, viaje.lugar, viaje.fecha_reembolso,candidato.nombre, candidato.cedula, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe FROM viaje, personal,candidato, usuario WHERE candidato.cedula = personal.cedula AND viaje.id_personal = personal.id_personal AND personal.cedula = usuario.cedula AND viaje.id_personal = (SELECT personal.id_personal FROM personal WHERE personal.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"'));"
+    
     print(sql)
     return conn.execute(sql).fetchall()
 
@@ -345,6 +347,7 @@ async def upload_file(name: str,file: UploadFile = File(...) ):
     save_path = os.path.join("C:/comprobantes/", name)
     with open(save_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
+
     return {"filename": file.filename, "saved_path": save_path}
 
 @user.post("/uploadFile/")
@@ -354,40 +357,14 @@ async def upload_file(file: UploadFile = File(...) ):
         shutil.copyfileobj(file.file, buffer)
     return {"filename": file.filename, "saved_path": save_path}
 
-#CONSULTA VIAJE
-@user.get("/viaje/", tags=["viaje"])
-def get_viaje():
-    conn = engine.connect()
-    return conn.execute("SELECT * FROM viaje;").fetchall()
+@user.get("/download-excel-FormatoReembolso/")
+async def download_excel():
+    file_path = r"C:\comprobantes\formatos\Formato Reembolso de Gastos viaje.xlsx"
+    if os.path.exists(file_path):
+        return FileResponse(file_path, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", filename="Formato Reembolso de Gastos viaje.xlsx")
+    else:
+        return {"message": "El archivo no existe"}
 
-@user.post("/viaje/", tags=["viaje"])
-def create_viaje(viaje: Viaje):
-    conn = engine.connect()
-    #password = f.encrypt(usuario.password.encode("utf-8"))
-    sql = "INSERT INTO `viaje`(`id_personal`, `lugar`, `fecha_reembolso`, `fecha_viaje_inicio`, `fecha_viaje_fin`, `duracion`, `punto_partida`, `punto_destino`, `fecha_gasto`, `moneda`, `cantidad_comprobantes`, `importe`) VALUES"
-    datos = (viaje.id_personal,viaje.lugar, viaje.fecha_reembolso, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin,viaje.duracion,
-             viaje.punto_partida,viaje.punto_destino,viaje.fecha_gasto,viaje.moneda,viaje.cantidad_comprobantes,viaje.importe) 
-    sql = sql + str(datos)
-    result = conn.execute(sql)
-    return conn.execute("SELECT * FROM `viaje` WHERE  id_viaje = "+str(result.lastrowid)).first()
-
-@user.get("/viaje/{id}", tags=["viaje"])
-def get_viaje(id: str):    
-    conn = engine.connect()
-    return conn.execute("SELECT * FROM `viaje` WHERE  id_viaje = "+str(id)).first()
-
-@user.delete("/viaje/{id}", status_code=status.HTTP_204_NO_CONTENT, tags=["viaje"])
-def delete_viaje(id: str):    
-    conn = engine.connect()
-    conn.execute("DELETE FROM `viaje` WHERE  id_viaje = "+str(id))
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
-
-@user.put("/viaje/{id}",response_model=Viaje, tags=["viaje"])
-def update_viaje(id: str, viaje: Viaje):   
-    conn = engine.connect()
-    sql="UPDATE `viaje` SET`id_personal`='"+str(viaje.id_personal)+"',`lugar`='"+str(viaje.lugar)+"',`fecha_reembolso`='"+str(viaje.fecha_reembolso)+"',`fecha_viaje_inicio`='"+str(viaje.fecha_viaje_inicio)+"',`fecha_viaje_fin`='"+str(viaje.fecha_viaje_fin)+"',`duracion`='"+str(viaje.duracion)+"',`punto_partida`='"+str(viaje.punto_partida)+"',`punto_destino`='"+str(viaje.punto_destino)+"',`fecha_gasto`='"+str(viaje.fecha_gasto)+"',`moneda`='"+str(viaje.moneda)+"',`cantidad_comprobantes`='"+str(viaje.cantidad_comprobantes)+"',`importe`='"+str(viaje.importe)+"' WHERE `id_viaje` = '"+str(id)+"';" 
-    conn.execute(sql)
-    return get_viaje(id)
 
 #CONSULTA COMPROBANTE
 @user.post("/comprobante/", tags=["comprobante"])
@@ -766,7 +743,7 @@ def get_dataReporteEstadistico(user: str, passw:str):
 
 @user.get("/dataPersonabyUserAndPass/{user}_{passw}",tags=['personales'])
 def get_dataReporteEstadistico(user: str, passw:str): 
-    print("user:",user,"\passw:",passw)
+    print("user:",user,"\npassw:",passw)
     conn = engine.connect()
     sql="SELECT candidato.nombre, candidato.apellido, candidato.cedula, centro_costo.cuenta FROM candidato,centro_costo, personal, usuario WHERE centro_costo.id_centro_costo = personal.id_centro_costo AND personal.cedula = candidato.cedula AND usuario.cedula = personal.cedula AND usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"';"
     print(sql)

@@ -13,6 +13,7 @@ import * as JSZip from 'jszip';
 import { Viaje } from '../../classModels/Viaje';
 import { getCurrencySymbol } from '@angular/common';
 import { Comprobante } from '../../classModels/Comprobante';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-agregar-viaje',
@@ -33,11 +34,13 @@ export class AgregarViajeComponent implements OnInit {
   passw!:String;
   file!:any;
   myForm!:any;
-  currencies = ['USD', 'EUR', 'JPY', 'GBP', 'CAD', 'AUD', 'CHF', 'CNY', 'HKD', 'NZD', 'SEK', 'KRW', 'SGD', 'NOK', 'MXN', 'INR', 'RUB', 'ZAR', 'TRY', 'BRL'];
+  //currencies = ['USD', 'EUR', 'JPY', 'GBP', 'CAD', 'AUD', 'CHF', 'CNY', 'HKD', 'NZD', 'SEK', 'KRW', 'SGD', 'NOK', 'MXN', 'INR', 'RUB', 'ZAR', 'TRY', 'BRL'];
+  currencies = ['USD'];
   selectedCurrency!: string; 
   fechaActualText!:any; 
   fechaActualTextFile!:any; 
   nombreFile!:any;
+  fechaEnvioName!: any;
 
   hoveredDate2: NgbDate | null = null;
   fromDate2: NgbDate | null = null;
@@ -75,8 +78,7 @@ export class AgregarViajeComponent implements OnInit {
     this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     this.cedula = "";
-    this.btnIngresar = true;   
-    this.fechaActual =  new Date();    
+    this.btnIngresar = true;        
     this.user = localStorage.getItem('USER') as string;
     this.passw = localStorage.getItem('PASS') as string;
    
@@ -111,29 +113,18 @@ export class AgregarViajeComponent implements OnInit {
   }
   
   enviarDatos(): void{    
-    /*console.log("FORMULARIO:",this.formularioDeUsuario.value);*/
-
-    if (this.formularioDeViaje){     
-       
+    this.cargarNombreEnvioFile()
+    if (this.formularioDeViaje){   
       let key4: string[]=[];
-      let Value4: string[]=[]; 
-      
-      
-      
-     
-      //BUSQUEDA ID PERSONAL
-      
+      let Value4: string[]=[];      
+      //BUSQUEDA ID PERSONAL      
       if ( this.fromDate != null && this.toDate != null){
-        console.log(" FROM DATE && TO DATE"); 
-        console.log("fromDate:",this.fromDate,"\ntoDate:",this.toDate);       
-          
-        
+        //console.log(" FROM DATE && TO DATE"); 
+        //console.log("fromDate:",this.fromDate,"\ntoDate:",this.toDate); 
       }else if(this.fromDate != null && this.toDate == null){
-        console.log("SOLO FROM DATE");
-        console.log("fromDate:",this.fromDate,"\ntoDate:",this.toDate); 
-                
-      }     
-
+        //console.log("SOLO FROM DATE");
+        //console.log("fromDate:",this.fromDate,"\ntoDate:",this.toDate);                 
+      } 
       if ( this.formularioDeViaje.get('punto_partida')?.value == ""
         || this.formularioDeViaje.get('punto_destino')?.value == ""
         || this.formularioDeViaje.get('importe')?.value == ""
@@ -144,7 +135,6 @@ export class AgregarViajeComponent implements OnInit {
       }else{        
         this.agregarViaje();
       }
-      
     }
   }  
   
@@ -228,16 +218,16 @@ export class AgregarViajeComponent implements OnInit {
     if (this.fromDate2 != null) {      
       this.fromDate2 = date2;
       this.cargarDatosInfoPersonal()
-      console.log("this.fromDate2:",this.fromDate2)
+      //console.log("this.fromDate2:",this.fromDate2)
       
     } else if (this.fromDate2 && date2.equals(this.fromDate2)) {
       this.fromDate2 = null;
       this.cargarDatosInfoPersonal()
-      console.log("this.fromDate2:",this.fromDate2)
+      //console.log("this.fromDate2:",this.fromDate2)
     } else {
       this.fromDate2 = date2;
       this.cargarDatosInfoPersonal()
-      console.log("this.fromDate2:",this.fromDate2)
+      //console.log("this.fromDate2:",this.fromDate2)
     }
   }
 
@@ -307,6 +297,7 @@ export class AgregarViajeComponent implements OnInit {
   }
 
   crearFechaActual(){
+    this.fechaActual =  new Date();   
     let anio = this.fechaActual.getFullYear();
     let mes = this.fechaActual.getMonth() + 1; // los meses empiezan en 0, por lo que hay que sumar 1
     let dia = this.fechaActual.getDate();
@@ -314,100 +305,138 @@ export class AgregarViajeComponent implements OnInit {
     let min = this.fechaActual.getMinutes();
     let sec = this.fechaActual.getSeconds();
     let dateFormated = `${anio}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')} `;
-    let dateFormatedFile = `${anio}${mes.toString().padStart(2, '0')}${dia.toString().padStart(2, '0')}-${hora.toString().padStart(2, '0')}${min.toString().padStart(2, '0')}${sec.toString().padStart(2, '0')}`;
+    let dateFormatedFile = `${anio}${mes.toString().padStart(2, '0')}${dia.toString().padStart(2, '0')}-${hora.toString().padStart(2, '0')}${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+    let dateFormatedFile2 = `${anio}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')} ${hora.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}${sec.toString().padStart(2, '0')}`;
     this.fechaActualText = dateFormated as unknown as string;
     this.fechaActualTextFile = dateFormatedFile as unknown as string;
   }
 
+  crearFechaEnvio(){
+    let anio = this.fechaActual.getFullYear();
+    let mes = this.fechaActual.getMonth() + 1; // los meses empiezan en 0, por lo que hay que sumar 1
+    let dia = this.fechaActual.getDate();
+    let hora = this.fechaActual.getHours();
+    let min = this.fechaActual.getMinutes();
+    let sec = this.fechaActual.getSeconds();
+    let dateFormatedFile2 = `${anio}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')} ${hora.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+    return dateFormatedFile2
+  }
+
+  cargarNombreEnvioFile(){
+    this.crearFechaActual()
+
+    let anio = this.fechaActual.getFullYear();
+    let mes = this.fechaActual.getMonth() + 1; // los meses empiezan en 0, por lo que hay que sumar 1
+    let dia = this.fechaActual.getDate();
+    let hora = this.fechaActual.getHours();
+    let min = this.fechaActual.getMinutes();
+    let sec = this.fechaActual.getSeconds();   
+    this.fechaEnvioName  =  `${anio}${mes.toString().padStart(2, '0')}${dia.toString().padStart(2, '0')}_${hora.toString().padStart(2, '0')}${min.toString().padStart(2, '0')}${sec.toString().padStart(2, '0')}`;
+    this.nombreFile = this.formularioDeViaje.get('nombre')?.value as string+"_"+this?.fechaEnvioName+".zip"
+    console.log("NombreFile:",this.nombreFile)
+  }
+
   cargarDatosInfoPersonal(){    
-    console.log("this.fromDate:",this.fromDate);
-    console.log("this.toDate:",this.toDate);
+    var user = localStorage.getItem('USER') as string;
+    var passw = localStorage.getItem('PASS') as string
+    //console.log("this.fromDate:",this.fromDate);
+    //console.log("this.toDate:",this.toDate);
     if ( this.fromDate != null && this.toDate != null  ){
       if ( this.fromDate2 != null){
-        console.log("this.fromDate != null && this.toDate != null")
-        var user = localStorage.getItem('USER') as string;
-        var passw = localStorage.getItem('PASS') as string
+        //console.log("this.fromDate != null && this.toDate != null")        
         this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
-          console.log("DATAUSER:",respuesta);
-          var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
-          var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
-          var fecha_v_fin = this.toDate?.year+"-"+this.toDate?.month+"-"+this.toDate?.day as unknown as string
-          var fecha_gasto = this.fromDate2?.year+"-"+this.fromDate2?.month+"-"+this.fromDate2?.day as unknown as string
-          this.formularioDeViaje.setValue({      
-            lugar:'QUITO',
-            fecha_reembolso:this.fechaActualText,
-            nombre:respuesta['nombre'] + respuesta['apellido'],
-            cedula:respuesta['cedula'],
-            fecha_viaje_inicio:fecha_v_in,
-            fecha_viaje_fin:fecha_v_fin,
-            dias_viaje:diferenciaDias,
-            punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
-            punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
-            fecha_gasto:fecha_gasto,
-            moneda:this.formularioDeViaje.get('moneda')?.value,
-            cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
-            importe:this.formularioDeViaje.get('importe')?.value,
-          });
+          if(respuesta){
+            //console.log("DATAUSER:",respuesta);
+            var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
+            var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
+            var fecha_v_fin = this.toDate?.year+"-"+this.toDate?.month+"-"+this.toDate?.day as unknown as string
+            var fecha_gasto = this.fromDate2?.year+"-"+this.fromDate2?.month+"-"+this.fromDate2?.day as unknown as string
+            this.formularioDeViaje.setValue({      
+              lugar:'QUITO',
+              fecha_reembolso:this.fechaActualText,
+              nombre:respuesta['nombre'] + respuesta['apellido'],
+              cedula:respuesta['cedula'],
+              fecha_viaje_inicio:fecha_v_in,
+              fecha_viaje_fin:fecha_v_fin,
+              dias_viaje:diferenciaDias,
+              punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
+              punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
+              fecha_gasto:fecha_gasto,
+              moneda:this.formularioDeViaje.get('moneda')?.value,
+              cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
+              importe:this.formularioDeViaje.get('importe')?.value,
+            });
+          }else {
+            window.confirm("Fallo al cargar la información del personal")
+          }
+         
         });
       }else{
-        console.log("this.fromDate != null && this.toDate != null")
-        var user = localStorage.getItem('USER') as string;
-        var passw = localStorage.getItem('PASS') as string
+        //console.log("this.fromDate != null && this.toDate != null")        
         this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
-          console.log("DATAUSER:",respuesta);
-          var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
-          var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
-          var fecha_v_fin = this.toDate?.year+"-"+this.toDate?.month+"-"+this.toDate?.day as unknown as string         
-          this.formularioDeViaje.setValue({      
-            lugar:'QUITO',
-            fecha_reembolso:this.fechaActualText,
-            nombre:respuesta['nombre'] + respuesta['apellido'],
-            cedula:respuesta['cedula'],
-            fecha_viaje_inicio:fecha_v_in,
-            fecha_viaje_fin:fecha_v_fin,
-            dias_viaje:diferenciaDias,
-            punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
-            punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
-            fecha_gasto:0,
-            moneda:this.formularioDeViaje.get('moneda')?.value,
-            cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
-            importe:this.formularioDeViaje.get('importe')?.value,
-          });
+          //console.log("DATAUSER:",respuesta);
+          if (respuesta){
+            var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
+            var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
+            var fecha_v_fin = this.toDate?.year+"-"+this.toDate?.month+"-"+this.toDate?.day as unknown as string         
+            this.formularioDeViaje.setValue({      
+              lugar:'QUITO',
+              fecha_reembolso:this.fechaActualText,
+              nombre:respuesta['nombre'] + respuesta['apellido'],
+              cedula:respuesta['cedula'],
+              fecha_viaje_inicio:fecha_v_in,
+              fecha_viaje_fin:fecha_v_fin,
+              dias_viaje:diferenciaDias,
+              punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
+              punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
+              fecha_gasto:0,
+              moneda:this.formularioDeViaje.get('moneda')?.value,
+              cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
+              importe:this.formularioDeViaje.get('importe')?.value,
+            });
+          }else{
+            window.confirm("Fallo al cargar la información del personal")
+          }
+          
         });
       }
            
     }else if ( this.fromDate != null && this.toDate == null){
       if ( this.fromDate2 != null){
-        console.log("this.fromDate != null && this.toDate == null")
-        var user = localStorage.getItem('USER') as string;
-        var passw = localStorage.getItem('PASS') as string
+        //console.log("this.fromDate != null && this.toDate == null")
+        
         this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
-          console.log("DATAUSER:",respuesta);
+          //console.log("DATAUSER:",respuesta);
           var diferenciaDias = this.countWorkDay(this.fromDate,this.fromDate);
           var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
           var fecha_gasto = this.fromDate2?.year+"-"+this.fromDate2?.month+"-"+this.fromDate2?.day as unknown as string
-          this.formularioDeViaje.setValue({      
-            lugar:'QUITO',
-            fecha_reembolso:this.fechaActualText,
-            nombre:respuesta['nombre'] + respuesta['apellido'],
-            cedula:respuesta['cedula'],
-            fecha_viaje_inicio:fecha_v_in,
-            fecha_viaje_fin:fecha_v_in,
-            dias_viaje:diferenciaDias,
-            punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
-            punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
-            fecha_gasto:fecha_gasto,
-            moneda:this.formularioDeViaje.get('moneda')?.value,
-            cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
-            importe:this.formularioDeViaje.get('importe')?.value,
-          });
+          if (respuesta){
+            this.formularioDeViaje.setValue({      
+              lugar:'QUITO',
+              fecha_reembolso:this.fechaActualText,
+              nombre:respuesta['nombre'] + respuesta['apellido'],
+              cedula:respuesta['cedula'],
+              fecha_viaje_inicio:fecha_v_in,
+              fecha_viaje_fin:fecha_v_in,
+              dias_viaje:diferenciaDias,
+              punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
+              punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
+              fecha_gasto:fecha_gasto,
+              moneda:this.formularioDeViaje.get('moneda')?.value,
+              cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
+              importe:this.formularioDeViaje.get('importe')?.value,
+            });
+          }else{
+            window.confirm("Fallo al cargar la información del personal")
+          }
+         
         });
       } else{
-        console.log("this.fromDate != null && this.toDate == null")
+        //console.log("this.fromDate != null && this.toDate == null")
         var user = localStorage.getItem('USER') as string;
         var passw = localStorage.getItem('PASS') as string
         this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
-          console.log("DATAUSER:",respuesta);
+          //console.log("DATAUSER:",respuesta);
           var diferenciaDias = this.countWorkDay(this.fromDate,this.fromDate);
           var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
           this.formularioDeViaje.setValue({      
@@ -428,11 +457,11 @@ export class AgregarViajeComponent implements OnInit {
         });
       }  
     }else if(this.fromDate == null && this.toDate == null){
-      console.log("this.fromDate == null && this.toDate == null")
+      //console.log("this.fromDate == null && this.toDate == null")
       var user = localStorage.getItem('USER') as string;
       var passw = localStorage.getItem('PASS') as string
       this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
-        console.log("DATAUSER:",respuesta);       
+        //console.log("DATAUSER:",respuesta);       
         this.formularioDeViaje.setValue({      
           lugar:'QUITO',
           fecha_reembolso:this.fechaActualText,
@@ -475,9 +504,11 @@ export class AgregarViajeComponent implements OnInit {
    
     if (this.file != null){           
       this.crudService.uploadFile(this.file,this.nombreFile).then(data =>{
-        console.log('Data:', data);
+        //console.log('Data:', data);
+        window.confirm('Se subio su reembolso correctamente');
       }).catch(error => {
-        console.error('Error:', error);
+        //console.error('Error:', error);
+        window.confirm('Hubo un error al subir el reembolso');
       });
     }
   }
@@ -485,7 +516,7 @@ export class AgregarViajeComponent implements OnInit {
 
   onFileSelectTypesFiles(event: any) {
     const files: FileList = event.target.files;
-    const allowedExtensions = ["rar","zip", "pdf", "jpg", "jpeg", "png", "gif"];
+    const allowedExtensions = ["rar","zip", "pdf", "jpg", "jpeg", "png", "gif","xlsx"];
 
     const zip = new JSZip();
     let isValid = true;
@@ -559,23 +590,24 @@ export class AgregarViajeComponent implements OnInit {
     return getCurrencySymbol(currency, 'wide');
   }  
 
-  agregarViaje(){    
-    this.nombreFile = this.formularioDeViaje.get('nombre')?.value as string+"_"+this.fechaActualText+".zip"
+  
+
+  agregarViaje(){  
     var user = localStorage.getItem('USER') as string;
     var passw = localStorage.getItem('PASS') as string
     this.crudService.ObtenerIDPersonal(user,passw).subscribe(respuesta=>{
-      console.log("Id_personal:\n",respuesta)
+      //console.log("Id_personal:\n",respuesta)
       if (respuesta){        
         const viaje1 = new Viaje();
           viaje1.id_personal = respuesta['id_personal'];   
           viaje1.lugar =  this.formularioDeViaje.get('lugar')?.value;
-          viaje1.fecha_reembolso = this.formularioDeViaje.get('fecha_reembolso')?.value;     
-          viaje1.fecha_viaje_inicio = this.formularioDeViaje.get('fecha_viaje_inicio')?.value;;     
-          viaje1.fecha_viaje_fin = this.formularioDeViaje.get('fecha_viaje_fin')?.value;;
-          viaje1.duracion = this.formularioDeViaje.get('dias_viaje')?.value;;
-          viaje1.punto_partida = this.formularioDeViaje.get('punto_partida')?.value;;
-          viaje1.punto_destino = this.formularioDeViaje.get('punto_destino')?.value;;
-          viaje1.fecha_gasto = this.formularioDeViaje.get('fecha_gasto')?.value;;
+          viaje1.fecha_reembolso = this.crearFechaEnvio();     
+          viaje1.fecha_viaje_inicio = this.formularioDeViaje.get('fecha_viaje_inicio')?.value;
+          viaje1.fecha_viaje_fin = this.formularioDeViaje.get('fecha_viaje_fin')?.value;
+          viaje1.duracion = this.formularioDeViaje.get('dias_viaje')?.value;
+          viaje1.punto_partida = this.formularioDeViaje.get('punto_partida')?.value;
+          viaje1.punto_destino = this.formularioDeViaje.get('punto_destino')?.value;
+          viaje1.fecha_gasto = this.formularioDeViaje.get('fecha_gasto')?.value;
           viaje1.moneda = this.formularioDeViaje.get('moneda')?.value;
           viaje1.cantidad_comprobantes = this.formularioDeViaje.get('cantidad_comprobantes')?.value;
           viaje1.importe = this.formularioDeViaje.get('importe')?.value; 
@@ -598,6 +630,13 @@ export class AgregarViajeComponent implements OnInit {
           });
         }
       }      
+    });
+  }
+
+  downloadExcel() {3
+    console.log("Entre a download")
+    this.crudService.downloadExcelFormatoReembolso().subscribe(blob => {
+      saveAs(blob, "Formato Reembolso de Gastos viaje.xlsx");
     });
   }
 
