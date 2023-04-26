@@ -57,19 +57,19 @@ export class MenuViajesComponent {
 
 
   mostrarDatos(){
-    console.log("MENU ROL:",localStorage.getItem('ROLE') as string)
+    //console.log("MENU ROL:",localStorage.getItem('ROLE') as string)
     if (localStorage.getItem('ROLE') as string == 'ROLE_ADMIN'){
-      console.log("PROBAR: admin");             
+      //console.log("PROBAR: admin");             
       this.rolVacations = true;
       this.rolPersonal = true; 
       this.rolReportes = true;  
     }if (localStorage.getItem('ROLE') as string ==='ROLE_SUPERVISOR') {
-      console.log("PROBAR: supervisor"); 
+      //console.log("PROBAR: supervisor"); 
       this.rolVacations = true;
       this.rolPersonal = true; 
       this.rolReportes = false;   
     }if (localStorage.getItem('ROLE') as string ==='ROLE_USER') {
-      console.log("PROBAR: promotor");
+      //console.log("PROBAR: promotor");
       this.rolVacations = true;
       this.rolPersonal = false; 
       this.rolReportes = false;   
@@ -81,7 +81,7 @@ export class MenuViajesComponent {
     var user = localStorage.getItem('USER') as string;
     var passw = localStorage.getItem('PASS') as string
     this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
-      console.log("DATAUSER:",respuesta);
+      //console.log("DATAUSER:",respuesta);
       this.control_vistas.setValue({
         name_usuario: respuesta['nombre'],
         lastname_usuario: respuesta['apellido'],
@@ -98,13 +98,13 @@ export class MenuViajesComponent {
     console.log("value:",op)
     if (op as unknown as string == '1'){      
       this.nombreVentana='INGRESO-VIAJES';
-      console.log("OPCION:",this.nombreVentana);
+      //console.log("OPCION:",this.nombreVentana);
       
     }else if (op as unknown as string == '2'){      
       this.nombreVentana='REPORTE-PERSONAL';
-      console.log("OPCION:",this.nombreVentana);
+      //console.log("OPCION:",this.nombreVentana);
     }else{
-      console.log("OPCION: VACIO");
+      //console.log("OPCION: VACIO");
     }
   } 
 

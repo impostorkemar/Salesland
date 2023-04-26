@@ -19,7 +19,7 @@ import {MatSort, Sort} from '@angular/material/sort';
 import * as JSZip from 'jszip';
 import { Viaje } from '../components/classModels/Viaje';
 import { Comprobante } from '../components/classModels/Comprobante';
-import { RolPagos } from '../components/classModels/RolPagos';
+import { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -928,81 +928,13 @@ resp!:String[];
       });         
     }  
     
-    // ObtenerDatosRolPagos(user:any,passw:any):Observable<any>{
-    //   var urlAPI="dataRolpago/"+user as string+"_"+passw as string;
-    //   return this.clienteHttp.get(this.API +urlAPI).pipe(
-    //     map(data => {
-    //       const rolPagos: RolPagos [] = [];
-    //       Object.keys(data).forEach((row:any) => {
-    //         const rp = new RolPagos();
-    //       rp.id_rol_pagos = row.id_rol_pagos;
-    //       rp.id_personal = row.id_personal;
-    //       rp.sueldo_nominal = row.sueldo_nominal;
-    //       rp.tiempo_parcial = row.tiempo_parcial;
-    //       rp.dias_trabajados = row.dias_trabajados;
-    //       rp.sueldo_base = row.sueldo_base;
-    //       rp.sueldo_vacaciones = row.sueldo_vacaciones;
-    //       rp.dias_paternidad = row.dias_paternidad;
-    //       rp.permiso_paternidad = row.permiso_paternidad;
-    //       rp.dia_subsidio_maternidad = row.dias_subsidio_maternidad;
-    //       rp.subsidio_maternidad = row.subsidio_maternidad;
-    //       rp.dias_enfermedad = row.dias_enfermedad;
-    //       rp.subsidio_enfermedad = row.subsidio_enfermedad;
-    //       rp.numero_horas_suplementarias = row.numero_horas_suplementarias;
-    //       rp.valor_horas_suplementarias = row.valor_horas_suplementarias;
-    //       rp.numero_horas_extraordinarias = row.numero_horas_extraordinarias;
-    //       rp.valor_horas_extraordinarias = row.valor_horas_extraordinarias;
-    //       rp.comisiones = row.comisiones;
-    //       rp.comisiones_mes_anterior = row.comisiones_mes_anterior;
-    //       rp.incentivo_upsell = row.incentivo_upsell;
-    //       rp.movilizacion = row.movilizacion;
-    //       rp.incentivo_dolarazo = row.incentivo_dolarazo;
-    //       rp.incentivo_alta_gama = row.incentivo_alta_gama;
-    //       rp.bono_pospago_ruc = row.bono_pospago_ruc;
-    //       rp.bono_plan_celular = row.bono_plan_celular;
-    //       rp.base_iess = row.base_iess;
-    //       rp.alimentacion = row.alimentacion;
-    //       rp.decimo_tercero_mensual = row.decimo_tercero_mensual;
-    //       rp.decimo_cuarta_mensual = row.decimo_cuarta_mensual;
-    //       rp.fondo_reserva_mensual = row.fondo_reserva_mensual;
-    //       rp.total_ingresos = row.total_ingresos; 
-    //       rp.aporte_iess = row.aporte_iess;
-    //       rp.chargeback_aplicar = row.chargeback_aplicar;
-    //       rp.impuesto_renta = row.impuesto_renta;
-    //       rp.prestamo_hipotecario = row.prestamo_hipotecario;
-    //       rp.prestamo_quirografario = row.prestamo_quirografario;
-    //       rp.prestamo_empresa = row.prestamo_empresa;
-    //       rp.extension_conyugue = row.extension_conyugue;
-    //       rp.sobregiro = row.sobregiro;
-    //       rp.anticipo_comisiones_mes_anterior = row.anticipo_comisiones_mes_anterior;
-    //       rp.seguro_movil = row.seguro_movil;
-    //       rp.copago_seguro = row.copago_seguro;
-    //       rp.total_egresos = row.total_egresos;
-    //       rp.neto_recibir = row.neto_recibir;
-    //       rp.provision_decimo_tercer_sueldo = row.provision_decimo_tercer_sueldo;
-    //       rp.provision_decimo_cuarto_sueldo = row.provision_decimo_cuarto_sueldo;
-    //       rp.provision_fondos_reserva = row.provision_fondos_reserva;
-    //       rp.dias_vacaciones_tomados = row.dias_vacaciones_tomados;
-    //       rp.provision_vacaciones = row.provision_vacaciones;
-    //       rp.provision_aporte_iess_patronal = row.provision_aporte_iess_patronal;
-    //       rp.ccc = row.ccc;
-    //       rp.reverso_vacaciones_tomadas = row.reverso_vacaciones_tomadas;
-    //       rp.fecha_rol_pago = row.fecha_rol_pago;
-    //       rolPagos.push(rp);
-    //       })
-    //       return rolPagos;
-    //     })
-    //   );
-    // }
-
-    ObtenerDatosRolPagos(user:any,passw:any,anio:any,mes:any):Observable<any>{
-      console.log(user,passw,anio,mes)
-      var urlAPI="dataRolpago/"+user as string+"_"+passw as string + "_" + anio as string + "_" + mes as string; 
+    ObtenerDatosRolPagos(user:any,passw:any):Observable<any>{
+      var urlAPI="dataRolpago/"+user as string+"_"+passw as string;
       return this.clienteHttp.get(this.API +urlAPI);
     }
     
     AgregarViaje(viaje : Viaje):Observable<any>{   
-      //console.log("viaje",viaje);
+      console.log("viaje",viaje);
       var urlAPI="viaje/";
       //console.log("URL=",this.API +urlAPI);
       return this.postData(viaje,urlAPI)
@@ -1013,6 +945,13 @@ resp!:String[];
       var urlAPI="comprobante/";
       //console.log("URL=",this.API +urlAPI);
       return this.postData(comprobante,urlAPI)
+    }
+
+    downloadExcelFormatoReembolso():Observable<any> {
+      var urlAPI="download-excel-FormatoReembolso/";      
+      console.log(this.API +urlAPI)
+      return this.clienteHttp.get<Blob>(this.API +urlAPI, {responseType: 'blob' as 'json'});
+      
     }
 
 
