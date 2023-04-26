@@ -928,11 +928,11 @@ resp!:String[];
       });         
     }  
     
-    ObtenerDatosRolPagos(user:any,passw:any):Observable<any>{
-      var urlAPI="dataRolpago/"+user as string+"_"+passw as string;
+    ObtenerDatosRolPagos(user:any,passw:any,anio:any,mes:any):Observable<any>{
+      console.log(user,passw,anio,mes)
+      var urlAPI="dataRolpago/"+user as string+"_"+passw as string + "_" + anio as string + "_" + mes as string; 
       return this.clienteHttp.get(this.API +urlAPI);
     }
-    
     AgregarViaje(viaje : Viaje):Observable<any>{   
       console.log("viaje",viaje);
       var urlAPI="viaje/";
