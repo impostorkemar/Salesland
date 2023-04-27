@@ -112,29 +112,66 @@ export class AgregarViajeComponent implements OnInit {
     return JSON.parse(localStorage.getItem(name) as string);
   }
   
+  cargarConflictoReembolsos(){
+    //Fecha reembolso ya registrada              
+    this.crudService.ObteneViajesAReasignarByUserPasswordFechas(this.user,this.passw,this.fromDate?.year+"-"+
+    this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+
+    this.toDate?.month+"-"+ this.toDate?.day).subscribe(respuesta13 =>{
+
+      console.log("respuesta13:",respuesta13);
+      var msg = "";
+      for ( let item of respuesta13) {
+        //console.log("item:",item);
+        let aux1 = Object.values(item);
+        msg = msg +"\nID:" + aux1[0]+ "\nFecha Inicio:" + aux1[1] + "\nFecha Fin:" + aux1[2] ; 
+      }              
+      var aux = "CONFLICTO CON LOS REEMBOLSOS:\n"+ msg as string;
+      //console.log("aux:"+ aux);
+      window.confirm(aux)
+    });
+  }
+
   enviarDatos(): void{    
     this.cargarNombreEnvioFile()
     if (this.formularioDeViaje){   
       let key4: string[]=[];
-      let Value4: string[]=[];      
-      //BUSQUEDA ID PERSONAL      
-      if ( this.fromDate != null && this.toDate != null){
-        //console.log(" FROM DATE && TO DATE"); 
-        //console.log("fromDate:",this.fromDate,"\ntoDate:",this.toDate); 
-      }else if(this.fromDate != null && this.toDate == null){
-        //console.log("SOLO FROM DATE");
-        //console.log("fromDate:",this.fromDate,"\ntoDate:",this.toDate);                 
-      } 
+      let Value4: string[]=[];  
       if ( this.formularioDeViaje.get('punto_partida')?.value == ""
-        || this.formularioDeViaje.get('punto_destino')?.value == ""
-        || this.formularioDeViaje.get('importe')?.value == ""
-        || this.formularioDeViaje.get('fecha_viaje_inicio')?.value == ""
-        || this.formularioDeViaje.get('fecha_viaje_fin')?.value == ""
-        || this.formularioDeViaje.get('fecha_gasto')?.value == 0){
-          window.confirm("Rellene campos vacíos")          
-      }else{        
-        this.agregarViaje();
-      }
+          || this.formularioDeViaje.get('punto_destino')?.value == ""
+          || this.formularioDeViaje.get('importe')?.value == ""
+          || this.formularioDeViaje.get('fecha_viaje_inicio')?.value == ""
+          || this.formularioDeViaje.get('fecha_viaje_fin')?.value == ""
+          || this.formularioDeViaje.get('fecha_gasto')?.value == 0){
+            window.confirm("Rellene campos vacíos")          
+        }else{        
+          //BUSQUEDA ID PERSONAL      
+          if ( this.fromDate != null && this.toDate != null){
+            //console.log(" FROM DATE && TO DATE"); 
+            //console.log("fromDate:",this.fromDate,"\ntoDate:",this.toDate); 
+            this.crudService.ObtenerExistenciaViajesByInicioFin(this.user,this.passw,this.fromDate?.year+"-"+
+              this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+
+              this.toDate?.month+"-"+ this.toDate?.day).subscribe(respuesta10 =>{
+                if(respuesta10['FECHAS_CAL'] as unknown as number === 0 || respuesta10['FECHAS_CAL'] === null){
+                  //Ingreso correcto
+                  this.agregarViaje();
+                }else if (respuesta10['FECHAS_CAL'] as unknown as number > 0){
+                  this.cargarConflictoReembolsos();
+                }
+              });
+          }else if(this.fromDate != null && this.toDate == null){
+            //console.log("SOLO FROM DATE");
+            //console.log("fromDate:",this.fromDate,"\ntoDate:",this.toDate);  
+            this.crudService.ObtenerExistenciaViajesByInicioFin(this.user,this.passw,this.fromDate?.year+"-"+
+            this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+
+            this.fromDate?.month+"-"+ this.fromDate?.day).subscribe(respuesta6 =>{
+              if(respuesta6['FECHAS_CAL'] as unknown as number === 0 || respuesta6['FECHAS_CAL'] === null){
+                this.agregarViaje();
+              }else if (respuesta6['FECHAS_CAL'] as unknown as number > 0){
+                this.cargarConflictoReembolsos();
+              }
+            });               
+          } 
+        }
     }
   }  
   
