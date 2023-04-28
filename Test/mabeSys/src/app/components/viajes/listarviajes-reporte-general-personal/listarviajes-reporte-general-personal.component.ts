@@ -13,6 +13,9 @@ export class ListarviajesReporteGeneralPersonalComponent {
   user!:String;
   passw!:String;
   formularioDeviaje:FormGroup;
+  pP: number = 1;  
+  totalP: number = 0;
+  consults:any;
 
   constructor(
     private crudService:CrudService,
@@ -41,4 +44,19 @@ export class ListarviajesReporteGeneralPersonalComponent {
     });
     this.exportList.downloadFileSolicitudesViaje(this.Viaje,"Viajes");
   }
+
+  getData(){
+    this.crudService.ObtenerViajesPersonal(this.user,this.passw).subscribe((respuesta:any)=>{
+      console.log("respuestaViajes:",respuesta);
+      this.Viaje=respuesta;
+      this.consults = respuesta.data;
+      this.totalP = respuesta.total;
+    });
+  }
+
+  pageChangeEvent(event: number){
+    this.pP = event;
+    this.getData();
+  }
+
 }

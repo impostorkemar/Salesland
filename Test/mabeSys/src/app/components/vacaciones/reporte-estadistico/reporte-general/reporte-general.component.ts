@@ -126,7 +126,7 @@ export class ReporteGeneralComponent {
         console.log(respuesta)
         if(respuesta == null){
           window.confirm("Supervisor no registrado contacte con TI")
-        }else if (respuesta['id_supervisor'] == 3){
+        }else if (respuesta['id_supervisor'] == 1){
           this.linkReporteAdmin=true;
           this.linkReport1=false;
           this.linkReport2=false;
@@ -134,18 +134,18 @@ export class ReporteGeneralComponent {
           this.linkReport4=false;
           this.linkReport5=false;
         }else{
-          if (respuesta['id_supervisor'] == 1){
-            this.linkReporteAdmin=false;
-            this.linkReport1=true;
-            this.linkReport2=false;
-            this.linkReport3=false;
-            this.linkReport4=false;
-            this.linkReport5=false;
-          }else if(respuesta['id_supervisor'] == 2){
+          if (respuesta['id_supervisor'] == 2){
             this.linkReporteAdmin=false;
             this.linkReport1=false;
             this.linkReport2=true;
             this.linkReport3=false;
+            this.linkReport4=false;
+            this.linkReport5=false;
+          }else if(respuesta['id_supervisor'] == 3){
+            this.linkReporteAdmin=false;
+            this.linkReport1=false;
+            this.linkReport2=false;
+            this.linkReport3=true;
             this.linkReport4=false;
             this.linkReport5=false;
           }
