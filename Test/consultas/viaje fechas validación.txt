@@ -1,0 +1,83 @@
+SELECT 
+SUM(CASE 
+	WHEN
+        (CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE) 
+         AND 
+         CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('"+str(fecha2)+"' AS DATE)) 	
+        THEN '0' 
+ 	WHEN 
+        CAST(viaje.fecha_viaje_fin AS DATE) = CAST('"+str(fecha1)+"' AS DATE) 
+        AND 
+        CAST(viaje.fecha_viaje_fin AS DATE) < CAST('"+str(fecha2)+"' AS DATE) 
+        THEN '0' 
+ 	WHEN 
+        CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE) 
+        AND 
+        CAST('"+str(fecha2)+"' AS DATE)  < CAST(viaje.fecha_viaje_fin AS DATE)
+ 		AND
+ 		CAST('"+str(fecha2)+"' AS DATE)  > CAST(viaje.fecha_viaje_inicio AS DATE) 
+        THEN '1' 
+ 	WHEN 
+        CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE) 
+        AND 
+        CAST('"+str(fecha2)+"' AS DATE)  > CAST(viaje.fecha_viaje_fin AS DATE)
+ 		AND
+ 		CAST('"+str(fecha2)+"' AS DATE)  > CAST(viaje.fecha_viaje_inicio AS DATE) 
+        THEN '2'
+	WHEN 
+        CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('"+str(fecha1)+"' AS DATE) 
+        AND 
+        CAST(viaje.fecha_viaje_fin AS DATE) > CAST('"+str(fecha2)+"' AS DATE) 
+ 		AND 
+        CAST(viaje.fecha_viaje_inicio AS DATE) < CAST('"+str(fecha2)+"' AS DATE)
+        THEN '3' 
+    WHEN 
+        CAST('"+str(fecha1)+"' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE) 
+ 		AND
+ 		CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)
+        AND 
+        CAST(viaje.fecha_viaje_fin AS DATE) = CAST('"+str(fecha2)+"' AS DATE) 
+        THEN '4' 
+    WHEN 
+        CAST('"+str(fecha1)+"' AS DATE) = CAST(viaje.fecha_viaje_inicio AS DATE) 
+        AND 
+        CAST('"+str(fecha2)+"' AS DATE) > CAST(viaje.fecha_viaje_fin AS DATE)
+        THEN '5' 
+    WHEN 
+        CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE) 
+        AND 
+        CAST('"+str(fecha2)+"' AS DATE) = CAST(viaje.fecha_viaje_fin AS DATE)
+        THEN '6' 
+    WHEN 
+        CAST('"+str(fecha1)+"' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE) 
+        AND 
+ 		CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE) 
+        AND
+        CAST('"+str(fecha2)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)
+ 		 AND
+        CAST('"+str(fecha2)+"' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE)
+        THEN '7' 
+    WHEN 
+        CAST('"+str(fecha1)+"' AS DATE) = CAST(viaje.fecha_viaje_inicio AS DATE) 
+        AND 
+        CAST('"+str(fecha2)+"' AS DATE) = CAST(viaje.fecha_viaje_fin AS DATE)
+        THEN '8'
+     ELSE '0' 
+ END) AS FECHAS_CAL 
+ FROM `viaje` 
+ WHERE viaje.id_personal = (SELECT id_personal 
+                      FROM personal 
+                      WHERE cedula = (SELECT cedula 
+                                      FROM usuario 
+                                      WHERE usuario = '"+str(user)+"' 
+                                      AND password = '"+str(passw)+"'));
+
+SELECT SUM(CASE WHEN (CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE)   AND   CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('"+str(fecha2)+"' AS DATE))  THEN '0'  WHEN  CAST(viaje.fecha_viaje_fin AS DATE) = CAST('"+str(fecha1)+"' AS DATE)  AND  CAST(viaje.fecha_viaje_fin AS DATE) < CAST('"+str(fecha2)+"' AS DATE)  THEN '0'  WHEN  CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('"+str(fecha2)+"' AS DATE)  < CAST(viaje.fecha_viaje_fin AS DATE) AND CAST('"+str(fecha2)+"' AS DATE)  > CAST(viaje.fecha_viaje_inicio AS DATE)  THEN '1'  WHEN  CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)  AND  CAST('"+str(fecha2)+"' AS DATE)  > CAST(viaje.fecha_viaje_fin AS DATE) AND CAST('"+str(fecha2)+"' AS DATE)  > CAST(viaje.fecha_viaje_inicio AS DATE)  THEN '2'	WHEN  CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('"+str(fecha1)+"' AS DATE)  AND  CAST(viaje.fecha_viaje_fin AS DATE) > CAST('"+str(fecha2)+"' AS DATE)  AND  CAST(viaje.fecha_viaje_inicio AS DATE) < CAST('"+str(fecha2)+"' AS DATE) THEN '3' WHEN  CAST('"+str(fecha1)+"' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE)  AND CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE) AND  CAST(viaje.fecha_viaje_fin AS DATE) = CAST('"+str(fecha2)+"' AS DATE)  THEN '4' WHEN  CAST('"+str(fecha1)+"' AS DATE) = CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('"+str(fecha2)+"' AS DATE) > CAST(viaje.fecha_viaje_fin AS DATE) THEN '5' WHEN  CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('"+str(fecha2)+"' AS DATE) = CAST(viaje.fecha_viaje_fin AS DATE) THEN '6' WHEN  CAST('"+str(fecha1)+"' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)  AND CAST('"+str(fecha2)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)  AND CAST('"+str(fecha2)+"' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE) THEN '7' WHEN  CAST('"+str(fecha1)+"' AS DATE) = CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('"+str(fecha2)+"' AS DATE) = CAST(viaje.fecha_viaje_fin AS DATE) THEN '8' ELSE '0'  END) AS FECHAS_CAL  FROM `viaje`  WHERE viaje.id_personal = (SELECT id_personal     FROM personal     WHERE cedula = (SELECT cedula   FROM usuario   WHERE usuario = '"+str(user)+"'   AND password = '"+str(passw)+"'));
+
+(SELECT viaje.id_viaje, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin  FROM `viaje`  WHERE viaje.id_personal = (SELECT id_personal     FROM personal     WHERE cedula = (SELECT cedula   FROM usuario   WHERE usuario = '1724124084'   AND password = '1724124084'))
+AND (CASE WHEN (CAST('2023-4-11' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE)   AND   CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('2023-4-13' AS DATE))  THEN '0'  WHEN  CAST(viaje.fecha_viaje_fin AS DATE) = CAST('2023-4-11' AS DATE)  AND  CAST(viaje.fecha_viaje_fin AS DATE) < CAST('2023-4-13' AS DATE)  THEN '0'  WHEN  CAST('2023-4-11' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE)  
+AND  CAST('2023-4-13' AS DATE)  < CAST(viaje.fecha_viaje_fin AS DATE) AND CAST('2023-4-13' AS DATE)  > CAST(viaje.fecha_viaje_inicio AS DATE)  THEN '1'  WHEN  CAST('2023-4-11' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)  AND  CAST('2023-4-13' AS DATE)  > CAST(viaje.fecha_viaje_fin AS DATE) AND CAST('2023-4-13' AS DATE)  > CAST(viaje.fecha_viaje_inicio AS DATE)  THEN '2'WHEN  CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('2023-4-11' AS DATE)  AND  CAST(viaje.fecha_viaje_fin AS DATE) > CAST('2023-4-13' AS DATE)  AND  CAST(viaje.fecha_viaje_inicio AS DATE) < CAST('2023-4-13' AS DATE) THEN '3' WHEN  CAST('2023-4-11' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE)  AND CAST('2023-4-11' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE) AND  CAST(viaje.fecha_viaje_fin AS DATE) = CAST('2023-4-13' AS DATE)  THEN '4' WHEN  CAST('2023-4-11' AS DATE) = CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('2023-4-13' AS DATE) > CAST(viaje.fecha_viaje_fin AS DATE) THEN '5' WHEN  CAST('2023-4-11' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('2023-4-13' AS DATE) = CAST(viaje.fecha_viaje_fin AS DATE) THEN '6' 
+WHEN  CAST('2023-4-11' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('2023-4-11' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)  AND CAST('2023-4-13' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)  AND CAST('2023-4-13' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE) THEN '7' WHEN  CAST('2023-4-11' AS DATE) = CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('2023-4-13' AS DATE) = CAST(viaje.fecha_viaje_fin AS DATE) THEN '8' ELSE '0'  END) >0);
+
+SELECT viaje.id_viaje, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin  FROM `viaje`  WHERE viaje.id_personal = (SELECT id_personal     FROM personal     WHERE cedula = (SELECT cedula   FROM usuario   WHERE usuario = '"+str(usuario)+"'   AND password = '"+str(passw)+"')) AND (CASE WHEN (CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE)   AND   CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('"+str(fecha2)+"' AS DATE))  THEN '0'  WHEN  CAST(viaje.fecha_viaje_fin AS DATE) = CAST('"+str(fecha1)+"' AS DATE)  AND  CAST(viaje.fecha_viaje_fin AS DATE) < CAST('"+str(fecha2)+"' AS DATE)  THEN '0'  WHEN  CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE) AND  CAST('"+str(fecha2)+"' AS DATE)  < CAST(viaje.fecha_viaje_fin AS DATE) AND CAST('"+str(fecha2)+"' AS DATE)  > CAST(viaje.fecha_viaje_inicio AS DATE)  THEN '1'  WHEN  CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)  AND  CAST('"+str(fecha2)+"' AS DATE)  > CAST(viaje.fecha_viaje_fin AS DATE) AND CAST('"+str(fecha2)+"' AS DATE)  > CAST(viaje.fecha_viaje_inicio AS DATE)  THEN '2'WHEN  CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('"+str(fecha1)+"' AS DATE)  AND  CAST(viaje.fecha_viaje_fin AS DATE) > CAST('"+str(fecha2)+"' AS DATE)  AND  CAST(viaje.fecha_viaje_inicio AS DATE) < CAST('"+str(fecha2)+"' AS DATE) THEN '3' WHEN  CAST('"+str(fecha1)+"' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE)  AND CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE) AND  CAST(viaje.fecha_viaje_fin AS DATE) = CAST('"+str(fecha2)+"' AS DATE)  THEN '4' WHEN  CAST('"+str(fecha1)+"' AS DATE) = CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('"+str(fecha2)+"' AS DATE) > CAST(viaje.fecha_viaje_fin AS DATE) THEN '5' WHEN  CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('"+str(fecha2)+"' AS DATE) = CAST(viaje.fecha_viaje_fin AS DATE) THEN '6' WHEN  CAST('"+str(fecha1)+"' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)  AND CAST('"+str(fecha2)+"' AS DATE) < CAST(viaje.fecha_viaje_fin AS DATE)  AND CAST('"+str(fecha2)+"' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE) THEN '7' WHEN  CAST('"+str(fecha1)+"' AS DATE) = CAST(viaje.fecha_viaje_inicio AS DATE)  AND  CAST('"+str(fecha2)+"' AS DATE) = CAST(viaje.fecha_viaje_fin AS DATE) THEN '8' ELSE '0'  END) >0);
+                                      

@@ -249,7 +249,7 @@ export class MenuComponent implements OnInit {
   }
 
   goToMenuBotones(){
-    this.router.navigate(['/menuBotones']);
+    this.router.navigate(['/inicio']);
   }
 
   

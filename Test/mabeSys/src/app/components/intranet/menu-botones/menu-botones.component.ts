@@ -55,6 +55,10 @@ export class MenuBotonesComponent {
     window.location.href = 'http://192.168.0.101/soporte/upload/index.php';
   }
 
+  goToExternalLinkpostulateEspana() {
+    window.location.href = 'https://empleo.salesland.net/ec/ofertas-empleo';
+  }
+
   ValidarCentroCosto(){
     var user = localStorage.getItem('USER') as string;
     var passw = localStorage.getItem('PASS') as string;  

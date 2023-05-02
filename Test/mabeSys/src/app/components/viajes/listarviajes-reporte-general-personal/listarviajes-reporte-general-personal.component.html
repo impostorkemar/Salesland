@@ -34,7 +34,8 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let viaje of Viaje; let iControl=index" class="">
+                    <tr *ngFor="let viaje of Viaje | paginate: {id: 'pagination1', itemsPerPage: 5, currentPage: pP, totalItems: totalP }; let iControl=index" class="">
+                     
                           <td scope="row">{{viaje.id_viaje}}</td>   
                           <td>{{viaje.lugar}}</td>                   
                           <td>{{viaje.fecha_reembolso}}</td>
@@ -53,6 +54,7 @@
                       
                   </tbody>
               </table>
+              <pagination-controls id="pagination1" (pageChange)="pageChangeEvent($event)"></pagination-controls>
           </div>        
       </div>   
     </div>

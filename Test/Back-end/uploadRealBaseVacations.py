@@ -54,22 +54,26 @@ def isNaN(num):
     return num != num
 
 def clearTables():
-  #Dropeo tabla cargo
+  #Dropeo tabla personal
   ejecutarSQL("DELETE FROM personal;")
-  #Dropeo tabla cargo
-  ejecutarSQL("DELETE FROM cargo;")  
-  #Dropeo table usuario
-  ejecutarSQL("DELETE FROM vacaciones;")   
   #Dropeo table usuario
   ejecutarSQL("DELETE FROM supervisor;") 
-  #Dropeo tabla centro_base 
-  ejecutarSQL("DELETE FROM centro_costo;")
   #Dropeo table usuario
   ejecutarSQL("DELETE FROM usuario;")
+  #Dropeo tabla comprobante
+  ejecutarSQL("DELETE FROM comprobante;")
+  #Dropeo tabla viaje
+  ejecutarSQL("DELETE FROM viaje;")  
   #Dropeo table experiencia_laboral
   ejecutarSQL("DELETE FROM experiencia_laboral;")
   #Dropeo tabla candidato
-  ejecutarSQL("DELETE FROM candidato;")
+  ejecutarSQL("DELETE FROM candidato;")  
+  #Dropeo tabla cargo
+  ejecutarSQL("DELETE FROM cargo;")  
+  #Dropeo table usuario
+  ejecutarSQL("DELETE FROM vacaciones;")
+  #Dropeo tabla centro_base 
+  ejecutarSQL("DELETE FROM centro_costo;")
   #Dropeo table contrato
   ejecutarSQL("DELETE FROM contrato;")
   #Dropeo tabla rol_pagos
@@ -199,14 +203,14 @@ def cargarusuarios():
       sql = sql + str(datos)
       ejecutarSQL(sql)
       print(sql)
-
+      
 def cargarContratos(numUsuarios):
   ejecutarSQL("ALTER TABLE contrato AUTO_INCREMENT=0")
   j=0;
   i=6;
   #l=10;
   l=numUsuarios
-  listPersonal = [];
+  listPersonal = [];  
   for i in range(i,l):
     listPersonal.append(df5['VACACIONES PERSONAL SALESLAND'].iloc[i,1:18])
     #print(df2['VACACIONES PERSONAL SALESLAND'].iloc[i,1:17])
@@ -231,7 +235,7 @@ def cargarContratos(numUsuarios):
         auxFecha = fechaAux[2]+"-"+fechaAux[0]+"-"+fechaAux[1]
       sql = "INSERT INTO `contrato`(`tipo_contrato`, `fecha_inicio_contrato`, `fecha_fin_contrato`, `salario`, `observaciones`) VALUES"
       datos = ("NUEVO",auxFecha,"","0","FIRMO CONTRATO")
-      sql = sql + str(datos) 
+      sql = sql + str(datos)       
       print(sql)
       ejecutarSQL(sql)
 
@@ -248,7 +252,7 @@ def cargarExpeLaboral():
 
 def consultarSupervisor(cedulaSupervisor: str):
   sql= "SELECT `id_supervisor` FROM `supervisor` WHERE `cedula` =  '"+str(cedulaSupervisor)+"' LIMIT 1;"
-  print(sql)
+  print("id_contrato:",sql)
   id_supervisor = consultarSQL_Lista(sql);
   return id_supervisor
 
@@ -258,8 +262,8 @@ def consultarCargo(nombreCargo:str):
   id_cargo = consultarSQL_Lista(sql);
   return id_cargo
 
-def consultarContrato(fechaInicioContrato:str):
-  sql= "SELECT id_contrato FROM contrato WHERE contrato.fecha_inicio_contrato = '"+str(fechaInicioContrato)+"' LIMIT 1;"
+def consultarContrato(fechaInicioContrato:str, id:int):
+  sql= "SELECT id_contrato FROM contrato WHERE contrato.fecha_inicio_contrato = '"+str(fechaInicioContrato)+"' AND contrato.id_contrato = '"+str(id)+"' LIMIT 1;"
   print(sql)
   id_contrato = consultarSQL_Lista(sql);
   return id_contrato
@@ -267,6 +271,7 @@ def consultarContrato(fechaInicioContrato:str):
 def cargarPersonal(numUsuarios):
   #Setear incremental en 0
   ejecutarSQL("ALTER TABLE personal AUTO_INCREMENT=0")
+  ejecutarSQL("ALTER TABLE contrato AUTO_INCREMENT=0")
   j=0;
   i=6;
   #l=10;
@@ -277,6 +282,7 @@ def cargarPersonal(numUsuarios):
     listPersonal.append(df5['VACACIONES PERSONAL SALESLAND'].iloc[i,1:20])
     #print(df2['VACACIONES PERSONAL SALESLAND'].iloc[i,1:17])
   #print(listPersonal)
+  idContrato = 1
   for item  in range(len(listPersonal)):
     status = (listPersonal[item][0])
     cedula = (listPersonal[item][2]) 
@@ -306,23 +312,35 @@ def cargarPersonal(numUsuarios):
         auxFecha = fechaAux[2]+"-"+fechaAux[0]+"-"+fechaAux[1]
       else:  
         auxFecha = fechaAux[2]+"-"+fechaAux[0]+"-"+fechaAux[1]
-      listIdContrato = consultarContrato(str(auxFecha))
 
-      idSUper= ""; idCargo = ""; idContrato = "";
+      sql = "INSERT INTO `contrato`(`tipo_contrato`, `fecha_inicio_contrato`, `fecha_fin_contrato`, `salario`, `observaciones`) VALUES"
+      datos = ("NUEVO",auxFecha,"","0","FIRMO CONTRATO")
+      sql = sql + str(datos)       
+      print(sql)
+      ejecutarSQL(sql)
+
+      """listIdContrato = consultarContrato(str(auxFecha),str(item+1))
+      idContrato = "";
+      for i in range(len(listIdContrato)):
+        idContrato = listIdContrato[0][0]"""
+
+      idSUper= ""; idCargo = ""; 
       for i in range(len(listIdSup)):
         idSUper= listIdSup[0][0]
       for i in range(len(listIdCargo)):
-        idCargo = listIdCargo[0][0]
-      for i in range(len(listIdContrato)):
-        idContrato = listIdContrato[0][0]  
+        idCargo = listIdCargo[0][0]      
+     
+      
       if (idCargo == ""):
          idCargo = '46' 
       print("idSUper:",idSUper,"\nidCargo:",idCargo)
-      sql="INSERT INTO `personal`( `id_centro_costo`, `cedula`,`id_supervisor`, `status`, `adendum_contrato`, `id_contrato`, `id_cargo`) VALUES ";
-      datos = (str(centro_costo),str(cedula),str(idSUper), str(status), "",str(idContrato),str(idCargo))
-      sql += str(datos)
-      print(sql)
-      ejecutarSQL(sql)
+      sql2="INSERT INTO `personal`( `id_centro_costo`, `cedula`,`id_supervisor`, `status`, `adendum_contrato`, `id_contrato`, `id_cargo`) VALUES ";
+      datos2 = (str(centro_costo),str(cedula),str(idSUper), str(status), "",str(idContrato),str(idCargo))
+      sql2 += str(datos2)
+      print(sql2)
+      ejecutarSQL(sql2)
+
+      idContrato = idContrato +1
 
 def cambiarRolesAdmins():
   sql1 = "UPDATE `usuario` SET `tipo`='admin' WHERE  `cedula` = '1724124084';"
@@ -370,7 +388,7 @@ cargarCargos(numCargos)
 cargarCandidato(numUsuarios)
 cargarSupervisores()
 cargarusuarios()
-cargarContratos(numUsuarios)
+#cargarContratos(numUsuarios)
 cargarExpeLaboral()
 cargarPersonal(numUsuarios)
 cambiarRolesAdmins()

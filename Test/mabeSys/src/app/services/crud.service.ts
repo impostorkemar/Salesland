@@ -25,7 +25,7 @@ import { saveAs } from 'file-saver';
   providedIn: 'root'
 })
 export class CrudService {
-API:string = 'http://intranetsaleslandecuador.net:8000/';
+API:string = 'http://192.168.0.29:8000/';
 resp!:String[];
 
   constructor(
@@ -950,8 +950,19 @@ resp!:String[];
     downloadExcelFormatoReembolso():Observable<any> {
       var urlAPI="download-excel-FormatoReembolso/";      
       console.log(this.API +urlAPI)
-      return this.clienteHttp.get<Blob>(this.API +urlAPI, {responseType: 'blob' as 'json'});
-      
+      return this.clienteHttp.get<Blob>(this.API +urlAPI, {responseType: 'blob' as 'json'});      
+    }
+
+    ObtenerExistenciaViajesByInicioFin(user:any,pass:any, fecha1:any, fecha2:any):Observable<any>{
+      //console.log("user:",user,"pass:", pass)
+      var urlAPI="comprobarViajesRegistradasByUserPasswordFechas/"+user as string+"_{pass}_"+fecha1 as string+"_"+fecha2 as string+"?passw="+pass as string;      
+      return this.clienteHttp.get(this.API+urlAPI);
+    }
+  
+    ObteneViajesAReasignarByUserPasswordFechas(user:any,pass:any,fecha1:any, fecha2: any):Observable<any>{
+      //console.log("user:",user,"pass:", pass)
+      var urlAPI="viajesAReasignarByUserPasswordFechas/"+user as string+"_{pass}_"+fecha1 as string+"_"+fecha2 as string+"?passw="+pass as string;      
+      return this.clienteHttp.get(this.API+urlAPI);
     }
 
     uploadExcel(file: File): Promise<any> {

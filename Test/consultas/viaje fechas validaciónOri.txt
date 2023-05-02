@@ -1,0 +1,59 @@
+SELECT 
+(CASE 
+	WHEN
+        (CAST('"+str(fecha1)+"' AS DATE) > CAST(viaje.fecha_viaje_inicio AS DATE) 
+         AND 
+         CAST(viaje.fecha_viaje_fin AS DATE) > CAST('"+str(fecha2)+"' AS DATE)) 	
+        THEN '1' 
+ 	WHEN 
+        CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('"+str(fecha1)+"' AS DATE) 
+        AND 
+        CAST(viaje.fecha_viaje_fin AS DATE) < CAST('"+str(fecha2)+"' AS DATE) 
+        THEN '2' 
+ 	WHEN 
+        CAST('"+str(fecha1)+"' AS DATE) < CAST(viaje.fecha_viaje_inicio AS DATE) 
+        AND 
+        CAST(viaje.fecha_viaje_fin AS DATE) = CAST('"+str(fecha2)+"' AS DATE) 
+        THEN '3' 
+	WHEN 
+        CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('"+str(fecha1)+"' AS DATE) 
+        AND 
+        CAST(viaje.fecha_viaje_fin AS DATE) = CAST('"+str(fecha2)+"' AS DATE) 
+        THEN '4' 
+    WHEN 
+        CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('"+str(fecha1)+"' AS DATE) 
+        THEN '5' 
+    WHEN 
+        CAST(viaje.fecha_viaje_fin AS DATE) = CAST('"+str(fecha2)+"' AS DATE) 
+        THEN '6' 
+    WHEN 
+        CAST(viaje.fecha_viaje_inicio AS DATE) < CAST('"+str(fecha2)+"' AS DATE) 
+        AND 
+        CAST(viaje.fecha_viaje_fin AS DATE) > CAST('"+str(fecha2)+"' AS DATE) 
+        THEN '7' 
+    WHEN 
+        CAST(viaje.fecha_viaje_inicio AS DATE) < CAST('"+str(fecha1)+"' AS DATE) 
+        AND 
+        CAST(viaje.fecha_viaje_fin AS DATE) > CAST('"+str(fecha1)+"' AS DATE) 
+        THEN '8' 
+    WHEN 
+        CAST(viaje.fecha_viaje_inicio AS DATE) > CAST('"+str(fecha1)+"' AS DATE) 
+        AND 
+        CAST(viaje.fecha_viaje_fin AS DATE) < CAST('"+str(fecha2)+"' AS DATE) 
+        THEN '9' 
+    WHEN 
+        CAST(viaje.fecha_viaje_fin AS DATE) = CAST('"+str(fecha1)+"' AS DATE) 
+        THEN '10' 
+    WHEN 
+        CAST(viaje.fecha_viaje_inicio AS DATE) = CAST('"+str(fecha2)+"' AS DATE) 
+        THEN '11' 
+     ELSE '0' 
+ END) AS FECHAS_CAL 
+ FROM `vacaciones` 
+ WHERE id_personal = (SELECT id_personal 
+                      FROM personal 
+                      WHERE cedula = (SELECT cedula 
+                                      FROM usuario 
+                                      WHERE usuario = '"+str(user)+"' 
+                                      AND password = '"+str(passw)+"'));
+                                      
