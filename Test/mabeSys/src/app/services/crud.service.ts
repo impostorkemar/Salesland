@@ -25,7 +25,7 @@ import { saveAs } from 'file-saver';
   providedIn: 'root'
 })
 export class CrudService {
-API:string = 'http://intranetsaleslandecuador.net:8000/';
+API:string = 'http://192.168.0.29:8000/';
 resp!:String[];
 
   constructor(

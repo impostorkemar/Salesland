@@ -109,7 +109,7 @@ export class MenuViajesComponent {
   } 
 
   goToMenuBotones(){
-    this.router.navigate(['/menuBotones']);
+    this.router.navigate(['/inicio']);
   }
 
 }
