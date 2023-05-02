@@ -10,6 +10,7 @@ from fastapi.responses import FileResponse
 import re
 import os
 import shutil
+import pandas as pd
 
 key = Fernet.generate_key()
 f = Fernet(key)
@@ -759,3 +760,22 @@ def get_dataRolpago(user: str, passw:str, anio:str, mes:str):
     sql="SELECT candidato.nombre, candidato.apellido, contrato.fecha_inicio_contrato, cargo.nombre_cargo, candidato.cedula,rol_pagos.sueldo_nominal,rol_pagos.tiempo_parcial,rol_pagos.dias_trabajados,rol_pagos.sueldo_base,rol_pagos.sueldo_vacaciones,rol_pagos.dias_paternidad,rol_pagos.permiso_paternidad,rol_pagos.dias_subsidio_maternidad,rol_pagos.subsidio_maternidad,rol_pagos.dias_enfermedad,rol_pagos.subsidio_enfermedad,rol_pagos.numero_horas_suplementarias,rol_pagos.valor_horas_suplementarias,rol_pagos.numero_horas_extraordinarias,rol_pagos.valor_horas_extraordinarias,rol_pagos.comisiones,rol_pagos.comisiones_mes_anterior,rol_pagos.incentivo_upsell,rol_pagos.movilizacion,rol_pagos.incentivo_dolarazo,rol_pagos.incentivo_alta_gama,rol_pagos.bono_pospago_ruc,rol_pagos.bono_plan_celular,rol_pagos.base_iess,rol_pagos.alimentacion,rol_pagos.decimo_tercero_mensual,rol_pagos.decimo_cuarta_mensual,rol_pagos.fondo_reserva_mensual,rol_pagos.total_ingresos,rol_pagos.aporte_iess,rol_pagos.chargeback_aplicar,rol_pagos.impuesto_renta,rol_pagos.prestamo_hipotecario_iess,rol_pagos.prestamo_quirografario,rol_pagos.prestamo_empresa,rol_pagos.extension_conyugue,rol_pagos.sobregiro,rol_pagos.anticipo_comisiones_mes_anterior,rol_pagos.seguro_movil,rol_pagos.copago_seguro,rol_pagos.total_egresos,rol_pagos.neto_recibir,rol_pagos.provision_decimo_tercer_sueldo,rol_pagos.provision_decimo_cuarto_sueldo,rol_pagos.provision_fondos_reserva,rol_pagos.dias_vacaciones_tomados,rol_pagos.provision_vacaciones,rol_pagos.provision_aporte_iess_patronal,rol_pagos.ccc,rol_pagos.reverso_vacaciones_tomadas,rol_pagos.fecha_rol_pago FROM candidato,personal,contrato,cargo, rol_pagos WHERE personal.id_personal = rol_pagos.id_personal AND personal.cedula = candidato.cedula AND personal.id_contrato = contrato.id_contrato AND personal.id_cargo = cargo.id_cargo AND personal.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"') AND (SELECT YEAR(CAST(rol_pagos.fecha_rol_pago AS DATE))) = '"+str(anio)+"' AND (SELECT MONTH(CAST(rol_pagos.fecha_rol_pago AS DATE))) = '"+str(mes)+"';"
     return conn.execute(sql).first()
 
+@user.post("/uploadExcel/",tags=['Rol_pago'])
+async def upload_excel(file: UploadFile = File(...)):
+    #lectura archivo
+    file_extension = os.path.splitext(file.filename)[1]
+    if file_extension != '.xlsx':
+        return {"error": "El archivo debe ser un Excel (.xlsx)"}
+    save_path = os.path.join("C:/Rol Pagos/", file.filename)
+    with open(save_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    # Cargar los datos del archivo Excel en un DataFrame de Pandas
+    df = pd.read_excel(save_path)
+    conn = engine.connect()
+    for item in range (df.shape[0]):
+        sql = "INSERT INTO `rol_pagos`(`id_personal`, `sueldo_nominal`, `tiempo_parcial`, `dias_trabajados`, `sueldo_base`, `sueldo_vacaciones`, `dias_paternidad`, `permiso_paternidad`, `dias_subsidio_maternidad`, `subsidio_maternidad`, `dias_enfermedad`, `subsidio_enfermedad`, `numero_horas_suplementarias`, `valor_horas_suplementarias`, `numero_horas_extraordinarias`, `valor_horas_extraordinarias`, `comisiones`, `comisiones_mes_anterior`, `incentivo_upsell`, `movilizacion`, `incentivo_dolarazo`, `incentivo_alta_gama`, `bono_pospago_ruc`, `bono_plan_celular`, `base_iess`, `alimentacion`, `decimo_tercero_mensual`, `decimo_cuarta_mensual`, `fondo_reserva_mensual`, `total_ingresos`, `aporte_iess`, `chargeback_aplicar`, `impuesto_renta`, `prestamo_hipotecario_iess`, `prestamo_quirografario`, `prestamo_empresa`, `extension_conyugue`, `sobregiro`, `anticipo_comisiones_mes_anterior`, `seguro_movil`, `copago_seguro`, `total_egresos`, `neto_recibir`, `provision_decimo_tercer_sueldo`, `provision_decimo_cuarto_sueldo`, `provision_fondos_reserva`, `dias_vacaciones_tomados`, `provision_vacaciones`, `provision_aporte_iess_patronal`, `ccc`, `reverso_vacaciones_tomadas`, `fecha_rol_pago`) VALUES"
+        datos = (df.iloc[item,0],df.iloc[item,1],df.iloc[item,2],df.iloc[item,3],df.iloc[item,4],df.iloc[item,5],df.iloc[item,6],df.iloc[item,7],df.iloc[item,8],df.iloc[item,9],df.iloc[item,10],df.iloc[item,11],df.iloc[item,12],df.iloc[item,13],df.iloc[item,14],df.iloc[item,15],df.iloc[item,16],df.iloc[item,17],df.iloc[item,18],df.iloc[item,19],df.iloc[item,20],df.iloc[item,21],df.iloc[item,22],df.iloc[item,23],df.iloc[item,24],df.iloc[item,25],df.iloc[item,26],df.iloc[item,27],df.iloc[item,28],df.iloc[item,29],df.iloc[item,30],df.iloc[item,31],df.iloc[item,32],df.iloc[item,33],df.iloc[item,34],df.iloc[item,35],df.iloc[item,36],df.iloc[item,37],df.iloc[item,38],df.iloc[item,39],df.iloc[item,40],df.iloc[item,41],df.iloc[item,42],df.iloc[item,43],df.iloc[item,44],df.iloc[item,45],df.iloc[item,46],df.iloc[item,47],df.iloc[item,48],df.iloc[item,49],df.iloc[item,50],df.iloc[item,51])
+        sql = sql + str(datos) 
+        conn.execute(sql)
+    #respuesta
+    return {"succes": "El archivo se ha cargado Correctamente"}
