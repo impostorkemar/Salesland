@@ -146,7 +146,9 @@ export class MenuRolpagoComponent {
   passw!:String;
 
 //
-
+name!: string;
+file!: File;
+selectedFile!: any;
 
 
   constructor(
@@ -162,7 +164,7 @@ export class MenuRolpagoComponent {
       console.log("respuesta rol Pagos:" , respuesta);
       this.setDataRolpagos();
       if (respuesta == null) {
-        window.confirm('No existe Datos en el fecha: '+this.fechaFormateada);
+        window.confirm('No existe Datos en el fecha: '+ this.fechaFormateada);
 
       }else{
       this.anticipo_sueldo = ' - '
@@ -230,7 +232,7 @@ export class MenuRolpagoComponent {
    }
 
    ngOnInit(): void {
-    
+
    }
 
    generatePDF() {
@@ -353,4 +355,21 @@ export class MenuRolpagoComponent {
    // Asignar el texto a las variables correspondientes
   this.fechaFormateada = textoFecha.toUpperCase();
   }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  cargarDatos(){
+    if (this.file != null){           
+      this.crudService.uploadExcel(this.selectedFile).then(data =>{
+        console.log('Data:', data);
+        window.confirm('Se subio cargo su excel correctamente');
+      }).catch(error => {
+        console.error('Error:', error);
+        window.confirm('Hubo un error al subir el excel');
+      });
+    }
+  }
+
 } 

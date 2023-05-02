@@ -965,5 +965,10 @@ resp!:String[];
       return this.clienteHttp.get(this.API+urlAPI);
     }
 
-
+    uploadExcel(file: File): Promise<any> {
+      const formData = new FormData();
+      formData.append('file', file, file.name);
+      return this.clienteHttp.post<any>(this.API, formData).toPromise();
+    }
+    
 }
