@@ -361,15 +361,10 @@ selectedFile!: any;
   }
 
   cargarDatos(){
-    if (this.file != null){           
-      this.crudService.uploadExcel(this.selectedFile).then(data =>{
-        console.log('Data:', data);
-        window.confirm('Se subio cargo su excel correctamente');
-      }).catch(error => {
-        console.error('Error:', error);
-        window.confirm('Hubo un error al subir el excel');
+    this.crudService.uploadExcel(this.selectedFile).then(data =>{
+      console.log('Data:', data);
+      window.confirm('Se cargo su excel correctamente');
       });
-    }
   }
 
 } 
