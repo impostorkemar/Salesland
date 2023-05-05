@@ -7,6 +7,7 @@ from starlette import status
 from sqlalchemy.sql import select
 from fastapi import APIRouter, Response, FastAPI,File, UploadFile
 from fastapi.responses import FileResponse
+from datetime import datetime
 import re
 import os
 import shutil
@@ -775,6 +776,13 @@ def get_dataRolpago(user: str, passw:str, anio:str, mes:str):
     return conn.execute(sql).first()
 
 
+@user.get("/dataRolpagoAnioMes/{id}_{anio}_{mes}",tags=['Rol_pago'])
+def get_dataRolpagoMesyAnio(id:str, anio:str, mes:str):
+    print("anio:", anio, "mes:",mes)
+    conn = engine.connect()
+    sql="SELECT SUM(CASE WHEN YEAR(CAST(rol_pagos.fecha_rol_pago AS DATE)) = '"+str(anio)+"' AND MONTH(CAST(rol_pagos.fecha_rol_pago AS DATE)) = '"+str(mes)+"' THEN 1 ELSE 0 END) AS COMPROBACION_ROLPAGO FROM rol_pagos WHERE id_personal = '"+str(anio)+"';"
+    return conn.execute(sql).first()
+
 @user.post("/uploadExcel/",tags=['Rol_pago'])
 async def upload_excel(file: UploadFile = File(...)):
     #lectura archivo
@@ -790,12 +798,21 @@ async def upload_excel(file: UploadFile = File(...)):
     for item in range (df.shape[0]):
         sql = "INSERT INTO `rol_pagos`(`id_personal`, `sueldo_nominal`, `tiempo_parcial`, `dias_trabajados`, `sueldo_base`, `sueldo_vacaciones`, `dias_paternidad`, `permiso_paternidad`, `dias_subsidio_maternidad`, `subsidio_maternidad`, `dias_enfermedad`, `subsidio_enfermedad`, `numero_horas_suplementarias`, `valor_horas_suplementarias`, `numero_horas_extraordinarias`, `valor_horas_extraordinarias`, `comisiones`, `comisiones_mes_anterior`, `incentivo_upsell`, `movilizacion`, `incentivo_dolarazo`, `incentivo_alta_gama`, `bono_pospago_ruc`, `bono_plan_celular`, `base_iess`, `alimentacion`, `decimo_tercero_mensual`, `decimo_cuarta_mensual`, `fondo_reserva_mensual`, `total_ingresos`, `aporte_iess`, `chargeback_aplicar`, `impuesto_renta`, `prestamo_hipotecario_iess`, `prestamo_quirografario`, `prestamo_empresa`, `extension_conyugue`, `sobregiro`, `anticipo_comisiones_mes_anterior`, `seguro_movil`, `copago_seguro`, `total_egresos`, `neto_recibir`, `provision_decimo_tercer_sueldo`, `provision_decimo_cuarto_sueldo`, `provision_fondos_reserva`, `dias_vacaciones_tomados`, `provision_vacaciones`, `provision_aporte_iess_patronal`, `ccc`, `reverso_vacaciones_tomadas`, `fecha_rol_pago`) VALUES"
         datos = (df.iloc[item,0],df.iloc[item,1],df.iloc[item,2],df.iloc[item,3],df.iloc[item,4],df.iloc[item,5],df.iloc[item,6],df.iloc[item,7],df.iloc[item,8],df.iloc[item,9],df.iloc[item,10],df.iloc[item,11],df.iloc[item,12],df.iloc[item,13],df.iloc[item,14],df.iloc[item,15],df.iloc[item,16],df.iloc[item,17],df.iloc[item,18],df.iloc[item,19],df.iloc[item,20],df.iloc[item,21],df.iloc[item,22],df.iloc[item,23],df.iloc[item,24],df.iloc[item,25],df.iloc[item,26],df.iloc[item,27],df.iloc[item,28],df.iloc[item,29],df.iloc[item,30],df.iloc[item,31],df.iloc[item,32],df.iloc[item,33],df.iloc[item,34],df.iloc[item,35],df.iloc[item,36],df.iloc[item,37],df.iloc[item,38],df.iloc[item,39],df.iloc[item,40],df.iloc[item,41],df.iloc[item,42],df.iloc[item,43],df.iloc[item,44],df.iloc[item,45],df.iloc[item,46],df.iloc[item,47],df.iloc[item,48],df.iloc[item,49],df.iloc[item,50],df.iloc[item,51])
+        # Convertir la fecha de rol de pagos a una cadena de texto
+        fecha_rol_pago_str = str(df.iloc[item, 51])
+        # Convertir la cadena de texto a un objeto datetime
+        fecha_rol_pago = datetime.strptime(fecha_rol_pago_str, '%Y-%m-%d')
+        # Obtener el año y el mes de la fecha de rol de pagos
+        anio = fecha_rol_pago.strftime('%Y')
+        print(anio)
+        mes = fecha_rol_pago.strftime('%m')  
+        print(mes)     
         sql = sql + str(datos) 
-        #bandera = get_dataRolpago(df.iloc[item,0],año,mes)
-        #if(bandera==0):
-        conn.execute(sql)
-        return {"succes": "El archivo se ha cargado Correctamente"}
-        #else:
-        #    return {"Error": "El archivo se ha cargado Correctamente:"+str(df.iloc[item,0])}
+        bandera = get_dataRolpagoMesyAnio(str(df.iloc[item,0]), anio, mes)
+        if(bandera == 0):
+            conn.execute(sql)
+            return {"succes": "El archivo se ha cargado Correctamente"}
+        else:
+            return {"Error": "El archivo no se pudo cargar"}
+            
     #respuesta
-    

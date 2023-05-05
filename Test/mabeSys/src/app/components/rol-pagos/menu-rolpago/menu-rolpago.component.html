@@ -35,12 +35,15 @@
               <option value="11">Noviembre</option>
               <option value="12">Diciembre</option>
             </select>
-          </li>
+         </li>
         </ul>
-      </nav>
-    </div>
+  </nav>
+</div>
 
-
+  <div *ngIf="rolPagoflag">
+    <input type="file" (change)="onFileSelected($event)">
+    <button (click)="cargarDatos()">Cargar Excel</button> 
+  </div>
 
   <div class="contenedor-hoja" id="html-a-exportar" >
   <div>
