@@ -65,6 +65,7 @@ export class MenuRolpagoComponent {
 
   anioSeleccionado: any = 'Selecciona un año';
   mesSeleccionado: any = 'Selecciona un mes'; 
+  rolPagoflag!: any;
 
 //Encabezado
   cedula: any = ' - ';
@@ -232,7 +233,7 @@ selectedFile!: any;
    }
 
    ngOnInit(): void {
-
+    this.ValidarRolPagos() 
    }
 
    generatePDF() {
@@ -358,10 +359,13 @@ selectedFile!: any;
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
+    console.log("\nselectedFile:",this.selectedFile)
+    
   }
 
   cargarDatos(){
-    if (this.file != null){           
+    console.log("Entre cargar")
+              
       this.crudService.uploadExcel(this.selectedFile).then(data =>{
         console.log('Data:', data);
         window.confirm('Se subio cargo su excel correctamente');
@@ -369,7 +373,15 @@ selectedFile!: any;
         console.error('Error:', error);
         window.confirm('Hubo un error al subir el excel');
       });
-    }
+    
   }
+
+  ValidarRolPagos(){
+    if (localStorage.getItem('ROLE') as string == 'ROLE_ADMIN' ){
+      this.rolPagoflag=true;
+    }else{
+      this.rolPagoflag=false;
+    }
+  }
 
 } 

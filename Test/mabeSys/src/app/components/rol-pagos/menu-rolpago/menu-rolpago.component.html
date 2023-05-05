@@ -3,8 +3,11 @@
         <ul>
           <li><a routerLink="/inicio">Inicio</a></li>
           <li>
-            <input type="file" (change)="onFileSelected($event)">
-            <button (click)="cargarDatos()">Cargar Excel</button>
+            <div  *ngIf="rolPagoflag">
+              <input type="file" (change)="onFileSelected($event)">
+              <button (click)="cargarDatos" >Cargar Excel</button>
+            </div>
+            
           </li>
           <li class="l">
             <select [(ngModel)]="anioSeleccionado" (ngModelChange)="cambioAnio()">

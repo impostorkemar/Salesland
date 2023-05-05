@@ -17,7 +17,7 @@
                             </div>
                             <div *ngIf="rolPersonal" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
                                 <button *ngIf="rolPersonal" (click)="menuPersonal2(1)" type="button" class="btn btn-primary">3.APROBACIÓN SOLICITUDES</button>
-                                <button *ngIf="rolPersonal" (click)="menuPersonal2(2)" type="button" class="btn btn-primary">4.REPORTE GRÁFICO</button>
+                                <button *ngIf="false" (click)="menuPersonal2(2)" type="button" class="btn btn-primary">4.REPORTE GRÁFICO</button>
                             </div>   
                             <div *ngIf="rolReportes" class="btn-group-vertical" role="group" aria-label="Vertical button group">
                                 <button *ngIf="rolReportes" (click)="menuReportes2(1)" type="button" class="btn btn-primary">1.USUARIO</button>
@@ -40,7 +40,7 @@
                                     <select *ngIf="rolPersonal" (click)="menuPersonal()" formControlName="statePersonal" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
                                         <option selected>PERSONAL</option>                                   
                                         <option *ngIf="rolPersonal" value="1">1.APROBACIÓN SOLICITUDES</option> 
-                                        <option *ngIf="false" value="2">2.REPORTE GRÁFICO</option>                              
+                                        <option *ngIf="true" value="2">2.REPORTE GRÁFICO</option>                              
                                         </select>                  
                                 </div>
                                 <div *ngIf="true" >

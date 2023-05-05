@@ -25,7 +25,8 @@ import { saveAs } from 'file-saver';
   providedIn: 'root'
 })
 export class CrudService {
-API:string = 'http://192.168.0.29:8000/';
+//API:string = 'http://192.168.0.29:8000/';
+API:string = 'http://181.188.194.242:8000/';
 resp!:String[];
 
   constructor(
@@ -968,7 +969,8 @@ resp!:String[];
     uploadExcel(file: File): Promise<any> {
       const formData = new FormData();
       formData.append('file', file, file.name);
-      return this.clienteHttp.post<any>(this.API, formData).toPromise();
+      console.log("API:",this.API)      
+      return this.clienteHttp.post<any>(this.API+ "uploadExcel" as string, formData).toPromise();
     }
     
 }
