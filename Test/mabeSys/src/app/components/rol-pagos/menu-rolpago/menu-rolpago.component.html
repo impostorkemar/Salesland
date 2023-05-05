@@ -33,12 +33,10 @@
   </nav>
 </div>
 
-<div>
-  <form>
+  <div *ngIf="rolPagoflag">
     <input type="file" (change)="onFileSelected($event)">
-    <button type="button" (click)="cargarDatos()">Cargar Excel</button>
-  </form>  
-</div>
+    <button (click)="cargarDatos()">Cargar Excel</button> 
+  </div>
 
   <div class="contenedor-hoja" id="html-a-exportar" >
   <div>

@@ -150,6 +150,9 @@ name!: string;
 file!: File;
 selectedFile!: any;
 
+//validar segun uruario boton carga
+rolPagoflag!:Boolean
+
 
   constructor(
     private crudService:CrudService
@@ -232,7 +235,7 @@ selectedFile!: any;
    }
 
    ngOnInit(): void {
-
+    this.ValidarRolPagos();
    }
 
    generatePDF() {
@@ -358,13 +361,25 @@ selectedFile!: any;
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
+    console.log("\nSelectedFile:", this.selectedFile)
   }
 
   cargarDatos(){
     this.crudService.uploadExcel(this.selectedFile).then(data =>{
       console.log('Data:', data);
-      window.confirm('Se cargo su excel correctamente');
+      window.confirm('Se cargo su excel correctamente');0
+      }).catch(error => {
+        console.error('Error:', error);
+        window.confirm('Hubo un error al subir el excel')
       });
   }
 
-} 
+ ValidarRolPagos(){
+      if (localStorage.getItem('ROLE') as string == 'ROLE_ADMIN' ){
+        this.rolPagoflag=true;
+      }else{
+        this.rolPagoflag=false;
+      }
+    }
+ }
+
