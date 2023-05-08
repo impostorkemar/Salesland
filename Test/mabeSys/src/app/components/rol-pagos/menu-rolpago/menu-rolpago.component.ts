@@ -65,7 +65,7 @@ export class MenuRolpagoComponent {
 
   anioSeleccionado: any = 'Selecciona un año';
   mesSeleccionado: any = 'Selecciona un mes'; 
-  rolPagoflag!: any;
+ 
 
 //Encabezado
   cedula: any = ' - ';
