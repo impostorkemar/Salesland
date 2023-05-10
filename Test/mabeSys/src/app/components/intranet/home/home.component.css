@@ -59,7 +59,7 @@ img {
 .menuImg {
   display: block;
   margin: auto;
-  width: 100%; /* ajusta el tamaño de la imagen según sea necesario */
+  width: 75%; /* ajusta el tamaño de la imagen según sea necesario */
 }
 
 .textOnImg{
@@ -79,8 +79,8 @@ img {
   background-image: url('/../assets/fondo.jpg');
   background-size: cover;
   background-position: center;
-  height: 650px; 
-  width: 1545px;
+  height: 100vh; /* 100% del viewport height */
+  width: 100%; /* 100% del ancho disponible */
 }
 
 .elemento1 img {
@@ -94,16 +94,16 @@ img {
   background-image: url('/../assets/mision.jpg');
   background-size: cover;
   background-position: center;
-  height: 650px; 
-  width: 1545px;
+  height: 100vh; /* 100% del viewport height */
+  width: 100%; /* 100% del ancho disponible */
 }
 
 .elemento3 {
   background-image: url('/../assets/vision.jpg');
   background-size: cover;
   background-position: center;
-  height: 650px; 
-  width: 1545px;
+  height: 100vh; /* 100% del viewport height */
+  width: 100%; /* 100% del ancho disponible */
 }
 
 .contenedor-gif {

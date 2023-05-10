@@ -2,59 +2,29 @@
         <div class="wrapper">    
             <div  class="body" >
                 <div style="text-align: center; justify-content: center; align-items: center;  ">                
-                    <img src="./assets/SALESLAND2.jpg" class="center redimension1" >            
+                    <img src="./assets/SALESLAND2.jpg" class="center redimension1 responsive-image" >            
                 </div>                               
                 <div>    
                     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #16261C;"> 
                         <div class="navbar-left">  
                             <a class="nav-item nav-link active" (onclick)="goToMenuBotones()" routerLink="/inicio" href="#">HOME</a>
                         </div> 
-                        
                         <div class="navbar-center">
-                            <div *ngIf="rolVacations" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
+                            <div id="1" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
                                 <button *ngIf="rolVacations" (click)="menuVacaciones2(1)" type="button" class="btn btn-primary">1.INGRESO</button>
                                 <button *ngIf="rolVacations" (click)="menuVacaciones2(2)" type="button" class="btn btn-primary">2.SOLICITUDES</button>
-                            </div>
-                            <div *ngIf="rolPersonal" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
                                 <button *ngIf="rolPersonal" (click)="menuPersonal2(1)" type="button" class="btn btn-primary">3.APROBACIÓN SOLICITUDES</button>
                                 <button *ngIf="false" (click)="menuPersonal2(2)" type="button" class="btn btn-primary">4.REPORTE GRÁFICO</button>
-                            </div>   
-                            <div *ngIf="rolReportes" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                            </div>
+                            
+                            <div id="3" *ngIf="rolReportes" class="btn-group-vertical" role="group" aria-label="Vertical button group">
                                 <button *ngIf="rolReportes" (click)="menuReportes2(1)" type="button" class="btn btn-primary">1.USUARIO</button>
                                 <button *ngIf="rolReportes" (click)="menuReportes2(2)" type="button" class="btn btn-primary">2.CANDIDATO</button>
                                 <button *ngIf="rolReportes" (click)="menuReportes2(3)" type="button" class="btn btn-primary">3.CARGO</button>
                                 <button *ngIf="rolReportes" (click)="menuReportes2(4)" type="button" class="btn btn-primary">4.CENTRO COSTO</button>
                                 <button *ngIf="rolReportes" (click)="menuReportes2(5)" type="button" class="btn btn-primary">5.CONTRATO</button>
                                 <button *ngIf="rolReportes" (click)="menuReportes2(6)" type="button" class="btn btn-primary">6.EXPERIENCIA LABORAL</button>
-                            </div>   
-
-                            <div *ngIf="false">
-                                <div  *ngIf="true" >
-                                    <select *ngIf="rolVacations" (click)="menuVacaciones()"  formControlName="stateVacaciones" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
-                                        <option selected>VACACIONES</option>
-                                        <option *ngIf="rolVacations" value="1">1.INGRESO</option>  
-                                        <option *ngIf="rolVacations" value="2">2.SOLICITUDES</option>                                 
-                                        </select>                  
-                                </div>
-                                <div *ngIf="true" >
-                                    <select *ngIf="rolPersonal" (click)="menuPersonal()" formControlName="statePersonal" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
-                                        <option selected>PERSONAL</option>                                   
-                                        <option *ngIf="rolPersonal" value="1">1.APROBACIÓN SOLICITUDES</option> 
-                                        <option *ngIf="true" value="2">2.REPORTE GRÁFICO</option>                              
-                                        </select>                  
-                                </div>
-                                <div *ngIf="true" >
-                                    <select *ngIf="rolReportes" (click)="menuReportes()" formControlName="stateReportes"  class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example" >
-                                        <option  selected>REPORTES</option>
-                                        <option *ngIf="rolReportes" value="1" >1.USUARIO</option> 
-                                        <option *ngIf="rolReportes" value="2" >2.CANDIDATO</option>   
-                                        <option *ngIf="rolReportes" value="3" >3.CARGO</option>
-                                        <option *ngIf="rolReportes" value="4" >4.CENTRO COSTO</option>  
-                                        <option *ngIf="rolReportes" value="5" >5.CONTRATO</option>  
-                                        <option *ngIf="rolReportes" value="6" >6.EXPERIENCIA LABORAL</option> 
-                                        </select>                  
-                                </div>
-                            </div>
+                            </div> 
                         </div>
                         <div class="navbar-right">                            
                             <div >
