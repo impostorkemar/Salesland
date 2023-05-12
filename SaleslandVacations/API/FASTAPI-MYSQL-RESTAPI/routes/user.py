@@ -441,6 +441,8 @@ async def get_Tablas(varConsul : str, varOrd : str ):
     return conn.execute(sql+";").fetchall()  
     #return None  
 
+#CONSULTA VACACIONES
+
 @user.get("/nombreUsuarioByUser_Pass/{user}-{pass}", tags=["usuarios"])
 def get_NombresPuntosVentas(user: str, passw: str):
     conn = engine.connect()
@@ -481,7 +483,7 @@ def create_vacation2(vacacion : Vacacion ):
     conn = engine.connect()
     sql = "INSERT INTO `vacaciones`(`id_personal`, `fecha_solicitud`, `fecha_inicio_vacaciones`, `fecha_fin_vacaciones`, `dias_lab_solicitados`, `dias_disponibles_acum`, `status`,`peticion`, `observaciones`) VALUES"
     datos = (vacacion.id_personal,vacacion.fecha_solicitud,vacacion.fecha_inicio_vacaciones,vacacion.fecha_fin_vacaciones,
-             vacacion.dias_lab_solicitados,vacacion.dias_disponibles_acum,vacacion.status, vacacion.peticion, vacacion.observaciones) 
+             vacacion.dias_lab_solicitados,vacacion.dias_disponibles_acum,vacacion.status, vacacion.peticion, vacacion.observaciones, vacacion.motivo) 
     sql = sql + str(datos) 
     print(sql);
     result = conn.execute(sql)
@@ -743,7 +745,7 @@ def get_dataReporteEstadistico(corte: str, actual:str):
     return conn.execute(sql).first()
 
 @user.get("/centroCostoByUserPass/{user}_{passw}",tags=['centro_costos'])
-def get_dataReporteEstadistico(user: str, passw:str): 
+def get_centroCostoByUserPass(user: str, passw:str): 
     print("user:",user,"\pass",passw)
     conn = engine.connect()
     sql="SELECT centro_costo.cuenta FROM centro_costo,personal,usuario WHERE personal.id_centro_costo = centro_costo.id_centro_costo AND usuario.cedula = personal.cedula AND usuario.usuario = '"+str(user)+"' AND password = '"+str(passw)+"';"
@@ -751,7 +753,7 @@ def get_dataReporteEstadistico(user: str, passw:str):
     return conn.execute(sql).first()
 
 @user.get("/idSupervisorByUserAndPass/{user}_{passw}",tags=['supervisor'])
-def get_dataReporteEstadistico(user: str, passw:str): 
+def get_idSupervisorByUserAndPass(user: str, passw:str): 
     print("user:",user,"\passw:",passw)
     conn = engine.connect()
     sql="SELECT supervisor.id_supervisor FROM supervisor WHERE cedula = (SELECT usuario.cedula FROM usuario	WHERE usuario.usuario='"+str(user)+"' AND usuario.password='"+str(passw)+"');"
@@ -759,10 +761,10 @@ def get_dataReporteEstadistico(user: str, passw:str):
     return conn.execute(sql).first()
 
 @user.get("/dataPersonabyUserAndPass/{user}_{passw}",tags=['personales'])
-def get_dataReporteEstadistico(user: str, passw:str): 
+def get_dataPersonabyUserAndPass(user: str, passw:str): 
     print("user:",user,"\npassw:",passw)
     conn = engine.connect()
-    sql="SELECT candidato.nombre, candidato.apellido, candidato.cedula, centro_costo.cuenta FROM candidato,centro_costo, personal, usuario WHERE centro_costo.id_centro_costo = personal.id_centro_costo AND personal.cedula = candidato.cedula AND usuario.cedula = personal.cedula AND usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"';"
+    sql="SELECT candidato.nombre, candidato.apellido, candidato.cedula, centro_costo.cuenta, cargo.nombre_cargo FROM candidato,centro_costo, personal, usuario, cargo WHERE centro_costo.id_centro_costo = personal.id_centro_costo AND personal.cedula = candidato.cedula AND personal.id_cargo = cargo.id_cargo AND usuario.cedula = personal.cedula AND usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"';"
     print(sql)
     return conn.execute(sql).first()
 
@@ -833,3 +835,8 @@ async def upload_excel(file: UploadFile = File(...)):
     return {"succes": message}      
             
     #respuesta
+
+@user.get("/motivosByParam/{param}", tags=["motivos"])
+def get_motivosByParam(param: str):
+    conn = engine.connect()
+    return conn.execute("SELECT motivo.nombre FROM motivo WHERE motivo.tipo = '"+str(param)+"';").fetchall()

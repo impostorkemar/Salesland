@@ -26,7 +26,7 @@ import { saveAs } from 'file-saver';
 })
 export class CrudService {
 //API:string = 'http://192.168.0.29:8000/';
-API:string = 'http://181.188.194.242:8000/';
+API:string = 'http://192.168.1.38:8000/';
 resp!:String[];
 
   constructor(
@@ -339,7 +339,7 @@ resp!:String[];
   }
 
   AgregarVacaciones(id_personal: string, fecha_sol: string, fecha_inicio_vac: string, fecha_fin_vac: string, dias_lab_sol: number, 
-    dias_disp_acu:  number):Observable<any>{
+    dias_disp_acu:  number, motivo: string):Observable<any>{
     console.log("fecha_sol:",fecha_sol);
     //console.log("vaca_disp:",dias_disp_acu);
     //console.log("saldo_dias:",dias_lab_sol); 
@@ -350,7 +350,7 @@ resp!:String[];
     var data; 
     data = {"id_personal":id_personal,"fecha_solicitud":fecha_sol ,"fecha_inicio_vacaciones":fecha_inicio_vac, 
     "fecha_fin_vacaciones":fecha_fin_vac,"fecha_respuesta":"", "dias_lab_solicitados":dias_lab_sol,
-    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente","peticion":"aprobacion", "observaciones":""}
+    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente","peticion":"aprobacion", "observaciones":"", "motivo": motivo}
     return this.clienteHttp.post(this.API + urlAPI, data);
     
   }
@@ -358,6 +358,18 @@ resp!:String[];
   ObtenerCedulaByUser_Pass(user:any,pass:any):Observable<any>{
     //console.log("user:",user,"pass:", pass)
     var urlAPI="cedByPassAndUSer/"+user as string+"-{pass}?passw="+pass as string;       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }  
+
+  ObtenerMotivosVacaciones(param:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="motivosByParam/"+param as string;       
+    return this.clienteHttp.get(this.API+urlAPI);                
+  }  
+
+  ObtenerMotivosViajes(param:any):Observable<any>{
+    //console.log("user:",user,"pass:", pass)
+    var urlAPI="motivosByParam/"+param as string;      
     return this.clienteHttp.get(this.API+urlAPI);                
   }  
 
@@ -972,5 +984,7 @@ resp!:String[];
       console.log("API:",this.API)
       return this.clienteHttp.post<any>(this.API + "uploadExcel" as string, formData).toPromise();
     }
+
+    
     
 }

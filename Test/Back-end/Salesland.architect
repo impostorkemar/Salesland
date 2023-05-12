@@ -5,7 +5,7 @@
  <project-data-sources>
   <data-source id="DS0">
    <property key="Connection Type" value="MySQL" />
-   <property key="Logical" value="PlayPen Database" />
+   <property key="Logical" value="(Target Database)" />
    <property key="JDBC URL" value="jdbc:mysql://localhost:3306/salesland" />
    <property key="UID" value="salesland" />
    <property key="PWD" value="rootsalesland" />
@@ -29,7 +29,7 @@
   </data-source>
   <data-source id="DS0">
    <property key="Connection Type" value="MySQL" />
-   <property key="Logical" value="PlayPen Database" />
+   <property key="Logical" value="(Target Database)" />
    <property key="JDBC URL" value="jdbc:mysql://localhost:3306/salesland" />
    <property key="UID" value="salesland" />
    <property key="PWD" value="rootsalesland" />
@@ -41,7 +41,7 @@
   </data-source>
   <data-source id="DS0">
    <property key="Connection Type" value="MySQL" />
-   <property key="Logical" value="PlayPen Database" />
+   <property key="Logical" value="(Target Database)" />
    <property key="JDBC URL" value="jdbc:mysql://localhost:3306/salesland" />
    <property key="UID" value="salesland" />
    <property key="PWD" value="rootsalesland" />
@@ -109,17 +109,17 @@
    <relationships>
    </relationships>
   </database>
-  <database id="DB15" populated="true" UUID="bf6db7a1-4c74-4603-88d2-4ce7b769b82d" dbcs-ref="DS0" name="PlayPen Database" physicalName="salesland postgresSQL" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: JDBC Driver &quot;com.mysql.jdbc.Driver&quot; not found." >
+  <database id="DB15" populated="true" UUID="bf6db7a1-4c74-4603-88d2-4ce7b769b82d" dbcs-ref="DS0" name="(Target Database)" physicalName="salesland postgresSQL" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: JDBC Driver &quot;com.mysql.jdbc.Driver&quot; not found." >
    <catalog id="CAT16" populated="true" UUID="fc8f15d2-f700-4ce0-922c-daf122f3c3ac" name="salesland" nativeTerm="database" physicalName="salesland" >
    </catalog>
    <relationships>
    </relationships>
   </database>
-  <database id="DB17" populated="true" UUID="2f9a30a8-fac7-4de2-a7cd-ade72a6ad947" dbcs-ref="DS0" name="PlayPen Database" physicalName="salesland" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: JDBC Driver &quot;com.mysql.jdbc.Driver&quot; not found." >
+  <database id="DB17" populated="true" UUID="2f9a30a8-fac7-4de2-a7cd-ade72a6ad947" dbcs-ref="DS0" name="(Target Database)" physicalName="salesland" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: JDBC Driver &quot;com.mysql.jdbc.Driver&quot; not found." >
    <relationships>
    </relationships>
   </database>
-  <database id="DB18" populated="true" UUID="c6e21613-60eb-4004-91f2-9cee32aa9e73" dbcs-ref="DS8" name="salesland" physicalName="salesland" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: Unknown database &apos;salesland&apos;" >
+  <database id="DB18" populated="true" UUID="c6e21613-60eb-4004-91f2-9cee32aa9e73" dbcs-ref="DS8" name="salesland" physicalName="salesland" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: Unknown database &apos;salesland&apos;" >
    <relationships>
    </relationships>
   </database>
@@ -685,48 +685,48 @@
    </folder>
   </table>
   <relationships>
-   <relationship id="REL189" populated="true" UUID="5dd070f4-5460-4891-8c71-fced5822ce30" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="PERSONA_PERSONAL_fk" physicalName="PERSONA_PERSONAL_fk" pk-table-ref="TAB20" pkCardinality="2" updateRule="3" >
+   <relationship id="REL189" populated="true" UUID="5dd070f4-5460-4891-8c71-fced5822ce30" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="PERSONA_PERSONAL_fk" physicalName="persona_personal_fk" pk-table-ref="TAB20" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP190" populated="true" UUID="e5344454-278a-4360-9e58-fda3c08580ee" fk-column-ref="COL62" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL21" />
    </relationship>
-   <relationship id="REL191" populated="true" UUID="607ec6eb-9070-4058-97b0-35c5c822c850" deferrability="7" deleteRule="3" fk-table-ref="TAB79" fkCardinality="7" identifying="true" name="PERSONA_EXPERIENCIA_LABORAL_fk" physicalName="PERSONA_EXPERIENCIA_LABORAL_fk" pk-table-ref="TAB20" pkCardinality="2" updateRule="3" >
+   <relationship id="REL191" populated="true" UUID="607ec6eb-9070-4058-97b0-35c5c822c850" deferrability="7" deleteRule="3" fk-table-ref="TAB79" fkCardinality="7" identifying="true" name="PERSONA_EXPERIENCIA_LABORAL_fk" physicalName="persona_experiencia_laboral_fk" pk-table-ref="TAB20" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP192" populated="true" UUID="d4bd9e97-929a-41ec-a455-39e01545fd48" fk-column-ref="COL81" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL21" />
    </relationship>
-   <relationship id="REL193" populated="true" UUID="ccbdcf9e-5a49-438f-a8f5-6119a292ad64" deferrability="7" deleteRule="3" fk-table-ref="TAB38" fkCardinality="7" identifying="true" name="PERSONA_USUARIO_fk" physicalName="PERSONA_USUARIO_fk" pk-table-ref="TAB20" pkCardinality="2" updateRule="3" >
+   <relationship id="REL193" populated="true" UUID="ccbdcf9e-5a49-438f-a8f5-6119a292ad64" deferrability="7" deleteRule="3" fk-table-ref="TAB38" fkCardinality="7" identifying="true" name="PERSONA_USUARIO_fk" physicalName="persona_usuario_fk" pk-table-ref="TAB20" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP194" populated="true" UUID="9805ec9d-71bf-429d-957c-a6756954cab7" fk-column-ref="COL40" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL21" />
    </relationship>
-   <relationship id="REL195" populated="true" UUID="d10ee027-435d-490c-ba35-0e917ccc1e38" deferrability="7" deleteRule="3" fk-table-ref="TAB88" fkCardinality="7" identifying="true" name="CANDIDATO_SUPERVISOR_fk" physicalName="CANDIDATO_SUPERVISOR_fk" pk-table-ref="TAB20" pkCardinality="2" updateRule="3" >
+   <relationship id="REL195" populated="true" UUID="d10ee027-435d-490c-ba35-0e917ccc1e38" deferrability="7" deleteRule="3" fk-table-ref="TAB88" fkCardinality="7" identifying="true" name="CANDIDATO_SUPERVISOR_fk" physicalName="candidato_supervisor_fk" pk-table-ref="TAB20" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP196" populated="true" UUID="285d5e1a-4725-4e20-9e80-81eca7ebea91" fk-column-ref="COL90" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL21" />
    </relationship>
-   <relationship id="REL197" populated="true" UUID="ba462864-bf8a-4d0a-b493-d319b890bfa1" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="CARGO_PERSONAL_fk" physicalName="CARGO_PERSONAL_fk" pk-table-ref="TAB47" pkCardinality="2" updateRule="3" >
+   <relationship id="REL197" populated="true" UUID="ba462864-bf8a-4d0a-b493-d319b890bfa1" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="CARGO_PERSONAL_fk" physicalName="cargo_personal_fk" pk-table-ref="TAB47" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP198" populated="true" UUID="b0bd4bf8-ada5-455c-bd1e-37f94234416f" fk-column-ref="COL66" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL48" />
    </relationship>
-   <relationship id="REL199" populated="true" UUID="4417bb55-d323-4e35-b187-aa63bcf7c205" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="CENTRO_COSTO_PERSONAL_fk" physicalName="CENTRO_COSTO_PERSONAL_fk" pk-table-ref="TAB52" pkCardinality="2" updateRule="3" >
+   <relationship id="REL199" populated="true" UUID="4417bb55-d323-4e35-b187-aa63bcf7c205" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="CENTRO_COSTO_PERSONAL_fk" physicalName="centro_costo_personal_fk" pk-table-ref="TAB52" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP200" populated="true" UUID="98535728-84d8-40c8-bc56-55cddbaf7418" fk-column-ref="COL63" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL53" />
    </relationship>
-   <relationship id="REL201" populated="true" UUID="e7157863-f7ab-49ab-9384-69bb7f0f58cd" deferrability="7" deleteRule="3" fk-table-ref="TAB96" fkCardinality="7" identifying="false" name="PERSONAL_DETALLE_VACACIONES_fk" physicalName="PERSONAL_DETALLE_VACACIONES_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
+   <relationship id="REL201" populated="true" UUID="e7157863-f7ab-49ab-9384-69bb7f0f58cd" deferrability="7" deleteRule="3" fk-table-ref="TAB96" fkCardinality="7" identifying="false" name="PERSONAL_DETALLE_VACACIONES_fk" physicalName="personal_detalle_vacaciones_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP202" populated="true" UUID="0261e3c6-cf44-4204-9149-4b8847b320fe" fk-column-ref="COL98" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL60" />
    </relationship>
-   <relationship id="REL203" populated="true" UUID="dee9f93d-8b44-4742-99a8-501e79752062" deferrability="7" deleteRule="3" fk-table-ref="TAB110" fkCardinality="7" identifying="true" name="PERSONAL_ROL_PAGOS_fk" physicalName="PERSONAL_ROL_PAGOS_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
+   <relationship id="REL203" populated="true" UUID="dee9f93d-8b44-4742-99a8-501e79752062" deferrability="7" deleteRule="3" fk-table-ref="TAB110" fkCardinality="7" identifying="true" name="PERSONAL_ROL_PAGOS_fk" physicalName="personal_rol_pagos_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP204" populated="true" UUID="4b479b6e-0ab2-455e-9b5b-acb879e4ad07" fk-column-ref="COL112" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL60" />
    </relationship>
-   <relationship id="REL205" populated="true" UUID="3292db17-3531-4695-b59f-8c7e57ac1232" deferrability="7" deleteRule="3" fk-table-ref="TAB167" fkCardinality="7" identifying="false" name="PERSONAL_VIAJE_fk" physicalName="PERSONAL_VIAJE_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
+   <relationship id="REL205" populated="true" UUID="3292db17-3531-4695-b59f-8c7e57ac1232" deferrability="7" deleteRule="3" fk-table-ref="TAB167" fkCardinality="7" identifying="false" name="PERSONAL_VIAJE_fk" physicalName="personal_viaje_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP206" populated="true" UUID="57cc3928-c667-4ecc-a77e-1d384b5f7d21" fk-column-ref="COL169" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL60" />
    </relationship>
-   <relationship id="REL207" populated="true" UUID="edc39ec3-4638-4730-a184-2f7a82eb4b8a" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="CONTRATO_PERSONAL_fk" physicalName="CONTRATO_PERSONAL_fk" pk-table-ref="TAB70" pkCardinality="2" updateRule="3" >
+   <relationship id="REL207" populated="true" UUID="edc39ec3-4638-4730-a184-2f7a82eb4b8a" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="CONTRATO_PERSONAL_fk" physicalName="contrato_personal_fk" pk-table-ref="TAB70" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP208" populated="true" UUID="c64af74e-5bdd-4450-b835-3e24bc05a4fb" fk-column-ref="COL67" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL71" />
    </relationship>
-   <relationship id="REL209" populated="true" UUID="e472c25a-888e-4c98-aa59-1ea29e1c8188" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="SUPERVISOR_PERSONAL_fk" physicalName="SUPERVISOR_PERSONAL_fk" pk-table-ref="TAB88" pkCardinality="2" updateRule="3" >
+   <relationship id="REL209" populated="true" UUID="e472c25a-888e-4c98-aa59-1ea29e1c8188" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="SUPERVISOR_PERSONAL_fk" physicalName="supervisor_personal_fk" pk-table-ref="TAB88" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP210" populated="true" UUID="10f87181-2804-4487-9177-0e0d3641717a" fk-column-ref="COL61" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL89" />
    </relationship>
-   <relationship id="REL211" populated="true" UUID="d63013d1-3ddb-4ccb-aed7-f0a7fbfa81cd" deferrability="7" deleteRule="3" fk-table-ref="TAB183" fkCardinality="6" identifying="false" name="VIAJE_COMPROBANTE_fk" physicalName="VIAJE_COMPROBANTE_fk" pk-table-ref="TAB167" pkCardinality="2" updateRule="3" >
+   <relationship id="REL211" populated="true" UUID="d63013d1-3ddb-4ccb-aed7-f0a7fbfa81cd" deferrability="7" deleteRule="3" fk-table-ref="TAB183" fkCardinality="6" identifying="false" name="VIAJE_COMPROBANTE_fk" physicalName="viaje_comprobante_fk" pk-table-ref="TAB167" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP212" populated="true" UUID="3223937f-6a19-466c-982e-e47eedbc53e2" fk-column-ref="COL185" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL168" />
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.MySqlDDLGenerator" allow-connection="true" target-catalog="salesland"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.MySqlDDLGenerator" allow-connection="false" target-catalog="salesland"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
- <play-pen zoom="0.9999999999999996" viewportX="8" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+ <play-pen zoom="0.9999999999999996" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB20" x="650" y="134" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB38" x="336" y="20" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB47" x="61" y="134" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>

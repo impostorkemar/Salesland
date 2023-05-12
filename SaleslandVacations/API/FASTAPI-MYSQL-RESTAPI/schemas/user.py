@@ -83,6 +83,7 @@ class Vacacion(BaseModel):
     status: str
     peticion: str
     observaciones: str
+    motivo: str
 
 class Rol_pagos(BaseModel):
     id_rol_pagos: Optional[int]

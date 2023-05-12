@@ -32,6 +32,7 @@ export class MenuComponent implements OnInit {
     this.control_vistas = this.fb.group({
       name_usuario: ['',Validators.required],
       lastname_usuario: ['',Validators.required],
+      cargo: ['',Validators.required],
       cedula: ['',Validators.required],
       cuenta: ['',Validators.required],
       stateVacaciones: ['',Validators.required],
@@ -49,6 +50,7 @@ export class MenuComponent implements OnInit {
     this.mostrarDatos();    
     this.control_vistas.controls['name_usuario'].disable();    
     this.control_vistas.controls['lastname_usuario'].disable(); 
+    this.control_vistas.controls['cargo'].disable(); 
     this.control_vistas.controls['cedula'].disable(); 
     this.control_vistas.controls['cuenta'].disable(); 
     this.opcion = 0;
@@ -239,6 +241,7 @@ export class MenuComponent implements OnInit {
       this.control_vistas.setValue({
         name_usuario: respuesta['nombre'],
         lastname_usuario: respuesta['apellido'],
+        cargo: respuesta['nombre_cargo'],
         cedula: respuesta['cedula'],
         cuenta: respuesta['cuenta'],
         stateVacaciones: 'VACACIONES',

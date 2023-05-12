@@ -11,6 +11,7 @@ import {formatDate} from '@angular/common';
 import { NONE_TYPE } from '@angular/compiler';
 
 
+
 @Component({
   selector: 'app-agregar-vacacion',  
   templateUrl: './agregar-vacacion.component.html',
@@ -36,6 +37,7 @@ export class AgregarVacacionComponent {
   msg!: any;
   vacasDispo!:any;
   fechaSeleccionada!:any;
+  Motivos!:any;
 
   constructor(
     public formulario:FormBuilder,
@@ -55,7 +57,9 @@ export class AgregarVacacionComponent {
       dias_solicitudes_pen:[''],
       lbl_inicio:[''],
       lbl_fin:[''],
+      motivo: [''],
     });
+        
     this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     this.cedula = "";
@@ -80,7 +84,8 @@ export class AgregarVacacionComponent {
     this.formularioDeVacacion.controls['dias_solicitudes_pen'].disable();
     this.formularioDeVacacion.controls['lbl_inicio'].disable();
     this.formularioDeVacacion.controls['lbl_fin'].disable();
-    this.precargarDias();       
+    this.precargarDias();  
+    
   }
 
    //RESPONSE
@@ -109,18 +114,18 @@ export class AgregarVacacionComponent {
             const datePipe = new DatePipe('en-US'); 
             var corteYear = new Date().getFullYear();
             this.corte =  new NgbDate(corteYear,1,31);      
-            console.log("corte:",this.corte)        
+            //console.log("corte:",this.corte)        
             //this.contrato = new Date((Value2[0] as string));  
 
             this.contrato = new Date((respuesta2['fechaContrato'] as string));
            
             var yearCal = (this.corte.year-this.contrato.getFullYear())*12
-            console.log("this.corte.month\n:",this.corte.month,"\nthis.contrato.getMonth():",this.contrato.getMonth())
+            //console.log("this.corte.month\n:",this.corte.month,"\nthis.contrato.getMonth():",this.contrato.getMonth())
             var monthCal = (this.corte.month-(this.contrato.getMonth()+1))
             var dateCal = (this.corte.day-this.contrato.getDate())/30
-            console.log("Year\n:",yearCal,"monthCal\n:",monthCal,"dateCal\n:",dateCal)
+            //console.log("Year\n:",yearCal,"monthCal\n:",monthCal,"dateCal\n:",dateCal)
             var antiguedadAux = (yearCal+monthCal+dateCal)
-            console.log("Antiguedad:",antiguedadAux)
+            //console.log("Antiguedad:",antiguedadAux)
             this.antiguedad = (this._decimalPipe.transform(antiguedadAux*1.25,"1.0-1") as any) as number;           
             var aux1 = this.antiguedad;
 
@@ -136,43 +141,53 @@ export class AgregarVacacionComponent {
                   var aux3 = respuesta15['VACA_PREV']
                   console.log(respuesta15)
                   console.log("aux3->totalVacacionesPendientes:",respuesta15['VACA_PREV'])
-                  if ( aux2 == null ){
-                    this.formularioDeVacacion.setValue({      
-                      vaca_disp: aux1, //vacaciones por contrato
-                      saldo_dias: 0,  //vacaciones saldo
-                      saldo_dias2:aux1,
-                      dias_solicitudes_pen: 0, // vacaciones tomadas
-                      dias_tomados: 0, 
-                      lbl_inicio:0,
-                      lbl_fin:0,
-                    });
-                  }else if ( aux3 == null){
-                    this.formularioDeVacacion.setValue({      
-                      vaca_disp: aux1,  //vacaciones por contrato
-                      saldo_dias: aux1-aux2, //vacaciones saldo
-                      saldo_dias2:aux1-aux2,
-                      dias_solicitudes_pen: 0, // vacaciones tomadas
-                      dias_tomados: 0,
-                      lbl_inicio:0,
-                      lbl_fin:0,
-                    });                  
-                  }else{
-                    if (this.toDate){
+
+                  this.crudService.ObtenerMotivosVacaciones("vacaciones").subscribe(respuesta16=>{
+                    this.Motivos = respuesta16;
+                    
+                    console.log("Motivos:",this.Motivos[0])
+                    console.log("vaca_disp:",aux1-aux2)
+                    if ( aux2 == null ){ // VACA PREV
+                      this.formularioDeVacacion.setValue({      
+                        vaca_disp: aux1, //vacaciones por contrato
+                        saldo_dias: 0,  //vacaciones saldo
+                        saldo_dias2:aux1,
+                        dias_solicitudes_pen: 0, // vacaciones tomadas
+                        dias_tomados: 0, 
+                        lbl_inicio:0,
+                        lbl_fin:0,
+                        motivo:this.Motivos[0]
+                      });
+                    }else if ( aux3 == null){ // VACA PREV PEND
                       this.formularioDeVacacion.setValue({      
                         vaca_disp: aux1,  //vacaciones por contrato
                         saldo_dias: aux1-aux2, //vacaciones saldo
-                        saldo_dias2: aux1-aux2, //vacaciones saldo
-                        dias_solicitudes_pen: aux3, // vacaciones tomadas
-                        dias_tomados: 0, 
-                        lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
-                        lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
-                      });
-                      this.btnIngresar = false
+                        saldo_dias2:aux1-aux2,
+                        dias_solicitudes_pen: 0, // vacaciones tomadas
+                        dias_tomados: 0,
+                        lbl_inicio:0,
+                        lbl_fin:0,
+                        motivo:this.Motivos[0]
+                      });                  
                     }else{
-                      this.btnIngresar = true
+                      if (this.toDate){
+                        this.formularioDeVacacion.setValue({      
+                          vaca_disp: aux1,  //vacaciones por contrato
+                          saldo_dias: aux1-aux2, //vacaciones saldo
+                          saldo_dias2: aux1-aux2, //vacaciones saldo
+                          dias_solicitudes_pen: aux2, // vacaciones tomadas
+                          dias_tomados: 0, 
+                          lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
+                          lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
+                          motivo:this.Motivos[0]
+                        });
+                        this.btnIngresar = false
+                      }else{
+                        this.btnIngresar = true
+                      }
+                      
                     }
-                    
-                  }
+                  })
                 });             
               
               });
@@ -180,11 +195,10 @@ export class AgregarVacacionComponent {
           }else{
             window.confirm("Usuario sin perfil de contrato")
           }
-                  
-          
-            
         });        
     });    
+
+
   }
   enviarDatos(): void{    
     /*console.log("FORMULARIO:",this.formularioDeUsuario.value);*/
@@ -224,7 +238,8 @@ export class AgregarVacacionComponent {
                     +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
                     this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+this.toDate?.month+"-"+
                     this.toDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
-                    this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta22=>{
+                    this.formularioDeVacacion.value.vaca_disp as number, 
+                    this.formularioDeVacacion.value.motivo as string).subscribe(respuesta22=>{
                       this.btnIngresar = true;
                       this.precargarDias();
                       
@@ -267,7 +282,7 @@ export class AgregarVacacionComponent {
 
           var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
           //console.log("diferenciaDias: ",diferenciaDias)
-          if (diferenciaDias != null){
+          if (diferenciaDias != null && this.Motivos != null){
             this.formularioDeVacacion.setValue({
               vaca_disp:this.formularioDeVacacion.value.vaca_disp,
               saldo_dias:this.formularioDeVacacion.value.saldo_dias,     
@@ -276,6 +291,7 @@ export class AgregarVacacionComponent {
               dias_tomados:diferenciaDias,        
               lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
               lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
+              motivo:this.formularioDeVacacion.value.motivo
             }); 
           }
 
@@ -300,7 +316,8 @@ export class AgregarVacacionComponent {
                     +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
                     this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+this.toDate?.month+"-"+
                     this.toDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
-                    this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta22=>{
+                    this.formularioDeVacacion.value.vaca_disp as number, 
+                    this.formularioDeVacacion.value.motivo as string).subscribe(respuesta22=>{
                       this.btnIngresar = true;
                       this.precargarDias();
                       
@@ -367,7 +384,8 @@ export class AgregarVacacionComponent {
                     +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"
                     +this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+this.fromDate?.month+"-"+
                     this.fromDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
-                    this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta22=>{
+                    this.formularioDeVacacion.value.vaca_disp as number, 
+                    this.formularioDeVacacion.value.motivo as string).subscribe(respuesta22=>{
                       console.log("respuesta22:",respuesta22);
                       this.btnIngresar = true;
                       this.precargarDias();    
@@ -425,6 +443,7 @@ export class AgregarVacacionComponent {
               dias_tomados:diferenciaDias,        
               lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
               lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
+              motivo:this.formularioDeVacacion.value.motivo
             }); 
           }
 
@@ -450,7 +469,8 @@ export class AgregarVacacionComponent {
                     +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"
                     +this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+this.fromDate?.month+"-"+
                     this.fromDate?.day,this.formularioDeVacacion.value.dias_tomados as number,
-                    this.formularioDeVacacion.value.vaca_disp as number).subscribe(respuesta22=>{
+                    this.formularioDeVacacion.value.vaca_disp as number, 
+                    this.formularioDeVacacion.value.motivo as string).subscribe(respuesta22=>{
                       console.log("respuesta22:",respuesta22);
                       this.btnIngresar = true;
                       this.precargarDias();    
@@ -513,13 +533,14 @@ export class AgregarVacacionComponent {
         //console.log("diferenciaDias: ",diferenciaDias)
         if (diferenciaDias != null){
           this.formularioDeVacacion.setValue({
-            vaca_disp:this.formularioDeVacacion.value.vaca_disp,
-            saldo_dias:this.formularioDeVacacion.value.saldo_dias,     
-            saldo_dias2:this.formularioDeVacacion.value.saldo_dias2,                   
-            dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen, 
+            vaca_disp:this.formularioDeVacacion.get('vaca_disp')?.value,
+            saldo_dias:this.formularioDeVacacion.get('saldo_dias')?.value,
+            saldo_dias2:this.formularioDeVacacion.get('saldo_dias2')?.value,            
+            dias_solicitudes_pen: this.formularioDeVacacion.get('dias_solicitudes_pen')?.value,
             dias_tomados:diferenciaDias,        
             lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
             lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
+            motivo:this.formularioDeVacacion.value.motivo
           }); 
         }     
       }
@@ -566,13 +587,14 @@ export class AgregarVacacionComponent {
           //console.log("diferenciaDias: ",diferenciaDias)
            if (diferenciaDias != null){
             this.formularioDeVacacion.setValue({
-              vaca_disp:this.formularioDeVacacion.value.vaca_disp,
-              saldo_dias:this.formularioDeVacacion.value.saldo_dias,
-              saldo_dias2:this.formularioDeVacacion.value.saldo_dias2,            
+              vaca_disp:this.formularioDeVacacion.get('vaca_disp')?.value,
+              saldo_dias:this.formularioDeVacacion.get('saldo_dias')?.value,
+              saldo_dias2:this.formularioDeVacacion.get('saldo_dias2')?.value,            
               dias_tomados:diferenciaDias,  
-              dias_solicitudes_pen: this.formularioDeVacacion.value.dias_solicitudes_pen,  
+              dias_solicitudes_pen: this.formularioDeVacacion.get('dias_solicitudes_pen')?.value,  
               lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
-              lbl_fin:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day   
+              lbl_fin:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
+              motivo:this.formularioDeVacacion.value.motivo
             }); 
            }     
         }      
@@ -582,10 +604,10 @@ export class AgregarVacacionComponent {
         window.confirm("No se puede escoger vacaciones antes de la fecha actual");
       }else{
         //console.log("CompareDateCorrectos");
-        console.log("\nvaca_disp:",this.formularioDeVacacion.value.vaca_disp)
-        console.log("dias_tomados:",this.formularioDeVacacion.value.dias_tomados)
-        console.log("saldo_dias:",this.formularioDeVacacion.value.saldo_dias)
-        console.log("dias_solicitudes_pen:",this.formularioDeVacacion.value.dias_solicitudes_pen)        
+        console.log("\nvaca_disp:",this.formularioDeVacacion.get('vaca_disp')?.value,)
+        console.log("dias_tomados:",this.formularioDeVacacion.get('dias_tomados')?.value,)
+        console.log("saldo_dias:",this.formularioDeVacacion.get('saldo_dias')?.value,)
+        console.log("dias_solicitudes_pen:",this.formularioDeVacacion.get('dias_solicitudes_pen')?.value,)        
         if (
           this.formularioDeVacacion.value.vaca_disp <= this.formularioDeVacacion.value.saldo_dias
           /*|| 

@@ -11,7 +11,7 @@
           <tbody>
               <tr>
                 <TD>
-                  <div class="card-body etiqueta">
+                  <div *ngIf="false" class="card-body etiqueta">
                     <div class="mb-3">
                       <label for="" class="form-label">VACACIONES DISPONIBLES ACUMULADOS (DIAS)</label>
                       <input type="text"
@@ -22,7 +22,7 @@
                 <TD> 
                   <div class="card-body etiqueta">
                     <div class="mb-3">
-                      <label for="" class="form-label">DÍAS DISPONIBLES ACTUALES</label>
+                      <label for="" class="form-label">DÍAS DISPONIBLES</label>
                       <input type="text"
                         class="form-control" name="saldo_dias2" formControlName="saldo_dias2" id="saldo_dias2" aria-describedby="helpId" placeholder="0">
                     </div>
@@ -31,30 +31,21 @@
                 <TD> 
                   <div *ngIf="false" class="card-body etiqueta">
                     <div class="mb-3">
-                      <label for="" class="form-label">DÍAS DISPONIBLES ACTUALES</label>
+                      <label for="" class="form-label">DÍAS DISPONIBLES</label>
                       <input type="text"
                         class="form-control" name="saldo_dias" formControlName="saldo_dias" id="saldo_dias" aria-describedby="helpId" placeholder="0">
                     </div>
                   </div>                  
                 </TD>
                 <TD>
-                  <div *ngIf="false" class="card-body etiqueta">
+                  <div *ngIf="true" class="card-body etiqueta">
                     <div class="mb-3">
-                      <label for="" class="form-label">DÍAS SOLICITADOS PENDIENTES</label>
+                      <label for="" class="form-label">DÍAS TOMADOS</label>
                       <input type="text"
                         class="form-control" name="dias_solicitudes_pen" formControlName="dias_solicitudes_pen" id="dias_solicitudes_pen" aria-describedby="helpId" placeholder="0">
                     </div>
                   </div>                   
-                </TD>
-                <TD>
-                  <div class="card-body etiqueta">
-                    <div class="mb-3">
-                      <label for="" class="form-label">DÍAS SELECCIONADOS</label>
-                      <input type="text"
-                        class="form-control" name="dias_tomados" formControlName="dias_tomados" id="dias_tomados" aria-describedby="helpId" placeholder="0">
-                    </div>
-                  </div>                   
-                </TD>
+                </TD>                
               </tr>              
           </tbody>
         </table>
@@ -63,10 +54,20 @@
     <div class="card-body" >      
       <div class="table-responsive">
         <table class="table table-primary center" >          
-          <tbody>   
-                         
-            <TD>
-              <div class="card-body" >
+          <tbody>       
+            <TD> 
+              <div class="card-body" > 
+                <div class="mb-3">      
+                  <label for="" class="form-label">MOTIVO</label>              
+                  <select name="motivo" id="motivo" formControlName="motivo" class="form-select form-select-sm selectStyle " aria-label=".form-select-sm example">
+                    <option *ngFor="let motivo of Motivos" [value]="motivo">{{motivo['nombre']}}</option>                              
+                  </select> 
+                </div>            
+                <div class="mb-3 etiqueta">
+                  <label for="" class="form-label">DÍAS SELECCIONADOS</label>
+                    <input type="text"
+                      class="form-control" name="dias_tomados" formControlName="dias_tomados" id="dias_tomados" aria-describedby="helpId" placeholder="0">
+                </div> 
                 <div class="mb-3 etiqueta">
                   <label for="" class="form-label">FECHA INICIO</label>
                   <input type="text"

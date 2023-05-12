@@ -54,6 +54,8 @@ def isNaN(num):
     return num != num
 
 def clearTables():
+  #Dropeo tabla motivo
+  ejecutarSQL("DELETE FROM motivo;")
   #Dropeo tabla personal
   ejecutarSQL("DELETE FROM personal;")
   #Dropeo table usuario
@@ -373,6 +375,60 @@ def cambiarJefedeSupervisores():
   sql2 = "UPDATE `personal` SET `id_supervisor`='1' WHERE `cedula` = '1314587427';"
   ejecutarSQL(sql2)
 
+def cargarMotivoPredeterminadosVacaciones():
+  ejecutarSQL("ALTER TABLE motivo AUTO_INCREMENT=0")
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("fallecimiento","vacaciones")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("cumpleaños","vacaciones")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("enfermedad","vacaciones")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("calamidad doméstica","vacaciones")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("viaje","vacaciones")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("otro","vacaciones")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+
+def cargarMotivoPredeterminadosViajes():
+  ejecutarSQL("ALTER TABLE supervisor AUTO_INCREMENT=0")
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("fallecimiento","viajes")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("cumpleaños","viajes")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("enfermedad","viajes")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("calamidad doméstica","viajes")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("viaje","viajes")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+  sql2="INSERT INTO `motivo`( `nombre`, `tipo`) VALUES ";
+  datos2 = ("otro","viajes")
+  sql2 += str(datos2) 
+  ejecutarSQL(sql2)
+
 df5 = readExcelXLS("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/Vacaciones Salesland 2021-2022 (corte 31 jul22).xlsx")
 #print(df5) 
 
@@ -394,3 +450,5 @@ cargarPersonal(numUsuarios)
 cambiarRolesAdmins()
 cambiarRolesSupervisores()
 cambiarJefedeSupervisores()
+cargarMotivoPredeterminadosVacaciones()
+cargarMotivoPredeterminadosViajes()

@@ -4,18 +4,12 @@
             <H1>LISTAR VACACIONES</H1> 
         </div>        
     </div>
-    <div class="card">
-        <div class="card-header">
-            <a *ngIf="false" class="btn btn-success" routerLink="/agregar-candidato/" >AGREGAR NUEVO CANDIDATO</a>
-            <a class="btn btn-warning"(click)="exportToCSV()" role="button">EXPORT  TO CSV</a>
+    <div class="card-header ">
+        <div class="card-header d-flex justify-content-end">
+            <a *ngIf="false" class="btn btn-success mr-2" routerLink="/agregar-candidato/" >AGREGAR NUEVO CANDIDATO</a>
+            <a class="btn btn-warning" (click)="exportToCSV()" role="button" >EXCEL</a>
         </div>
-        <div class="card-body">
-            <div class="mb-3">
-                <label for="" class="form-label">MOTIVO</label>
-                <input type="text"
-                class="form-control" name="motivo" formControlName="motivo" id="motivo" aria-describedby="helpId" placeholder="ESCRIBA SU MOTIVO">
-            </div>
-        </div>
+       
         <div class="card-body">
             <h1> Pendientes </h1>
             <div class="table-responsive">
