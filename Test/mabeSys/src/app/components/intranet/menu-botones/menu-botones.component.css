@@ -12,23 +12,25 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Utiliza un número mínimo de 300px y se ajusta automáticamente según el espacio disponible */
   grid-gap: 20px;
   max-width: 100%; /* Asegura que el ancho máximo sea el disponible */
+  justify-items: center;
+  padding-top: 20px;
 }
 
-button {
+.button-menu {
   background-color: #045959;
   color: #ffffff;
   width: 100%; /* Ocupa todo el ancho disponible del contenedor */
   height: auto; /* Ajusta la altura automáticamente según el contenido */
-  max-width: 500px; /* Establece un ancho máximo de 500px */
-  font-size: 24px;
-  padding: 10px 20px;
+  max-width: 250px; /* Establece un ancho máximo de 500px */
+  font-size: 15px;
+  padding: 10px 10px;
   border: none;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease-in-out;
 }
 
-button:hover {
+.button-menu:hover {
   transform: translateY(-10px);
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
 }
@@ -63,12 +65,75 @@ nav ul li a {
   text-decoration: none;
 }
 
-
-
 .left-ul {
   float: left;
 }
 
 .right-ul {
   float: right;
+}
+
+/*Carousel*/
+.elemento1 img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.elemento1 {
+  background-image: url('/../assets/startup-594090_1920.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 52vh; /* 100% del viewport height */
+  width:  100%; /* 100% del ancho disponible */
+}
+
+.elemento2 {
+  background-image: url('/../assets/mision.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 52vh; /* 100% del viewport height */
+  width: 100%; /* 100% del ancho disponible */
+}
+
+.elemento3 {
+  background-image: url('/../assets/vision.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 52vh; /* 100% del viewport height */
+  width: 100%; /* 100% del ancho disponible */
+}
+
+/*Layout*/
+
+.column1  {
+  float: left;
+  width: 20%;
+}
+
+.column3 {
+  float: right;
+  width: 20%;
+}
+
+.column2 {
+  float: left;
+  width: 60%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+h1 {
+  color: #045959;
 }
