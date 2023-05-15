@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
   selector: 'app-menu-inicio',
@@ -10,18 +12,52 @@ import { AuthService } from 'src/app/services/auth.service';
 export class MenuInicioComponent {
   chargeLoginvalue!:Boolean;
   chargeLogoutvalue!:Boolean;
+  control_vistas!: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private router:Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private crudService: CrudService,
   ) {   
     this.chargeLoginvalue=true;
     this.chargeLogoutvalue=false;
     this.chargeLogin() 
+
+    this.control_vistas = this.fb.group({
+      name_usuario: ['',Validators.required],
+      lastname_usuario: ['',Validators.required],
+      cargo: ['',Validators.required],
+      cedula: ['',Validators.required],
+      cuenta: ['',Validators.required],      
+
+    });
   }
 
   ngOnInit(): void {
     this.chargeLogin() 
+    this.control_vistas.controls['name_usuario'].disable();    
+    this.control_vistas.controls['lastname_usuario'].disable(); 
+    this.control_vistas.controls['cargo'].disable(); 
+    this.control_vistas.controls['cedula'].disable(); 
+    this.control_vistas.controls['cuenta'].disable(); 
+
+    this.mostrarDataUser();
+  }
+
+  mostrarDataUser(){
+    var user = localStorage.getItem('USER') as string;
+    var passw = localStorage.getItem('PASS') as string
+    this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
+      console.log("DATAUSER:",respuesta);
+      this.control_vistas.setValue({
+        name_usuario: respuesta['nombre'],
+        lastname_usuario: respuesta['apellido'],
+        cargo: respuesta['nombre_cargo'],
+        cedula: respuesta['cedula'],
+        cuenta: respuesta['cuenta'],        
+      });
+    });
   }
 
   goToExternalLinkVacaciones() {

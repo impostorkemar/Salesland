@@ -1,9 +1,29 @@
-<nav >
+<form [formGroup]="control_vistas">
+  <nav >
     <ul>
       <li><img class="logo-image" src="./assets/salesland-nf.png" alt="Logo Salesland"></li>
+      <li class="li-r"><h1>Portal Ecuador</h1></li>      
       <li class="li-r" *ngIf="chargeLoginvalue" ><a class="log-a" routerLink="/login" href="#">Ingresar</a></li>
+      
       <li class="li-r" *ngIf="chargeLogoutvalue"><a class="log-a" (onclick)="logout()" routerLink="/home" href="#">Salir</a></li>
-    </ul>
-</nav>
+      <li>          
+        <input type="text" id="lastname_usuario" formControlName="lastname_usuario" class="my-input textCenter" >                             
+      </li>
+      <li class="li-r">
+        <input type="text" id="name_usuario" formControlName="name_usuario" class="my-input textCenter" >
+      </li>
+      <li class="li-r">
+        <input type="text" id="cedula" formControlName="cedula" class="my-input textCenter" >
+      </li>
+      <li class="li-r">
+        <input type="text" id="cuenta" formControlName="cuenta" class="my-input textCenter" >
+      </li>
+      <li class="li-r">
+        <input type="text" id="cargo" formControlName="cargo" class="my-input textCenter" >
+      </li>
+    </ul>    
+  </nav>
+</form>
+
 
 
