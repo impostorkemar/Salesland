@@ -1,19 +1,35 @@
 <div class="row">
-  <div class="column1" >
-    <h1>Reglamento Interno</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo possimus libero saepe id magnam totam illum sit commodi blanditiis tempora impedit, aspernatur eum eius ipsam!</p>
+  <div class="column1">
+    <div class="card-align">
+      <h1 class="h1-ReglamentoTitle">Publicaciones</h1>    
+    <img src="./assets/alianza salesland.jpg" alt="Icono" class="icon-image-publicacion">
+    <p >Alianza Salesland</p>
+    </div>
     <hr>
-    <h1>Reglamento Interno</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
-    <hr>
-    <h1>Reglamento Interno</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
-    <hr>
-    <h1>Reglamento Interno</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
-    <hr>
-
+    <div class="button-grid">
+      <button class="button-menu-external" (click)="goToExternalLinkCampusSalesland()">
+        Campus Salesland
+        <img src="./assets/campus salesland logo.jpg" alt="Icono" class="icon-image-external">
+      </button>
+      <button class="button-menu-external" *ngIf="centroCostoFlag" (click)="goToExternalLinkControlnet()">
+        Controlnet
+        <img src="./assets/controlnet Logo.png" alt="Icono" class="icon-image-external">
+      </button>
+      <button class="button-menu-external" *ngIf="mabeOptionsFlag" (click)="goToExternalLinkAmigosMABE()">
+        Amigos MABE
+        <img src="./assets/amigos mabe logo.jpg" alt="Icono" class="icon-image-external">
+      </button>
+      <button class="button-menu-external" *ngIf="mabeOptionsFlag" (click)="navigateToenConstruccion()">
+        Credenciales MABE
+        <img src="./assets/amigos mabe logo.jpg" alt="Icono" class="icon-image-external">
+      </button>
+      <button class="button-menu-external" *ngIf="centroCostoFlag" (click)="goToExternalLinkAracne()">
+        Aracne 
+        <img src="./assets/aracne logo.jpg" alt="Icono" class="icon-image-external">
+      </button>
+    </div>
   </div>
+  
   <div class="column2" >
     <main>
       <section id="CarouselInicio">
@@ -51,34 +67,26 @@
       </section>
       
     </main>
+    <div class="button-grid">
+      <button class="button-menu-internal" (click)="goToExternalLinkVacaciones()">Vacaciones<br><i class="fas fa-umbrella-beach fa-4x"></i> </button>      
+      <button class="button-menu-internal" (click)="goToExternalLinkTickets()">Soporte<br><i class="fas fa-headset fa-4x"></i> </button>
+      <button class="button-menu-internal" (click)="goToExternalLinkpostulateEspana()">Postulate<br><i class="fas fa-file-alt fa-4x"></i> </button>
+      <button class="button-menu-internal" (click)="navigateToRolPagos()">Rol de pagos<br><i class="fas fa-money-check-alt fa-4x"></i></button>
+      <button class="button-menu-internal" *ngIf="centroCostoFlag" (click)="navigateToSeguros()">Seguro Médico<br><i class="fas fa-hospital fa-4x"></i> </button>
+      <button class="button-menu-internal" (click)="navigateToViajes()">Viajes<br><i class="fas fa-plane-departure fa-4x"></i></button>
+    </div>
     <div class="button-group">
-      <button class="button-menu" (click)="goToExternalLinkVacaciones()">Vacaciones<br><i class="fas fa-umbrella-beach fa-4x"></i> </button>      
-      <button class="button-menu" (click)="goToExternalLinkTickets()">Soporte<br><i class="fas fa-headset fa-4x"></i> </button>
-      <button class="button-menu" (click)="goToExternalLinkpostulateEspana()">Postulate<br><i class="fas fa-file-alt fa-4x"></i> </button>
-      <button class="button-menu" (click)="navigateToRolPagos()">Rol de pagos<br><i class="fas fa-money-check-alt fa-4x"></i></button>
-      <button class="button-menu" (click)="goToExternalLinkCampusSalesland()">Campus Salesland<br><i class="fas fa-university fa-4x"></i> </button>
-      <button class="button-menu" *ngIf="centroCostoFlag" (click)="navigateToSeguros()">Seguro Médico<br><i class="fas fa-hospital fa-4x"></i> </button>
-      <button class="button-menu" (click)="navigateToViajes()">Viajes<br><i class="fas fa-plane-departure fa-4x"></i></button>
-      <button class="button-menu" *ngIf="centroCostoFlag" (click)="goToExternalLinkControlnet()">Control Net<br><i class="fas fa-wifi fa-4x"></i></button>
-      <button class="button-menu" *ngIf="centroCostoFlag" (click)="goToExternalLinkAracne()">ARACNE<br><i class="fas fa-spider fa-4x"></i></button>  
-      <button class="button-menu" *ngIf="mabeOptionsFlag" (click)="goToExternalLinkAmigosMABE()">Amigos MABE<br><i class="fas fa-spider fa-4x"></i></button>
-      <button class="button-menu" *ngIf="mabeOptionsFlag" (click)="navigateToenConstruccion()">Credenciales MABE<br><i class="fas fa-wifi fa-4x"></i></button>    
+      
     </div>
   </div>
   <div class="column3" >
-    <h1>Reglamento Interno</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
+    <div class="card-align-ReglamentoTitle"> 
+      <h1 class="h1-ReglamentoTitle">Reglamento Interno de la Empresa Salesland Ecuador</h1>
+    </div>
+    <div ngIf="politicsFlag">
+      <app-politics></app-politics>
+    </div>    
     <hr>
-    <h1>Reglamento Interno</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
-  <hr>
-  <h1>Reglamento Interno</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
-<hr>
-<h1>Reglamento Interno</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
-<hr>
-
   </div>
 </div>
 

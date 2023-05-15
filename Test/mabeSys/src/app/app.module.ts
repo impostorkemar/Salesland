@@ -66,6 +66,8 @@ import { MenuRolpagoComponent } from './components/rol-pagos/menu-rolpago/menu-r
 import { AgregarRolpagoComponent } from './components/rol-pagos/agregar-rolpago/agregar-rolpago.component';
 import { ListarviajesReporteGeneralPersonalComponent } from './components/viajes/listarviajes-reporte-general-personal/listarviajes-reporte-general-personal.component';
 import { FormsModule } from '@angular/forms';
+import { PoliticsComponent } from './components/intranet/politics/politics.component';
+
 
 @NgModule({
   declarations: [
@@ -118,6 +120,7 @@ import { FormsModule } from '@angular/forms';
     MenuRolpagoComponent,
     AgregarRolpagoComponent,
     ListarviajesReporteGeneralPersonalComponent,
+    PoliticsComponent,
     
   ],
   imports: [

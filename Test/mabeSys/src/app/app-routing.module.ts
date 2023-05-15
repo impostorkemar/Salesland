@@ -13,6 +13,7 @@ import { AgregarViajeComponent } from './components/viajes/agregar-viaje/agregar
 import { MenuViajesComponent } from './components/viajes/menu-viajes/menu-viajes.component';3
 import { AgregarRolpagoComponent } from './components/rol-pagos/agregar-rolpago/agregar-rolpago.component';
 import { MenuRolpagoComponent } from './components/rol-pagos/menu-rolpago/menu-rolpago.component';
+import { PoliticsComponent } from './components/intranet/politics/politics.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},  
@@ -79,6 +80,12 @@ const routes: Routes = [
     }
   },
   {path: 'menuRolPago', component: MenuRolpagoComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
+  {path: 'politics', component: PoliticsComponent,
     canActivate: [AuthGuard],
     data: {
       role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]

@@ -109,17 +109,17 @@ nav ul li a {
 
 .column1  {
   float: left;
-  width: 20%;
+  width: 25%;
 }
 
 .column3 {
   float: right;
-  width: 20%;
+  width: 25%;
 }
 
 .column2 {
-  float: left;
-  width: 60%;
+  float: center;
+  width: 50%;
 }
 
 .row:after {
@@ -136,4 +136,105 @@ nav ul li a {
 
 h1 {
   color: #045959;
+}
+
+.button-menu-external {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: none;
+  border: none;  
+}
+
+.icon-image {
+  width: 96px; /* Tamaño del icono */
+  height: auto; /* Altura automática para mantener la proporción */
+}
+
+.responsive-table-external {
+  width: 100%;
+}
+
+.responsive-table-external th,
+.responsive-table-external td {
+  padding: 10px;
+  text-align: center;
+}
+
+.icon-image {
+  width: 24px; /* Tamaño del icono */
+  height: auto; /* Altura automática para mantener la proporción */
+}
+
+@media only screen and (max-width: 600px) {
+  .responsive-table-external th,
+  .responsive-table-external td {
+    display: block;
+    width: 100%;
+  }
+}
+
+.button-grid {
+  display: grid;  
+  grid-gap: 10px;  
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); /* Utiliza un número mínimo de 300px y se ajusta automáticamente según el espacio disponible */
+  max-width: 100%; /* Asegura que el ancho máximo sea el disponible */
+  justify-items: center;
+  padding-top: 20px;
+}
+
+.button-menu-internal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #045959;
+  color: #ffffff;
+  width: 100%; /* Ocupa todo el ancho disponible del contenedor */
+  height: auto; /* Ajusta la altura automáticamente según el contenido */
+  max-width: 250px; /* Establece un ancho máximo de 500px */
+  font-size: 15px;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease-in-out;
+}
+
+.icon-image-external {
+  width: 72px;
+  height: auto;
+}
+
+.card-align {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-align-ReglamentoTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.h1-ReglamentoTitle {
+  font-size: 24px; /* Ajusta el tamaño según tus necesidades */
+}
+
+.card-align-politics {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  text-align: right;
+}
+
+.icon-image-publicacion {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  text-align: center;
 }
