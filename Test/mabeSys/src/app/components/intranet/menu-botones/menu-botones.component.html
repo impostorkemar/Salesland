@@ -77,14 +77,14 @@
     </div>    
     <hr>
     <div class="button-grid">
-      <button class="button-menu-external" (click)="goToExternalLinkCampusSalesland()">
-        Campus Salesland
-        <img src="./assets/campus salesland logo.jpg" alt="Icono" class="icon-image-external">
-      </button>
       <button class="button-menu-external" *ngIf="centroCostoFlag" (click)="goToExternalLinkControlnet()">
         Controlnet
         <img src="./assets/controlnet Logo.png" alt="Icono" class="icon-image-external">
       </button>
+      <button class="button-menu-external" (click)="goToExternalLinkCampusSalesland()">
+        Campus Salesland
+        <img src="./assets/campus salesland logo.jpg" alt="Icono" class="icon-image-external">
+      </button>      
       <button class="button-menu-external" *ngIf="mabeOptionsFlag" (click)="goToExternalLinkAmigosMABE()">
         Amigos MABE
         <img src="./assets/amigos mabe logo.jpg" alt="Icono" class="icon-image-external">
