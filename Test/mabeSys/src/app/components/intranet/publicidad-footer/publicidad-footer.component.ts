@@ -10,7 +10,7 @@ export class PublicidadFooterComponent {
 
   // Array con mensajes publicitarios
   messages = [
-    "¡Oferta especial por tiempo limitado!"    
+    "¡Refierenos enviando un correo a test@salesland.net!"    
   ];
   
 }
