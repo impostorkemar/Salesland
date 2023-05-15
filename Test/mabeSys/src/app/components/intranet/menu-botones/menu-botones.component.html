@@ -1,19 +1,85 @@
-<body> 
-  <div id="containerInicio" class="card containerInicio">    
-    <p></p>
+<div class="row">
+  <div class="column1" >
+    <h1>Reglamento Interno</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo possimus libero saepe id magnam totam illum sit commodi blanditiis tempora impedit, aspernatur eum eius ipsam!</p>
+    <hr>
+    <h1>Reglamento Interno</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
+    <hr>
+    <h1>Reglamento Interno</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
+    <hr>
+    <h1>Reglamento Interno</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
+    <hr>
+
+  </div>
+  <div class="column2" >
+    <main>
+      <section id="CarouselInicio">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide " data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner elemento1">
+            <div class="carousel-item active" data-bs-interval="2000">
+              <div class="carousel-caption d-none d-md-block">
+              </div>
+            </div>
+            
+            <div class="carousel-item elemento2" data-bs-interval="2000">
+              <div class="carousel-caption d-none d-md-block">
+  
+              </div>
+            </div>
+            <div class="carousel-item elemento3" data-bs-interval="2000">
+              <div class="carousel-caption d-none d-md-block">
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>         
+      </section>
+      
+    </main>
     <div class="button-group">
-      <button (click)="goToExternalLinkVacaciones()">Vacaciones<br><i class="fas fa-umbrella-beach fa-4x"></i> </button>      
-      <button (click)="goToExternalLinkTickets()">Soporte<br><i class="fas fa-headset fa-4x"></i> </button>
-      <button (click)="goToExternalLinkpostulateEspana()">Postulate<br><i class="fas fa-file-alt fa-4x"></i> </button>
-      <button (click)="navigateToRolPagos()">Rol de pagos<br><i class="fas fa-money-check-alt fa-4x"></i></button>
-      <button (click)="goToExternalLinkCampusSalesland()">Campus Salesland<br><i class="fas fa-university fa-4x"></i> </button>
-      <button *ngIf="centroCostoFlag" (click)="navigateToSeguros()">Seguro Médico<br><i class="fas fa-hospital fa-4x"></i> </button>
-      <button (click)="navigateToViajes()">Viajes<br><i class="fas fa-plane-departure fa-4x"></i></button>
-      <button *ngIf="centroCostoFlag" (click)="goToExternalLinkControlnet()">Control Net<br><i class="fas fa-wifi fa-4x"></i></button>
-      <button *ngIf="centroCostoFlag" (click)="goToExternalLinkAracne()">ARACNE<br><i class="fas fa-spider fa-4x"></i></button>  
-      <button *ngIf="mabeOptionsFlag" (click)="goToExternalLinkAmigosMABE()">Amigos MABE<br><i class="fas fa-spider fa-4x"></i></button>
-      <button *ngIf="mabeOptionsFlag" (click)="navigateToenConstruccion()">Credenciales MABE<br><i class="fas fa-wifi fa-4x"></i></button>    
+      <button class="button-menu" (click)="goToExternalLinkVacaciones()">Vacaciones<br><i class="fas fa-umbrella-beach fa-4x"></i> </button>      
+      <button class="button-menu" (click)="goToExternalLinkTickets()">Soporte<br><i class="fas fa-headset fa-4x"></i> </button>
+      <button class="button-menu" (click)="goToExternalLinkpostulateEspana()">Postulate<br><i class="fas fa-file-alt fa-4x"></i> </button>
+      <button class="button-menu" (click)="navigateToRolPagos()">Rol de pagos<br><i class="fas fa-money-check-alt fa-4x"></i></button>
+      <button class="button-menu" (click)="goToExternalLinkCampusSalesland()">Campus Salesland<br><i class="fas fa-university fa-4x"></i> </button>
+      <button class="button-menu" *ngIf="centroCostoFlag" (click)="navigateToSeguros()">Seguro Médico<br><i class="fas fa-hospital fa-4x"></i> </button>
+      <button class="button-menu" (click)="navigateToViajes()">Viajes<br><i class="fas fa-plane-departure fa-4x"></i></button>
+      <button class="button-menu" *ngIf="centroCostoFlag" (click)="goToExternalLinkControlnet()">Control Net<br><i class="fas fa-wifi fa-4x"></i></button>
+      <button class="button-menu" *ngIf="centroCostoFlag" (click)="goToExternalLinkAracne()">ARACNE<br><i class="fas fa-spider fa-4x"></i></button>  
+      <button class="button-menu" *ngIf="mabeOptionsFlag" (click)="goToExternalLinkAmigosMABE()">Amigos MABE<br><i class="fas fa-spider fa-4x"></i></button>
+      <button class="button-menu" *ngIf="mabeOptionsFlag" (click)="navigateToenConstruccion()">Credenciales MABE<br><i class="fas fa-wifi fa-4x"></i></button>    
     </div>
-    <br> 
-  </div>    
-</body>
+  </div>
+  <div class="column3" >
+    <h1>Reglamento Interno</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
+    <hr>
+    <h1>Reglamento Interno</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
+  <hr>
+  <h1>Reglamento Interno</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
+<hr>
+<h1>Reglamento Interno</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae saepe reprehenderit dolore dicta veritatis, recusandae qui dolor! Molestiae vitae minus a aspernatur laboriosam! Delectus quos qui necessitatibus, quisquam omnis animi!</p>
+<hr>
+
+  </div>
+</div>
+
+  

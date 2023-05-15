@@ -1,10 +1,10 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-
 #containerInicio {
   height: 100%;
   width: 100%;
-  background-color: #16261C;
+  background-color: #fff;
+  color: black;
 }
 
 .button-group {
@@ -40,15 +40,21 @@ i {
 }
 
 header {
-  background-color: #333;
-  color: #fff;
-  padding: 2em;
+  background-color: #fff;
+  color: black;
+  padding: 1em;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
 }
 
 nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  color: black;
 }
 
 nav ul li {
@@ -57,11 +63,11 @@ nav ul li {
 }
 
 nav ul li a {
-  color: #fff;
+  display: block;
+  float: right;
   text-decoration: none;
+  font-size: 15px;
 }
-
-
 
 .left-ul {
   float: left;
@@ -71,5 +77,38 @@ nav ul li a {
   float: right;
 }
 
+.logo-image {
+  display: block;
+  float: left;
+  width: 185px;
+  margin-right: 20px;
+}
+
+.li-r {
+  display: block;
+  float: right;
+
+}
+
+
+.log-a {
+  display: block;
+  float: right;
+  background-color: #045959;
+  color: white;
+  border: 1px solid #045959;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.log-a:hover {
+  background-color: #fff;
+  color: #045959;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
 
 
