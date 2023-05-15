@@ -67,6 +67,7 @@ import { AgregarRolpagoComponent } from './components/rol-pagos/agregar-rolpago/
 import { ListarviajesReporteGeneralPersonalComponent } from './components/viajes/listarviajes-reporte-general-personal/listarviajes-reporte-general-personal.component';
 import { FormsModule } from '@angular/forms';
 import { PoliticsComponent } from './components/intranet/politics/politics.component';
+import { PublicidadFooterComponent } from './components/intranet/publicidad-footer/publicidad-footer.component';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import { PoliticsComponent } from './components/intranet/politics/politics.compo
     AgregarRolpagoComponent,
     ListarviajesReporteGeneralPersonalComponent,
     PoliticsComponent,
+    PublicidadFooterComponent,
     
   ],
   imports: [

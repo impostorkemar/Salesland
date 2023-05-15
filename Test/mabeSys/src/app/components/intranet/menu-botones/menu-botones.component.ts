@@ -10,6 +10,8 @@ import { CrudService } from 'src/app/services/crud.service';
 export class MenuBotonesComponent {
   centroCostoFlag!:Boolean
   mabeOptionsFlag!:Boolean
+  showPolitics!:Boolean
+
   constructor(
     private router:Router,
     private crudService: CrudService,
@@ -17,6 +19,7 @@ export class MenuBotonesComponent {
 
   ngOnInit(): void {
    this.ValidarCentroCosto();
+   this.showPolitics=false;
   }
 
   goToExternalLinkVacaciones() {
@@ -76,12 +79,11 @@ export class MenuBotonesComponent {
           this.mabeOptionsFlag=true;
         }
       }
-     
-
     })
+  }
 
-    
-
+  togglePolitics() {
+    this.showPolitics = !this.showPolitics;
   }
 
 
