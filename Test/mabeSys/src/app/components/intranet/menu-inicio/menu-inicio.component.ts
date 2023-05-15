@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CrudService } from 'src/app/services/crud.service';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-menu-inicio',
@@ -13,6 +14,7 @@ export class MenuInicioComponent {
   chargeLoginvalue!:Boolean;
   chargeLogoutvalue!:Boolean;
   control_vistas!: FormGroup;
+  fechaActualizada!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -23,7 +25,7 @@ export class MenuInicioComponent {
     this.chargeLoginvalue=true;
     this.chargeLogoutvalue=false;
     this.chargeLogin() 
-
+    this.fechaActualizada = format(new Date(), 'dd/MM/yyyy');
     this.control_vistas = this.fb.group({
       name_usuario: ['',Validators.required],
       lastname_usuario: ['',Validators.required],
