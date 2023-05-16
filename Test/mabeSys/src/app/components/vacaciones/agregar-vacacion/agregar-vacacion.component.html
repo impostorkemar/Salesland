@@ -11,7 +11,7 @@
           <tbody>
               <tr>
                 <TD>
-                  <div *ngIf="false" class="card-body etiqueta">
+                  <div *ngIf="true" class="card-body etiqueta">
                     <div class="mb-3">
                       <label for="" class="form-label">VACACIONES DISPONIBLES ACUMULADOS (DIAS)</label>
                       <input type="text"
@@ -19,17 +19,26 @@
                     </div>
                   </div>                      
                 </TD>
-                <TD> 
-                  <div class="card-body etiqueta">
+                <TD>
+                  <div *ngIf="true" class="card-body etiqueta">
                     <div class="mb-3">
-                      <label for="" class="form-label">DÍAS DISPONIBLES</label>
+                      <label for="" class="form-label">DÍAS SOLICITUDES PENDIENTES</label>
                       <input type="text"
-                        class="form-control" name="saldo_dias2" formControlName="saldo_dias2" id="saldo_dias2" aria-describedby="helpId" placeholder="0">
+                        class="form-control" name="dias_solicitudes_pen" formControlName="dias_solicitudes_pen" id="dias_solicitudes_pen" aria-describedby="helpId" placeholder="0">
                     </div>
-                  </div>                  
+                  </div>                   
+                </TD>
+                <TD>
+                  <div *ngIf="true" class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">DÍAS TOMADOS</label>
+                      <input type="text"
+                        class="form-control" name="dias_tomados" formControlName="dias_tomados" id="dias_tomados" aria-describedby="helpId" placeholder="0">
+                    </div>
+                  </div>                   
                 </TD>
                 <TD> 
-                  <div *ngIf="false" class="card-body etiqueta">
+                  <div *ngIf="true" class="card-body etiqueta">
                     <div class="mb-3">
                       <label for="" class="form-label">DÍAS DISPONIBLES</label>
                       <input type="text"
@@ -37,15 +46,18 @@
                     </div>
                   </div>                  
                 </TD>
-                <TD>
+                <TD> 
                   <div *ngIf="true" class="card-body etiqueta">
                     <div class="mb-3">
-                      <label for="" class="form-label">DÍAS TOMADOS</label>
+                      <label for="" class="form-label">DÍAS DISPONIBLES2</label>
                       <input type="text"
-                        class="form-control" name="dias_solicitudes_pen" formControlName="dias_solicitudes_pen" id="dias_solicitudes_pen" aria-describedby="helpId" placeholder="0">
+                        class="form-control" name="saldo_dias2" formControlName="saldo_dias2" id="saldo_dias2" aria-describedby="helpId" placeholder="0">
                     </div>
-                  </div>                   
-                </TD>                
+                  </div>                  
+                </TD>
+                
+                 
+                            
               </tr>              
           </tbody>
         </table>
@@ -66,7 +78,7 @@
                 <div class="mb-3 etiqueta">
                   <label for="" class="form-label">DÍAS SELECCIONADOS</label>
                     <input type="text"
-                      class="form-control" name="dias_tomados" formControlName="dias_tomados" id="dias_tomados" aria-describedby="helpId" placeholder="0">
+                      class="form-control" name="dias_seleccionados" formControlName="dias_seleccionados" id="dias_seleccionados" aria-describedby="helpId" placeholder="0">
                 </div> 
                 <div class="mb-3 etiqueta">
                   <label for="" class="form-label">FECHA INICIO</label>

@@ -10,4 +10,5 @@ export class Vacaciones{
   status!: String;
   peticion!: String;
   observaciones!: String;  
+  motivo!: String
 }

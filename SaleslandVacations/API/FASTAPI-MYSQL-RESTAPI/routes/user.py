@@ -481,7 +481,7 @@ def get_totalVacacionesTomadas(user: str, passw: str):
 @user.post("/vacation2/", tags=["vacaciones"])
 def create_vacation2(vacacion : Vacacion ):    
     conn = engine.connect()
-    sql = "INSERT INTO `vacaciones`(`id_personal`, `fecha_solicitud`, `fecha_inicio_vacaciones`, `fecha_fin_vacaciones`, `dias_lab_solicitados`, `dias_disponibles_acum`, `status`,`peticion`, `observaciones`) VALUES"
+    sql = "INSERT INTO `vacaciones`(`id_personal`, `fecha_solicitud`, `fecha_inicio_vacaciones`, `fecha_fin_vacaciones`, `dias_lab_solicitados`, `dias_disponibles_acum`, `status`,`peticion`, `observaciones`,`motivo`) VALUES"
     datos = (vacacion.id_personal,vacacion.fecha_solicitud,vacacion.fecha_inicio_vacaciones,vacacion.fecha_fin_vacaciones,
              vacacion.dias_lab_solicitados,vacacion.dias_disponibles_acum,vacacion.status, vacacion.peticion, vacacion.observaciones, vacacion.motivo) 
     sql = sql + str(datos) 
@@ -693,7 +693,8 @@ def update_vacacionesAAprobarbyId(id: str,vacacion : Vacacion):
             fecha_respuesta=vacacion.fecha_respuesta,
             status=vacacion.status,
             peticion='aprobacion',
-            observaciones=vacacion.observaciones
+            observaciones=vacacion.observaciones,
+            motivo=vacacion.motivo
     ).where(vacaciones.c.id_vacaciones == id))
     print("vacacionesAAprobarbyId:",sql)
     conn.execute(sql)

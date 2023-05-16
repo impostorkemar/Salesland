@@ -341,7 +341,7 @@ resp!:String[];
   }
 
   AgregarVacaciones(id_personal: string, fecha_sol: string, fecha_inicio_vac: string, fecha_fin_vac: string, dias_lab_sol: number, 
-    dias_disp_acu:  number, motivo: string):Observable<any>{
+    dias_disp_acu:  number, motivo: any):Observable<any>{
     console.log("fecha_sol:",fecha_sol);
     //console.log("vaca_disp:",dias_disp_acu);
     //console.log("saldo_dias:",dias_lab_sol); 
@@ -352,7 +352,8 @@ resp!:String[];
     var data; 
     data = {"id_personal":id_personal,"fecha_solicitud":fecha_sol ,"fecha_inicio_vacaciones":fecha_inicio_vac, 
     "fecha_fin_vacaciones":fecha_fin_vac,"fecha_respuesta":"", "dias_lab_solicitados":dias_lab_sol,
-    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente","peticion":"aprobacion", "observaciones":"", "motivo": motivo}
+    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente","peticion":"aprobacion", "observaciones":"", "motivo": motivo['nombre'] as string}
+    console.log("data:",data)
     return this.clienteHttp.post(this.API + urlAPI, data);
     
   }
@@ -560,6 +561,7 @@ resp!:String[];
             status: response0['status'],
             peticion: 'cancelacion',
             observaciones: observaciones as string,
+            motivo: response0['motivo'],
           }
           //console.log("vaca: ",vaca);          
           this.putData(vaca,urlAPI).subscribe(response0=>{ 
@@ -608,6 +610,7 @@ resp!:String[];
               status: 'aprobada',
               peticion: '',
               observaciones: observaciones as string,
+              motivo: response0['motivo'],
             }
             console.log("vaca: ",vaca);
             this.putData(vaca,urlAPI).subscribe(response0=>{ 
@@ -641,6 +644,7 @@ resp!:String[];
               status: 'negada',
               peticion: '',
               observaciones: observaciones as string,
+              motivo: response0['motivo'],
             }
             console.log("vaca: ",vaca);
             this.putData(vaca,urlAPI).subscribe(response0=>{ 
@@ -673,7 +677,8 @@ resp!:String[];
           response0['id_vacaciones']+"\n\tNOMBRE:"+response0['nombre']+" "+response0['apellido'] +"\n\tFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
           "\n\tFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\n\tFECHA FIN VACACIONES: "
           + response0['fecha_fin_vacaciones']+ "\n\tDIAS SOLICITADOS: "
-          + response0['dias_lab_solicitados'])){
+          + response0['dias_lab_solicitados'])+ "\n\tMOTIVO: "
+          + response0['motivo']){
             let options = this.createRequestOptions();
             var urlAPI="vacacionesAAprobarbyId/"+id;
             var vaca: Vacaciones ={
@@ -688,8 +693,9 @@ resp!:String[];
               status: 'aprobada',
               peticion: response0['peticion'],
               observaciones: observaciones as string,
+              motivo: response0['motivo']
             }
-            //console.log("vaca: ",vaca);
+            console.log("vaca: ",vaca);
             this.putData(vaca,urlAPI).subscribe(response0=>{ 
               //console.log("response0: ",response0)
               VacacionesPen.splice(iControl,1);                    
@@ -707,6 +713,7 @@ resp!:String[];
                   status: vaca['status'],
                   peticion: vaca['peticion'],
                   observaciones: vaca['observaciones'],
+                  motivo: vaca['motivo']
                 }
                 VacacionesApr.splice(iControl,0,vacaPers)
                 
@@ -737,6 +744,7 @@ resp!:String[];
               status: 'cancelada',
               peticion: response0['peticion'],
               observaciones: response0['observaciones']+'\tPeticion de cancelacion:\t'+observaciones as string,
+              motivo: response0['motivo'],
             }
             //console.log("vaca: ",vaca);
             this.putData(vaca,urlAPI).subscribe(response0=>{ 
@@ -757,6 +765,7 @@ resp!:String[];
                   status: vaca['status'],
                   peticion: vaca['peticion'],
                   observaciones: vaca['observaciones'],
+                  motivo: vaca['motivo']
                 }
                 VacacionesNeg.splice(iControl,0,vacaPers)   
                 this.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
@@ -794,6 +803,7 @@ resp!:String[];
               status: 'negada',
               peticion: 'aprobacion',
               observaciones: observaciones as string,
+              motivo: response0['motivo'],
             }
             console.log("vaca: ",vaca);
             //console.log("vaca: ",vaca);
@@ -814,6 +824,7 @@ resp!:String[];
                   status: vaca['status'],
                   peticion: vaca['peticion'],
                   observaciones: vaca['observaciones'],
+                  motivo: vaca['motivo']
                 }
                 VacacionesNeg.splice(iControl,0,vacaPers) 
                 //console.log("respuesta[iControl]:",respuesta[iControl])
@@ -843,6 +854,7 @@ resp!:String[];
               status: 'pendiente',
               peticion: 'aprobacion',
               observaciones: "Preaprobado:\t"+observaciones as string,
+              motivo: response0['motivo'],
             }
             console.log("vaca: ",vaca);
             //console.log("vaca: ",vaca);
@@ -863,6 +875,7 @@ resp!:String[];
                   status: vaca['status'],
                   peticion: vaca['peticion'],
                   observaciones: vaca['observaciones'],
+                  motivo: vaca['motivo']
                 }
                 VacacionesPen.splice(iControl,0,vacaPers)
                 //console.log("respuesta[iControl]:",respuesta[iControl])
