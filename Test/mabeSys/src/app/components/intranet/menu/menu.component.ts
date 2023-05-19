@@ -38,6 +38,10 @@ export class MenuComponent implements OnInit {
       stateVacaciones: ['',Validators.required],
       statePersonal: ['',Validators.required],
       stateReportes: ['',Validators.required],   
+      vaca_disp:['',Validators.required],
+      dias_solicitudes_pen:['',Validators.required],
+      dias_tomados:['',Validators.required],      
+      saldo_dias:['',Validators.required],
 
     });
     this.opcion = 1;
@@ -53,6 +57,10 @@ export class MenuComponent implements OnInit {
     this.control_vistas.controls['cargo'].disable(); 
     this.control_vistas.controls['cedula'].disable(); 
     this.control_vistas.controls['cuenta'].disable(); 
+    this.control_vistas.controls['vaca_disp'].disable(); 
+    this.control_vistas.controls['dias_tomados'].disable(); 
+    this.control_vistas.controls['cedula'].disable(); 
+    this.control_vistas.controls['saldo_dias'].disable(); 
     this.opcion = 0;
 
     /*
@@ -247,6 +255,10 @@ export class MenuComponent implements OnInit {
         stateVacaciones: 'VACACIONES',
         statePersonal: 'PERSONAL',
         stateReportes: 'REPORTES',
+        vaca_disp:'',
+        saldo_dias:'',
+        dias_tomados:'',
+        dias_solicitudes_pen:'',
       });
     });
   }

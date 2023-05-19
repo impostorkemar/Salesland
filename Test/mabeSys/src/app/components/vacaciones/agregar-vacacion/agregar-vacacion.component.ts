@@ -54,8 +54,7 @@ export class AgregarVacacionComponent {
       dias_solicitudes_pen:[''],
       dias_tomados:[''],
       dias_seleccionados:[''], 
-      saldo_dias:[''],
-      saldo_dias2:[''],      
+      saldo_dias:[''],          
       lbl_inicio:[''],
       lbl_fin:[''],
       motivo: [''],
@@ -82,8 +81,7 @@ export class AgregarVacacionComponent {
     this.formularioDeVacacion.controls['dias_solicitudes_pen'].disable();
     this.formularioDeVacacion.controls['dias_tomados'].disable();
     this.formularioDeVacacion.controls['dias_seleccionados'].disable();
-    this.formularioDeVacacion.controls['saldo_dias'].disable();
-    this.formularioDeVacacion.controls['saldo_dias2'].disable();    
+    this.formularioDeVacacion.controls['saldo_dias'].disable();      
     this.formularioDeVacacion.controls['lbl_inicio'].disable();
     this.formularioDeVacacion.controls['lbl_fin'].disable();
     this.precargarDias();  
@@ -155,8 +153,7 @@ export class AgregarVacacionComponent {
                         dias_solicitudes_pen: 0, // vacaciones tomadas
                         dias_tomados:0,
                         dias_seleccionados: 0, 
-                        saldo_dias: 0,  //vacaciones saldo
-                        saldo_dias2:antiguedadCal,
+                        saldo_dias: antiguedadCal,  //vacaciones saldo                        
                         lbl_inicio:0,
                         lbl_fin:0,
                         motivo:this.Motivos[0]
@@ -167,8 +164,7 @@ export class AgregarVacacionComponent {
                         dias_solicitudes_pen: 0, // vacaciones tomadas
                         dias_seleccionados: 0,
                         dias_tomados:totalVacasTomadas,
-                        saldo_dias: antiguedadCal-totalVacasTomadas, //vacaciones saldo
-                        saldo_dias2:antiguedadCal-totalVacasTomadas,       
+                        saldo_dias: antiguedadCal-totalVacasTomadas-totalVacasPendientes, //vacaciones saldo                             
                         lbl_inicio:0,
                         lbl_fin:0,
                         motivo:this.Motivos[0]
@@ -178,10 +174,9 @@ export class AgregarVacacionComponent {
                         this.formularioDeVacacion.setValue({      
                           vaca_disp: antiguedadCal,  //vacaciones por contrato
                           dias_tomados:totalVacasTomadas,
-                          dias_solicitudes_pen: totalVacasTomadas, // vacaciones tomadas
+                          dias_solicitudes_pen: totalVacasPendientes, // vacaciones tomadas
                           dias_seleccionados: 0, 
-                          saldo_dias: antiguedadCal-totalVacasTomadas, //vacaciones saldo
-                          saldo_dias2: antiguedadCal-totalVacasTomadas, //vacaciones saldo                          
+                          saldo_dias: antiguedadCal-totalVacasTomadas-totalVacasPendientes, //vacaciones saldo                                                  
                           lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                           lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
                           motivo:this.Motivos[0]
@@ -235,9 +230,10 @@ export class AgregarVacacionComponent {
                 //AGREGAR VACACION
                 
                 if (
-                  this.formularioDeVacacion.get('vaca_disp')?.value
+                  this.formularioDeVacacion.get('saldo_dias')?.value
                   >= 
-                  this.formularioDeVacacion.get('dias_seleccionados')?.value){
+                  this.formularioDeVacacion.get('dias_seleccionados')?.value 
+                  ){
                   if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
                   this.fromDate?.month+"-"+ this.fromDate?.day+"\nal\n"+this.toDate?.year+"-"+this.toDate?.month+"-"+
                   this.toDate?.day)){
@@ -260,7 +256,8 @@ export class AgregarVacacionComponent {
                   });
                 }            
               }else{
-                console.log("Excede días disponibles");
+                window.confirm("Excede días disponibles")
+                //console.log("Excede días disponibles");
               }              
               });
             }else if (respuesta10['FECHAS_CAL'] as unknown as number > 0){
@@ -296,8 +293,7 @@ export class AgregarVacacionComponent {
               dias_solicitudes_pen: this.formularioDeVacacion.get('dias_solicitudes_pen')?.value, 
               dias_tomados: this.formularioDeVacacion.get('dias_tomados')?.value, 
               dias_seleccionados:diferenciaDias,        
-              saldo_dias:this.formularioDeVacacion.get('saldo_dias')?.value,     
-              saldo_dias2:this.formularioDeVacacion.get('saldo_dias2')?.value,                   
+              saldo_dias:this.formularioDeVacacion.get('saldo_dias')?.value,   
               lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
               lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
               motivo:this.formularioDeVacacion.get('motivo')?.value
@@ -317,7 +313,7 @@ export class AgregarVacacionComponent {
                 //AGREGAR VACACION
                 
                 if (
-                this.formularioDeVacacion.get('vaca_disp')?.value 
+                this.formularioDeVacacion.get('saldo_dias')?.value 
                 >= 
                 this.formularioDeVacacion.get('dias_seleccionados')?.value){
                   if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
@@ -342,7 +338,8 @@ export class AgregarVacacionComponent {
                   });
                 }            
               }else{
-                console.log("Excede días disponibles");
+                window.confirm("Excede días disponibles")
+                //console.log("Excede días disponibles");
               }              
               });
             }else if (respuesta10['FECHAS_CAL'] as unknown as number > 0){
@@ -388,7 +385,7 @@ export class AgregarVacacionComponent {
                 //AGREGAR VACACION
                 //console.log("vaca_disp:",this.formularioDeVacacion.get('vaca_disp')?.value)
                 if (
-                  this.formularioDeVacacion.get('vaca_disp')?.value 
+                  this.formularioDeVacacion.get('saldo_dias')?.value 
                   >= 
                   this.formularioDeVacacion.get('dias_seleccionados')?.value){
                   if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
@@ -413,7 +410,8 @@ export class AgregarVacacionComponent {
                     });
                   }                 
                 }else{
-                  console.log("Excede días disponibles");
+                  window.confirm("Excede días disponibles")
+                  //console.log("Excede días disponibles");
                 }          
               });
               
@@ -455,8 +453,7 @@ export class AgregarVacacionComponent {
               dias_solicitudes_pen: this.formularioDeVacacion.get('dias_solicitudes_pen')?.value, 
               dias_tomados: this.formularioDeVacacion.get('dias_tomados')?.value, 
               dias_seleccionados:diferenciaDias, 
-              saldo_dias:this.formularioDeVacacion.get('saldo_dias')?.value,     
-              saldo_dias2:this.formularioDeVacacion.get('saldo_dias2')?.value, 
+              saldo_dias:this.formularioDeVacacion.get('saldo_dias')?.value, 
               lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
               lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
               motivo:this.formularioDeVacacion.get('motivo')?.value
@@ -477,7 +474,7 @@ export class AgregarVacacionComponent {
                 //AGREGAR VACACION
       
                 if (
-                  this.formularioDeVacacion.get('vaca_disp')?.value 
+                  this.formularioDeVacacion.get('saldo_dias')?.value 
                   >= 
                   this.formularioDeVacacion.get('dias_seleccionados')?.value){
                   if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
@@ -502,7 +499,8 @@ export class AgregarVacacionComponent {
                     });
                   }                 
                 }else{
-                  console.log("Excede días disponibles");
+                  window.confirm("Excede días disponibles")
+                  //console.log("Excede días disponibles");
                 }          
               });
               
@@ -557,7 +555,6 @@ export class AgregarVacacionComponent {
             dias_tomados: this.formularioDeVacacion.get('dias_tomados')?.value,
             dias_seleccionados:diferenciaDias,  
             saldo_dias:this.formularioDeVacacion.get('saldo_dias')?.value,
-            saldo_dias2:this.formularioDeVacacion.get('saldo_dias2')?.value,     
             lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
             lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
             motivo:this.formularioDeVacacion.get('motivo')?.value
@@ -612,8 +609,7 @@ export class AgregarVacacionComponent {
               dias_solicitudes_pen: this.formularioDeVacacion.get('dias_solicitudes_pen')?.value,
               dias_tomados: this.formularioDeVacacion.get('dias_tomados')?.value,
               dias_seleccionados:diferenciaDias,  
-              saldo_dias:this.formularioDeVacacion.get('saldo_dias')?.value,
-              saldo_dias2:this.formularioDeVacacion.get('saldo_dias2')?.value, 
+              saldo_dias:this.formularioDeVacacion.get('saldo_dias')?.value, 
               lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
               lbl_fin:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
               motivo:this.formularioDeVacacion.get('motivo')?.value
