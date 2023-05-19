@@ -72,7 +72,7 @@ export class MenuComponent {
     this.control_vistas.controls['cuenta'].disable(); 
     this.control_vistas.controls['vaca_disp'].disable(); 
     this.control_vistas.controls['dias_tomados'].disable(); 
-    this.control_vistas.controls['cedula'].disable(); 
+    this.control_vistas.controls['dias_solicitudes_pen'].disable(); 
     this.control_vistas.controls['saldo_dias'].disable(); 
     this.opcion = 0;
     this.mostrarDataUser();
