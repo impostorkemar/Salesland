@@ -1,31 +1,25 @@
-<form [formGroup]="control_vistas">
-  <nav >
-    <ul>
-      <li><img class="logo-image" src="./assets/salesland-nf.png" alt="Logo Salesland"></li>
-      <li ><h1>Portal Ecuador</h1></li>     
-      <li class="li-r" *ngIf="chargeLogoutvalue"><a class="log-a" (onclick)="logout()" routerLink="/home" href="#">Salir</a></li>
-      <li class="li-r"><p>Fecha actualizada: {{ fechaActualizada }}</p></li>
-      <li class="li-r" *ngIf="chargeLoginvalue" ><a class="log-a" routerLink="/login" href="#">Ingresar</a></li>
-      
-      <li class="li-r">          
-        <input type="text" id="lastname_usuario" formControlName="lastname_usuario" class="my-input textCenter" >                             
-      </li>
+<nav>
+  <ul>
+    <li class="li-r"><img class="logo-image" src="./assets/salesland-nf.png" alt="Logo Salesland"></li>
+    <!-- <li class="li-r">
+      <h2>PORTAL ECUADOR</h2>
+    </li> -->
+    <li class="li-r">
+      <div class="avatar-container">
+        <div class="avatar">
+          <img src="./assets/avatar.svg" alt="">
+        </div>
 
-      <li class="li-r">
-        <input type="text" id="name_usuario" formControlName="name_usuario" class="my-input textCenter" >
-      </li>
-      <li class="li-r">
-        <input type="text" id="cedula" formControlName="cedula" class="my-input textCenter" >
-      </li>
-      <li class="li-r">
-        <input type="text" id="cuenta" formControlName="cuenta" class="my-input textCenter" >
-      </li>
-      <li class="li-r">
-        <input type="text" id="cargo" formControlName="cargo" class="my-input textCenter" >
-      </li>
-    </ul>    
-  </nav>
-</form>
-
-
-
+        <h6>HOLA,<span id="lastname_usuario">{{ control_vistas.get('lastname_usuario')?.value.toUpperCase() }}</span></h6>
+        <div class="raw-l">
+          <a *ngIf="chargeLogoutvalue" class="log-a" (click)="logout()" routerLink="/home" href="#">Salir</a>
+          <a *ngIf="chargeLoginvalue" class="log-a" routerLink="/login" href="#">Ingresar</a>     
+        </div>
+      </div>
+      <!-- <p>{{ control_vistas.get('cedula')?.value }}</p>
+      <p>{{ control_vistas.get('cuenta')?.value }}</p>
+      <p>{{ control_vistas.get('cargo')?.value }}</p> -->
+    </li>
+  </ul>
+  
+</nav>

@@ -1,6 +1,5 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-
 #containerInicio {
   height: 100%;
   width: 100%;
@@ -91,6 +90,11 @@ nav ul li a {
 
 }
 
+.flag {
+  width: 35px; /* Ancho deseado */
+  height: 40px; /* Alto deseado */
+}
+
 .log-a {
   display: block;
   float: right;
@@ -103,15 +107,10 @@ nav ul li a {
   font-weight: bold;
 }
 
+
 .log-a:hover {
   background-color: #fff;
   color: #045959;
   transition: all 0.3s ease-in-out;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
-
-.contenedor-landing {
-  padding-top: 83px;
-}
-
-

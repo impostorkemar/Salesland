@@ -1,9 +1,8 @@
-<form [formGroup]="control_vistas">    
+<app-menu-inicio></app-menu-inicio>
+<div class="contenedor-general">  
+<form [formGroup]="control_vistas">  
         <div class="wrapper">    
             <div  class="body" >
-                <div style="text-align: center; justify-content: center; align-items: center;  ">                
-                    <img src="./assets/SALESLAND2.jpg" class="center redimension1 responsive-image" >            
-                </div>                               
                 <div>    
                     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #16261C;"> 
                         <div class="navbar-left">  
@@ -25,30 +24,7 @@
                                 <button *ngIf="rolReportes" (click)="menuReportes2(5)" type="button" class="btn btn-primary">5.CONTRATO</button>
                                 <button *ngIf="rolReportes" (click)="menuReportes2(6)" type="button" class="btn btn-primary">6.EXPERIENCIA LABORAL</button>
                             </div> 
-                        </div>
-                        <div class="navbar-right">                            
-                            <div >
-                                <div>       
-                                    <label ></label>
-                                    <input type="text" id="lastname_usuario" formControlName="lastname_usuario" class="my-input textCenter" style="background-color: #16261C; color: white;">                             
-                                    <label ></label>
-                                    <input type="text" id="name_usuario" formControlName="name_usuario" class="my-input textCenter" style="background-color: #16261C; color: white;">
-                                    <label ></label>
-                                    <input type="text" id="cargo" formControlName="cargo" class="my-input textCenter" style="background-color: #16261C; color: white;">
-                                </div>                                   
-                                <div>    
-                                    <label ></label>
-                                    <input type="text" id="cedula" formControlName="cedula" class="my-input textCenter" style="background-color: #16261C; color: white;">
-                                    <label ></label>
-                                    <input type="text" id="cuenta" formControlName="cuenta" class="my-input textCenter" style="background-color: #16261C; color: white;">
-                                </div>   
-                                <br>
-                                <div style="text-align: center;">
-                                    <a class="nav-item nav-link active" href="#" aria-current="page">CERRAR SESIÓN <span class="visually-hidden">(current)</span></a>
-                                </div>                             
-                            </div>  
-                                                          
-                        </div>                        
+                        </div>                      
                     </nav>
                 </div>
             </div>    
@@ -93,4 +69,4 @@
             <app-reporte-general></app-reporte-general>
         </div>     
 </form>
-
+</div> 

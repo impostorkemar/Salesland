@@ -68,6 +68,7 @@ import { ListarviajesReporteGeneralPersonalComponent } from './components/viajes
 import { FormsModule } from '@angular/forms';
 import { PoliticsComponent } from './components/intranet/politics/politics.component';
 import { PublicidadFooterComponent } from './components/intranet/publicidad-footer/publicidad-footer.component';
+import { HomeInicioComponent } from './components/intranet/home-inicio/home-inicio.component';
 
 
 @NgModule({
@@ -123,6 +124,7 @@ import { PublicidadFooterComponent } from './components/intranet/publicidad-foot
     ListarviajesReporteGeneralPersonalComponent,
     PoliticsComponent,
     PublicidadFooterComponent,
+    HomeInicioComponent,
     
   ],
   imports: [
