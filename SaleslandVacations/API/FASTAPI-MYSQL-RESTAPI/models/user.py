@@ -95,6 +95,7 @@ vacaciones = Table("vacaciones", meta,
     Column("status", String(255)),
     Column("peticion", String(255)),
     Column("observaciones", String(255)),
+    Column("motivo", String(255)),
 )
 
 viajes = Table("viaje", meta, 

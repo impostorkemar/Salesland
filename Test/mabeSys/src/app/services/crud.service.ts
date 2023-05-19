@@ -696,7 +696,7 @@ resp!:String[];
               observaciones: observaciones as string,
               motivo: response0['motivo']
             }
-            console.log("vaca: ",vaca);
+            console.log("vaca: ",vaca);           
             this.putData(vaca,urlAPI).subscribe(response0=>{ 
               //console.log("response0: ",response0)
               VacacionesPen.splice(iControl,1);                    
@@ -892,7 +892,7 @@ resp!:String[];
 
     EnviarCorreoNotificacionIngresoSolicitud(user:any,passw:any,id:any): Observable<any>{
       var consult = {"user":user, "passw":passw, "id":id}
-      console.log(consult.user,consult.passw,consult.id)     
+      console.log("user:",consult.user,"passw:",consult.passw,"id:",consult.id)     
       var urlAPI="sendEmailIngresoSolicitud/?user="+(user) as string+"&passw="+(passw) as string+"&idvacacion="+(id) as string;
       return this.clienteHttp.post(this.API + urlAPI, consult);
     }
