@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 // Components
 import { DashboardComponent } from './components/ventasMABE/dashboard/dashboard.component';
@@ -142,7 +143,7 @@ import { HomeInicioComponent } from './components/intranet/home-inicio/home-inic
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    
+    NgxDatatableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

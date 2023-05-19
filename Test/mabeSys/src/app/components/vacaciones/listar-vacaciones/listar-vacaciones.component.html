@@ -10,51 +10,48 @@
             <a class="btn btn-warning" (click)="exportToCSV()" role="button" >EXCEL</a>
         </div>
        
-        <div class="card-body">            
-            <div class="table-responsive">
-                <table class="table table-primary">
-                    <thead>
-                        <tr>
-                            <th *ngIf="false" scope="col">ACCIONES</th>  
-                            <th scope="col">ID VACACIONES</th>                    
-                            <th scope="col">NOMBRE</th>
-                            <th scope="col">APELLIDO</th>
-                            <th scope="col">FECHA SOLICITUD</th>
-                            <th scope="col">FECHA INICIO VACACIONES</th>
-                            <th scope="col">FECHA FIN VACACIONES</th>
-                            <th scope="col">FECHA RESPUESTA</th>
-                            <th scope="col">DIAS LABORABLES SOLICITADOS</th>
-                            <th scope="col">DIAS DISPONIBLES ACUMULADOS</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col">PETICION</th>
-                            <th scope="col">OBSERVACIONES</th>  
-                            <th scope="col">MOTIVO</th>                                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let vacacion of Vacaciones; let iControl=index" class="">
-                            <td *ngIf="false">                          
-                                <a  class="btn btn-danger" style="width: 100%;" (click)="solicitarCancelacion(vacacion.id_vacaciones,iControl)" role="button">SOLICITAR CANCELACIÓN</a>
-                            </td>
-                                <td scope="row">{{vacacion.id_vacaciones}}</td>   
-                            <td>{{vacacion.nombre}}</td>                   
-                            <td>{{vacacion.apellido}}</td>
-                            <td>{{vacacion.fecha_solicitud}}</td>
-                            <td>{{vacacion.fecha_inicio_vacaciones}}</td>
-                            <td>{{vacacion.fecha_fin_vacaciones}}</td>
-                            <td>{{vacacion.fecha_respuesta}}</td>
-                            <td>{{vacacion.dias_lab_solicitados}}</td>
-                            <td>{{vacacion.dias_disponibles_acum}}</td>
-                            <td>{{vacacion.status}}</td>
-                            <td>{{vacacion.peticion}}</td>
-                            <td>{{vacacion.observaciones}}</td>
-                            <td>{{vacacion.motivo}}</td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-            </div>        
-        </div>  
+        <div class="card-body">
+        <div class="table-responsive">
+            <ngx-datatable
+            class="bootstrap"
+            [rows]="Vacaciones"
+            [columnMode]="'flex'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="50"
+            [scrollbarH]="true"
+            [scrollbarV]="true"
+            [sorts]="[{prop: 'id_vacaciones', dir: 'asc'}]"
+            [externalPaging]="true"
+            [count]="totalRecords"
+            [offset]="offset"
+            [limit]="perPage"
+            (page)="setPage($event.offset, $event.pageSize)"
+            >
+            <!-- Define your columns here -->
+            <ngx-datatable-column name="ID VACACIONES" prop="id_vacaciones"></ngx-datatable-column>
+            <ngx-datatable-column name="NOMBRE" prop="nombre"></ngx-datatable-column>
+            <ngx-datatable-column name="APELLIDO" prop="apellido"></ngx-datatable-column>
+            <ngx-datatable-column name="FECHA SOLICITUD" prop="fecha_solicitud"></ngx-datatable-column>
+            <ngx-datatable-column name="FECHA INICIO VACACIONES" prop="fecha_inicio_vacaciones"></ngx-datatable-column>
+            <ngx-datatable-column name="FECHA FIN VACACIONES" prop="fecha_fin_vacaciones"></ngx-datatable-column>
+            <ngx-datatable-column name="FECHA RESPUESTA" prop="fecha_respuesta"></ngx-datatable-column>
+            <ngx-datatable-column name="DIAS LABORABLES SOLICITADOS" prop="dias_lab_solicitados"></ngx-datatable-column>
+            <ngx-datatable-column name="DIAS DISPONIBLES ACUMULADOS" prop="dias_disponibles_acum"></ngx-datatable-column>
+            <ngx-datatable-column name="STATUS" prop="status"></ngx-datatable-column>
+            <ngx-datatable-column name="PETICION" prop="peticion"></ngx-datatable-column>
+            <ngx-datatable-column name="OBSERVACIONES" prop="observaciones"></ngx-datatable-column>
+            <ngx-datatable-column name="MOTIVO" prop="motivo"></ngx-datatable-column>
+            <ngx-datatable-column name="ACCIONES">
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value" let-rowIndex="rowIndex">
+                <a *ngIf="false" class="btn btn-danger" style="width: 100%;" (click)="solicitarCancelacion(row.id_vacaciones, rowIndex)" role="button">SOLICITAR CANCELACIÓN</a>
+                </ng-template>
+            </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+        </div>
+          
+            
     </div>
 </form>
 
