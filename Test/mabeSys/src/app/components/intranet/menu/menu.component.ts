@@ -3,14 +3,17 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TestuserService } from 'src/app/services/testuser.service';
 import { CrudService } from 'src/app/services/crud.service';
 import { Router } from '@angular/router';
+import { DatePipe, DecimalPipe } from '@angular/common';
+import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  providers: [DecimalPipe],
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   control_vistas: FormGroup;
   rolVacations!: Boolean;
   rolPersonal!: Boolean;
@@ -21,12 +24,20 @@ export class MenuComponent implements OnInit {
   probarRol_IPV!: Boolean;
   opcion:number =1;
   nombreVentana:string = "";
+  user!:String;
+  passw!:String;
+  cedula!: any;
+  corte!: NgbDate;
+  contrato!: Date;
+  antiguedad!: number;
+  Motivos!:any;
 
   constructor(
     private fb: FormBuilder,
     private testuserService: TestuserService,
     private crudService: CrudService,
     private router:Router,
+    private _decimalPipe: DecimalPipe,
   ) { 
     
     this.control_vistas = this.fb.group({
@@ -45,6 +56,8 @@ export class MenuComponent implements OnInit {
 
     });
     this.opcion = 1;
+    this.user = localStorage.getItem('USER') as string;
+    this.passw = localStorage.getItem('PASS') as string;
   }
 
   ngOnInit(): void {
@@ -62,37 +75,8 @@ export class MenuComponent implements OnInit {
     this.control_vistas.controls['cedula'].disable(); 
     this.control_vistas.controls['saldo_dias'].disable(); 
     this.opcion = 0;
-
-    /*
-    var user = localStorage.getItem('USER') as string;
-    var passw = localStorage.getItem('PASS') as string
-    this.testuserService.ConsultarNombreUsuario(user,passw).subscribe(respuesta=>{
-        console.log("MENU",user,passw,"RESPONSE:",respuesta);
-        if (respuesta != null){
-          const json = JSON.stringify(respuesta);
-          JSON.parse(json, (key, value) => { 
-          if (Array.indexOf(key)==-1 && isNaN(parseInt(key, 10)) && key!=''){
-            //console.log('key:'+key+'Array:'+Array.indexOf(key));
-            Array.push(value);  
-          }                      
-        });  
-        //console.log("DATOS:",Array[0]);       
-        this.control_vistas.setValue({
-          name_usuario: Array[0],
-          lastname_usuario: '',
-          cedula: '',
-          cuenta: '',
-          stateVacaciones: 'VACACIONES',
-          statePersonal: 'PERSONAL',
-          stateReportes: 'REPORTES',
-        });
-      }     
-    });
-    */
     this.mostrarDataUser();
   }
-
-  
 
   mostrarDatos(){
     console.log("MENU ROL:",localStorage.getItem('ROLE') as string)
@@ -244,21 +228,107 @@ export class MenuComponent implements OnInit {
   mostrarDataUser(){
     var user = localStorage.getItem('USER') as string;
     var passw = localStorage.getItem('PASS') as string
-    this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
-      console.log("DATAUSER:",respuesta);
-      this.control_vistas.setValue({
-        name_usuario: respuesta['nombre'],
-        lastname_usuario: respuesta['apellido'],
-        cargo: respuesta['nombre_cargo'],
-        cedula: respuesta['cedula'],
-        cuenta: respuesta['cuenta'],
-        stateVacaciones: 'VACACIONES',
-        statePersonal: 'PERSONAL',
-        stateReportes: 'REPORTES',
-        vaca_disp:'',
-        saldo_dias:'',
-        dias_tomados:'',
-        dias_solicitudes_pen:'',
+    this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuestaData=>{
+      console.log("DATAUSER:",respuestaData);
+      //CARGA CEDULA USER
+
+    this.crudService.ObtenerCedulaByUser_Pass(this.user,this.passw).subscribe(respuesta=>{
+      this.cedula = respuesta['cedula'];    
+
+        //CARGA FECHA INICIO CONTRATO
+        this.crudService.ObtenerFechaInicioContrato(this.cedula).subscribe(respuesta2=>{
+
+          if (respuesta2 != null){
+            const datePipe = new DatePipe('en-US'); 
+            var corteYear = new Date().getFullYear();
+            this.corte =  new NgbDate(corteYear,1,31);      
+            //console.log("corte:",this.corte)        
+            //this.contrato = new Date((Value2[0] as string));  
+
+            this.contrato = new Date((respuesta2['fechaContrato'] as string));           
+            var yearCal = (this.corte.year-this.contrato.getFullYear())*12
+            //console.log("this.corte.month\n:",this.corte.month,"\nthis.contrato.getMonth():",this.contrato.getMonth())
+            var monthCal = (this.corte.month-(this.contrato.getMonth()+1))
+            var dateCal = (this.corte.day-this.contrato.getDate())/30
+            //console.log("Year\n:",yearCal,"monthCal\n:",monthCal,"dateCal\n:",dateCal)
+            var antiguedadAux = (yearCal+monthCal+dateCal)
+            //console.log("Antiguedad:",antiguedadAux)
+            this.antiguedad = (this._decimalPipe.transform(antiguedadAux*1.25,"1.0-1") as any) as number;           
+            var antiguedadCal = this.antiguedad;
+
+            //CARGA VACACIONES TOMADAS
+            console.log("antiguedadCal->this.antiguedad",respuesta2['fechaContrato'])
+            if ( antiguedadCal != null){
+              this.crudService.ObtenertotalVacacionesTomadas(this.user,this.passw).subscribe(respuesta=>{
+                
+                var totalVacasTomadas = respuesta['VACA_PREV'];  
+                console.log("totalVacasTomadas->totalVacacionesAprobadas",respuesta['VACA_PREV'])            
+                this.crudService.ObtenertotalVacacionesTomadasPendientes(this.user,this.passw).subscribe(respuesta15=>{
+                  
+                  var totalVacasPendientes = respuesta15['VACA_PREV']
+                  console.log(respuesta15)
+                  console.log("totalVacasPendientes->totalVacacionesPendientes:",respuesta15['VACA_PREV'])
+
+                  this.crudService.ObtenerMotivosVacaciones("vacaciones").subscribe(respuesta16=>{
+                    this.Motivos = respuesta16;
+                    
+                    console.log("Motivos:",this.Motivos[0])
+                    console.log("vaca_disp:",antiguedadCal-totalVacasTomadas)
+                    if ( totalVacasTomadas == null ){ // VACA PREV
+                      this.control_vistas.setValue({
+                        name_usuario: respuestaData['nombre'],
+                        lastname_usuario: respuestaData['apellido'],
+                        cargo: respuestaData['nombre_cargo'],
+                        cedula: respuestaData['cedula'],
+                        cuenta: respuestaData['cuenta'],
+                        stateVacaciones: 'VACACIONES',
+                        statePersonal: 'PERSONAL',
+                        stateReportes: 'REPORTES',
+                        vaca_disp: antiguedadCal, //vacaciones por contrato                        
+                        dias_solicitudes_pen: 0, // vacaciones tomadas
+                        dias_tomados:0,                        
+                        saldo_dias: antiguedadCal,
+                      });
+                    }else if (totalVacasTomadas != null && totalVacasPendientes == null){ // VACA PREV PEND
+                      this.control_vistas.setValue({
+                        name_usuario: respuestaData['nombre'],
+                        lastname_usuario: respuestaData['apellido'],
+                        cargo: respuestaData['nombre_cargo'],
+                        cedula: respuestaData['cedula'],
+                        cuenta: respuestaData['cuenta'],
+                        stateVacaciones: 'VACACIONES',
+                        statePersonal: 'PERSONAL',
+                        stateReportes: 'REPORTES',
+                        vaca_disp: antiguedadCal,  //vacaciones por contrato
+                        dias_solicitudes_pen: 0, // vacaciones tomadas
+                        dias_tomados:totalVacasTomadas,                   
+                        saldo_dias: antiguedadCal-totalVacasTomadas-totalVacasPendientes, //vacaciones saldo                             
+                      });                                       
+                    }else{ 
+                      this.control_vistas.setValue({
+                        name_usuario: respuestaData['nombre'],
+                        lastname_usuario: respuestaData['apellido'],
+                        cargo: respuestaData['nombre_cargo'],
+                        cedula: respuestaData['cedula'],
+                        cuenta: respuestaData['cuenta'],
+                        stateVacaciones: 'VACACIONES',
+                        statePersonal: 'PERSONAL',
+                        stateReportes: 'REPORTES',
+                        vaca_disp: antiguedadCal,  //vacaciones por contrato
+                        dias_tomados:totalVacasTomadas,                        
+                        dias_solicitudes_pen: totalVacasPendientes, // vacaciones tomadas                          
+                        saldo_dias: antiguedadCal-totalVacasTomadas-totalVacasPendientes, //vacaciones saldo                                                  
+                      });              
+                    }
+                  })
+                });             
+              
+              });
+          }
+          }else{
+            window.confirm("Usuario sin perfil de contrato")
+          }
+        });        
       });
     });
   }
@@ -266,9 +336,5 @@ export class MenuComponent implements OnInit {
   goToMenuBotones(){
     this.router.navigate(['/inicio']);
   }
-
-  
-
-  
 
 }

@@ -251,7 +251,7 @@ export class AgregarVacacionComponent {
                         console.log("respuesta15:",respuesta15)
                       })                   
                       if(window.confirm("Solcitud ingresada. ¡Revisar solicitud?")){
-                        this.reloadComponent();
+                        this.reloadMenuComponent();
                       }
                   });
                 }            
@@ -333,7 +333,7 @@ export class AgregarVacacionComponent {
                         console.log("respuesta15:",respuesta15)
                       })                   
                       if(window.confirm("Solcitud ingresada. ¡Revisar solicitud?")){
-                        this.reloadComponent();
+                        this.reloadMenuComponent();
                       }
                   });
                 }            
@@ -405,7 +405,7 @@ export class AgregarVacacionComponent {
                         console.log("respuesta15:",respuesta15)
                       })                   
                       if(window.confirm("Solcitud ingresada. ¡Revisar solicitud?")){
-                        this.reloadComponent();
+                        this.reloadMenuComponent();
                       }
                     });
                   }                 
@@ -494,7 +494,7 @@ export class AgregarVacacionComponent {
                         console.log("respuesta15:",respuesta15)
                       })                   
                       if(window.confirm("Solcitud ingresada. ¡Revisar solicitud?")){
-                        this.reloadComponent();
+                        this.reloadMenuComponent();
                       }
                     });
                   }                 
@@ -732,16 +732,6 @@ export class AgregarVacacionComponent {
     return days;
   }
 
-  reloadComponent() {
-    if(this.route.snapshot.routeConfig != null){
-      const currentRoute = this.route.snapshot.routeConfig.path;
-      const currentUrl = "menu";
-      this.router.navigateByUrl('/menu')
-      /*this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-        this.router.navigate([currentUrl]));*/
-    }   
-  }
-
   esFinDeSemana = (date: NgbDate) => {
     const day = new Date(date.year, date.month - 1, date.day).getDay();
     return day === 0 || day === 6;
@@ -757,6 +747,17 @@ export class AgregarVacacionComponent {
     //return dayOfWeek === 0 || dayOfWeek === 6;
   }
 
+  reloadComponent() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigateByUrl(currentUrl);
+    });
+  }
+  reloadMenuComponent() {
+    this.router.navigateByUrl('/menu', { skipLocationChange: true }).then(() => {
+      window.location.reload();
+    });
+  }
   
 }
 
