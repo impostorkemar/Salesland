@@ -26,8 +26,8 @@ import { saveAs } from 'file-saver';
 })
 export class CrudService {
 //API:string = 'http://192.168.0.29:8000/';
-API:string = 'http://192.168.1.38:8000/';
-//API:string = 'http://192.168.1.42:8000/';
+//API:string = 'http://192.168.1.38:8000/';
+API:string = 'http://192.168.1.42:8000/';
 //API:string = 'http://181.188.194.242:8000/';
 //API:string = 'http://181.188.194.242:8000/';
 resp!:String[];

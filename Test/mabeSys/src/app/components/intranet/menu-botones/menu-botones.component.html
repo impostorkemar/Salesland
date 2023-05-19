@@ -20,42 +20,25 @@
   </div>
   
   <div class="column2" >
-    <main>
-      <section id="CarouselInicio">
-        <div id="carouselExampleDark" class="carousel carousel-dark slide " data-bs-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
-          <div class="carousel-inner elemento1">
-            <div class="carousel-item active" data-bs-interval="2000">
-              <div class="carousel-caption d-none d-md-block">
-              </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="./assets/startup-594090_1920.jpg" class="elemento1" alt="startup">
             </div>
-            
-            <div class="carousel-item elemento2" data-bs-interval="2000">
-              <div class="carousel-caption d-none d-md-block">
-  
-              </div>
+            <div class="carousel-item">
+              <img src="./assets/mision.jpg" class="elemento2" alt="mision">
             </div>
-            <div class="carousel-item elemento3" data-bs-interval="2000">
-              <div class="carousel-caption d-none d-md-block">
-              </div>
+            <div class="carousel-item">
+              <img src="./assets/vision.jpg" class="elemento3" alt="vision">
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>         
-      </section>
-      
-    </main>
+        </div>
+
     <div class="button-grid">
       <button class="button-menu-internal" (click)="goToExternalLinkVacaciones()">Vacaciones<br><i class="fas fa-umbrella-beach fa-4x"></i> </button>      
       <button class="button-menu-internal" (click)="goToExternalLinkTickets()">Soporte<br><i class="fas fa-headset fa-4x"></i> </button>
