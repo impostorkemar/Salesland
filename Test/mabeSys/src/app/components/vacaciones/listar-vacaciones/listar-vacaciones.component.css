@@ -1,0 +1,28 @@
+.my-custom-datatable {
+    width: 100%;
+  }
+  
+  .my-custom-datatable .datatable-header,
+  .my-custom-datatable .datatable-footer,
+  .my-custom-datatable .datatable-body {
+    background-color: #f8f9fa;
+  }
+  
+  .my-custom-datatable .datatable-header th,
+  .my-custom-datatable .datatable-footer td {
+    background-color: #e9ecef;
+    font-weight: bold;
+  }
+  
+  .my-custom-datatable .datatable-body-row {
+    background-color: #fff;
+  }
+  
+  .my-custom-datatable .datatable-body-row:hover {
+    background-color: #f1f3f5;
+  }
+  
+  .my-custom-datatable .datatable-body-cell {
+    padding: 0.5rem;
+  }
+  

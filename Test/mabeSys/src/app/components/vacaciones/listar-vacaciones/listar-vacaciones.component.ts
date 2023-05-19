@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { ExportListService } from 'src/app/services/export-list.service';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 @Component({
   selector: 'app-listar-vacaciones',
   templateUrl: './listar-vacaciones.component.html',
@@ -15,6 +17,9 @@ export class ListarVacacionesComponent {
   user!:String;
   passw!:String;
   formularioDeVacacion:FormGroup;
+  totalRecords!:number;
+  offset!:number;
+  perPage!:number;
 
   constructor(
     private crudService:CrudService,
@@ -26,12 +31,15 @@ export class ListarVacacionesComponent {
     this.formularioDeVacacion = this.formulario.group({      
       motivo:[''],      
     });
+    this.totalRecords = 0;
+    this.offset = 0;
+    this.perPage = 10;
    }
 
   ngOnInit(): void {
 
     this.crudService.ObtenerVacacionesByUserAndPass(this.user,this.passw).subscribe(respuesta=>{
-      //console.log(respuesta);
+      console.log(respuesta);
       this.Vacaciones=respuesta;
     });
     this.crudService.ObtenerVacacionesByUserAndPassPendientes(this.user,this.passw).subscribe(respuesta=>{
@@ -47,6 +55,12 @@ export class ListarVacacionesComponent {
       this.VacacionesAprobadas=respuesta;
     });
   }  
+
+  setPage(offset: number, limit: number) {
+    // Update the offset and limit when the page changes
+    this.offset = offset;
+    this.perPage = limit;
+  }
 
   borrarRegistro(id:any,iControl:any){
     //console.log(id);
@@ -84,4 +98,21 @@ export class ListarVacacionesComponent {
     this.exportList.downloadFileSolicitudesVacaciones(this.Vacaciones,"Vacaciones");
   }
 
+  onSort(event: any) {
+    // Lógica para ordenar los datos
+  }
+  
+  onPage(event: any) {
+    // Lógica para cambiar de página
+  }
+  
+  onActivate(event: any) {
+    // Lógica para resaltar la celda seleccionada
+  }
+
+  getDynamicRowHeight(row: any): number {
+    // Lógica para calcular la altura de las filas según los datos de la fila
+    return 30; // Cambia 30 por el valor calculado dinámicamente
+  }
+  
 }
