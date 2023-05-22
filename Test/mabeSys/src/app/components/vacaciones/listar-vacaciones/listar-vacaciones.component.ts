@@ -142,7 +142,7 @@ export class ListarVacacionesComponent {
   borrarRegistro(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
-    this.crudService.BorrarVacacion(id, this.VacacionesPendientes, iControl);
+    this.crudService.BorrarVacacion(id);
   }
 
   solicitarCancelacion(id:any,iControl:any){
@@ -162,13 +162,13 @@ export class ListarVacacionesComponent {
   AceptarRegistro(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
-    this.crudService.BorrarVacacion(id, this.Vacaciones, iControl);
+    this.crudService.BorrarVacacion(id);
   }
 
   RechazarRegistro(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
-    this.crudService.BorrarVacacion(id, this.Vacaciones, iControl);
+    this.crudService.BorrarVacacion(id);
   }
 
   exportToCSV(){

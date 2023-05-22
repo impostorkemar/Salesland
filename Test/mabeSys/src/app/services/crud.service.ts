@@ -396,7 +396,7 @@ resp!:String[];
     return this.clienteHttp.get(this.API+urlAPI);                
   }  
 
-  ObtenerVacacionesPersonal():Observable<any>{
+  ObtenerVacacionesPersonal(user:any,pass:any):Observable<any>{
     //console.log("user:",user,"pass:", pass)
     var urlAPI="vacacionesPersonal/";       
     return this.clienteHttp.get(this.API+urlAPI);                
@@ -476,18 +476,15 @@ resp!:String[];
     return this.clienteHttp.get(this.API+urlAPI);                
   } 
 
-  BorrarVacacion(id:any,Vacaciones:any,iControl:any) {
+  BorrarVacacion(id:any):Observable<any> {
     var urlAPI="vacaciones/";
     //console.log("URL=",this.API +urlAPI+id);
     //console.log("ID=",id);
     if(window.confirm("¿Desea borrar el registro?")){
-      return this.clienteHttp.delete(this.API +urlAPI+id).subscribe((respuesta)=>{
-        Vacaciones.splice(iControl,1);
-      });    
-    }
-    else{
-      return null;
-    }    
+      return this.clienteHttp.delete(this.API +urlAPI+id)
+    } else{
+      return of(null);
+    } 
   } 
 
   BorrarVacacionById(id:any) :Observable<any> {
