@@ -429,10 +429,10 @@ def cargarMotivoPredeterminadosViajes():
   sql2 += str(datos2) 
   ejecutarSQL(sql2)
 
-df5 = readExcelXLS("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/Vacaciones Salesland 2021-2022 (corte 31 jul22).xlsx")
+df5 = readExcelXLS("C:/Users/WORK/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/Vacaciones Salesland 2021-2022 (corte 31 jul22).xlsx")
 #print(df5) 
 
-df2 = readCSV("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/centro_costos3.csv")
+df2 = readCSV("C:/Users/WORK/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/centro_costos3.csv")
 #print(df2) 
 
 numCargos = 48
