@@ -582,11 +582,11 @@ export class AgregarVacacionComponent {
         if (
           this.formularioDeVacacion.get('vaca_disp')?.value 
           <=
-          this.formularioDeVacacion.get('saldo_dias')?.value 
+          (this.formularioDeVacacion.get('dias_tomados')?.value  +  this.formularioDeVacacion.get('dias_solicitudes_pen')?.value )  
           
           ){
             this.btnIngresar = true;
-          window.confirm("Excede la totalidad de días disponibles:\n\t");
+          window.confirm("Excede la totalidad de días disponibles 1:\n\t");
           }else{
             this.btnIngresar = false;
             
@@ -631,11 +631,11 @@ export class AgregarVacacionComponent {
         if (
           this.formularioDeVacacion.get('vaca_disp')?.value
           <= 
-          this.formularioDeVacacion.get('saldo_dias')?.value          
+          (this.formularioDeVacacion.get('dias_tomados')?.value  +  this.formularioDeVacacion.get('dias_solicitudes_pen')?.value )      
           
           ){
             this.btnIngresar = true;
-          window.confirm("Excede la totalidad de días disponibles:\n\t");
+          window.confirm("Excede la totalidad de días disponibles 2:\n\t");
           }else{
             this.btnIngresar = false;
             

@@ -1,28 +1,30 @@
-.my-custom-datatable {
-    width: 100%;
-  }
-  
-  .my-custom-datatable .datatable-header,
-  .my-custom-datatable .datatable-footer,
-  .my-custom-datatable .datatable-body {
-    background-color: #f8f9fa;
-  }
-  
-  .my-custom-datatable .datatable-header th,
-  .my-custom-datatable .datatable-footer td {
-    background-color: #e9ecef;
-    font-weight: bold;
-  }
-  
-  .my-custom-datatable .datatable-body-row {
-    background-color: #fff;
-  }
-  
-  .my-custom-datatable .datatable-body-row:hover {
-    background-color: #f1f3f5;
-  }
-  
-  .my-custom-datatable .datatable-body-cell {
-    padding: 0.5rem;
-  }
-  
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
