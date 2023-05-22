@@ -1,26 +1,16 @@
 <app-menu-inicio></app-menu-inicio>
 <div class="contenedor-general">
-<form [formGroup]="control_vistas">    
-  <div class="wrapper">    
-      <div  class="body" >                              
-          <div>    
-              <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #16261C;"> 
-                  <div class="navbar-left">  
-                      <a class="nav-item nav-link active" (onclick)="goToMenuBotones()" routerLink="/inicio" href="#">HOME</a>
-                  </div>                   
-                  <div class="navbar-center">
-                      <div *ngIf="rolVacations" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
-                          <button *ngIf="rolVacations" (click)="menuViajes2(1)" type="button" class="btn btn-primary">1.INGRESO VIAJES</button>
-                          <button *ngIf="rolVacations" (click)="menuViajes2(2)" type="button" class="btn btn-primary">2.REEMBOLOS DE VIAJES</button>
-                      </div>                      
-                  </div>                       
-              </nav>
-          </div>
-      </div>    
-  </div>
+<form [formGroup]="control_vistas">
+    <div *ngIf="rolVacations" class="contenedor-botones">
+        <a (onclick)="goToMenuBotones()" routerLink="/inicio" href="#">INICIO</a>
+        <div>
+            <button *ngIf="rolVacations" (click)="menuViajes2(1)" type="button" [ngClass]="{ 'activo': isActive(1) }">INGRESAR VIAJES</button>
+            <button *ngIf="rolVacations" (click)="menuViajes2(2)" type="button" [ngClass]="{ 'activo': isActive(2) }">REEMBOLSO VIAJES</button>
+        </div>
+    </div>                                                       
   <div  id="router-outlet">
       <router-outlet></router-outlet>
-  </div>
+  </div>    
   <div *ngIf="nombreVentana === 'INGRESO-VIAJES'" >
       <app-agregar-viaje></app-agregar-viaje>
   </div>    

@@ -1,19 +1,17 @@
-<div class="card" >
-  <h1 style="align-self: center; background-color: white; color: #16261C;">
-    AGREGAR REEMBOLSO DE VIAJE
-  </h1>     
+<div class="card" >   
 <form [formGroup]="formularioDeViaje" (ngSubmit)="enviarDatos()">
-  <div class="card-body">    
+  <div class="card-body"> 
+    <div class="add-datos">   
     <div class="table-responsive table-bordered table-striped">
-      <table class="table table-primary">
+      <table class="table">
         <thead>              
         </thead>
         <tbody>
             <tr>
               <TD colspan="4">
-                <h2 style="text-align: center;">
-                  DATOS PERSONALES
-                </h2>
+                <h2 style="text-align: center;  color: #16261C;">
+                  INFORMACIÓN DE VIAJE
+                </h2>  
               </TD>
             </tr>
             <tr>
@@ -21,26 +19,24 @@
                 <div class="card-body etiqueta">
                   <div class="mb-3">
                     <label for="" class="form-label">FECHA REEMBOLSO</label>
-                    <input type="text"
-                      class="form-control" name="fecha_reembolso" formControlName="fecha_reembolso" id="fecha_reembolso" aria-describedby="fecha_reembolso" placeholder="0" >                  </div>
+                    <input type="text" class="form-control" name="fecha_reembolso" formControlName="fecha_reembolso" id="fecha_reembolso" aria-describedby="fecha_reembolso" placeholder="0" >                  
+                    </div>
                 </div>                   
               </TD>
-              <TD>
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">LUGAR</label>
-                    <input type="text"
-                      class="form-control" name="lugar" formControlName="lugar" id="lugar" aria-describedby="lugar" placeholder="15" required>
-                  </div>
-                </div>                      
-              </TD>              
-              
+                <TD>
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">LUGAR</label>
+                      <input type="text" class="form-control" name="lugar" formControlName="lugar" id="lugar" aria-describedby="lugar" placeholder="QUITO" required >
+                      </div>
+                  </div>                   
+                </TD>
               <TD>
                 <div class="card-body etiqueta">
                   <div class="mb-3">
                     <label for="" class="form-label">PUNTO DE PARTIDA</label>
                     <input type="text"
-                      class="form-control" name="punto_partida" formControlName="punto_partida" id="punto_partida" aria-describedby="dias_viaje" placeholder="PICHINCHA,QUITO">
+                      class="form-control" name="punto_partida" formControlName="punto_partida" id="punto_partida" aria-describedby="dias_viaje" placeholder="Provincia,Ciudad">
                   </div>
                 </div>                   
               </TD>
@@ -49,73 +45,72 @@
                   <div class="mb-3">
                     <label for="" class="form-label">PUNTO DE DESTINO</label>
                     <input type="text"
-                      class="form-control " name="punto_destino" formControlName="punto_destino" id="punto_destino" aria-describedby="dias_viaje" placeholder="PICHINCHA,QUITO">
+                      class="form-control " name="punto_destino" formControlName="punto_destino" id="punto_destino" aria-describedby="dias_viaje" placeholder="Provincia,Ciudad">
                   </div>
                 </div>                   
               </TD>
             </tr>  
-            <tr>
-              <TD colspan="4">
-                <h2 style="text-align: center;">
-                  INFORMACIÓN VIAJE
-                </h2>
-              </TD>
-            </tr>
-            <tr>
-              <td colspan="1">
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">CANTIDAD DE COMPROBANTES</label>
-                    <input type="text"
-                      class="form-control inputRight" name="cantidad_comprobantes" formControlName="cantidad_comprobantes" id="cantidad_comprobantes" aria-describedby="helpId" placeholder="0">
-                  </div>
-                </div>                
-              </td>              
-              <td colspan="1">   
-                <div class="card-body etiqueta">
-                  <label for="" class="form-label">ARCHIVOS</label>
-                  <div class="card-body" role="group" aria-label="Button group name" style="align-self: ceter; text-align: center; align-items: center; align-content: center;">
-                    <input type="file" multiple (change)="onFileSelectTypesFiles($event)" accept=".rar,.pdf,image/*">
-                    <p></p><label for="" class="form-label">Ingrese los archivos de reembolso de gastos </label>
-                  </div>
-                </div> 
-              </td>       
+            <tr>          
               <TD> 
                 <div class="card-body etiqueta">
                   
                   <div class="mb-3">                    
                     <label for="" class="form-label">IMPORTE TOTAL</label>
                     <input type="text inputRight"
-                      class="form-control" name="importe" formControlName="importe" id="importe" aria-describedby="importe" placeholder="200.25" required>
+                      class="form-control" name="importe" formControlName="importe" id="importe" aria-describedby="importe" placeholder="$0.00" required>
                       <label for="" class="form-label">Valor total incluido IVA</label>
                     </div>
                 </div>  
               </TD>   
               <TD>
                 <div class="card-body etiqueta">
-                  <div class="mb-3">      
-                    <label for="" class="form-label">MONEDA</label>              
-                    <select name="moneda" id="moneda" formControlName="moneda" class="form-select form-select-sm selectStyle " aria-label=".form-select-sm example">
-                      <option *ngFor="let currency of currencies" [value]="currency">{{currency}} - {{getSymbol(currency)}}</option>                              
-                    </select> 
+                  <div class="mb-3">
+                    <label for="moneda" class="form-label">MONEDA</label>
+                    <select name="moneda" id="moneda" formControlName="moneda" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
+                      <option *ngFor="let currency of currencies" [value]="currency">{{currency}} - {{getSymbol(currency)}}</option>
+                    </select>
                   </div>
                 </div>                      
-              </TD>           
+              </TD> 
+              <td colspan="1">   
+                <div class="card-body etiqueta">
+                  <label for="" class="form-label">AGREGAR COMPROBANTES</label>
+                  <div class="card-body" role="group" aria-label="Button group name" style="align-self: ceter; text-align: center; align-items: center; align-content: center;">
+                    <div class="file-input-container">
+                      <input type="file" id="fileInput" multiple (change)="onFileSelectTypesFiles($event)" accept=".rar,.pdf,image/*">
+                      <label for="fileInput" class="file-input-label">
+                        <span>Seleccionar archivos</span>
+                      </label>
+                    </div>
+                    <p></p><label for="" class="form-label">Ingrese los archivos de reembolso de gastos </label>
+                  </div>
+                </div> 
+              </td>
+              <td colspan="1">
+                <div class="card-body etiqueta">
+                  <div class="mb-3">
+                    <label for="" class="form-label">Nro. COMPROBANTES SELECCIONADOS</label>
+                    <input type="text"
+                      class="form-control inputRight" name="cantidad_comprobantes" formControlName="cantidad_comprobantes" id="cantidad_comprobantes" aria-describedby="helpId" placeholder="0">
+                  </div>
+                </div>                
+              </td>                     
             </tr>   
             <tr>
+              
               <td colspan="4">
                 <div class="card-body" role="group" aria-label="Button group name" style="align-self: ceter; text-align: center; align-items: center; align-content: center;"  >
                   <button type="submit" class="btn btn-success" [disabled]="btnIngresar" >AGREGAR</button>
                 </div>
               </td>      
             </tr> 
-            <tr>
+            <!-- <tr>
               <td colspan="4">
                 <div class="card-body" role="group2" aria-label="Button group name" style="align-self: ceter; text-align: center; align-items: center; align-content: center;"  >
                   <button type="button" (click)="downloadExcel()" class="btn btn-warning" >DESCARGAR FORMATO DE VIAJES</button>                  
                 </div>
               </td>
-            </tr>
+            </tr> -->
             <tr *ngIf="false">
               <TD> 
                 <div  class="card-body etiqueta">
@@ -140,9 +135,10 @@
       </table>
     </div>    
   </div>   
+</div>
   <div class="card-body" >      
     <div class="table-responsive">
-      <table class="table table-primary center" >      
+      <table class="table  center" >      
         <thead>
           <TD colspan="1">
             <h2 style="text-align: center;">

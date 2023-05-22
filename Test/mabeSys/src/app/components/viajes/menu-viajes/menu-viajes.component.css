@@ -1,3 +1,48 @@
+/*Css para Botones de Accion*/
+.contenedor-botones {display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: #fff;
+padding: 10px;
+border-top: 1px solid gray;
+}
+
+.contenedor-botones a {
+  text-decoration: none;
+  background-color: #fff;
+  color: #045959;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid gray;
+  font-weight: bold;
+}
+
+.contenedor-botones a:hover {
+  background-color: #045959;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.contenedor-botones button {
+  background-color: #fff;
+  color: #045959;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 10px;
+  border: 2px solid gray;
+  font-weight: bold;
+}
+
+.contenedor-botones button:hover {
+  background-color: #045959;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+button:first-child {
+  margin-left: 0;
+}
+
 .selectStyle{
   background-color: #16261C;
   color: white;
@@ -26,26 +71,8 @@
   background-color: white;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  color: white;
-  padding: 10px;
-}
-
-.navbar-left {
-  display: flex;
-  align-items: center;
-}
 
 .navbar-right {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-center {
   display: flex;
   align-items: center;
 }
