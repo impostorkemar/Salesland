@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import { Usuario } from '../components/classModels/Usuario';
 import { Candidato } from '../components/classModels/Candidato';
 import { CentroCosto } from '../components/classModels/CentroCosto';
@@ -8,7 +8,7 @@ import { Cargo } from '../components/classModels/Cargo';
 import { Contrato } from '../components/classModels/Contrato';
 import { ExperienciaLaboral } from '../components/classModels/ExperienciaLaboral';
 import { Personal } from '../components/classModels/Personal';
-import { map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { HttpPostService } from './HttpPostService';	
 import { Vacaciones } from '../components/classModels/Vacaciones';
 import { TestuserService } from 'src/app/services/testuser.service';
@@ -890,6 +890,95 @@ resp!:String[];
           }
         }
       }); 
+    }
+
+    AceptarSolicitudVacacionBySupervisor(id: any): Observable<any> {
+      var urlAPI = "vacacionesAAprobarbyId/";
+      var myDate = new Date();
+      var Fecha_respt = myDate.getFullYear() + "-" + myDate.getMonth() + "-" + myDate.getDay() + " " + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds()
+      return this.ObtenerVacacionById(id).pipe(
+        switchMap(response0 => {
+          if (response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion') {
+            if (window.confirm("¿Desea aceptar la solicitud?\nID VACACIONES: " +
+              response0['id_vacaciones'] + "\n\tNOMBRE:" + response0['nombre'] + " " + response0['apellido'] + "\n\tFECHA SOLICITUD: " + response0['fecha_solicitud'] +
+              "\n\tFECHA INICIO VACACIONES: " + response0['fecha_inicio_vacaciones'] + "\n\tFECHA FIN VACACIONES: "
+              + response0['fecha_fin_vacaciones'] + "\n\tDIAS SOLICITADOS: "
+              + response0['dias_lab_solicitados'])) {
+              let options = this.createRequestOptions();
+              var urlAPI = "vacacionesAAprobarbyId/" + id;
+              console.log("Fecha_respt:", Fecha_respt)
+              var vaca: Vacaciones = {
+                id_vacaciones: response0['id_vacaciones'],
+                id_personal: response0['id_personal'],
+                fecha_solicitud: response0['fecha_solicitud'],
+                fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+                fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+                dias_lab_solicitados: response0['dias_lab_solicitados'],
+                dias_disponibles_acum: response0['dias_disponibles_acum'],
+                fecha_respuesta: Fecha_respt as string,
+                status: 'aprobada',
+                peticion: 'aprobacion',
+                observaciones: '',
+                motivo: response0['motivo'],
+              }
+              console.log("vaca: ", vaca);
+              return this.putData(vaca, urlAPI);
+            } else {
+              return of(null);
+            }
+          } else {
+            return of(null);
+          }
+        }),
+        catchError(error => {
+          return of(null);
+        })
+      );
+    }
+
+    RechazarSolicitudVacacionBySupervisor(id:any, observaciones: any): Observable<any>{
+      var urlAPI="negarVacacionById/";
+      var myDate = new Date();
+      var Fecha_respt = myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDay()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds()
+      return this.ObtenerVacacionById(id).pipe(
+        switchMap(response0 =>{
+          if ( response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion'){
+            if(window.confirm("¿Desea rechazar la solicitud?\nID VACACIONES: "+
+            response0['id_vacaciones']+"\n\tNOMBRE:"+response0['nombre']+" "+response0['apellido'] + "\n\tFECHA SOLICITUD: "+response0['fecha_solicitud']+ 
+            "\n\tFECHA INICIO VACACIONES: "+response0['fecha_inicio_vacaciones']+ "\n\tFECHA FIN VACACIONES: "
+            + response0['fecha_fin_vacaciones']+ "\n\tDIAS SOLICITADOS: "
+            + response0['dias_lab_solicitados'])){
+              let options = this.createRequestOptions();
+              var urlAPI="vacacionesACancelarbyId/"+id;
+              console.log("Fecha_respt:",Fecha_respt)
+              var vaca: Vacaciones ={
+                id_vacaciones: response0['id_vacaciones'],
+                id_personal: response0['id_personal'],
+                fecha_solicitud:response0['fecha_solicitud'],
+                fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+                fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+                dias_lab_solicitados: response0['dias_lab_solicitados'],
+                dias_disponibles_acum: response0['dias_disponibles_acum'],
+                fecha_respuesta: Fecha_respt as string,
+                status: 'negada',
+                peticion: 'aprobacion',
+                observaciones: observaciones as string,
+                motivo: response0['motivo'],
+              }
+              console.log("vaca: ",vaca);
+              //console.log("vaca: ",vaca);
+              return this.putData(vaca,urlAPI)
+            } else{
+              return of(null)
+            }
+          } else{
+            return of(null)
+          }
+        }),        
+        catchError(error => {
+          return of(null);
+        })
+      )
     }
 
     EnviarCorreoNotificacionIngresoSolicitud(user:any,passw:any,id:any): Observable<any>{
