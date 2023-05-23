@@ -10,10 +10,11 @@
           <img src="./assets/avatar.svg" alt="">
         </div>
 
-        <h6>HOLA,<span id="lastname_usuario">{{ control_vistas.get('lastname_usuario')?.value.toUpperCase() }}</span></h6>
+        <h6>HOLA,<span id="lastname_usuario">{{ control_vistas.get('lastname_usuario')?.value.toUpperCase() }}</span>
+        </h6>
         <div class="raw-l">
           <a *ngIf="chargeLogoutvalue" class="log-a" (click)="logout()" routerLink="/home" href="#">Salir</a>
-          <a *ngIf="chargeLoginvalue" class="log-a" routerLink="/login" href="#">Ingresar</a>     
+          <a *ngIf="chargeLoginvalue" class="log-a" routerLink="/login" href="#">Ingresar</a>
         </div>
       </div>
       <!-- <p>{{ control_vistas.get('cedula')?.value }}</p>
@@ -21,5 +22,5 @@
       <p>{{ control_vistas.get('cargo')?.value }}</p> -->
     </li>
   </ul>
-  
+
 </nav>

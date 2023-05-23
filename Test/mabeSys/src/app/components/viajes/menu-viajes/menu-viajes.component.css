@@ -1,73 +1,67 @@
 /*Css para Botones de Accion*/
-.contenedor-botones {display: flex;
-justify-content: space-between;
-align-items: center;
-background-color: #fff;
-padding: 10px;
-border-top: 1px solid gray;
+.contenedor-botones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #045959;
+  border-top: 1px solid gray;
 }
 
 .contenedor-botones a {
   text-decoration: none;
-  background-color: #fff;
-  color: #045959;
+  background-color: #045959;
+  color: #fff;
   padding: 10px 20px;
-  border-radius: 5px;
-  border: 2px solid gray;
-  font-weight: bold;
 }
 
 .contenedor-botones a:hover {
-  background-color: #045959;
-  color: #fff;
-  border: 1px solid #fff;
+  background-color: #afaeae2f;
 }
 
 .contenedor-botones button {
-  background-color: #fff;
-  color: #045959;
+  background-color: #045959;
+  color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
   margin-left: 10px;
-  border: 2px solid gray;
-  font-weight: bold;
+  border: none;
 }
 
 .contenedor-botones button:hover {
-  background-color: #045959;
-  color: #fff;
-  border: 1px solid #fff;
+  background-color: #afaeae2f;
 }
 
 button:first-child {
   margin-left: 0;
 }
 
-.selectStyle{
+.selectStyle {
   background-color: #16261C;
   color: white;
 }
-.text{
+
+.text {
   color: white;
 }
+
 .redimension1 {
-  width:500px;
-  height:auto;
+  width: 500px;
+  height: auto;
 }
 
 .redimension2 {
-  max-width:50%;
-  max-height:50%;
+  max-width: 50%;
+  max-height: 50%;
 }
 
-#sect1 { 
+#sect1 {
   background-color: #16261C;
   color: white;
-  background-size:100%;  
-  background-size: cover;  
+  background-size: 100%;
+  background-size: cover;
 }
 
-#name_usuario{
+#name_usuario {
   background-color: white;
 }
 
@@ -83,10 +77,10 @@ button:first-child {
   border: 1px solid #16261C;
 }
 
-.textCenter{
-  text-align: center;  
+.textCenter {
+  text-align: center;
 }
 
-.contenedor-general{
+.contenedor-general {
   padding-top: 84px;
 }

@@ -1,0 +1,81 @@
+h2 {
+    text-align: center;
+}
+
+.card-body table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .card-body table th,
+  .card-body table td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .card-body table thead th {
+    background-color: #045959;
+    color: #fff;
+    font-weight: 400;
+  }
+  
+  .card-body table tbody tr {
+    border-bottom: 1px solid #045959;
+  }
+  
+  .card-body table tbody tr:hover {
+    background-color: #c2bdbda8;
+    color: #fff;
+  }
+  
+  .card-body table tbody td {
+    color: black;
+  }
+  
+  .card-body table tfoot th {
+    background-color: #045959;
+    color: #fff;
+  }
+  
+  /* Estilos para la etiqueta <pagination-controls> */
+#pagination1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .pagination-previous,
+  .pagination-next,
+  .pagination-page {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #045959;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination-previous:hover,
+  .pagination-next:hover,
+  .pagination-page:hover {
+    background-color: #038c8c;
+  }
+  
+  .pagination-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  .pagination-page.is-active {
+    background-color: #038c8c;
+  }
+  
+  .pagination-info {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+  }
+  
+  

@@ -1,233 +1,216 @@
-<div class="card" >   
-<form [formGroup]="formularioDeViaje" (ngSubmit)="enviarDatos()">
-  <div class="card-body"> 
-    <div class="add-datos">   
-    <div class="table-responsive table-bordered table-striped">
-      <table class="table">
-        <thead>              
-        </thead>
-        <tbody>
-            <tr>
-              <TD colspan="4">
-                <h2 style="text-align: center;  color: #16261C;">
-                  INFORMACIÓN DE VIAJE
-                </h2>  
-              </TD>
-            </tr>
-            <tr>
-              <TD>
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">FECHA REEMBOLSO</label>
-                    <input type="text" class="form-control" name="fecha_reembolso" formControlName="fecha_reembolso" id="fecha_reembolso" aria-describedby="fecha_reembolso" placeholder="0" >                  
+<div class="card">
+  <form [formGroup]="formularioDeViaje" (ngSubmit)="enviarDatos()">
+    <div class="card-body">
+      <div class="add-datos">
+        <div class="table-responsive table-bordered table-striped">
+          <table class="table">
+            <thead>
+            </thead>
+            <tbody>
+              <tr>
+                <TD colspan="4">
+                  <h2 style="text-align: center;  color: #16261C;">
+                    INFORMACIÓN DE VIAJE
+                  </h2>
+                </TD>
+              </tr>
+              <tr>
+                <TD>
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">FECHA REEMBOLSO</label>
+                      <input type="text" class="form-control" name="fecha_reembolso" formControlName="fecha_reembolso"
+                        id="fecha_reembolso" aria-describedby="fecha_reembolso" placeholder="0">
                     </div>
-                </div>                   
-              </TD>
+                  </div>
+                </TD>
                 <TD>
                   <div class="card-body etiqueta">
                     <div class="mb-3">
                       <label for="" class="form-label">LUGAR</label>
-                      <input type="text" class="form-control" name="lugar" formControlName="lugar" id="lugar" aria-describedby="lugar" placeholder="QUITO" required >
-                      </div>
-                  </div>                   
+                      <input type="text" class="form-control" name="lugar" formControlName="lugar" id="lugar"
+                        aria-describedby="lugar" placeholder="QUITO" required>
+                    </div>
+                  </div>
                 </TD>
-              <TD>
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">PUNTO DE PARTIDA</label>
-                    <input type="text"
-                      class="form-control" name="punto_partida" formControlName="punto_partida" id="punto_partida" aria-describedby="dias_viaje" placeholder="Provincia,Ciudad">
+                <TD>
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">PUNTO DE PARTIDA</label>
+                      <input type="text" class="form-control" name="punto_partida" formControlName="punto_partida"
+                        id="punto_partida" aria-describedby="dias_viaje" placeholder="Provincia,Ciudad">
+                    </div>
                   </div>
-                </div>                   
-              </TD>
-              <TD>
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">PUNTO DE DESTINO</label>
-                    <input type="text"
-                      class="form-control " name="punto_destino" formControlName="punto_destino" id="punto_destino" aria-describedby="dias_viaje" placeholder="Provincia,Ciudad">
+                </TD>
+                <TD>
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">PUNTO DE DESTINO</label>
+                      <input type="text" class="form-control " name="punto_destino" formControlName="punto_destino"
+                        id="punto_destino" aria-describedby="dias_viaje" placeholder="Provincia,Ciudad">
+                    </div>
                   </div>
-                </div>                   
-              </TD>
-            </tr>  
-            <tr>          
-              <TD> 
-                <div class="card-body etiqueta">
-                  
-                  <div class="mb-3">                    
-                    <label for="" class="form-label">IMPORTE TOTAL</label>
-                    <input type="text inputRight"
-                      class="form-control" name="importe" formControlName="importe" id="importe" aria-describedby="importe" placeholder="$0.00" required>
+                </TD>
+              </tr>
+              <tr>
+                <TD>
+                  <div class="card-body etiqueta">
+
+                    <div class="mb-3">
+                      <label for="" class="form-label">IMPORTE TOTAL</label>
+                      <input type="text inputRight" class="form-control" name="importe" formControlName="importe"
+                        id="importe" aria-describedby="importe" placeholder="$0.00" required>
                       <label for="" class="form-label">Valor total incluido IVA</label>
                     </div>
-                </div>  
-              </TD>   
-              <TD>
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="moneda" class="form-label">MONEDA</label>
-                    <select name="moneda" id="moneda" formControlName="moneda" class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
-                      <option *ngFor="let currency of currencies" [value]="currency">{{currency}} - {{getSymbol(currency)}}</option>
-                    </select>
                   </div>
-                </div>                      
-              </TD> 
-              <td colspan="1">   
-                <div class="card-body etiqueta">
-                  <label for="" class="form-label">AGREGAR COMPROBANTES</label>
-                  <div class="card-body" role="group" aria-label="Button group name" style="align-self: ceter; text-align: center; align-items: center; align-content: center;">
-                    <div class="file-input-container">
-                      <input type="file" id="fileInput" multiple (change)="onFileSelectTypesFiles($event)" accept=".rar,.pdf,image/*">
-                      <label for="fileInput" class="file-input-label">
-                        <span>Seleccionar archivos</span>
-                      </label>
+                </TD>
+                <TD>
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="moneda" class="form-label">MONEDA</label>
+                      <select name="moneda" id="moneda" formControlName="moneda"
+                        class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
+                        <option *ngFor="let currency of currencies" [value]="currency">{{currency}} -
+                          {{getSymbol(currency)}}</option>
+                      </select>
                     </div>
-                    <p></p><label for="" class="form-label">Ingrese los archivos de reembolso de gastos </label>
                   </div>
-                </div> 
-              </td>
-              <td colspan="1">
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">Nro. COMPROBANTES SELECCIONADOS</label>
-                    <input type="text"
-                      class="form-control inputRight" name="cantidad_comprobantes" formControlName="cantidad_comprobantes" id="cantidad_comprobantes" aria-describedby="helpId" placeholder="0">
+                </TD>
+                <td colspan="1">
+                  <div class="card-body etiqueta">
+                    <label for="" class="form-label">AGREGAR COMPROBANTES</label>
+                    <div class="card-body" role="group" aria-label="Button group name"
+                      style="align-self: ceter; text-align: center; align-items: center; align-content: center;">
+                      <div class="file-input-container">
+                        <input type="file" id="fileInput" multiple (change)="onFileSelectTypesFiles($event)"
+                          accept=".rar,.pdf,image/*">
+                        <label for="fileInput" class="file-input-label">
+                          <span>Seleccionar archivos</span>
+                        </label>
+                      </div>
+                      <p></p><label for="" class="form-label">Ingrese los archivos de reembolso de gastos </label>
+                    </div>
                   </div>
-                </div>                
-              </td>                     
-            </tr>   
-            <tr>
-              
-              <td colspan="4">
-                <div class="card-body" role="group" aria-label="Button group name" style="align-self: ceter; text-align: center; align-items: center; align-content: center;"  >
-                  <button type="submit" class="btn btn-success" [disabled]="btnIngresar" >AGREGAR</button>
-                </div>
-              </td>      
-            </tr> 
-            <!-- <tr>
+                </td>
+                <td colspan="1">
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">Nro. COMPROBANTES SELECCIONADOS</label>
+                      <input type="text" class="form-control inputRight" name="cantidad_comprobantes"
+                        formControlName="cantidad_comprobantes" id="cantidad_comprobantes" aria-describedby="helpId"
+                        placeholder="0">
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- <tr>
               <td colspan="4">
                 <div class="card-body" role="group2" aria-label="Button group name" style="align-self: ceter; text-align: center; align-items: center; align-content: center;"  >
                   <button type="button" (click)="downloadExcel()" class="btn btn-warning" >DESCARGAR FORMATO DE VIAJES</button>                  
                 </div>
               </td>
             </tr> -->
-            <tr *ngIf="false">
-              <TD> 
-                <div  class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">NOMBRE</label>
-                    <input type="text"
-                      class="form-control" name="nombre" formControlName="nombre" id="nombre" aria-describedby="nombre" placeholder="0">
+              <tr *ngIf="false">
+                <TD>
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">NOMBRE</label>
+                      <input type="text" class="form-control" name="nombre" formControlName="nombre" id="nombre"
+                        aria-describedby="nombre" placeholder="0">
+                    </div>
                   </div>
-                </div>                  
-              </TD>
-              <TD> 
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">CEDULA</label>
-                    <input type="text"
-                      class="form-control" name="cedula" formControlName="cedula" id="cedula" aria-describedby="cedula" placeholder="0">
+                </TD>
+                <TD>
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">CEDULA</label>
+                      <input type="text" class="form-control" name="cedula" formControlName="cedula" id="cedula"
+                        aria-describedby="cedula" placeholder="0">
+                    </div>
                   </div>
-                </div>                  
-              </TD>
+                </TD>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="add-datos">
+        <div class="table-responsive table-bordered table-striped">
+          <table class="table">
+
+            <thead>
+
+            </thead>
+            <tr>
+              <td colspan="4">
+                <h2 style="text-align: center;  color: #16261C;">
+                  FECHA REEMBOLSO Y FECHA VIAJE
+                </h2>
+              </td>
             </tr>
-        </tbody>
-      </table>
-    </div>    
-  </div>   
-</div>
-  <div class="card-body" >      
-    <div class="table-responsive">
-      <table class="table  center" >      
-        <thead>
-          <TD colspan="1">
-            <h2 style="text-align: center;">
-              FECHA GASTO
-            </h2>            
-          </TD>
-          <TD colspan="1">
-            <h2 style="text-align: center;">
-              FECHA INICIO-FIN VIAJE
-            </h2>            
-          </TD>
-        </thead>    
-        <tbody>         
-          <TD>
-            <TR>
-              <TD>
-                <div class="card-body" >
+            <tr>
+              <td>
+                <div class="card-body">
                   <div class="mb-3 etiqueta">
                     <label for="" class="form-label">FECHA GASTO</label>
-                    <input type="text"
-                      class="form-control" name="fecha_gasto" formControlName="fecha_gasto" id="fecha_gasto" aria-describedby="helpId" placeholder="0">
-                  </div> 
-                </div>                    
-              </TD>  
-              <TD>  
-                <div class="card-body" style="width: 490px; height: 315px;" >
-                  <ngb-datepicker class="text etiqueta" #dp1 (dateSelect)="onDateSelection2($event)" [displayMonths]="1" [dayTemplate]="dateTemplate" outsideDays="hidden">
-                  </ngb-datepicker> 
-                  <ng-template #dateTemplate let-date2 let-focused2="focused2">
-                    <span
-                      class="custom-day2"
-                      [class.focused2]="focused2"
-                      [class.selected]="isSelected2(date2)"
-                      [class.disabled]="isDisabled2(date2)"
-                      (mouseenter)="hoveredDate2 = date2"
-                      (mouseleave)="hoveredDate2 = null"
-                    >
-                      {{ date2.day }}    
-                    </span>
-                  </ng-template>
-                </div>                
-              </TD>
-            </TR>
-          </TD>          
-          <TD>
-            <TR>
-              <TD>
-                <div class="card-body" >
-                  <div class="mb-3 etiqueta">
-                    <label for="" class="form-label">DIAS DE VIAJE</label>
-                    <input type="text"
-                      class="form-control" name="dias_viaje" formControlName="dias_viaje" id="dias_viaje" aria-describedby="dias_viaje" placeholder="0">
+                    <input type="text" class="form-control" name="fecha_gasto" formControlName="fecha_gasto"
+                      id="fecha_gasto" aria-describedby="helpId" placeholder="0">
                   </div>
-                  <div class="mb-3 etiqueta">
-                    <label for="" class="form-label">FECHA INICIO</label>
-                    <input type="text"
-                      class="form-control" name="fecha_viaje_inicio" formControlName="fecha_viaje_inicio" id="fecha_viaje_inicio" aria-describedby="helpId" placeholder="0">
-                  </div>      
-                  <div class="mb-3 etiqueta">
-                    <label for="" class="form-label">FECHA FIN</label>
-                    <input type="text"
-                      class="form-control" name="fecha_viaje_fin" formControlName="fecha_viaje_fin" id="fecha_viaje_fin " aria-describedby="helpId" placeholder="0">
-                  </div> 
-                </div>                    
-              </TD>  
-              <TD>  
-                <div class="card-body" style="width: 490px; height: 315px;" >
-                  <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" >
-                  </ngb-datepicker> 
-                  <ng-template #t let-date let-focused="focused">
-                    <span
-                      class="custom-day"                      
-                      [class.focused]="focused"
-                      [class.range]="isRange(date)"
-                      [class.faded]="isHovered(date) || isInside(date)"
-                      (mouseenter)="hoveredDate = date"
-                      (mouseleave)="hoveredDate = null"
-                    >
-                        {{ date.day }}    
-                    </span>
-                  </ng-template>
-                </div>                
-              </TD>
-            </TR>
-          </TD>
-        </tbody>
-      </table>
+                </div>
+              </td>
+              <td>
+                <ngb-datepicker class="text etiqueta" #dp1 (dateSelect)="onDateSelection2($event)" [displayMonths]="1"
+                  [dayTemplate]="dateTemplate" outsideDays="hidden">
+                </ngb-datepicker>
+                <ng-template #dateTemplate let-date2 let-focused2="focused2">
+                  <span class="custom-day2" [class.focused2]="focused2" [class.selected]="isSelected2(date2)"
+                    [class.disabled]="isDisabled2(date2)" (mouseenter)="hoveredDate2 = date2"
+                    (mouseleave)="hoveredDate2 = null">
+                    {{ date2.day }}
+                  </span>
+                </ng-template>
+              </td>
+              <td>
+                <div class="mb-3 etiqueta">
+                  <label for="" class="form-label">DIAS DE VIAJE</label>
+                  <input type="text" class="form-control" name="dias_viaje" formControlName="dias_viaje" id="dias_viaje"
+                    aria-describedby="dias_viaje" placeholder="0">
+                </div>
+                <div class="mb-3 etiqueta">
+                  <label for="" class="form-label">FECHA INICIO</label>
+                  <input type="text" class="form-control" name="fecha_viaje_inicio" formControlName="fecha_viaje_inicio"
+                    id="fecha_viaje_inicio" aria-describedby="helpId" placeholder="0">
+                </div>
+                <div class="mb-3 etiqueta">
+                  <label for="" class="form-label">FECHA FIN</label>
+                  <input type="text" class="form-control" name="fecha_viaje_fin" formControlName="fecha_viaje_fin"
+                    id="fecha_viaje_fin " aria-describedby="helpId" placeholder="0">
+                </div>
+              </td>
+              <td>
+                <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                  [dayTemplate]="t" outsideDays="hidden">
+                </ngb-datepicker>
+                <ng-template #t let-date let-focused="focused">
+                  <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null">
+                    {{ date.day }}
+                  </span>
+                </ng-template>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <div class="card-body" role="group" aria-label="Button group name"
+                  style="align-self: ceter; text-align: center; align-items: center; align-content: center;">
+                  <button type="submit" class="btn btn-success" [disabled]="btnIngresar">AGREGAR</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
 </div>
-

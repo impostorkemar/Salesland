@@ -1,27 +1,28 @@
-<div class="wrapper">    
+<div class="wrapper">
     <div class="body">
         <img class="logo-image" src="./assets/salesland-nf.png" alt="Logo Salesland">
         <form (ngSubmit)="testUser()" [formGroup]="loginUsuario">
-            <div style="text-align: center; justify-content: center; align-items: center;">                
-                <img class="login" src="./assets/avatar.svg">            
-            </div>
-            
-            <div class="form-floating mb-3">                
-                <input type="text" class="form-control" name="nombre_usuario" formControlName="nombre_usuario" id="" aria-describedby="helpId" placeholder="Escribe tu usuario">
-                <label>Usuario</label>
-            </div>
-            
-            <div class="form-floating mb-3">                
-                <input id="password" name="password" formControlName="password" type="password" class="form-control" placeholder="Escribe tu contraseña"/>
-                <label >Contraseña</label>
+            <div style="text-align: center; justify-content: center; align-items: center;">
+                <img class="login" src="./assets/avatar.svg">
             </div>
 
-            <div class="d-grid gap-2 mb-3" >
-                <button class="btn btn-primary btn-lg" type="submit" >ACCEDER</button>                                     
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="nombre_usuario" formControlName="nombre_usuario" id=""
+                    aria-describedby="helpId" placeholder="Escribe tu usuario">
+                <label>Usuario</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input id="password" name="password" formControlName="password" type="password" class="form-control"
+                    placeholder="Escribe tu contraseña" />
+                <label>Contraseña</label>
+            </div>
+
+            <div class="d-grid gap-2 mb-3">
+                <button class="btn btn-primary btn-lg" type="submit">ACCEDER</button>
             </div>
 
         </form>
     </div>
-    
-</div>
 
+</div>

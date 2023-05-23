@@ -3290,3 +3290,1174 @@ ON UPDATE NO ACTION
 557  [AWT-EventQueue-0] ERROR ca.sqlpower.sql.PlDotIni  - Maximum line size exceeded while reading pl.ini.  Line will be split up.
 625  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
 22635 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+367  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+437  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+438  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+496  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22252 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+94201 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {}
+99680 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+99696 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+132149 [AWT-EventQueue-0] WARN  ca.sqlpower.sql.JDBCDataSource  - Couldn't find built-in system resource "mysql-connector-java-bin.jar". Skipping it.
+132149 [AWT-EventQueue-0] WARN  ca.sqlpower.sql.JDBCDataSource  - Driver Class not found
+java.lang.ClassNotFoundException: Could not locate class com.mysql.jdbc.Driver in any of the JDBC Driver JAR files: [builtin:mysql-connector-java-bin.jar]
+	at ca.sqlpower.sql.JDBCDataSourceType$JDBCClassLoader.findClass(JDBCDataSourceType.java:239)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at ca.sqlpower.sql.JDBCDataSource.createConnection(JDBCDataSource.java:274)
+	at ca.sqlpower.swingui.JDBCDataSourcePanel$1.actionPerformed(JDBCDataSourcePanel.java:168)
+	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source)
+	at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.setPressed(Unknown Source)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(Unknown Source)
+	at java.awt.Component.processMouseEvent(Unknown Source)
+	at javax.swing.JComponent.processMouseEvent(Unknown Source)
+	at java.awt.Component.processEvent(Unknown Source)
+	at java.awt.Container.processEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Window.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+375  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+422  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+422  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+485  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+8831 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {}
+13671 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+13687 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+22241 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+107142 [AWT-EventQueue-0] WARN  ca.sqlpower.sql.JDBCDataSource  - Couldn't find built-in system resource "mysql-connector-java-bin.jar". Skipping it.
+107142 [AWT-EventQueue-0] WARN  ca.sqlpower.sql.JDBCDataSource  - Driver Class not found
+java.lang.ClassNotFoundException: Could not locate class com.mysql.jdbc.Driver in any of the JDBC Driver JAR files: [builtin:mysql-connector-java-bin.jar]
+	at ca.sqlpower.sql.JDBCDataSourceType$JDBCClassLoader.findClass(JDBCDataSourceType.java:239)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at ca.sqlpower.sql.JDBCDataSource.createConnection(JDBCDataSource.java:274)
+	at ca.sqlpower.swingui.JDBCDataSourcePanel$1.actionPerformed(JDBCDataSourcePanel.java:168)
+	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source)
+	at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.setPressed(Unknown Source)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(Unknown Source)
+	at java.awt.Component.processMouseEvent(Unknown Source)
+	at javax.swing.JComponent.processMouseEvent(Unknown Source)
+	at java.awt.Component.processEvent(Unknown Source)
+	at java.awt.Container.processEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Window.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+114307 [PokeDB: salesland] WARN  ca.sqlpower.sql.JDBCDataSource  - Couldn't find built-in system resource "mysql-connector-java-bin.jar". Skipping it.
+114307 [PokeDB: salesland] WARN  ca.sqlpower.sql.JDBCDataSource  - Driver Class not found
+java.lang.ClassNotFoundException: Could not locate class com.mysql.jdbc.Driver in any of the JDBC Driver JAR files: [builtin:mysql-connector-java-bin.jar]
+	at ca.sqlpower.sql.JDBCDataSourceType$JDBCClassLoader.findClass(JDBCDataSourceType.java:239)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at ca.sqlpower.sql.JDBCDataSource.createConnection(JDBCDataSource.java:274)
+	at ca.sqlpower.sql.JDBCDSConnectionFactory.createConnection(JDBCDSConnectionFactory.java:42)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:294)
+	at org.apache.commons.pool.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:1140)
+	at ca.sqlpower.sqlobject.SQLDatabase.getConnection(SQLDatabase.java:683)
+	at ca.sqlpower.sqlobject.SQLDatabase.populateImpl(SQLDatabase.java:153)
+	at ca.sqlpower.sqlobject.SQLObject.populate(SQLObject.java:186)
+	at ca.sqlpower.sqlobject.SQLObject.getChildCount(SQLObject.java:332)
+	at ca.sqlpower.architect.swingui.DBTree$PokeDBWorker.pokeDatabase(DBTree.java:814)
+	at ca.sqlpower.architect.swingui.DBTree$PokeDBWorker.doStuff(DBTree.java:799)
+	at ca.sqlpower.swingui.SPSwingWorker.run(SPSwingWorker.java:104)
+	at java.lang.Thread.run(Unknown Source)
+114307 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.ExceptionHandler  - Uncaught exception
+java.lang.RuntimeException: ca.sqlpower.sqlobject.SQLObjectException: Couldn't connect to database: JDBC Driver "com.mysql.jdbc.Driver" not found.
+	at ca.sqlpower.sqlobject.SQLObject$1.run(SQLObject.java:193)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+Caused by: ca.sqlpower.sqlobject.SQLObjectException: Couldn't connect to database: JDBC Driver "com.mysql.jdbc.Driver" not found.
+	at ca.sqlpower.sqlobject.SQLDatabase.getConnection(SQLDatabase.java:686)
+	at ca.sqlpower.sqlobject.SQLDatabase.populateImpl(SQLDatabase.java:153)
+	at ca.sqlpower.sqlobject.SQLObject.populate(SQLObject.java:186)
+	at ca.sqlpower.sqlobject.SQLObject.getChildCount(SQLObject.java:332)
+	at ca.sqlpower.architect.swingui.DBTree$PokeDBWorker.pokeDatabase(DBTree.java:814)
+	at ca.sqlpower.architect.swingui.DBTree$PokeDBWorker.doStuff(DBTree.java:799)
+	at ca.sqlpower.swingui.SPSwingWorker.run(SPSwingWorker.java:104)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.sql.SQLException: JDBC Driver "com.mysql.jdbc.Driver" not found.
+	at ca.sqlpower.sql.JDBCDataSource.createConnection(JDBCDataSource.java:310)
+	at ca.sqlpower.sql.JDBCDSConnectionFactory.createConnection(JDBCDSConnectionFactory.java:42)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:294)
+	at org.apache.commons.pool.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:1140)
+	at ca.sqlpower.sqlobject.SQLDatabase.getConnection(SQLDatabase.java:683)
+	... 7 more
+Caused by: java.lang.ClassNotFoundException: Could not locate class com.mysql.jdbc.Driver in any of the JDBC Driver JAR files: [builtin:mysql-connector-java-bin.jar]
+	at ca.sqlpower.sql.JDBCDataSourceType$JDBCClassLoader.findClass(JDBCDataSourceType.java:239)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at ca.sqlpower.sql.JDBCDataSource.createConnection(JDBCDataSource.java:274)
+	... 11 more
+114354 [AWT-EventQueue-0] INFO  ca.sqlpower.util.ExceptionReport  - Posting error report to SQL Power at URL <http://bugs.sqlpower.ca/architect/postReport>
+117467 [AWT-EventQueue-0] ERROR ca.sqlpower.util.ExceptionReport  - Couldn't send exception report to <"http://bugs.sqlpower.ca/architect/postReport">
+java.net.SocketTimeoutException: connect timed out
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at ca.sqlpower.util.ExceptionReport.send(ExceptionReport.java:283)
+	at ca.sqlpower.architect.swingui.ExceptionHandler.handleAndReport(ExceptionHandler.java:117)
+	at ca.sqlpower.architect.swingui.ExceptionHandler.uncaughtException(ExceptionHandler.java:74)
+	at java.lang.ThreadGroup.uncaughtException(Unknown Source)
+	at java.lang.ThreadGroup.uncaughtException(Unknown Source)
+	at java.awt.EventDispatchThread.processException(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+130876 [AWT-EventQueue-0] WARN  ca.sqlpower.architect.swingui.DBTree  - database already exists in this project.
+145095 [Thread-7] WARN  ca.sqlpower.sql.JDBCDataSource  - Couldn't find built-in system resource "mysql-connector-java-bin.jar". Skipping it.
+162787 [Thread-8] INFO  ca.sqlpower.util.JarScanClassLoader  - Found jdbc driver com.mysql.cj.jdbc.NonRegisteringDriver
+162788 [Thread-8] INFO  ca.sqlpower.util.JarScanClassLoader  - Found jdbc driver com.mysql.cj.jdbc.Driver
+162821 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/jdbc/integration/c3p0/MysqlConnectionTester.class
+162921 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/protocol/x/XMessage.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ClientMessages$1.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ClientMessages$Builder.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ClientMessages$Type$1.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ClientMessages$Type.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ClientMessages.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ClientMessagesOrBuilder.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$Error$1.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$Error$Builder.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$Error$Severity$1.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$Error$Severity.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$Error.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ErrorOrBuilder.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$Ok$1.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$Ok$Builder.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$Ok.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$OkOrBuilder.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ServerMessages$1.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ServerMessages$Builder.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ServerMessages$Type$1.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ServerMessages$Type.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ServerMessages.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/Mysqlx$ServerMessagesOrBuilder.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Capabilities$1.class
+162938 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Capabilities$Builder.class
+162954 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Capabilities.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CapabilitiesGet$1.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CapabilitiesGet$Builder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CapabilitiesGet.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CapabilitiesGetOrBuilder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CapabilitiesOrBuilder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CapabilitiesSet$1.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CapabilitiesSet$Builder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CapabilitiesSet.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CapabilitiesSetOrBuilder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Capability$1.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Capability$Builder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Capability.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CapabilityOrBuilder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Close$1.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Close$Builder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Close.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CloseOrBuilder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Compression$1.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Compression$Builder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$Compression.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxConnection$CompressionOrBuilder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Collection$1.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Collection$Builder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Collection.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$CollectionOrBuilder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Column$1.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Column$Builder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Column.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ColumnOrBuilder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$CreateView$1.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$CreateView$Builder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$CreateView.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$CreateViewOrBuilder.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$DataModel$1.class
+162955 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$DataModel.class
+162970 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Delete$1.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Delete$Builder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Delete.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$DeleteOrBuilder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$DropView$1.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$DropView$Builder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$DropView.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$DropViewOrBuilder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Find$1.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Find$Builder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Find$RowLock$1.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Find$RowLock.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Find$RowLockOptions$1.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Find$RowLockOptions.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Find.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$FindOrBuilder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Insert$1.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Insert$Builder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Insert$TypedRow$1.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Insert$TypedRow$Builder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Insert$TypedRow.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Insert$TypedRowOrBuilder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Insert.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$InsertOrBuilder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Limit$1.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Limit$Builder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Limit.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$LimitExpr$1.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$LimitExpr$Builder.class
+162971 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$LimitExpr.class
+162987 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$LimitExprOrBuilder.class
+162987 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$LimitOrBuilder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ModifyView$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ModifyView$Builder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ModifyView.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ModifyViewOrBuilder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Order$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Order$Builder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Order$Direction$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Order$Direction.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Order.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$OrderOrBuilder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Projection$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Projection$Builder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Projection.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ProjectionOrBuilder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Update$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Update$Builder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$Update.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$UpdateOperation$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$UpdateOperation$Builder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$UpdateOperation$UpdateType$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$UpdateOperation$UpdateType.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$UpdateOperation.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$UpdateOperationOrBuilder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$UpdateOrBuilder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ViewAlgorithm$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ViewAlgorithm.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ViewCheckOption$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ViewCheckOption.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ViewSqlSecurity$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCrud$ViewSqlSecurity.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Close$1.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Close$Builder.class
+162989 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Close.class
+163004 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$CloseOrBuilder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Fetch$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Fetch$Builder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Fetch.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$FetchOrBuilder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Open$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Open$Builder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Open$OneOfMessage$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Open$OneOfMessage$Builder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Open$OneOfMessage$Type$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Open$OneOfMessage$Type.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Open$OneOfMessage.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Open$OneOfMessageOrBuilder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$Open.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxCursor$OpenOrBuilder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Any$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Any$Builder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Any$Type$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Any$Type.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Any.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$AnyOrBuilder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Array$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Array$Builder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Array.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$ArrayOrBuilder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Object$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Object$Builder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Object$ObjectField$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Object$ObjectField$Builder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Object$ObjectField.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Object$ObjectFieldOrBuilder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Object.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$ObjectOrBuilder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$Builder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$Octets$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$Octets$Builder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$Octets.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$OctetsOrBuilder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$String$1.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$String$Builder.class
+163005 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$String.class
+163020 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$StringOrBuilder.class
+163020 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$Type$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar$Type.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$Scalar.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxDatatypes$ScalarOrBuilder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Close$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Close$Builder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Close.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$CloseOrBuilder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$Builder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$Condition$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$Condition$Builder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$Condition$ConditionOperation$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$Condition$ConditionOperation.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$Condition$Key$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$Condition$Key.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$Condition.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$ConditionOrBuilder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$CtxOperation$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open$CtxOperation.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$Open.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpect$OpenOrBuilder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Array$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Array$Builder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Array.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$ArrayOrBuilder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$ColumnIdentifier$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$ColumnIdentifier$Builder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$ColumnIdentifier.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$ColumnIdentifierOrBuilder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$DocumentPathItem$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$DocumentPathItem$Builder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$DocumentPathItem$Type$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$DocumentPathItem$Type.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$DocumentPathItem.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$DocumentPathItemOrBuilder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Expr$1.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Expr$Builder.class
+163021 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Expr$Type$1.class
+163037 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Expr$Type.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Expr.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$ExprOrBuilder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$FunctionCall$1.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$FunctionCall$Builder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$FunctionCall.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$FunctionCallOrBuilder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Identifier$1.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Identifier$Builder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Identifier.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$IdentifierOrBuilder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Object$1.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Object$Builder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Object$ObjectField$1.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Object$ObjectField$Builder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Object$ObjectField.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Object$ObjectFieldOrBuilder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Object.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$ObjectOrBuilder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Operator$1.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Operator$Builder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$Operator.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxExpr$OperatorOrBuilder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Frame$1.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Frame$Builder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Frame$Scope$1.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Frame$Scope.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Frame$Type$1.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Frame$Type.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Frame.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$FrameOrBuilder.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$GroupReplicationStateChanged$1.class
+163038 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$GroupReplicationStateChanged$Builder.class
+163054 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$GroupReplicationStateChanged$Type$1.class
+163054 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$GroupReplicationStateChanged$Type.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$GroupReplicationStateChanged.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$GroupReplicationStateChangedOrBuilder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$ServerHello$1.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$ServerHello$Builder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$ServerHello.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$ServerHelloOrBuilder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$SessionStateChanged$1.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$SessionStateChanged$Builder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$SessionStateChanged$Parameter$1.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$SessionStateChanged$Parameter.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$SessionStateChanged.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$SessionStateChangedOrBuilder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$SessionVariableChanged$1.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$SessionVariableChanged$Builder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$SessionVariableChanged.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$SessionVariableChangedOrBuilder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Warning$1.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Warning$Builder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Warning$Level$1.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Warning$Level.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$Warning.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxNotice$WarningOrBuilder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Deallocate$1.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Deallocate$Builder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Deallocate.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$DeallocateOrBuilder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Execute$1.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Execute$Builder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Execute.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$ExecuteOrBuilder.class
+163055 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Prepare$1.class
+163070 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Prepare$Builder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Prepare$OneOfMessage$1.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Prepare$OneOfMessage$Builder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Prepare$OneOfMessage$Type$1.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Prepare$OneOfMessage$Type.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Prepare$OneOfMessage.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Prepare$OneOfMessageOrBuilder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$Prepare.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxPrepare$PrepareOrBuilder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$ColumnMetaData$1.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$ColumnMetaData$Builder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$ColumnMetaData$FieldType$1.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$ColumnMetaData$FieldType.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$ColumnMetaData.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$ColumnMetaDataOrBuilder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$ContentType_BYTES$1.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$ContentType_BYTES.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$ContentType_DATETIME$1.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$ContentType_DATETIME.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDone$1.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDone$Builder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDone.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDoneMoreOutParams$1.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDoneMoreOutParams$Builder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDoneMoreOutParams.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDoneMoreOutParamsOrBuilder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDoneMoreResultsets$1.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDoneMoreResultsets$Builder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDoneMoreResultsets.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDoneMoreResultsetsOrBuilder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchDoneOrBuilder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchSuspended$1.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchSuspended$Builder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchSuspended.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$FetchSuspendedOrBuilder.class
+163072 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$Row$1.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$Row$Builder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$Row.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxResultset$RowOrBuilder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateContinue$1.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateContinue$Builder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateContinue.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateContinueOrBuilder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateOk$1.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateOk$Builder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateOk.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateOkOrBuilder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateStart$1.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateStart$Builder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateStart.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$AuthenticateStartOrBuilder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$Close$1.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$Close$Builder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$Close.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$CloseOrBuilder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$Reset$1.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$Reset$Builder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$Reset.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSession$ResetOrBuilder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSql$StmtExecute$1.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSql$StmtExecute$Builder.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSql$StmtExecute.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSql$StmtExecuteOk$1.class
+163089 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSql$StmtExecuteOk$Builder.class
+163104 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSql$StmtExecuteOk.class
+163105 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSql$StmtExecuteOkOrBuilder.class
+163105 [Thread-8] WARN  ca.sqlpower.util.JarScanClassLoader  - JAR does not contain dependency needed by: com/mysql/cj/x/protobuf/MysqlxSql$StmtExecuteOrBuilder.class
+163121 [Thread-8] INFO  ca.sqlpower.util.JarScanClassLoader  - Found jdbc driver com.mysql.jdbc.Driver
+163121 [Thread-8] INFO  ca.sqlpower.swingui.db.JDBCDriverPanel  - Found drivers: [com.mysql.cj.jdbc.NonRegisteringDriver, com.mysql.cj.jdbc.Driver, com.mysql.jdbc.Driver]
+174991 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {}
+178171 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+181010 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+181775 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+247171 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+247939 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+555250 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+555280 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+560641 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+568359 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=3306, Database=}
+569106 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+569106 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+572345 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE MOTIVO (
+                id_motivo INT AUTO_INCREMENT NOT NULL,
+                nombre VARCHAR(100) NOT NULL,
+                tipo VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_motivo)
+)
+572345 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+572345 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VIAJE (
+                id_viaje INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                lugar VARCHAR(15) NOT NULL,
+                fecha_reembolso VARCHAR(10) NOT NULL,
+                fecha_viaje_inicio VARCHAR(1) NOT NULL,
+                fecha_viaje_fin VARCHAR(10) NOT NULL,
+                duracion NUMERIC NOT NULL,
+                punto_partida VARCHAR(30) NOT NULL,
+                punto_destino VARCHAR(30) NOT NULL,
+                fecha_gasto VARCHAR(10) NOT NULL,
+                moneda VARCHAR(20) NOT NULL,
+                cantidad_comprobantes NUMERIC NOT NULL,
+                importe DOUBLE PRECISION NOT NULL,
+                PRIMARY KEY (id_viaje)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE COMPROBANTE (
+                id_comprobante INT AUTO_INCREMENT NOT NULL,
+                id_viaje INT NOT NULL,
+                ruta_zip VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_comprobante)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                sueldo_nominal DOUBLE PRECISION,
+                tiempo_parcial DOUBLE PRECISION,
+                dias_trabajados DOUBLE PRECISION,
+                sueldo_base DOUBLE PRECISION NOT NULL,
+                sueldo_vacaciones DOUBLE PRECISION,
+                dias_paternidad DOUBLE PRECISION,
+                permiso_paternidad DOUBLE PRECISION,
+                dias_subsidio_maternidad DOUBLE PRECISION,
+                subsidio_maternidad DOUBLE PRECISION,
+                dias_enfermedad DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                numero_horas_suplementarias DOUBLE PRECISION,
+                valor_horas_suplementarias DOUBLE PRECISION,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                comisiones_mes_anterior DOUBLE PRECISION,
+                incentivo_upsell DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                incentivo_dolarazo DOUBLE PRECISION,
+                incentivo_alta_gama DOUBLE PRECISION,
+                bono_pospago_ruc DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                base_iess DOUBLE PRECISION NOT NULL,
+                alimentacion DOUBLE PRECISION,
+                decimo_tercero_mensual DOUBLE PRECISION,
+                decimo_cuarta_mensual DOUBLE PRECISION,
+                fondo_reserva_mensual DOUBLE PRECISION,
+                total_ingresos DOUBLE PRECISION NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                chargeback_aplicar DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                prestamo_empresa DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                anticipo_comisiones_mes_anterior DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                total_egresos DOUBLE PRECISION,
+                neto_recibir DOUBLE PRECISION,
+                provision_decimo_tercer_sueldo DOUBLE PRECISION,
+                provision_decimo_cuarto_sueldo DOUBLE PRECISION,
+                provision_fondos_reserva DOUBLE PRECISION,
+                dias_vacaciones_tomados DOUBLE PRECISION,
+                provision_vacaciones DOUBLE PRECISION,
+                provision_aporte_iess_patronal DOUBLE PRECISION,
+                ccc DOUBLE PRECISION,
+                reverso_vacaciones_tomadas DOUBLE PRECISION,
+                fecha_rol_pago VARCHAR(10) NOT NULL,
+                PRIMARY KEY (id_rol_pagos, id_personal)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                motivo VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE VIAJE ADD CONSTRAINT personal_viaje_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572361 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE COMPROBANTE ADD CONSTRAINT viaje_comprobante_fk
+FOREIGN KEY (id_viaje)
+REFERENCES VIAJE (id_viaje)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+572455 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :25
+574039 [Thread-9] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574157 [Thread-9] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+574158 [Thread-11] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class com.mysql.jdbc.Driver loaded without exception
+574188 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Starting DDL Generation at Tue May 23 10:35:00 COT 2023
+574188 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Database Target: (Target Database)
+574188 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Playpen Dump: (Target Database)
+574204 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+CREATE TABLE MOTIVO (
+                id_motivo INT AUTO_INCREMENT NOT NULL,
+                nombre VARCHAR(100) NOT NULL,
+                tipo VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_motivo)
+)
+574329 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CONTRATO (
+                id_contrato INT AUTO_INCREMENT NOT NULL,
+                tipo_contrato VARCHAR(100) NOT NULL,
+                fecha_inicio_contrato VARCHAR(10) NOT NULL,
+                fecha_fin_contrato VARCHAR(10) NOT NULL,
+                salario DOUBLE PRECISION,
+                observaciones VARCHAR(20),
+                PRIMARY KEY (id_contrato)
+)
+574454 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CENTRO_COSTO (
+                id_centro_costo NUMERIC(10) NOT NULL,
+                nombre_centro VARCHAR(50) NOT NULL,
+                tienda VARCHAR(30) NOT NULL,
+                cuenta VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_centro_costo)
+)
+574532 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CARGO (
+                id_cargo NUMERIC NOT NULL,
+                nombre_cargo VARCHAR(50) NOT NULL,
+                PRIMARY KEY (id_cargo)
+)
+574626 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE CANDIDATO (
+                cedula VARCHAR(10) NOT NULL,
+                nombre VARCHAR(80) NOT NULL,
+                apellido VARCHAR(80) NOT NULL,
+                genero VARCHAR(50),
+                direccion_domicilio VARCHAR(40) NOT NULL,
+                ciudad VARCHAR(20) NOT NULL,
+                provincia VARCHAR(50),
+                estado_civil VARCHAR(20) NOT NULL,
+                telefono_celular VARCHAR(10),
+                telefono_casa VARCHAR(10),
+                direccion_correo VARCHAR(50) NOT NULL,
+                fecha_nacimiento VARCHAR(10) NOT NULL,
+                edad NUMERIC NOT NULL,
+                nacionalidad VARCHAR(40),
+                status VARCHAR(20) NOT NULL,
+                PRIMARY KEY (cedula)
+)
+574720 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE SUPERVISOR (
+                id_supervisor INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_supervisor VARCHAR(30) NOT NULL,
+                email VARCHAR(30) NOT NULL,
+                PRIMARY KEY (id_supervisor, cedula)
+)
+574798 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE USUARIO (
+                id_usuario INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                usuario VARCHAR(30) NOT NULL,
+                password VARCHAR(20) NOT NULL,
+                tipo VARCHAR(20) NOT NULL,
+                PRIMARY KEY (id_usuario, cedula)
+)
+574923 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE EXPERIENCIA_LABORAL (
+                id_experiencia_laboral INT AUTO_INCREMENT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                nombre_experiencia VARCHAR(50) NOT NULL,
+                tiempo_experiencia NUMERIC,
+                estudios_universitarios NUMERIC,
+                PRIMARY KEY (id_experiencia_laboral, cedula)
+)
+574985 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE PERSONAL (
+                id_personal INT AUTO_INCREMENT NOT NULL,
+                id_supervisor INT NOT NULL,
+                cedula VARCHAR(10) NOT NULL,
+                id_centro_costo NUMERIC(10) NOT NULL,
+                status VARCHAR(30),
+                adendum_contrato VARCHAR(40),
+                id_cargo NUMERIC NOT NULL,
+                id_contrato INT NOT NULL,
+                PRIMARY KEY (id_personal)
+)
+575094 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE VIAJE (
+                id_viaje INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                lugar VARCHAR(15) NOT NULL,
+                fecha_reembolso VARCHAR(10) NOT NULL,
+                fecha_viaje_inicio VARCHAR(1) NOT NULL,
+                fecha_viaje_fin VARCHAR(10) NOT NULL,
+                duracion NUMERIC NOT NULL,
+                punto_partida VARCHAR(30) NOT NULL,
+                punto_destino VARCHAR(30) NOT NULL,
+                fecha_gasto VARCHAR(10) NOT NULL,
+                moneda VARCHAR(20) NOT NULL,
+                cantidad_comprobantes NUMERIC NOT NULL,
+                importe DOUBLE PRECISION NOT NULL,
+                PRIMARY KEY (id_viaje)
+)
+575345 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE COMPROBANTE (
+                id_comprobante INT AUTO_INCREMENT NOT NULL,
+                id_viaje INT NOT NULL,
+                ruta_zip VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_comprobante)
+)
+575438 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE ROL_PAGOS (
+                id_rol_pagos INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                sueldo_nominal DOUBLE PRECISION,
+                tiempo_parcial DOUBLE PRECISION,
+                dias_trabajados DOUBLE PRECISION,
+                sueldo_base DOUBLE PRECISION NOT NULL,
+                sueldo_vacaciones DOUBLE PRECISION,
+                dias_paternidad DOUBLE PRECISION,
+                permiso_paternidad DOUBLE PRECISION,
+                dias_subsidio_maternidad DOUBLE PRECISION,
+                subsidio_maternidad DOUBLE PRECISION,
+                dias_enfermedad DOUBLE PRECISION,
+                subsidio_enfermedad DOUBLE PRECISION,
+                numero_horas_suplementarias DOUBLE PRECISION,
+                valor_horas_suplementarias DOUBLE PRECISION,
+                numero_horas_extraordinarias DOUBLE PRECISION,
+                valor_horas_extraordinarias DOUBLE PRECISION,
+                comisiones DOUBLE PRECISION,
+                comisiones_mes_anterior DOUBLE PRECISION,
+                incentivo_upsell DOUBLE PRECISION,
+                movilizacion DOUBLE PRECISION,
+                incentivo_dolarazo DOUBLE PRECISION,
+                incentivo_alta_gama DOUBLE PRECISION,
+                bono_pospago_ruc DOUBLE PRECISION,
+                bono_plan_celular DOUBLE PRECISION,
+                base_iess DOUBLE PRECISION NOT NULL,
+                alimentacion DOUBLE PRECISION,
+                decimo_tercero_mensual DOUBLE PRECISION,
+                decimo_cuarta_mensual DOUBLE PRECISION,
+                fondo_reserva_mensual DOUBLE PRECISION,
+                total_ingresos DOUBLE PRECISION NOT NULL,
+                aporte_iess DOUBLE PRECISION,
+                chargeback_aplicar DOUBLE PRECISION,
+                impuesto_renta DOUBLE PRECISION,
+                prestamo_hipotecario_iess DOUBLE PRECISION,
+                prestamo_quirografario DOUBLE PRECISION,
+                prestamo_empresa DOUBLE PRECISION,
+                extension_conyugue DOUBLE PRECISION,
+                sobregiro DOUBLE PRECISION,
+                anticipo_comisiones_mes_anterior DOUBLE PRECISION,
+                seguro_movil DOUBLE PRECISION,
+                copago_seguro DOUBLE PRECISION,
+                total_egresos DOUBLE PRECISION,
+                neto_recibir DOUBLE PRECISION,
+                provision_decimo_tercer_sueldo DOUBLE PRECISION,
+                provision_decimo_cuarto_sueldo DOUBLE PRECISION,
+                provision_fondos_reserva DOUBLE PRECISION,
+                dias_vacaciones_tomados DOUBLE PRECISION,
+                provision_vacaciones DOUBLE PRECISION,
+                provision_aporte_iess_patronal DOUBLE PRECISION,
+                ccc DOUBLE PRECISION,
+                reverso_vacaciones_tomadas DOUBLE PRECISION,
+                fecha_rol_pago VARCHAR(10) NOT NULL,
+                PRIMARY KEY (id_rol_pagos, id_personal)
+)
+575532 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE VACACIONES (
+                id_vacaciones INT AUTO_INCREMENT NOT NULL,
+                id_personal INT NOT NULL,
+                fecha_solicitud VARCHAR(10) NOT NULL,
+                fecha_inicio_vacaciones VARCHAR(10) NOT NULL,
+                fecha_fin_vacaciones VARCHAR(10) NOT NULL,
+                dias_lab_solicitados DOUBLE PRECISION NOT NULL,
+                fecha_respuesta VARCHAR(10) NOT NULL,
+                dias_disponibles_acum DOUBLE PRECISION NOT NULL,
+                status VARCHAR(30) NOT NULL,
+                peticion VARCHAR(30) NOT NULL,
+                observaciones VARCHAR(70) NOT NULL,
+                motivo VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id_vacaciones)
+)
+575657 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+ALTER TABLE PERSONAL ADD CONSTRAINT contrato_personal_fk
+FOREIGN KEY (id_contrato)
+REFERENCES CONTRATO (id_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+576000 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT centro_costo_personal_fk
+FOREIGN KEY (id_centro_costo)
+REFERENCES CENTRO_COSTO (id_centro_costo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+576719 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT cargo_personal_fk
+FOREIGN KEY (id_cargo)
+REFERENCES CARGO (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+577672 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT persona_personal_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+577969 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE EXPERIENCIA_LABORAL ADD CONSTRAINT persona_experiencia_laboral_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+578328 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE USUARIO ADD CONSTRAINT persona_usuario_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+578705 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE SUPERVISOR ADD CONSTRAINT candidato_supervisor_fk
+FOREIGN KEY (cedula)
+REFERENCES CANDIDATO (cedula)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+579056 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE PERSONAL ADD CONSTRAINT supervisor_personal_fk
+FOREIGN KEY (id_supervisor)
+REFERENCES SUPERVISOR (id_supervisor)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+579361 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE VACACIONES ADD CONSTRAINT personal_detalle_vacaciones_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+579721 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE ROL_PAGOS ADD CONSTRAINT personal_rol_pagos_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+580205 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE VIAJE ADD CONSTRAINT personal_viaje_fk
+FOREIGN KEY (id_personal)
+REFERENCES PERSONAL (id_personal)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+581049 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE COMPROBANTE ADD CONSTRAINT viaje_comprobante_fk
+FOREIGN KEY (id_viaje)
+REFERENCES VIAJE (id_viaje)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+581548 [Thread-11] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Successfully executed 25 out of 25 statements.
