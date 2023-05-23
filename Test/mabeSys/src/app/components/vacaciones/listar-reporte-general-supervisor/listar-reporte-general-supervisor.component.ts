@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { ExportListService } from 'src/app/services/export-list.service';
 import {MatSort, Sort} from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-reporte-general-supervisor',
@@ -40,6 +41,7 @@ export class ListarReporteGeneralSupervisorComponent {
     private crudService:CrudService,
     private exportList:ExportListService,
     public formulario:FormBuilder,
+    private router:Router,
   ) {
     this.user = localStorage.getItem('USER') as string;
     this.passw = localStorage.getItem('PASS') as string
@@ -164,7 +166,8 @@ export class ListarReporteGeneralSupervisorComponent {
     var aux = "";
     aux = "Aprobado"
     this.crudService.AceptarSolicitudVacacionBySupervisor(id).subscribe(respuesta=>{
-      console.log("respuesta: ",respuesta) 
+      console.log("respuesta: ",respuesta)
+      this.reloadMenuComponent(); 
       this.getVacaciones();
       this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
         console.log("respuesta15:",respuesta15)
@@ -184,6 +187,7 @@ export class ListarReporteGeneralSupervisorComponent {
       aux = this.formularioDeVacacion.get('motivo')?.value
       this.crudService.RechazarSolicitudVacacionBySupervisor(id,aux).subscribe(respuesta=>{
         console.log("respuesta: ",respuesta) 
+        this.reloadMenuComponent();
         this.getVacaciones();
         this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
           console.log("respuesta15:",respuesta15)
@@ -239,6 +243,12 @@ export class ListarReporteGeneralSupervisorComponent {
   pageChangeEventAprobadas(event: number){
     this.pA = event;
     this.getDataAprobadas();
+  }
+
+  reloadMenuComponent() {
+    this.router.navigateByUrl('/menu', { skipLocationChange: true }).then(() => {
+      window.location.reload();
+    });
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CrudService } from 'src/app/services/crud.service';
 import { ExportListService } from 'src/app/services/export-list.service';
 
@@ -32,6 +33,7 @@ export class ListarReporteGeneralPersonalComponent {
     private crudService:CrudService,
     private exportList:ExportListService,
     public formulario:FormBuilder,
+    private router:Router,
   ) {
     this.user = localStorage.getItem('USER') as string;
     this.passw = localStorage.getItem('PASS') as string
@@ -151,6 +153,7 @@ export class ListarReporteGeneralPersonalComponent {
     //console.log(iControl);
     this.crudService.BorrarVacacion(id).subscribe(respuesta=>{
       console.log("respuesta: ",respuesta) 
+      this.reloadMenuComponent();
       this.getVacaciones();
     });
   }
@@ -161,6 +164,7 @@ export class ListarReporteGeneralPersonalComponent {
     aux = "Aprobado"
     this.crudService.AceptarSolicitudVacacionBySupervisor(id).subscribe(respuesta=>{
       console.log("respuesta: ",respuesta) 
+      this.reloadMenuComponent();
       this.getVacaciones();
       this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
         console.log("respuesta15:",respuesta15)
@@ -180,6 +184,7 @@ export class ListarReporteGeneralPersonalComponent {
       aux = this.formularioDeVacacion.get('motivo')?.value
       this.crudService.RechazarSolicitudVacacionBySupervisor(id,aux).subscribe(respuesta=>{
         console.log("respuesta: ",respuesta) 
+        this.reloadMenuComponent();
         this.getVacaciones();
         this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
           console.log("respuesta15:",respuesta15)
@@ -189,6 +194,12 @@ export class ListarReporteGeneralPersonalComponent {
         
     }
     
+  }
+
+  reloadMenuComponent() {
+    this.router.navigateByUrl('/menu', { skipLocationChange: true }).then(() => {
+      window.location.reload();
+    });
   }
 
   exportToCSV(){

@@ -257,24 +257,24 @@ export class MenuComponent {
             var antiguedadCal = this.antiguedad;
 
             //CARGA VACACIONES TOMADAS
-            console.log("antiguedadCal->this.antiguedad",respuesta2['fechaContrato'])
+            console.log("this.antiguedad",respuesta2['fechaContrato'])
             if ( antiguedadCal != null){
               this.crudService.ObtenertotalVacacionesTomadas(this.user,this.passw).subscribe(respuesta=>{
                 
                 var totalVacasTomadas = respuesta['VACA_PREV'];  
-                console.log("totalVacasTomadas->totalVacacionesAprobadas",respuesta['VACA_PREV'])            
+                console.log("totalVacacionesAprobadas",respuesta['VACA_PREV'])            
                 this.crudService.ObtenertotalVacacionesTomadasPendientes(this.user,this.passw).subscribe(respuesta15=>{
                   
                   var totalVacasPendientes = respuesta15['VACA_PREV']
                   console.log(respuesta15)
-                  console.log("totalVacasPendientes->totalVacacionesPendientes:",respuesta15['VACA_PREV'])
+                  console.log("totalVacacionesPendientes:",totalVacasPendientes)
 
                   this.crudService.ObtenerMotivosVacaciones("vacaciones").subscribe(respuesta16=>{
                     this.Motivos = respuesta16;
                     
                     console.log("Motivos:",this.Motivos[0])
                     console.log("vaca_disp:",antiguedadCal-totalVacasTomadas)
-                    if ( totalVacasTomadas == null ){ // VACA PREV
+                    if ( totalVacasTomadas == null && totalVacasPendientes == null){ // VACA PREV
                       this.control_vistas.setValue({
                         name_usuario: respuestaData['nombre'],
                         lastname_usuario: respuestaData['apellido'],
@@ -289,6 +289,22 @@ export class MenuComponent {
                         dias_tomados:0,                        
                         saldo_dias: antiguedadCal,
                       });
+                    }else if (totalVacasTomadas == null && totalVacasPendientes != null){
+                      this.control_vistas.setValue({
+                        name_usuario: respuestaData['nombre'],
+                        lastname_usuario: respuestaData['apellido'],
+                        cargo: respuestaData['nombre_cargo'],
+                        cedula: respuestaData['cedula'],
+                        cuenta: respuestaData['cuenta'],
+                        stateVacaciones: 'VACACIONES',
+                        statePersonal: 'PERSONAL',
+                        stateReportes: 'REPORTES',
+                        vaca_disp: antiguedadCal, //vacaciones por contrato                        
+                        dias_solicitudes_pen: totalVacasPendientes, // vacaciones tomadas
+                        dias_tomados:0,                        
+                        saldo_dias: antiguedadCal,
+                      });
+                    
                     }else if (totalVacasTomadas != null && totalVacasPendientes == null){ // VACA PREV PEND
                       this.control_vistas.setValue({
                         name_usuario: respuestaData['nombre'],
