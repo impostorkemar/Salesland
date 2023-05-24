@@ -1,95 +1,87 @@
 <form [formGroup]="formularioDeVacacion">
-    <div class="card"> 
-        <div class="card-header">
-            <H1>HISTORIAL VACACIONES</H1> 
-        </div>        
+  <div>
+    <h2>HISTORIAL VACACIONES</h2>
+  </div>
+  <div class="contenedor-general">
+    <div class="search-container">
+      <input type="text" formControlName="searchKeyword" placeholder="Filtrar" (change)="filterVacaciones()">
+      <button class="btn" (click)="searchVacaciones()">Buscar</button>
     </div>
-    <div class="card-header ">
-        <div class="card-header d-flex justify-content-end">
-            <a *ngIf="false" class="btn btn-success mr-2" routerLink="/agregar-candidato/" >AGREGAR NUEVO CANDIDATO</a>
-            <a class="btn btn-warning" (click)="exportToCSV()" role="button" >EXCEL</a>
-        </div>
-       
-        <div class="card-body">
-            <div class="search-container">
-                <input type="text" formControlName="searchKeyword" placeholder="Buscar..." (change)="filterVacaciones()">
-                <button class="btn btn-primary" (click)="searchVacaciones()">Buscar</button>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th (click)="sort('id_vacaciones')">ID VACACIONES</th>
-                      <th (click)="sort('nombre')">NOMBRE</th>
-                      <th (click)="sort('apellido')">APELLIDO</th>
-                      <th (click)="sort('fecha_solicitud')">FECHA SOLICITUD</th>
-                      <th (click)="sort('fecha_inicio_vacaciones')">FECHA INICIO VACACIONES</th>
-                      <th (click)="sort('fecha_fin_vacaciones')">FECHA FIN VACACIONES</th>
-                      <th (click)="sort('fecha_respuesta')">FECHA RESPUESTA</th>
-                      <th (click)="sort('dias_lab_solicitados')">DIAS LABORABLES SOLICITADOS</th>
-                      <th (click)="sort('dias_disponibles_acum')">DIAS DISPONIBLES ACUMULADOS</th>
-                      <th (click)="sort('status')">STATUS</th>
-                      <th (click)="sort('peticion')">PETICION</th>
-                      <th (click)="sort('observaciones')">OBSERVACIONES</th>
-                      <th (click)="sort('motivo')">MOTIVO</th>
-                      <th *ngIf= "false">ACCIONES</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let row of pagedVacaciones; let iControl=index">
-                      <td>{{ row.id_vacaciones }}</td>
-                      <td>{{ row.nombre }}</td>
-                      <td>{{ row.apellido }}</td>
-                      <td>{{ row.fecha_solicitud }}</td>
-                      <td>{{ row.fecha_inicio_vacaciones }}</td>
-                      <td>{{ row.fecha_fin_vacaciones }}</td>
-                      <td>{{ row.fecha_respuesta }}</td>
-                      <td>{{ row.dias_lab_solicitados }}</td>
-                      <td>{{ row.dias_disponibles_acum }}</td>
-                      <td>{{ row.status }}</td>
-                      <td>{{ row.peticion }}</td>
-                      <td>{{ row.observaciones }}</td>
-                      <td>{{ row.motivo }}</td>
-                      <td *ngIf= "false">
-                        <a class="btn btn-danger" (click)="solicitarCancelacion(row.id_vacaciones,iControl)" role="button">SOLICITAR CANCELACIÓN</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="pagination-container">
-                <ul class="pagination">
-                  <li class="page-item" [class.disabled]="currentPage === 1">
-                    <a class="page-link" (click)="changePage(1)" aria-label="First">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item" [class.disabled]="currentPage === 1">
-                    <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
-                      <span aria-hidden="true">&lsaquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
-                    <a class="page-link" (click)="changePage(page)">{{ page }}</a>
-                  </li>
-                  <li class="page-item" [class.disabled]="currentPage === totalPages">
-                    <a class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
-                      <span aria-hidden="true">&rsaquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item" [class.disabled]="currentPage === totalPages">
-                    <a class="page-link" (click)="changePage(totalPages)" aria-label="Last">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-
-        </div>
-          
-            
+    <div class="table-responsive">
+      <table class="table ">
+        <thead>
+          <tr>
+            <th (click)="sort('id_vacaciones')">Id</th>
+            <!-- <th (click)="sort('apellido')">Apellido</th>
+            <th (click)="sort('nombre')">Nombre</th> -->
+            <th (click)="sort('fecha_solicitud')">Fecha Solicitud</th>
+            <th (click)="sort('fecha_inicio_vacaciones')">Inicio Vacaciones</th>
+            <th (click)="sort('fecha_fin_vacaciones')">Fin Vacaciones</th>
+            <th (click)="sort('fecha_respuesta')">Fecha Respuesta</th>
+            <th (click)="sort('dias_lab_solicitados')">Días Solicitados</th>
+            <!-- <th (click)="sort('dias_disponibles_acum')">Días Disponibles</th> -->
+            <th (click)="sort('status')">Estado</th>
+            <th (click)="sort('peticion')">Peticion</th>
+            <th (click)="sort('observaciones')">Observaciones</th>
+            <th (click)="sort('motivo')">Motivo</th>
+            <th *ngIf="false">ACCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of pagedVacaciones; let iControl=index">
+            <td>{{ row.id_vacaciones }}</td>
+            <!-- <td>{{ row.nombre }}</td>
+            <td>{{ row.apellido }}</td> -->
+            <td>{{ row.fecha_solicitud }}</td>
+            <td>{{ row.fecha_inicio_vacaciones }}</td>
+            <td>{{ row.fecha_fin_vacaciones }}</td>
+            <td>{{ row.fecha_respuesta }}</td>
+            <!-- <td>{{ row.dias_lab_solicitados }}</td> -->
+            <td>{{ row.dias_disponibles_acum }}</td>
+            <td>{{ row.status }}</td>
+            <td>{{ row.peticion }}</td>
+            <td>{{ row.observaciones }}</td>
+            <td>{{ row.motivo }}</td>
+            <td *ngIf="false">
+              <a class="btn btn-danger" (click)="solicitarCancelacion(row.id_vacaciones,iControl)"
+                role="button">SOLICITAR
+                CANCELACIÓN</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <div class="pagination-container">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="changePage(1)" aria-label="First">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
+            <span aria-hidden="true">&lsaquo;</span>
+          </a>
+        </li>
+        <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+          <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
+            <span aria-hidden="true">&rsaquo;</span>
+          </a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="changePage(totalPages)" aria-label="Last">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-header d-flex justify-content-center">
+      <a *ngIf="false" class="btn btn-success mr-2" routerLink="/agregar-candidato/">AGREGAR NUEVO CANDIDATO</a>
+      <a class="btn btn-warning" (click)="exportToCSV()" role="button">DESCARGAR EXCEL</a>
+    </div>
+  </div>
 </form>
-

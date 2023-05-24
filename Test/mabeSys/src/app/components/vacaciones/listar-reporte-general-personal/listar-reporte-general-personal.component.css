@@ -1,0 +1,118 @@
+    /* Filtro */
+    .search-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .search-container input[type="text"] {
+        background-color: #fff;
+        color: black;
+        padding: 5px;
+        border: 1px solid grey;
+        border-radius: 3px;
+        margin-right: 5px;
+    }
+
+    .search-container input[type="text"]:focus {
+        outline: none;
+    }
+
+    .search-container button {
+        background-color: #045959;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        margin-right: 2px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .search-container button:hover {
+        background-color: #afaeae2f;
+        color: black;
+        border: 1px solid gray;
+    }
+
+
+    /* Tabla */
+    .table th {
+        background-color: #045959;
+        border: none;
+        color: #fff;
+        font-weight: 400;
+    }
+
+    .table td {
+        font-weight: 500;
+        border: none;
+        border-bottom: 1px solid gray;
+    }
+
+    .table tr:hover {
+        background-color: #c2bdbda8;
+        cursor: pointer;
+    }
+
+    /* Paginación */
+    .pagination {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        background-color: #fff;
+        border-color: #045959;
+        color: #045959;
+        cursor: not-allowed;
+    }
+
+    .pagination .page-item.disabled .page-link:hover {
+        background-color: #fff;
+        border-color: #045959;
+        color: #045959;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #045959;
+        border-color: #045959;
+        color: #fff;
+        cursor: default;
+    }
+
+    .pagination .page-item .page-link {
+        background-color: #fff;
+        border-color: #045959;
+        color: #045959;
+    }
+
+    .pagination .page-item .page-link:hover {
+        background-color: #afaeae2f;
+        border-color: #afaeae2f;
+        color: #045959;
+    }
+
+    a {
+        margin: 2px;
+    }
+
+    .contenedor-motivo{
+        margin: 10px;
+    }
+
+    .form-label {
+        color: #045959;
+        font-weight: bold;
+    }
+
+    .form-control {
+        background-color: #fff;
+        border-color: #045959;
+        color: #045959;
+    }
+
+    .shorter-input {
+        width: 600px;
+        /* Ajusta el ancho según tus necesidades */
+    }

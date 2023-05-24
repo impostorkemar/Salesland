@@ -7,39 +7,97 @@ body {
   }
   
   /*Estilos del Menu*/
-  nav {
-    background-color: #16261C;
-    color: white;
-    height: 80px;
-  }
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .contenedor-botones {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #045959;
   }
-  li {
-    margin: 0 10px;
+  .contenedor-botones a{
+    background-color: #045959;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #045959;
+    text-decoration: none;
+  }
+
+  .contenedor-botones a:hover{
+    background-color: #afaeae2f;
+  }
+
+  .slc-st {
+    background-color: #fff;
+    width: 25%;
+    padding-top: 5px;
   }
   
-  li.l{
-    margin-left: auto;
-  }
-
-  a {
-    display: block;
+  .custom-file-upload {
+    display: inline-block;
+    padding: 10px;
+    background-color: #045959;
     color: white;
-    text-decoration: none;
-    padding: 25px;
-  }
-  select {
-    padding: 25px;
     border: none;
-    background-color: #16261C;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-file-upload:hover {
+    background-color: #afaeae2f;
+    color: black;
+    border: 1px solid gray;
+  }
+  
+  #file-upload {
+    display: none;
+  }
+  
+  .slc-st button {
+    background-color: #045959;
     color: white;
-    margin-left: auto;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .slc-st button:hover {
+    background-color: #afaeae2f;
+    color: black;
+    border: 1px solid gray;
+    cursor: pointer;
   }
 
+  /*Estilos select */
+  .btn-group-horizontal select {
+    background-color: #045959;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-group-horizontal select:hover {
+    background-color: #afaeae2f;
+    cursor: pointer;
+  }
+  
+  .btn-group-horizontal select option {
+    background-color: #045959;
+    color: white;
+  }
+  
+  .btn-group-horizontal select option:hover {
+    background-color: #afaeae2f;
+    cursor: pointer;
+  }
   /*Estilos de Body*/
 .img {
     height: 75px;
@@ -169,7 +227,7 @@ tfoot.foot-center {
   }
 
  .contenedor-hoja {
-    padding: 60px;
+    padding: 20px;
     margin: auto;
   }
 

@@ -8,7 +8,7 @@
 .contenedor-botones a{
   background-color: #045959;
   color: #fff;
-  border: none;
+  border: 1px;
   padding: 10px 20px;
   margin-right: 10px;
   cursor: pointer;
@@ -34,9 +34,8 @@
   background-color: #045959;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  margin-right: 10px;
   cursor: pointer;
+  border-radius: 0;
   transition: background-color 0.3s ease;
 }
 
@@ -48,4 +47,28 @@
   margin-right: auto;
 }
 
+.form-label {
+  display: inline-block;
+  color: #045959;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.form-control {
+  display: block;
+  width: 50%;
+  border: none;
+  border-bottom: 1px solid #045959;
+  background-color: transparent;
+  color: #045959;
+  padding: 5px;
+  transition: border-bottom-color 0.3s ease;
+  cursor: text;
+}
+
+.form-control:hover,
+.form-control:focus {
+  outline: none;
+  border-color: #079292;
+}
 
