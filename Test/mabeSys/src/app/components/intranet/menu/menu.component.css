@@ -72,3 +72,23 @@
   border-color: #079292;
 }
 
+/* Media query para pantallas más pequeñas */
+@media (max-width: 475px) {
+  .contenedor-general {
+    padding-top: 120px;
+  }
+  
+  .contenedor-botones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0px;
+    background-color: #045959;
+  }
+
+  .btn-group-horizontal {
+    display: flex;
+    flex-direction: column;
+  }
+  
+}

@@ -307,3 +307,47 @@ h1 {
   background-color: #04595934;
   color: #045959;
 }
+
+/*Responsive*/
+
+@media (max-width: 600px) {
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .column1,
+  .column2,
+  .column3 {
+    float: none;
+    width: 100%;
+  }
+
+  .button-group {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .elemento1,
+  .elemento2,
+  .elemento3 {
+    height: 40vh;
+  }
+
+  .icon-image-external {
+    width: 48px;
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .dropdown {
+    padding-top: 30px
+  }
+  .button-menu-external,
+  .button-menu-internal {
+    font-size: 12px;
+  }
+}
+

@@ -54,8 +54,8 @@
             </div>
         </div>
     </div>
-    <div>
-        <a *ngIf="false" class="btn btn-success" routerLink="/agregar-candidato/">AGREGAR NUEVO CANDIDATO</a>
-        <a class="btn btn-warning" (click)="exportToCSV()" role="button">EXPORT TO CSV</a>
+    <div class="contenedor-boton">
+        <a *ngIf="false" class="btn" routerLink="/agregar-candidato/">AGREGAR NUEVO CANDIDATO</a>
+        <a class="btn" (click)="exportToCSV()" role="button">Descargar CSV</a>
     </div>
 </form>

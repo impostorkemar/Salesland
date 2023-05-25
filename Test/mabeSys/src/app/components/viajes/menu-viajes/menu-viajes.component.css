@@ -84,3 +84,11 @@ button:first-child {
 .contenedor-general {
   padding-top: 84px;
 }
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 475px) {
+  .contenedor-general {
+    padding-top: 120px;
+  }
+  
+}

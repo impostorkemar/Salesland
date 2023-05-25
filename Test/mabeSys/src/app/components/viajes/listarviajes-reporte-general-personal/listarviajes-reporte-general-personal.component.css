@@ -77,5 +77,25 @@ h2 {
     font-size: 14px;
     color: #777;
   }
+
+  .contenedor-boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+  }
   
+  .btn {
+    background-color: #045959;
+    color: #fff;
+    /* Establecer el tamaño mínimo del botón */
+    max-width: 150px;
+    /* Otros estilos para el botón */
+  }
   
+  .btn:hover {
+    background-color: #fff;
+    color: #045959;
+    /* Otros estilos para el hover */
+    border: 1px solid #045959;
+  }

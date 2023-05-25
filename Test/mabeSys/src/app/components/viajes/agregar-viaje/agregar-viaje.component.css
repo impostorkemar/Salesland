@@ -200,3 +200,22 @@ input[type="file"] {
 button {
   background-color: #045959;
 }
+
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+  /* Ajustar estilos para .calendar */
+  .calendar {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+
+  /* Ajustar estilos para .add-datos */
+  .add-datos {
+    padding: 15px;
+    margin: 5px;
+  }
+}
+
+

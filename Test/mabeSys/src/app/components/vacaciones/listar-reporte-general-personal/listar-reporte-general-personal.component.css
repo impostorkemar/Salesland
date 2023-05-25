@@ -113,6 +113,32 @@
     }
 
     .shorter-input {
-        width: 600px;
+        width: 615px;
         /* Ajusta el ancho según tus necesidades */
     }
+
+    .contenedor-acciones {
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .btn img {
+        vertical-align: middle;
+      }
+
+
+      /* Media query para pantallas más pequeñas */
+@media (max-width: 615px) {
+    .shorter-input {
+        width: 100%;
+        /* Ajusta el ancho según tus necesidades */
+    }
+    
+  }
+  

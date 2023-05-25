@@ -46,14 +46,14 @@
             <td>{{ row.observaciones }}</td>
             <td>{{ row.motivo }}</td>
             <td>
-              <ng-container>
-                <a *ngIf="row.status === 'pendiente'" class="btn btn-success" style="width: 30%;"
+              <ng-container class="contenedor-acciones">
+                <a *ngIf="row.status === 'pendiente'" class="btn btn-success" 
                   (click)="AceptarRegistro(row.id_vacaciones,iControl)" role="button"><img src="./assets/check.svg"
                     alt=""></a>
-                <a *ngIf="row.status === 'pendiente'" class="btn btn-danger" style="width:30%;"
+                <a *ngIf="row.status === 'pendiente'" class="btn btn-danger" 
                   (click)="RechazarRegistro(row.id_vacaciones,iControl)" role="button"><img src="./assets/x.svg"
                     alt=""></a>
-                <a class="btn btn-secondary" style="width: 30%;" (click)="borrarRegistro(row.id_vacaciones,iControl)"
+                <a class="btn btn-secondary" (click)="borrarRegistro(row.id_vacaciones,iControl)"
                   role="button"><img src="./assets/trash.svg" alt=""></a>
               </ng-container>
             </td>

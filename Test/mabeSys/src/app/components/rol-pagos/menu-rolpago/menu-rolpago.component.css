@@ -234,3 +234,33 @@ tfoot.foot-center {
   .contenedor-general{
     padding-top: 84px;
   }
+
+  
+/* Media query para pantallas más pequeñas */
+@media (max-width: 475px) {
+  .contenedor-general{
+    padding-top: 120px;
+  }
+
+  .slc-st {
+    padding-top: 20px;
+    width: 100%;
+  }
+
+  .slc-st button {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .custom-file-upload {
+    width: 100%;
+    margin: 0;
+  }
+
+  #file-upload {
+    width: 100%;
+  }
+  
+}
+
+

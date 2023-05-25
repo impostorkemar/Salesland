@@ -6,15 +6,15 @@
   width: 2rem;
 }
 .custom-day.focused {
-  background-color: #16261C;
+  background-color: #045959;
 }
 .custom-day.range,
 .custom-day:hover {
-  background-color: rgb(243, 238, 238);
+  background-color: #045959;
   color: black;
 }
 .custom-day.faded {
-  background-color: rgb(243, 238, 238);
+  background-color:#045959;
 }
 .card{
   background-color: rgb(243, 238, 238);
@@ -30,7 +30,6 @@
 .text{
   color: white;
   text-align: center;
-  
   align-self: center;
 }
 .text2{
@@ -40,12 +39,6 @@
   align-items: center; 
   align-self: center;
 }
-.calendar{
-  width: 490px;
-  height: 315px;  
-  background-color: #16261C;
-  color: white;
-}
 
 .center {
   margin-left: auto;
@@ -53,6 +46,102 @@
 }
 
 ::ng-deep .ngb-dp-months {
-  background-color: black;
+  background-color: #fff;
   color: #045959;
+}
+
+h2 {
+  color: black;
+  text-align: center;
+}
+
+.add-datos {
+  border: 2px solid gray;
+  border-radius: 25px; /* Ajusta el valor según tus preferencias */
+  box-sizing: border-box;
+  padding: 25px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315); /* Ajusta los valores según tus preferencias */
+  margin: 10px;
+}
+
+.contenedor-datos{
+  display: flex;
+}
+.input-line {
+  display: flex;
+  align-items: center;
+}
+
+.form-label {
+  color: #045959;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.form-control {
+  flex: 1;
+  border: none;
+  border-bottom: 2px solid #045959;
+  padding: 5px;
+  background-color: transparent;
+  color: #045959;
+  transition: border-color 0.3s;
+}
+
+.form-control:hover,
+.form-control:focus {
+  outline: none;
+  border-color: #079292;
+}
+/* Componente CSS */
+
+/* Ocultar el input[type="file"] */
+.form-select {
+  background-color: #045959;
+  color: #fff;
+  border-color: #045959;
+  width: 20%;
+  margin-right: 20px;
+}
+
+.form-select:hover {
+  background-color: #045959;
+  color: #fff;
+  border-color: #045959;
+}
+
+.form-select:focus {
+  background-color: #045959;
+  color: #fff;
+  border-color: #045959;
+  box-shadow: 0 0 0 0.25rem rgba(4, 89, 89, 0.25);
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  background-color: #045959;
+  color: #fff;
+  /* Establecer el tamaño mínimo del botón */
+  max-width: 150px;
+  /* Otros estilos para el botón */
+}
+
+.btn:hover {
+  background-color: #fff;
+  color: #045959;
+  /* Otros estilos para el hover */
+  border: 1px solid #045959;
+}
+
+/*Contenedor calendario*/
+
+.contenedor-calendario{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
