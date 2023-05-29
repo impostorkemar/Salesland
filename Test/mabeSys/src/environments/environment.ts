@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api1Url: 'http://192.168.1.38:8000/',
+  //api1Url: 'http://192.168.0.29:8000/';  
+  //api1Url: 'http://192.168.1.42:8000/';
+  //api1Url: 'http://181.188.194.242:8000/';
+  //api1Url: 'http://181.188.194.242:8000/';
+  //api1Url: 'http://192.168.100.78:8000/';
 };
 //export const allowedHosts = ['intranetsaleslandecuador.net'];
 export const allowedHosts = ['intranetsaleslandecuador.net'];
