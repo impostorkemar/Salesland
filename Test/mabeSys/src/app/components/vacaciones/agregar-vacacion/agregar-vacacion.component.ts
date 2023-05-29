@@ -157,7 +157,7 @@ export class AgregarVacacionComponent {
                         dias_seleccionados: 0, 
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
-                        motivo:this.Motivos[0]
+                        motivo:this.Motivos[0] as string
                       });
                     }else if (totalVacasTomadas == null && totalVacasPendientes != null){
                       this.formularioDeVacacion.setValue({
@@ -168,7 +168,7 @@ export class AgregarVacacionComponent {
                         dias_seleccionados: 0, 
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
-                        motivo:this.Motivos[0]
+                        motivo:this.Motivos[0] as string
                       });
                     
                     }else if (totalVacasTomadas != null && totalVacasPendientes == null){ // VACA PREV PEND
@@ -180,7 +180,7 @@ export class AgregarVacacionComponent {
                         dias_seleccionados: 0, 
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
-                        motivo:this.Motivos[0]                        
+                        motivo:this.Motivos[0] as string                        
                       });                                       
                     }else{
                       if (this.toDate){
@@ -192,7 +192,7 @@ export class AgregarVacacionComponent {
                           saldo_dias: antiguedadCal-totalVacasTomadas-totalVacasPendientes, //vacaciones saldo                                                  
                           lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                           lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
-                          motivo:this.Motivos[0]
+                          motivo:this.Motivos[0] as string
                         });
                         this.btnIngresar = false
                       }else{
