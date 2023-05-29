@@ -72,6 +72,8 @@
   border-color: #079292;
 }
 
+
+
 /* Media query para pantallas más pequeñas */
 @media (max-width: 475px) {
   .contenedor-general {
@@ -92,3 +94,5 @@
   }
   
 }
+
+

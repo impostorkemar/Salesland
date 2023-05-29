@@ -105,6 +105,10 @@ nav ul li  {
     margin-right: 0.5em;
   }
 
+  .dropdown-content {
+    min-width: 100%; /* Ajusta el ancho mínimo según tus necesidades */
+  }
+
   .avatar {
     width: 20%;
     height: 20%;
@@ -149,6 +153,11 @@ nav ul {
   flex-direction: column;
 }
 
+.dropdown-content {
+  min-width: 100%; /* Ajusta el ancho mínimo según tus necesidades */
+}
+
+
   .avatar {
     width: 20%;
     height: 20%;
@@ -180,3 +189,99 @@ nav ul {
     font-size: 12px;
   }
 }
+
+.dropbtn {
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+.hamburger-icon {
+  position: relative;
+  width: 20px;
+  height: 2px;
+  background-color: #045959;
+  transition: transform 0.3s ease;
+  margin: 0 auto; /* Centrar horizontalmente */
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #045959;
+  transition: transform 0.3s ease;
+  left: 0; /* Alinear a la izquierda */
+}
+
+.hamburger-icon::before {
+  top: -6px;
+}
+
+.hamburger-icon::after {
+  bottom: -6px;
+}
+
+.dropbtn.active .hamburger-icon {
+  transform: rotate(45deg);
+}
+
+.dropbtn.active .hamburger-icon::before {
+  transform: rotate(90deg);
+  top: 0;
+}
+
+.dropbtn.active .hamburger-icon::after {
+  transform: rotate(90deg);
+  bottom: 0;
+}
+
+/* Estilos para el hover del botón */
+.dropbtn:hover {
+  background-color: #04595934;
+  color: #045959;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: auto; /* Ajusta automáticamente el ancho según el contenido */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 350px; /* Ajusta el ancho mínimo según tus necesidades */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  text-align: center; /* Alinea el contenido a la izquierda */
+  left: 0; /* Ajusta la posición izquierda del menú desplegable */
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  color: #045959;
+  background-color: #f9f9f9;
+  font-size: 16px; /* Ajusta el tamaño de fuente según tus preferencias */
+}
+
+.dropdown-content a:hover {
+  background-color: #e5e5e5;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
