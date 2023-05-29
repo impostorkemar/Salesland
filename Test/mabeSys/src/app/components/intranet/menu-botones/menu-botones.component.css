@@ -215,6 +215,10 @@ h1 {
   transition: all 0.2s ease-in-out;
 }
 
+.button-menu-internal:hover {
+  background-color: #225555be;
+}
+
 .icon-image-external {
   width: 72px;
   height: auto;
