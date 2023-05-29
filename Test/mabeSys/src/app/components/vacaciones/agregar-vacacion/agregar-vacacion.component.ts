@@ -38,6 +38,7 @@ export class AgregarVacacionComponent {
   vacasDispo!:any;
   fechaSeleccionada!:any;
   Motivos!:any;
+  seleccionMotivo !:any;
 
   constructor(
     public formulario:FormBuilder,
@@ -179,7 +180,7 @@ export class AgregarVacacionComponent {
                         dias_seleccionados: 0, 
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
-                        motivo:this.Motivos[0]                           
+                        motivo:this.Motivos[0]                        
                       });                                       
                     }else{
                       if (this.toDate){
@@ -253,13 +254,14 @@ export class AgregarVacacionComponent {
                   if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
                   this.fromDate?.month+"-"+ this.fromDate?.day+"\nal\n"+this.toDate?.year+"-"+this.toDate?.month+"-"+
                   this.toDate?.day)){
+
                     this.crudService.AgregarVacaciones(respuesta['id_personal'] as string,(this.fechaActual.getFullYear()) as any
                     +"-"+(this.fechaActual.getMonth()) as any +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()
                     +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
                     this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+this.toDate?.month+"-"+
                     this.toDate?.day,this.formularioDeVacacion.get('dias_seleccionados')?.value as number,
                     this.formularioDeVacacion.get('vaca_disp')?.value as number, 
-                    this.formularioDeVacacion.get('motivo')?.value as string).subscribe(respuesta22=>{
+                    this.seleccionMotivo).subscribe(respuesta22=>{
                       this.btnIngresar = true;
                       this.precargarDias();
                       
@@ -340,13 +342,17 @@ export class AgregarVacacionComponent {
                     if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
                     this.fromDate?.month+"-"+ this.fromDate?.day+"\nal\n"+this.toDate?.year+"-"+this.toDate?.month+"-"+
                     this.toDate?.day)){
+
+                      var motiv = this.seleccionMotivo
+                      console.log("motivo->Agregar::",this.seleccionMotivo);
+
                       this.crudService.AgregarVacaciones(respuesta['id_personal'] as string,(this.fechaActual.getFullYear()) as any
                       +"-"+(this.fechaActual.getMonth()) as any +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()
                       +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
                       this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+this.toDate?.month+"-"+
                       this.toDate?.day,this.formularioDeVacacion.get('dias_seleccionados')?.value as number,
                       this.formularioDeVacacion.get('vaca_disp')?.value as number, 
-                      this.formularioDeVacacion.get('motivo')?.value as string).subscribe(respuesta22=>{
+                      this.seleccionMotivo).subscribe(respuesta22=>{
                         this.btnIngresar = true;
                         this.precargarDias();
                         
@@ -417,13 +423,17 @@ export class AgregarVacacionComponent {
                   if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
                   this.fromDate?.month+"-"+ this.fromDate?.day+"\nal\n"+this.fromDate?.year+"-"+
                   this.fromDate?.month+"-"+ this.fromDate?.day)){
+
+                    var motiv = this.seleccionMotivo
+                    console.log("motivo->Agregar::",this.seleccionMotivo);
+
                     this.crudService.AgregarVacaciones(respuesta['id_personal'] as string,(this.fechaActual.getFullYear()) as any
                     +"-"+(this.fechaActual.getMonth()) as any +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()
                     +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"
                     +this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+this.fromDate?.month+"-"+
                     this.fromDate?.day,this.formularioDeVacacion.get('dias_seleccionados')?.value as number,
                     this.formularioDeVacacion.get('vaca_disp')?.value as number, 
-                    this.formularioDeVacacion.get('motivo')?.value as any).subscribe(respuesta22=>{
+                    this.seleccionMotivo).subscribe(respuesta22=>{
                       console.log("respuesta22:",respuesta22);
                       this.btnIngresar = true;
                       this.precargarDias();    
@@ -511,13 +521,17 @@ export class AgregarVacacionComponent {
                   if (window.confirm("Desea registrar vacación:\n"+this.fromDate?.year+"-"+
                   this.fromDate?.month+"-"+ this.fromDate?.day+"\nal\n"+this.fromDate?.year+"-"+
                   this.fromDate?.month+"-"+ this.fromDate?.day)){
+
+                    var motiv = this.seleccionMotivo
+                    console.log("motivo->Agregar::",this.seleccionMotivo);
+
                     this.crudService.AgregarVacaciones(respuesta['id_personal'] as string,(this.fechaActual.getFullYear()) as any
                     +"-"+(this.fechaActual.getMonth()) as any +"-"+(this.fechaActual.getDate()+" "+this.fechaActual.getHours()
                     +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"
                     +this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+this.fromDate?.month+"-"+
                     this.fromDate?.day,this.formularioDeVacacion.get('dias_seleccionados')?.value as number,
                     this.formularioDeVacacion.get('vaca_disp')?.value as number, 
-                    this.formularioDeVacacion.get('motivo')?.value as string).subscribe(respuesta22=>{
+                    this.seleccionMotivo).subscribe(respuesta22=>{
                       console.log("respuesta22:",respuesta22);
                       this.btnIngresar = true;
                       this.precargarDias();    
@@ -565,6 +579,17 @@ export class AgregarVacacionComponent {
       }     
     }
   }
+
+  obtenerMotivoSeleccionado(event: Event) {
+    const motivoSeleccionado = (event.target as HTMLSelectElement).value;
+    if (motivoSeleccionado) {
+      // Aquí puedes hacer lo que necesites con el motivo seleccionado
+      console.log('Motivo seleccionado:', motivoSeleccionado);
+      this.seleccionMotivo = motivoSeleccionado;
+      // También puedes llamar a otras funciones o realizar cualquier otra operación que desees
+    }    
+  }
+  
 
   onDateSelection(date: NgbDate) {
     var myDate = new Date();

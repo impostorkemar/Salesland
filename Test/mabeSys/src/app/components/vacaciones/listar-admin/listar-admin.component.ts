@@ -6,20 +6,20 @@ import {MatSort, Sort} from '@angular/material/sort';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-listar-reporte-general-personal',
-  templateUrl: './listar-reporte-general-personal.component.html',
-  styleUrls: ['./listar-reporte-general-personal.component.css']
+  selector: 'app-listar-admin',
+  templateUrl: './listar-admin.component.html',
+  styleUrls: ['./listar-admin.component.css']
 })
-export class ListarReporteGeneralPersonalComponent {
-  //Vacaciones:any;
-  VacacionesPendientes:any;
-  VacacionesNegadas:any;
-  VacacionesAprobadas:any;
+export class ListarAdminComponent {
+  VacacionesPendientesBySupervisor:any;
+  VacacionesNegadasBySupervisor:any;
+  VacacionesAprobadasBySupervisor:any;
   user!:String;
   passw!:String;
   formularioDeVacacion:FormGroup;
+  consults:any;
 
-  Vacaciones:any[] = [];
+  VacacionesBySupervisor: any[] = [];
   pagedVacaciones: any[] = [];
   currentPage = 1;
   pageSize = 5; // Number of rows per page
@@ -28,8 +28,8 @@ export class ListarReporteGeneralPersonalComponent {
   searchKeyword: string = '';
   btnRechazar: boolean = false;
   btnAceptar: boolean = false;
-  btnEliminar: boolean = false;
 
+  
   constructor(
     private crudService:CrudService,
     private exportList:ExportListService,
@@ -39,28 +39,28 @@ export class ListarReporteGeneralPersonalComponent {
     this.user = localStorage.getItem('USER') as string;
     this.passw = localStorage.getItem('PASS') as string
     this.formularioDeVacacion = this.formulario.group({      
-      motivo:[''], 
-      searchKeyword:[''],     
+      motivo:[''],
+      searchKeyword:[''],
     });
    }
 
-  ngOnInit(): void {
-    this.getVacaciones();    
-  }  
-
+  ngOnInit(): void {    
+    this.getVacaciones();
+  }
+  
   getVacaciones(): void {
     this.crudService.ObtenerVacacionesPersonal(this.user, this.passw).subscribe(respuesta=>{
       console.log(respuesta);
-      this.Vacaciones = respuesta; // Actualiza el array con la propiedad correspondiente
+      this.VacacionesBySupervisor = respuesta; // Actualiza el array con la propiedad correspondiente
   
       // Filtrar los datos según la búsqueda
       this.filterVacaciones();
 
       // Verificar si se debe mostrar los botones de "Aceptar" y "Rechazar"
-      this.btnRechazar = this.Vacaciones.some(row => row.status === 'pendiente');
-      this.btnAceptar = this.Vacaciones.some(row => row.status === 'pendiente');
+      this.btnRechazar = this.VacacionesBySupervisor.some(row => row.status === 'pendiente');
+      this.btnAceptar = this.VacacionesBySupervisor.some(row => row.status === 'pendiente');
   
-      this.totalPages = Math.ceil(this.Vacaciones.length / this.pageSize);
+      this.totalPages = Math.ceil(this.VacacionesBySupervisor.length / this.pageSize);
       this.changePage(1);
     });
   }
@@ -70,7 +70,7 @@ export class ListarReporteGeneralPersonalComponent {
     const searchKeyword = this.formularioDeVacacion.get('searchKeyword')?.value;
   
     if (searchKeyword.trim() !== '') {
-      this.Vacaciones = this.Vacaciones.filter(row =>
+      this.VacacionesBySupervisor = this.VacacionesBySupervisor.filter(row =>
         Object.values(row).some(val =>
           val?.toString().toLowerCase().includes(searchKeyword.toLowerCase())
         )
@@ -80,9 +80,9 @@ export class ListarReporteGeneralPersonalComponent {
       this.precargaVacaciones()
       return;
     }
-   
+  
     // Verificar si no se encontraron resultados
-    if (this.Vacaciones.length === 0) {
+    if (this.VacacionesBySupervisor.length === 0) {
       this.pagedVacaciones = [];
       this.totalPages = 0;
       this.currentPage = 1;
@@ -90,21 +90,22 @@ export class ListarReporteGeneralPersonalComponent {
       return;
     }
   
-    console.log("Vacaciones:", this.Vacaciones);
+    console.log("Vacaciones:", this.VacacionesBySupervisor);
   }
-  
+
   precargaVacaciones(){
-    this.crudService.ObtenerVacacionesPersonalBySupervisor(this.user, this.passw).subscribe(respuesta=>{
+    this.crudService.ObtenerVacacionesPersonal(this.user, this.passw).subscribe(respuesta=>{
       console.log(respuesta);
-      this.Vacaciones = respuesta; // Actualiza el array con la propiedad correspondiente
-      this.totalPages = Math.ceil(this.Vacaciones.length / this.pageSize);
+      this.VacacionesBySupervisor = respuesta; // Actualiza el array con la propiedad correspondiente
+      this.totalPages = Math.ceil(this.VacacionesBySupervisor.length / this.pageSize);
       this.changePage(1);
     });
   }
   
+  
   searchVacaciones(): void {
     this.filterVacaciones();
-    this.totalPages = Math.ceil(this.Vacaciones.length / this.pageSize);
+    this.totalPages = Math.ceil(this.VacacionesBySupervisor.length / this.pageSize);
     this.changePage(1);
   }
 
@@ -114,7 +115,7 @@ export class ListarReporteGeneralPersonalComponent {
     }
 
     this.currentPage = page;
-    this.pagedVacaciones = this.Vacaciones.slice(
+    this.pagedVacaciones = this.VacacionesBySupervisor.slice(
       (page - 1) * this.pageSize,
       page * this.pageSize
     );
@@ -135,7 +136,7 @@ export class ListarReporteGeneralPersonalComponent {
     // Implement sorting logic based on the property 'prop'
     // You can use Array.sort() or a custom sorting function
     console.log("sorte")
-    this.Vacaciones.sort((a, b) => {
+    this.VacacionesBySupervisor.sort((a, b) => {
       if (a[prop] < b[prop]) {
         return -1;
       } else if (a[prop] > b[prop]) {
@@ -158,13 +159,14 @@ export class ListarReporteGeneralPersonalComponent {
     });
   }
 
+
   AceptarRegistro(id:any,iControl:any){
     //console.log(id);    
     var aux = "";
     aux = "Aprobado"
     this.crudService.AceptarSolicitudVacacionBySupervisor(id).subscribe(respuesta=>{
-      console.log("respuesta: ",respuesta) 
-      this.reloadMenuComponent();
+      console.log("respuesta: ",respuesta)
+      this.reloadMenuComponent(); 
       this.getVacaciones();
       this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
         console.log("respuesta15:",respuesta15)
@@ -196,17 +198,13 @@ export class ListarReporteGeneralPersonalComponent {
     
   }
 
+  exportToCSV(){
+    this.exportList.downloadFileSolicitudesVacaciones(this.VacacionesBySupervisor,"Vacaciones");
+  }
+
   reloadMenuComponent() {
     this.router.navigateByUrl('/menu', { skipLocationChange: true }).then(() => {
       window.location.reload();
     });
-  }
-
-  exportToCSV(){
-    this.crudService.ObtenerVacacionesPersonal(this.user, this.passw).subscribe(respuesta=>{
-      //console.log(respuesta);
-      this.Vacaciones=respuesta;
-    });
-    this.exportList.downloadFileSolicitudesVacaciones(this.Vacaciones,"Vacaciones");
   }
 }

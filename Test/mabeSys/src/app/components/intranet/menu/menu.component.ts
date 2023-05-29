@@ -208,7 +208,7 @@ export class MenuComponent {
       console.log("ADMIN")
       if (op as unknown as string == '1'){
         console.log("OPCION:",this.control_vistas.value.statePersonal);
-        this.nombreVentana='REPORTE-GENERAL-VACACIONES-PERSONAL';
+        this.nombreVentana='REPORTE-ADMIN';
       } else if (op as unknown as string == '2'){
         console.log("OPCION:",this.control_vistas.value.statePersonal);
         this.nombreVentana='REPORTE-GENERAL';

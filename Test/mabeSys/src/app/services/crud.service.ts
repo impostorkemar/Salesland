@@ -26,8 +26,8 @@ import { saveAs } from 'file-saver';
 })
 export class CrudService {
 //API:string = 'http://192.168.0.29:8000/';
-//API:string = 'http://192.168.1.38:8000/';
-API:string = 'http://192.168.1.42:8000/';
+API:string = 'http://192.168.1.38:8000/';
+//API:string = 'http://192.168.1.42:8000/';
 //API:string = 'http://181.188.194.242:8000/';
 //API:string = 'http://181.188.194.242:8000/';
 //API:string = 'http://192.168.100.78:8000/';
@@ -343,9 +343,9 @@ resp!:String[];
     return this.clienteHttp.get(this.API+urlAPI+id);
   }
 
-  AgregarVacaciones(id_personal: string, fecha_sol: string, fecha_inicio_vac: string, fecha_fin_vac: string, dias_lab_sol: number, 
-    dias_disp_acu:  number, motivo: any):Observable<any>{
-    console.log("fecha_sol:",fecha_sol);
+  AgregarVacaciones(id_personal: string, fecha_sol: string, fecha_inicio_vac: string, fecha_fin_vac: string,
+     dias_lab_sol: number, dias_disp_acu:  number, motivo: string):Observable<any>{
+    console.log("motivo:",motivo);
     //console.log("vaca_disp:",dias_disp_acu);
     //console.log("saldo_dias:",dias_lab_sol); 
     /*for(const prop in this.getRespen()) {
@@ -355,7 +355,7 @@ resp!:String[];
     var data; 
     data = {"id_personal":id_personal,"fecha_solicitud":fecha_sol ,"fecha_inicio_vacaciones":fecha_inicio_vac, 
     "fecha_fin_vacaciones":fecha_fin_vac,"fecha_respuesta":"", "dias_lab_solicitados":dias_lab_sol,
-    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente","peticion":"aprobacion", "observaciones":"", "motivo": motivo['nombre'] as string}
+    "dias_disponibles_acum":dias_disp_acu,"status":"pendiente","peticion":"aprobacion", "observaciones":"", "motivo": motivo as string}
     console.log("data:",data)
     return this.clienteHttp.post(this.API + urlAPI, data);
     

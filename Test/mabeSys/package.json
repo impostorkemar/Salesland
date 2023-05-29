@@ -13,8 +13,7 @@
     "@angular/animations": "^15.1.1",
     "@angular/cdk": "^15.1.2",
     "@angular/common": "^15.1.1",
-    "@angular/compiler": "^15.1.1",
-    "@angular/core": "^15.1.1",
+    "@angular/core": "^15.2.9",
     "@angular/forms": "^15.1.1",
     "@angular/material": "^15.1.2",
     "@angular/platform-browser": "^15.1.1",
@@ -41,6 +40,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.1.2",
     "@angular/cli": "^15.2.4",
+    "@angular/compiler": "^15.2.0",
     "@angular/compiler-cli": "^15.1.1",
     "@angular/localize": "^15.1.1",
     "@types/file-saver": "^2.0.5",

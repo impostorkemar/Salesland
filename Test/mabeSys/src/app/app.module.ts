@@ -70,6 +70,7 @@ import { FormsModule } from '@angular/forms';
 import { PoliticsComponent } from './components/intranet/politics/politics.component';
 import { PublicidadFooterComponent } from './components/intranet/publicidad-footer/publicidad-footer.component';
 import { HomeInicioComponent } from './components/intranet/home-inicio/home-inicio.component';
+import { ListarAdminComponent } from './components/vacaciones/listar-admin/listar-admin.component';
 
 
 @NgModule({
@@ -126,6 +127,7 @@ import { HomeInicioComponent } from './components/intranet/home-inicio/home-inic
     PoliticsComponent,
     PublicidadFooterComponent,
     HomeInicioComponent,
+    ListarAdminComponent,
     
   ],
   imports: [

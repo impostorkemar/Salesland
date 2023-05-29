@@ -15,6 +15,7 @@ import { AgregarRolpagoComponent } from './components/rol-pagos/agregar-rolpago/
 import { MenuRolpagoComponent } from './components/rol-pagos/menu-rolpago/menu-rolpago.component';
 import { PoliticsComponent } from './components/intranet/politics/politics.component';
 import { PublicidadFooterComponent } from './components/intranet/publicidad-footer/publicidad-footer.component';
+import { ListarAdminComponent } from './components/vacaciones/listar-admin/listar-admin.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},  
@@ -98,6 +99,7 @@ const routes: Routes = [
       role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
     }
   },
+  
 
 
 ];

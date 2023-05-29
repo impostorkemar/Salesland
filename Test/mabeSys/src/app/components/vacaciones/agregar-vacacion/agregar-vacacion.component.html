@@ -59,8 +59,8 @@
             <div class="contenedor-datos">
               <label for="" class="form-label">MOTIVO:</label>
               <select name="motivo" id="motivo" formControlName="motivo" class="form-select"
-                aria-label=".form-select-sm example">
-                <option *ngFor="let motivo of Motivos" [value]="motivo">{{motivo['nombre'].toUpperCase()}}</option>
+                aria-label=".form-select-sm example" (change)="obtenerMotivoSeleccionado($event)">
+                <option *ngFor="let motivo of Motivos" [value]="motivo.nombre">{{motivo.nombre}}</option>
               </select>
 
               <label for="" class="form-label">DÍAS SELECCIONADOS:</label>
