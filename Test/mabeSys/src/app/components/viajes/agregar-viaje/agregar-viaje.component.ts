@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, FormsModule,FormControl, Validators  } from '@angular/forms';
+import {FormGroup, FormBuilder, FormsModule,FormControl, Validators,FormArray   } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
@@ -44,7 +44,10 @@ export class AgregarViajeComponent implements OnInit {
 
   hoveredDate2: NgbDate | null = null;
   fromDate2: NgbDate | null = null;
-  
+  showCalendar1: boolean = false;
+  showCalendar2: boolean = false;  
+  gastos!: FormArray;
+
   constructor(
     private fb: FormBuilder,    
     private crudService:CrudService,
@@ -56,6 +59,8 @@ export class AgregarViajeComponent implements OnInit {
     private route: ActivatedRoute,
     private calendar2: NgbCalendar
   ) {         
+
+    this.gastos = this.fb.array([]);
     
     this.formularioDeViaje = this.fb.group({
       lugar: ['',Validators.required],
@@ -70,8 +75,8 @@ export class AgregarViajeComponent implements OnInit {
       fecha_gasto: ['',Validators.required],   
       moneda: [this.currencies[0],Validators.required],
       cantidad_comprobantes: ['',Validators.required],   
-      importe: ['',Validators.required],   
-
+      importe: ['',Validators.required],
+      gastos: this.fb.array([]), // Add the 'gastos' form control
     });
 
           
@@ -98,7 +103,42 @@ export class AgregarViajeComponent implements OnInit {
     this.crearFechaActual();
     this.cargarDatosInfoPersonal();  
     
-    
+  }
+
+  get_gastos() {
+    return this.formularioDeViaje.get('gastos') as FormArray;
+  }
+
+  agregarFila() {
+    this.gastos.push(
+      this.fb.group({
+        tipo: '',
+        cedula: '',
+        razonSocial: '',
+        numeroDocumento: '',
+        fechaEmision: '',
+        baseImponible: 0,
+        ceroPorciento: 0,
+        iva: 0,
+        servicio10: 0,
+        importeSinFactura: 0
+      })
+    );
+  }
+
+  eliminarFila(index: number) {
+    this.gastos.removeAt(index);
+  }
+
+  calcularTotal(gasto: FormGroup) {
+    // Lógica para calcular el total del gasto
+  }
+
+  toggleCalendar1() {
+    this.showCalendar1 = !this.showCalendar1;
+  }
+  toggleCalendar2() {
+    this.showCalendar2 = !this.showCalendar2;
   }
 
    //RESPONSE
@@ -402,6 +442,7 @@ export class AgregarViajeComponent implements OnInit {
               moneda:this.formularioDeViaje.get('moneda')?.value,
               cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
               importe:this.formularioDeViaje.get('importe')?.value,
+              gastos: this.fb.array([]),
             });
           }else {
             window.confirm("Fallo al cargar la información del personal")
@@ -430,6 +471,7 @@ export class AgregarViajeComponent implements OnInit {
               moneda:this.formularioDeViaje.get('moneda')?.value,
               cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
               importe:this.formularioDeViaje.get('importe')?.value,
+              gastos: this.fb.array([]),
             });
           }else{
             window.confirm("Fallo al cargar la información del personal")
@@ -462,6 +504,7 @@ export class AgregarViajeComponent implements OnInit {
               moneda:this.formularioDeViaje.get('moneda')?.value,
               cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
               importe:this.formularioDeViaje.get('importe')?.value,
+              gastos: this.fb.array([]),
             });
           }else{
             window.confirm("Fallo al cargar la información del personal")
@@ -490,6 +533,7 @@ export class AgregarViajeComponent implements OnInit {
             moneda:this.formularioDeViaje.get('moneda')?.value,
             cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
             importe:this.formularioDeViaje.get('importe')?.value,
+            gastos: this.fb.array([]),
           });
         });
       }  
@@ -513,6 +557,7 @@ export class AgregarViajeComponent implements OnInit {
           moneda:this.formularioDeViaje.get('moneda')?.value,
           cantidad_comprobantes:[''],
           importe:'Ingresa importe total',
+          gastos: this.fb.array([]),
         });
       });    
     }
@@ -591,6 +636,7 @@ export class AgregarViajeComponent implements OnInit {
         moneda:this.formularioDeViaje.get('moneda')?.value,
         cantidad_comprobantes:0,
         importe:this.formularioDeViaje.get('importe')?.value,
+        gastos: this.fb.array([]),
       });
       this.btnIngresar = true;
       event.target.value = ''; // reset the file input
@@ -608,7 +654,8 @@ export class AgregarViajeComponent implements OnInit {
         fecha_gasto:this.formularioDeViaje.get('fecha_gasto')?.value,
         moneda:this.formularioDeViaje.get('moneda')?.value,
         cantidad_comprobantes:i as unknown as string,
-        importe:this.formularioDeViaje.get('importe')?.value,            
+        importe:this.formularioDeViaje.get('importe')?.value,     
+        gastos: this.fb.array([]),      
       });
       this.file = zip;
       this.btnIngresar = false;      
@@ -647,7 +694,10 @@ export class AgregarViajeComponent implements OnInit {
           viaje1.fecha_gasto = this.formularioDeViaje.get('fecha_gasto')?.value;
           viaje1.moneda = this.formularioDeViaje.get('moneda')?.value;
           viaje1.cantidad_comprobantes = this.formularioDeViaje.get('cantidad_comprobantes')?.value;
-          viaje1.importe = this.formularioDeViaje.get('importe')?.value; 
+          viaje1.importe = this.formularioDeViaje.get('importe')?.value;
+          viaje1.status = 'pendiente'; 
+          viaje1.peticion = 'aprobacion'; 
+          viaje1.motivo = ''; 
         if(window.confirm("Desea agregar este viaje a reembolso:\n\tLugar:"
         +viaje1.lugar+"\n\tFecha Reembolso:"+viaje1.fecha_reembolso+"\n\tFecha_viaje_inicio:"+viaje1.fecha_viaje_inicio
         +"\n\tFecha_viaje_fin:"+viaje1.fecha_viaje_fin+"\n\tDuracion:"+viaje1.duracion+"\n\tPunto_partida:"+viaje1.punto_partida

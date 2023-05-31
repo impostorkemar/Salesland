@@ -1047,7 +1047,7 @@ resp!:String[];
       return this.clienteHttp.get(this.API +urlAPI);
     }
     AgregarViaje(viaje : Viaje):Observable<any>{   
-      console.log("viaje",viaje);
+      console.log("viaje:\n",viaje);
       var urlAPI="viaje/";
       //console.log("URL=",this.API +urlAPI);
       return this.postData(viaje,urlAPI)
