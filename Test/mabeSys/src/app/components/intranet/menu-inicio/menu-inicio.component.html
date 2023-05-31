@@ -1,27 +1,25 @@
-<nav>
+<!-- <nav>
   <ul>
     <li class="li-r" ><img class="logo-image" routerLink="/inicio" href="#" src="./assets/salesland-nf.png" alt="Logo Salesland"></li>
-    <!-- <li class="li-r">
-      <h2>PORTAL ECUADOR</h2>
-    </li> -->
-    <div class="card-align menu-fix">
-      <div class="dropdown">
-        <button class="dropbtn">
-          <span class="hamburger-icon"></span>
-        </button>
-        <div class="dropdown-content">
-          <a href="#">Opción 1</a>
-          <a href="#">Opción 2</a>
-          <a href="#">Opción 3</a>
+    <li class="li-r">
+      <div class="card-align menu-fix">
+        <div class="dropdown">
+          <button class="dropbtn">
+            <span class="hamburger-icon"></span>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Opción 1</a>
+            <a href="#">Opción 2</a>
+            <a href="#">Opción 3</a>
+          </div>
         </div>
-      </div>
-    </div>
+      </div>  
+    </li>
     <li class="li-r">
       <div class="avatar-container">
         <div class="avatar">
           <img src="./assets/avatar.svg" alt="">
         </div>
-
         <h6>HOLA,<span id="lastname_usuario">{{ control_vistas.get('lastname_usuario')?.value.toUpperCase() }}</span>
         </h6>
         <div class="raw-l">
@@ -29,10 +27,32 @@
           <a *ngIf="chargeLoginvalue" class="log-a" routerLink="/login" href="#">Ingresar</a>
         </div>
       </div>
-      <!-- <p>{{ control_vistas.get('cedula')?.value }}</p>
-      <p>{{ control_vistas.get('cuenta')?.value }}</p>
-      <p>{{ control_vistas.get('cargo')?.value }}</p> -->
     </li>
   </ul>
+</nav> -->
 
+<nav>
+  <div class="logo-section">
+    <img class="logo-image" routerLink="/inicio" href="#" src="./assets/salesland-nf.png" alt="Logo Salesland">
+  </div>
+  <div class="profile-section">
+    <div class="avatar-container">
+      <div class="avatar" (click)="toggleProfileMenu()">
+        <img src="./assets/avatar.svg" alt="">
+      </div>      
+      <h6>HOLA,<span id="lastname_usuario">{{ control_vistas.get('lastname_usuario')?.value.toUpperCase() }}</span></h6>
+      <div class="dropdown-content" [hidden]="!isProfileMenuOpen">
+        <p>{{ control_vistas.get('cargo')?.value.toUpperCase() }}</p>
+        <hr>
+        <p>{{ control_vistas.get('cedula')?.value.toUpperCase() }}</p>
+        <hr>
+        <p>{{ control_vistas.get('cuenta')?.value.toUpperCase() }}</p>
+        <hr>
+        <p>{{ fechaActualizada }}</p>
+        <hr>
+        <a *ngIf="chargeLogoutvalue" class="log-a" (click)="logout()" routerLink="/home" href="#">Salir</a>
+        <a *ngIf="chargeLoginvalue" class="log-a" routerLink="/login" href="#">Ingresar</a>
+      </div>
+    </div>
+  </div>
 </nav>

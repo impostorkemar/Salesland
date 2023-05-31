@@ -72,9 +72,30 @@
   border-color: #079292;
 }
 
+.contenedor-principal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
 
-
+.contenedor-general {
+  margin-top: 250px; /* Ajusta el valor según la altura del menú */
+  /* Otros estilos para el contenedor general */
+}
 /* Media query para pantallas más pequeñas */
+
+
+.table-responsive  {
+  background-color: #fff;
+  border-bottom: none;
+}
+
+.table th td tbody thead tr{
+  border: none;
+}
+
 @media (max-width: 475px) {
   .contenedor-general {
     padding-top: 120px;
