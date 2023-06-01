@@ -12,4 +12,8 @@ export class Viaje{
   moneda!: String;
   cantidad_comprobantes!: String;
   importe!: String;
+  status!: String;
+  peticion!: String;
+  motivo!: String;
+
 }

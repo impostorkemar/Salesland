@@ -16,6 +16,7 @@ import { MenuRolpagoComponent } from './components/rol-pagos/menu-rolpago/menu-r
 import { PoliticsComponent } from './components/intranet/politics/politics.component';
 import { PublicidadFooterComponent } from './components/intranet/publicidad-footer/publicidad-footer.component';
 import { ListarAdminComponent } from './components/vacaciones/listar-admin/listar-admin.component';
+import { AppModule } from './app.module';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},  

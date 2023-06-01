@@ -52,47 +52,60 @@
     <h2>
       SOLICITUD DE VACACIÓN
     </h2>
-    <div class="table-responsive">
-      <table class="table ">
-        <tbody>
-          <tr>
-            <div class="contenedor-datos">
-              <label for="" class="form-label">MOTIVO:</label>
-              <select name="motivo" id="motivo" formControlName="motivo" class="form-select"
-                aria-label=".form-select-sm example" (change)="obtenerMotivoSeleccionado($event)">
-                <option *ngFor="let motivo of Motivos" [value]="motivo.nombre">{{motivo.nombre}}</option>
-              </select>
+    <div class="container">            
+      <div class="col">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <div class="contenedor-datos">
+                  <label for="" class="form-label">MOTIVO:</label>
+                  <select name="motivo" id="motivo" formControlName="motivo" class="form-select"
+                    aria-label=".form-select-sm example" (change)="obtenerMotivoSeleccionado($event)">
+                    <option *ngFor="let motivo of Motivos; let i = index" [value]="motivo.nombre" [selected]="i === 0">{{motivo.nombre}}</option>
+                  </select>
 
-              <label for="" class="form-label">DÍAS SELECCIONADOS:</label>
-              <input type="text" class="form-control input-line" name="dias_seleccionados"
-                formControlName="dias_seleccionados" id="dias_seleccionados" aria-describedby="helpId" placeholder="0">
+                  <label for="" class="form-label">DÍAS SELECCIONADOS:</label>
+                  <input type="text" class="form-control input-line" name="dias_seleccionados"
+                    formControlName="dias_seleccionados" id="dias_seleccionados" aria-describedby="helpId"
+                    placeholder="0">
 
-              <label for="" class="form-label">FECHA INICIO:</label>
-              <input type="text" class="form-control input-line" name="lbl_inicio" formControlName="lbl_inicio"
-                id="lbl_inicio" aria-describedby="helpId" placeholder="0">
+                  <label for="" class="form-label">FECHA INICIO:</label>
+                  <input type="text" class="form-control input-line" name="lbl_inicio" formControlName="lbl_inicio"
+                    id="lbl_inicio" aria-describedby="helpId" placeholder="0">
 
-              <label for="" class="form-label">FECHA FIN:</label>
-              <input type="text" class="form-control input-line" name="lbl_fin" formControlName="lbl_fin" id="lbl_fin"
-                aria-describedby="helpId" placeholder="0">
-            </div>
-          </tr>
-          <tr>
-            <div class="contenedor-calendario">
-              <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
-                [dayTemplate]="t" outsideDays="hidden" [markDisabled]="esFinDeSemana">
-              </ngb-datepicker>
-              <ng-template #t let-date let-focused="focused">
-                <span class="custom-day" [class.weekend]="esFinDeSemana(date)" [class.focused]="focused"
-                  [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)"
-                  (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
-                  {{ date.day }}
-                </span>
-              </ng-template>
-            </div>
-          </tr>
-        </tbody>
-      </table>
+                  <label for="" class="form-label">FECHA FIN:</label>
+                  <input type="text" class="form-control input-line" name="lbl_fin" formControlName="lbl_fin"
+                    id="lbl_fin" aria-describedby="helpId" placeholder="0">
+                </div>
+              </tr>
+              <tr>
+                <div class="row">
+                  <div class="col">
+                    <i class="fas fa-calendar" (click)="toggleCalendar()"></i>
+                  </div>
+                </div>
+                <div class="row" *ngIf="showCalendar">
+                  <div class="contenedor-calendario">
+                    <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection($event)"
+                      [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [markDisabled]="esFinDeSemana">
+                    </ngb-datepicker>
+                    <ng-template #t let-date let-focused="focused">
+                      <span class="custom-day" [class.weekend]="esFinDeSemana(date)" [class.focused]="focused"
+                        [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)"
+                        (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+                        {{ date.day }}
+                      </span>
+                    </ng-template>
+                  </div>
+                </div>                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+    
     <div class="btn-group" role="group" aria-label="Button group name">
       <button type="submit" class="btn" [disabled]="btnIngresar">AGREGAR</button>
     </div>

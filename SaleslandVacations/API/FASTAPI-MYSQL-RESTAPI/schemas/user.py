@@ -118,6 +118,10 @@ class Viaje(BaseModel):
     moneda: str
     cantidad_comprobantes: int
     importe: float
+    status: str
+    peticion: str    
+    motivo: str
+
 
 class Comprobante(BaseModel):
     id_comprobante: Optional[int]

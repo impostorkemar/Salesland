@@ -21,7 +21,7 @@ import { RegistrarUsuarioComponent } from './components/modelBaseViews/usuario/r
 import { RecuperarPasswordComponent } from './components/verificaciones/recuperar-password/recuperar-password.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { LoginComponent } from './components/intranet/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { IngresarVentaComponent } from './components/ventasMABE/ingresar-venta/ingresar-venta.component';
 import { MenuComponent } from './components/intranet/menu/menu.component';
 import { RegistrarPuntoVentaComponent } from './components/ventasMABE/registrar-punto-venta/registrar-punto-venta.component';
@@ -50,7 +50,6 @@ import { AgregarExperienciaLaboralComponent } from './components/modelBaseViews/
 import { EditarExperienciaLaboralComponent } from './components/modelBaseViews/experiencias_laborales/editar-experiencia-laboral/editar-experiencia-laboral.component';
 import { ListarVacacionesComponent } from './components/vacaciones/listar-vacaciones/listar-vacaciones.component';
 import { AgregarVacacionComponent } from './components/vacaciones/agregar-vacacion/agregar-vacacion.component';
-import { ListarReporteGeneralPersonalComponent } from './components/vacaciones/listar-reporte-general-personal/listar-reporte-general-personal.component';
 import { DatepickerRangeTsComponent } from './components/calendar/datepicker-range/datepicker-range.ts/datepicker-range.ts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones/listar-reporte-general-supervisor/listar-reporte-general-supervisor.component';
@@ -66,7 +65,6 @@ import { MenuViajesComponent } from './components/viajes/menu-viajes/menu-viajes
 import { MenuRolpagoComponent } from './components/rol-pagos/menu-rolpago/menu-rolpago.component';
 import { AgregarRolpagoComponent } from './components/rol-pagos/agregar-rolpago/agregar-rolpago.component';
 import { ListarviajesReporteGeneralPersonalComponent } from './components/viajes/listarviajes-reporte-general-personal/listarviajes-reporte-general-personal.component';
-import { FormsModule } from '@angular/forms';
 import { PoliticsComponent } from './components/intranet/politics/politics.component';
 import { PublicidadFooterComponent } from './components/intranet/publicidad-footer/publicidad-footer.component';
 import { HomeInicioComponent } from './components/intranet/home-inicio/home-inicio.component';
@@ -109,7 +107,6 @@ import { ListarAdminComponent } from './components/vacaciones/listar-admin/lista
     EditarExperienciaLaboralComponent,    
     ListarVacacionesComponent,
     AgregarVacacionComponent,
-    ListarReporteGeneralPersonalComponent,
     DatepickerRangeTsComponent,
     ListarReporteGeneralSupervisorComponent,
     ReporteGeneralComponent,

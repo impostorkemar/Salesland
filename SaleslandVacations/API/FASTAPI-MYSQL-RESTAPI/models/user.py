@@ -111,7 +111,10 @@ viajes = Table("viaje", meta,
     Column("fecha_gasto", String(255)),
     Column("moneda", String(255)),
     Column("cantidad_comprobantes", Numeric),
-    Column("importe", Numeric),    
+    Column("importe", Numeric),  
+    Column("status", String(255)),
+    Column("peticion", String(255)),    
+    Column("motivo", String(255)),  
 )
 
 comprobantes = Table("comprobante", meta, 

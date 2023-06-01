@@ -310,9 +310,10 @@ def get_viaje():
 def create_viaje(viaje: Viaje):
     conn = engine.connect()
     #password = f.encrypt(usuario.password.encode("utf-8"))
-    sql = "INSERT INTO `viaje`(`id_personal`, `lugar`, `fecha_reembolso`, `fecha_viaje_inicio`, `fecha_viaje_fin`, `duracion`, `punto_partida`, `punto_destino`, `fecha_gasto`, `moneda`, `cantidad_comprobantes`, `importe`) VALUES"
+    sql = "INSERT INTO `viaje`(`id_personal`, `lugar`, `fecha_reembolso`, `fecha_viaje_inicio`, `fecha_viaje_fin`, `duracion`, `punto_partida`, `punto_destino`, `fecha_gasto`, `moneda`, `cantidad_comprobantes`, `importe`, `status`, `peticion`, `motivo`) VALUES"
     datos = (viaje.id_personal,viaje.lugar, viaje.fecha_reembolso, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin,viaje.duracion,
-             viaje.punto_partida,viaje.punto_destino,viaje.fecha_gasto,viaje.moneda,viaje.cantidad_comprobantes,viaje.importe) 
+             viaje.punto_partida,viaje.punto_destino,viaje.fecha_gasto,viaje.moneda,viaje.cantidad_comprobantes,viaje.importe,
+             viaje.status,viaje.peticion,viaje.motivo) 
     sql = sql + str(datos)
     print(sql)
     result = conn.execute(sql)
@@ -332,7 +333,7 @@ def delete_viaje(id: str):
 @user.put("/viaje/{id}",response_model=Viaje, tags=["viaje"])
 def update_viaje(id: str, viaje: Viaje):   
     conn = engine.connect()
-    sql="UPDATE `viaje` SET`id_personal`='"+str(viaje.id_personal)+"',`lugar`='"+str(viaje.lugar)+"',`fecha_reembolso`='"+str(viaje.fecha_reembolso)+"',`fecha_viaje_inicio`='"+str(viaje.fecha_viaje_inicio)+"',`fecha_viaje_fin`='"+str(viaje.fecha_viaje_fin)+"',`duracion`='"+str(viaje.duracion)+"',`punto_partida`='"+str(viaje.punto_partida)+"',`punto_destino`='"+str(viaje.punto_destino)+"',`fecha_gasto`='"+str(viaje.fecha_gasto)+"',`moneda`='"+str(viaje.moneda)+"',`cantidad_comprobantes`='"+str(viaje.cantidad_comprobantes)+"',`importe`='"+str(viaje.importe)+"' WHERE `id_viaje` = '"+str(id)+"';" 
+    sql="UPDATE `viaje` SET`id_personal`='"+str(viaje.id_personal)+"',`lugar`='"+str(viaje.lugar)+"',`fecha_reembolso`='"+str(viaje.fecha_reembolso)+"',`fecha_viaje_inicio`='"+str(viaje.fecha_viaje_inicio)+"',`fecha_viaje_fin`='"+str(viaje.fecha_viaje_fin)+"',`duracion`='"+str(viaje.duracion)+"',`punto_partida`='"+str(viaje.punto_partida)+"',`punto_destino`='"+str(viaje.punto_destino)+"',`fecha_gasto`='"+str(viaje.fecha_gasto)+"',`moneda`='"+str(viaje.moneda)+"',`cantidad_comprobantes`='"+str(viaje.cantidad_comprobantes)+"',`importe`='"+str(viaje.importe)+"',`status`='"+str(viaje.status)+"',`peticion`='"+str(viaje.peticion)+"',`motivo`='"+str(viaje.motivo)+"' WHERE `id_viaje` = '"+str(id)+"';" 
     conn.execute(sql)
     return get_viaje(id)
 
@@ -340,7 +341,7 @@ def update_viaje(id: str, viaje: Viaje):
 def get_dataHistoricaViajePersonabyUserAndPass(user: str, passw:str): 
     print("user:",user,"\passw:",passw)
     conn = engine.connect()
-    sql="SELECT viaje.id_viaje, viaje.lugar, viaje.fecha_reembolso,candidato.nombre, candidato.cedula, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe FROM viaje, personal,candidato, usuario WHERE candidato.cedula = personal.cedula AND viaje.id_personal = personal.id_personal AND personal.cedula = usuario.cedula AND viaje.id_personal = (SELECT personal.id_personal FROM personal WHERE personal.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"'));"
+    sql="SELECT viaje.id_viaje, viaje.lugar, viaje.fecha_reembolso,candidato.nombre, candidato.cedula, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe, viaje.status, viaje.peticion, viaje.motivo FROM viaje, personal,candidato, usuario WHERE candidato.cedula = personal.cedula AND viaje.id_personal = personal.id_personal AND personal.cedula = usuario.cedula AND viaje.id_personal = (SELECT personal.id_personal FROM personal WHERE personal.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"'));"
     print(sql)
     return conn.execute(sql).fetchall()
 

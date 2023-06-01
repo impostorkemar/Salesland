@@ -59,13 +59,13 @@
                     <div class="mb-3">
                       <label for="" class="form-label">IMPORTE TOTAL</label>
                       <input type="text inputRight" class="form-control" name="importe" formControlName="importe"
-                        id="importe" aria-describedby="importe" placeholder="$0.00" required>
+                        id="importe" aria-describedby="importe" placeholder="0.00" required>
                       <label for="" class="form-label">Valor total incluido IVA</label>
                     </div>
                   </div>
                 </TD>
                 <TD>
-                  <div class="card-body etiqueta">
+                  <div *ngIf="false" class="card-body etiqueta">
                     <div class="mb-3">
                       <label for="moneda" class="form-label">MONEDA</label>
                       <select name="moneda" id="moneda" formControlName="moneda"
@@ -76,6 +76,16 @@
                     </div>
                   </div>
                 </TD>
+                <td colspan="1">
+                  <div class="card-body etiqueta">
+                    <div class="mb-3">
+                      <label for="" class="form-label">Nro. COMPROBANTES SELECCIONADOS</label>
+                      <input type="text" class="form-control inputRight" name="cantidad_comprobantes"
+                        formControlName="cantidad_comprobantes" id="cantidad_comprobantes" aria-describedby="helpId"
+                        placeholder="0">
+                    </div>
+                  </div>
+                </td>
                 <td colspan="1">
                   <div class="card-body etiqueta">
                     <label for="" class="form-label">AGREGAR COMPROBANTES</label>
@@ -92,16 +102,7 @@
                     </div>
                   </div>
                 </td>
-                <td colspan="1">
-                  <div class="card-body etiqueta">
-                    <div class="mb-3">
-                      <label for="" class="form-label">Nro. COMPROBANTES SELECCIONADOS</label>
-                      <input type="text" class="form-control inputRight" name="cantidad_comprobantes"
-                        formControlName="cantidad_comprobantes" id="cantidad_comprobantes" aria-describedby="helpId"
-                        placeholder="0">
-                    </div>
-                  </div>
-                </td>
+                
               </tr>
               <!-- <tr>
               <td colspan="4">
@@ -156,10 +157,16 @@
                     <input type="text" class="form-control" name="fecha_gasto" formControlName="fecha_gasto"
                       id="fecha_gasto" aria-describedby="helpId" placeholder="0">
                   </div>
+                  <div class="row">
+                    <div class="col">
+                      <i class="fas fa-calendar" (click)="toggleCalendar1()"></i>
+                    </div>
+                  </div>
                 </div>
               </td>
               <td>
-                <ngb-datepicker class="text etiqueta" #dp1 (dateSelect)="onDateSelection2($event)" [displayMonths]="1"
+                <div class="row" *ngIf="showCalendar1">
+                  <ngb-datepicker class="text etiqueta" #dp1 (dateSelect)="onDateSelection2($event)" [displayMonths]="1"
                   [dayTemplate]="dateTemplate" outsideDays="hidden">
                 </ngb-datepicker>
                 <ng-template #dateTemplate let-date2 let-focused2="focused2">
@@ -169,6 +176,8 @@
                     {{ date2.day }}
                   </span>
                 </ng-template>
+                </div>
+                
               </td>
               <td>
                 <div class="mb-3 etiqueta">
@@ -186,9 +195,15 @@
                   <input type="text" class="form-control" name="fecha_viaje_fin" formControlName="fecha_viaje_fin"
                     id="fecha_viaje_fin " aria-describedby="helpId" placeholder="0">
                 </div>
+                <div class="row">
+                  <div class="col">
+                    <i class="fas fa-calendar" (click)="toggleCalendar2()"></i>
+                  </div>
+                </div>
               </td>
               <td>
-                <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                <div class="row" *ngIf="showCalendar2">
+                  <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
                   [dayTemplate]="t" outsideDays="hidden">
                 </ngb-datepicker>
                 <ng-template #t let-date let-focused="focused">
@@ -198,6 +213,8 @@
                     {{ date.day }}
                   </span>
                 </ng-template>
+                </div>
+                
               </td>
             </tr>
             <tr>
@@ -210,6 +227,45 @@
             </tr>
           </table>
         </div>
+      </div>
+      <div class="add-datos">
+        <table id="tabla-gastos" class="table">
+          <thead>
+            <tr>
+              <th>Tipo de Gasto</th>
+              <th>Cédula</th>
+              <th>Razón Social</th>
+              <th>Número de Documento</th>
+              <th>Fecha de Emisión</th>
+              <th>Base Imponible</th>
+              <th>0% Base Imponible</th>
+              <th>IVA</th>
+              <th>Servicio 10%</th>
+              <th>Importe sin Factura</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let gasto of gastos.controls; let i = index" [formGroupName]="i">
+              <td><input type="text" formControlName="tipo"></td>
+              <td><input type="text" formControlName="cedula"></td>
+              <td><input type="text" formControlName="razonSocial"></td>
+              <td><input type="text" formControlName="numeroDocumento"></td>
+              <td><input type="date" formControlName="fechaEmision"></td>
+              <td><input type="number" formControlName="baseImponible"></td>
+              <td><input type="number" formControlName="ceroPorciento"></td>
+              <td><input type="number" formControlName="iva"></td>
+              <td><input type="number" formControlName="servicio10"></td>
+              <td><input type="number" formControlName="importeSinFactura"></td>
+              <td>{{ calcularTotal(gasto.value) }}</td>
+              <td>
+                <button type="button" class="btn btn-danger" (click)="eliminarFila(i)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="btn btn-primary" (click)="agregarFila()">Agregar</button>
       </div>
     </div>
   </form>

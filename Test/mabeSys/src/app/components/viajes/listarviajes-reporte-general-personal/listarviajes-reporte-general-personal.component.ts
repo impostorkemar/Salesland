@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder,FormGroup } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { ExportListService } from 'src/app/services/export-list.service';
 
@@ -16,6 +16,7 @@ export class ListarviajesReporteGeneralPersonalComponent {
   pP: number = 1;  
   totalP: number = 0;
   consults:any;
+  
 
   constructor(
     private crudService:CrudService,
@@ -36,7 +37,8 @@ export class ListarviajesReporteGeneralPersonalComponent {
       this.Viaje=respuesta;
     });    
   }  
-  
+
+   
   exportToCSV(){
     this.crudService.ObtenerViajesPersonal(this.user,this.passw).subscribe(respuesta=>{
       //console.log(respuesta);
@@ -44,6 +46,8 @@ export class ListarviajesReporteGeneralPersonalComponent {
     });
     this.exportList.downloadFileSolicitudesViaje(this.Viaje,"Viajes");
   }
+
+  
 
   getData(){
     this.crudService.ObtenerViajesPersonal(this.user,this.passw).subscribe((respuesta:any)=>{

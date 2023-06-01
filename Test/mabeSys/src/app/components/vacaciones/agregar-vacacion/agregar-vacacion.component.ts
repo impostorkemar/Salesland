@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, FormsModule } from '@angular/forms';
+import { FormGroup,FormBuilder, FormsModule } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
@@ -39,6 +39,7 @@ export class AgregarVacacionComponent {
   fechaSeleccionada!:any;
   Motivos!:any;
   seleccionMotivo !:any;
+  showCalendar: boolean = false;
 
   constructor(
     public formulario:FormBuilder,
@@ -87,6 +88,10 @@ export class AgregarVacacionComponent {
     this.formularioDeVacacion.controls['lbl_fin'].disable();
     this.precargarDias();  
     
+  }
+
+  toggleCalendar() {
+    this.showCalendar = !this.showCalendar;
   }
 
    //RESPONSE
@@ -157,7 +162,7 @@ export class AgregarVacacionComponent {
                         dias_seleccionados: 0, 
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
-                        motivo:this.Motivos[0] as string
+                        motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']
                       });
                     }else if (totalVacasTomadas == null && totalVacasPendientes != null){
                       this.formularioDeVacacion.setValue({
@@ -168,7 +173,7 @@ export class AgregarVacacionComponent {
                         dias_seleccionados: 0, 
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
-                        motivo:this.Motivos[0] as string
+                        motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']
                       });
                     
                     }else if (totalVacasTomadas != null && totalVacasPendientes == null){ // VACA PREV PEND
@@ -180,7 +185,7 @@ export class AgregarVacacionComponent {
                         dias_seleccionados: 0, 
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
-                        motivo:this.Motivos[0] as string                        
+                        motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']                       
                       });                                       
                     }else{
                       if (this.toDate){
@@ -192,7 +197,7 @@ export class AgregarVacacionComponent {
                           saldo_dias: antiguedadCal-totalVacasTomadas-totalVacasPendientes, //vacaciones saldo                                                  
                           lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                           lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
-                          motivo:this.Motivos[0] as string
+                          motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']
                         });
                         this.btnIngresar = false
                       }else{
@@ -219,6 +224,8 @@ export class AgregarVacacionComponent {
        
       let key4: string[]=[];
       let Value4: string[]=[]; 
+
+      
      
       //BUSQUEDA ID PERSONAL
       
