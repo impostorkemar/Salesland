@@ -15,6 +15,7 @@ export class MenuInicioComponent {
   chargeLogoutvalue!:Boolean;
   control_vistas!: FormGroup;
   fechaActualizada!: string;
+  isProfileMenuOpen: boolean = false; // Nueva propiedad agregada
 
   constructor(
     private fb: FormBuilder,
@@ -114,6 +115,9 @@ export class MenuInicioComponent {
       });
   }
   
-  
+  toggleProfileMenu(): void {
+    this.isProfileMenuOpen = !this.isProfileMenuOpen;
+    console.log("evento si esta clickeando")
+  }
 
 }

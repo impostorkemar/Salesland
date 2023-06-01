@@ -1,80 +1,80 @@
-<app-menu-inicio></app-menu-inicio>
+<div class="contenedor-principal">
+    <app-menu-inicio></app-menu-inicio>
+    <div class="contenedor-botones">
+        <a routerLink="/inicio" href="#">INICIO</a>
+        <div id="1" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
+            <button *ngIf="rolVacations" (click)="menuVacaciones2(1)" type="button" class="btn">INGRESO</button>
+            <button *ngIf="rolVacations" (click)="menuVacaciones2(2)" type="button" class="btn">SOLICITUDES</button>
+            <button *ngIf="rolPersonal" (click)="menuPersonal2(1)" type="button" class="btn">APROBACIÓN
+            </button>
+            <button *ngIf="false" (click)="menuPersonal2(2)" type="button" class="btn">REPORTE
+                GRÁFICO</button>
+        </div>
+
+        <div id="3" *ngIf="false" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
+            <button *ngIf="rolReportes" (click)="menuReportes2(1)" type="button"
+                class="btn btn-primary">USUARIO</button>
+            <button *ngIf="rolReportes" (click)="menuReportes2(2)" type="button"
+                class="btn btn-primary">CANDIDATO</button>
+            <button *ngIf="rolReportes" (click)="menuReportes2(3)" type="button" class="btn btn-primary">CARGO</button>
+            <button *ngIf="rolReportes" (click)="menuReportes2(4)" type="button" class="btn btn-primary">CENTRO
+                COSTO</button>
+            <button *ngIf="rolReportes" (click)="menuReportes2(5)" type="button"
+                class="btn btn-primary">CONTRATO</button>
+            <button *ngIf="rolReportes" (click)="menuReportes2(6)" type="button" class="btn btn-primary">EXPERIENCIA
+                LABORAL</button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div *ngIf="false" class="card-body etiqueta">
+                            <div class="mb-3">
+                                <label for="" class="form-label">CALCULO VACACIONES</label>
+                                <input type="text" class="form-control" name="vaca_disp" formControlName="vaca_disp"
+                                    id="vaca_disp" aria-describedby="helpId" placeholder="15">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="mb-3">
+                            <label for="" class="form-label">DÍAS DISPONIBLES</label>
+                            <input type="text" class="form-control" name="saldo_dias" formControlName="saldo_dias"
+                                id="saldo_dias" aria-describedby="helpId" placeholder="0">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card-body etiqueta">
+                            <div class="mb-3">
+                                <label for="" class="form-label">DÍAS TOMADOS</label>
+                                <input type="text" class="form-control" name="dias_tomados"
+                                    formControlName="dias_tomados" id="dias_tomados" aria-describedby="helpId"
+                                    placeholder="0">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card-body etiqueta">
+                            <div class="mb-3">
+                                <label for="" class="form-label">DÍAS EN SOLICITUDES PENDIENTES</label>
+                                <input type="text" class="form-control" name="dias_solicitudes_pen"
+                                    formControlName="dias_solicitudes_pen" id="dias_solicitudes_pen"
+                                    aria-describedby="helpId" placeholder="0">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <div class="contenedor-general">
     <form [formGroup]="control_vistas">
-        <div class="contenedor-botones">
-            <a routerLink="/inicio" href="#">INICIO</a>
-            <div id="1" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
-                <button *ngIf="rolVacations" (click)="menuVacaciones2(1)" type="button" class="btn">INGRESO</button>
-                <button *ngIf="rolVacations" (click)="menuVacaciones2(2)" type="button" class="btn">SOLICITUDES</button>
-                <button *ngIf="rolPersonal" (click)="menuPersonal2(1)" type="button" class="btn">APROBACIÓN
-                </button>
-                <button *ngIf="false" (click)="menuPersonal2(2)" type="button" class="btn">REPORTE
-                    GRÁFICO</button>
-            </div>
-
-            <div id="3" *ngIf="false" class="btn-group-horizontal" role="group" aria-label="Vertical button group">
-                <button *ngIf="rolReportes" (click)="menuReportes2(1)" type="button"
-                    class="btn btn-primary">USUARIO</button>
-                <button *ngIf="rolReportes" (click)="menuReportes2(2)" type="button"
-                    class="btn btn-primary">CANDIDATO</button>
-                <button *ngIf="rolReportes" (click)="menuReportes2(3)" type="button"
-                    class="btn btn-primary">CARGO</button>
-                <button *ngIf="rolReportes" (click)="menuReportes2(4)" type="button" class="btn btn-primary">CENTRO
-                    COSTO</button>
-                <button *ngIf="rolReportes" (click)="menuReportes2(5)" type="button"
-                    class="btn btn-primary">CONTRATO</button>
-                <button *ngIf="rolReportes" (click)="menuReportes2(6)" type="button" class="btn btn-primary">EXPERIENCIA
-                    LABORAL</button>
-            </div>
-        </div>
-
-
-        <div class="table-responsive table-bordered table-striped ">
-            <table class="table">
-                <thead>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div *ngIf="false" class="card-body etiqueta">
-                                <div class="mb-3">
-                                    <label for="" class="form-label">CALCULO VACACIONES</label>
-                                    <input type="text" class="form-control" name="vaca_disp" formControlName="vaca_disp"
-                                        id="vaca_disp" aria-describedby="helpId" placeholder="15">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="mb-3">
-                                <label for="" class="form-label">DÍAS DISPONIBLES</label>
-                                <input type="text" class="form-control" name="saldo_dias" formControlName="saldo_dias"
-                                    id="saldo_dias" aria-describedby="helpId" placeholder="0">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="card-body etiqueta">
-                                <div class="mb-3">
-                                    <label for="" class="form-label">DÍAS TOMADOS</label>
-                                    <input type="text" class="form-control" name="dias_tomados"
-                                        formControlName="dias_tomados" id="dias_tomados" aria-describedby="helpId"
-                                        placeholder="0">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="card-body etiqueta">
-                                <div class="mb-3">
-                                    <label for="" class="form-label">DÍAS EN SOLICITUDES PENDIENTES</label>
-                                    <input type="text" class="form-control" name="dias_solicitudes_pen"
-                                        formControlName="dias_solicitudes_pen" id="dias_solicitudes_pen"
-                                        aria-describedby="helpId" placeholder="0">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
         <div id="router-outlet">
             <router-outlet></router-outlet>
         </div>
