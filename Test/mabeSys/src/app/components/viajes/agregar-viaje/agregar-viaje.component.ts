@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, FormsModule,FormControl, Validators,FormArray   } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
@@ -27,6 +27,7 @@ export class AgregarViajeComponent implements OnInit {
 	toDate: NgbDate | null = null;  
   cedula!: any;
   formularioDeViaje:FormGroup;
+  formularioGastos:FormGroup;
   btnIngresar: boolean;
   fechaActual!:Date;
   resp!:String[];  
@@ -45,10 +46,10 @@ export class AgregarViajeComponent implements OnInit {
   hoveredDate2: NgbDate | null = null;
   fromDate2: NgbDate | null = null;
   showCalendar1: boolean = false;
-  showCalendar2: boolean = false;  
-  gastos!: FormArray;
+  showCalendar2: boolean = false;   
 
   constructor(
+    private formBuilder: FormBuilder,
     private fb: FormBuilder,    
     private crudService:CrudService,
     private ruteador:Router,
@@ -58,10 +59,8 @@ export class AgregarViajeComponent implements OnInit {
     private router:Router,
     private route: ActivatedRoute,
     private calendar2: NgbCalendar
-  ) {         
-
-    this.gastos = this.fb.array([]);
-    
+  ) {        
+      
     this.formularioDeViaje = this.fb.group({
       lugar: ['',Validators.required],
       fecha_reembolso: ['',Validators.required],
@@ -75,10 +74,12 @@ export class AgregarViajeComponent implements OnInit {
       fecha_gasto: ['',Validators.required],   
       moneda: [this.currencies[0],Validators.required],
       cantidad_comprobantes: ['',Validators.required],   
-      importe: ['',Validators.required],
-      gastos: this.fb.array([]), // Add the 'gastos' form control
+      importe: ['',Validators.required],      
     });
 
+    this.formularioGastos = new FormGroup({
+      gastos: new FormArray([]),
+    }); 
           
     this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
@@ -86,8 +87,6 @@ export class AgregarViajeComponent implements OnInit {
     this.btnIngresar = true;        
     this.user = localStorage.getItem('USER') as string;
     this.passw = localStorage.getItem('PASS') as string;
-   
-   
   }
 
   ngOnInit(): void {
@@ -101,38 +100,84 @@ export class AgregarViajeComponent implements OnInit {
     this.formularioDeViaje.controls['fecha_viaje_fin'].disable();  
     this.formularioDeViaje.controls['fecha_gasto'].disable();  
     this.crearFechaActual();
-    this.cargarDatosInfoPersonal();  
-    
+    this.cargarDatosInfoPersonal();     
   }
 
-  get_gastos() {
-    return this.formularioDeViaje.get('gastos') as FormArray;
+  imprimirGastos() {
+    const gastos = this.formularioGastos.get('gastos') as FormArray;
+    for (let i = 0; i < gastos.length; i++) {
+      const gasto = gastos.at(i) as FormGroup;
+      console.log('Gasto', i + 1);
+      console.log('Tipo:', gasto.get('tipo')?.value);
+      console.log('Cedula:', gasto.get('cedula')?.value);
+      console.log('razon_social:', gasto.get('razon_social')?.value);
+      console.log('n_documento:', gasto.get('n_documento')?.value);
+      console.log('fechaEmision:', gasto.get('fechaEmision')?.value);
+      console.log('base_imponible:', gasto.get('base_imponible')?.value);
+      console.log('cero_base_imponible:', gasto.get('cero_base_imponible')?.value);
+      console.log('iva:', gasto.get('iva')?.value);
+      console.log('servicio10:', gasto.get('servicio10')?.value);
+      console.log('importe_sinFact:', gasto.get('importe_sinFact')?.value);
+      console.log('total:', gasto.get('total')?.value);
+      console.log('-----------------------');
+    }
   }
 
-  agregarFila() {
-    this.gastos.push(
-      this.fb.group({
-        tipo: '',
-        cedula: '',
-        razonSocial: '',
-        numeroDocumento: '',
-        fechaEmision: '',
-        baseImponible: 0,
-        ceroPorciento: 0,
-        iva: 0,
-        servicio10: 0,
-        importeSinFactura: 0
-      })
-    );
+  getGastosControls(): AbstractControl[] {
+    const gastos = this.formularioGastos.get('gastos');
+    if (gastos instanceof FormArray) {
+      return gastos.controls;
+    }
+    return [];
   }
 
-  eliminarFila(index: number) {
-    this.gastos.removeAt(index);
+  get gastos(): FormArray {
+    return this.formularioGastos.get('gastos') as FormArray;
   }
 
-  calcularTotal(gasto: FormGroup) {
-    // Lógica para calcular el total del gasto
+  agregarGasto() {
+    const gastos = this.formularioGastos.get('gastos') as FormArray;
+    gastos.push(new FormGroup({
+      tipo: new FormControl(),
+      cedula: new FormControl(),
+      razon_social: new FormControl(),
+      n_documento: new FormControl(),
+      fechaEmision: new FormControl(),
+      base_imponible: new FormControl(),
+      cero_base_imponible: new FormControl(),
+      iva: new FormControl(),
+      servicio10: new FormControl(),
+      importe_sinFact: new FormControl(),
+      total: new FormControl(),
+    }));
   }
+
+  eliminarGasto(index: number) {
+    const gastos = this.formularioGastos.get('gastos') as FormArray;
+    gastos.removeAt(index);
+  }
+
+  createGastoForm(): FormGroup {
+    return this.formBuilder.group({
+      tipo: [''],
+      cedula: [''],   
+      razon_social: [''],
+      n_documento: [''],
+      fechaEmision: [''],
+      base_imponible: [''],
+      cero_base_imponible: [''],
+      iva: [''],
+      servicio10: [''],
+      importe_sinFact: [''],   
+      total: [''],      
+    });
+  }
+
+  calcularTotal(gasto: FormGroup): number {
+    // Lógica para calcular el total
+    return 0;
+  }
+
 
   toggleCalendar1() {
     this.showCalendar1 = !this.showCalendar1;
@@ -422,30 +467,29 @@ export class AgregarViajeComponent implements OnInit {
       if ( this.fromDate2 != null){
         //console.log("this.fromDate != null && this.toDate != null")        
         this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
-          if(respuesta){
-            //console.log("DATAUSER:",respuesta);
-            var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
-            var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
-            var fecha_v_fin = this.toDate?.year+"-"+this.toDate?.month+"-"+this.toDate?.day as unknown as string
-            var fecha_gasto = this.fromDate2?.year+"-"+this.fromDate2?.month+"-"+this.fromDate2?.day as unknown as string
-            this.formularioDeViaje.setValue({      
-              lugar:'QUITO',
-              fecha_reembolso:this.fechaActualText,
-              nombre:respuesta['nombre'] + respuesta['apellido'],
-              cedula:respuesta['cedula'],
-              fecha_viaje_inicio:fecha_v_in,
-              fecha_viaje_fin:fecha_v_fin,
-              dias_viaje:diferenciaDias,
-              punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
-              punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
-              fecha_gasto:fecha_gasto,
-              moneda:this.formularioDeViaje.get('moneda')?.value,
-              cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
-              importe:this.formularioDeViaje.get('importe')?.value,
-              gastos: this.fb.array([]),
+          if (respuesta) {
+            var diferenciaDias = this.countWorkDay(this.fromDate, this.toDate);
+            var fecha_v_in = `${this.fromDate?.year}-${this.fromDate?.month}-${this.fromDate?.day}`;
+            var fecha_v_fin = `${this.toDate?.year}-${this.toDate?.month}-${this.toDate?.day}`;
+        
+            this.formularioDeViaje.setValue({    
+              lugar: 'QUITO',
+              fecha_reembolso: this.fechaActualText,
+              nombre: respuesta['nombre'] + respuesta['apellido'],
+              cedula: respuesta['cedula'],
+              fecha_viaje_inicio: fecha_v_in,
+              fecha_viaje_fin: fecha_v_fin,
+              dias_viaje: diferenciaDias,
+              punto_partida: this.formularioDeViaje.get('punto_partida')?.value,
+              punto_destino: this.formularioDeViaje.get('punto_destino')?.value,
+              fecha_gasto: 0,
+              moneda: this.formularioDeViaje.get('moneda')?.value,
+              cantidad_comprobantes: this.formularioDeViaje.get('cantidad_comprobantes')?.value,
+              importe: this.formularioDeViaje.get('importe')?.value,
             });
-          }else {
-            window.confirm("Fallo al cargar la información del personal")
+                    
+          } else {
+            window.confirm("Fallo al cargar la información del personal");
           }
          
         });
@@ -453,28 +497,29 @@ export class AgregarViajeComponent implements OnInit {
         //console.log("this.fromDate != null && this.toDate != null")        
         this.crudService.ObtenerDataPersonaByUserAndPass(user,passw).subscribe(respuesta=>{
           //console.log("DATAUSER:",respuesta);
-          if (respuesta){
-            var diferenciaDias = this.countWorkDay(this.fromDate,this.toDate);
-            var fecha_v_in = this.fromDate?.year+"-"+this.fromDate?.month+"-"+this.fromDate?.day as unknown as string
-            var fecha_v_fin = this.toDate?.year+"-"+this.toDate?.month+"-"+this.toDate?.day as unknown as string         
-            this.formularioDeViaje.setValue({      
-              lugar:'QUITO',
-              fecha_reembolso:this.fechaActualText,
-              nombre:respuesta['nombre'] + respuesta['apellido'],
-              cedula:respuesta['cedula'],
-              fecha_viaje_inicio:fecha_v_in,
-              fecha_viaje_fin:fecha_v_fin,
-              dias_viaje:diferenciaDias,
-              punto_partida:this.formularioDeViaje.get('punto_partida')?.value,
-              punto_destino:this.formularioDeViaje.get('punto_destino')?.value,
-              fecha_gasto:0,
-              moneda:this.formularioDeViaje.get('moneda')?.value,
-              cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
-              importe:this.formularioDeViaje.get('importe')?.value,
-              gastos: this.fb.array([]),
-            });
-          }else{
-            window.confirm("Fallo al cargar la información del personal")
+          if (respuesta) {
+            var diferenciaDias = this.countWorkDay(this.fromDate, this.toDate);
+            var fecha_v_in = `${this.fromDate?.year}-${this.fromDate?.month}-${this.fromDate?.day}`;
+            var fecha_v_fin = `${this.toDate?.year}-${this.toDate?.month}-${this.toDate?.day}`;
+        
+            this.formularioDeViaje.setValue({    
+              lugar: 'QUITO',
+              fecha_reembolso: this.fechaActualText,
+              nombre: respuesta['nombre'] + respuesta['apellido'],
+              cedula: respuesta['cedula'],
+              fecha_viaje_inicio: fecha_v_in,
+              fecha_viaje_fin: fecha_v_fin,
+              dias_viaje: diferenciaDias,
+              punto_partida: this.formularioDeViaje.get('punto_partida')?.value,
+              punto_destino: this.formularioDeViaje.get('punto_destino')?.value,
+              fecha_gasto: 0,
+              moneda: this.formularioDeViaje.get('moneda')?.value,
+              cantidad_comprobantes: this.formularioDeViaje.get('cantidad_comprobantes')?.value,
+              importe: this.formularioDeViaje.get('importe')?.value,
+            });        
+            
+          } else {
+            window.confirm("Fallo al cargar la información del personal");
           }
           
         });
@@ -503,8 +548,7 @@ export class AgregarViajeComponent implements OnInit {
               fecha_gasto:fecha_gasto,
               moneda:this.formularioDeViaje.get('moneda')?.value,
               cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
-              importe:this.formularioDeViaje.get('importe')?.value,
-              gastos: this.fb.array([]),
+              importe:this.formularioDeViaje.get('importe')?.value,             
             });
           }else{
             window.confirm("Fallo al cargar la información del personal")
@@ -532,8 +576,7 @@ export class AgregarViajeComponent implements OnInit {
             fecha_gasto:0,
             moneda:this.formularioDeViaje.get('moneda')?.value,
             cantidad_comprobantes:this.formularioDeViaje.get('cantidad_comprobantes')?.value,
-            importe:this.formularioDeViaje.get('importe')?.value,
-            gastos: this.fb.array([]),
+            importe:this.formularioDeViaje.get('importe')?.value,           
           });
         });
       }  
@@ -556,8 +599,7 @@ export class AgregarViajeComponent implements OnInit {
           fecha_gasto:'Escoge fecha de gasto',
           moneda:this.formularioDeViaje.get('moneda')?.value,
           cantidad_comprobantes:[''],
-          importe:'Ingresa importe total',
-          gastos: this.fb.array([]),
+          importe:'Ingresa importe total',         
         });
       });    
     }
@@ -635,8 +677,7 @@ export class AgregarViajeComponent implements OnInit {
         fecha_gasto:this.formularioDeViaje.get('fecha_gasto')?.value,
         moneda:this.formularioDeViaje.get('moneda')?.value,
         cantidad_comprobantes:0,
-        importe:this.formularioDeViaje.get('importe')?.value,
-        gastos: this.fb.array([]),
+        importe:this.formularioDeViaje.get('importe')?.value,       
       });
       this.btnIngresar = true;
       event.target.value = ''; // reset the file input
@@ -654,8 +695,7 @@ export class AgregarViajeComponent implements OnInit {
         fecha_gasto:this.formularioDeViaje.get('fecha_gasto')?.value,
         moneda:this.formularioDeViaje.get('moneda')?.value,
         cantidad_comprobantes:i as unknown as string,
-        importe:this.formularioDeViaje.get('importe')?.value,     
-        gastos: this.fb.array([]),      
+        importe:this.formularioDeViaje.get('importe')?.value,  
       });
       this.file = zip;
       this.btnIngresar = false;      
@@ -720,7 +760,7 @@ export class AgregarViajeComponent implements OnInit {
     });
   }
 
-  downloadExcel() {3
+  downloadExcel() {
     console.log("Entre a download")
     this.crudService.downloadExcelFormatoReembolso().subscribe(blob => {
       saveAs(blob, "Formato Reembolso de Gastos viaje.xlsx");

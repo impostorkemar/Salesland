@@ -228,45 +228,28 @@
           </table>
         </div>
       </div>
-      <div class="add-datos">
-        <table id="tabla-gastos" class="table">
-          <thead>
-            <tr>
-              <th>Tipo de Gasto</th>
-              <th>Cédula</th>
-              <th>Razón Social</th>
-              <th>Número de Documento</th>
-              <th>Fecha de Emisión</th>
-              <th>Base Imponible</th>
-              <th>0% Base Imponible</th>
-              <th>IVA</th>
-              <th>Servicio 10%</th>
-              <th>Importe sin Factura</th>
-              <th>Total</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let gasto of gastos.controls; let i = index" [formGroupName]="i">
-              <td><input type="text" formControlName="tipo"></td>
-              <td><input type="text" formControlName="cedula"></td>
-              <td><input type="text" formControlName="razonSocial"></td>
-              <td><input type="text" formControlName="numeroDocumento"></td>
-              <td><input type="date" formControlName="fechaEmision"></td>
-              <td><input type="number" formControlName="baseImponible"></td>
-              <td><input type="number" formControlName="ceroPorciento"></td>
-              <td><input type="number" formControlName="iva"></td>
-              <td><input type="number" formControlName="servicio10"></td>
-              <td><input type="number" formControlName="importeSinFactura"></td>
-              <td>{{ calcularTotal(gasto.value) }}</td>
-              <td>
-                <button type="button" class="btn btn-danger" (click)="eliminarFila(i)">Eliminar</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <button type="button" class="btn btn-primary" (click)="agregarFila()">Agregar</button>
+    </div>      
+  </form>
+  <form [formGroup]="formularioGastos">
+    <div formArrayName="gastos">
+      <div *ngFor="let gasto of getGastosControls(); let i = index;" [formGroupName]="i">
+        <input formControlName="tipo" placeholder="tipo">
+        <input formControlName="cedula" placeholder="cedula">
+        <input formControlName="razon_social" placeholder="razón social">
+        <input formControlName="n_documento" placeholder="N# documento">
+        <input type="date" formControlName="fechaEmision">
+        <input formControlName="base_imponible" placeholder="Base imponible">
+        <input formControlName="cero_base_imponible" placeholder="0% Base imponible">
+        <input formControlName="iva" placeholder="iva">
+        <input formControlName="servicio10" placeholder="Servicio 10%">
+        <input formControlName="importe_sinFact" placeholder="importe sin facturas">
+        <input formControlName="total" placeholder="Total">
+        <button (click)="eliminarGasto(i)">Eliminar</button>
       </div>
     </div>
+    <button (click)="agregarGasto()">Agregar Gasto</button>
   </form>
+
+  <button (click)="imprimirGastos()">Imprimir Gastos</button>
+  
 </div>

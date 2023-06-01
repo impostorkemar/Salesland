@@ -62,7 +62,7 @@
                   <label for="" class="form-label">MOTIVO:</label>
                   <select name="motivo" id="motivo" formControlName="motivo" class="form-select"
                     aria-label=".form-select-sm example" (change)="obtenerMotivoSeleccionado($event)">
-                    <option *ngFor="let motivo of Motivos; let i = index" [value]="motivo.nombre" [selected]="i === 0">{{motivo.nombre}}</option>
+                    <option *ngFor="let motivo of Motivos; let i = index" [value]="motivo.nombre" >{{motivo.nombre}}</option>
                   </select>
 
                   <label for="" class="form-label">DÍAS SELECCIONADOS:</label>
