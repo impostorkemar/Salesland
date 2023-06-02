@@ -7,7 +7,7 @@ body {
 }
 
 header {
-  background-color: #0080FF;
+  background-color: #045959;
   color: #fff;
   padding: 1rem;
   text-align: center;
@@ -47,15 +47,16 @@ footer {
 .elegant-table {
   border-collapse: collapse;
   width: 100%;
-  background-color: #333;
+  background-color: #045959;
   color: #fff;
 }
 
-.elegant-table th{
+.elegant-table th {
   border: 1px solid #fff;
   padding: 10px;
-  background-color: rgb(49, 62, 135);
+  background-color: #045959;
 }
+
 .elegant-table td {
   border: 1px solid #fff;
   padding: 10px;
@@ -66,31 +67,38 @@ footer {
 }
 
 .elegant-table tr:nth-child(even) {
-  background-color: #444;
+  background-color: #16261C;
 }
 
-.selectStyle{
+.elegant-table tr:hover {
+  background-color: #045959;
+  color: #fff;
+}
+
+.selectStyle {
   background-color: #16261C;
-  color: white;
+  color: #fff;
 }
-.text{
-  color: white;
+
+.text {
+  color: #fff;
 }
+
 .redimension1 {
-  width:500px;
-  height:auto;
+  width: 500px;
+  height: auto;
 }
 
 .redimension2 {
-  max-width:50%;
-  max-height:50%;
+  max-width: 50%;
+  max-height: 50%;
 }
 
-#sect1 { 
-  background-color: #16261C;
-  color: white;
-  background-size:100%;  
-  background-size: cover;  
+#sect1 {
+  background-color: #045959;
+  color: #fff;
+  background-size: 100%;
+  background-size: cover;
 }
 
 .table4 {
@@ -104,23 +112,24 @@ footer {
   background-color: #f2f2f2;
   border: 1px solid #ddd;
   padding: 20px;
-  align-items: center;  
+  align-items: center;
   align-content: center;
   text-align: center;
   vertical-align: middle;
   border: 1px solid #fff;
   padding: 10px;
-  background-color: #333;
+  background-color: #045959;
   color: #fff;
 }
 
 .beneficios5 {
-  background-color: #333;
+  background-color: #045959;
   color: #fff;
   padding: 50px;
 }
 
-.h22, .h33 {
+.h22,
+.h33 {
   color: #fff;
 }
 
