@@ -69,11 +69,7 @@
                   <input type="text" class="form-control input-line" name="dias_seleccionados"
                     formControlName="dias_seleccionados" id="dias_seleccionados" aria-describedby="helpId"
                     placeholder="0">
-                  <div class="input-group-append">
-                    <span class="input-group-text" (click)="openCalendar()">
-                      <i class="fas fa-calendar"></i>
-                    </span>
-                  </div>
+                  
 
                   <label for="" class="form-label">FECHA INICIO:</label>
                   <input type="text" class="form-control input-line" name="lbl_inicio" formControlName="lbl_inicio"
@@ -88,8 +84,8 @@
               <tr>
                 
                 <div class="row">
-                  <div class="contenedor-calendario">
-                    
+                  <div class="contenedor-calendario">  
+                    <i class="fas fa-calendar" (click)="openCalendar()"></i>                                  
                     <ngb-datepicker class="text etiqueta" *ngIf="showCalendar" (dateSelect)="onDateSelection($event)"
                       [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [markDisabled]="esFinDeSemana">
                     </ngb-datepicker>
