@@ -86,5 +86,33 @@ export class MenuBotonesComponent {
     this.showPolitics = !this.showPolitics;
   }
 
+  redirectToPublicidad1() {
+    this.router.navigate(['/publicidad1']); // Reemplaza '/publicidad1' con la ruta correcta para el componente de publicidad1
+  }
+
+  redirectToPublicidad2() {
+    this.router.navigate(['/publicidad2']); // Reemplaza '/publicidad1' con la ruta correcta para el componente de publicidad1
+  }
+
+  redirectToPublicidad3() {
+    this.router.navigate(['/publicidad3']); // Reemplaza '/publicidad1' con la ruta correcta para el componente de publicidad1
+  }
+
+  redirectToPublicidad4() {
+    this.router.navigate(['/publicidad4']); // Reemplaza '/publicidad1' con la ruta correcta para el componente de publicidad1
+  }
+
+  redirectToPublicidad5() {
+    this.router.navigate(['/publicidad5']); // Reemplaza '/publicidad1' con la ruta correcta para el componente de publicidad1
+  }
+
+  redirectToPublicidad6() {
+    this.router.navigate(['/publicidad6']); // Reemplaza '/publicidad1' con la ruta correcta para el componente de publicidad1
+  }
+
+  redirectTotReglamentoInterno() {
+    this.router.navigate(['/politics']); // Reemplaza '/publicidad1' con la ruta correcta para el componente de publicidad1
+  }
+
 
 }

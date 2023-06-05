@@ -23,6 +23,8 @@ import { Publicidad3Component } from './components/intranet/publicidad3/publicid
 import { Publicidad4Component } from './components/intranet/publicidad4/publicidad4.component';
 import { Publicidad5Component } from './components/intranet/publicidad5/publicidad5.component';
 import { Publicidad6Component } from './components/intranet/publicidad6/publicidad6.component';
+import { ReglamentoInternoComponent } from './components/intranet/reglamento-interno/reglamento-interno.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},  
@@ -100,14 +102,54 @@ const routes: Routes = [
       role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
     }
   },
-  {path: 'PublicidadFooter', component: PublicidadFooterComponent,
+  {path: 'publicidad1', component: Publicidad1Component,
     canActivate: [AuthGuard],
     data: {
       role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
     }
   },
-  
-
+  {path: 'publicidad2', component: Publicidad2Component,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
+  {path: 'publicidad3', component: Publicidad3Component,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
+  {path: 'publicidad4', component: Publicidad4Component,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
+  {path: 'publicidad5', component: Publicidad5Component,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
+  {path: 'publicidad6', component: Publicidad6Component,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
+  {path: 'reglamentointerno', component: ReglamentoInternoComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
+  {path: 'politics', component: PoliticsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
 
 ];
 
