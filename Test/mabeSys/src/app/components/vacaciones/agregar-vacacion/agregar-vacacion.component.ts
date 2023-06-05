@@ -1,8 +1,8 @@
-import { Component,ElementRef,HostListener,OnInit, ViewChild } from '@angular/core';
+import { Component,ElementRef,HostListener,OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup,FormBuilder, FormsModule } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { Router,ActivatedRoute } from '@angular/router';
-import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JsonPipe } from '@angular/common';
 import * as moment from 'moment';
 import { TestuserService } from 'src/app/services/testuser.service';
@@ -10,6 +10,8 @@ import { DatePipe, DecimalPipe } from '@angular/common';
 import {formatDate} from '@angular/common';
 import { NONE_TYPE } from '@angular/compiler';
 import { FormControl } from '@angular/forms';
+import { CustomDatepickerI18n } from 'src/app/services/custom-datepicker-i18n';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -41,8 +43,13 @@ export class AgregarVacacionComponent {
   Motivos!:any;
   seleccionMotivo !:any;
   showCalendar: boolean = false;
+  showModal = false;
   fechaEmision: FormControl = new FormControl();
   @ViewChild('dateInput') dateInput!: ElementRef<HTMLInputElement>;
+  t: any; // Definir la propiedad 't'
+  @ViewChild('calendarModal')
+  calendarModal!: TemplateRef<any>;
+  modalRef!: NgbModalRef;
 
   constructor(
     public formulario:FormBuilder,
@@ -53,7 +60,8 @@ export class AgregarVacacionComponent {
     private _decimalPipe: DecimalPipe,
     private router:Router,
     private route: ActivatedRoute,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private modalService: NgbModal
   ) {     
     this.formularioDeVacacion = this.formulario.group({      
       vaca_disp:[''],
@@ -95,12 +103,15 @@ export class AgregarVacacionComponent {
   }
 
   openCalendar() {
-    this.showCalendar = true;
+    this.modalService.open(this.calendarModal, { backdrop: 'static', keyboard: false });
   }
-
+  
   closeCalendar() {
-    this.showCalendar = false;
+    if (this.modalRef) {
+      this.modalRef.dismiss();
+    }
   }
+  
 
   @HostListener('document:click', ['$event'])
   handleDocumentClick(event: Event) {
@@ -111,10 +122,6 @@ export class AgregarVacacionComponent {
     if (!isClickedInside && !isCalendarClicked) {
       this.closeCalendar();
     }
-  }
-
-  toggleCalendar() {
-    this.showCalendar = !this.showCalendar;
   }
 
    //RESPONSE
@@ -761,24 +768,26 @@ export class AgregarVacacionComponent {
     
   }
 
-	isHovered(date: NgbDate) {
-		return (
-			this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
-		);
-	}
-
-	isInside(date: NgbDate) {
-		return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
-	}
-
-	isRange(date: NgbDate) {
-		return (
-			date.equals(this.fromDate) ||
-			(this.toDate && date.equals(this.toDate)) ||
-			this.isInside(date) ||
-			this.isHovered(date)
-		);
-	}
+	isSelected(date: NgbDate) {
+    return this.fromDate && this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+  }
+  
+  isHovered(date: NgbDate) {
+    return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
+  }
+  
+  isRange(date: NgbDate) {
+    return (
+      date.equals(this.fromDate) ||
+      (this.toDate && date.equals(this.toDate)) ||
+      this.isInside(date) ||
+      this.isHovered(date)
+    );
+  }
+  
+  isInside(date: NgbDate) {
+    return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+  }
 
   countWorkDay(sDay:any,eDay:any){
     const startDate  = new Date(sDay.year, sDay.month - 1, sDay.day);

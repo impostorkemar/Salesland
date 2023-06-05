@@ -81,23 +81,40 @@
                   
                 </div>
               </tr>
-              <tr>
+              <tr>                
                 
                 <div class="row">
                   <div class="contenedor-calendario">  
                     <i class="fas fa-calendar" (click)="openCalendar()"></i>                                  
-                    <ngb-datepicker class="text etiqueta" *ngIf="showCalendar" (dateSelect)="onDateSelection($event)"
-                      [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [markDisabled]="esFinDeSemana">
-                    </ngb-datepicker>
-                    <ng-template #t let-date let-focused="focused">
-                      <span class="custom-day" [class.weekend]="esFinDeSemana(date)" [class.focused]="focused"
-                        [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)"
-                        (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
-                        {{ date.day }}
-                      </span>
-                    </ng-template>
                   </div>
                 </div>
+                
+                <ng-template #calendarModal let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title">Selecciona una fecha</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <ngb-datepicker class="text etiqueta" (dateSelect)="onDateSelection($event)"
+                      [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [markDisabled]="esFinDeSemana">
+                      <ng-template #t let-date="date">
+                        <span class="custom-day"
+                              [class.range]="isRange(date)"
+                              [class.selected]="isSelected(date)"
+                              [class.hovered]="isHovered(date)"
+                              (mouseenter)="hoveredDate = date"
+                              (mouseleave)="hoveredDate = null">
+                          {{ date.day }}
+                        </span>
+                      </ng-template>
+                    </ngb-datepicker>
+                  </div>
+                </ng-template>
+                
+                <ng-template [ngbModalOutlet]="calendarModal" [ngbModalOptions]="{ backdrop: 'static', keyboard: false }" *ngIf="showModal"></ng-template>
+                
                     
               </tr>
             </tbody>
