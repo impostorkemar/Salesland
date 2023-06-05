@@ -50,9 +50,21 @@
         <hr>
         <p>{{ fechaActualizada }}</p>
         <hr>
+        <div (click)="toggleProfileMenu2()">
+          <a>Credenciales</a>
+        </div>        
+        <div [hidden]="!isProfileMenuOpen2">
+          <p>User:</p>
+          <hr>
+          <p>Passw:</p>
+          <hr>
+        </div> 
+        <hr>
         <a *ngIf="chargeLogoutvalue" class="log-a" (click)="logout()" routerLink="/home" href="#">Salir</a>
         <a *ngIf="chargeLoginvalue" class="log-a" routerLink="/login" href="#">Ingresar</a>
+        <hr>
       </div>
     </div>
+   
   </div>
 </nav>

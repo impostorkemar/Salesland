@@ -502,7 +502,7 @@ def get_vacacionesPersonal():
 @user.get("/vacacionesPersonalPendientes/", tags=["vacaciones"])
 def get_vacacionesPersonalPendientes():
     conn = engine.connect()
-    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula  AND ((vacaciones.peticion = 'aprobacion' AND vacaciones.status = 'pendiente')  OR (vacaciones.peticion = 'cancelacion' AND vacaciones.status = 'pendiente')) ORDER BY vacaciones.fecha_solicitud DESC;"
+    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula  AND ((vacaciones.peticion = 'aprobacion' AND vacaciones.status = 'pendiente')  OR (vacaciones.peticion = 'cancelacion' AND vacaciones.status = 'pendiente')) AND  vacaciones.status!='eliminada' ORDER BY vacaciones.fecha_solicitud DESC;"
     #print(sql)
     return conn.execute(sql).fetchall()
 
@@ -537,7 +537,7 @@ def get_vacacionesPersonalNegadas():
 @user.get("/vacacionesPersonalBySupervisor/{user}-{pass}", tags=["supervisor"])
 def get_vacacionesPersonalBySupervisor(user: str, passw: str):
     conn = engine.connect()
-    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND personal.id_supervisor = (SELECT supervisor.id_supervisor FROM supervisor WHERE supervisor.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"')) ORDER BY vacaciones.fecha_solicitud DESC;"
+    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND personal.id_supervisor = (SELECT supervisor.id_supervisor FROM supervisor WHERE supervisor.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"')) AND  vacaciones.status!='eliminada' ORDER BY vacaciones.fecha_solicitud DESC;"
     #print(sql)
     return conn.execute(sql).fetchall()
 
@@ -579,7 +579,7 @@ def get_vacacionesPersonalNegadasBySupervisor(user: str, passw: str):
 @user.get("/vacacionesByUserAndPass/{user}-{pass}", tags=["vacaciones"])
 def get_vacacionesByUserAndPass(user: str, passw: str):
     conn = engine.connect()
-    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND usuario.cedula = candidato.cedula and usuario.usuario = '"+str(user)+"' and usuario.password = '"+str(passw)+"' ORDER BY vacaciones.fecha_solicitud DESC;"
+    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND usuario.cedula = candidato.cedula and usuario.usuario = '"+str(user)+"' and usuario.password = '"+str(passw)+"' AND  vacaciones.status!='eliminada' ORDER BY vacaciones.fecha_solicitud DESC;"
     #print(sql)
     return conn.execute(sql).fetchall()
 
@@ -674,6 +674,20 @@ def get_vacacionesByIdFormat(id : str):
     conn = engine.connect()
     sql = ("SELECT * FROM vacaciones,personal, candidato WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND id_vacaciones = '"+str(id)+"';")
     return conn.execute(sql).first()
+
+@user.put("/vacacionesAEliminaryId/{id}",response_model=Vacacion, tags=["vacaciones"])
+def update_vacacionesAEliminaryId(id: str,vacacion : Vacacion): 
+    conn = engine.connect()
+    print("vacacion:",vacacion)
+    sql = (vacaciones.update().values(
+            fecha_respuesta=vacacion.fecha_respuesta,
+            status=vacacion.status,
+            peticion=vacacion.peticion,
+            observaciones=vacacion.observaciones
+    ).where(vacaciones.c.id_vacaciones == id))
+    print("vacacionesAEliminaryId:",sql)
+    conn.execute(sql)
+    return get_vacacionesByIdFormat(id)
 
 @user.put("/vacacionesACancelarbyId/{id}",response_model=Vacacion, tags=["vacaciones"])
 def update_vacacionesACancelarbyId(id: str,vacacion : Vacacion):   

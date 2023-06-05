@@ -773,6 +773,7 @@ resp!:String[];
         }
       }); 
     }
+
     RechazarSolicitudVacacion(id:any,observaciones:any, VacacionesPen:any,VacacionesApr:any,VacacionesNeg:any,iControl:any){
       var urlAPI="negarVacacionById/";
       var myDate = new Date();
@@ -883,6 +884,47 @@ resp!:String[];
           }
         }
       }); 
+    }
+
+    EliminarSolicitudVacacion(id: any): Observable<any> {
+      var urlAPI = "vacacionesAEliminaryId/";
+      var myDate = new Date();
+      var Fecha_respt = myDate.getFullYear() + "-" + myDate.getMonth() + "-" + myDate.getDay() + " " + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds()
+      return this.ObtenerVacacionById(id).pipe(
+        switchMap(response0 => {
+          if (window.confirm("¿Desea eliminar la solicitud?\nID VACACIONES: " +
+            response0['id_vacaciones'] + "\n\tNOMBRE:" + response0['nombre'] + " " + response0['apellido'] + "\n\tFECHA SOLICITUD: " + response0['fecha_solicitud'] +
+            "\n\tFECHA INICIO VACACIONES: " + response0['fecha_inicio_vacaciones'] + "\n\tFECHA FIN VACACIONES: "
+            + response0['fecha_fin_vacaciones'] + "\n\tDIAS SOLICITADOS: "
+            + response0['dias_lab_solicitados'])) {
+            let options = this.createRequestOptions();
+            var urlAPI = "vacacionesAAprobarbyId/" + id;
+            console.log("Fecha_respt:", Fecha_respt)
+            var vaca: Vacaciones = {
+              id_vacaciones: response0['id_vacaciones'],
+              id_personal: response0['id_personal'],
+              fecha_solicitud: response0['fecha_solicitud'],
+              fecha_inicio_vacaciones: response0['fecha_inicio_vacaciones'],
+              fecha_fin_vacaciones: response0['fecha_fin_vacaciones'],
+              dias_lab_solicitados: response0['dias_lab_solicitados'],
+              dias_disponibles_acum: response0['dias_disponibles_acum'],
+              fecha_respuesta: Fecha_respt as string,
+              status: 'eliminada',
+              peticion: response0['peticion'],
+              observaciones: response0['observaciones'],
+              motivo: response0['motivo'],
+            }
+            console.log("vaca: ", vaca);
+            return this.putData(vaca, urlAPI);
+          } else {
+            return of(null);
+          }
+
+        }),
+        catchError(error => {
+          return of(null);
+        })
+      );
     }
 
     AceptarSolicitudVacacionBySupervisor(id: any): Observable<any> {

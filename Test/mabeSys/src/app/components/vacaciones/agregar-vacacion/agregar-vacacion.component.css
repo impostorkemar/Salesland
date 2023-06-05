@@ -17,6 +17,9 @@
 .custom-day.faded {
   background-color:#045959;
 }
+.ngb-dp-day {
+  font-size: 10px; /* Ajusta el tamaño de la fuente según tus necesidades */
+}
 .card{
   background-color: rgb(243, 238, 238);
   color: white;

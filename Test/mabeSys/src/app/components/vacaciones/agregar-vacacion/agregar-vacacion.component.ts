@@ -1,14 +1,17 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,ElementRef,HostListener,OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup,FormBuilder, FormsModule } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { Router,ActivatedRoute } from '@angular/router';
-import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JsonPipe } from '@angular/common';
 import * as moment from 'moment';
 import { TestuserService } from 'src/app/services/testuser.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import {formatDate} from '@angular/common';
 import { NONE_TYPE } from '@angular/compiler';
+import { FormControl } from '@angular/forms';
+import { CustomDatepickerI18n } from 'src/app/services/custom-datepicker-i18n';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -40,6 +43,13 @@ export class AgregarVacacionComponent {
   Motivos!:any;
   seleccionMotivo !:any;
   showCalendar: boolean = false;
+  showModal = false;
+  fechaEmision: FormControl = new FormControl();
+  @ViewChild('dateInput') dateInput!: ElementRef<HTMLInputElement>;
+  t: any; // Definir la propiedad 't'
+  @ViewChild('calendarModal')
+  calendarModal!: TemplateRef<any>;
+  modalRef!: NgbModalRef;
 
   constructor(
     public formulario:FormBuilder,
@@ -49,8 +59,10 @@ export class AgregarVacacionComponent {
     private testuserService: TestuserService,    
     private _decimalPipe: DecimalPipe,
     private router:Router,
-    private route: ActivatedRoute
-  ) { 
+    private route: ActivatedRoute,
+    private elementRef: ElementRef,
+    private modalService: NgbModal
+  ) {     
     this.formularioDeVacacion = this.formulario.group({      
       vaca_disp:[''],
       dias_solicitudes_pen:[''],
@@ -59,7 +71,7 @@ export class AgregarVacacionComponent {
       saldo_dias:[''],          
       lbl_inicio:[''],
       lbl_fin:[''],
-      motivo: [''],
+      motivo: [''],      
     });
         
     this.fromDate = calendar.getToday();
@@ -90,8 +102,26 @@ export class AgregarVacacionComponent {
     
   }
 
-  toggleCalendar() {
-    this.showCalendar = !this.showCalendar;
+  openCalendar() {
+    this.modalService.open(this.calendarModal, { backdrop: 'static', keyboard: false });
+  }
+  
+  closeCalendar() {
+    if (this.modalRef) {
+      this.modalRef.dismiss();
+    }
+  }
+  
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: Event) {
+    const clickedElement = event.target as HTMLElement;
+    const isClickedInside = this.elementRef.nativeElement.contains(clickedElement);
+    const isCalendarClicked = clickedElement.classList.contains('contenedor-calendario');
+    
+    if (!isClickedInside && !isCalendarClicked) {
+      this.closeCalendar();
+    }
   }
 
    //RESPONSE
@@ -164,6 +194,7 @@ export class AgregarVacacionComponent {
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
                         motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']
                       });
+                      this.seleccionMotivo = this.Motivos.length > 0 ? this.Motivos[0].nombre : '';
                     }else if (totalVacasTomadas == null && totalVacasPendientes != null){
                       this.formularioDeVacacion.setValue({
                         vaca_disp: antiguedadCal, //vacaciones por contrato                        
@@ -175,7 +206,7 @@ export class AgregarVacacionComponent {
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
                         motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']
                       });
-                    
+                      this.seleccionMotivo = this.Motivos.length > 0 ? this.Motivos[0].nombre : '';
                     }else if (totalVacasTomadas != null && totalVacasPendientes == null){ // VACA PREV PEND
                       this.formularioDeVacacion.setValue({ 
                         vaca_disp: antiguedadCal,  //vacaciones por contrato
@@ -186,7 +217,8 @@ export class AgregarVacacionComponent {
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
                         motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']                       
-                      });                                       
+                      });   
+                      this.seleccionMotivo = this.Motivos.length > 0 ? this.Motivos[0].nombre : '';                                    
                     }else{
                       if (this.toDate){
                         this.formularioDeVacacion.setValue({      
@@ -199,6 +231,7 @@ export class AgregarVacacionComponent {
                           lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
                           motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']
                         });
+                        this.seleccionMotivo = this.Motivos.length > 0 ? this.Motivos[0].nombre : '';
                         this.btnIngresar = false
                       }else{
                         this.btnIngresar = true
@@ -735,24 +768,26 @@ export class AgregarVacacionComponent {
     
   }
 
-	isHovered(date: NgbDate) {
-		return (
-			this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
-		);
-	}
-
-	isInside(date: NgbDate) {
-		return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
-	}
-
-	isRange(date: NgbDate) {
-		return (
-			date.equals(this.fromDate) ||
-			(this.toDate && date.equals(this.toDate)) ||
-			this.isInside(date) ||
-			this.isHovered(date)
-		);
-	}
+	isSelected(date: NgbDate) {
+    return this.fromDate && this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+  }
+  
+  isHovered(date: NgbDate) {
+    return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
+  }
+  
+  isRange(date: NgbDate) {
+    return (
+      date.equals(this.fromDate) ||
+      (this.toDate && date.equals(this.toDate)) ||
+      this.isInside(date) ||
+      this.isHovered(date)
+    );
+  }
+  
+  isInside(date: NgbDate) {
+    return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+  }
 
   countWorkDay(sDay:any,eDay:any){
     const startDate  = new Date(sDay.year, sDay.month - 1, sDay.day);
