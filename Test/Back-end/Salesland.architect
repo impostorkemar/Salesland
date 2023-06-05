@@ -765,7 +765,11 @@
     </folder>
     <folder id="FOLTAB1994" populated="true" name="Indices" physicalName="Indices" type="4">
     <index id="IDX212" populated="true" UUID="2dbc8013-16c5-4819-b862-f8fe650cd1c4" clustered="false" name="PK_Detalle_Comprobante" physicalName="pk_detalle_comprobante" primaryKeyIndex="true" unique="false" >
+<<<<<<< Updated upstream
      <index-column id="IDC213" populated="true" UUID="9c63b383-7f8a-41c3-85a7-58fd2ccece0a" ascendingOrDescending="UNSPECIFIED" column-ref="COL200" name="id_detalle_comprobante" physicalName="id_detalle_comprobante" />
+=======
+     <index-column id="IDC213" populated="true" UUID="5c1be6db-0ae5-48da-afde-aee8eb7457a6" ascendingOrDescending="UNSPECIFIED" column-ref="COL200" name="id_detalle_comprobante" physicalName="id_detalle_comprobante" />
+>>>>>>> Stashed changes
     </index>
    </folder>
   </table>
