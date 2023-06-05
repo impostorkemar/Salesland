@@ -1,7 +1,19 @@
 
 Test/mabeSys/src/environments/environment.ts
+<<<<<<< Updated upstream
 SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/schemas/__pycache__/user.cpython-311.pyc
 SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/models/__pycache__/user.cpython-311.pyc
 Test/mabeSys/src/environments/environment.prod.ts
 Test/mabeSys/src/environments/environment.ts
 SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/schemas/__pycache__/user.cpython-311.pyc
+=======
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/__pycache__/app.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/__pycache__/app.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/config/__pycache__/db.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/routes/__pycache__/email.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/__pycache__/app.cpython-311.pyc
+>>>>>>> Stashed changes
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/routes/__pycache__/email.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/config/__pycache__/db.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/__pycache__/app.cpython-311.pyc
+*.pyc

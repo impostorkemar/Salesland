@@ -8,7 +8,7 @@ import mysql.connector
 import io
 import os
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
+from dateutil.relativedelta import relativedelta|
 import re
 
 def ejecutarSQL(SQL):
