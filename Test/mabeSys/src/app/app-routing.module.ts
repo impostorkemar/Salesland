@@ -17,6 +17,12 @@ import { PoliticsComponent } from './components/intranet/politics/politics.compo
 import { PublicidadFooterComponent } from './components/intranet/publicidad-footer/publicidad-footer.component';
 import { ListarAdminComponent } from './components/vacaciones/listar-admin/listar-admin.component';
 import { AppModule } from './app.module';
+import { Publicidad1Component } from './components/intranet/publicidad1/publicidad1.component';
+import { Publicidad2Component } from './components/intranet/publicidad2/publicidad2.component';
+import { Publicidad3Component } from './components/intranet/publicidad3/publicidad3.component';
+import { Publicidad4Component } from './components/intranet/publicidad4/publicidad4.component';
+import { Publicidad5Component } from './components/intranet/publicidad5/publicidad5.component';
+import { Publicidad6Component } from './components/intranet/publicidad6/publicidad6.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},  

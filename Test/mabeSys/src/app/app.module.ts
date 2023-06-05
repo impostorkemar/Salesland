@@ -69,6 +69,13 @@ import { PoliticsComponent } from './components/intranet/politics/politics.compo
 import { PublicidadFooterComponent } from './components/intranet/publicidad-footer/publicidad-footer.component';
 import { HomeInicioComponent } from './components/intranet/home-inicio/home-inicio.component';
 import { ListarAdminComponent } from './components/vacaciones/listar-admin/listar-admin.component';
+import { Publicidad1Component } from './components/intranet/publicidad1/publicidad1.component';
+import { Publicidad2Component } from './components/intranet/publicidad2/publicidad2.component';
+import { Publicidad3Component } from './components/intranet/publicidad3/publicidad3.component';
+import { Publicidad4Component } from './components/intranet/publicidad4/publicidad4.component';
+import { Publicidad5Component } from './components/intranet/publicidad5/publicidad5.component';
+import { Publicidad6Component } from './components/intranet/publicidad6/publicidad6.component';
+import { ReglamentoInternoComponent } from './components/intranet/reglamento-interno/reglamento-interno.component';
 
 
 @NgModule({
@@ -125,6 +132,13 @@ import { ListarAdminComponent } from './components/vacaciones/listar-admin/lista
     PublicidadFooterComponent,
     HomeInicioComponent,
     ListarAdminComponent,
+    Publicidad1Component,
+    Publicidad2Component,
+    Publicidad3Component,
+    Publicidad4Component,
+    Publicidad5Component,
+    Publicidad6Component,
+    ReglamentoInternoComponent,
     
   ],
   imports: [
