@@ -23,6 +23,21 @@
   background-color: #045959;
 }
 
+.icon-calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.contenedor-fila-calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 
 .custom-day2 {
   text-align: center;
@@ -67,6 +82,8 @@ tr {
 }
 
 .add-datos {
+  display: flex;
+  flex-direction: column;
   border: 2px solid gray;
   border-radius: 25px; /* Ajusta el valor según tus preferencias */
   box-sizing: border-box;
@@ -75,15 +92,32 @@ tr {
   margin: 10px;
 }
 
+.contenedor-add-datos {
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor-fila {
+  display: flex;
+  flex-direction: row;
+}
+
+.contenedor-fila-2 {
+  display: flex;
+  flex-direction: row;
+}
+
 .etiqueta{
   color: white;
   text-align: center;
   align-items: center; 
   align-self: center;
 }
+
 .inputRight{  
   text-align: right;
 }
+
 .text{
   color: white;
   text-align: center;  
@@ -128,6 +162,7 @@ tr {
   color: #045959;
   margin-right: 10px;
   font-weight: bold;
+  font-size: 14px;
 }
 
 .form-control {
@@ -138,6 +173,24 @@ tr {
   background-color: transparent;
   color: #045959;
   transition: border-color 0.3s;
+  width: 100%;
+}
+
+.form-control-archivos{
+  flex: 1;
+  border: none;
+  border-bottom: 2px solid #045959;
+  padding: 5px;
+  background-color: transparent;
+  color: #045959;
+  transition: border-color 0.3s;
+  width: 25%;
+}
+
+.form-control-archivos:hover,
+.form-control-archivos:focus {
+  outline: none;
+  border-color: #079292;
 }
 
 .form-control:hover,
@@ -220,4 +273,8 @@ button {
   }
 }
 
+h5 {
+  text-align: center;
+  color: black;
+}
 

@@ -1,7 +1,5 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-
-
 #containerInicio {
   height: 100%;
   width: 100%;
@@ -112,7 +110,7 @@ nav ul li a {
 }
 
 .contenedor-landing {
-  padding-top: 83px;
+  padding-top: 50px;
 }
 
 
