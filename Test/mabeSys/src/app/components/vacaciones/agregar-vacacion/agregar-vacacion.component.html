@@ -65,10 +65,15 @@
                     <option *ngFor="let motivo of Motivos; let i = index" [value]="motivo.nombre" >{{motivo.nombre}}</option>
                   </select>
 
-                  <label for="" class="form-label">DÍAS SELECCIONADOS:</label>
+                  <label for="dias_seleccionados" class="form-label">DÍAS SELECCIONADOS:</label>
                   <input type="text" class="form-control input-line" name="dias_seleccionados"
                     formControlName="dias_seleccionados" id="dias_seleccionados" aria-describedby="helpId"
                     placeholder="0">
+                  <div class="input-group-append">
+                    <span class="input-group-text" (click)="openCalendar()">
+                      <i class="fas fa-calendar"></i>
+                    </span>
+                  </div>
 
                   <label for="" class="form-label">FECHA INICIO:</label>
                   <input type="text" class="form-control input-line" name="lbl_inicio" formControlName="lbl_inicio"
@@ -76,18 +81,16 @@
 
                   <label for="" class="form-label">FECHA FIN:</label>
                   <input type="text" class="form-control input-line" name="lbl_fin" formControlName="lbl_fin"
-                    id="lbl_fin" aria-describedby="helpId" placeholder="0">
+                    id="lbl_fin" aria-describedby="helpId" placeholder="0"> 
+                  
                 </div>
               </tr>
               <tr>
+                
                 <div class="row">
-                  <div class="col">
-                    <i class="fas fa-calendar" (click)="toggleCalendar()"></i>
-                  </div>
-                </div>
-                <div class="row" *ngIf="showCalendar">
                   <div class="contenedor-calendario">
-                    <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection($event)"
+                    
+                    <ngb-datepicker class="text etiqueta" *ngIf="showCalendar" (dateSelect)="onDateSelection($event)"
                       [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [markDisabled]="esFinDeSemana">
                     </ngb-datepicker>
                     <ng-template #t let-date let-focused="focused">
@@ -98,7 +101,8 @@
                       </span>
                     </ng-template>
                   </div>
-                </div>                
+                </div>
+                    
               </tr>
             </tbody>
           </table>

@@ -149,7 +149,7 @@ export class ListarAdminComponent {
     this.changePage(this.currentPage);
   }
 
-  borrarRegistro(id:any,iControl:any){
+  /*borrarRegistro(id:any,iControl:any){
     //console.log(id);
     //console.log(iControl);
     this.crudService.BorrarVacacion(id).subscribe(respuesta=>{
@@ -157,6 +157,17 @@ export class ListarAdminComponent {
       this.reloadMenuComponent();
       this.getVacaciones();
     });
+  }*/
+
+  borrarRegistro(id:any,iControl:any){
+    //console.log(id);
+    //console.log(iControl);
+    this.crudService.EliminarSolicitudVacacion(id).subscribe(respuesta=>{
+      console.log("respuesta: ",respuesta)
+      this.reloadMenuComponent(); 
+      this.getVacaciones();         
+      
+    })
   }
 
 

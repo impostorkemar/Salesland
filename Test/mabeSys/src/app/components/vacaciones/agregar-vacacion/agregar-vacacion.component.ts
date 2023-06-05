@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,ElementRef,HostListener,OnInit, ViewChild } from '@angular/core';
 import { FormGroup,FormBuilder, FormsModule } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { Router,ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { TestuserService } from 'src/app/services/testuser.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import {formatDate} from '@angular/common';
 import { NONE_TYPE } from '@angular/compiler';
+import { FormControl } from '@angular/forms';
 
 
 
@@ -40,6 +41,8 @@ export class AgregarVacacionComponent {
   Motivos!:any;
   seleccionMotivo !:any;
   showCalendar: boolean = false;
+  fechaEmision: FormControl = new FormControl();
+  @ViewChild('dateInput') dateInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     public formulario:FormBuilder,
@@ -49,8 +52,9 @@ export class AgregarVacacionComponent {
     private testuserService: TestuserService,    
     private _decimalPipe: DecimalPipe,
     private router:Router,
-    private route: ActivatedRoute
-  ) { 
+    private route: ActivatedRoute,
+    private elementRef: ElementRef
+  ) {     
     this.formularioDeVacacion = this.formulario.group({      
       vaca_disp:[''],
       dias_solicitudes_pen:[''],
@@ -59,7 +63,7 @@ export class AgregarVacacionComponent {
       saldo_dias:[''],          
       lbl_inicio:[''],
       lbl_fin:[''],
-      motivo: [''],
+      motivo: [''],      
     });
         
     this.fromDate = calendar.getToday();
@@ -88,6 +92,25 @@ export class AgregarVacacionComponent {
     this.formularioDeVacacion.controls['lbl_fin'].disable();
     this.precargarDias();  
     
+  }
+
+  openCalendar() {
+    this.showCalendar = true;
+  }
+
+  closeCalendar() {
+    this.showCalendar = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: Event) {
+    const clickedElement = event.target as HTMLElement;
+    const isClickedInside = this.elementRef.nativeElement.contains(clickedElement);
+    const isCalendarClicked = clickedElement.classList.contains('contenedor-calendario');
+    
+    if (!isClickedInside && !isCalendarClicked) {
+      this.closeCalendar();
+    }
   }
 
   toggleCalendar() {
@@ -164,6 +187,7 @@ export class AgregarVacacionComponent {
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
                         motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']
                       });
+                      this.seleccionMotivo = this.Motivos.length > 0 ? this.Motivos[0].nombre : '';
                     }else if (totalVacasTomadas == null && totalVacasPendientes != null){
                       this.formularioDeVacacion.setValue({
                         vaca_disp: antiguedadCal, //vacaciones por contrato                        
@@ -175,7 +199,7 @@ export class AgregarVacacionComponent {
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
                         motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']
                       });
-                    
+                      this.seleccionMotivo = this.Motivos.length > 0 ? this.Motivos[0].nombre : '';
                     }else if (totalVacasTomadas != null && totalVacasPendientes == null){ // VACA PREV PEND
                       this.formularioDeVacacion.setValue({ 
                         vaca_disp: antiguedadCal,  //vacaciones por contrato
@@ -186,7 +210,8 @@ export class AgregarVacacionComponent {
                         lbl_inicio:this.fromDate?.year+"-"+this.fromDate?.month+"-"+ this.fromDate?.day,
                         lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
                         motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']                       
-                      });                                       
+                      });   
+                      this.seleccionMotivo = this.Motivos.length > 0 ? this.Motivos[0].nombre : '';                                    
                     }else{
                       if (this.toDate){
                         this.formularioDeVacacion.setValue({      
@@ -199,6 +224,7 @@ export class AgregarVacacionComponent {
                           lbl_fin:this.toDate?.year+"-"+this.toDate?.month+"-"+ this.toDate?.day,
                           motivo:[this.Motivos.length > 0 ? this.Motivos[0].nombre : '']
                         });
+                        this.seleccionMotivo = this.Motivos.length > 0 ? this.Motivos[0].nombre : '';
                         this.btnIngresar = false
                       }else{
                         this.btnIngresar = true

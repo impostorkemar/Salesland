@@ -53,7 +53,7 @@
                   <a *ngIf="row.status === 'pendiente'" class="btn btn-danger"
                     (click)="RechazarRegistro(row.id_vacaciones,iControl)" role="button"><img src="./assets/x.svg"
                       alt=""></a>
-                  <a class="btn btn-secondary" (click)="borrarRegistro(row.id_vacaciones,iControl)" role="button"><img
+                  <a *ngIf="row.status !== 'eliminada'" class="btn btn-secondary" (click)="borrarRegistro(row.id_vacaciones,iControl)" role="button"><img
                       src="./assets/trash.svg" alt=""></a>
                 </ng-container>
               </td>

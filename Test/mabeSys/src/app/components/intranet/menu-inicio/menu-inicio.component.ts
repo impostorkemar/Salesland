@@ -16,6 +16,7 @@ export class MenuInicioComponent {
   control_vistas!: FormGroup;
   fechaActualizada!: string;
   isProfileMenuOpen: boolean = false; // Nueva propiedad agregada
+  isProfileMenuOpen2: boolean = false; // Nueva propiedad agregada
 
   constructor(
     private fb: FormBuilder,
@@ -118,6 +119,11 @@ export class MenuInicioComponent {
   toggleProfileMenu(): void {
     this.isProfileMenuOpen = !this.isProfileMenuOpen;
     console.log("evento si esta clickeando")
+  }
+
+  toggleProfileMenu2(): void {
+    this.isProfileMenuOpen2 = !this.isProfileMenuOpen2;
+    console.log("evento si esta clickeando 2")
   }
 
 }
