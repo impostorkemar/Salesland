@@ -2,7 +2,7 @@ import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Injectable } from '@angular/core';
 import { TranslationWidth } from '@angular/common';
 
-const WEEKDAYS = ['D', 'L', 'M', 'M', 'J', 'V', 'S']; // Traducción de los días de la semana en español
+const WEEKDAYS = [ 'L', 'M', 'M', 'J', 'V', 'S','D']; // Traducción de los días de la semana en español
 
 
 @Injectable()
