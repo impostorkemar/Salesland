@@ -16,3 +16,4 @@ SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/__pycache__/app.cpython-311.pyc
 SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/routes/__pycache__/email.cpython-311.pyc
 SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/config/__pycache__/db.cpython-311.pyc
 SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/__pycache__/app.cpython-311.pyc
+*.pyc

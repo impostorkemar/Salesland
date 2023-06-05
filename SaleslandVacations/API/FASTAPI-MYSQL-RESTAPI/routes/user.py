@@ -308,6 +308,7 @@ def get_viaje():
 
 @user.post("/viaje/", tags=["viaje"])
 def create_viaje(viaje: Viaje):
+    
     conn = engine.connect()
     #password = f.encrypt(usuario.password.encode("utf-8"))
     sql = "INSERT INTO `viaje`(`id_personal`, `lugar`, `fecha_reembolso`, `fecha_viaje_inicio`, `fecha_viaje_fin`, `duracion`, `punto_partida`, `punto_destino`, `fecha_gasto`, `moneda`, `cantidad_comprobantes`, `importe`, `status`, `peticion`, `motivo`) VALUES"
