@@ -109,29 +109,17 @@
    <relationships>
    </relationships>
   </database>
-<<<<<<< Updated upstream
   <database id="DB15" populated="true" UUID="bf6db7a1-4c74-4603-88d2-4ce7b769b82d" dbcs-ref="DS0" name="salesland" physicalName="salesland postgresSQL" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: JDBC Driver &quot;com.mysql.jdbc.Driver&quot; not found." >
-=======
-  <database id="DB15" populated="true" UUID="bf6db7a1-4c74-4603-88d2-4ce7b769b82d" dbcs-ref="DS0" name="(Target Database)" physicalName="salesland postgresSQL" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: JDBC Driver &quot;com.mysql.jdbc.Driver&quot; not found." >
->>>>>>> Stashed changes
    <catalog id="CAT16" populated="true" UUID="fc8f15d2-f700-4ce0-922c-daf122f3c3ac" name="salesland" nativeTerm="database" physicalName="salesland" >
    </catalog>
    <relationships>
    </relationships>
   </database>
-<<<<<<< Updated upstream
   <database id="DB17" populated="true" UUID="2f9a30a8-fac7-4de2-a7cd-ade72a6ad947" dbcs-ref="DS0" name="salesland" physicalName="salesland" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: JDBC Driver &quot;com.mysql.jdbc.Driver&quot; not found." >
    <relationships>
    </relationships>
   </database>
   <database id="DB18" populated="true" UUID="c6e21613-60eb-4004-91f2-9cee32aa9e73" dbcs-ref="DS0" name="salesland" physicalName="salesland" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: Unknown database &apos;salesland&apos;" >
-=======
-  <database id="DB17" populated="true" UUID="2f9a30a8-fac7-4de2-a7cd-ade72a6ad947" dbcs-ref="DS0" name="(Target Database)" physicalName="salesland" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: JDBC Driver &quot;com.mysql.jdbc.Driver&quot; not found." >
-   <relationships>
-   </relationships>
-  </database>
-  <database id="DB18" populated="true" UUID="c6e21613-60eb-4004-91f2-9cee32aa9e73" dbcs-ref="DS8" name="salesland" physicalName="salesland" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: Unknown database &apos;salesland&apos;" >
->>>>>>> Stashed changes
    <relationships>
    </relationships>
   </database>
