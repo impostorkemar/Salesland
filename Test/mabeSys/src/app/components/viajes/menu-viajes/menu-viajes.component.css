@@ -1,4 +1,5 @@
 /* Css para Botones de Accion */
+
 .contenedor-botones {
   display: flex;
   justify-content: space-between;
@@ -10,7 +11,7 @@
   background-color: #045959;
   border-top: 1px solid gray;
   padding: 1px;
-  z-index: 999; /* Para asegurar que el contenedor de botones esté por encima de otros elementos */
+  z-index: 1; /* Para asegurar que el contenedor de botones esté por encima de otros elementos */
   margin-top: 50px;
 }
 
