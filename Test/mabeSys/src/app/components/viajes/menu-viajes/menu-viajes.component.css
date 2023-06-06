@@ -1,10 +1,17 @@
-/*Css para Botones de Accion*/
+/* Css para Botones de Accion */
 .contenedor-botones {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: #045959;
   border-top: 1px solid gray;
+  padding: 1px;
+  z-index: 999; /* Para asegurar que el contenedor de botones esté por encima de otros elementos */
+  margin-top: 50px;
 }
 
 .contenedor-botones a {
@@ -57,14 +64,12 @@ button:first-child {
 #sect1 {
   background-color: #16261C;
   color: white;
-  background-size: 100%;
   background-size: cover;
 }
 
 #name_usuario {
   background-color: white;
 }
-
 
 .navbar-right {
   display: flex;
@@ -82,7 +87,8 @@ button:first-child {
 }
 
 .contenedor-general {
-  padding-top: 84px;
+  padding-top: 50px;
+  margin-top: 60px; /* Añade margen superior para evitar que el contenido se solape con el contenedor de botones */
 }
 
 /* Media query para pantallas más pequeñas */
@@ -90,5 +96,4 @@ button:first-child {
   .contenedor-general {
     padding-top: 120px;
   }
-  
 }

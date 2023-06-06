@@ -17,7 +17,8 @@
                     class="btn btn-primary">USUARIO</button>
                 <button *ngIf="rolReportes" (click)="menuReportes2(2)" type="button"
                     class="btn btn-primary">CANDIDATO</button>
-                <button *ngIf="rolReportes" (click)="menuReportes2(3)" type="button" class="btn btn-primary">CARGO</button>
+                <button *ngIf="rolReportes" (click)="menuReportes2(3)" type="button"
+                    class="btn btn-primary">CARGO</button>
                 <button *ngIf="rolReportes" (click)="menuReportes2(4)" type="button" class="btn btn-primary">CENTRO
                     COSTO</button>
                 <button *ngIf="rolReportes" (click)="menuReportes2(5)" type="button"
@@ -26,8 +27,22 @@
                     LABORAL</button>
             </div>
         </div>
+        <div class="contenedor-dias">
+            <label for="" class="form-label">DISPONIBLES:</label>
+            <input type="text" class="form-control" name="saldo_dias" formControlName="saldo_dias" id="saldo_dias"
+                aria-describedby="helpId" placeholder="0">
 
-        <div class="table-responsive">
+
+            <label for="" class="form-label">TOMADOS:</label>
+            <input type="text" class="form-control" name="dias_tomados" formControlName="dias_tomados" id="dias_tomados"
+                aria-describedby="helpId" placeholder="0">
+
+            <label for="" class="form-label">SOLICITUDES PENDIENTES:</label>
+            <input type="text" class="form-control" name="dias_solicitudes_pen" formControlName="dias_solicitudes_pen"
+                id="dias_solicitudes_pen" aria-describedby="helpId" placeholder="0">
+        </div>
+
+        <!-- <div class="table-responsive">
             <table class="table">
                 <thead>
                 </thead>
@@ -72,49 +87,49 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> -->
     </div>
     <div class="contenedor-general">
-        
-            <div id="router-outlet">
-                <router-outlet></router-outlet>
-            </div>
-            <div *ngIf="nombreVentana === 'INGRESO-VACACION'">
-                <app-agregar-vacacion></app-agregar-vacacion>
-            </div>
-            <div *ngIf="nombreVentana === 'REPORTE-PERSONAL'">
-                <app-listar-vacaciones></app-listar-vacaciones>
-            </div>        
-            <div *ngIf="nombreVentana === 'REPORTE-GENERAL-VACACIONES-SUPERVISOR'">
-                <app-listar-reporte-general-supervisor></app-listar-reporte-general-supervisor>
-            </div>
-            <div *ngIf="nombreVentana === 'PERSONAL'">
-                <app-listar-personal></app-listar-personal>
-            </div>
-            <div *ngIf="nombreVentana === 'USUARIO'">
-                <app-listar-usuarios></app-listar-usuarios>
-            </div>
-            <div *ngIf="nombreVentana === 'CANDIDATO'">
-                <app-listar-candidatos></app-listar-candidatos>
-            </div>
-            <div *ngIf="nombreVentana === 'CARGOS'">
-                <app-listar-cargos></app-listar-cargos>
-            </div>
-            <div *ngIf="nombreVentana === 'CENTRO-COSTO'">
-                <app-listar-centros-costos></app-listar-centros-costos>
-            </div>
-            <div *ngIf="nombreVentana === 'CONTRATO'">
-                <app-listar-contratos></app-listar-contratos>
-            </div>
-            <div *ngIf="nombreVentana === 'EXPERIENCIA-LABORAL'">
-                <app-listar-experiencias-laborales></app-listar-experiencias-laborales>
-            </div>
-            <div *ngIf="nombreVentana === 'REPORTE-GENERAL'">
-                <app-reporte-general></app-reporte-general>
-            </div>
-            <div *ngIf="nombreVentana === 'REPORTE-ADMIN'">
-                <app-listar-admin></app-listar-admin>
-            </div>
-        
+
+        <div id="router-outlet">
+            <router-outlet></router-outlet>
+        </div>
+        <div *ngIf="nombreVentana === 'INGRESO-VACACION'">
+            <app-agregar-vacacion></app-agregar-vacacion>
+        </div>
+        <div *ngIf="nombreVentana === 'REPORTE-PERSONAL'">
+            <app-listar-vacaciones></app-listar-vacaciones>
+        </div>
+        <div *ngIf="nombreVentana === 'REPORTE-GENERAL-VACACIONES-SUPERVISOR'">
+            <app-listar-reporte-general-supervisor></app-listar-reporte-general-supervisor>
+        </div>
+        <div *ngIf="nombreVentana === 'PERSONAL'">
+            <app-listar-personal></app-listar-personal>
+        </div>
+        <div *ngIf="nombreVentana === 'USUARIO'">
+            <app-listar-usuarios></app-listar-usuarios>
+        </div>
+        <div *ngIf="nombreVentana === 'CANDIDATO'">
+            <app-listar-candidatos></app-listar-candidatos>
+        </div>
+        <div *ngIf="nombreVentana === 'CARGOS'">
+            <app-listar-cargos></app-listar-cargos>
+        </div>
+        <div *ngIf="nombreVentana === 'CENTRO-COSTO'">
+            <app-listar-centros-costos></app-listar-centros-costos>
+        </div>
+        <div *ngIf="nombreVentana === 'CONTRATO'">
+            <app-listar-contratos></app-listar-contratos>
+        </div>
+        <div *ngIf="nombreVentana === 'EXPERIENCIA-LABORAL'">
+            <app-listar-experiencias-laborales></app-listar-experiencias-laborales>
+        </div>
+        <div *ngIf="nombreVentana === 'REPORTE-GENERAL'">
+            <app-reporte-general></app-reporte-general>
+        </div>
+        <div *ngIf="nombreVentana === 'REPORTE-ADMIN'">
+            <app-listar-admin></app-listar-admin>
+        </div>
+
     </div>
 </form>

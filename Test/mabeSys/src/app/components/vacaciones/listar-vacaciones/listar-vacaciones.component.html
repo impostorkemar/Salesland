@@ -1,6 +1,6 @@
 <form [formGroup]="formularioDeVacacion">
   <div>
-    <h2>HISTORIAL VACACIONES</h2>
+    <h5>HISTORIAL DE VACACIONES</h5>
   </div>
   <div class="contenedor-general">
     <div class="search-container">
@@ -21,7 +21,7 @@
             <th (click)="sort('dias_lab_solicitados')">Días Solicitados</th>
             <!-- <th (click)="sort('dias_disponibles_acum')">Días Disponibles</th> -->
             <th (click)="sort('status')">Estado</th>
-            <th (click)="sort('peticion')">Peticion</th>
+            <!-- <th (click)="sort('peticion')">Peticion</th> -->
             <th (click)="sort('observaciones')">Observaciones</th>
             <th (click)="sort('motivo')">Motivo</th>
             <th *ngIf="false">ACCIONES</th>
@@ -39,7 +39,7 @@
             <td>{{ row.dias_lab_solicitados }}</td> 
             <!--<td>{{ row.dias_disponibles_acum }}</td> -->
             <td>{{ row.status }}</td>
-            <td>{{ row.peticion }}</td>
+            <!-- <td>{{ row.peticion }}</td> -->
             <td>{{ row.observaciones }}</td>
             <td>{{ row.motivo }}</td>
             <td *ngIf="false">

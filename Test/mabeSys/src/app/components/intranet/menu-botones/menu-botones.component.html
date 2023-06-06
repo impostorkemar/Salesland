@@ -76,6 +76,30 @@
 
     </div>
   </div>
+  <div class="column3">
+    <div class="card-align-ReglamentoTitle">
+      <h1 class="h1-ReglamentoTitle" (click)="togglePolitics()">Reglamento Interno Salesland Ecuador</h1>
+    </div>
+    <div *ngIf="showPolitics">
+      <app-politics></app-politics>
+    </div>
+    <hr>
+    <div class="button-grid">
+      <button class="button-menu-external" *ngIf="centroCostoFlag" (click)="goToExternalLinkControlnet()">
+        <img src="./assets/controlnet-logo-web.svg" alt="Icono" class="icon-image-external">
+      </button>
+      <button class="contenedor-campus-salesland" (click)="goToExternalLinkCampusSalesland()">
+        <img src="./assets/campus-salesland.png" alt="Icono" class="icon-image-adjusted">
+      </button>
+      <button class="button-menu-external" *ngIf="mabeOptionsFlag" (click)="goToExternalLinkAmigosMABE()">
+        <img src="./assets/amigos mabe logo.jpg" alt="Icono" class="icon-image-external">
+      </button>
+      <!-- <button class="button-menu-external" *ngIf="mabeOptionsFlag" (click)="navigateToenConstruccion()">
+        <img src="./assets/amigos mabe logo.jpg" alt="Icono" class="icon-image-external">
+      </button> -->
+      <button class="button-menu-external" *ngIf="centroCostoFlag" (click)="goToExternalLinkAracne()">
+        <img src="./assets/aracne logo.jpg" alt="Icono" class="icon-image-external">
+      </button>
   <div class="column3">   
     <div class="card-align" (click)="redirectToPublicidad2()">
       <h1 class="h1-ReglamentoTitle">Evento Salesland</h1>

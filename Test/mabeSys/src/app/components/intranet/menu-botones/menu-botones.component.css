@@ -398,3 +398,18 @@ h1 {
   }
 }
 
+.icon-image-adjusted{
+  width: 100%;
+  background-color: #045959;
+}
+
+.contenedor-campus-salesland {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: none;
+  border: none;  
+  background-color: #045959;
+}
