@@ -300,7 +300,7 @@ export class AgregarVacacionComponent {
                     +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
                     this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+this.toDate?.month+"-"+
                     this.toDate?.day,this.formularioDeVacacion.get('dias_seleccionados')?.value as number,
-                    this.formularioDeVacacion.get('vaca_disp')?.value as number, 
+                    this.formularioDeVacacion.get('saldo_dias')?.value as number, 
                     this.seleccionMotivo).subscribe(respuesta22=>{
                       this.btnIngresar = true;
                       this.precargarDias();
@@ -391,7 +391,7 @@ export class AgregarVacacionComponent {
                       +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"+
                       this.fromDate?.month+"-"+ this.fromDate?.day,this.toDate?.year+"-"+this.toDate?.month+"-"+
                       this.toDate?.day,this.formularioDeVacacion.get('dias_seleccionados')?.value as number,
-                      this.formularioDeVacacion.get('vaca_disp')?.value as number, 
+                      this.formularioDeVacacion.get('saldo_dias')?.value as number, 
                       this.seleccionMotivo).subscribe(respuesta22=>{
                         this.btnIngresar = true;
                         this.precargarDias();
@@ -472,7 +472,7 @@ export class AgregarVacacionComponent {
                     +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"
                     +this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+this.fromDate?.month+"-"+
                     this.fromDate?.day,this.formularioDeVacacion.get('dias_seleccionados')?.value as number,
-                    this.formularioDeVacacion.get('vaca_disp')?.value as number, 
+                    this.formularioDeVacacion.get('saldo_dias')?.value as number, 
                     this.seleccionMotivo).subscribe(respuesta22=>{
                       console.log("respuesta22:",respuesta22);
                       this.btnIngresar = true;
@@ -570,7 +570,7 @@ export class AgregarVacacionComponent {
                     +":"+this.fechaActual.getMinutes()+":"+this.fechaActual.getSeconds()) as any ,this.fromDate?.year+"-"
                     +this.fromDate?.month+"-"+ this.fromDate?.day,this.fromDate?.year+"-"+this.fromDate?.month+"-"+
                     this.fromDate?.day,this.formularioDeVacacion.get('dias_seleccionados')?.value as number,
-                    this.formularioDeVacacion.get('vaca_disp')?.value as number, 
+                    this.formularioDeVacacion.get('saldo_dias')?.value as number, 
                     this.seleccionMotivo).subscribe(respuesta22=>{
                       console.log("respuesta22:",respuesta22);
                       this.btnIngresar = true;
