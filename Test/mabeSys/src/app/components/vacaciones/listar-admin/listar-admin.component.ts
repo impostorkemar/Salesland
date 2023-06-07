@@ -177,7 +177,7 @@ export class ListarAdminComponent {
     aux = "Aprobado"
     this.crudService.AceptarSolicitudVacacionBySupervisor(id).subscribe(respuesta=>{
       console.log("respuesta: ",respuesta)
-      this.reloadMenuComponent(); 
+      //this.reloadMenuComponent(); 
       this.getVacaciones();
       this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
         console.log("respuesta15:",respuesta15)

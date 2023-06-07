@@ -80,6 +80,7 @@ class Vacacion(BaseModel):
     fecha_respuesta: str
     dias_lab_solicitados: float
     dias_disponibles_acum: float
+    saldo_dias_vacaciones: float
     status: str
     peticion: str
     observaciones: str

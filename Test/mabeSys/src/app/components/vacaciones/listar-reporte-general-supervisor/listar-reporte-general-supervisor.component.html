@@ -22,6 +22,7 @@
             <th (click)="sort('fecha_respuesta')">Fecha Respuesta</th>
             <th (click)="sort('dias_lab_solicitados')">Días Solicitados</th>
             <th (click)="sort('dias_disponibles_acum')">Días Disponibles</th> 
+            <th (click)="sort('saldo_dias_vacaciones')">Saldos días</th> 
             <th (click)="sort('status')">Estado</th>
             <th (click)="sort('peticion')">Petición</th>
             <th (click)="sort('observaciones')">Observaciones</th>
@@ -40,6 +41,7 @@
             <td>{{ row.fecha_respuesta }}</td>
             <td>{{ row.dias_lab_solicitados }}</td>
             <td>{{ row.dias_disponibles_acum }}</td> 
+            <td>{{ row.saldo_dias_vacaciones }}</td> 
             <td>{{ row.status }}</td>
             <td>{{ row.peticion }}</td>
             <td>{{ row.observaciones }}</td>

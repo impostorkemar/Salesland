@@ -8,7 +8,7 @@ import mysql.connector
 import io
 import os
 from datetime import datetime
-from dateutil.relativedelta import relativedelta|
+from dateutil.relativedelta import relativedelta
 import re
 
 def ejecutarSQL(SQL):
@@ -429,6 +429,20 @@ def cargarMotivoPredeterminadosViajes():
   sql2 += str(datos2) 
   ejecutarSQL(sql2)
 
+def cambiarEmailSupervisorTest():
+  sql1 = "UPDATE `supervisor` SET `email`='pasanteit@salesland.net' WHERE id_supervisor=1;"
+  ejecutarSQL(sql1)
+  sql2 = "UPDATE `supervisor` SET `email`='pasanteit@salesland.net' WHERE id_supervisor=2;"
+  ejecutarSQL(sql2)
+  sql3 = "UPDATE `supervisor` SET `email`='pasanteit@salesland.net' WHERE id_supervisor=3;"
+  ejecutarSQL(sql3)
+  sql4 = "UPDATE `supervisor` SET `email`='pasanteit@salesland.net' WHERE id_supervisor=4;"
+  ejecutarSQL(sql4)
+  sql5 = "UPDATE `supervisor` SET `email`='pasanteit@salesland.net' WHERE id_supervisor=5;"
+  ejecutarSQL(sql5)
+  sql6 = "UPDATE `supervisor` SET `email`='pasanteit@salesland.net' WHERE id_supervisor=6;"
+  ejecutarSQL(sql6)
+
 df5 = readExcelXLS("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/Vacaciones Salesland 2021-2022 (corte 31 jul22).xlsx")
 #df5 = readExcelXLS("C:/Users/WORK/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/Vacaciones Salesland 2021-2022 (corte 31 jul22).xlsx")
 
@@ -456,3 +470,4 @@ cambiarRolesSupervisores()
 cambiarJefedeSupervisores()
 cargarMotivoPredeterminadosVacaciones()
 cargarMotivoPredeterminadosViajes()
+cambiarEmailSupervisorTest()

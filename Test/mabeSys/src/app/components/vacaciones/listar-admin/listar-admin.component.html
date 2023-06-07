@@ -21,9 +21,10 @@
               <th (click)="sort('fecha_fin_vacaciones')"class="sortable">Fin Vacaciones</th>
               <th (click)="sort('fecha_respuesta')"class="sortable">Fecha Respuesta</th>
               <th (click)="sort('dias_lab_solicitados')"class="sortable">Días Solicitados</th>
-              <!-- <th (click)="sort('dias_disponibles_acum')">DIAS DISPONIBLES ACUMULADOS</th> -->
+              <th (click)="sort('dias_disponibles_acum')">Dias Acumulados</th>
+              <th (click)="sort('saldo_dias_vacaciones')">Saldo días</th>
               <th (click)="sort('status')"class="sortable">Estado</th>
-              <th (click)="sort('peticion')"class="sortable">Petición</th>
+              <!-- <th (click)="sort('peticion')"class="sortable">Petición</th> -->
               <th (click)="sort('observaciones')"class="sortable">Observaciones</th>
               <th (click)="sort('motivo')"class="sortable">Motivo</th>
               <th>Acciones</th>
@@ -39,9 +40,10 @@
               <td>{{ row.fecha_fin_vacaciones }}</td>
               <td>{{ row.fecha_respuesta }}</td>
               <td>{{ row.dias_lab_solicitados }}</td>
-              <!-- <td>{{ row.dias_disponibles_acum }}</td> -->
+              <td>{{ row.dias_disponibles_acum }}</td>
+              <td>{{ row.saldo_dias_vacaciones }}</td>
               <td>{{ row.status }}</td>
-              <td>{{ row.peticion }}</td>
+              <!-- <td>{{ row.peticion }}</td> -->
               <td>{{ row.observaciones }}</td>
               <td>{{ row.motivo }}</td>
               <td>

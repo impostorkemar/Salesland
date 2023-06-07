@@ -6,6 +6,7 @@ export class Vacaciones{
   fecha_fin_vacaciones!: String;
   dias_lab_solicitados!: String;
   dias_disponibles_acum!: String;
+  saldo_dias_vacaciones!: String;
   fecha_respuesta!: String;
   status!: String;
   peticion!: String;
