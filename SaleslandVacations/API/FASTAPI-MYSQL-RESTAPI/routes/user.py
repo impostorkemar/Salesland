@@ -624,6 +624,13 @@ def delete_candidato(id: str):
     conn.execute("DELETE FROM `vacaciones` WHERE  id_vacaciones = '"+str(id)+"'")
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
+@user.get("/comprobarUnicaSolicitudPendiente/{user}_{pass}", tags=["vacaciones"])
+def get_comprobarUnicaSolicitudPendiente(user: str, passw: str):
+    conn = engine.connect()
+    sql = ("SELECT COUNT(*) as n_solici_pendientes  FROM vacaciones WHERE vacaciones.status = 'pendiente' AND vacaciones.id_personal = (SELECT personal.id_personal FROM personal WHERE personal.cedula= (SELECT usuario.cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));")
+    #print(sql)
+    return conn.execute(sql).first()
+
 @user.get("/comprobarVacacionesRegistradasByUserPassword/{user}_{pass}_{fecha}", tags=["vacaciones"])
 def get_vacacionesregistradasByUserPassword(user: str, passw: str, fecha: str):
     conn = engine.connect()
@@ -717,7 +724,7 @@ def update_vacacionesAAprobarbyId(id: str,vacacion : Vacacion):
     #sql="UPDATE `vacaciones` SET `status`='pendiente-cancelacion',`observaciones`='"+str(observaciones)+"' WHERE  id_vacaciones = '"+str(id)+"';" 
     #conn.execute(sql)
     conn = engine.connect()
-    print("\nvacacion:",vacacion)       
+    print("\nvacacion:",vacacion)        
     if(get_vacacionesDiasAprobadosById(str(id))[0] != None):
         totalDiasApr = get_vacacionesDiasAprobadosById(str(id))[0]
     else:

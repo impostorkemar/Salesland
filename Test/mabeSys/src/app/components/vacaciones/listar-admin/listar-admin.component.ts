@@ -22,7 +22,7 @@ export class ListarAdminComponent {
   VacacionesBySupervisor: any[] = [];
   pagedVacaciones: any[] = [];
   currentPage = 1;
-  pageSize = 5; // Number of rows per page
+  pageSize = 10; // Number of rows per page
   totalPages = 0;
   pages: number[] = [];
   searchKeyword: string = '';
@@ -177,7 +177,7 @@ export class ListarAdminComponent {
     aux = "Aprobado"
     this.crudService.AceptarSolicitudVacacionBySupervisor(id).subscribe(respuesta=>{
       console.log("respuesta: ",respuesta)
-      //this.reloadMenuComponent(); 
+      this.reloadMenuComponent(); 
       this.getVacaciones();
       this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15=>{
         console.log("respuesta15:",respuesta15)

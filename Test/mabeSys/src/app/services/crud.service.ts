@@ -378,6 +378,11 @@ resp!:String[];
     return this.clienteHttp.get(this.API+urlAPI);
   }
 
+  public ValidarIngresoSolicitudPendiente(user:any,pass:any):Observable<any>{
+    var urlAPI="comprobarUnicaSolicitudPendiente/"+user as string+"_{pass}?passw="+pass as string;       
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
   ObtenertotalVacacionesTomadas(user:any,pass:any):Observable<any>{
     //console.log("user:",user,"pass:", pass)
     var urlAPI="totalVacacionesTomadas/"+user as string+"-{pass}?passw="+pass as string;       
@@ -491,6 +496,12 @@ resp!:String[];
   ObtenerExistenciaVacaciones(user:any,pass:any, fecha:any):Observable<any>{
     console.log("user:",user,"pass:", pass,"fecha:", fecha);
     var urlAPI="comprobarVacacionesRegistradasByUserPassword/"+user as string+"_{pass}_"+fecha as string+"?passw="+pass as string;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  ObtenerTotalVacacionesAprobadas(user:any,pass:any, fecha:any):Observable<any>{
+    console.log("user:",user,"pass:", pass,"fecha:", fecha);
+    var urlAPI="vacacionesDiasAprobadosByUserPassword/"+user as string+"_{pass}_"+fecha as string+"?passw="+pass as string;      
     return this.clienteHttp.get(this.API+urlAPI);
   }
 
