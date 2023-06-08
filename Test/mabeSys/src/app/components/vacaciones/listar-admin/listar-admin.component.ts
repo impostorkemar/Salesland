@@ -22,7 +22,7 @@ export class ListarAdminComponent {
   VacacionesBySupervisor: any[] = [];
   pagedVacaciones: any[] = [];
   currentPage = 1;
-  pageSize = 5; // Number of rows per page
+  pageSize = 10; // Number of rows per page
   totalPages = 0;
   pages: number[] = [];
   searchKeyword: string = '';

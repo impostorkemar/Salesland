@@ -483,9 +483,9 @@ def get_totalVacacionesTomadas(user: str, passw: str):
 @user.post("/vacation2/", tags=["vacaciones"])
 def create_vacation2(vacacion : Vacacion ):    
     conn = engine.connect()
-    sql = "INSERT INTO `vacaciones`(`id_personal`, `fecha_solicitud`, `fecha_inicio_vacaciones`, `fecha_fin_vacaciones`, `dias_lab_solicitados`, `dias_disponibles_acum`, `status`,`peticion`, `observaciones`,`motivo`) VALUES"
+    sql = "INSERT INTO `vacaciones`(`id_personal`, `fecha_solicitud`, `fecha_inicio_vacaciones`, `fecha_fin_vacaciones`, `dias_lab_solicitados`, `dias_disponibles_acum`, `saldo_dias_vacaciones`, `status`,`peticion`, `observaciones`,`motivo`) VALUES"
     datos = (vacacion.id_personal,vacacion.fecha_solicitud,vacacion.fecha_inicio_vacaciones,vacacion.fecha_fin_vacaciones,
-             vacacion.dias_lab_solicitados,vacacion.dias_disponibles_acum,vacacion.status, vacacion.peticion, vacacion.observaciones, vacacion.motivo) 
+             vacacion.dias_lab_solicitados,vacacion.dias_disponibles_acum,vacacion.saldo_dias_vacaciones,vacacion.status, vacacion.peticion, vacacion.observaciones, vacacion.motivo) 
     sql = sql + str(datos) 
     print(sql);
     result = conn.execute(sql)
@@ -495,7 +495,7 @@ def create_vacation2(vacacion : Vacacion ):
 @user.get("/vacacionesPersonal/", tags=["vacaciones"])
 def get_vacacionesPersonal():
     conn = engine.connect()
-    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula ORDER BY vacaciones.fecha_solicitud DESC;"
+    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum,vacaciones.saldo_dias_vacaciones, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula ORDER BY vacaciones.fecha_solicitud DESC;"
     #print(sql)
     return conn.execute(sql).fetchall()
 
@@ -537,7 +537,7 @@ def get_vacacionesPersonalNegadas():
 @user.get("/vacacionesPersonalBySupervisor/{user}-{pass}", tags=["supervisor"])
 def get_vacacionesPersonalBySupervisor(user: str, passw: str):
     conn = engine.connect()
-    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND personal.id_supervisor = (SELECT supervisor.id_supervisor FROM supervisor WHERE supervisor.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"')) AND  vacaciones.status!='eliminada' ORDER BY vacaciones.fecha_solicitud DESC;"
+    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.saldo_dias_vacaciones, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM candidato, vacaciones, personal, usuario WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND personal.id_supervisor = (SELECT supervisor.id_supervisor FROM supervisor WHERE supervisor.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"')) AND  vacaciones.status!='eliminada' ORDER BY vacaciones.fecha_solicitud DESC;"
     #print(sql)
     return conn.execute(sql).fetchall()
 
@@ -624,6 +624,13 @@ def delete_candidato(id: str):
     conn.execute("DELETE FROM `vacaciones` WHERE  id_vacaciones = '"+str(id)+"'")
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
+@user.get("/comprobarUnicaSolicitudPendiente/{user}_{pass}", tags=["vacaciones"])
+def get_comprobarUnicaSolicitudPendiente(user: str, passw: str):
+    conn = engine.connect()
+    sql = ("SELECT COUNT(*) as n_solici_pendientes  FROM vacaciones WHERE vacaciones.status = 'pendiente' AND vacaciones.id_personal = (SELECT personal.id_personal FROM personal WHERE personal.cedula= (SELECT usuario.cedula FROM usuario WHERE usuario = '"+str(user)+"' AND password = '"+str(passw)+"'));")
+    #print(sql)
+    return conn.execute(sql).first()
+
 @user.get("/comprobarVacacionesRegistradasByUserPassword/{user}_{pass}_{fecha}", tags=["vacaciones"])
 def get_vacacionesregistradasByUserPassword(user: str, passw: str, fecha: str):
     conn = engine.connect()
@@ -637,6 +644,13 @@ def get_vacacionesAReasignarByUserPassword(user: str, passw: str, fecha: str):
     sql = "SELECT id_vacaciones FROM `vacaciones` WHERE 0 NOT IN (CASE WHEN (CAST('"+str(fecha)+"' AS DATE) > CAST(fecha_inicio_vacaciones AS DATE) AND CAST(fecha_fin_vacaciones AS DATE) > CAST('"+str(fecha)+"' AS DATE)) THEN '1' WHEN CAST(fecha_inicio_vacaciones AS DATE) = CAST('"+str(fecha)+"' AS DATE) AND CAST(fecha_fin_vacaciones AS DATE) < CAST('"+str(fecha)+"' AS DATE) THEN '2' WHEN CAST('"+str(fecha)+"' AS DATE) < CAST(fecha_inicio_vacaciones AS DATE) AND CAST(fecha_fin_vacaciones AS DATE) = CAST('"+str(fecha)+"' AS DATE) THEN '3' WHEN CAST(fecha_inicio_vacaciones AS DATE) = CAST('"+str(fecha)+"' AS DATE) AND CAST(fecha_fin_vacaciones AS DATE) = CAST('"+str(fecha)+"' AS DATE) THEN '4' WHEN CAST(fecha_inicio_vacaciones AS DATE) = CAST('"+str(fecha)+"' AS DATE) THEN '5' WHEN CAST(fecha_fin_vacaciones AS DATE) = CAST('"+str(fecha)+"' AS DATE) THEN '6' WHEN CAST(fecha_inicio_vacaciones AS DATE) < CAST('"+str(fecha)+"' AS DATE) AND CAST(fecha_fin_vacaciones AS DATE) > CAST('"+str(fecha)+"' AS DATE) THEN '7' WHEN CAST(fecha_inicio_vacaciones AS DATE) < CAST('"+str(fecha)+"' AS DATE) AND CAST(fecha_fin_vacaciones AS DATE) > CAST('"+str(fecha)+"' AS DATE) THEN '8' WHEN CAST(fecha_inicio_vacaciones AS DATE) > CAST('"+str(fecha)+"' AS DATE) AND CAST(fecha_fin_vacaciones AS DATE) < CAST('"+str(fecha)+"' AS DATE) THEN '9' WHEN CAST(fecha_fin_vacaciones AS DATE) = CAST('"+str(fecha)+"' AS DATE) THEN '10' WHEN CAST(fecha_inicio_vacaciones AS DATE) = CAST('"+str(fecha)+"' AS DATE) THEN '11' ELSE '0' END) AND (vacaciones.status = 'pendiente' OR vacaciones.status = 'aprobada'); "
     #print(sql)
     return conn.execute(sql).fetchall()
+
+@user.get('/vacacionesDiasAprobadosById/{id}',tags=["vacaciones"])
+def get_vacacionesDiasAprobadosById(id: str):
+    conn = engine.connect()
+    sql = "SELECT SUM(vacaciones.dias_lab_solicitados) as tot_dias_aprobados FROM `vacaciones` WHERE vacaciones.status = 'aprobada' AND id_personal = (SELECT vacaciones.id_personal FROM `vacaciones` WHERE vacaciones.id_vacaciones = '"+str(id)+"');"
+    print(sql)
+    return conn.execute(sql).first()
 
 @user.get('/vacacionesFechaInicioAndFin/{idVacacion}',tags=["vacaciones"])
 def get_vacacionesFechaInicioAndFin(idVacacion: str):
@@ -666,7 +680,7 @@ def get_vacacionesAReasignarByUserPasswordFechasInfo(user: str, passw: str, fech
 @user.get('/vacacionesById/{id}',tags=["vacaciones"])
 def vacacionesById(id : str):
     conn = engine.connect()
-    sql = ("SELECT vacaciones.id_vacaciones,candidato.nombre,candidato.apellido, vacaciones.id_personal, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_disponibles_acum, vacaciones.dias_lab_solicitados, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM vacaciones,personal, candidato WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND id_vacaciones = '"+str(id)+"';")
+    sql = ("SELECT vacaciones.id_vacaciones,candidato.nombre,candidato.apellido, vacaciones.id_personal, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_disponibles_acum, vacaciones.saldo_dias_vacaciones, vacaciones.dias_lab_solicitados, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo FROM vacaciones,personal, candidato WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND id_vacaciones = '"+str(id)+"';")
     return conn.execute(sql).first()
 
 @user.get('/vacacionesByIdFormat/{id}',tags=["vacaciones"])
@@ -710,12 +724,18 @@ def update_vacacionesAAprobarbyId(id: str,vacacion : Vacacion):
     #sql="UPDATE `vacaciones` SET `status`='pendiente-cancelacion',`observaciones`='"+str(observaciones)+"' WHERE  id_vacaciones = '"+str(id)+"';" 
     #conn.execute(sql)
     conn = engine.connect()
-    print("vacacion:",vacacion)
+    print("\nvacacion:",vacacion)        
+    if(get_vacacionesDiasAprobadosById(str(id))[0] != None):
+        totalDiasApr = get_vacacionesDiasAprobadosById(str(id))[0]
+    else:
+        totalDiasApr = 0
+    print("\ntotalDiasApr:",totalDiasApr)
     sql = (vacaciones.update().values(
             fecha_respuesta=vacacion.fecha_respuesta,
             status=vacacion.status,
             peticion='aprobacion',
-            observaciones=vacacion.observaciones            
+            observaciones=vacacion.observaciones,
+            saldo_dias_vacaciones= str((vacacion.dias_disponibles_acum) - (totalDiasApr + vacacion.dias_lab_solicitados))       
             ).where(vacaciones.c.id_vacaciones == id))
     print("vacacionesAAprobarbyId:",sql)    
     conn.execute(sql)
