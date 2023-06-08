@@ -79,6 +79,7 @@ nav ul li a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
 }
 
 .elemento1 {
@@ -415,3 +416,7 @@ h1 {
   background-color: #045959;
 }
 
+
+.carousel-inner {
+  cursor: pointer;
+}
