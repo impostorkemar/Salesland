@@ -1,0 +1,57 @@
+.header {
+    background-color: #045959;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .header h1 {
+    margin: 0;
+  }
+  
+  .content {
+    background-color: #fff;
+    color: #045959;
+    padding: 20px;
+  }
+  
+  .icon-image-publicacion {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .content h2 {
+    text-align: center;
+  }
+  
+  .content p {
+    line-height: 1.5;
+  }
+
+  
+.news {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px  solid rgba(128, 128, 128, 0.315);
+  }
+  
+  .news h3 {
+    margin-top: 0;
+    font-size: 24px;
+  }
+  
+  .news p {
+    margin-bottom: 0;
+  }
+  
+  /* Estilos de hover */
+  .news:hover {
+    background-color: #cac6c68c;
+    color: #045959;
+    cursor: pointer;
+  }
+  
+  .news:hover h3 {
+    color: #045959;
+  }

@@ -48,6 +48,7 @@
         font-weight: 500;
         border: none;
         border-bottom: 1px solid gray;
+        font-size: 14px;
     }
 
     .table tr:hover {
@@ -142,3 +143,18 @@
     
   }
   
+  .sort-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    margin-left: 5px;
+    background-color: white;
+  }
+  
+  .sort-icon.asc::before {
+    content: '\25b2'; /* Triángulo hacia arriba */
+  }
+  
+  .sort-icon.desc::before {
+    content: '\25bc'; /* Triángulo hacia abajo */
+  }

@@ -259,6 +259,7 @@ h1 {
   max-width: 300px;
   height: auto;
   text-align: center;
+  cursor: pointer;
 }
 
 .dropdown {
@@ -413,3 +414,4 @@ h1 {
   border: none;  
   background-color: #045959;
 }
+

@@ -1,67 +1,130 @@
 <form [formGroup]="formularioDeviaje">
-    <div class="card">
-        <!-- <div class="card-body">
-            <div *ngIf="false" class="mb-3">
-                <label for="" class="form-label">MOTIVO</label>
-                <input type="text" class="form-control" name="motivo" formControlName="motivo" id="motivo"
-                    aria-describedby="helpId" placeholder="ESCRIBA SU MOTIVO">
-            </div>
-        </div> -->
-        <div class="card-body">
-            <h2> LISTADO REEMBOLSOS </h2>
-            <div class="table-responsive">
-                <table class="table ">
-                    <thead>
-                        <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">Lugar</th>
-                            <th scope="col">Fecha Reembolso</th>
-                            <!-- <th scope="col">Nombre</th> -->
-                            <th scope="col">Cedula</th>
-                            <th scope="col">Inicio Viaje</th>
-                            <th scope="col">Fin Viaje</th>
-                            <!-- <th scope="col">DURACION</th> -->
-                            <th scope="col">Partida</th>
-                            <th scope="col">Destino</th>
-                            <th scope="col">Fecha Gasto</th>
-                            <th scope="col">Moneda</th>
-                            <th scope="col">Nro. Comprobantes</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Petición</th>
-                            <th scope="col">Motivo</th>
-                            <th scope="col">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let viaje of Viaje | paginate: {id: 'pagination1', itemsPerPage: 5, currentPage: pP, totalItems: totalP }; let iControl=index"
-                            class="fila">
-                            <td>{{viaje.id_viaje}}</td>
-                            <td>{{viaje.lugar}}</td>
-                            <td>{{viaje.fecha_reembolso}}</td>
-                            <!-- <td>{{viaje.nombre}}</td> -->
-                            <td>{{viaje.cedula}}</td>
-                            <td>{{viaje.fecha_viaje_inicio}}</td>
-                            <td>{{viaje.fecha_viaje_fin}}</td>
-                            <!-- <td>{{viaje.duracion}}</td> -->
-                            <td>{{viaje.punto_partida}}</td>
-                            <td>{{viaje.punto_destino}}</td>
-                            <td>{{viaje.fecha_gasto}}</td>
-                            <td>{{viaje.moneda}}</td>
-                            <td>{{viaje.cantidad_comprobantes}}</td>
-                            <td>${{viaje.importe}}</td>
-                            <td>{{viaje.status}}</td>
-                            <td>{{viaje.peticion}}</td>
-                            <td>{{viaje.motivo}}</td>
-                        </tr>
 
-                    </tbody>
-                </table>
-                <pagination-controls id="pagination1" (pageChange)="pageChangeEvent($event)"></pagination-controls>
-            </div>
+    <div class="card-body">
+        <h5>LISTADO REEMBOLSOS</h5>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th (click)="sort('id_viaje')" scope="col">
+                            id
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'id_viaje' && sortAsc" alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'id_viaje' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <th (click)="sort('lugar')" scope="col">
+                            Lugar
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'lugar' && sortAsc" alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'lugar' && !sortAsc" alt="Desc" />
+                        </th>
+                        <th (click)="sort('fecha_reembolso')" scope="col">
+                            Fecha Reembolso
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'fecha_reembolso' && sortAsc"
+                                alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'fecha_reembolso' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <th (click)="sort('cedula')" scope="col">
+                            Cedula
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'cedula' && sortAsc" alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'cedula' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <th (click)="sort('fecha_viaje_inicio')" scope="col">
+                            Inicio Viaje
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'fecha_viaje_inicio' && sortAsc"
+                                alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'fecha_viaje_inicio' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <th (click)="sort('fecha_viaje_fin')" scope="col">
+                            Fin Viaje
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'fecha_viaje_fin' && sortAsc"
+                                alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'fecha_viaje_fin' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <th (click)="sort('punto_partida')" scope="col">
+                            Partida
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'punto_partida' && sortAsc"
+                                alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'punto_partida' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <th (click)="sort('punto_destino')" scope="col">
+                            Destino
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'punto_destino' && sortAsc"
+                                alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'punto_destino' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <th (click)="sort('fecha_gasto')" scope="col">
+                            Fecha Gasto
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'fecha_gasto' && sortAsc"
+                                alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'fecha_gasto' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <!-- <th (click)="sort('moneda')" scope="col">
+                            Moneda
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'moneda' && sortAsc" alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'moneda' && !sortAsc"
+                                alt="Desc" />
+                        </th> -->
+                        <th (click)="sort('cantidad_comprobantes')" scope="col">
+                            Nro. Comprobantes
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'cantidad_comprobantes' && sortAsc"
+                                alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg"
+                                *ngIf="sortBy === 'cantidad_comprobantes' && !sortAsc" alt="Desc" />
+                        </th>
+                        <th (click)="sort('status')" scope="col">
+                            Status
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'status' && sortAsc" alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'status' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <th (click)="sort('peticion')" scope="col">
+                            Petición
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'peticion' && sortAsc" alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'peticion' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <th (click)="sort('motivo')" scope="col">
+                            Motivo
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'motivo' && sortAsc" alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'motivo' && !sortAsc"
+                                alt="Desc" />
+                        </th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let viaje of Viaje | paginate: {id: 'pagination1', itemsPerPage: 5, currentPage: pP, totalItems: totalP }; let iControl=index"
+                        class="fila">
+                        <td>{{viaje.id_viaje}}</td>
+                        <td>{{viaje.lugar}}</td>
+                        <td>{{viaje.fecha_reembolso}}</td>
+                        <td>{{viaje.cedula}}</td>
+                        <td>{{viaje.fecha_viaje_inicio}}</td>
+                        <td>{{viaje.fecha_viaje_fin}}</td>
+                        <td>{{viaje.punto_partida}}</td>
+                        <td>{{viaje.punto_destino}}</td>
+                        <td>{{viaje.fecha_gasto}}</td>
+                        <!-- <td>{{viaje.moneda}}</td> -->
+                        <td>{{viaje.cantidad_comprobantes}}</td>
+                        <td>${{viaje.importe}}</td>
+                        <td>{{viaje.status}}</td>
+                        <td>{{viaje.peticion}}</td>
+                        <td>{{viaje.motivo}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls id="pagination1" (pageChange)="pageChangeEvent($event)"></pagination-controls>
         </div>
     </div>
+
     <div class="contenedor-boton">
-        <a *ngIf="false" class="btn" routerLink="/agregar-candidato/">AGREGAR NUEVO CANDIDATO</a>
         <a class="btn" (click)="exportToCSV()" role="button">Descargar CSV</a>
     </div>
 </form>

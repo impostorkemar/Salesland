@@ -90,6 +90,7 @@ tr {
   padding: 25px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315); /* Ajusta los valores según tus preferencias */
   margin: 10px;
+  font-size: 14px;
 }
 
 .contenedor-add-datos {
@@ -100,6 +101,8 @@ tr {
 .contenedor-fila {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .contenedor-fila-2 {
