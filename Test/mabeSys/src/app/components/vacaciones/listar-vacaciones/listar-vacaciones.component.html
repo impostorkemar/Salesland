@@ -11,17 +11,13 @@
       <table class="table ">
         <thead>
           <tr>
-            <th (click)="sort('id_vacaciones')">Id</th>
-            <!-- <th (click)="sort('apellido')">Apellido</th>
-            <th (click)="sort('nombre')">Nombre</th> -->
+            <th (click)="sort('id_vacaciones')">Id</th>            
             <th (click)="sort('fecha_solicitud')">Fecha Solicitud</th>
             <th (click)="sort('fecha_inicio_vacaciones')">Inicio Vacaciones</th>
             <th (click)="sort('fecha_fin_vacaciones')">Fin Vacaciones</th>
             <th (click)="sort('fecha_respuesta')">Fecha Respuesta</th>
-            <th (click)="sort('dias_lab_solicitados')">Días Solicitados</th>
-            <!-- <th (click)="sort('dias_disponibles_acum')">Días Disponibles</th> -->
-            <th (click)="sort('status')">Estado</th>
-            <!-- <th (click)="sort('peticion')">Peticion</th> -->
+            <th (click)="sort('dias_lab_solicitados')">Días Solicitados</th>            
+            <th (click)="sort('status')">Estado</th>            
             <th (click)="sort('observaciones')">Observaciones</th>
             <th (click)="sort('motivo')">Motivo</th>
             <th *ngIf="false">ACCIONES</th>
@@ -29,24 +25,15 @@
         </thead>
         <tbody>
           <tr *ngFor="let row of pagedVacaciones; let iControl=index">
-            <td>{{ row.id_vacaciones }}</td>
-            <!-- <td>{{ row.nombre }}</td>
-            td>{{ row.apellido }}</td> -->
+            <td>{{ row.id_vacaciones }}</td>            
             <td>{{ row.fecha_solicitud }}</td>
             <td>{{ row.fecha_inicio_vacaciones }}</td>
             <td>{{ row.fecha_fin_vacaciones }}</td>
             <td>{{ row.fecha_respuesta }}</td>
-            <td>{{ row.dias_lab_solicitados }}</td> 
-            <!-- <td>{{ row.dias_disponibles_acum }}</td> -->
-            <td>{{ row.status }}</td>
-            <!-- <td>{{ row.peticion }}</td> -->
+            <td>{{ row.dias_lab_solicitados }}</td>             
+            <td>{{ row.status }}</td>            
             <td>{{ row.observaciones }}</td>
-            <td>{{ row.motivo }}</td>
-            <td *ngIf="false">
-              <a class="btn btn-danger" (click)="solicitarCancelacion(row.id_vacaciones,iControl)"
-                role="button">SOLICITAR
-                CANCELACIÓN</a>
-            </td>
+            <td>{{ row.motivo }}</td>            
           </tr>
         </tbody>
       </table>
