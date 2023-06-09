@@ -1,6 +1,5 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-
 #containerInicio {
   height: 100vh; /* 100% del viewport height */
   width: 100%; /* 100% del ancho disponible */
@@ -415,7 +414,6 @@ h1 {
   border: none;  
   background-color: #045959;
 }
-
 
 .carousel-inner {
   cursor: pointer;

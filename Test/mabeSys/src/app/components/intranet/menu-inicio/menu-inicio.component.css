@@ -107,3 +107,7 @@ nav {
   display: inline;
   font-weight: bold;
 }
+
+@media (min-width: 535px) {
+
+}
