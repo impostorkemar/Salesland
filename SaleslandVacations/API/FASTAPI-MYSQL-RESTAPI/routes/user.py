@@ -495,7 +495,7 @@ def create_vacation2(vacacion : Vacacion ):
 @user.get("/vacacionesPersonal/", tags=["vacaciones"])
 def get_vacacionesPersonal():
     conn = engine.connect()
-    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum,vacaciones.saldo_dias_vacaciones, vacaciones.status, vacaciones.observaciones, vacaciones.motivo, centro_costo.nombre_centro, centro_costo.cuenta FROM candidato, vacaciones, personal, usuario, centro_costo WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND centro_costo.id_centro_costo = personal.id_centro_costo ORDER BY vacaciones.fecha_solicitud DESC;"
+    sql = "SELECT vacaciones.id_vacaciones, candidato.nombre, candidato.apellido, vacaciones.fecha_solicitud, vacaciones.fecha_inicio_vacaciones, vacaciones.fecha_fin_vacaciones, vacaciones.fecha_respuesta, vacaciones.dias_lab_solicitados, vacaciones.dias_disponibles_acum, vacaciones.saldo_dias_vacaciones, vacaciones.status, vacaciones.peticion, vacaciones.observaciones, vacaciones.motivo, centro_costo.nombre_centro, centro_costo.tienda FROM candidato, vacaciones, personal, usuario, centro_costo WHERE vacaciones.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND Usuario.cedula = candidato.cedula AND centro_costo.id_centro_costo = personal.id_centro_costo ORDER BY vacaciones.fecha_solicitud DESC;"
     #print(sql)
     return conn.execute(sql).fetchall()
 

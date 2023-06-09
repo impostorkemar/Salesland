@@ -278,6 +278,7 @@ export class ExportListService {
   }
 
   downloadFileSolicitudesVacacionesSupervisores(data:any, filename = 'Vacaciones') {
+    console.log("data:\n",data)
     let csvData = this.ConvertToCSV(data, [
         'id_vacaciones', 'nombre', 'apellido', 'fecha_solicitud', 'fecha_inicio_vacaciones', 'fecha_fin_vacaciones', 'fecha_respuesta', 'dias_lab_solicitados', 'dias_disponibles_acum','saldo_dias_vacaciones', 'status', 'peticion', 'observaciones','motivo','nombre_centro','tienda'
     ]);
