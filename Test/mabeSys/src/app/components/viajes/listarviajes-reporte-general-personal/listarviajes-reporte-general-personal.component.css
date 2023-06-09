@@ -1,4 +1,4 @@
-h2 {
+h5 {
     text-align: center;
 }
 
@@ -11,8 +11,13 @@ h2 {
   .card-body table td {
     padding: 8px;
     text-align: left;
+    font-size: 14px;
   }
-  
+
+  .card-body table th {
+    cursor: pointer;
+  }
+
   .card-body table thead th {
     background-color: #045959;
     color: #fff;
@@ -30,6 +35,7 @@ h2 {
   
   .card-body table tbody td {
     color: black;
+
   }
   
   .card-body table tfoot th {
@@ -98,4 +104,20 @@ h2 {
     color: #045959;
     /* Otros estilos para el hover */
     border: 1px solid #045959;
+  }
+
+  .sort-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    margin-left: 5px;
+    background-color: white;
+  }
+  
+  .sort-icon.asc::before {
+    content: '\25b2'; /* Triángulo hacia arriba */
+  }
+  
+  .sort-icon.desc::before {
+    content: '\25bc'; /* Triángulo hacia abajo */
   }

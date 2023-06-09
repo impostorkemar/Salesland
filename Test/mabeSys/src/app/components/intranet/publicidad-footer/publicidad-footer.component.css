@@ -4,9 +4,10 @@
   width: 100%;
   background-color: #045959;
   color: #fff;
-  padding: 1px;
+  padding: 10px;
   text-align: center;
   z-index: 1;
+  font-size: 14px;
 }
 
 .footer .social-icons {
@@ -16,7 +17,7 @@
 }
 
 .footer p {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .footer .social-icon {

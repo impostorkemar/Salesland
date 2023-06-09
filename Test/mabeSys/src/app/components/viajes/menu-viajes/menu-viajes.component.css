@@ -90,6 +90,8 @@ button:first-child {
 .contenedor-general {
   padding-top: 50px;
   margin-top: 60px; /* Añade margen superior para evitar que el contenido se solape con el contenedor de botones */
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* Media query para pantallas más pequeñas */

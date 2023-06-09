@@ -1,8 +1,63 @@
-.h2-ReglamentoTitle {
-    font-size: 15px; /* Ajusta el tamaño según tus necesidades */
-    color: #045959;
-  }
-  
-  .u-ReglamentoTitle {
-    font-size: 14px; /* Ajusta el tamaño según tus necesidades */
-  }
+body {
+  background-color: #fff;
+  color: #045959;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  background-color: #045959;
+  text-align: center;
+  padding: 20px;
+}
+
+.header-title {
+  color: #fff;
+  margin: 0;
+}
+
+.content {
+  text-align: center;
+}
+
+.intro {
+  margin-bottom: 30px;
+}
+
+.rule {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #045959;
+  border-radius: 5px;
+}
+
+.rule-title {
+  color: #fff;
+  margin-top: 0;
+}
+
+.rule-description {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.rule-description:hover {
+  color: #045959;
+}
+
+.rule:hover {
+  background-color: #a0a0a077;
+  color: #045959;
+  cursor: pointer;
+}
+
+.rule:hover .rule-title {
+  color: #045959;
+}
