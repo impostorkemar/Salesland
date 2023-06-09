@@ -220,7 +220,7 @@ export class ListarReporteGeneralSupervisorComponent {
   }
 
   exportToCSV() {
-    this.exportList.downloadFileSolicitudesVacaciones(
+    this.exportList.downloadFileSolicitudesVacacionesSupervisores(
       this.VacacionesBySupervisor,
       'Vacaciones'
     );

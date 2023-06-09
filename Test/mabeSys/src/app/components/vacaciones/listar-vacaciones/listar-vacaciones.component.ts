@@ -166,7 +166,7 @@ export class ListarVacacionesComponent implements OnInit {
   }
 
   exportToCSV() {
-    this.exportList.downloadFileSolicitudesVacaciones(this.Vacaciones, "Vacaciones");
+    this.exportList.downloadFileSolicitudesVacacionesPropio(this.Vacaciones, "Vacaciones");
   }
 
   onSort(event: any) {

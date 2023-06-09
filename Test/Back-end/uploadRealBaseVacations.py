@@ -96,7 +96,7 @@ def cargarCentroCosto():
       for j in range(df2.iloc[0,:].size):
           list.append(df2.iloc[i,:][j])
       #print(list)
-      datos = (int(list[0]),list[1],list[2],list[3])
+      datos = (int(list[0]),list[1].upper(),list[2].upper(),list[3].upper())
       sql = sql + str(datos) 
       #print("sql:",sql)
       ejecutarSQL(sql)
@@ -443,6 +443,10 @@ def cambiarEmailSupervisorTest():
   sql6 = "UPDATE `supervisor` SET `email`='pasanteit@salesland.net' WHERE id_supervisor=6;"
   ejecutarSQL(sql6)
 
+def setearNombresCentros():
+  sql1 = "UPDATE `centro_costo` SET `tienda`='ESTRUCTURA',`cuenta`='ESTRUCTURA' WHERE `id_centro_costo` = '7001';"
+  ejecutarSQL(sql1)
+
 df5 = readExcelXLS("C:/Users/user/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/Vacaciones Salesland 2021-2022 (corte 31 jul22).xlsx")
 #df5 = readExcelXLS("C:/Users/WORK/Documents/GitHub/Salesland/SaleslandVacations/BackEnd/SaleslandCodes/Vacaciones Salesland 2021-2022 (corte 31 jul22).xlsx")
 
@@ -471,3 +475,4 @@ cambiarJefedeSupervisores()
 cargarMotivoPredeterminadosVacaciones()
 cargarMotivoPredeterminadosViajes()
 cambiarEmailSupervisorTest()
+setearNombresCentros()

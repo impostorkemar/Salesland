@@ -71,7 +71,7 @@ export class MenuBotonesComponent {
         this.centroCostoFlag=true;
         this.mabeOptionsFlag=true;
       }else{
-        if(respuesta['cuenta'] == 'Estructura' || respuesta['cuenta'] == 'MOVISTAR' || respuesta['cuenta'] == 'Administracion' ){
+        if(respuesta['cuenta'] == 'ESTRUCTURA' || respuesta['cuenta'] == 'MOVISTAR' || respuesta['cuenta'] == 'ADMINISTRACION' ){
           this.centroCostoFlag=true;
           this.mabeOptionsFlag=false;
         }else{
