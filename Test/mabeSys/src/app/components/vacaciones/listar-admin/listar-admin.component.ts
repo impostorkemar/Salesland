@@ -206,7 +206,7 @@ export class ListarAdminComponent {
   }
 
   exportToCSV() {
-    this.exportList.downloadFileSolicitudesVacaciones(this.VacacionesBySupervisor, "Vacaciones");
+    this.exportList.downloadFileSolicitudesVacacionesSupervisores(this.VacacionesBySupervisor, "Vacaciones");
   }
 
   reloadMenuComponent() {

@@ -229,9 +229,58 @@ export class ExportListService {
 
   
 
+  downloadFileSolicitudesVacacionesPropio(data:any, filename = 'Vacaciones') {
+    let csvData = this.ConvertToCSV(data, [
+        'id_vacaciones', 'fecha_solicitud', 'fecha_inicio_vacaciones', 'fecha_fin_vacaciones', 'fecha_respuesta', 'dias_lab_solicitados', 'status', 'observaciones', 'motivo'
+    ]);
+    console.log(csvData)
+    let blob = new Blob(['\ufeff' + csvData], {
+        type: 'text/csv;charset=utf-8;'
+    });
+    let dwldLink = document.createElement("a");
+    let url = URL.createObjectURL(blob);
+    //let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 & amp; & amp;
+    navigator.userAgent.indexOf('Chrome') == -1;
+    //if Safari open in new window to save file with random filename.
+    //if (isSafariBrowser) {
+    //  dwldLink.setAttribute("target", "_blank");
+    //}
+    dwldLink.setAttribute("href", url);
+    dwldLink.setAttribute("download", filename + ".csv");
+    dwldLink.style.visibility = "hidden";
+    document.body.appendChild(dwldLink);
+    dwldLink.click();
+    document.body.removeChild(dwldLink);
+  }
+
   downloadFileSolicitudesVacaciones(data:any, filename = 'Vacaciones') {
     let csvData = this.ConvertToCSV(data, [
         'id_vacaciones', 'nombre', 'apellido', 'fecha_solicitud', 'fecha_inicio_vacaciones', 'fecha_fin_vacaciones', 'fecha_respuesta', 'dias_lab_solicitados', 'dias_disponibles_acum', 'status', 'peticion', 'observaciones'
+    ]);
+    console.log(csvData)
+    let blob = new Blob(['\ufeff' + csvData], {
+        type: 'text/csv;charset=utf-8;'
+    });
+    let dwldLink = document.createElement("a");
+    let url = URL.createObjectURL(blob);
+    //let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 & amp; & amp;
+    navigator.userAgent.indexOf('Chrome') == -1;
+    //if Safari open in new window to save file with random filename.
+    //if (isSafariBrowser) {
+    //  dwldLink.setAttribute("target", "_blank");
+    //}
+    dwldLink.setAttribute("href", url);
+    dwldLink.setAttribute("download", filename + ".csv");
+    dwldLink.style.visibility = "hidden";
+    document.body.appendChild(dwldLink);
+    dwldLink.click();
+    document.body.removeChild(dwldLink);
+  }
+
+  downloadFileSolicitudesVacacionesSupervisores(data:any, filename = 'Vacaciones') {
+    console.log("data:\n",data)
+    let csvData = this.ConvertToCSV(data, [
+        'id_vacaciones', 'nombre', 'apellido', 'fecha_solicitud', 'fecha_inicio_vacaciones', 'fecha_fin_vacaciones', 'fecha_respuesta', 'dias_lab_solicitados', 'dias_disponibles_acum','saldo_dias_vacaciones', 'status', 'peticion', 'observaciones','motivo','nombre_centro','tienda'
     ]);
     console.log(csvData)
     let blob = new Blob(['\ufeff' + csvData], {

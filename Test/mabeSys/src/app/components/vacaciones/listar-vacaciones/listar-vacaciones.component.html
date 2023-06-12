@@ -54,16 +54,14 @@
                 *ngIf="sortColumn === 'dias_lab_solicitados' && sortDirection === 'asc'">
               <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
                 *ngIf="sortColumn === 'dias_lab_solicitados' && sortDirection === 'desc'">
-            </th>
-            <!-- <th (click)="sort('dias_disponibles_acum')">Días Disponibles</th> -->
+            </th>            
             <th (click)="sort('status')">
               Estado
               <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
                 *ngIf="sortColumn === 'status' && sortDirection === 'asc'">
               <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
                 *ngIf="sortColumn === 'status' && sortDirection === 'desc'">
-            </th>
-            <!-- <th (click)="sort('peticion')">Peticion</th> -->
+            </th>           
             <th (click)="sort('observaciones')">
               Observaciones
               <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
@@ -90,10 +88,8 @@
             <td>{{ row.fecha_inicio_vacaciones }}</td>
             <td>{{ row.fecha_fin_vacaciones }}</td>
             <td>{{ row.fecha_respuesta }}</td>
-            <td>{{ row.dias_lab_solicitados }}</td>
-            <!-- <td>{{ row.dias_disponibles_acum }}</td> -->
-            <td>{{ row.status }}</td>
-            <!-- <td>{{ row.peticion }}</td> -->
+            <td>{{ row.dias_lab_solicitados }}</td>           
+            <td>{{ row.status }}</td>           
             <td>{{ row.observaciones }}</td>
             <td>{{ row.motivo }}</td>            
           </tr>

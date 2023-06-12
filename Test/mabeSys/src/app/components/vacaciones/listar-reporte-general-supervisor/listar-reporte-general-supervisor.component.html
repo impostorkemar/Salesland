@@ -44,7 +44,8 @@
           <th (click)="sort('fecha_inicio_vacaciones')" class="sortable">
             Inicio Vacaciones
             <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
-              *ngIf="sortColumn === 'fecha_inicio_vacaciones' && sortDirection === 'asc'">
+              *ngIf="sortColumn === 'fecha_i
+              .nicio_vacaciones' && sortDirection === 'asc'">
             <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
               *ngIf="sortColumn === 'fecha_inicio_vacaciones' && sortDirection === 'desc'">
           </th>
@@ -63,19 +64,26 @@
               *ngIf="sortColumn === 'fecha_respuesta' && sortDirection === 'desc'">
           </th>
           <th (click)="sort('dias_lab_solicitados')" class="sortable">
+            Saldo Días
+            <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+              *ngIf="sortColumn === 'saldo_dias_vacaciones' && sortDirection === 'asc'">
+            <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+              *ngIf="sortColumn === 'saldo_dias_vacaciones' && sortDirection === 'desc'">
+          </th>
+          <th (click)="sort('dias_lab_solicitados')" class="sortable">
             Días Solicitados
             <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
               *ngIf="sortColumn === 'dias_lab_solicitados' && sortDirection === 'asc'">
             <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
               *ngIf="sortColumn === 'dias_lab_solicitados' && sortDirection === 'desc'">
           </th>
-          <th (click)="sort('dias_disponibles_acum')" class="sortable">
+          <!-- <th (click)="sort('dias_disponibles_acum')" class="sortable">
             Días Disponibles
             <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
               *ngIf="sortColumn === 'dias_disponibles_acum' && sortDirection === 'asc'">
             <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
               *ngIf="sortColumn === 'dias_disponibles_acum' && sortDirection === 'desc'">
-          </th>
+          </th> -->
           <th (click)="sort('status')" class="sortable">
             Estado
             <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
@@ -83,13 +91,13 @@
             <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
               *ngIf="sortColumn === 'status' && sortDirection === 'desc'">
           </th>
-          <th (click)="sort('peticion')" class="sortable">
+          <!-- <th (click)="sort('peticion')" class="sortable">
             Petición
             <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
               *ngIf="sortColumn === 'peticion' && sortDirection === 'asc'">
             <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
               *ngIf="sortColumn === 'peticion' && sortDirection === 'desc'">
-          </th>
+          </th> -->
           <th (click)="sort('observaciones')" class="sortable">
             Observaciones
             <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
@@ -104,6 +112,13 @@
             <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
               *ngIf="sortColumn === 'motivo' && sortDirection === 'desc'">
           </th>
+          <th (click)="sort('nombre_centro')" class="sortable">
+            Nombre de Centro
+            <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+              *ngIf="sortColumn === 'nombre_centro' && sortDirection === 'asc'">
+            <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+              *ngIf="sortColumn === 'nombre_centro' && sortDirection === 'desc'">
+          </th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -116,12 +131,14 @@
           <td>{{ row.fecha_inicio_vacaciones }}</td>
           <td>{{ row.fecha_fin_vacaciones }}</td>
           <td>{{ row.fecha_respuesta }}</td>
+          <td>{{ row.saldo_dias_vacaciones }}</td>
           <td>{{ row.dias_lab_solicitados }}</td>
-          <td>{{ row.dias_disponibles_acum }}</td>
+          <!-- <td>{{ row.dias_disponibles_acum }}</td> -->
           <td>{{ row.status }}</td>
-          <td>{{ row.peticion }}</td>
+          <!-- <td>{{ row.peticion }}</td> -->
           <td>{{ row.observaciones }}</td>
           <td>{{ row.motivo }}</td>
+          <td>{{ row.nombre_centro }}</td>
           <td>
             <ng-container class="contenedor-acciones">
               <a *ngIf="row.status === 'pendiente'" class="btn btn-success"
