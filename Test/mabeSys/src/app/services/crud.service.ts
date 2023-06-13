@@ -21,6 +21,7 @@ import { Viaje } from '../components/classModels/Viaje';
 import { Comprobante } from '../components/classModels/Comprobante';
 import { saveAs } from 'file-saver';
 import { environment } from 'src/environments/environment';
+import { Detalle_comprobante } from '../components/classModels/DetalleComprobante';
 
 @Injectable({
   providedIn: 'root'
@@ -1124,6 +1125,13 @@ resp!:String[];
     var urlAPI="comprobante/";
     //console.log("URL=",this.API +urlAPI);
     return this.postData(comprobante,urlAPI)
+  }
+
+  AgregarDetalleComprobante(detalle_comprobante : Detalle_comprobante):Observable<any>{   
+    console.log("detalle_comprobante:",detalle_comprobante);
+    var urlAPI="detalle_comprobante/";
+    //console.log("URL=",this.API +urlAPI);
+    return this.postData(detalle_comprobante,urlAPI)
   }
 
   downloadExcelFormatoReembolso():Observable<any> {

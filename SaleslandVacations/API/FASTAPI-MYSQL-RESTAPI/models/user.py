@@ -124,4 +124,19 @@ comprobantes = Table("comprobante", meta,
     Column("ruta_zip", String(255)),    
 )
 
+detalle_comprobantes = Table("detalle_comprobante", meta, 
+    Column("id_detalle_comprobante", Integer, primary_key=True),
+    Column("id_comprobante", Integer),
+    Column("tipo", String(255)),
+    Column("ruc_cedula", Numeric),    
+    Column("razon_social", String(255)),    
+    Column("n_documento", String(255)),    
+    Column("fecha_emision", String(255)),    
+    Column("base_imponible", String(255)),    
+    Column("cero_base_imponible", String(255)),    
+    Column("iva", Numeric),    
+    Column("servicio10", Numeric),  
+    Column("importe_sin_facturas", Numeric),  
+)
+
 meta.create_all(engine)

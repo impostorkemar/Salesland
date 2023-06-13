@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response
 from config.db import conn, engine
-from models.user import users, usuarios, candidatos, personales, cargos, contratos, centro_costos, vacaciones, supervisores, viajes, comprobantes
-from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato, Personal, Experiencia_laboral, Vacacion, Supervisor, Rol_pagos, Viaje, Comprobante
+from models.user import users, usuarios, candidatos, personales, cargos, contratos, centro_costos, vacaciones, supervisores, viajes, comprobantes, detalle_comprobantes
+from schemas.user import User,Usuario, Centro_costo, Cargo, Contrato, Candidato, Personal, Experiencia_laboral, Vacacion, Supervisor, Rol_pagos, Viaje, Comprobante, Detalle_Comprobante
 from cryptography.fernet import Fernet
 from starlette import status
 from sqlalchemy.sql import select
@@ -384,6 +384,19 @@ async def download_excel():
     else:
         return {"message": "El archivo no existe"}
 
+#CONSULTA DETALLE COMPROBANTE
+@user.post("/detalle_comprobante/", tags=["detalle_comprobante"])
+def create_detalle_comprobante(detalle_Comprobante: Detalle_Comprobante):
+    conn = engine.connect()   
+    sql = "INSERT INTO `detalle_comprobante`( `id_comprobante`, `tipo`, `ruc_cedula`, `razon_social`, `n_documento`, `fecha_emision`, `base_imponible`, `cero_base_imponible`, `iva`, `servicio10`, `importe_sin_facturas`) VALUES"
+    datos = (detalle_Comprobante.id_comprobante, detalle_Comprobante.tipo,detalle_Comprobante.ruc_cedula,
+             detalle_Comprobante.razon_social,detalle_Comprobante.n_documento,detalle_Comprobante.fecha_emision,
+             detalle_Comprobante.base_imponible,detalle_Comprobante.cero_base_imponible,detalle_Comprobante.iva,
+             detalle_Comprobante.servicio10,detalle_Comprobante.importe_sin_facturas
+             ) 
+    sql = sql + str(datos)
+    result = conn.execute(sql)   
+    return conn.execute("SELECT * FROM `detalle_comprobante` WHERE  id_detalle_comprobante = "+str(result.lastrowid)).first()
 
 #CONSULTA COMPROBANTE
 @user.post("/comprobante/", tags=["comprobante"])
