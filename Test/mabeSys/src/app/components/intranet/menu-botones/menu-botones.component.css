@@ -1,6 +1,5 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-
 #containerInicio {
   height: 100vh; /* 100% del viewport height */
   width: 100%; /* 100% del ancho disponible */
@@ -184,6 +183,7 @@ h1 {
   max-width: 100%;
   justify-items: center;
   padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center; /* Alinea el texto en el centro */
 }
 
@@ -192,6 +192,11 @@ h1 {
   flex-direction: column;
   align-items: center;
   gap: 5px; /* Espacio entre la imagen y el texto */
+}
+
+.button-grid .icon-image-external:hover {
+  background-color: #8b8b8b65;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .button-grid .icon-image-external {
@@ -212,12 +217,12 @@ h1 {
   padding: 10px 10px;
   border: none;
   border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease-in-out;
 }
 
 .button-menu-internal:hover {
-  background-color: #225555be;
+  background-color: #045959e3;
+  box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.25);
 }
 
 .icon-image-external {
@@ -262,6 +267,12 @@ h1 {
   text-align: center;
   cursor: pointer;
 }
+
+.icon-image-publicacion:hover {
+  background-color: #6b6b6bb9;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
 
 .dropdown {
   position: relative;
@@ -416,6 +427,10 @@ h1 {
   background-color: #045959;
 }
 
+.contenedor-campus-salesland:hover {
+  background-color: #045959;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
 .carousel-inner {
   cursor: pointer;

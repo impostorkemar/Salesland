@@ -1,44 +1,5 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-#containerInicio {
-  height: 100%;
-  width: 100%;
-  background-color: #fff;
-  color: black;
-}
-
-.button-group {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-}
-
-button {
-  background-color: #045959;
-  color: #ffffff;
-  width: 500px;
-  height: 168px;
-  font-size: 24px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  transition: all 0.2s ease-in-out;
-}
-
-button:hover {
-  transform: translateY(-10px);
-  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
-}
-
-i {  
-  text-align: center;
-  align-content: center;
-  width:7;
-  height:7;
-
-}
-
 header {
   background-color: #fff;
   color: black;
@@ -50,67 +11,16 @@ header {
   z-index: 999;
 }
 
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  color: black;
-}
-
-nav ul li {
-  display: inline-block;
-  margin-right: 1em;
-}
-
-nav ul li a {
-  display: block;
-  float: right;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-.left-ul {
-  float: left;
-}
-
-.right-ul {
-  float: right;
-}
-
-.logo-image {
-  display: block;
-  float: left;
-  width: 185px;
-  margin-right: 20px;
-}
-
-.li-r {
-  display: block;
-  float: right;
-
-}
-
-.log-a {
-  display: block;
-  float: right;
-  background-color: #045959;
-  color: white;
-  border: 1px solid #045959;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.log-a:hover {
-  background-color: #fff;
-  color: #045959;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
-
 .contenedor-landing {
   padding-top: 50px;
 }
 
 
+
+@media (max-width: 535px) {
+
+  .contenedor-landing {
+    padding-top: 80px;
+  }
+
+}

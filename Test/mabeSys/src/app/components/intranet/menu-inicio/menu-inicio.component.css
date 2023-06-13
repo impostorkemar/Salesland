@@ -14,6 +14,10 @@ nav {
   font-size: 14px;
 }
 
+.contenedor-nav{
+  display: contents;
+}
+
 .logo-section {
   flex: 1;
 }
@@ -106,4 +110,35 @@ nav {
   color: #045959;
   display: inline;
   font-weight: bold;
+}
+
+@media (max-width: 535px) {
+
+  nav {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .profile-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contenedor-nav{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 100%;    
+  }
+
 }
