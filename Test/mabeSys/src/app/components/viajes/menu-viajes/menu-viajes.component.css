@@ -97,6 +97,20 @@ button:first-child {
 /* Media query para pantallas más pequeñas */
 @media (max-width: 475px) {
   .contenedor-general {
-    padding-top: 120px;
+    margin-top: 100px;
   }
 }
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 535px) {
+
+  .contenedor-general {
+    padding-top: 80px;
+  }
+
+  .contenedor-botones{
+    padding-top: 30px;
+  }
+
+}
+
