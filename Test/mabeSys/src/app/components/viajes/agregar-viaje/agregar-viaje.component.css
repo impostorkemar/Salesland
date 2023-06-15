@@ -25,9 +25,8 @@
 
 .icon-calendar {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
+  margin-left: 5px;
+  margin-right: 15px;
   cursor: pointer;
 }
 
@@ -162,6 +161,8 @@ tr {
 }
 
 .form-label {
+  display: flex;
+  justify-content: center;
   color: #045959;
   margin-right: 10px;
   font-weight: bold;
@@ -280,4 +281,19 @@ h5 {
   text-align: center;
   color: black;
 }
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 880px) {
+
+.contenedor-fila{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.card-body {
+  width: 100%;
+}
+}
+
 
