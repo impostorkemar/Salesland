@@ -15,6 +15,7 @@ import { getCurrencySymbol } from '@angular/common';
 import { Comprobante } from '../../classModels/Comprobante';
 import { saveAs } from 'file-saver';
 import { FLOAT } from 'html2canvas/dist/types/css/property-descriptors/float';
+import { Detalle_comprobante } from '../../classModels/DetalleComprobante';
 
 @Component({
   selector: 'app-agregar-viaje',
@@ -175,8 +176,8 @@ export class AgregarViajeComponent implements OnInit {
       base_imponible:[0.0, Validators.required],
       cero_base_imponible: [0.0, Validators.required],
       iva: new FormControl({ value: 0.0, disabled: true }),
-      servicio10: ['', Validators.required],
-      importe_sinFact: ['', Validators.required],
+      servicio10: [0.0, Validators.required],
+      importe_sinFact: [0.0, Validators.required],
       total: new FormControl({ value: 0.0, disabled: true }),
     });
   }
@@ -275,12 +276,11 @@ export class AgregarViajeComponent implements OnInit {
       let key4: string[]=[];
       let Value4: string[]=[];  
       if ( this.formularioDeViaje.get('punto_partida')?.value == ""
-          || this.formularioDeViaje.get('punto_destino')?.value == ""
-          || this.formularioDeViaje.get('importe')?.value == ""
+          || this.formularioDeViaje.get('punto_destino')?.value == ""          
           || this.formularioDeViaje.get('fecha_viaje_inicio')?.value == ""
           || this.formularioDeViaje.get('fecha_viaje_fin')?.value == ""
           || this.formularioDeViaje.get('fecha_gasto')?.value == 0){
-            window.confirm("Rellene campos vacíos")          
+            alert("Rellene campos vacíos")          
         }else{        
           //BUSQUEDA ID PERSONAL      
           if ( this.fromDate != null && this.toDate != null){
@@ -682,10 +682,10 @@ export class AgregarViajeComponent implements OnInit {
     if (this.file != null){           
       this.crudService.uploadFile(this.file,this.nombreFile).then(data =>{
         //console.log('Data:', data);
-        window.confirm('Se subio su reembolso correctamente');
+        alert('Se subio su reembolso correctamente');
       }).catch(error => {
         //console.error('Error:', error);
-        window.confirm('Hubo un error al subir el reembolso');
+        alert('Hubo un error al subir el reembolso');
       });
     }
   }
@@ -774,8 +774,31 @@ export class AgregarViajeComponent implements OnInit {
     var passw = localStorage.getItem('PASS') as string
     this.crudService.ObtenerIDPersonal(user,passw).subscribe(respuesta=>{
       //console.log("Id_personal:\n",respuesta)
-      if (respuesta){        
-        const viaje1 = new Viaje();
+      if (respuesta){    
+        
+        const gastos = this.formularioGastos.get('gastos') as FormArray;
+
+        if (gastos.length === 0) {
+          alert('Debe agregar al menos un elemento en el detalle de comprobantes.');
+          return;
+        }
+        const hasNullField = gastos.controls.some((gasto) => {
+          const detalle_comprobante = gasto.value;
+          for (const key in detalle_comprobante) {
+            if (key !== "servicio10" && key !== "importe_sinFact" && key !== "iva" &&
+            key !== "base_imponible" && key !== "cero_base_imponible"){
+              if (detalle_comprobante[key] == '' || detalle_comprobante[key] == null || this.formularioDeViaje.get('importe')?.value == "0.00" ) {                
+                return true;
+              }
+            }
+          }
+          return false;
+        });
+        if (hasNullField) {
+          alert('Rellene todos los campos vacíos del detalle.');
+          return;
+        }else{
+          const viaje1 = new Viaje();
           viaje1.id_personal = respuesta['id_personal'];   
           viaje1.lugar =  this.formularioDeViaje.get('lugar')?.value;
           viaje1.fecha_reembolso = this.crearFechaEnvio();     
@@ -791,30 +814,64 @@ export class AgregarViajeComponent implements OnInit {
           viaje1.status = 'pendiente'; 
           viaje1.peticion = 'aprobacion'; 
           viaje1.motivo = ''; 
-        if(window.confirm("Desea agregar este viaje a reembolso:\n\tLugar:"
-        +viaje1.lugar+"\n\tFecha Reembolso:"+viaje1.fecha_reembolso+"\n\tFecha_viaje_inicio:"+viaje1.fecha_viaje_inicio
-        +"\n\tFecha_viaje_fin:"+viaje1.fecha_viaje_fin+"\n\tDuracion:"+viaje1.duracion+"\n\tPunto_partida:"+viaje1.punto_partida
-        +"\n\tPunto_destino:"+viaje1.punto_destino+"\n\tFecha_gasto:"+viaje1.fecha_gasto+"\n\tMoneda:"+viaje1.moneda
-        +"\n\tCantidad_comprobantes:"+viaje1.cantidad_comprobantes+"\n\tImporte:"+viaje1.importe)){
-          this.crudService.AgregarViaje(viaje1).subscribe(respuesta2 =>{
-            console.log("viaje1:\n",respuesta2)
-            if ( respuesta2){
-              const comprobante1 = new Comprobante();
-              comprobante1.id_viaje = respuesta2['id_viaje'];
-              comprobante1.ruta_zip = this.nombreFile;
-              this.crudService.AgregarComprobante(comprobante1).subscribe(respuesta3 =>{
-                console.log("comprobante1:\n",respuesta3)
-                this.uploadFile();
-              });
-            }
-          });
+          if(window.confirm("Desea agregar este viaje a reembolso:\n\tLugar:"
+          +viaje1.lugar+"\n\tFecha Reembolso:"+viaje1.fecha_reembolso+"\n\tFecha_viaje_inicio:"+viaje1.fecha_viaje_inicio
+          +"\n\tFecha_viaje_fin:"+viaje1.fecha_viaje_fin+"\n\tDuracion:"+viaje1.duracion+"\n\tPunto_partida:"+viaje1.punto_partida
+          +"\n\tPunto_destino:"+viaje1.punto_destino+"\n\tFecha_gasto:"+viaje1.fecha_gasto+"\n\tMoneda:"+viaje1.moneda
+          +"\n\tCantidad_comprobantes:"+viaje1.cantidad_comprobantes+"\n\tImporte:"+viaje1.importe)){          
+            this.crudService.AgregarViaje(viaje1).subscribe(respuesta2 =>{
+              console.log("viaje1:\n",respuesta2)
+              if ( respuesta2){
+                const comprobante1 = new Comprobante();
+                comprobante1.id_viaje = respuesta2['id_viaje'];
+                comprobante1.ruta_zip = this.nombreFile;
+                this.crudService.AgregarComprobante(comprobante1).subscribe(respuesta3 =>{
+                  console.log("comprobante1:\n",respuesta3)
+                  this.AgregarDetalleComprobantes(respuesta3['id_comprobante'])
+                  this.uploadFile();
+                });
+              }
+            });
+          }          
         }
       }      
     });
   }
 
-  AgregarDetalleComprobantes(){
-    
+  AgregarDetalleComprobantes(idComprobante : any, ){
+    const gastos = this.formularioGastos.get('gastos') as FormArray;
+    for (let i = 0; i < gastos.length; i++) {
+      const gasto = gastos.at(i) as FormGroup; 
+      console.log("id:\n",i) 
+      console.log('-----------------------');   
+      console.log('Tipo:', gasto.get('tipo')?.value);
+      console.log('Cedula:', gasto.get('cedula')?.value);
+      console.log('razon_social:', gasto.get('razon_social')?.value);
+      console.log('n_documento:', gasto.get('n_documento')?.value);
+      console.log('fechaEmision:', gasto.get('fechaEmision')?.value);
+      console.log('base_imponible:', gasto.get('base_imponible')?.value);
+      console.log('cero_base_imponible:', gasto.get('cero_base_imponible')?.value);
+      console.log('iva:', gasto.get('iva')?.value);
+      console.log('servicio10:', gasto.get('servicio10')?.value);
+      console.log('importe_sinFact:', gasto.get('importe_sinFact')?.value);
+      console.log('total:', gasto.get('total')?.value);
+      console.log('-----------------------');
+      const detalle_comprobante = new Detalle_comprobante();
+      detalle_comprobante.id_comprobante = idComprobante;
+      detalle_comprobante.tipo = gasto.get('tipo')?.value as string;
+      detalle_comprobante.ruc_cedula = gasto.get('cedula')?.value as string;
+      detalle_comprobante.razon_social = gasto.get('razon_social')?.value as string;
+      detalle_comprobante.n_documento = gasto.get('n_documento')?.value as string;
+      detalle_comprobante.fecha_emision = gasto.get('fechaEmision')?.value as string;
+      detalle_comprobante.base_imponible = gasto.get('base_imponible')?.value as string;
+      detalle_comprobante.cero_base_imponible = gasto.get('cero_base_imponible')?.value;
+      detalle_comprobante.iva = gasto.get('iva')?.value as string;
+      detalle_comprobante.servicio10 = gasto.get('servicio10')?.value as string;
+      detalle_comprobante.importe_sin_facturas = gasto.get('importe_sinFact')?.value as string;
+      this.crudService.AgregarDetalleComprobante(detalle_comprobante).subscribe(respuesta3 =>{
+        console.log("detalle_comprobante:\n",respuesta3)        
+      });
+    }    
   }
 
   downloadExcel() {

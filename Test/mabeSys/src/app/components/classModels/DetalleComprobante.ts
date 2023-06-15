@@ -1,6 +1,7 @@
 export class Detalle_comprobante{
     id_comprobante!: string;
     id_detalle_comprobante!: string;
+    tipo!: string;
     ruc_cedula!: String;
     razon_social!: String;    
     n_documento!: String; 
