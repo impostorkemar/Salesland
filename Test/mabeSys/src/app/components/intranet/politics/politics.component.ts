@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class PoliticsComponent {
 
+  onCardHover(event: MouseEvent) {
+    const card = event.currentTarget as HTMLElement;
+    card.classList.toggle('hovered');
+  }
+
 }

@@ -34,17 +34,18 @@ body {
 .rule {
   margin-bottom: 30px;
   padding: 20px;
-  background-color: #045959;
+  background-color: #fff;
   border-radius: 5px;
+  border: 1px solid black;
 }
 
 .rule-title {
-  color: #fff;
+  color: #045959;
   margin-top: 0;
 }
 
 .rule-description {
-  color: #fff;
+  color: #045959;
   margin-bottom: 0;
 }
 
@@ -59,5 +60,55 @@ body {
 }
 
 .rule:hover .rule-title {
+  color: #045959;
+}
+
+
+/* ------------------------ */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.reglamento-card {
+  width: 300px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.reglamento-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reglamento-title {
+  font-size: 18px;
+  color: #045959;
+  margin-bottom: 10px;
+}
+
+.reglamento-description {
+  font-size: 14px;
+  color: #045959;
+  line-height: 1.5;
+}
+
+
+.reglamento-card:hover .reglamento-title {
+  color: #045959;
+}
+
+.reglamento-card:hover .reglamento-description {
   color: #045959;
 }
