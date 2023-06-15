@@ -1128,7 +1128,7 @@ resp!:String[];
   }
 
   AgregarDetalleComprobante(detalle_comprobante : Detalle_comprobante):Observable<any>{   
-    console.log("detalle_comprobante:",detalle_comprobante);
+    //console.log("detalle_comprobante:",detalle_comprobante);
     var urlAPI="detalle_comprobante/";
     //console.log("URL=",this.API +urlAPI);
     return this.postData(detalle_comprobante,urlAPI)

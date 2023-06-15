@@ -396,6 +396,7 @@ def create_detalle_comprobante(detalle_Comprobante: Detalle_Comprobante):
              ) 
     sql = sql + str(datos)
     result = conn.execute(sql)   
+    print("sql:\n",sql)
     return conn.execute("SELECT * FROM `detalle_comprobante` WHERE  id_detalle_comprobante = "+str(result.lastrowid)).first()
 
 #CONSULTA COMPROBANTE

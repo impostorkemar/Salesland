@@ -132,16 +132,16 @@ class Comprobante(BaseModel):
 class Detalle_Comprobante(BaseModel):
     id_detalle_comprobante: Optional[int]
     id_comprobante: int
-    tipo: int
+    tipo: str
     ruc_cedula: str   
     razon_social: str   
     n_documento: str   
     fecha_emision: str   
-    base_imponible: str   
-    cero_base_imponible: str   
-    iva: str   
-    servicio10: str   
-    importe_sin_facturas: str   
+    base_imponible: float   
+    cero_base_imponible: float   
+    iva: float   
+    servicio10: float   
+    importe_sin_facturas: float   
 
 
 
