@@ -340,7 +340,7 @@ export class AgregarViajeComponent implements OnInit {
     
   }
 
-  onDateSelection(date: NgbDate) {      
+  onDateSelection1(date: NgbDate) {      
     var myDate = new Date();
     var fechaActualNg = new NgbDate(myDate.getFullYear(),myDate.getMonth()+1,myDate.getDate());
 		if (!this.fromDate && !this.toDate) { // NO ESCOGIO NINGUN DÍA
@@ -360,6 +360,23 @@ export class AgregarViajeComponent implements OnInit {
                 
 		}    
 	}
+
+  onDateSelection2(date2: NgbDate) {    
+    if (this.fromDate2 != null) {      
+      this.fromDate2 = date2;
+      this.cargarDatosInfoPersonal()
+      //console.log("this.fromDate2:",this.fromDate2)
+      
+    } else if (this.fromDate2 && date2.equals(this.fromDate2)) {
+      this.fromDate2 = null;
+      this.cargarDatosInfoPersonal()
+      //console.log("this.fromDate2:",this.fromDate2)
+    } else {
+      this.fromDate2 = date2;
+      this.cargarDatosInfoPersonal()
+      //console.log("this.fromDate2:",this.fromDate2)
+    }
+  }
 
 	isHovered(date: NgbDate) {
 		return (
@@ -389,22 +406,7 @@ export class AgregarViajeComponent implements OnInit {
     return this.fromDate2 && date2.equals(this.fromDate2);
   }
 
-  onDateSelection2(date2: NgbDate) {    
-    if (this.fromDate2 != null) {      
-      this.fromDate2 = date2;
-      this.cargarDatosInfoPersonal()
-      //console.log("this.fromDate2:",this.fromDate2)
-      
-    } else if (this.fromDate2 && date2.equals(this.fromDate2)) {
-      this.fromDate2 = null;
-      this.cargarDatosInfoPersonal()
-      //console.log("this.fromDate2:",this.fromDate2)
-    } else {
-      this.fromDate2 = date2;
-      this.cargarDatosInfoPersonal()
-      //console.log("this.fromDate2:",this.fromDate2)
-    }
-  }
+  
 
   countWorkDay(sDay:any,eDay:any){
     const startDate  = new Date(sDay.year, sDay.month - 1, sDay.day);
@@ -535,14 +537,14 @@ export class AgregarViajeComponent implements OnInit {
               dias_viaje: diferenciaDias,
               punto_partida: this.formularioDeViaje.get('punto_partida')?.value,
               punto_destino: this.formularioDeViaje.get('punto_destino')?.value,
-              fecha_gasto: 0,
+              fecha_gasto: this.formularioDeViaje.get('fecha_gasto')?.value,
               moneda: this.formularioDeViaje.get('moneda')?.value,
               cantidad_comprobantes: this.formularioDeViaje.get('cantidad_comprobantes')?.value,
               importe: this.formularioDeViaje.get('importe')?.value,
             });
                     
           } else {
-            window.confirm("Fallo al cargar la información del personal");
+            alert("Fallo al cargar la información del personal");
           }
          
         });
@@ -565,7 +567,7 @@ export class AgregarViajeComponent implements OnInit {
               dias_viaje: diferenciaDias,
               punto_partida: this.formularioDeViaje.get('punto_partida')?.value,
               punto_destino: this.formularioDeViaje.get('punto_destino')?.value,
-              fecha_gasto: 0,
+              fecha_gasto: this.formularioDeViaje.get('fecha_gasto')?.value,
               moneda: this.formularioDeViaje.get('moneda')?.value,
               cantidad_comprobantes: this.formularioDeViaje.get('cantidad_comprobantes')?.value,
               importe: this.formularioDeViaje.get('importe')?.value,
@@ -604,7 +606,7 @@ export class AgregarViajeComponent implements OnInit {
               importe:this.formularioDeViaje.get('importe')?.value,             
             });
           }else{
-            window.confirm("Fallo al cargar la información del personal")
+            alert("Fallo al cargar la información del personal")
           }
          
         });
