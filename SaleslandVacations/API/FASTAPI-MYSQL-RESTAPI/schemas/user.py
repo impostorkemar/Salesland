@@ -129,6 +129,21 @@ class Comprobante(BaseModel):
     id_viaje: int
     ruta_zip: str    
 
+class Detalle_Comprobante(BaseModel):
+    id_detalle_comprobante: Optional[int]
+    id_comprobante: int
+    tipo: int
+    ruc_cedula: str   
+    razon_social: str   
+    n_documento: str   
+    fecha_emision: str   
+    base_imponible: str   
+    cero_base_imponible: str   
+    iva: str   
+    servicio10: str   
+    importe_sin_facturas: str   
+
+
 
 
 

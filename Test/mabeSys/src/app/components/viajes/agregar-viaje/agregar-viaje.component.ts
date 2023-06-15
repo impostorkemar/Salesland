@@ -14,6 +14,7 @@ import { Viaje } from '../../classModels/Viaje';
 import { getCurrencySymbol } from '@angular/common';
 import { Comprobante } from '../../classModels/Comprobante';
 import { saveAs } from 'file-saver';
+import { FLOAT } from 'html2canvas/dist/types/css/property-descriptors/float';
 
 @Component({
   selector: 'app-agregar-viaje',
@@ -47,6 +48,9 @@ export class AgregarViajeComponent implements OnInit {
   fromDate2: NgbDate | null = null;
   showCalendar1: boolean = false;
   showCalendar2: boolean = false;   
+  cedulaPrecargada: string = '';
+  tipoOptions = ['Atención a Clientes', 'Insumos de Oficina', 'Transporte', 'Atención Empleados', 'Otros', 'Alimentación Empleados'];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -80,6 +84,8 @@ export class AgregarViajeComponent implements OnInit {
     this.formularioGastos = new FormGroup({
       gastos: new FormArray([]),
     }); 
+
+    this.formularioGastos.get('gastos.0.tipo')?.setValue(this.tipoOptions[0]);
           
     this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
@@ -99,6 +105,7 @@ export class AgregarViajeComponent implements OnInit {
     this.formularioDeViaje.controls['fecha_viaje_inicio'].disable();  
     this.formularioDeViaje.controls['fecha_viaje_fin'].disable();  
     this.formularioDeViaje.controls['fecha_gasto'].disable();  
+    this.formularioDeViaje.controls['importe'].disable();  
     this.crearFechaActual();
     this.cargarDatosInfoPersonal();     
   }
@@ -122,7 +129,7 @@ export class AgregarViajeComponent implements OnInit {
       console.log('-----------------------');
     }
   }
-
+  
   getGastosControls(): AbstractControl[] {
     const gastos = this.formularioGastos.get('gastos');
     if (gastos instanceof FormArray) {
@@ -136,47 +143,93 @@ export class AgregarViajeComponent implements OnInit {
   }
 
   agregarGasto() {
-    const gastos = this.formularioGastos.get('gastos') as FormArray;
-    gastos.push(new FormGroup({
-      tipo: new FormControl(),
-      cedula: new FormControl(),
-      razon_social: new FormControl(),
-      n_documento: new FormControl(),
-      fechaEmision: new FormControl(),
-      base_imponible: new FormControl(),
-      cero_base_imponible: new FormControl(),
-      iva: new FormControl(),
-      servicio10: new FormControl(),
-      importe_sinFact: new FormControl(),
-      total: new FormControl(),
-    }));
+    this.crudService.ObtenerCedulaByUser_Pass(this.user, this.passw).subscribe(respuesta => {
+      this.cedulaPrecargada = respuesta['cedula'];
+      console.log("cedula:", this.cedulaPrecargada);
+      const gastos = this.formularioGastos.get('gastos') as FormArray;
+      gastos.push(this.createGastoFormGroup());
+  
+      // Establecer valor predeterminado del control 'tipo'
+      const nuevoGastoIndex = gastos.length - 1;
+      const nuevoGasto = gastos.at(nuevoGastoIndex) as FormGroup;
+      nuevoGasto.get('tipo')?.setValue(this.tipoOptions[0]);
+  
+      this.actualizarImporte();
+    });    
   }
+  
 
   eliminarGasto(index: number) {
     const gastos = this.formularioGastos.get('gastos') as FormArray;
     gastos.removeAt(index);
+    this.actualizarImporte();
   }
 
-  createGastoForm(): FormGroup {
+  createGastoFormGroup(): FormGroup {
     return this.formBuilder.group({
-      tipo: [''],
-      cedula: [''],   
-      razon_social: [''],
-      n_documento: [''],
-      fechaEmision: [''],
-      base_imponible: [''],
-      cero_base_imponible: [''],
-      iva: [''],
-      servicio10: [''],
-      importe_sinFact: [''],   
-      total: [''],      
+      tipo: ['', Validators.required],
+      cedula: new FormControl({ value: this.cedulaPrecargada as string, disabled: true }),
+      razon_social: ['', Validators.required],
+      n_documento: ['', Validators.required],
+      fechaEmision: ['', Validators.required],
+      base_imponible:[0.0, Validators.required],
+      cero_base_imponible: [0.0, Validators.required],
+      iva: new FormControl({ value: 0.0, disabled: true }),
+      servicio10: ['', Validators.required],
+      importe_sinFact: ['', Validators.required],
+      total: new FormControl({ value: 0.0, disabled: true }),
     });
   }
 
-  calcularTotal(gasto: FormGroup): number {
-    // Lógica para calcular el total
-    return 0;
+  onGastoValueChange(index: number) {
+    const gastos = this.formularioGastos.get('gastos') as FormArray;
+    const gasto = gastos.at(index) as FormGroup;
+  
+    let baseImponible = gasto.get('base_imponible')?.value || 0;
+    let ceroBaseImponible = gasto.get('cero_base_imponible')?.value || 0;
+    let servicio10 = gasto.get('servicio10')?.value || 0;
+    let importe_sinFact = gasto.get('importe_sinFact')?.value || 0;
+  
+    // Validar que los valores no sean negativos
+    baseImponible = Math.max(0, baseImponible);
+    ceroBaseImponible = Math.max(0, ceroBaseImponible);
+    servicio10 = Math.max(0, servicio10);
+    importe_sinFact = Math.max(0, importe_sinFact);
+  
+    // Calcular el IVA y el total
+    let iva = 0;
+    if (baseImponible !== null) {
+      iva = baseImponible * 0.12;
+    }
+    const total = baseImponible + ceroBaseImponible + iva + servicio10 + importe_sinFact;
+  
+    // Actualizar los valores
+    gasto.get('base_imponible')?.setValue(baseImponible);
+    gasto.get('cero_base_imponible')?.setValue(ceroBaseImponible);
+    gasto.get('servicio10')?.setValue(servicio10);
+    gasto.get('importe_sinFact')?.setValue(importe_sinFact);
+    gasto.get('iva')?.setValue(iva);
+    gasto.get('total')?.setValue(total);
+    this.actualizarImporte()
   }
+  
+
+  actualizarImporte() {
+    const gastos = this.formularioGastos.get('gastos') as FormArray;
+    let total = 0;
+  
+    for (let i = 0; i < gastos.length; i++) {
+      const control = gastos.at(i) as FormGroup;
+      const totalControl = control.get('total');
+  
+      if (totalControl && totalControl.value) {
+        total += +totalControl.value;
+      }
+    }
+  
+    this.formularioDeViaje.patchValue({ importe: total.toFixed(2) });
+  }
+  
 
 
   toggleCalendar1() {
@@ -760,6 +813,10 @@ export class AgregarViajeComponent implements OnInit {
     });
   }
 
+  AgregarDetalleComprobantes(){
+    
+  }
+
   downloadExcel() {
     console.log("Entre a download")
     this.crudService.downloadExcelFormatoReembolso().subscribe(blob => {
@@ -770,3 +827,7 @@ export class AgregarViajeComponent implements OnInit {
   
 
 }
+function round(total: number, arg1: number): any {
+  throw new Error('Function not implemented.');
+}
+

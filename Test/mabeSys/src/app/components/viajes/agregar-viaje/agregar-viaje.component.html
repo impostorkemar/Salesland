@@ -263,77 +263,23 @@
       </div>
     </div>
 
-    <!-- <div class="add-datos">
-      <div class="table-responsive table-bordered table-striped">
-        <table class="table">
-
-          <thead>
-
-          </thead>
-          <tr>
-            <td colspan="4">
-              <h2 style="text-align: center;  color: #16261C;">
-                FECHA REEMBOLSO Y FECHA VIAJE
-              </h2>
-            </td>
-          </tr>
-          <tr>
-            <td>
-
-            </td>
-            <td>
-
-            </td>
-            <td>
-
-            </td>
-            <td>
-
-
-            </td>
-          </tr>
-          <tr>
-            <td colspan="4">
-              <div class="row">
-                <div class="col">
-                  <i class="fas fa-calendar" (click)="toggleCalendar2()"></i>
-                </div>
-              </div>
-              <div class="row" *ngIf="showCalendar2">
-                <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
-                  [dayTemplate]="t" outsideDays="hidden">
-                </ngb-datepicker>
-                <ng-template #t let-date let-focused="focused">
-                  <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                    [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-                    (mouseleave)="hoveredDate = null">
-                    {{ date.day }}
-                  </span>
-                </ng-template>
-              </div>
-
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
- -->
-
   </form>
   <form [formGroup]="formularioGastos">
     <div formArrayName="gastos">
       <div *ngFor="let gasto of getGastosControls(); let i = index;" [formGroupName]="i">
-        <input formControlName="tipo" placeholder="tipo">
+        <select formControlName="tipo" [value]="tipoOptions[0]">
+          <option *ngFor="let option of tipoOptions" [value]="option">{{ option }}</option>
+        </select>
         <input formControlName="cedula" placeholder="cedula">
         <input formControlName="razon_social" placeholder="razón social">
         <input formControlName="n_documento" placeholder="N# documento">
         <input type="date" formControlName="fechaEmision">
-        <input formControlName="base_imponible" placeholder="Base imponible">
-        <input formControlName="cero_base_imponible" placeholder="0% Base imponible">
-        <input formControlName="iva" placeholder="iva">
-        <input formControlName="servicio10" placeholder="Servicio 10%">
-        <input formControlName="importe_sinFact" placeholder="importe sin facturas">
-        <input formControlName="total" placeholder="Total">
+        <input type="number" formControlName="base_imponible" placeholder="Base imponible" (input)="onGastoValueChange(i)">
+        <input type="number" formControlName="cero_base_imponible" placeholder="0% Base imponible" (input)="onGastoValueChange(i)">
+        <input type="number" formControlName="iva" placeholder="iva" [value]="gasto.get('iva')?.value | number: '1.2-2'">
+        <input type="number" formControlName="servicio10" placeholder="Servicio 10%" (input)="onGastoValueChange(i)">
+        <input type="number" formControlName="importe_sinFact" placeholder="importe sin facturas" (input)="onGastoValueChange(i)">
+        <input type="number" formControlName="total" placeholder="Total" [value]="gasto.get('total')?.value | number: '1.2-2'">
         <button (click)="eliminarGasto(i)">Eliminar</button>
       </div>
     </div>
