@@ -746,19 +746,19 @@
     <column id="COL207" populated="true" UUID="a5f477f7-c1cb-4a76-bf83-e4552ecab362" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_fecha_emision_seq" defaultValue="" name="fecha_emision" nullable="0" physicalName="fecha_emision" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL208" populated="true" UUID="59f87faa-504c-41b4-b5b5-22ae553e03d6" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_base_imponible_seq" defaultValue="" name="base_imponible" nullable="0" physicalName="base_imponible" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+    <column id="COL208" populated="true" UUID="59f87faa-504c-41b4-b5b5-22ae553e03d6" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_base_imponible_seq" defaultValue="" name="base_imponible" nullable="0" physicalName="base_imponible" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
      <remarks></remarks>
     </column>
-    <column id="COL209" populated="true" UUID="bdf6c2a3-4d07-4a1f-83f3-13c9414cfa10" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_cero_base_imponible_seq" defaultValue="" name="cero_base_imponible" nullable="0" physicalName="cero_base_imponible" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+    <column id="COL209" populated="true" UUID="bdf6c2a3-4d07-4a1f-83f3-13c9414cfa10" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_cero_base_imponible_seq" defaultValue="" name="cero_base_imponible" nullable="0" physicalName="cero_base_imponible" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
      <remarks></remarks>
     </column>
-    <column id="COL210" populated="true" UUID="446adbee-5618-4e88-a37c-32ea8f270abc" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_iva_seq" defaultValue="" name="iva" nullable="0" physicalName="iva" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+    <column id="COL210" populated="true" UUID="446adbee-5618-4e88-a37c-32ea8f270abc" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_iva_seq" defaultValue="" name="iva" nullable="0" physicalName="iva" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
      <remarks></remarks>
     </column>
-    <column id="COL211" populated="true" UUID="ae79061e-661d-4409-ac9c-27c7c64fa583" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_servicio10_seq" defaultValue="" name="servicio10" nullable="0" physicalName="servicio10" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+    <column id="COL211" populated="true" UUID="ae79061e-661d-4409-ac9c-27c7c64fa583" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_servicio10_seq" defaultValue="" name="servicio10" nullable="0" physicalName="servicio10" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
      <remarks></remarks>
     </column>
-    <column id="COL212" populated="true" UUID="682ea347-8aeb-4c27-925e-103797680dd0" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_importe_sin_facturas_seq" defaultValue="" name="importe_sin_facturas" nullable="0" physicalName="importe_sin_facturas" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+    <column id="COL212" populated="true" UUID="682ea347-8aeb-4c27-925e-103797680dd0" autoIncrement="false" autoIncrementSequenceName="Detalle_Comprobante_importe_sin_facturas_seq" defaultValue="" name="importe_sin_facturas" nullable="0" physicalName="importe_sin_facturas" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
      <remarks></remarks>
     </column>
     </folder>
