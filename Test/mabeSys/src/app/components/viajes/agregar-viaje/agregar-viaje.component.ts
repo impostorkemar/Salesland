@@ -361,6 +361,7 @@ export class AgregarViajeComponent implements OnInit {
 		}    
 	}
 
+
 	isHovered(date: NgbDate) {
 		return (
 			this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
@@ -881,10 +882,9 @@ export class AgregarViajeComponent implements OnInit {
     });
   }
 
-  
-
 }
 function round(total: number, arg1: number): any {
   throw new Error('Function not implemented.');
 }
+
 
