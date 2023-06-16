@@ -36,169 +36,19 @@
         </div>
 
       </div>
-    </div>
-
-    <!-- <div class="add-datos">
-      <div class="table-responsive table-bordered table-striped">
-        <table class="table">
-          <thead>
-          </thead>
-          <tbody>
-            <tr>
-              <TD colspan="4">
-                <h2 style="text-align: center;  color: #16261C;">
-                  INFORMACIÓN DE VIAJE
-                </h2>
-              </TD>
-            </tr>
-            <tr>
-              <TD>
-                 <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">FECHA REEMBOLSO</label>
-                    <input type="text" class="form-control" name="fecha_reembolso" formControlName="fecha_reembolso"
-                      id="fecha_reembolso" aria-describedby="fecha_reembolso" placeholder="0">
-                  </div>
-                </div> 
-              </TD>
-              <TD>
-                 <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">LUGAR</label>
-                    <input type="text" class="form-control" name="lugar" formControlName="lugar" id="lugar"
-                      aria-describedby="lugar" placeholder="QUITO" required>
-                  </div>
-                </div> 
-              </TD>
-              <TD>
-                <<div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">PUNTO DE PARTIDA</label>
-                    <input type="text" class="form-control" name="punto_partida" formControlName="punto_partida"
-                      id="punto_partida" aria-describedby="dias_viaje" placeholder="Provincia,Ciudad">
-                  </div>
-                </div> 
-              </TD>
-              <TD>
-                 <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">PUNTO DE DESTINO</label>
-                    <input type="text" class="form-control " name="punto_destino" formControlName="punto_destino"
-                      id="punto_destino" aria-describedby="dias_viaje" placeholder="Provincia,Ciudad">
-                  </div>
-                </div> 
-              </TD>
-            </tr>
-            <tr>
-              <TD>
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">IMPORTE TOTAL</label>
-                    <input type="text inputRight" class="form-control" name="importe" formControlName="importe"
-                      id="importe" aria-describedby="importe" placeholder="0.00" required>
-                    <label for="" class="form-label">Valor total incluido IVA</label>
-                  </div>
-                </div> 
-              </TD>
-              <TD>
-                <div *ngIf="false" class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="moneda" class="form-label">MONEDA</label>
-                    <select name="moneda" id="moneda" formControlName="moneda"
-                      class="form-select form-select-sm selectStyle" aria-label=".form-select-sm example">
-                      <option *ngFor="let currency of currencies" [value]="currency">{{currency}} -
-                        {{getSymbol(currency)}}</option>
-                    </select>
-                  </div>
-                </div>
-              </TD>
-              <td colspan="1">
-                 <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">Nro. COMPROBANTES SELECCIONADOS</label>
-                    <input type="text" class="form-control inputRight" name="cantidad_comprobantes"
-                      formControlName="cantidad_comprobantes" id="cantidad_comprobantes" aria-describedby="helpId"
-                      placeholder="0">
-                  </div>
-                </div> 
-              </td>
-              <td colspan="1">
-                <div class="card-body etiqueta">
-                  <label for="" class="form-label">AGREGAR COMPROBANTES</label>
-                  <div class="card-body" role="group" aria-label="Button group name"
-                    style="align-self: ceter; text-align: center; align-items: center; align-content: center;">
-                    <div class="file-input-container">
-                      <input type="file" id="fileInput" multiple (change)="onFileSelectTypesFiles($event)"
-                        accept=".rar,.pdf,image/*">
-                      <label for="fileInput" class="file-input-label">
-                        <span>Seleccionar archivos</span>
-                      </label>
-                    </div>
-                    <p></p><label for="" class="form-label">Ingrese los archivos de reembolso de gastos </label>
-                  </div>
-                </div>
-              </td>
-
-            </tr>
-            <tr>
-              <td colspan="4">
-                <div class="card-body" role="group2" aria-label="Button group name" style="align-self: ceter; text-align: center; align-items: center; align-content: center;"  >
-                  <button type="button" (click)="downloadExcel()" class="btn btn-warning" >DESCARGAR FORMATO DE VIAJES</button>                  
-                </div>
-              </td>
-            </tr> 
-            <tr *ngIf="false">
-              <TD>
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">NOMBRE</label>
-                    <input type="text" class="form-control" name="nombre" formControlName="nombre" id="nombre"
-                      aria-describedby="nombre" placeholder="0">
-                  </div>
-                </div>
-              </TD>
-              <TD>
-                <div class="card-body etiqueta">
-                  <div class="mb-3">
-                    <label for="" class="form-label">CEDULA</label>
-                    <input type="text" class="form-control" name="cedula" formControlName="cedula" id="cedula"
-                      aria-describedby="cedula" placeholder="0">
-                  </div>
-                </div>
-              </TD>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div> -->
+    </div>  
     <div class="add-datos">
       <div class="contenedor-titulo">
         <h5>
           FECHA REEMBOLSO Y FECHA VIAJE
         </h5>
-      </div>
-      <div class="contenedor-add-datos">
-        <div class="contenedor-fila">
+      </div>      
+      <div class="contenedor-add-datos">        
+        <div class="contenedor-fila">          
           <div class="card-body etiqueta">
-            <label for="" class="form-label">FECHA GASTO
-              <div class="icon-calendar">
-                <img src="./assets/calendar-outline.svg" (click)="toggleCalendar1()" alt="icono calendario">
-              </div>
-              <div class="row" *ngIf="showCalendar1">
-                <ngb-datepicker class="text etiqueta" #dp1 (dateSelect)="onDateSelection2($event)" [displayMonths]="1"
-                  [dayTemplate]="dateTemplate" outsideDays="hidden">
-                </ngb-datepicker>
-                <ng-template #dateTemplate let-date2 let-focused2="focused2">
-                  <span class="custom-day2" [class.focused2]="focused2" [class.selected]="isSelected2(date2)"
-                    [class.disabled]="isDisabled2(date2)" (mouseenter)="hoveredDate2 = date2"
-                    (mouseleave)="hoveredDate2 = null">
-                    {{ date2.day }}
-                  </span>
-                </ng-template>
-              </div>
-            </label>
-            <input type="text" class="form-control" name="fecha_gasto" formControlName="fecha_gasto" id="fecha_gasto"
-              aria-describedby="helpId" placeholder="0">
+            <label for="" class="form-label">FECHA GASTO</label>            
+            <input type="date" formControlName="fecha_gasto">                  
+       
           </div>
           <div class="card-body etiqueta">
             <label for="" class="form-label">DIAS DE VIAJE</label>
@@ -212,7 +62,7 @@
               </div>
 
               <div class="row" *ngIf="showCalendar2">
-                <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection1($event)" [displayMonths]="2"
                   [dayTemplate]="t" outsideDays="hidden">
                 </ngb-datepicker>
                 <ng-template #t let-date let-focused="focused">
@@ -262,91 +112,28 @@
 
       </div>
     </div>
+
   </form>
-  <div class="card">
-    <div class="add-datos">
-      <div class="contenedor-titulo">
-        <h5>
-          GASTOS
-        </h5>
+  <form [formGroup]="formularioGastos">
+    <div formArrayName="gastos">
+      <div *ngFor="let gasto of getGastosControls(); let i = index;" [formGroupName]="i">
+        <select formControlName="tipo" [value]="tipoOptions[0]">
+          <option *ngFor="let option of tipoOptions" [value]="option">{{ option }}</option>
+        </select>
+        <input formControlName="cedula" placeholder="cedula">
+        <input formControlName="razon_social" placeholder="razón social">
+        <input formControlName="n_documento" placeholder="N# documento">
+        <input type="date" formControlName="fechaEmision">
+        <input type="number" formControlName="base_imponible" placeholder="Base imponible" (input)="onGastoValueChange(i)">
+        <input type="number" formControlName="cero_base_imponible" placeholder="0% Base imponible" (input)="onGastoValueChange(i)">
+        <input type="number" formControlName="iva" placeholder="iva" [value]="gasto.get('iva')?.value | number: '1.2-2'">
+        <input type="number" formControlName="servicio10" placeholder="Servicio 10%" (input)="onGastoValueChange(i)">
+        <input type="number" formControlName="importe_sinFact" placeholder="importe sin facturas" (input)="onGastoValueChange(i)">
+        <input type="number" formControlName="total" placeholder="Total" [value]="gasto.get('total')?.value | number: '1.2-2'">
+        <button (click)="eliminarGasto(i)">Eliminar</button>
       </div>
-      <form [formGroup]="formularioGastos">
-        <div formArrayName="gastos">
-          <div>
-            <div class="table-wrapper">
-              <table>
-                <tr>
-                  <th>Tipo de Gasto</th>
-                  <th>Ruc/Cedula</th>
-                  <th>Razon Social</th>
-                  <th># Documento</th>
-                  <th>Fecha Emision</th>
-                  <th>Base Imponible</th>
-                  <th>0% Base Imponible</th>
-                  <th>IVA</th>
-                  <th>Servicio 10%</th>
-                  <th>Importe sin Factura</th>
-                  <th>Total</th>
-                  <th>Acción</th>
-                </tr>
-                <tr *ngFor="let gasto of getGastosControls(); let i = index;" [formGroupName]="i">
-                  <td>
-                    <select formControlName="tipo" [value]="tipoOptions[0]">
-                      <option *ngFor="let option of tipoOptions" [value]="option">{{ option }}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input formControlName="cedula" placeholder="cedula">
-                  </td>
-                  <td>
-                    <input formControlName="razon_social" placeholder="razón social">
-                  </td>
-                  <td>
-                    <input formControlName="n_documento" placeholder="N# documento">
-                  </td>
-                  <td>
-                    <input type="date" formControlName="fechaEmision">
-                  </td>
-                  <td>
-                    <input type="number" formControlName="base_imponible" placeholder="Base imponible"
-                      (input)="onGastoValueChange(i)">
-                  </td>
-                  <td>
-                    <input type="number" formControlName="cero_base_imponible" placeholder="0% Base imponible"
-                      (input)="onGastoValueChange(i)">
-                  </td>
-                  <td>
-                    <input type="number" formControlName="iva" placeholder="iva"
-                      [value]="gasto.get('iva')?.value | number: '1.2-2'">
-                  </td>
-                  <td>
-                    <input type="number" formControlName="servicio10" placeholder="Servicio 10%"
-                      (input)="onGastoValueChange(i)">
-                  </td>
-                  <td>
-                    <input type="number" formControlName="importe_sinFact" placeholder="importe sin facturas"
-                      (input)="onGastoValueChange(i)">
-                  </td>
-                  <td>
-                    <input type="number" formControlName="total" placeholder="Total"
-                      [value]="gasto.get('total')?.value | number: '1.2-2'">
-                  </td>
-                  <td>
-                    <div class="contenedor-buttons-gastos">
-                      <button class="button-fila" (click)="eliminarGasto(i)"><img src="./assets/trash.svg"
-                          alt=""></button>
-                    </div>
-                  </td>
-                </tr>
-              </table>
-              <div class="contenedor-buttons-gastos">
-                <button class="button-gastos" (click)="agregarGasto()"><img src="./assets/add.svg" alt=""></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-      <!-- <button (click)="imprimirGastos()">Imprimir Gastos</button> -->
     </div>
-  </div>
+    <button (click)="agregarGasto()">Agregar Gasto</button>
+  </form>
+  <button (click)="imprimirGastos()">Imprimir Gastos</button>
 </div>
