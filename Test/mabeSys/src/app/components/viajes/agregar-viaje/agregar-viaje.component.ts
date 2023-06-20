@@ -66,20 +66,23 @@ export class AgregarViajeComponent implements OnInit {
     private calendar2: NgbCalendar
   ) {        
       
-    this.formularioDeViaje = this.fb.group({
-      lugar: ['',Validators.required],
-      fecha_reembolso: ['',Validators.required],
-      nombre: ['',Validators.required],
-      cedula: ['',Validators.required],
-      fecha_viaje_inicio: ['',Validators.required],
-      fecha_viaje_fin: ['',Validators.required],
-      dias_viaje: ['',Validators.required],   
-      punto_partida: ['',Validators.required],   
-      punto_destino: ['',Validators.required],   
-      fecha_gasto: ['',Validators.required],   
-      moneda: [this.currencies[0],Validators.required],
-      cantidad_comprobantes: ['',Validators.required],   
-      importe: ['',Validators.required],      
+    this.formularioDeViaje = this.formBuilder.group({
+      lugar: ['', Validators.required],
+      fecha_reembolso: ['', Validators.required],
+      nombre: ['', Validators.required],
+      cedula: ['', Validators.required],
+      fecha_viaje_inicio: ['', Validators.required],
+      fecha_viaje_fin: ['', Validators.required],
+      dias_viaje: ['', Validators.required],
+      punto_partida: ['', Validators.required],
+      punto_destino: ['', Validators.required],
+      fecha_gasto: ['', Validators.required],
+      moneda: [this.currencies[0], Validators.required],
+      cantidad_comprobantes: ['', Validators.required],
+      importe: ['', Validators.required],
+      formularioGastos: this.formBuilder.group({
+        gastos: ['', Validators.required]
+      })
     });
 
     this.formularioGastos = new FormGroup({
