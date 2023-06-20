@@ -97,7 +97,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <ngb-datepicker class="text etiqueta" (dateSelect)="onDateSelection($event)"
+                    <ngb-datepicker class="texts etiqueta" (dateSelect)="onDateSelection($event)"
                       [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [markDisabled]="esFinDeSemana">
                       <ng-template #t let-date="date">
                         <span class="custom-day"
@@ -112,10 +112,7 @@
                     </ngb-datepicker>
                   </div>
                 </ng-template>
-                
                 <ng-template [ngbModalOutlet]="calendarModal" [ngbModalOptions]="{ backdrop: 'static', keyboard: false }" *ngIf="showModal"></ng-template>
-                
-                    
               </tr>
             </tbody>
           </table>
