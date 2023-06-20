@@ -52,6 +52,7 @@ import { ListarVacacionesComponent } from './components/vacaciones/listar-vacaci
 import { AgregarVacacionComponent } from './components/vacaciones/agregar-vacacion/agregar-vacacion.component';
 import { DatepickerRangeTsComponent } from './components/calendar/datepicker-range/datepicker-range.ts/datepicker-range.ts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListarReporteGeneralSupervisorComponent } from './components/vacaciones/listar-reporte-general-supervisor/listar-reporte-general-supervisor.component';
 import { ReporteGeneralComponent } from './components/vacaciones/reporte-estadistico/reporte-general/reporte-general.component';
 import { HomeComponent } from './components/intranet/home/home.component';
@@ -142,6 +143,10 @@ import { CustomDatepickerI18n } from './services/custom-datepicker-i18n';
     ReglamentoInternoComponent,
     
   ],
+  exports: [
+    // Componentes exportados
+    AgregarViajeComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -158,6 +163,7 @@ import { CustomDatepickerI18n } from './services/custom-datepicker-i18n';
     MatFormFieldModule,
     FormsModule,
     NgxDatatableModule,
+    NgbModalModule
   ],
   providers: [
     { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }
