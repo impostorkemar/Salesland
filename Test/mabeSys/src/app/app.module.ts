@@ -79,6 +79,7 @@ import { Publicidad6Component } from './components/intranet/publicidad6/publicid
 import { ReglamentoInternoComponent } from './components/intranet/reglamento-interno/reglamento-interno.component';
 import { NgbDatepickerI18n, NgbDateParserFormatter, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerI18n } from './services/custom-datepicker-i18n';
+import { ListarAdminViajesComponent } from './components/viajes/listar-admin-viajes/listar-admin-viajes.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { CustomDatepickerI18n } from './services/custom-datepicker-i18n';
     Publicidad5Component,
     Publicidad6Component,
     ReglamentoInternoComponent,
+    ListarAdminViajesComponent,
     
   ],
   exports: [

@@ -342,7 +342,7 @@ def update_viaje(id: str, viaje: Viaje):
 def get_dataHistoricaViajePersonabyUserAndPass(user: str, passw:str): 
     print("user:",user,"\passw:",passw)
     conn = engine.connect()
-    sql="SELECT viaje.id_viaje, viaje.lugar, viaje.fecha_reembolso,candidato.nombre, candidato.cedula, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe, viaje.status, viaje.peticion, viaje.motivo FROM viaje, personal,candidato, usuario WHERE candidato.cedula = personal.cedula AND viaje.id_personal = personal.id_personal AND personal.cedula = usuario.cedula AND viaje.id_personal = (SELECT personal.id_personal FROM personal WHERE personal.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"'));"
+    sql="SELECT viaje.id_viaje, viaje.lugar, viaje.fecha_reembolso,candidato.nombre, candidato.cedula, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe, viaje.status, viaje.motivo FROM viaje, personal,candidato, usuario WHERE candidato.cedula = personal.cedula AND viaje.id_personal = personal.id_personal AND personal.cedula = usuario.cedula AND viaje.id_personal = (SELECT personal.id_personal FROM personal WHERE personal.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"'));"
     print(sql)
     return conn.execute(sql).fetchall()
 

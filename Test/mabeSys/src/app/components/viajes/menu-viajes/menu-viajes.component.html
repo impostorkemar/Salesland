@@ -8,6 +8,8 @@
                     [ngClass]="{ 'activo': isActive(1) }">INGRESAR VIAJES</button>
                 <button *ngIf="rolVacations" (click)="menuViajes2(2)" type="button"
                     [ngClass]="{ 'activo': isActive(2) }">REEMBOLSO VIAJES</button>
+                <button *ngIf="rolVacations" (click)="menuViajes2(3)" type="button"
+                [ngClass]="{ 'activo': isActive(3) }">APROBACIÓN</button>
             </div>
         </div>
         <div id="router-outlet">
@@ -18,6 +20,9 @@
         </div>
         <div *ngIf="nombreVentana === 'REPORTE-PERSONAL'">
             <app-listarviajes-reporte-general-personal></app-listarviajes-reporte-general-personal>
+        </div>
+        <div *ngIf="nombreVentana === 'REPORTE-ADMIN'">
+            <app-listar-admin-viajes></app-listar-admin-viajes>
         </div>
     </form>
 </div>
