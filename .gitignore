@@ -39,3 +39,11 @@ SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/config/__pycache__/db.cpython-311.p
 *.pyc
 *.pyc
 Test/mabeSys/src/environments/environment.ts
+Test/mabeSys/src/environments/environment.ts
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/__pycache__/app.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/config/__pycache__/db.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/models/__pycache__/user.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/routes/__pycache__/email.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/routes/__pycache__/user.cpython-311.pyc
+SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/schemas/__pycache__/user.cpython-311.pyc
+Test/Back-end/architect.log

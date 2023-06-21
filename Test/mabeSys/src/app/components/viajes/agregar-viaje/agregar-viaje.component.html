@@ -36,19 +36,19 @@
         </div>
 
       </div>
-    </div>  
+    </div>
     <div class="add-datos">
       <div class="contenedor-titulo">
         <h5>
           FECHA REEMBOLSO Y FECHA VIAJE
         </h5>
-      </div>      
-      <div class="contenedor-add-datos">        
-        <div class="contenedor-fila">          
+      </div>
+      <div class="contenedor-add-datos">
+        <div class="contenedor-fila">
           <div class="card-body etiqueta">
-            <label for="" class="form-label">FECHA GASTO</label>            
-            <input type="date" formControlName="fecha_gasto">                  
-       
+            <label for="" class="form-label">FECHA GASTO</label>
+            <input type="date" formControlName="fecha_gasto">
+
           </div>
           <div class="card-body etiqueta">
             <label for="" class="form-label">DIAS DE VIAJE</label>
@@ -114,81 +114,89 @@
     </div>
 
   </form>
-  <form [formGroup]="formularioGastos">
-    <div formArrayName="gastos">
-      <div>
-        <div class="table-wrapper">
-          <table>
-            <tr>
-              <th>Tipo de Gasto</th>
-              <th>Ruc/Cedula</th>
-              <th>Razon Social</th>
-              <th># Documento</th>
-              <th>Fecha Emision</th>
-              <th>Base Imponible</th>
-              <th>0% Base Imponible</th>
-              <th>IVA</th>
-              <th>Servicio 10%</th>
-              <th>Importe sin Factura</th>
-              <th>Total</th>
-              <th>Acción</th>
-            </tr>
-            <tr *ngFor="let gasto of getGastosControls(); let i = index;" [formGroupName]="i">
-              <td>
-                <select formControlName="tipo" [value]="tipoOptions[0]">
-                  <option *ngFor="let option of tipoOptions" [value]="option">{{ option }}</option>
-                </select>
-              </td>
-              <td>
-                <input formControlName="cedula" placeholder="cedula">
-              </td>
-              <td>
-                <input formControlName="razon_social" placeholder="razón social">
-              </td>
-              <td>
-                <input formControlName="n_documento" placeholder="N# documento">
-              </td>
-              <td>
-                <input type="date" formControlName="fechaEmision">
-              </td>
-              <td>
-                <input type="number" formControlName="base_imponible" placeholder="Base imponible"
-                  (input)="onGastoValueChange(i)">
-              </td>
-              <td>
-                <input type="number" formControlName="cero_base_imponible" placeholder="0% Base imponible"
-                  (input)="onGastoValueChange(i)">
-              </td>
-              <td>
-                <input type="number" formControlName="iva" placeholder="iva"
-                  [value]="gasto.get('iva')?.value | number: '1.2-2'">
-              </td>
-              <td>
-                <input type="number" formControlName="servicio10" placeholder="Servicio 10%"
-                  (input)="onGastoValueChange(i)">
-              </td>
-              <td>
-                <input type="number" formControlName="importe_sinFact" placeholder="importe sin facturas"
-                  (input)="onGastoValueChange(i)">
-              </td>
-              <td>
-                <input type="number" formControlName="total" placeholder="Total"
-                  [value]="gasto.get('total')?.value | number: '1.2-2'">
-              </td>
-              <td>
-                <div class="contenedor-buttons-gastos">
-                  <button class="button-fila" (click)="eliminarGasto(i)"><img src="./assets/trash.svg"
-                      alt=""></button>
-                </div>
-              </td>
-            </tr>
-          </table>
-          <div class="contenedor-buttons-gastos">
-            <button class="button-gastos" (click)="agregarGasto()"><img src="./assets/add.svg" alt=""></button>
+  <div class="add-datos">
+    <div class="contenedor-titulo">
+      <h5>
+        GASTOS
+      </h5>
+    </div>
+    <form [formGroup]="formularioGastos">
+      <div formArrayName="gastos">
+        <div>
+          <div class="table-wrapper">
+            <table>
+              <tr>
+                <th>Tipo de Gasto</th>
+                <th>Ruc/Cedula</th>
+                <th>Razon Social</th>
+                <th># Documento</th>
+                <th>Fecha Emision</th>
+                <th>Base Imponible</th>
+                <th>0% Base Imponible</th>
+                <th>IVA</th>
+                <th>Servicio 10%</th>
+                <th>Importe sin Factura</th>
+                <th>Total</th>
+                <th>Acción</th>
+              </tr>
+              <tr *ngFor="let gasto of getGastosControls(); let i = index;" [formGroupName]="i">
+                <td>
+                  <select formControlName="tipo" [value]="tipoOptions[0]">
+                    <option *ngFor="let option of tipoOptions" [value]="option">{{ option }}</option>
+                  </select>
+                </td>
+                <td>
+                  <input formControlName="cedula" placeholder="cedula">
+                </td>
+                <td>
+                  <input formControlName="razon_social" placeholder="razón social">
+                </td>
+                <td>
+                  <input formControlName="n_documento" placeholder="N# documento">
+                </td>
+                <td>
+                  <input type="date" formControlName="fechaEmision">
+                </td>
+                <td>
+                  <input type="number" formControlName="base_imponible" placeholder="Base imponible"
+                    (input)="onGastoValueChange(i)">
+                </td>
+                <td>
+                  <input type="number" formControlName="cero_base_imponible" placeholder="0% Base imponible"
+                    (input)="onGastoValueChange(i)">
+                </td>
+                <td>
+                  <input type="number" formControlName="iva" placeholder="iva"
+                    [value]="gasto.get('iva')?.value | number: '1.2-2'">
+                </td>
+                <td>
+                  <input type="number" formControlName="servicio10" placeholder="Servicio 10%"
+                    (input)="onGastoValueChange(i)">
+                </td>
+                <td>
+                  <input type="number" formControlName="importe_sinFact" placeholder="importe sin facturas"
+                    (input)="onGastoValueChange(i)">
+                </td>
+                <td>
+                  <input type="number" formControlName="total" placeholder="Total"
+                    [value]="gasto.get('total')?.value | number: '1.2-2'">
+                </td>
+                <td>
+                  <div class="contenedor-buttons-gastos">
+                    <button class="button-fila" (click)="eliminarGasto(i)"><img src="./assets/trash.svg"
+                        alt=""></button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <div class="contenedor-buttons-gastos">
+              <button class="button-gastos" (click)="agregarGasto()"><img src="./assets/add.svg" alt=""></button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-  <!-- <button (click)="imprimirGastos()">Imprimir Gastos</button> -->
+
+    </form>
+    <!-- <button (click)="imprimirGastos()">Imprimir Gastos</button> -->
+  </div>
 </div>

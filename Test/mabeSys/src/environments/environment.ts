@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   //api1Url: 'http://192.168.1.38:8000/',
-  api1Url: 'http://192.168.1.27:8000/',
+  //api1Url: 'http://192.168.1.27:8000/',
+  api1Url: 'http://192.168.1.24:8000/',
   //api1Url: 'http://192.168.1.29:8000/', 
   //api1Url: 'http://192.168.1.42:8000/',
   //api1Url: 'http://192.168.1.19:8000/',
