@@ -24,6 +24,7 @@ import { Publicidad4Component } from './components/intranet/publicidad4/publicid
 import { Publicidad5Component } from './components/intranet/publicidad5/publicidad5.component';
 import { Publicidad6Component } from './components/intranet/publicidad6/publicidad6.component';
 import { ReglamentoInternoComponent } from './components/intranet/reglamento-interno/reglamento-interno.component';
+import { ListarAdminViajesComponent } from './components/viajes/listar-admin-viajes/listar-admin-viajes.component';
 
 
 const routes: Routes = [
@@ -145,6 +146,18 @@ const routes: Routes = [
     }
   },
   {path: 'politics', component: PoliticsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
+  {path: 'listar-admin-vacaciones', component: ListarAdminComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]
+    }
+  },
+  {path: 'listar-admin-viajes', component: ListarAdminViajesComponent,
     canActivate: [AuthGuard],
     data: {
       role: ['ROLE_ADMIN', 'ROLE_USER' ,'ROLE_SUPERVISOR','ROLE_SUP_SUPERVISOR' ]

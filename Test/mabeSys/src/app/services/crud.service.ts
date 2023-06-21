@@ -1087,7 +1087,7 @@ resp!:String[];
   
   ObtenerViajesPersonal(user:any,passw:any):Observable<any>{
     //console.log("user:",user,"pass:", pass)
-    var urlAPI="dataHistoricaViajePersonabyUserAndPass/"+user as string+"_"+passw as string;       
+    var urlAPI="dataHistoricaViajePersonal/";       
     return this.clienteHttp.get(this.API+urlAPI);                
   } 
 

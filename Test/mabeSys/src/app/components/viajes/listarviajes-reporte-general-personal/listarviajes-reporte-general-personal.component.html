@@ -84,23 +84,29 @@
                             <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'status' && !sortAsc"
                                 alt="Desc" />
                         </th>
-                        <th (click)="sort('peticion')" scope="col">
+                        <!-- <th (click)="sort('peticion')" scope="col">
                             Petición
                             <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'peticion' && sortAsc" alt="Asc" />
                             <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'peticion' && !sortAsc"
                                 alt="Desc" />
-                        </th>
+                        </th> -->
                         <th (click)="sort('motivo')" scope="col">
                             Motivo
                             <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'motivo' && sortAsc" alt="Asc" />
                             <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'motivo' && !sortAsc"
                                 alt="Desc" />
                         </th>
+                        <th (click)="sort('fecha_respuesta')" scope="col">
+                            Fecha respuesta
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'fecha_respuesta' && sortAsc" alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'fecha_respuesta' && !sortAsc"
+                                alt="Desc" />
+                        </th>
                         <th scope="col">Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let viaje of Viaje | paginate: {id: 'pagination1', itemsPerPage: 5, currentPage: pP, totalItems: totalP }; let iControl=index"
+                    <tr *ngFor="let viaje of Viaje | paginate: {id: 'pagination1', itemsPerPage: 10, currentPage: pP, totalItems: totalP }; let iControl=index"
                         class="fila">
                         <td>{{viaje.id_viaje}}</td>
                         <td>{{viaje.lugar}}</td>
@@ -112,11 +118,12 @@
                         <td>{{viaje.punto_destino}}</td>
                         <td>{{viaje.fecha_gasto}}</td>
                         <!-- <td>{{viaje.moneda}}</td> -->
-                        <td>{{viaje.cantidad_comprobantes}}</td>
-                        <td>${{viaje.importe}}</td>
+                        <td>{{viaje.cantidad_comprobantes}}</td>                        
                         <td>{{viaje.status}}</td>
-                        <td>{{viaje.peticion}}</td>
+                        <!-- <td>{{viaje.peticion}}</td> -->
                         <td>{{viaje.motivo}}</td>
+                        <td>{{viaje.fecha_respuesta}}</td>
+                        <td>${{viaje.importe}}</td>
                     </tr>
                 </tbody>
             </table>

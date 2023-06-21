@@ -1,8 +1,8 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,ElementRef,HostListener,OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { CrudService } from 'src/app/services/crud.service';
 import { Router,ActivatedRoute } from '@angular/router';
-import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct,NgbDate, NgbCalendar, NgbDatepickerModule, NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { JsonPipe } from '@angular/common';
 import * as moment from 'moment';
 import { TestuserService } from 'src/app/services/testuser.service';
@@ -47,13 +47,19 @@ export class AgregarViajeComponent implements OnInit {
 
   hoveredDate2: NgbDate | null = null;
   fromDate2: NgbDate | null = null;
-  showCalendar1: boolean = false;
-  showCalendar2: boolean = false;   
+  showCalendar1: boolean = false;  
   cedulaPrecargada: string = '';
   tipoOptions = ['Atención a Clientes', 'Insumos de Oficina', 'Transporte', 'Atención Empleados', 'Otros', 'Alimentación Empleados'];
 
+  @ViewChild('dateInput') dateInput!: ElementRef<HTMLInputElement>;
+  t: any; // Definir la propiedad 't'
+  @ViewChild('calendarModal') calendarModal!: TemplateRef<any>;
+  modalRef!: NgbModalRef;
+  showModal = false;
+  showCalendar2 = false;
+  
 
-  constructor(
+  constructor(   
     private formBuilder: FormBuilder,
     private fb: FormBuilder,    
     private crudService:CrudService,
@@ -63,26 +69,25 @@ export class AgregarViajeComponent implements OnInit {
     private _decimalPipe: DecimalPipe,
     private router:Router,
     private route: ActivatedRoute,
-    private calendar2: NgbCalendar
+    private calendar2: NgbCalendar,
+    private elementRef: ElementRef,
+    private modalService: NgbModal
   ) {        
       
-    this.formularioDeViaje = this.formBuilder.group({
-      lugar: ['', Validators.required],
-      fecha_reembolso: ['', Validators.required],
-      nombre: ['', Validators.required],
-      cedula: ['', Validators.required],
-      fecha_viaje_inicio: ['', Validators.required],
-      fecha_viaje_fin: ['', Validators.required],
-      dias_viaje: ['', Validators.required],
-      punto_partida: ['', Validators.required],
-      punto_destino: ['', Validators.required],
-      fecha_gasto: ['', Validators.required],
-      moneda: [this.currencies[0], Validators.required],
-      cantidad_comprobantes: ['', Validators.required],
-      importe: ['', Validators.required],
-      formularioGastos: this.formBuilder.group({
-        gastos: ['', Validators.required]
-      })
+    this.formularioDeViaje = this.fb.group({
+      lugar: ['',Validators.required],
+      fecha_reembolso: ['',Validators.required],
+      nombre: ['',Validators.required],
+      cedula: ['',Validators.required],
+      fecha_viaje_inicio: ['',Validators.required],
+      fecha_viaje_fin: ['',Validators.required],
+      dias_viaje: ['',Validators.required],   
+      punto_partida: ['',Validators.required],   
+      punto_destino: ['',Validators.required],   
+      fecha_gasto: ['',Validators.required],   
+      moneda: [this.currencies[0],Validators.required],
+      cantidad_comprobantes: ['',Validators.required],   
+      importe: ['',Validators.required],      
     });
 
     this.formularioGastos = new FormGroup({
@@ -108,10 +113,31 @@ export class AgregarViajeComponent implements OnInit {
     this.formularioDeViaje.controls['cantidad_comprobantes'].disable();  
     this.formularioDeViaje.controls['fecha_viaje_inicio'].disable();  
     this.formularioDeViaje.controls['fecha_viaje_fin'].disable();  
-    this.formularioDeViaje.controls['fecha_gasto'].disable();  
+    //this.formularioDeViaje.controls['fecha_gasto'].disable();  
     this.formularioDeViaje.controls['importe'].disable();  
     this.crearFechaActual();
     this.cargarDatosInfoPersonal();     
+  }
+
+  openCalendar() {
+    this.modalRef = this.modalService.open(this.calendarModal, { backdrop: 'static', keyboard: false });
+  }
+
+  closeCalendar() {
+    if (this.modalRef) {
+      this.modalRef.dismiss();
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: Event) {
+    const clickedElement = event.target as HTMLElement;
+    const isClickedInside = this.elementRef.nativeElement.contains(clickedElement);
+    const isCalendarClicked = clickedElement.classList.contains('custom-day');
+
+    if (!isClickedInside && !isCalendarClicked) {
+      this.closeCalendar();
+    }
   }
 
   imprimirGastos() {
@@ -819,6 +845,7 @@ export class AgregarViajeComponent implements OnInit {
           viaje1.status = 'pendiente'; 
           viaje1.peticion = 'aprobacion'; 
           viaje1.motivo = ''; 
+          viaje1.fecha_respuesta = '';
           if(window.confirm("Desea agregar este viaje a reembolso:\n\tLugar:"
           +viaje1.lugar+"\n\tFecha Reembolso:"+viaje1.fecha_reembolso+"\n\tFecha_viaje_inicio:"+viaje1.fecha_viaje_inicio
           +"\n\tFecha_viaje_fin:"+viaje1.fecha_viaje_fin+"\n\tDuracion:"+viaje1.duracion+"\n\tPunto_partida:"+viaje1.punto_partida

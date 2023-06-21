@@ -1,0 +1,219 @@
+<form [formGroup]="formularioDeViaje">
+    <div class="contenedor-motivo">
+      <label for="" class="form-label">MOTIVO</label>
+      <input type="text" class="form-control" name="motivo" formControlName="motivo" id="motivo" aria-describedby="helpId"
+        placeholder="ESCRIBA SU MOTIVO" required>
+    </div>
+  
+    <div class="search-container">
+      <input type="text" formControlName="searchKeyword" placeholder="Buscar..." (change)="filterViajes()">
+      <button class="btn btn-primary" (click)="searchViajes()">Buscar</button>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th (click)="sort('id_viaje')" class="sortable">
+              Id
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'id_viaje' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'id_viaje' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('lugar')" class="sortable">
+              Lugar
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'lugar' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'lugar' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('fecha_reembolso')" class="sortable">
+              Fecha Reembolso
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'fecha_reembolso' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'fecha_reembolso' && sortDirection === 'desc'">
+            </th>            
+            <th (click)="sort('nombre')" class="sortable">
+              Nombre
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'nombre' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'nombre' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('apellido')" class="sortable">
+              Apellido
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'apellido' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'apellido' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('cedula')" class="sortable">
+              Cedula
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'cedula' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'cedula' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('fecha_viaje_inicio')" class="sortable">
+              Fecha Inicio
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'fecha_viaje_inicio' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'fecha_viaje_inicio' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('fecha_viaje_fin')" class="sortable">
+              Fecha Fin
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'fecha_viaje_fin' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'fecha_viaje_fin' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('duracion')" class="sortable">
+              Duración
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'duracion' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'duracion' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('punto_partida')" class="sortable">
+              Punto partida
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'punto_partida' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'punto_partida' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('punto_destino')" class="sortable">
+              Punto destino
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'punto_destino' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'punto_destino' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('fecha_gasto')" class="sortable">
+              Fecha Gasto
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'fecha_gasto' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'fecha_gasto' && sortDirection === 'desc'">
+            </th>
+            <!-- <th (click)="sort('moneda')" class="sortable">
+              Moneda
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'moneda' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'moneda' && sortDirection === 'desc'">
+            </th> -->
+            <th (click)="sort('cantidad_comprobantes')" class="sortable">
+              Cantidad de Comprobantes
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'cantidad_comprobantes' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'cantidad_comprobantes' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('importe')" class="sortable">
+              Importe
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'importe' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'importe' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('status')" class="sortable">
+              Status
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'status' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'status' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('motivo')" class="sortable">
+              Motivo
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'motivo' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'motivo' && sortDirection === 'desc'">
+            </th>
+            <th (click)="sort('fecha_repuesta')" class="sortable">
+              Fecha Respuesta
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'fecha_repuesta' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'fecha_repuesta' && sortDirection === 'desc'">
+            </th>
+
+
+           
+            <th>Acciones</th>
+          </tr>
+        </thead>      
+        <tbody>
+          <tr *ngFor="let row of pagedViajes; let iControl=index">
+            <td>{{ row.id_viaje }}</td>
+            <td>{{ row.lugar }}</td>            
+            <td>{{ row.fecha_reembolso }}</td>
+            <td>{{ row.nombre }}</td>
+            <td>{{ row.apellido }}</td>
+            <td>{{ row.cedula }}</td>
+            <td>{{ row.fecha_viaje_inicio }}</td>
+            <td>{{ row.fecha_viaje_fin }}</td>            
+            <td>{{ row.duracion }}</td>
+            <td>{{ row.punto_partida }}</td>
+            <td>{{ row.punto_destino }}</td>          
+            <td>{{ row.fecha_gasto }}</td>          
+            <!-- <td>{{ row.moneda }}</td> -->
+            <td>{{ row.cantidad_comprobantes }}</td>
+            <td>{{ row.importe }}</td>
+            <td>{{ row.status }}</td>
+            <td>{{ row.motivo }}</td>       
+            <td>{{ row.fecha_repuesta}}</td>     
+            <td>
+              <ng-container class="contenedor-acciones">
+                <a *ngIf="row.status === 'pendiente'" class="btn btn-success"
+                  (click)="AceptarRegistro(row.id_Viajes,iControl)" role="button"><img src="./assets/check.svg"
+                    alt=""></a>
+                <a *ngIf="row.status === 'pendiente'" class="btn btn-danger"
+                  (click)="RechazarRegistro(row.id_Viajes,iControl)" role="button"><img src="./assets/x.svg"
+                    alt=""></a>
+                <a *ngIf="row.status !== 'eliminada'" class="btn btn-secondary"
+                  (click)="borrarRegistro(row.id_Viajes,iControl)" role="button"><img src="./assets/trash.svg"
+                    alt=""></a>
+              </ng-container>
+            </td>
+  
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="pagination-container">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="changePage(1)" aria-label="First">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
+            <span aria-hidden="true">&lsaquo;</span>
+          </a>
+        </li>
+        <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+          <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
+            <span aria-hidden="true">&rsaquo;</span>
+          </a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="changePage(totalPages)" aria-label="Last">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="card-header d-flex justify-content-center">
+      <a class="btn btn-warning" (click)="exportToCSV()" role="button">Exportar a CSV</a>
+    </div>
+  </form>
+  

@@ -37,14 +37,14 @@ export class ListarviajesReporteGeneralPersonalComponent {
   }
 
   exportToCSV() {
-    this.crudService.ObtenerViajesPersonal(this.user, this.passw).subscribe(respuesta => {
+    this.crudService.ObtenerDataHistoricaViajesPersonal(this.user, this.passw).subscribe(respuesta => {
       this.Viaje = respuesta;
       this.exportList.downloadFileSolicitudesViaje(this.Viaje, "Viajes");
     });
   }
 
   getData() {
-    this.crudService.ObtenerViajesPersonal(this.user, this.passw).subscribe((respuesta: any) => {
+    this.crudService.ObtenerDataHistoricaViajesPersonal(this.user, this.passw).subscribe((respuesta: any) => {
       this.Viaje = respuesta;
       this.consults = respuesta.data;
       this.totalP = respuesta.total;

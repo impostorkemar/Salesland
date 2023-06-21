@@ -340,9 +340,16 @@ def update_viaje(id: str, viaje: Viaje):
 
 @user.get("/dataHistoricaViajePersonabyUserAndPass/{user}_{passw}",tags=['viaje'])
 def get_dataHistoricaViajePersonabyUserAndPass(user: str, passw:str): 
-    print("user:",user,"\passw:",passw)
+    print("user:",user,"\npassw:",passw)
     conn = engine.connect()
-    sql="SELECT viaje.id_viaje, viaje.lugar, viaje.fecha_reembolso,candidato.nombre, candidato.cedula, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe, viaje.status, viaje.peticion, viaje.motivo FROM viaje, personal,candidato, usuario WHERE candidato.cedula = personal.cedula AND viaje.id_personal = personal.id_personal AND personal.cedula = usuario.cedula AND viaje.id_personal = (SELECT personal.id_personal FROM personal WHERE personal.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"'));"
+    sql="SELECT viaje.id_viaje, viaje.lugar, viaje.fecha_reembolso,candidato.nombre, candidato.cedula, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe, viaje.status, viaje.motivo FROM viaje, personal,candidato, usuario WHERE candidato.cedula = personal.cedula AND viaje.id_personal = personal.id_personal AND personal.cedula = usuario.cedula AND viaje.id_personal = (SELECT personal.id_personal FROM personal WHERE personal.cedula = (SELECT usuario.cedula FROM usuario WHERE usuario.usuario = '"+str(user)+"' AND usuario.password = '"+str(passw)+"'));"
+    print(sql)
+    return conn.execute(sql).fetchall()
+
+@user.get("/dataHistoricaViajePersonal/",tags=['viaje'])
+def get_dataHistoricaViajePersonal(): 
+    conn = engine.connect()
+    sql="SELECT viaje.id_viaje, viaje.lugar, viaje.fecha_reembolso,candidato.nombre, candidato.apellido, candidato.cedula, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe, viaje.status, viaje.motivo, viaje.fecha_respuesta FROM viaje, personal,candidato, usuario WHERE candidato.cedula = personal.cedula AND viaje.id_personal = personal.id_personal AND personal.cedula = usuario.cedula;"
     print(sql)
     return conn.execute(sql).fetchall()
 
@@ -755,6 +762,26 @@ def update_vacacionesAAprobarbyId(id: str,vacacion : Vacacion):
     conn.execute(sql)
     return get_vacacionesByIdFormat(id)
 
+@user.get('/viajesByIdFormat/{id}',tags=["viajes"])
+def get_viajesByIdFormat(id : str):
+    conn = engine.connect()
+    sql = ("SELECT viaje.id_viaje, viaje.lugar, viaje.fecha_reembolso,candidato.nombre, candidato.apellido, candidato.cedula, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe, viaje.status, viaje.motivo, viaje.fecha_respuesta FROM viaje, personal,candidato, usuario WHERE candidato.cedula = personal.cedula AND viaje.id_personal = personal.id_personal AND personal.cedula = usuario.cedula AND viaje.id_viaje = '"+str(id)+"';")
+    return conn.execute(sql).first()
+
+@user.put("/viajesAAprobarbyId/{id}",response_model=Viaje, tags=["viajes"])
+def update_viajesAAprobarbyId(id: str,viaje : Viaje):   
+    #sql="UPDATE `vacaciones` SET `status`='pendiente-cancelacion',`observaciones`='"+str(observaciones)+"' WHERE  id_vacaciones = '"+str(id)+"';" 
+    #conn.execute(sql)
+    conn = engine.connect()
+    print("\viaje:",viaje) 
+    sql = (viajes.update().values(
+            fecha_respuesta=viaje.fecha_respuesta,
+            status=viaje.status,            
+            motivo=viaje.motivo,
+            ).where(viajes.c.id_viaje == id))
+    print("viajesAAprobarbyId:",sql)    
+    conn.execute(sql)
+    return get_viajesByIdFormat(id)
 
 
 @user.put("/aprobarVacacionById/{id}",response_model=Vacacion, tags=["vacaciones"])

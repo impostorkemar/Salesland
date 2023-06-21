@@ -116,6 +116,7 @@ viajes = Table("viaje", meta,
     Column("status", String(255)),
     Column("peticion", String(255)),    
     Column("motivo", String(255)),  
+    Column("fecha_respuesta", String(255)),
 )
 
 comprobantes = Table("comprobante", meta, 

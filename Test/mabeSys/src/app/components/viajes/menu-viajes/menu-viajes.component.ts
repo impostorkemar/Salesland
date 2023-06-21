@@ -103,7 +103,10 @@ export class MenuViajesComponent {
     } else if (op === 2) {
       this.nombreVentana = 'REPORTE-PERSONAL';
       //console.log("OPCION:",this.nombreVentana);
-    } else {
+    } else if (op === 3) {
+      this.nombreVentana = 'REPORTE-ADMIN';
+      //console.log("OPCION:",this.nombreVentana);
+    }else {
       //console.log("OPCION: VACIO");
     }
   }

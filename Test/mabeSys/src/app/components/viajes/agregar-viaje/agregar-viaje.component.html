@@ -56,23 +56,35 @@
               aria-describedby="dias_viaje" placeholder="0">
           </div>
           <div class="card-body etiqueta">
-            <label for="" class="form-label">FECHA INICIO
-              <div class="icon-calendar">
-                <img src="./assets/calendar-outline.svg" (click)="toggleCalendar2()" alt="icono calendario">
-              </div>
+            <label for="" class="form-label">FECHA INICIO              
 
-              <div class="row" *ngIf="showCalendar2">
-                <ngb-datepicker class="text etiqueta" #dp (dateSelect)="onDateSelection1($event)" [displayMonths]="2"
-                  [dayTemplate]="t" outsideDays="hidden">
-                </ngb-datepicker>
-                <ng-template #t let-date let-focused="focused">
-                  <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                    [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-                    (mouseleave)="hoveredDate = null">
-                    {{ date.day }}
-                  </span>
-                </ng-template>
+              <div class="row">
+                <div class="contenedor-calendario" (click)="openCalendar()">
+                  <i class="fas fa-calendar"></i>
+                </div>
               </div>
+              
+              <ng-template #calendarModal let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title">Selecciona una fecha</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <ngb-datepicker class="texts etiqueta" #dp (dateSelect)="onDateSelection1($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+                    <ng-template #t let-date let-focused="focused">
+                      <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)"
+                        (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+                        {{ date.day }}
+                      </span>
+                    </ng-template>
+                  </ngb-datepicker>
+                </div>
+              </ng-template>
+              
+              <ng-template [ngbModalOutlet]="calendarModal" [ngbModalOptions]="{ backdrop: 'static', keyboard: false }" *ngIf="showModal"></ng-template>
+              
             </label>
             <input type="text" class="form-control" name="fecha_viaje_inicio" formControlName="fecha_viaje_inicio"
               id="fecha_viaje_inicio" aria-describedby="helpId" placeholder="0">
@@ -111,8 +123,7 @@
         </div>
 
       </div>
-    </div>
-
+    </div>  
   </form>
   <div class="add-datos">
     <div class="contenedor-titulo">
