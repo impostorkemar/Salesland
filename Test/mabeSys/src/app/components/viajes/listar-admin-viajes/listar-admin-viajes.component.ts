@@ -10,17 +10,14 @@ import { Router } from '@angular/router';
   templateUrl: './listar-admin-viajes.component.html',
   styleUrls: ['./listar-admin-viajes.component.css']
 })
-export class ListarAdminViajesComponent {
-  VacacionesPendientesBySupervisor: any;
-  VacacionesNegadasBySupervisor: any;
-  VacacionesAprobadasBySupervisor: any;
+export class ListarAdminViajesComponent {  
   user!: String;
   passw!: String;
-  formularioDeVacacion: FormGroup;
+  formularioDeViaje: FormGroup;
   consults: any;
 
-  VacacionesBySupervisor: any[] = [];
-  pagedVacaciones: any[] = [];
+  ViajesBySupervisor: any[] = [];
+  pagedViajes: any[] = [];
   currentPage = 1;
   pageSize = 10; // Number of rows per page
   totalPages = 0;
@@ -40,74 +37,74 @@ export class ListarAdminViajesComponent {
   ) {
     this.user = localStorage.getItem('USER') as string;
     this.passw = localStorage.getItem('PASS') as string;
-    this.formularioDeVacacion = this.formulario.group({
+    this.formularioDeViaje = this.formulario.group({
       motivo: [''],
       searchKeyword: [''],
     });
   }
 
   ngOnInit(): void {
-    this.getVacaciones();
+    this.getViajes();
   }
 
-  getVacaciones(): void {
-    this.crudService.ObtenerVacacionesPersonal(this.user, this.passw).subscribe(respuesta => {
+  getViajes(): void {
+    this.crudService.ObtenerViajesPersonal(this.user, this.passw).subscribe(respuesta => {
       console.log(respuesta);
-      this.VacacionesBySupervisor = respuesta; // Actualiza el array con la propiedad correspondiente
+      this.ViajesBySupervisor = respuesta; // Actualiza el array con la propiedad correspondiente
 
       // Filtrar los datos según la búsqueda
-      this.filterVacaciones();
+      this.filterViajes();
 
       // Verificar si se debe mostrar los botones de "Aceptar" y "Rechazar"
-      this.btnRechazar = this.VacacionesBySupervisor.some(row => row.status === 'pendiente');
-      this.btnAceptar = this.VacacionesBySupervisor.some(row => row.status === 'pendiente');
+      this.btnRechazar = this.ViajesBySupervisor.some(row => row.status === 'pendiente');
+      this.btnAceptar = this.ViajesBySupervisor.some(row => row.status === 'pendiente');
 
-      this.totalPages = Math.ceil(this.VacacionesBySupervisor.length / this.pageSize);
+      this.totalPages = Math.ceil(this.ViajesBySupervisor.length / this.pageSize);
       this.changePage(1);
     });
   }
 
-  filterVacaciones(): void {
-    console.log("Entre vacaciones");
-    const searchKeyword = this.formularioDeVacacion.get('searchKeyword')?.value;
+  filterViajes(): void {
+    console.log("Entre Viajes");
+    const searchKeyword = this.formularioDeViaje.get('searchKeyword')?.value;
 
     if (searchKeyword.trim() !== '') {
-      this.VacacionesBySupervisor = this.VacacionesBySupervisor.filter(row =>
+      this.ViajesBySupervisor = this.ViajesBySupervisor.filter(row =>
         Object.values(row).some(val =>
           val?.toString().toLowerCase().includes(searchKeyword.toLowerCase())
         )
       );
     } else {
-      //this.getVacaciones();
-      this.precargaVacaciones();
+      //this.getViajes();
+      this.precargaViajes();
       return;
     }
 
     // Verificar si no se encontraron resultados
-    if (this.VacacionesBySupervisor.length === 0) {
-      this.pagedVacaciones = [];
+    if (this.ViajesBySupervisor.length === 0) {
+      this.pagedViajes = [];
       this.totalPages = 0;
       this.currentPage = 1;
       this.pages = [];
       return;
     }
 
-    console.log("Vacaciones:", this.VacacionesBySupervisor);
+    console.log("Viajes:", this.ViajesBySupervisor);
   }
 
-  precargaVacaciones() {
-    this.crudService.ObtenerVacacionesPersonal(this.user, this.passw).subscribe(respuesta => {
+  precargaViajes() {
+    this.crudService.ObtenerViajesPersonal(this.user, this.passw).subscribe(respuesta => {
       console.log(respuesta);
-      this.VacacionesBySupervisor = respuesta; // Actualiza el array con la propiedad correspondiente
-      this.totalPages = Math.ceil(this.VacacionesBySupervisor.length / this.pageSize);
+      this.ViajesBySupervisor = respuesta; // Actualiza el array con la propiedad correspondiente
+      this.totalPages = Math.ceil(this.ViajesBySupervisor.length / this.pageSize);
       this.changePage(1);
     });
   }
 
 
-  searchVacaciones(): void {
-    this.filterVacaciones();
-    this.totalPages = Math.ceil(this.VacacionesBySupervisor.length / this.pageSize);
+  searchViajes(): void {
+    this.filterViajes();
+    this.totalPages = Math.ceil(this.ViajesBySupervisor.length / this.pageSize);
     this.changePage(1);
   }
 
@@ -117,7 +114,7 @@ export class ListarAdminViajesComponent {
     }
 
     this.currentPage = page;
-    this.pagedVacaciones = this.VacacionesBySupervisor.slice(
+    this.pagedViajes = this.ViajesBySupervisor.slice(
       (page - 1) * this.pageSize,
       page * this.pageSize
     );
@@ -142,7 +139,7 @@ export class ListarAdminViajesComponent {
       this.sortDirection = 'asc';
     }
 
-    this.VacacionesBySupervisor.sort((a, b) => {
+    this.ViajesBySupervisor.sort((a, b) => {
       if (a[this.sortColumn] < b[this.sortColumn]) {
         return this.sortDirection === 'asc' ? -1 : 1;
       } else if (a[this.sortColumn] > b[this.sortColumn]) {
@@ -161,7 +158,7 @@ export class ListarAdminViajesComponent {
     this.crudService.EliminarSolicitudVacacion(id).subscribe(respuesta => {
       console.log("respuesta: ", respuesta)
       this.reloadMenuComponent();
-      this.getVacaciones();
+      this.getViajes();
 
     })
   }
@@ -174,7 +171,7 @@ export class ListarAdminViajesComponent {
     this.crudService.AceptarSolicitudVacacionBySupervisor(id).subscribe(respuesta => {
       console.log("respuesta: ", respuesta)
       this.reloadMenuComponent();
-      this.getVacaciones();
+      this.getViajes();
       this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15 => {
         console.log("respuesta15:", respuesta15)
       })
@@ -186,15 +183,15 @@ export class ListarAdminViajesComponent {
   RechazarRegistro(id: any, iControl: any) {
     //console.log(id);    
     var aux = "";
-    if (!this.formularioDeVacacion.get('motivo')?.value) {
+    if (!this.formularioDeViaje.get('motivo')?.value) {
       aux = "Sin observaciones"
       window.confirm("Rellene motivo")
     } else {
-      aux = this.formularioDeVacacion.get('motivo')?.value
+      aux = this.formularioDeViaje.get('motivo')?.value
       this.crudService.RechazarSolicitudVacacionBySupervisor(id, aux).subscribe(respuesta => {
         console.log("respuesta: ", respuesta)
         this.reloadMenuComponent();
-        this.getVacaciones();
+        this.getViajes();
         this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15 => {
           console.log("respuesta15:", respuesta15)
         })
@@ -206,7 +203,7 @@ export class ListarAdminViajesComponent {
   }
 
   exportToCSV() {
-    this.exportList.downloadFileSolicitudesVacacionesSupervisores(this.VacacionesBySupervisor, "Vacaciones");
+    this.exportList.downloadFileSolicitudesViaje(this.ViajesBySupervisor, "Viajes");
   }
 
   reloadMenuComponent() {

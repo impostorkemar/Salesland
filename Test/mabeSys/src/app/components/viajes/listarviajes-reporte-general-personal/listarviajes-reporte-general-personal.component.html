@@ -96,6 +96,12 @@
                             <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'motivo' && !sortAsc"
                                 alt="Desc" />
                         </th>
+                        <th (click)="sort('fecha_respuesta')" scope="col">
+                            Fecha respuesta
+                            <img src="./assets/arrow-drop-up.svg" *ngIf="sortBy === 'fecha_respuesta' && sortAsc" alt="Asc" />
+                            <img src="./assets/arrow-down-drop.svg" *ngIf="sortBy === 'fecha_respuesta' && !sortAsc"
+                                alt="Desc" />
+                        </th>
                         <th scope="col">Total</th>
                     </tr>
                 </thead>
@@ -116,6 +122,7 @@
                         <td>{{viaje.status}}</td>
                         <!-- <td>{{viaje.peticion}}</td> -->
                         <td>{{viaje.motivo}}</td>
+                        <td>{{viaje.fecha_respuesta}}</td>
                         <td>${{viaje.importe}}</td>
                     </tr>
                 </tbody>

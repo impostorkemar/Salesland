@@ -137,8 +137,8 @@ def cargarCandidato(numUsuarios):
     centro_costo = (listPersonal[item][3]) 
     tienda = (listPersonal[item][4]) 
     cargo = (listPersonal[item][5]) 
-    apellido = (listPersonal[item][12]) 
-    nombre = (listPersonal[item][11]) 
+    apellido = (listPersonal[item][11]) 
+    nombre = (listPersonal[item][12]) 
     correo = (listPersonal[item][15])
     fecha_inicio_contrato = (listPersonal[item][16])
     if(status == 'Activo'):

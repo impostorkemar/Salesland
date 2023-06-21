@@ -122,6 +122,7 @@ class Viaje(BaseModel):
     status: str
     peticion: str    
     motivo: str
+    fecha_respuesta: str
 
 
 class Comprobante(BaseModel):

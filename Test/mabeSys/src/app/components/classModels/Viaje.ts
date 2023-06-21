@@ -15,5 +15,6 @@ export class Viaje{
   status!: String;
   peticion!: String;
   motivo!: String;
+  fecha_respuesta!: String;
 
 }

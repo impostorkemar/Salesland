@@ -845,6 +845,7 @@ export class AgregarViajeComponent implements OnInit {
           viaje1.status = 'pendiente'; 
           viaje1.peticion = 'aprobacion'; 
           viaje1.motivo = ''; 
+          viaje1.fecha_respuesta = '';
           if(window.confirm("Desea agregar este viaje a reembolso:\n\tLugar:"
           +viaje1.lugar+"\n\tFecha Reembolso:"+viaje1.fecha_reembolso+"\n\tFecha_viaje_inicio:"+viaje1.fecha_viaje_inicio
           +"\n\tFecha_viaje_fin:"+viaje1.fecha_viaje_fin+"\n\tDuracion:"+viaje1.duracion+"\n\tPunto_partida:"+viaje1.punto_partida
