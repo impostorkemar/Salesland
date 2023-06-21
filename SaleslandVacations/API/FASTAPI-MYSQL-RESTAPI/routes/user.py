@@ -762,16 +762,20 @@ def update_vacacionesAAprobarbyId(id: str,vacacion : Vacacion):
     conn.execute(sql)
     return get_vacacionesByIdFormat(id)
 
+@user.get('/viajesById/{id}',tags=["viajes"])
+def viajesById(id : str):
+    conn = engine.connect()
+    sql = ("SELECT candidato.nombre,candidato.apellido, viaje.id_viaje, viaje.id_personal, viaje.lugar, viaje.fecha_reembolso, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe, viaje.status, viaje.peticion, viaje.motivo, viaje.fecha_respuesta FROM viaje, personal, candidato WHERE viaje.id_personal = personal.id_personal AND personal.cedula = candidato.cedula AND viaje.id_viaje = '"+str(id)+"';")
+    return conn.execute(sql).first()
+
 @user.get('/viajesByIdFormat/{id}',tags=["viajes"])
 def get_viajesByIdFormat(id : str):
     conn = engine.connect()
     sql = ("SELECT viaje.id_viaje, viaje.lugar, viaje.fecha_reembolso,candidato.nombre, candidato.apellido, candidato.cedula, viaje.fecha_viaje_inicio, viaje.fecha_viaje_fin, viaje.duracion, viaje.punto_partida, viaje.punto_destino, viaje.fecha_gasto, viaje.moneda, viaje.cantidad_comprobantes, viaje.importe, viaje.status, viaje.motivo, viaje.fecha_respuesta FROM viaje, personal,candidato, usuario WHERE candidato.cedula = personal.cedula AND viaje.id_personal = personal.id_personal AND personal.cedula = usuario.cedula AND viaje.id_viaje = '"+str(id)+"';")
     return conn.execute(sql).first()
 
-@user.put("/viajesAAprobarbyId/{id}",response_model=Viaje, tags=["viajes"])
+@user.put("/viajesAAprobarbyId/{id}", tags=["viajes"])
 def update_viajesAAprobarbyId(id: str,viaje : Viaje):   
-    #sql="UPDATE `vacaciones` SET `status`='pendiente-cancelacion',`observaciones`='"+str(observaciones)+"' WHERE  id_vacaciones = '"+str(id)+"';" 
-    #conn.execute(sql)
     conn = engine.connect()
     print("\viaje:",viaje) 
     sql = (viajes.update().values(
@@ -780,6 +784,31 @@ def update_viajesAAprobarbyId(id: str,viaje : Viaje):
             motivo=viaje.motivo,
             ).where(viajes.c.id_viaje == id))
     print("viajesAAprobarbyId:",sql)    
+    conn.execute(sql)
+    return get_viajesByIdFormat(id)
+
+@user.put("/negarViajeById/{id}", tags=["viajes"])
+def update_negarViajeById(id: str,viaje : Viaje):   
+    conn = engine.connect()
+    sql = (viajes.update().values(
+            fecha_respuesta=viaje.fecha_respuesta,
+            status=viaje.status,            
+            motivo=viaje.motivo,
+    ).where(viajes.c.id_viaje == id))
+    print("negarVacacionById:",sql)
+    conn.execute(sql)
+    return get_viajesByIdFormat(id)
+
+@user.put("/viajeAEliminaryId/{id}", tags=["viajes"])
+def update_viajeAEliminaryId(id: str,viaje : Viaje): 
+    conn = engine.connect()
+    print("vacacion:",viaje)
+    sql = (viajes.update().values(
+            fecha_respuesta=viaje.fecha_respuesta,
+            status=viaje.status,            
+            motivo=viaje.motivo,
+    ).where(viajes.c.id_viaje == id))
+    print("viajeAEliminaryId:",sql)
     conn.execute(sql)
     return get_viajesByIdFormat(id)
 

@@ -103,7 +103,7 @@ class Consult(BaseModel):
     id: str    
 
 class Consult2(BaseModel):    
-    id: str  
+    id: str 
 
 class Viaje(BaseModel):
     id_viaje: Optional[int]

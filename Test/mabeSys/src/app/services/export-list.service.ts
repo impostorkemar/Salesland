@@ -304,7 +304,7 @@ export class ExportListService {
 
   downloadFileSolicitudesViaje(data:any, filename = 'Viajes') {
     let csvData = this.ConvertToCSV(data, [
-        'id_viaje', 'lugar', 'fecha_reembolso', 'nombre', 'cedula', 'fecha_viaje_inicio', 'fecha_viaje_fin', 'duracion', 'punto_partida', 'punto_destino', 'fecha_gasto', 'moneda','cantidad_comprobantes','importe','status','motivo'
+        'id_viaje', 'lugar', 'fecha_reembolso', 'nombre', 'cedula', 'fecha_viaje_inicio', 'fecha_viaje_fin', 'duracion', 'punto_partida', 'punto_destino', 'fecha_gasto', 'moneda','cantidad_comprobantes','importe','status','motivo','fecha_respuesta'
     ]);
     //console.log(csvData)
     let blob = new Blob(['\ufeff' + csvData], {

@@ -1159,6 +1159,164 @@ resp!:String[];
     return this.clienteHttp.post<any>(this.API + "uploadExcel" as string, formData).toPromise();
   }
 
+  EnviarCorreoCambioEstadoSolicitudViaje(id:any): Observable<any>{
+    var consult2 = {"id":id}
+    //console.log("consult2:\n",consult2)
+    var urlAPI="sendEmailCambioEstadoSolicitudViaje/"
+    return this.clienteHttp.post(this.API + urlAPI, consult2);
+  }
+
+  ObtenerViajeById(idViaje:any):Observable<any>{
+    var urlAPI="viajesById/"+idViaje;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  AceptarSolicitudViaje(id: any): Observable<any> {
+    var urlAPI = "viajesAAprobarbyId/";
+    var myDate = new Date();
+    var Fecha_respt = myDate.getFullYear() + "-" + myDate.getMonth() + "-" + myDate.getDay() + " " + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds()
+    return this.ObtenerViajeById(id).pipe(      
+      switchMap(response0 => {
+        //console.log("response0:",response0)
+        if (response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion') {
+          if (window.confirm("¿Desea aceptar la solicitud?\nID VIAJE: " +
+            response0['id_viaje'] + "\n\tNOMBRE:" + response0['nombre'] + " " + response0['apellido'] + "\n\tFECHA REEMBOLSO: " + response0['fecha_reembolso'] +
+            "\n\tFECHA INICIO: " + response0['fecha_viaje_inicio'] + "\n\tFECHA FIN: "
+            + response0['fecha_viaje_fin'] + "\n\tDURACIÓN: "+ response0['duracion'] +
+            "\n\tIMPORTE: "+ response0['importe'])) {
+            let options = this.createRequestOptions();
+            var urlAPI = "viajesAAprobarbyId/" + id;
+            console.log("Fecha_respt:", Fecha_respt)
+            var viaje: Viaje = {
+              id_viaje: response0['id_viaje'],
+              id_personal: response0['id_personal'],
+              lugar: response0['lugar'],
+              fecha_reembolso: response0['fecha_reembolso'],
+              fecha_viaje_inicio: response0['fecha_viaje_inicio'],
+              fecha_viaje_fin: response0['fecha_viaje_fin'],
+              duracion: response0['duracion'],
+              punto_partida: response0['punto_partida'],
+              punto_destino: response0['punto_destino'],
+              fecha_gasto: response0['fecha_gasto'],
+              moneda: response0['moneda'],
+              cantidad_comprobantes: response0['cantidad_comprobantes'],
+              importe: response0['importe'],
+              status: 'aprobada',
+              peticion: response0['peticion'],
+              motivo: response0['motivo'],
+              fecha_respuesta: Fecha_respt as string,              
+            }
+            console.log("viaje: ", viaje);
+            return this.putData(viaje, urlAPI);            
+          } else {
+            return of(null);
+          }
+        } else {
+          return of(null);
+        }
+      }),
+      catchError(error => {
+        return of(null);
+      })
+    );
+  }
+
+  RechazarSolicitudViaje(id:any, motivo: any): Observable<any>{
+    var urlAPI="negarViajeById/";
+    var myDate = new Date();
+    var Fecha_respt = myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDay()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds()
+    return this.ObtenerViajeById(id).pipe(
+      switchMap(response0 =>{
+        //console.log("response0:",response
+        if ( response0['status'] === 'pendiente' && response0['peticion'] === 'aprobacion'){
+          if(window.confirm("¿Desea aceptar la solicitud?\nID VIAJE: " +
+          response0['id_viaje'] + "\n\tNOMBRE:" + response0['nombre'] + " " + response0['apellido'] + "\n\tFECHA REEMBOLSO: " + response0['fecha_reembolso'] +
+          "\n\tFECHA INICIO: " + response0['fecha_viaje_inicio'] + "\n\tFECHA FIN: "
+          + response0['fecha_viaje_fin'] + "\n\tDURACIÓN: "+ response0['duracion'] +
+          "\n\tIMPORTE: "+ response0['importe'])){
+            let options = this.createRequestOptions();
+            var urlAPI="negarViajeById/"+id;
+            console.log("Fecha_respt:",Fecha_respt)
+            var viaje: Viaje = {
+              id_viaje: response0['id_viaje'],
+              id_personal: response0['id_personal'],
+              lugar: response0['lugar'],
+              fecha_reembolso: response0['fecha_reembolso'],
+              fecha_viaje_inicio: response0['fecha_viaje_inicio'],
+              fecha_viaje_fin: response0['fecha_viaje_fin'],
+              duracion: response0['duracion'],
+              punto_partida: response0['punto_partida'],
+              punto_destino: response0['punto_destino'],
+              fecha_gasto: response0['fecha_gasto'],
+              moneda: response0['moneda'],
+              cantidad_comprobantes: response0['cantidad_comprobantes'],
+              importe: response0['importe'],
+              status: 'negada',
+              peticion: response0['peticion'],
+              motivo: motivo as string,
+              fecha_respuesta: Fecha_respt as string,              
+            }
+            console.log("viaje: ", viaje);
+            return this.putData(viaje,urlAPI)
+          } else{
+            return of(null)
+          }
+        } else{
+          return of(null)
+        }
+      }),        
+      catchError(error => {
+        return of(null);
+      })
+    )
+  }
+
+  EliminarSolicitudViaje(id: any): Observable<any> {
+    var urlAPI = "viajeAEliminaryId/";
+    var myDate = new Date();
+    var Fecha_respt = myDate.getFullYear() + "-" + myDate.getMonth() + "-" + myDate.getDay() + " " + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds()
+    return this.ObtenerViajeById(id).pipe(
+      switchMap(response0 => {
+        if (window.confirm("¿Desea aceptar la solicitud?\nID VIAJE: " +
+        response0['id_viaje'] + "\n\tNOMBRE:" + response0['nombre'] + " " + response0['apellido'] + "\n\tFECHA REEMBOLSO: " + response0['fecha_reembolso'] +
+        "\n\tFECHA INICIO: " + response0['fecha_viaje_inicio'] + "\n\tFECHA FIN: "
+        + response0['fecha_viaje_fin'] + "\n\tDURACIÓN: "+ response0['duracion'] +
+        "\n\tIMPORTE: "+ response0['importe'])) {
+          let options = this.createRequestOptions();
+          var urlAPI = "viajeAEliminaryId/" + id;
+          console.log("Fecha_respt:", Fecha_respt)
+          var viaje: Viaje = {
+            id_viaje: response0['id_viaje'],
+            id_personal: response0['id_personal'],
+            lugar: response0['lugar'],
+            fecha_reembolso: response0['fecha_reembolso'],
+            fecha_viaje_inicio: response0['fecha_viaje_inicio'],
+            fecha_viaje_fin: response0['fecha_viaje_fin'],
+            duracion: response0['duracion'],
+            punto_partida: response0['punto_partida'],
+            punto_destino: response0['punto_destino'],
+            fecha_gasto: response0['fecha_gasto'],
+            moneda: response0['moneda'],
+            cantidad_comprobantes: response0['cantidad_comprobantes'],
+            importe: response0['importe'],
+            status: 'eliminada',
+            peticion: response0['peticion'],
+            motivo: response0['motivo'],
+            fecha_respuesta: Fecha_respt as string,              
+          }
+          console.log("viaje: ", viaje);
+          return this.putData(viaje, urlAPI);
+        } else {
+          return of(null);
+        }
+
+      }),
+      catchError(error => {
+        return of(null);
+      })
+    );
+  }
+
     
     
 }

@@ -15,7 +15,6 @@ export class ListarAdminViajesComponent {
   passw!: String;
   formularioDeViaje: FormGroup;
   consults: any;
-
   ViajesBySupervisor: any[] = [];
   pagedViajes: any[] = [];
   currentPage = 1;
@@ -49,7 +48,7 @@ export class ListarAdminViajesComponent {
 
   getViajes(): void {
     this.crudService.ObtenerViajesPersonal(this.user, this.passw).subscribe(respuesta => {
-      console.log(respuesta);
+      //console.log(respuesta);
       this.ViajesBySupervisor = respuesta; // Actualiza el array con la propiedad correspondiente
 
       // Filtrar los datos según la búsqueda
@@ -65,7 +64,7 @@ export class ListarAdminViajesComponent {
   }
 
   filterViajes(): void {
-    console.log("Entre Viajes");
+    //console.log("Entre Viajes");
     const searchKeyword = this.formularioDeViaje.get('searchKeyword')?.value;
 
     if (searchKeyword.trim() !== '') {
@@ -94,7 +93,7 @@ export class ListarAdminViajesComponent {
 
   precargaViajes() {
     this.crudService.ObtenerViajesPersonal(this.user, this.passw).subscribe(respuesta => {
-      console.log(respuesta);
+      //console.log(respuesta);
       this.ViajesBySupervisor = respuesta; // Actualiza el array con la propiedad correspondiente
       this.totalPages = Math.ceil(this.ViajesBySupervisor.length / this.pageSize);
       this.changePage(1);
@@ -155,11 +154,10 @@ export class ListarAdminViajesComponent {
   borrarRegistro(id: any, iControl: any) {
     //console.log(id);
     //console.log(iControl);
-    this.crudService.EliminarSolicitudVacacion(id).subscribe(respuesta => {
+    this.crudService.EliminarSolicitudViaje(id).subscribe(respuesta => {
       console.log("respuesta: ", respuesta)
-      this.reloadMenuComponent();
       this.getViajes();
-
+      this.reloadMenuComponent();
     })
   }
 
@@ -168,14 +166,18 @@ export class ListarAdminViajesComponent {
     //console.log(id);    
     var aux = "";
     aux = "Aprobado"
-    this.crudService.AceptarSolicitudVacacionBySupervisor(id).subscribe(respuesta => {
-      console.log("respuesta: ", respuesta)
-      this.reloadMenuComponent();
-      this.getViajes();
-      this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15 => {
-        console.log("respuesta15:", respuesta15)
-      })
-
+    this.crudService.AceptarSolicitudViaje(id).subscribe(respuesta => {
+      //console.log("id: ", id)
+      console.log("respuesta: ", respuesta)      
+      if(respuesta){
+        this.reloadMenuComponent();
+        this.getViajes();
+        this.crudService.EnviarCorreoCambioEstadoSolicitudViaje(id).subscribe(respuesta15 => {
+          console.log("respuesta15:", respuesta15)
+        })
+      }
+      
+      
     })
 
   }
@@ -185,17 +187,18 @@ export class ListarAdminViajesComponent {
     var aux = "";
     if (!this.formularioDeViaje.get('motivo')?.value) {
       aux = "Sin observaciones"
-      window.confirm("Rellene motivo")
+      alert("Rellene motivo")
     } else {
       aux = this.formularioDeViaje.get('motivo')?.value
-      this.crudService.RechazarSolicitudVacacionBySupervisor(id, aux).subscribe(respuesta => {
-        console.log("respuesta: ", respuesta)
-        this.reloadMenuComponent();
-        this.getViajes();
-        this.crudService.EnviarCorreoCambioEstadoSolicitud(id).subscribe(respuesta15 => {
-          console.log("respuesta15:", respuesta15)
-        })
-
+      this.crudService.RechazarSolicitudViaje(id, aux).subscribe(respuesta => {
+        console.log("respuesta: ", respuesta)        
+        if(respuesta){
+          this.reloadMenuComponent();
+          this.getViajes();
+          this.crudService.EnviarCorreoCambioEstadoSolicitudViaje(id).subscribe(respuesta15 => {
+            console.log("respuesta15:", respuesta15)
+          })
+        }   
       })
 
     }

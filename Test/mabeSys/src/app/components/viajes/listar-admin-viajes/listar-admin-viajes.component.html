@@ -168,13 +168,13 @@
             <td>
               <ng-container class="contenedor-acciones">
                 <a *ngIf="row.status === 'pendiente'" class="btn btn-success"
-                  (click)="AceptarRegistro(row.id_Viajes,iControl)" role="button"><img src="./assets/check.svg"
+                  (click)="AceptarRegistro(row.id_viaje,iControl)" role="button"><img src="./assets/check.svg"
                     alt=""></a>
                 <a *ngIf="row.status === 'pendiente'" class="btn btn-danger"
-                  (click)="RechazarRegistro(row.id_Viajes,iControl)" role="button"><img src="./assets/x.svg"
+                  (click)="RechazarRegistro(row.id_viaje,iControl)" role="button"><img src="./assets/x.svg"
                     alt=""></a>
                 <a *ngIf="row.status !== 'eliminada'" class="btn btn-secondary"
-                  (click)="borrarRegistro(row.id_Viajes,iControl)" role="button"><img src="./assets/trash.svg"
+                  (click)="borrarRegistro(row.id_viaje,iControl)" role="button"><img src="./assets/trash.svg"
                     alt=""></a>
               </ng-container>
             </td>
