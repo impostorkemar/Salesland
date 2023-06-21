@@ -912,6 +912,13 @@ export class AgregarViajeComponent implements OnInit {
       saveAs(blob, "Formato Reembolso de Gastos viaje.xlsx");
     });
   }
+  isFieldInvalid(fieldName: string): boolean {
+    const field = this.formularioDeViaje.get(fieldName);
+    return field !== null && field !== undefined && field.invalid && (field.dirty || field.touched);
+  }
+  
+
+  
 
 }
 function round(total: number, arg1: number): any {
