@@ -198,7 +198,7 @@ export class AgregarViajeComponent implements OnInit {
   createGastoFormGroup(): FormGroup {
     return this.formBuilder.group({
       tipo: ['', Validators.required],
-      cedula: new FormControl({ value: this.cedulaPrecargada as string, disabled: true }),
+      cedula: ['', Validators.required],
       razon_social: ['', Validators.required],
       n_documento: ['', Validators.required],
       fechaEmision: ['', Validators.required],

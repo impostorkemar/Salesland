@@ -39,3 +39,5 @@ SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/config/__pycache__/db.cpython-311.p
 *.pyc
 *.pyc
 Test/mabeSys/src/environments/environment.ts
+*.pyc
+Test/mabeSys/src/environments/environment.ts
