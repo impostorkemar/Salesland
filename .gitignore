@@ -47,3 +47,5 @@ SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/routes/__pycache__/email.cpython-31
 SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/routes/__pycache__/user.cpython-311.pyc
 SaleslandVacations/API/FASTAPI-MYSQL-RESTAPI/schemas/__pycache__/user.cpython-311.pyc
 Test/Back-end/architect.log
+*.pyc
+Test/Back-end/architect.log

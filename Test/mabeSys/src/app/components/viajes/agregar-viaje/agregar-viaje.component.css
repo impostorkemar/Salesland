@@ -389,3 +389,7 @@ font-weight: 400;
   border: 1px solid #045959;
   color: #045959;
 }
+
+.invalid-field {
+  border: 1px solid red;
+}
