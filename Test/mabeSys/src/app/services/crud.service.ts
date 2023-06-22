@@ -1317,6 +1317,11 @@ resp!:String[];
     );
   }
 
+  ObtenerDetalleComprobanteById(idViaje:any):Observable<any>{
+    var urlAPI="detalle_comprobanteByIdComprobante/"+idViaje;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
     
     
 }

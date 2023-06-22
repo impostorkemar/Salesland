@@ -110,21 +110,14 @@
                 *ngIf="sortColumn === 'cantidad_comprobantes' && sortDirection === 'asc'">
               <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
                 *ngIf="sortColumn === 'cantidad_comprobantes' && sortDirection === 'desc'">
-            </th>
-            <th (click)="sort('importe')" class="sortable">
-              Importe
-              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
-                *ngIf="sortColumn === 'importe' && sortDirection === 'asc'">
-              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
-                *ngIf="sortColumn === 'importe' && sortDirection === 'desc'">
-            </th>
+            </th>            
             <th (click)="sort('status')" class="sortable">
               Status
               <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
                 *ngIf="sortColumn === 'status' && sortDirection === 'asc'">
               <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
                 *ngIf="sortColumn === 'status' && sortDirection === 'desc'">
-            </th>
+            </th>            
             <th (click)="sort('motivo')" class="sortable">
               Motivo
               <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
@@ -138,49 +131,100 @@
                 *ngIf="sortColumn === 'fecha_repuesta' && sortDirection === 'asc'">
               <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
                 *ngIf="sortColumn === 'fecha_repuesta' && sortDirection === 'desc'">
-            </th>
-
-
-           
-            <th>Acciones</th>
+            </th> 
+            <th (click)="sort('importe')" class="sortable">
+              Importe
+              <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
+                *ngIf="sortColumn === 'importe' && sortDirection === 'asc'">
+              <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
+                *ngIf="sortColumn === 'importe' && sortDirection === 'desc'">
+            </th>          
+            <th colspan="2">Acciones</th>
           </tr>
         </thead>      
         <tbody>
-          <tr *ngFor="let row of pagedViajes; let iControl=index">
-            <td>{{ row.id_viaje }}</td>
-            <td>{{ row.lugar }}</td>            
-            <td>{{ row.fecha_reembolso }}</td>
-            <td>{{ row.nombre }}</td>
-            <td>{{ row.apellido }}</td>
-            <td>{{ row.cedula }}</td>
-            <td>{{ row.fecha_viaje_inicio }}</td>
-            <td>{{ row.fecha_viaje_fin }}</td>            
-            <td>{{ row.duracion }}</td>
-            <td>{{ row.punto_partida }}</td>
-            <td>{{ row.punto_destino }}</td>          
-            <td>{{ row.fecha_gasto }}</td>          
-            <!-- <td>{{ row.moneda }}</td> -->
-            <td>{{ row.cantidad_comprobantes }}</td>
-            <td>{{ row.importe }}</td>
-            <td>{{ row.status }}</td>
-            <td>{{ row.motivo }}</td>       
-            <td>{{ row.fecha_repuesta}}</td>     
-            <td>
-              <ng-container class="contenedor-acciones">
-                <a *ngIf="row.status === 'pendiente'" class="btn btn-success"
-                  (click)="AceptarRegistro(row.id_viaje,iControl)" role="button"><img src="./assets/check.svg"
-                    alt=""></a>
-                <a *ngIf="row.status === 'pendiente'" class="btn btn-danger"
-                  (click)="RechazarRegistro(row.id_viaje,iControl)" role="button"><img src="./assets/x.svg"
-                    alt=""></a>
-                <a *ngIf="row.status !== 'eliminada'" class="btn btn-secondary"
-                  (click)="borrarRegistro(row.id_viaje,iControl)" role="button"><img src="./assets/trash.svg"
-                    alt=""></a>
-              </ng-container>
-            </td>
-  
-          </tr>
+          <ng-container *ngFor="let row of pagedViajes; let iControl=index">
+            <tr>
+              <td>{{ row.id_viaje }}</td>
+              <td>{{ row.lugar }}</td>            
+              <td>{{ row.fecha_reembolso }}</td>
+              <td>{{ row.nombre }}</td>
+              <td>{{ row.apellido }}</td>
+              <td>{{ row.cedula }}</td>
+              <td>{{ row.fecha_viaje_inicio }}</td>
+              <td>{{ row.fecha_viaje_fin }}</td>            
+              <td>{{ row.duracion }}</td>
+              <td>{{ row.punto_partida }}</td>
+              <td>{{ row.punto_destino }}</td>          
+              <td>{{ row.fecha_gasto }}</td>          
+              <!-- <td>{{ row.moneda }}</td> -->
+              <td>{{ row.cantidad_comprobantes }}</td>              
+              <td>{{ row.status }}</td>              
+              <td>{{ row.motivo }}</td>       
+              <td>{{ row.fecha_repuesta}}</td>  
+              <td>{{ row.importe }}</td> 
+              <td>
+                <button class="show-details" (click)="toggleDetalle(iControl,row.id_viaje)">Mostrar Detalles</button>
+              </td>
+              <td>
+                <ng-container class="contenedor-acciones">
+                  <a *ngIf="row.status === 'pendiente'" class="btn btn-success"
+                    (click)="AceptarRegistro(row.id_viaje,iControl)" role="button"><img src="./assets/check.svg"
+                      alt=""></a>
+                  <a *ngIf="row.status === 'pendiente'" class="btn btn-danger"
+                    (click)="RechazarRegistro(row.id_viaje,iControl)" role="button"><img src="./assets/x.svg"
+                      alt=""></a>
+                  <a *ngIf="row.status !== 'eliminada'" class="btn btn-secondary"
+                    (click)="borrarRegistro(row.id_viaje,iControl)" role="button"><img src="./assets/trash.svg"
+                      alt=""></a>
+                </ng-container>
+              </td> 
+            </tr>
+            <tr *ngIf="showDetalle[iControl]">
+              <td colspan="19">
+                <table class="detalle_comprobante">
+                  <thead>
+                    <tr>
+                      <th>Id Detalle</th>
+                      <th>Id Comprobante</th>
+                      <th>Tipo</th>
+                      <th>Ruc/Cedula</th>
+                      <th>Razon Social</th>
+                      <th># Documento</th>
+                      <th>Fecha emisión</th>
+                      <th>Base Imponible</th>
+                      <th>Cero Base Imponible</th>
+                      <th>Iva</th>
+                      <th>Servicio10</th>
+                      <th>Importe sin facturas</th>
+                      <th>subtotal</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of detalleComprobantes; let iControl=index">
+                        <td>{{ row.id_detalle_comprobante }}</td>
+                        <td>{{ row.id_comprobante }}</td>            
+                        <td>{{ row.tipo }}</td>
+                        <td>{{ row.ruc_cedula }}</td>            
+                        <td>{{ row.razon_social }}</td>
+                        <td>{{ row.n_documento }}</td>            
+                        <td>{{ row.fecha_emision }}</td>
+                        <td>{{ row.base_imponible }}</td>            
+                        <td>{{ row.cero_base_imponible }}</td>
+                        <td>{{ row.iva }}</td>            
+                        <td>{{ row.servicio10 }}</td>
+                        <td>{{ row.importe_sin_facturas }}</td>
+                        <td>{{ calcularSuma(row) }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
+        
+        
       </table>
     </div>
   

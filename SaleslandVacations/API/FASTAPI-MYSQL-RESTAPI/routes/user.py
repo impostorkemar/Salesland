@@ -391,7 +391,31 @@ async def download_excel():
     else:
         return {"message": "El archivo no existe"}
 
+@user.get("/download-zip/{nombre}", tags=["comprobante"])
+async def download_zip(nombre: str):
+    base_path = r"C:\comprobantes"  # Ruta base de los archivos
+    file_path = os.path.join(base_path, nombre)  # Unir la ruta base con el nombre del archivo
+
+    if os.path.exists(file_path):
+        return FileResponse(file_path, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", filename=nombre)
+    else:
+        return {"message": "El archivo no existe"}
+
+@user.get('/ruta_zipComprobanteById/{id}',tags=["comprobante"])
+def get_ruta_zipComprobanteById(id: str):
+    conn = engine.connect()
+    sql = ("SELECT comprobante.ruta_zip FROM comprobante WHERE comprobante.id_viaje = '"+str(id)+"'")
+    print(sql)
+    return conn.execute(sql).first()
+
 #CONSULTA DETALLE COMPROBANTE
+@user.get("/detalle_comprobanteByIdComprobante/{id}", tags=["detalle_comprobante"])
+def get_detalle_comprobanteByIdComprobante(id: str):
+    conn = engine.connect()   
+    sql = "SELECT * FROM detalle_comprobante WHERE detalle_comprobante.id_comprobante = (SELECT comprobante.id_comprobante FROM comprobante WHERE comprobante.id_viaje = (SELECT viaje.id_viaje FROM viaje WHERE viaje.id_viaje = '"+str(id)+"'))"
+    print("sql:\n",sql)
+    return conn.execute(sql).fetchall()
+
 @user.post("/detalle_comprobante/", tags=["detalle_comprobante"])
 def create_detalle_comprobante(detalle_Comprobante: Detalle_Comprobante):
     conn = engine.connect()   

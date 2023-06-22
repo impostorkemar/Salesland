@@ -27,6 +27,8 @@ export class ListarAdminViajesComponent {
 
   sortColumn: string = '';
   sortDirection: string = '';
+  showDetalle: boolean[] = [];
+  detalleComprobantes!: any;
 
   constructor(
     private crudService: CrudService,
@@ -44,6 +46,26 @@ export class ListarAdminViajesComponent {
 
   ngOnInit(): void {
     this.getViajes();
+  }
+
+  calcularSuma(row: any): number {
+    return row.base_imponible + row.cero_base_imponible + row.iva + row.servicio10 + row.importe_sin_facturas;
+  }
+
+  toggleDetalle(index: number, idviaje: any) {
+    //console.log("index:\t", index)
+    for (let i = 0; i <= this.pagedViajes.length; i++) {
+      //console.log("i:\t",i)
+      if (i === index) {
+        this.showDetalle[i] = !this.showDetalle[i];
+        this.crudService.ObtenerDetalleComprobanteById(idviaje as any as string).subscribe((response) => {
+          this.detalleComprobantes = response;
+          console.log("response:\n", response);
+        });
+      } else {
+        this.showDetalle[i] = false;
+      }
+    }  
   }
 
   getViajes(): void {
@@ -105,6 +127,7 @@ export class ListarAdminViajesComponent {
     this.filterViajes();
     this.totalPages = Math.ceil(this.ViajesBySupervisor.length / this.pageSize);
     this.changePage(1);
+    this.showDetalle = this.showDetalle.map(() => false);
   }
 
   changePage(page: number): void {
@@ -149,6 +172,7 @@ export class ListarAdminViajesComponent {
     });
 
     this.changePage(this.currentPage);
+    this.showDetalle = this.showDetalle.map(() => false);
   }
 
   borrarRegistro(id: any, iControl: any) {
