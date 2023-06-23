@@ -104,13 +104,13 @@
               <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
                 *ngIf="sortColumn === 'moneda' && sortDirection === 'desc'">
             </th> -->
-            <th (click)="sort('cantidad_comprobantes')" class="sortable">
+            <!-- <th (click)="sort('cantidad_comprobantes')" class="sortable">
               Cantidad de Comprobantes
               <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
                 *ngIf="sortColumn === 'cantidad_comprobantes' && sortDirection === 'asc'">
               <img src="./assets/arrow-down-drop.svg" alt="Orden descendente"
                 *ngIf="sortColumn === 'cantidad_comprobantes' && sortDirection === 'desc'">
-            </th>            
+            </th>             -->
             <th (click)="sort('status')" class="sortable">
               Status
               <img src="./assets/arrow-drop-up.svg" alt="Orden ascendente"
@@ -158,13 +158,22 @@
               <td>{{ row.punto_destino }}</td>          
               <td>{{ row.fecha_gasto }}</td>          
               <!-- <td>{{ row.moneda }}</td> -->
-              <td>{{ row.cantidad_comprobantes }}</td>              
+              <!-- <td>{{ row.cantidad_comprobantes }}</td>               -->
               <td>{{ row.status }}</td>              
               <td>{{ row.motivo }}</td>       
               <td>{{ row.fecha_repuesta}}</td>  
               <td>{{ row.importe }}</td> 
               <td>
-                <button class="show-details" (click)="toggleDetalle(iControl,row.id_viaje)">Mostrar Detalles</button>
+                <tr>
+                  <td>
+                    <button class="show-details" (click)="toggleDetalle(iControl,row.id_viaje)">Mostrar Detalles</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button class="show-details" (click)="descargarComprobantes(iControl,row.id_viaje)">Descargar Comprobantes</button>
+                  </td>
+                </tr>
               </td>
               <td>
                 <ng-container class="contenedor-acciones">
@@ -185,8 +194,8 @@
                 <table class="detalle_comprobante">
                   <thead>
                     <tr>
-                      <th>Id Detalle</th>
-                      <th>Id Comprobante</th>
+                      <th>Id</th>
+                      <!-- <th>Id Comprobante</th> -->
                       <th>Tipo</th>
                       <th>Ruc/Cedula</th>
                       <th>Razon Social</th>
@@ -204,7 +213,7 @@
                   <tbody>
                     <tr *ngFor="let row of detalleComprobantes; let iControl=index">
                         <td>{{ row.id_detalle_comprobante }}</td>
-                        <td>{{ row.id_comprobante }}</td>            
+                        <!-- <td>{{ row.id_comprobante }}</td>             -->
                         <td>{{ row.tipo }}</td>
                         <td>{{ row.ruc_cedula }}</td>            
                         <td>{{ row.razon_social }}</td>

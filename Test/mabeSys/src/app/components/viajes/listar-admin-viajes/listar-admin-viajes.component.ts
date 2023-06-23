@@ -4,6 +4,7 @@ import { CrudService } from 'src/app/services/crud.service';
 import { ExportListService } from 'src/app/services/export-list.service';
 import { MatSort, Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-listar-admin-viajes',
@@ -66,6 +67,32 @@ export class ListarAdminViajesComponent {
         this.showDetalle[i] = false;
       }
     }  
+  }
+
+  obtenerTextoDespuesUltimaBarra(texto: string): string {
+    const regex = /[^/]*$/;
+    const resultado = regex.exec(texto);
+    return resultado ? resultado[0] : '';
+  }
+
+  descargarComprobantes(index: number, idviaje: any) {
+    this.crudService.ObtenerNombreRutaComprobanteById(idviaje as any as string).subscribe((response) => {
+      if (response) {
+        var ruta = response['ruta_zip'];
+        var nombreArchivo = this.obtenerTextoDespuesUltimaBarra(ruta);
+        this.crudService.downloadFileFormatoReembolso(nombreArchivo).subscribe(
+          (blobData) => {
+            const fileName = nombreArchivo;
+            saveAs(blobData, fileName);
+          },
+          (error) => {
+            alert("Error al descargar el archivo");
+          }
+        );
+      } else {
+        alert("Archivo de comprobante no encontrado");
+      }      
+    });
   }
 
   getViajes(): void {

@@ -401,11 +401,11 @@ async def download_zip(nombre: str):
     else:
         return {"message": "El archivo no existe"}
 
-@user.get('/ruta_zipComprobanteById/{id}',tags=["comprobante"])
-def get_ruta_zipComprobanteById(id: str):
-    conn = engine.connect()
-    sql = ("SELECT comprobante.ruta_zip FROM comprobante WHERE comprobante.id_viaje = '"+str(id)+"'")
-    print(sql)
+@user.get("/nombreRutaComprobanteByIdViaje/{id}", tags=["comprobante"])
+def get_nombreRutaComprobanteByIdViaje(id: str):
+    conn = engine.connect()   
+    sql = "SELECT comprobante.ruta_zip FROM comprobante WHERE comprobante.id_viaje = '"+str(id)+"';"
+    print("sql:\n",sql)
     return conn.execute(sql).first()
 
 #CONSULTA DETALLE COMPROBANTE

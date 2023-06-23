@@ -528,6 +528,12 @@ export class AgregarViajeComponent implements OnInit {
     return dateFormatedFile2
   }
 
+  reemplazarEspaciosPorGuionesBajos(texto: string): string {
+    const textoConGuiones = texto.replace(/\s+/g, '_');
+    const textoUnificado = textoConGuiones.replace(/_+/g, '_');
+    return textoUnificado.replace(/^_/, '');
+  }
+
   cargarNombreEnvioFile(){
     this.crearFechaActual()
 
@@ -536,9 +542,10 @@ export class AgregarViajeComponent implements OnInit {
     let dia = this.fechaActual.getDate();
     let hora = this.fechaActual.getHours();
     let min = this.fechaActual.getMinutes();
-    let sec = this.fechaActual.getSeconds();   
+    let sec = this.fechaActual.getSeconds();  
     this.fechaEnvioName  =  `${anio}${mes.toString().padStart(2, '0')}${dia.toString().padStart(2, '0')}_${hora.toString().padStart(2, '0')}${min.toString().padStart(2, '0')}${sec.toString().padStart(2, '0')}`;
-    this.nombreFile = this.formularioDeViaje.get('nombre')?.value as string+"_"+this?.fechaEnvioName+".zip"
+    var name = this.reemplazarEspaciosPorGuionesBajos(this.formularioDeViaje.get('nombre')?.value as string+"_"+this?.fechaEnvioName+".zip")
+    this.nombreFile = name
     console.log("NombreFile:",this.nombreFile)
   }
 
@@ -559,7 +566,7 @@ export class AgregarViajeComponent implements OnInit {
             this.formularioDeViaje.setValue({    
               lugar: 'QUITO',
               fecha_reembolso: this.fechaActualText,
-              nombre: respuesta['nombre'] + respuesta['apellido'],
+              nombre: respuesta['nombre'] +"_"+ respuesta['apellido'],
               cedula: respuesta['cedula'],
               fecha_viaje_inicio: fecha_v_in,
               fecha_viaje_fin: fecha_v_fin,
@@ -589,7 +596,7 @@ export class AgregarViajeComponent implements OnInit {
             this.formularioDeViaje.setValue({    
               lugar: 'QUITO',
               fecha_reembolso: this.fechaActualText,
-              nombre: respuesta['nombre'] + respuesta['apellido'],
+              nombre: respuesta['nombre'] +"_"+ respuesta['apellido'],
               cedula: respuesta['cedula'],
               fecha_viaje_inicio: fecha_v_in,
               fecha_viaje_fin: fecha_v_fin,
@@ -622,7 +629,7 @@ export class AgregarViajeComponent implements OnInit {
             this.formularioDeViaje.setValue({      
               lugar:'QUITO',
               fecha_reembolso:this.fechaActualText,
-              nombre:respuesta['nombre'] + respuesta['apellido'],
+              nombre: respuesta['nombre'] +"_"+ respuesta['apellido'],
               cedula:respuesta['cedula'],
               fecha_viaje_inicio:fecha_v_in,
               fecha_viaje_fin:fecha_v_in,
@@ -650,7 +657,7 @@ export class AgregarViajeComponent implements OnInit {
           this.formularioDeViaje.setValue({      
             lugar:'QUITO',
             fecha_reembolso:this.fechaActualText,
-            nombre:respuesta['nombre'] + respuesta['apellido'],
+            nombre: respuesta['nombre'] +"_"+ respuesta['apellido'],
             cedula:respuesta['cedula'],
             fecha_viaje_inicio:fecha_v_in,
             fecha_viaje_fin:fecha_v_in,
@@ -673,7 +680,7 @@ export class AgregarViajeComponent implements OnInit {
         this.formularioDeViaje.setValue({      
           lugar:'QUITO',
           fecha_reembolso:this.fechaActualText,
-          nombre:respuesta['nombre'] + respuesta['apellido'],
+          nombre: respuesta['nombre'] +"_"+ respuesta['apellido'],
           cedula:respuesta['cedula'],
           fecha_viaje_inicio:'Escoge dias de viaje',
           fecha_viaje_fin:'Escoge dias de viaje',

@@ -8,7 +8,7 @@ import { Cargo } from '../components/classModels/Cargo';
 import { Contrato } from '../components/classModels/Contrato';
 import { ExperienciaLaboral } from '../components/classModels/ExperienciaLaboral';
 import { Personal } from '../components/classModels/Personal';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { HttpPostService } from './HttpPostService';	
 import { Vacaciones } from '../components/classModels/Vacaciones';
 import { TestuserService } from 'src/app/services/testuser.service';
@@ -1320,6 +1320,18 @@ resp!:String[];
   ObtenerDetalleComprobanteById(idViaje:any):Observable<any>{
     var urlAPI="detalle_comprobanteByIdComprobante/"+idViaje;      
     return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  ObtenerNombreRutaComprobanteById(idViaje:any):Observable<any>{
+    var urlAPI="nombreRutaComprobanteByIdViaje/"+idViaje;      
+    return this.clienteHttp.get(this.API+urlAPI);
+  }
+
+  downloadFileFormatoReembolso(nombre: string): Observable<Blob> {
+    const urlAPI = "download-zip/";
+    const url = this.API + urlAPI + nombre;
+  
+    return this.clienteHttp.get<Blob>(url, { responseType: 'blob' as 'json' });
   }
 
     
