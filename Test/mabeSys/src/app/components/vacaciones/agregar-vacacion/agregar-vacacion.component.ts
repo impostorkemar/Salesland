@@ -105,24 +105,28 @@ export class AgregarVacacionComponent {
   openCalendar() {
     this.modalRef = this.modalService.open(this.calendarModal, { backdrop: 'static', keyboard: false });
   }
-
+  
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: Event) {
+    const clickedElement = event.target as HTMLElement;
+    const isClickedInside = this.elementRef.nativeElement.contains(clickedElement);
+    const isCalendarClicked = clickedElement.classList.contains('custom-day');
+  
+    if (!isClickedInside && !isCalendarClicked) {
+      this.closeCalendar();
+    }
+  }
+  
   closeCalendar() {
     if (this.modalRef) {
       this.modalRef.dismiss();
     }
   }
   
-
-  @HostListener('document:click', ['$event'])
-  handleDocumentClick(event: Event) {
-    const clickedElement = event.target as HTMLElement;
-    const isClickedInside = this.elementRef.nativeElement.contains(clickedElement);
-    const isCalendarClicked = clickedElement.classList.contains('custom-day');
-
-    if (!isClickedInside && !isCalendarClicked) {
-      this.closeCalendar();
-    }
+  stopPropagation(event: Event) {
+    event.stopPropagation();
   }
+
 
    //RESPONSE
   setRespen(response: any, name:string) {

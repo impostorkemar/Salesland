@@ -122,24 +122,30 @@ export class AgregarViajeComponent implements OnInit {
   openCalendar() {
     this.modalRef = this.modalService.open(this.calendarModal, { backdrop: 'static', keyboard: false });
   }
-
-  closeCalendar() {
-    if (this.modalRef) {
-      this.modalRef.dismiss();
-    }
-  }
-
+  
   @HostListener('document:click', ['$event'])
   handleDocumentClick(event: Event) {
     const clickedElement = event.target as HTMLElement;
     const isClickedInside = this.elementRef.nativeElement.contains(clickedElement);
     const isCalendarClicked = clickedElement.classList.contains('custom-day');
-
+  
     if (!isClickedInside && !isCalendarClicked) {
       this.closeCalendar();
     }
   }
-
+  
+  closeCalendar() {
+    if (this.modalRef) {
+      this.modalRef.dismiss();
+    }
+  }
+  
+  stopPropagation(event: Event) {
+    event.stopPropagation();
+  }
+  
+  
+  
   imprimirGastos() {
     const gastos = this.formularioGastos.get('gastos') as FormArray;
     for (let i = 0; i < gastos.length; i++) {
